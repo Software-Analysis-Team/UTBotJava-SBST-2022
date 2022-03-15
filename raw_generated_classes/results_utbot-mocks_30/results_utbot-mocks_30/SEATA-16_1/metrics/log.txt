@@ -1,0 +1,59 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  SEATA-16
+
+>>> RUN NUMBER: 1
+
+>>> MODE: --only-compute-metrics
+
+
+### COMPUTING METRICS ###: io.seata.core.store.StoreMode
+
+---Compilation---
+Compiled 'io/seata/core/store/StoreModeTest.java'
+
+---Timing Information---
+
+---The tests are re-executed other four times to find the flaky ones---
+
+=== Run Jacoco for Coverage ===
+
+=== Run PIT ===
+Executing Mutation Analysis using 5 mutants 
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.store.StoreMode, method=valueof, methodDesc=(Ljava/lang/String;)Lio/seata/core/store/StoreMode;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=StoreMode.java, block=1, lineNumber=43, description=changed conditional boundary, testsInOrder=[]]
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.store.StoreMode, method=valueof, methodDesc=(Ljava/lang/String;)Lio/seata/core/store/StoreMode;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=StoreMode.java, block=1, lineNumber=43, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.store.StoreMode, method=valueof, methodDesc=(Ljava/lang/String;)Lio/seata/core/store/StoreMode;], indexes=[33], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=StoreMode.java, block=4, lineNumber=43, description=Changed increment from 1 to -1, testsInOrder=[]]
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.store.StoreMode, method=valueof, methodDesc=(Ljava/lang/String;)Lio/seata/core/store/StoreMode;], indexes=[33], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=StoreMode.java, block=4, lineNumber=43, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.store.StoreMode, method=valueof, methodDesc=(Ljava/lang/String;)Lio/seata/core/store/StoreMode;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=StoreMode.java, block=1, lineNumber=43, description=negated conditional, testsInOrder=[]]
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.store.StoreMode, method=valueof, methodDesc=(Ljava/lang/String;)Lio/seata/core/store/StoreMode;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=StoreMode.java, block=1, lineNumber=43, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.store.StoreMode, method=valueof, methodDesc=(Ljava/lang/String;)Lio/seata/core/store/StoreMode;], indexes=[25], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=StoreMode.java, block=2, lineNumber=44, description=negated conditional, testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: SEATA-16
+	Class Under Test: io.seata.core.store.StoreMode
+	Run number: 1
+	Tool preparation time (ms): 6813
+	Tool test cases generation time (ms): 14820
+	Test cases execution time (ms): 72
+	Test case number: 7
+	Uncompilable Test Classes: 0
+	Broken tests number: 1
+	Failing tests number: 0
+	Lines total: 7
+	Lines covered: 6
+	Lines coverage ratio (%): 85.71429
+	Conditions total: 4
+	Conditions covered: 3
+	Conditions coverage ratio (%): 75.0
+	Mutants total: 5
+	Mutants covered: 4
+	Mutants coverage ratio (%): 80.0
+	Mutants killed: 4
+	Mutants killed ratio (%): 80.0
+	Mutants alive: 1

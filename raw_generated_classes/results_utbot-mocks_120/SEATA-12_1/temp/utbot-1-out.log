@@ -1,0 +1,273 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+16:43:20.002 | INFO  | Started: warmup: kotlin reflection :: init
+16:43:20.103 | INFO  | Finished (in 0.100 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.rpc.netty.ShutdownHook 120
+16:43:20.115 | DEBUG | -----------------------------------------------------------------------------
+16:43:20.116 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+16:43:20.118 | INFO  | ClassUnderTest[ FQN: io.seata.core.rpc.netty.ShutdownHook
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: ShutdownHookTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/rpc/netty/ShutdownHookTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+16:43:20.148 | INFO  | Started: class io.seata.core.rpc.netty.ShutdownHook
+16:43:20.149 | INFO  | Started: preparation class class io.seata.core.rpc.netty.ShutdownHook: kotlin reflection :: run
+16:43:20.273 | INFO  | Finished (in 0.124 sec): preparation class class io.seata.core.rpc.netty.ShutdownHook: kotlin reflection :: run 
+16:43:20.274 | INFO  | Started: 2nd optional soot initialization
+16:43:20.276 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+16:43:20.284 | DEBUG |  ... 
+16:43:20.302 | INFO  | Started: method io.seata.core.rpc.netty.ShutdownHook.run()
+16:43:20.303 | INFO  |  -- Remaining time budget: 101830 ms, #remaining_methods: 10, budget for method: 10183 ms, solver timeout: 1000 ms, budget for symbolic execution: 8983 ms, budget for concrete execution: 1200 ms,  -- 
+16:43:20.608 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.run()1
+16:43:22.938 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.run()2
+16:43:29.277 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.netty.ShutdownHook.run()
+16:43:30.478 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.netty.ShutdownHook.run()
+16:43:30.601 | INFO  | Finished (in 10.299 sec): method io.seata.core.rpc.netty.ShutdownHook.run() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:43:30.703 | DEBUG |  ... 
+16:43:30.704 | INFO  | Started: method io.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable)
+16:43:30.705 | INFO  |  -- Remaining time budget: 91413 ms, #remaining_methods: 9, budget for method: 10157 ms, solver timeout: 1000 ms, budget for symbolic execution: 8957 ms, budget for concrete execution: 1200 ms,  -- 
+16:43:30.716 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable)1
+16:43:33.364 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable)2
+16:43:37.458 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable)3
+16:43:39.661 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable)
+16:43:40.768 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable)4
+16:43:40.862 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable)
+16:43:41.034 | INFO  | Finished (in 10.329 sec): method io.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:43:41.253 | DEBUG |  ... 
+16:43:41.254 | INFO  | Started: method io.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable, int)
+16:43:41.254 | INFO  |  -- Remaining time budget: 80864 ms, #remaining_methods: 8, budget for method: 10108 ms, solver timeout: 1000 ms, budget for symbolic execution: 8908 ms, budget for concrete execution: 1200 ms,  -- 
+16:43:41.262 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable, int)1
+16:43:41.331 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable, int)2
+16:43:44.017 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable, int)3
+16:43:45.242 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable, int)4
+16:43:48.347 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable, int)5
+16:43:50.162 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable, int)
+16:43:51.363 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable, int)
+16:43:51.432 | INFO  | Finished (in 10.178 sec): method io.seata.core.rpc.netty.ShutdownHook.addDisposable(Disposable, int) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+16:43:51.580 | DEBUG |  ... 
+16:43:51.581 | INFO  | Started: method io.seata.core.rpc.netty.ShutdownHook.destroyAll()
+16:43:51.581 | INFO  |  -- Remaining time budget: 70537 ms, #remaining_methods: 7, budget for method: 10076 ms, solver timeout: 1000 ms, budget for symbolic execution: 8876 ms, budget for concrete execution: 1200 ms,  -- 
+16:43:51.587 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.destroyAll()1
+16:43:53.017 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.destroyAll()2
+16:44:00.457 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.netty.ShutdownHook.destroyAll()
+16:44:01.658 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.netty.ShutdownHook.destroyAll()
+16:44:01.789 | INFO  | Finished (in 10.208 sec): method io.seata.core.rpc.netty.ShutdownHook.destroyAll() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:44:01.823 | DEBUG |  ... 
+16:44:01.824 | INFO  | Started: method io.seata.core.rpc.netty.ShutdownHook.removeRuntimeShutdownHook()
+16:44:01.824 | INFO  |  -- Remaining time budget: 60293 ms, #remaining_methods: 6, budget for method: 10048 ms, solver timeout: 1000 ms, budget for symbolic execution: 8848 ms, budget for concrete execution: 1200 ms,  -- 
+16:44:01.831 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.removeRuntimeShutdownHook()1
+16:44:02.408 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.removeRuntimeShutdownHook()2
+16:44:10.672 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.netty.ShutdownHook.removeRuntimeShutdownHook()
+16:44:11.873 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.netty.ShutdownHook.removeRuntimeShutdownHook()
+16:44:11.979 | INFO  | Finished (in 10.155 sec): method io.seata.core.rpc.netty.ShutdownHook.removeRuntimeShutdownHook() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:44:11.988 | DEBUG |  ... 
+16:44:11.989 | INFO  | Started: method io.seata.core.rpc.netty.ShutdownHook.getInstance()
+16:44:11.989 | INFO  |  -- Remaining time budget: 50128 ms, #remaining_methods: 5, budget for method: 10025 ms, solver timeout: 1000 ms, budget for symbolic execution: 8825 ms, budget for concrete execution: 1200 ms,  -- 
+16:44:13.036 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.getInstance()1
+16:44:14.057 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.getInstance()2
+16:44:20.814 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.netty.ShutdownHook.getInstance()
+16:44:22.015 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.netty.ShutdownHook.getInstance()
+16:44:22.126 | INFO  | Finished (in 10.137 sec): method io.seata.core.rpc.netty.ShutdownHook.getInstance() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:44:22.241 | DEBUG |  ... 
+16:44:22.241 | INFO  | Started: method io.seata.core.rpc.netty.ShutdownHook.<init>(String)
+16:44:22.242 | INFO  |  -- Remaining time budget: 39876 ms, #remaining_methods: 4, budget for method: 9969 ms, solver timeout: 1000 ms, budget for symbolic execution: 8769 ms, budget for concrete execution: 1200 ms,  -- 
+16:44:22.717 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ReadingFromKryoException: Failure reading from kryo
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:392) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+Caused by: com.esotericsoftware.kryo.KryoException: Buffer underflow.
+Serialization trace:
+value (com.huawei.utbot.framework.plugin.api.UtClassRefModel)
+stores (com.huawei.utbot.framework.plugin.api.UtArrayModel)
+fields (com.huawei.utbot.framework.plugin.api.UtCompositeModel)
+fields (com.huawei.utbot.framework.plugin.api.UtCompositeModel)
+fields (com.huawei.utbot.framework.plugin.api.UtCompositeModel)
+fields (com.huawei.utbot.framework.plugin.api.UtCompositeModel)
+stores (com.huawei.utbot.framework.plugin.api.UtArrayModel)
+fields (com.huawei.utbot.framework.plugin.api.UtCompositeModel)
+fields (com.huawei.utbot.framework.plugin.api.UtCompositeModel)
+stores (com.huawei.utbot.framework.plugin.api.UtArrayModel)
+fields (com.huawei.utbot.framework.plugin.api.UtCompositeModel)
+fields (com.huawei.utbot.framework.plugin.api.UtCompositeModel)
+model (com.huawei.utbot.framework.plugin.api.UtExecutionSuccess)
+result (com.huawei.utbot.framework.concrete.UtConcreteExecutionResult)
+result (com.huawei.utbot.instrumentation.util.Protocol$InvocationResultCommand)
+	at com.esotericsoftware.kryo.io.Input.require(Input.java:219) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.io.Input.readAscii_slow(Input.java:886) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.io.Input.readAsciiString(Input.java:879) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.io.Input.readString(Input.java:775) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.util.DefaultClassResolver.readName(DefaultClassResolver.java:172) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.util.DefaultClassResolver.readClass(DefaultClassResolver.java:151) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClass(Kryo.java:758) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.DefaultSerializers$ClassSerializer.read(DefaultSerializers.java:292) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.DefaultSerializers$ClassSerializer.read(DefaultSerializers.java:281) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObjectOrNull(Kryo.java:847) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:132) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:235) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:42) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:235) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:42) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:235) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:42) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:235) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:42) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:235) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:42) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:235) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:42) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:235) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:42) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:235) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:42) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:235) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:42) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:235) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:42) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:235) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.MapSerializer.read(MapSerializer.java:42) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:796) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.ReflectField.read(ReflectField.java:123) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.FieldSerializer.read(FieldSerializer.java:122) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:877) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.util.KryoHelper.readCommand(KryoHelper.kt:46) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$restartIfNeeded$$inlined$bracket$lambda$1$1$1.invokeSuspend(ConcreteExecutor.kt:256) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:274) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:84) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:59) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:38) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$restartIfNeeded$$inlined$bracket$lambda$1$1.invoke(ConcreteExecutor.kt:253) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$restartIfNeeded$$inlined$bracket$lambda$1$1.invoke(ConcreteExecutor.kt:101) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.concurrent.ThreadsKt$thread$thread$1.run(Thread.kt:30) ~[utbot-junit-contest-1.0.jar:?]
+16:44:22.937 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.<init>(String)1
+16:44:23.231 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.<init>(String)2
+16:44:31.011 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.netty.ShutdownHook.<init>(String)
+16:44:32.211 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.netty.ShutdownHook.<init>(String)
+16:44:32.307 | INFO  | Finished (in 10.065 sec): method io.seata.core.rpc.netty.ShutdownHook.<init>(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	FAILED 1 time(s) with 1 different exception(s)"
+16:44:32.534 | DEBUG |  ... 
+16:44:32.535 | INFO  | Started: method io.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.compareTo(ShutdownHook$DisposablePriorityWrapper)
+16:44:32.535 | INFO  |  -- Remaining time budget: 29582 ms, #remaining_methods: 3, budget for method: 9860 ms, solver timeout: 1000 ms, budget for symbolic execution: 8660 ms, budget for concrete execution: 1200 ms,  -- 
+16:44:33.335 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.compareTo(ShutdownHook$DisposablePriorityWrapper)1
+16:44:33.360 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.compareTo(ShutdownHook$DisposablePriorityWrapper)2
+16:44:33.379 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.compareTo(ShutdownHook$DisposablePriorityWrapper)3
+16:44:33.379 | INFO  | Finished (in 0.844 sec): method io.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.compareTo(ShutdownHook$DisposablePriorityWrapper) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:44:33.380 | DEBUG |  ... 
+16:44:33.380 | INFO  | Started: method io.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.destroy()
+16:44:33.381 | INFO  |  -- Remaining time budget: 28737 ms, #remaining_methods: 2, budget for method: 14368 ms, solver timeout: 1000 ms, budget for symbolic execution: 13168 ms, budget for concrete execution: 1200 ms,  -- 
+16:44:33.390 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.destroy()1
+16:44:33.414 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.destroy()2
+16:44:33.433 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.destroy()3
+16:44:33.434 | INFO  | Finished (in 0.053 sec): method io.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.destroy() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:44:33.435 | DEBUG |  ... 
+16:44:33.435 | INFO  | Started: method io.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.<init>(ShutdownHook, Disposable)
+16:44:33.435 | INFO  |  -- Remaining time budget: 28682 ms, #remaining_methods: 1, budget for method: 28682 ms, solver timeout: 1000 ms, budget for symbolic execution: 27482 ms, budget for concrete execution: 1200 ms,  -- 
+16:44:33.447 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.<init>(ShutdownHook, Disposable)1
+16:44:33.488 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.<init>(ShutdownHook, Disposable)2
+16:44:33.489 | INFO  | Finished (in 0.054 sec): method io.seata.core.rpc.netty.ShutdownHook.DisposablePriorityWrapper.<init>(ShutdownHook, Disposable) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:44:33.495 | INFO  | Started: Flushing tests for [ShutdownHook] on disk
+16:44:38.850 | INFO  | File size for ShutdownHookTest: 18 KB
+16:44:38.852 | INFO  | Finished (in 5.356 sec): Flushing tests for [ShutdownHook] on disk 
+16:44:38.852 | INFO  | Finished (in 78.704 sec): class io.seata.core.rpc.netty.ShutdownHook 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 10, 
+	#methods started symbolic exploration = 10
+	#methods with at least one TC = 10
+	#methods with exceptions = 1
+	#generated TC = 27
+	#coverage = null
+[READY]

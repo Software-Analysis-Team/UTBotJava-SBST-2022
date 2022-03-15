@@ -1,0 +1,62 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  GUAVA-114
+
+>>> RUN NUMBER: 1
+
+>>> MODE: --only-compute-metrics
+
+
+### COMPUTING METRICS ###: com.google.common.util.concurrent.AtomicDoubleArray
+
+---Compilation---
+Compiled 'com/google/common/util/concurrent/AtomicDoubleArrayTest.java'
+
+---Timing Information---
+
+---The tests are re-executed other four times to find the flaky ones---
+
+=== Run Jacoco for Coverage ===
+
+=== Run PIT ===
+Executing Mutation Analysis using 34 mutants 
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.util.concurrent.AtomicDoubleArray, method=toString, methodDesc=()Ljava/lang/String;], indexes=[12], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=AtomicDoubleArray.java, block=17, lineNumber=211, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.util.concurrent.AtomicDoubleArray, method=<init>, methodDesc=([D)V], indexes=[23], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=AtomicDoubleArray.java, block=1, lineNumber=73, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.util.concurrent.AtomicDoubleArray, method=toString, methodDesc=()Ljava/lang/String;], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=AtomicDoubleArray.java, block=17, lineNumber=210, description=Replaced integer subtraction with addition, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.util.concurrent.AtomicDoubleArray, method=<init>, methodDesc=([D)V], indexes=[35], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=AtomicDoubleArray.java, block=2, lineNumber=73, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.util.concurrent.AtomicDoubleArray, method=<init>, methodDesc=([D)V], indexes=[23], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=AtomicDoubleArray.java, block=1, lineNumber=73, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.util.concurrent.AtomicDoubleArray, method=toString, methodDesc=()Ljava/lang/String;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=AtomicDoubleArray.java, block=18, lineNumber=212, description=mutated return of Object value for com/google/common/util/concurrent/AtomicDoubleArray::toString to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.util.concurrent.AtomicDoubleArray, method=length, methodDesc=()I], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=AtomicDoubleArray.java, block=4, lineNumber=85, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: GUAVA-114
+	Class Under Test: com.google.common.util.concurrent.AtomicDoubleArray
+	Run number: 1
+	Tool preparation time (ms): 12412
+	Tool test cases generation time (ms): 23769
+	Test cases execution time (ms): 191
+	Test case number: 37
+	Uncompilable Test Classes: 0
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 59
+	Lines covered: 17
+	Lines coverage ratio (%): 28.813559
+	Conditions total: 14
+	Conditions covered: 3
+	Conditions coverage ratio (%): 21.428572
+	Mutants total: 34
+	Mutants covered: 7
+	Mutants coverage ratio (%): 20.588236
+	Mutants killed: 7
+	Mutants killed ratio (%): 20.588236
+	Mutants alive: 27

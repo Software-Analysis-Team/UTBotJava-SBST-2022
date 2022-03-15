@@ -1,0 +1,212 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+14:15:33.627 | INFO  | Started: warmup: kotlin reflection :: init
+14:15:33.714 | INFO  | Finished (in 0.086 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.protocol.transaction.BranchRegisterRequest 30
+14:15:33.725 | DEBUG | -----------------------------------------------------------------------------
+14:15:33.726 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+14:15:33.727 | INFO  | ClassUnderTest[ FQN: io.seata.core.protocol.transaction.BranchRegisterRequest
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: BranchRegisterRequestTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/protocol/transaction/BranchRegisterRequestTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+14:15:33.749 | INFO  | Started: class io.seata.core.protocol.transaction.BranchRegisterRequest
+14:15:33.753 | INFO  | Started: preparation class class io.seata.core.protocol.transaction.BranchRegisterRequest: kotlin reflection :: run
+14:15:33.815 | INFO  | Finished (in 0.061 sec): preparation class class io.seata.core.protocol.transaction.BranchRegisterRequest: kotlin reflection :: run 
+14:15:33.816 | INFO  | Started: 2nd optional soot initialization
+14:15:33.817 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+14:15:33.825 | DEBUG |  ... 
+14:15:33.839 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.toString()
+14:15:33.840 | INFO  |  -- Remaining time budget: 25398 ms, #remaining_methods: 16, budget for method: 1587 ms, solver timeout: 793 ms, budget for symbolic execution: 794 ms, budget for concrete execution: 793 ms,  -- 
+14:15:34.208 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.toString()1
+14:15:34.631 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.transaction.BranchRegisterRequest.toString()
+14:15:35.426 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.transaction.BranchRegisterRequest.toString()
+14:15:35.465 | INFO  | Finished (in 1.625 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.toString() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:15:35.520 | DEBUG |  ... 
+14:15:35.521 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.decode(ByteBuffer)
+14:15:35.522 | INFO  |  -- Remaining time budget: 23706 ms, #remaining_methods: 15, budget for method: 1580 ms, solver timeout: 790 ms, budget for symbolic execution: 790 ms, budget for concrete execution: 790 ms,  -- 
+14:15:35.554 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.decode(ByteBuffer)1
+14:15:35.609 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.decode(ByteBuffer)2
+14:15:35.776 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.decode(ByteBuffer)3
+14:15:36.311 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.transaction.BranchRegisterRequest.decode(ByteBuffer)
+14:15:37.102 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.transaction.BranchRegisterRequest.decode(ByteBuffer)
+14:15:38.094 | INFO  | Finished (in 2.572 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.decode(ByteBuffer) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+14:15:38.130 | DEBUG |  ... 
+14:15:38.130 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.encode()
+14:15:38.131 | INFO  |  -- Remaining time budget: 21096 ms, #remaining_methods: 14, budget for method: 1506 ms, solver timeout: 753 ms, budget for symbolic execution: 753 ms, budget for concrete execution: 753 ms,  -- 
+14:15:38.156 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.encode()1
+14:15:38.332 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.encode()2
+14:15:38.340 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.encode()3
+14:15:38.487 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.encode()4
+14:15:38.526 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.encode()5
+14:15:38.884 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.transaction.BranchRegisterRequest.encode()
+14:15:39.827 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.transaction.BranchRegisterRequest.encode()
+14:15:39.837 | ERROR | Finished (in 1.706 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.encode() :: EXCEPTION :: 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+kotlinx.coroutines.JobCancellationException: StandaloneCoroutine was cancelled
+14:15:39.855 | DEBUG |  ... 
+14:15:39.856 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.getTypeCode()
+14:15:39.856 | INFO  |  -- Remaining time budget: 19371 ms, #remaining_methods: 13, budget for method: 1490 ms, solver timeout: 745 ms, budget for symbolic execution: 745 ms, budget for concrete execution: 745 ms,  -- 
+14:15:39.906 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getTypeCode()1
+14:15:39.935 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getTypeCode()2
+14:15:39.936 | INFO  | Finished (in 0.080 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.getTypeCode() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:15:39.936 | DEBUG |  ... 
+14:15:39.937 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.handle(RpcContext)
+14:15:39.937 | INFO  |  -- Remaining time budget: 19290 ms, #remaining_methods: 12, budget for method: 1607 ms, solver timeout: 803 ms, budget for symbolic execution: 804 ms, budget for concrete execution: 803 ms,  -- 
+14:15:40.013 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.handle(RpcContext)1
+14:15:40.044 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.handle(RpcContext)2
+14:15:40.065 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.handle(RpcContext)3
+14:15:40.066 | INFO  | Finished (in 0.129 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.handle(RpcContext) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+14:15:40.066 | DEBUG |  ... 
+14:15:40.066 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.getLockKey()
+14:15:40.067 | INFO  |  -- Remaining time budget: 19160 ms, #remaining_methods: 11, budget for method: 1741 ms, solver timeout: 870 ms, budget for symbolic execution: 871 ms, budget for concrete execution: 870 ms,  -- 
+14:15:40.090 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getLockKey()1
+14:15:40.121 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getLockKey()2
+14:15:40.121 | INFO  | Finished (in 0.055 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.getLockKey() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:15:40.122 | DEBUG |  ... 
+14:15:40.122 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.setBranchType(BranchType)
+14:15:40.122 | INFO  |  -- Remaining time budget: 19104 ms, #remaining_methods: 10, budget for method: 1910 ms, solver timeout: 955 ms, budget for symbolic execution: 955 ms, budget for concrete execution: 955 ms,  -- 
+14:15:40.132 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class io.seata.core.model.BranchType with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+14:15:40.176 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.setBranchType(BranchType)1
+14:15:40.176 | INFO  | Finished (in 0.054 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.setBranchType(BranchType) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+14:15:40.177 | DEBUG |  ... 
+14:15:40.177 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.getApplicationData()
+14:15:40.177 | INFO  |  -- Remaining time budget: 19049 ms, #remaining_methods: 9, budget for method: 2116 ms, solver timeout: 1000 ms, budget for symbolic execution: 1058 ms, budget for concrete execution: 1058 ms,  -- 
+14:15:40.193 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getApplicationData()1
+14:15:40.219 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getApplicationData()2
+14:15:40.219 | INFO  | Finished (in 0.042 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.getApplicationData() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:15:40.220 | DEBUG |  ... 
+14:15:40.220 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.setResourceId(String)
+14:15:40.220 | INFO  |  -- Remaining time budget: 19006 ms, #remaining_methods: 8, budget for method: 2375 ms, solver timeout: 1000 ms, budget for symbolic execution: 1188 ms, budget for concrete execution: 1187 ms,  -- 
+14:15:40.263 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.setResourceId(String)1
+14:15:40.292 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.setResourceId(String)2
+14:15:40.293 | INFO  | Finished (in 0.073 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.setResourceId(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:15:40.293 | DEBUG |  ... 
+14:15:40.294 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.setApplicationData(String)
+14:15:40.294 | INFO  |  -- Remaining time budget: 18933 ms, #remaining_methods: 7, budget for method: 2704 ms, solver timeout: 1000 ms, budget for symbolic execution: 1504 ms, budget for concrete execution: 1200 ms,  -- 
+14:15:40.307 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.setApplicationData(String)1
+14:15:40.336 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.setApplicationData(String)2
+14:15:40.336 | INFO  | Finished (in 0.043 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.setApplicationData(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:15:40.337 | DEBUG |  ... 
+14:15:40.337 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.setLockKey(String)
+14:15:40.337 | INFO  |  -- Remaining time budget: 18889 ms, #remaining_methods: 6, budget for method: 3148 ms, solver timeout: 1000 ms, budget for symbolic execution: 1948 ms, budget for concrete execution: 1200 ms,  -- 
+14:15:40.354 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.setLockKey(String)1
+14:15:40.383 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.setLockKey(String)2
+14:15:40.383 | INFO  | Finished (in 0.046 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.setLockKey(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:15:40.384 | DEBUG |  ... 
+14:15:40.384 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.getBranchType()
+14:15:40.384 | INFO  |  -- Remaining time budget: 18842 ms, #remaining_methods: 5, budget for method: 3768 ms, solver timeout: 1000 ms, budget for symbolic execution: 2568 ms, budget for concrete execution: 1200 ms,  -- 
+14:15:40.397 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getBranchType()1
+14:15:40.424 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getBranchType()2
+14:15:40.425 | INFO  | Finished (in 0.040 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.getBranchType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:15:40.425 | DEBUG |  ... 
+14:15:40.425 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.setXid(String)
+14:15:40.425 | INFO  |  -- Remaining time budget: 18801 ms, #remaining_methods: 4, budget for method: 4700 ms, solver timeout: 1000 ms, budget for symbolic execution: 3500 ms, budget for concrete execution: 1200 ms,  -- 
+14:15:40.440 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.setXid(String)1
+14:15:40.466 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.setXid(String)2
+14:15:40.466 | INFO  | Finished (in 0.041 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.setXid(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:15:40.467 | DEBUG |  ... 
+14:15:40.467 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.getResourceId()
+14:15:40.467 | INFO  |  -- Remaining time budget: 18759 ms, #remaining_methods: 3, budget for method: 6253 ms, solver timeout: 1000 ms, budget for symbolic execution: 5053 ms, budget for concrete execution: 1200 ms,  -- 
+14:15:40.477 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getResourceId()1
+14:15:40.502 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getResourceId()2
+14:15:40.502 | INFO  | Finished (in 0.035 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.getResourceId() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:15:40.502 | DEBUG |  ... 
+14:15:40.502 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.getXid()
+14:15:40.502 | INFO  |  -- Remaining time budget: 18724 ms, #remaining_methods: 2, budget for method: 9362 ms, solver timeout: 1000 ms, budget for symbolic execution: 8162 ms, budget for concrete execution: 1200 ms,  -- 
+14:15:40.512 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getXid()1
+14:15:40.536 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.getXid()2
+14:15:40.536 | INFO  | Finished (in 0.033 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.getXid() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:15:40.536 | DEBUG |  ... 
+14:15:40.536 | INFO  | Started: method io.seata.core.protocol.transaction.BranchRegisterRequest.<init>()
+14:15:40.537 | INFO  |  -- Remaining time budget: 18690 ms, #remaining_methods: 1, budget for method: 18690 ms, solver timeout: 1000 ms, budget for symbolic execution: 17490 ms, budget for concrete execution: 1200 ms,  -- 
+14:15:40.544 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchRegisterRequest.<init>()1
+14:15:40.706 | INFO  | Finished (in 0.169 sec): method io.seata.core.protocol.transaction.BranchRegisterRequest.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:15:40.722 | INFO  | Started: Flushing tests for [BranchRegisterRequest] on disk
+14:15:42.047 | INFO  | File size for BranchRegisterRequestTest: 25 KB
+14:15:42.048 | INFO  | Finished (in 1.326 sec): Flushing tests for [BranchRegisterRequest] on disk 
+14:15:42.049 | INFO  | Finished (in 8.295 sec): class io.seata.core.protocol.transaction.BranchRegisterRequest 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 16, 
+	#methods started symbolic exploration = 16
+	#methods with at least one TC = 16
+	#methods with exceptions = 1
+	#generated TC = 34
+	#coverage = null
+[READY]

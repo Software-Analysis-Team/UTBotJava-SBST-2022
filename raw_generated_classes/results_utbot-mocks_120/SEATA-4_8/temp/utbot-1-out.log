@@ -1,0 +1,156 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+23:58:46.504 | INFO  | Started: warmup: kotlin reflection :: init
+23:58:46.589 | INFO  | Finished (in 0.084 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.protocol.MessageFuture 120
+23:58:46.602 | DEBUG | -----------------------------------------------------------------------------
+23:58:46.602 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+23:58:46.604 | INFO  | ClassUnderTest[ FQN: io.seata.core.protocol.MessageFuture
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: MessageFutureTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/protocol/MessageFutureTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+23:58:46.640 | INFO  | Started: class io.seata.core.protocol.MessageFuture
+23:58:46.641 | INFO  | Started: preparation class class io.seata.core.protocol.MessageFuture: kotlin reflection :: run
+23:58:46.659 | INFO  | Finished (in 0.018 sec): preparation class class io.seata.core.protocol.MessageFuture: kotlin reflection :: run 
+23:58:46.660 | INFO  | Started: 2nd optional soot initialization
+23:58:46.662 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+23:58:46.673 | DEBUG |  ... 
+23:58:46.697 | INFO  | Started: method io.seata.core.protocol.MessageFuture.get(long, TimeUnit)
+23:58:46.699 | INFO  |  -- Remaining time budget: 101927 ms, #remaining_methods: 8, budget for method: 12740 ms, solver timeout: 1000 ms, budget for symbolic execution: 11540 ms, budget for concrete execution: 1200 ms,  -- 
+23:58:47.024 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class java.util.concurrent.TimeUnit with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:58:47.237 | ERROR | Symbolic execution FAILED
+java.lang.IllegalArgumentException: No targets for Invocation(instance=ObjectValue(typeStorage=java.util.concurrent.TimeUnit, addr=addr: (BVInt32 p1)), method=<java.util.concurrent.TimeUnit: long toNanos(long)>, parameters=[(long (BVLong64 p0))], generator=() -> kotlin.collections.List<com.huawei.utbot.engine.InvocationTarget>)
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.commonInvokePart(UtBotSymbolicEngine.kt:2417) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.virtualAndInterfaceInvoke(UtBotSymbolicEngine.kt:2289) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.invokeResult(UtBotSymbolicEngine.kt:2153) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseAssignStmt(UtBotSymbolicEngine.kt:884) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseStmt(UtBotSymbolicEngine.kt:604) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invokeSuspend(UtBotSymbolicEngine.kt:464) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1.invokeSuspend(Unknown Source) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:58:47.239 | INFO  | Finished (in 0.541 sec): method io.seata.core.protocol.MessageFuture.get(long, TimeUnit) 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 2 time(s) with 2 different exception(s)"
+23:58:47.241 | DEBUG |  ... 
+23:58:47.241 | INFO  | Started: method io.seata.core.protocol.MessageFuture.getTimeout()
+23:58:47.241 | INFO  |  -- Remaining time budget: 101362 ms, #remaining_methods: 7, budget for method: 14480 ms, solver timeout: 1000 ms, budget for symbolic execution: 13280 ms, budget for concrete execution: 1200 ms,  -- 
+23:58:47.252 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.getTimeout()1
+23:58:47.307 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.getTimeout()2
+23:58:47.307 | INFO  | Finished (in 0.066 sec): method io.seata.core.protocol.MessageFuture.getTimeout() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:58:47.309 | DEBUG |  ... 
+23:58:47.309 | INFO  | Started: method io.seata.core.protocol.MessageFuture.setTimeout(long)
+23:58:47.309 | INFO  |  -- Remaining time budget: 101294 ms, #remaining_methods: 6, budget for method: 16882 ms, solver timeout: 1000 ms, budget for symbolic execution: 15682 ms, budget for concrete execution: 1200 ms,  -- 
+23:58:47.318 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.setTimeout(long)1
+23:58:47.347 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.setTimeout(long)2
+23:58:47.347 | INFO  | Finished (in 0.038 sec): method io.seata.core.protocol.MessageFuture.setTimeout(long) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:58:47.348 | DEBUG |  ... 
+23:58:47.349 | INFO  | Started: method io.seata.core.protocol.MessageFuture.getRequestMessage()
+23:58:47.349 | INFO  |  -- Remaining time budget: 101254 ms, #remaining_methods: 5, budget for method: 20250 ms, solver timeout: 1000 ms, budget for symbolic execution: 19050 ms, budget for concrete execution: 1200 ms,  -- 
+23:58:47.356 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.getRequestMessage()1
+23:58:47.392 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.getRequestMessage()2
+23:58:47.393 | INFO  | Finished (in 0.044 sec): method io.seata.core.protocol.MessageFuture.getRequestMessage() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:58:47.394 | DEBUG |  ... 
+23:58:47.394 | INFO  | Started: method io.seata.core.protocol.MessageFuture.setRequestMessage(RpcMessage)
+23:58:47.394 | INFO  |  -- Remaining time budget: 101209 ms, #remaining_methods: 4, budget for method: 25302 ms, solver timeout: 1000 ms, budget for symbolic execution: 24102 ms, budget for concrete execution: 1200 ms,  -- 
+23:58:47.403 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.setRequestMessage(RpcMessage)1
+23:58:47.434 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.setRequestMessage(RpcMessage)2
+23:58:47.435 | INFO  | Finished (in 0.040 sec): method io.seata.core.protocol.MessageFuture.setRequestMessage(RpcMessage) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:58:47.436 | DEBUG |  ... 
+23:58:47.436 | INFO  | Started: method io.seata.core.protocol.MessageFuture.isTimeout()
+23:58:47.436 | INFO  |  -- Remaining time budget: 101167 ms, #remaining_methods: 3, budget for method: 33722 ms, solver timeout: 1000 ms, budget for symbolic execution: 32522 ms, budget for concrete execution: 1200 ms,  -- 
+23:58:47.443 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.isTimeout()1
+23:58:47.539 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.isTimeout()2
+23:58:47.550 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.isTimeout()3
+23:58:47.551 | INFO  | Finished (in 0.114 sec): method io.seata.core.protocol.MessageFuture.isTimeout() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+23:58:47.552 | DEBUG |  ... 
+23:58:47.553 | INFO  | Started: method io.seata.core.protocol.MessageFuture.setResultMessage(Object)
+23:58:47.553 | INFO  |  -- Remaining time budget: 101050 ms, #remaining_methods: 2, budget for method: 50525 ms, solver timeout: 1000 ms, budget for symbolic execution: 49325 ms, budget for concrete execution: 1200 ms,  -- 
+23:58:47.561 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.setResultMessage(Object)1
+23:58:49.058 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.setResultMessage(Object)2
+23:58:49.391 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.setResultMessage(Object)3
+23:59:36.879 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.MessageFuture.setResultMessage(Object)
+23:59:38.080 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.MessageFuture.setResultMessage(Object)
+23:59:38.425 | INFO  | Finished (in 50.871 sec): method io.seata.core.protocol.MessageFuture.setResultMessage(Object) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+23:59:39.188 | DEBUG |  ... 
+23:59:39.189 | INFO  | Started: method io.seata.core.protocol.MessageFuture.<init>()
+23:59:39.189 | INFO  |  -- Remaining time budget: 49415 ms, #remaining_methods: 1, budget for method: 49415 ms, solver timeout: 1000 ms, budget for symbolic execution: 48215 ms, budget for concrete execution: 1200 ms,  -- 
+23:59:39.197 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.<init>()1
+23:59:39.335 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MessageFuture.<init>()2
+23:59:39.335 | INFO  | Finished (in 0.146 sec): method io.seata.core.protocol.MessageFuture.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:59:39.348 | INFO  | Started: Flushing tests for [MessageFuture] on disk
+23:59:39.484 | INFO  | File size for MessageFutureTest: 9 KB
+23:59:39.486 | INFO  | Finished (in 0.137 sec): Flushing tests for [MessageFuture] on disk 
+23:59:39.487 | INFO  | Finished (in 52.846 sec): class io.seata.core.protocol.MessageFuture 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 8, 
+	#methods started symbolic exploration = 8
+	#methods with at least one TC = 7
+	#methods with exceptions = 1
+	#generated TC = 16
+	#coverage = null
+[READY]

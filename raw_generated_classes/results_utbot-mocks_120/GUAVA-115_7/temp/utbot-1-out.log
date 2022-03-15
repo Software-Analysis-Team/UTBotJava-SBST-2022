@@ -1,0 +1,434 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+22:49:37.029 | INFO  | Started: warmup: kotlin reflection :: init
+22:49:37.110 | INFO  | Finished (in 0.080 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.util.concurrent.SimpleTimeLimiter 120
+22:49:37.119 | DEBUG | -----------------------------------------------------------------------------
+22:49:37.120 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+22:49:37.121 | INFO  | ClassUnderTest[ FQN: com.google.common.util.concurrent.SimpleTimeLimiter
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: SimpleTimeLimiterTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+22:49:37.144 | INFO  | Started: class com.google.common.util.concurrent.SimpleTimeLimiter
+22:49:37.145 | INFO  | Started: preparation class class com.google.common.util.concurrent.SimpleTimeLimiter: kotlin reflection :: run
+22:49:37.205 | INFO  | Finished (in 0.060 sec): preparation class class com.google.common.util.concurrent.SimpleTimeLimiter: kotlin reflection :: run 
+22:49:37.206 | INFO  | Started: 2nd optional soot initialization
+22:49:37.207 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+22:49:37.215 | DEBUG |  ... 
+22:49:37.224 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.runWithTimeout(Runnable, long, TimeUnit)
+22:49:37.224 | INFO  |  -- Remaining time budget: 101903 ms, #remaining_methods: 15, budget for method: 6793 ms, solver timeout: 1000 ms, budget for symbolic execution: 5593 ms, budget for concrete execution: 1200 ms,  -- 
+22:49:37.533 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class java.util.concurrent.TimeUnit with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+22:49:42.815 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.SimpleTimeLimiter.runWithTimeout(Runnable, long, TimeUnit)
+22:49:44.016 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.SimpleTimeLimiter.runWithTimeout(Runnable, long, TimeUnit)
+22:49:44.184 | INFO  | Finished (in 6.960 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.runWithTimeout(Runnable, long, TimeUnit) 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 1 time(s) with 1 different exception(s)"
+22:49:44.246 | DEBUG |  ... 
+22:49:44.247 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(Callable, long, TimeUnit)
+22:49:44.247 | INFO  |  -- Remaining time budget: 94873 ms, #remaining_methods: 14, budget for method: 6776 ms, solver timeout: 1000 ms, budget for symbolic execution: 5576 ms, budget for concrete execution: 1200 ms,  -- 
+22:49:44.254 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class java.util.concurrent.TimeUnit with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+22:49:49.823 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(Callable, long, TimeUnit)
+22:49:51.024 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(Callable, long, TimeUnit)
+22:49:51.364 | INFO  | Finished (in 7.117 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(Callable, long, TimeUnit) 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 1 time(s) with 1 different exception(s)"
+22:49:51.495 | DEBUG |  ... 
+22:49:51.495 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(Callable, long, TimeUnit, boolean)
+22:49:51.496 | INFO  |  -- Remaining time budget: 87625 ms, #remaining_methods: 13, budget for method: 6740 ms, solver timeout: 1000 ms, budget for symbolic execution: 5540 ms, budget for concrete execution: 1200 ms,  -- 
+22:49:51.507 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class java.util.concurrent.TimeUnit with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+22:49:57.036 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(Callable, long, TimeUnit, boolean)
+22:49:58.236 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(Callable, long, TimeUnit, boolean)
+22:49:58.498 | INFO  | Finished (in 7.003 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.callWithTimeout(Callable, long, TimeUnit, boolean) 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 1 time(s) with 1 different exception(s)"
+22:49:58.627 | DEBUG |  ... 
+22:49:58.628 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.callUninterruptiblyWithTimeout(Callable, long, TimeUnit)
+22:49:58.628 | INFO  |  -- Remaining time budget: 80492 ms, #remaining_methods: 12, budget for method: 6707 ms, solver timeout: 1000 ms, budget for symbolic execution: 5507 ms, budget for concrete execution: 1200 ms,  -- 
+22:49:58.635 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class java.util.concurrent.TimeUnit with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+22:50:04.135 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.SimpleTimeLimiter.callUninterruptiblyWithTimeout(Callable, long, TimeUnit)
+22:50:05.336 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.SimpleTimeLimiter.callUninterruptiblyWithTimeout(Callable, long, TimeUnit)
+22:50:05.602 | INFO  | Finished (in 6.974 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.callUninterruptiblyWithTimeout(Callable, long, TimeUnit) 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 1 time(s) with 1 different exception(s)"
+22:50:05.632 | DEBUG |  ... 
+22:50:05.633 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.runUninterruptiblyWithTimeout(Runnable, long, TimeUnit)
+22:50:05.633 | INFO  |  -- Remaining time budget: 73488 ms, #remaining_methods: 11, budget for method: 6680 ms, solver timeout: 1000 ms, budget for symbolic execution: 5480 ms, budget for concrete execution: 1200 ms,  -- 
+22:50:05.639 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class java.util.concurrent.TimeUnit with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+22:50:11.113 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.SimpleTimeLimiter.runUninterruptiblyWithTimeout(Runnable, long, TimeUnit)
+22:50:12.314 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.SimpleTimeLimiter.runUninterruptiblyWithTimeout(Runnable, long, TimeUnit)
+22:50:12.529 | INFO  | Finished (in 6.896 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.runUninterruptiblyWithTimeout(Runnable, long, TimeUnit) 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 1 time(s) with 1 different exception(s)"
+22:50:12.650 | DEBUG |  ... 
+22:50:12.650 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.newProxy(T, Class, long, TimeUnit)
+22:50:12.650 | INFO  |  -- Remaining time budget: 66470 ms, #remaining_methods: 10, budget for method: 6647 ms, solver timeout: 1000 ms, budget for symbolic execution: 5447 ms, budget for concrete execution: 1200 ms,  -- 
+22:50:12.658 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+22:50:13.770 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.newProxy(T, Class, long, TimeUnit)1
+22:50:14.578 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.newProxy(T, Class, long, TimeUnit)2
+22:50:18.098 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.SimpleTimeLimiter.newProxy(T, Class, long, TimeUnit)
+22:50:19.298 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.SimpleTimeLimiter.newProxy(T, Class, long, TimeUnit)
+22:50:19.585 | INFO  | Finished (in 6.935 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.newProxy(T, Class, long, TimeUnit) 
+<StatsForMethod> :
+	#generatedTC=2
+	FAILED 1 time(s) with 1 different exception(s)"
+22:50:19.819 | DEBUG |  ... 
+22:50:19.820 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.wrapAndThrowExecutionExceptionOrError(Throwable)
+22:50:19.820 | INFO  |  -- Remaining time budget: 59301 ms, #remaining_methods: 9, budget for method: 6589 ms, solver timeout: 1000 ms, budget for symbolic execution: 5389 ms, budget for concrete execution: 1200 ms,  -- 
+22:50:19.854 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.wrapAndThrowExecutionExceptionOrError(Throwable)1
+22:50:19.947 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.wrapAndThrowExecutionExceptionOrError(Throwable)2
+22:50:20.175 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.wrapAndThrowExecutionExceptionOrError(Throwable)3
+22:50:20.189 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.wrapAndThrowExecutionExceptionOrError(Throwable)4
+22:50:20.190 | INFO  | Finished (in 0.370 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.wrapAndThrowExecutionExceptionOrError(Throwable) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+22:50:20.192 | DEBUG |  ... 
+22:50:20.192 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.wrapAndThrowRuntimeExecutionExceptionOrError(Throwable)
+22:50:20.192 | INFO  |  -- Remaining time budget: 58928 ms, #remaining_methods: 8, budget for method: 7366 ms, solver timeout: 1000 ms, budget for symbolic execution: 6166 ms, budget for concrete execution: 1200 ms,  -- 
+22:50:20.202 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.wrapAndThrowRuntimeExecutionExceptionOrError(Throwable)1
+22:50:20.283 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.wrapAndThrowRuntimeExecutionExceptionOrError(Throwable)2
+22:50:20.367 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.wrapAndThrowRuntimeExecutionExceptionOrError(Throwable)3
+22:50:20.368 | INFO  | Finished (in 0.175 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.wrapAndThrowRuntimeExecutionExceptionOrError(Throwable) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+22:50:20.369 | DEBUG |  ... 
+22:50:20.370 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.create(ExecutorService)
+22:50:20.370 | INFO  |  -- Remaining time budget: 58750 ms, #remaining_methods: 7, budget for method: 8392 ms, solver timeout: 1000 ms, budget for symbolic execution: 7192 ms, budget for concrete execution: 1200 ms,  -- 
+22:50:20.381 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.create(ExecutorService)1
+22:50:20.699 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.create(ExecutorService)2
+22:50:20.798 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.create(ExecutorService)3
+22:50:20.798 | INFO  | Finished (in 0.428 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.create(ExecutorService) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+22:50:20.813 | DEBUG |  ... 
+22:50:20.814 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean)
+22:50:20.814 | INFO  |  -- Remaining time budget: 58306 ms, #remaining_methods: 6, budget for method: 9717 ms, solver timeout: 1000 ms, budget for symbolic execution: 8517 ms, budget for concrete execution: 1200 ms,  -- 
+22:50:20.826 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean)1
+22:50:20.868 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean)2
+22:50:21.134 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean)3
+22:50:21.450 | ERROR | Symbolic execution FAILED
+java.lang.IllegalStateException: RefType [Ljava.lang.StackTraceElement; not loaded. If you tried to get the RefType of a library class, did you call loadNecessaryClasses()? Otherwise please check Soot's classpath.
+	at soot.Scene.getRefType(Scene.java:1096) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.ResolverKt$toMethodResult$9$1.invoke(Resolver.kt:990) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.ResolverKt$toMethodResult$9$1.invoke(Resolver.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.asMethodResult$utbot_framework(UtBotSymbolicEngine.kt:3169) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.ResolverKt.toMethodResult(Resolver.kt:989) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.processStaticFieldConcretely(UtBotSymbolicEngine.kt:814) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.processStaticInitializer(UtBotSymbolicEngine.kt:710) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.processStaticInitializerIfRequired(UtBotSymbolicEngine.kt:664) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.doPreparatoryWorkIfRequired(UtBotSymbolicEngine.kt:637) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseStmt(UtBotSymbolicEngine.kt:601) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invokeSuspend(UtBotSymbolicEngine.kt:464) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1.invokeSuspend(Unknown Source) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+22:50:21.632 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean)4
+22:50:21.682 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean)5
+22:50:21.830 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean)6
+22:50:21.960 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean)7
+22:50:22.233 | ERROR | Symbolic execution FAILED ... <<stack trace duplicated>>
+22:50:22.487 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean)8
+22:50:22.623 | ERROR | Symbolic execution FAILED ... <<stack trace duplicated>>
+22:50:22.881 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean)9
+22:50:23.019 | ERROR | Symbolic execution FAILED ... <<stack trace duplicated>>
+22:50:23.150 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean)10
+22:50:23.423 | ERROR | Symbolic execution FAILED ... <<stack trace duplicated>>
+22:50:23.439 | INFO  | Finished (in 2.625 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.throwCause(Exception, boolean) 
+<StatsForMethod> :
+	#generatedTC=10
+	FAILED 5 time(s) with 1 different exception(s)"
+22:50:23.471 | DEBUG |  ... 
+22:50:23.472 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.findInterruptibleMethods(Class)
+22:50:23.472 | INFO  |  -- Remaining time budget: 55649 ms, #remaining_methods: 5, budget for method: 11129 ms, solver timeout: 1000 ms, budget for symbolic execution: 9929 ms, budget for concrete execution: 1200 ms,  -- 
+22:50:23.477 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+22:50:23.545 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.findInterruptibleMethods(Class)1
+22:50:28.580 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.findInterruptibleMethods(Class)2
+22:50:28.624 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.findInterruptibleMethods(Class)3
+22:50:29.921 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.findInterruptibleMethods(Class)4
+22:50:31.103 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.findInterruptibleMethods(Class)5
+22:50:33.401 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.SimpleTimeLimiter.findInterruptibleMethods(Class)
+22:50:34.602 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.SimpleTimeLimiter.findInterruptibleMethods(Class)
+22:50:34.686 | INFO  | Finished (in 11.214 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.findInterruptibleMethods(Class) 
+<StatsForMethod> :
+	#generatedTC=5
+	FAILED 1 time(s) with 1 different exception(s)"
+22:50:34.953 | DEBUG |  ... 
+22:50:34.954 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.declaresInterruptedEx(Method)
+22:50:34.954 | INFO  |  -- Remaining time budget: 44166 ms, #remaining_methods: 4, budget for method: 11041 ms, solver timeout: 1000 ms, budget for symbolic execution: 9841 ms, budget for concrete execution: 1200 ms,  -- 
+22:50:34.972 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.declaresInterruptedEx(Method)1
+22:50:35.016 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.declaresInterruptedEx(Method)2
+22:50:35.089 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.declaresInterruptedEx(Method)3
+22:50:35.126 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.declaresInterruptedEx(Method)4
+22:50:35.137 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.declaresInterruptedEx(Method)5
+22:50:35.138 | INFO  | Finished (in 0.184 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.declaresInterruptedEx(Method) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+22:50:35.145 | DEBUG |  ... 
+22:50:35.146 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.checkPositiveTimeout(long)
+22:50:35.146 | INFO  |  -- Remaining time budget: 43974 ms, #remaining_methods: 3, budget for method: 14658 ms, solver timeout: 1000 ms, budget for symbolic execution: 13458 ms, budget for concrete execution: 1200 ms,  -- 
+22:50:35.154 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.checkPositiveTimeout(long)1
+22:50:35.195 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.checkPositiveTimeout(long)2
+22:50:35.201 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.checkPositiveTimeout(long)3
+22:50:35.202 | INFO  | Finished (in 0.056 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.checkPositiveTimeout(long) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+22:50:35.203 | DEBUG |  ... 
+22:50:35.203 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.newProxy(Class, InvocationHandler)
+22:50:35.203 | INFO  |  -- Remaining time budget: 43917 ms, #remaining_methods: 2, budget for method: 21958 ms, solver timeout: 1000 ms, budget for symbolic execution: 20758 ms, budget for concrete execution: 1200 ms,  -- 
+22:50:35.207 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+22:50:35.262 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.newProxy(Class, InvocationHandler)1
+22:50:35.615 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.newProxy(Class, InvocationHandler)2
+22:50:47.697 | INFO  | Finished (in 12.493 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.newProxy(Class, InvocationHandler) 
+<StatsForMethod> :
+	#generatedTC=2
+	FAILED 1 time(s) with 1 different exception(s)"
+22:50:48.004 | DEBUG |  ... 
+22:50:48.004 | INFO  | Started: method com.google.common.util.concurrent.SimpleTimeLimiter.<init>(ExecutorService)
+22:50:48.005 | INFO  |  -- Remaining time budget: 31116 ms, #remaining_methods: 1, budget for method: 31116 ms, solver timeout: 1000 ms, budget for symbolic execution: 29916 ms, budget for concrete execution: 1200 ms,  -- 
+22:50:48.011 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.<init>(ExecutorService)1
+22:50:48.177 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.<init>(ExecutorService)2
+22:50:48.256 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.SimpleTimeLimiter.<init>(ExecutorService)3
+22:50:48.256 | INFO  | Finished (in 0.252 sec): method com.google.common.util.concurrent.SimpleTimeLimiter.<init>(ExecutorService) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+22:50:48.263 | INFO  | Started: Flushing tests for [SimpleTimeLimiter] on disk
+22:50:48.589 | INFO  | File size for SimpleTimeLimiterTest: 51 KB
+22:50:48.591 | INFO  | Finished (in 0.327 sec): Flushing tests for [SimpleTimeLimiter] on disk 
+22:50:48.591 | INFO  | Finished (in 71.447 sec): class com.google.common.util.concurrent.SimpleTimeLimiter 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 15, 
+	#methods started symbolic exploration = 15
+	#methods with at least one TC = 10
+	#methods with exceptions = 9
+	#generated TC = 40
+	#coverage = null
+[READY]

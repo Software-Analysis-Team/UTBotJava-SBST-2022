@@ -1,0 +1,522 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/fastjson/target/classes, classpathString=/var/benchmarks/projects/fastjson/target/classes:/var/benchmarks/projects/fastjson/target/fastjson-1.2.50-SNAPSHOT.jar:/var/benchmarks/projects/./fastjson/target/dependency/deeptestutils-1.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-beanutils-1.8.0.jar:/var/benchmarks/projects/fastjson/target/dependency/woodstox-core-asl-4.4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-aop-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-core-5.2.10.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-kotlin-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-1.13.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.annotation-api-1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/gson-2.6.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-continuation-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/objenesis-2.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-reflect-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spring-web-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/guava-18.0.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-core-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/json-lib-2.4-jdk15.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-xml-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/xmlschema-core-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-support-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections4-4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cglib-nodep-2.2.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-debug-all-5.0.4.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-core-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-rs-client-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-io-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang3-3.4.jar:/var/benchmarks/projects/fastjson/target/dependency/stax2-api-3.1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-server-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/json-simple-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-tree-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-core-1.4.1.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jcl-over-slf4j-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-3.0.0.v201112011016.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-core-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/osgi-resource-locator-1.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javassist-3.18.0-GA.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-reflect-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-support-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-metadata-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-stdlib-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-keyvalue-1.2.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-commons-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-guava-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/groovy-2.1.5.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-api-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-security-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-core-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/dom4j-1.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-core-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-redis-1.8.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-mapper-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-jpa-2.1-api-1.0.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/junit-4.12.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-io-1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-util-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-generator-annprocess-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-base-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-core-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/slf4j-api-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/antlr-2.7.7.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-all-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-match-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-provider-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-entity-filtering-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jandex-2.0.3.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/ezmorph-1.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-json-provider-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-transports-http-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-beans-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-server-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-jaxb-annotations-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/jopt-simple-4.6.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-analysis-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/annotations-13.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-path-2.3.0.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spi-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-websocket-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-messaging-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-client-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.ws.rs-api-2.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/accessors-smart-1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-commons-annotations-5.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-logging-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-expression-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-jaxb-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/okhttp-3.6.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-math3-3.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-webapp-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.inject-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-core-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-http-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-config-3.2.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/okio-1.11.0.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-api-3.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-smart-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-tx-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-afterburner-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-util-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-web-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-webmvc-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-locator-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/retrofit-2.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/clojure-1.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-oauth2-2.3.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-test-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-repackaged-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-oxm-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-core-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-transaction-api_1.2_spec-1.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/lombok-1.14.4.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections-3.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-frontend-jaxrs-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/classmate-1.3.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-utils-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-common-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-databind-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-json-jackson-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang-2.5.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-servlet-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/validation-api-1.1.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-web-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jsoniter-0.9.8.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-logging-3.3.0.Final.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+16:08:27.138 | INFO  | Started: warmup: kotlin reflection :: init
+16:08:27.241 | INFO  | Finished (in 0.103 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter 120
+16:08:27.255 | DEBUG | -----------------------------------------------------------------------------
+16:08:27.256 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/fastjson/target/classes:/var/benchmarks/projects/fastjson/target/fastjson-1.2.50-SNAPSHOT.jar:/var/benchmarks/projects/./fastjson/target/dependency/deeptestutils-1.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-beanutils-1.8.0.jar:/var/benchmarks/projects/fastjson/target/dependency/woodstox-core-asl-4.4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-aop-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-core-5.2.10.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-kotlin-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-1.13.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.annotation-api-1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/gson-2.6.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-continuation-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/objenesis-2.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-reflect-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spring-web-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/guava-18.0.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-core-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/json-lib-2.4-jdk15.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-xml-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/xmlschema-core-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-support-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections4-4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cglib-nodep-2.2.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-debug-all-5.0.4.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-core-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-rs-client-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-io-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang3-3.4.jar:/var/benchmarks/projects/fastjson/target/dependency/stax2-api-3.1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-server-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/json-simple-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-tree-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-core-1.4.1.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jcl-over-slf4j-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-3.0.0.v201112011016.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-core-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/osgi-resource-locator-1.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javassist-3.18.0-GA.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-reflect-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-support-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-metadata-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-stdlib-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-keyvalue-1.2.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-commons-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-guava-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/groovy-2.1.5.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-api-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-security-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-core-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/dom4j-1.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-core-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-redis-1.8.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-mapper-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-jpa-2.1-api-1.0.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/junit-4.12.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-io-1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-util-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-generator-annprocess-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-base-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-core-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/slf4j-api-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/antlr-2.7.7.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-all-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-match-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-provider-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-entity-filtering-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jandex-2.0.3.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/ezmorph-1.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-json-provider-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-transports-http-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-beans-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-server-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-jaxb-annotations-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/jopt-simple-4.6.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-analysis-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/annotations-13.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-path-2.3.0.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spi-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-websocket-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-messaging-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-client-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.ws.rs-api-2.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/accessors-smart-1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-commons-annotations-5.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-logging-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-expression-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-jaxb-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/okhttp-3.6.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-math3-3.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-webapp-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.inject-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-core-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-http-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-config-3.2.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/okio-1.11.0.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-api-3.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-smart-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-tx-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-afterburner-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-util-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-web-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-webmvc-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-locator-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/retrofit-2.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/clojure-1.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-oauth2-2.3.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-test-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-repackaged-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-oxm-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-core-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-transaction-api_1.2_spec-1.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/lombok-1.14.4.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections-3.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-frontend-jaxrs-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/classmate-1.3.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-utils-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-common-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-databind-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-json-jackson-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang-2.5.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-servlet-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/validation-api-1.1.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-web-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jsoniter-0.9.8.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-logging-3.3.0.Final.jar, methodNameFilter=null
+16:08:27.259 | INFO  | ClassUnderTest[ FQN: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter
+    classfileDir: /var/benchmarks/projects/fastjson/target/classes
+    testClassSimpleName: FastJsonHttpMessageConverterTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/alibaba/fastjson/support/spring/FastJsonHttpMessageConverterTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+16:08:27.284 | INFO  | Started: class com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter
+16:08:27.285 | INFO  | Started: preparation class class com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter: kotlin reflection :: run
+16:08:27.419 | INFO  | Finished (in 0.133 sec): preparation class class com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter: kotlin reflection :: run 
+16:08:27.420 | INFO  | Started: 2nd optional soot initialization
+16:08:27.421 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+16:08:27.428 | DEBUG |  ... 
+16:08:27.440 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.write(Object, Type, MediaType, HttpOutputMessage)
+16:08:27.441 | INFO  |  -- Remaining time budget: 101827 ms, #remaining_methods: 26, budget for method: 3916 ms, solver timeout: 1000 ms, budget for symbolic execution: 2716 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:30.302 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.write(Object, Type, MediaType, HttpOutputMessage)
+16:08:30.430 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.write(Object, Type, MediaType, HttpOutputMessage)1
+16:08:31.503 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.write(Object, Type, MediaType, HttpOutputMessage)
+16:08:31.680 | INFO  | Finished (in 4.239 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.write(Object, Type, MediaType, HttpOutputMessage) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:08:31.684 | DEBUG |  ... 
+16:08:31.684 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.read(Type, Class, HttpInputMessage)
+16:08:31.685 | INFO  |  -- Remaining time budget: 97574 ms, #remaining_methods: 25, budget for method: 3902 ms, solver timeout: 1000 ms, budget for symbolic execution: 2702 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:31.700 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+16:08:33.569 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.read(Type, Class, HttpInputMessage)1
+16:08:34.233 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.read(Type, Class, HttpInputMessage)2
+16:08:34.387 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.read(Type, Class, HttpInputMessage)
+16:08:34.457 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.read(Type, Class, HttpInputMessage)3
+16:08:34.531 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.read(Type, Class, HttpInputMessage)4
+16:08:35.460 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.read(Type, Class, HttpInputMessage)5
+16:08:35.587 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.read(Type, Class, HttpInputMessage)
+16:08:35.714 | INFO  | Finished (in 4.030 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.read(Type, Class, HttpInputMessage) 
+<StatsForMethod> :
+	#generatedTC=5
+	FAILED 1 time(s) with 1 different exception(s)"
+16:08:35.819 | DEBUG |  ... 
+16:08:35.820 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.canRead(Type, Class, MediaType)
+16:08:35.820 | INFO  |  -- Remaining time budget: 93439 ms, #remaining_methods: 24, budget for method: 3893 ms, solver timeout: 1000 ms, budget for symbolic execution: 2693 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:35.828 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+16:08:36.487 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.canRead(Type, Class, MediaType)1
+16:08:37.306 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.canRead(Type, Class, MediaType)2
+16:08:37.557 | INFO  | Finished (in 1.737 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.canRead(Type, Class, MediaType) 
+<StatsForMethod> :
+	#generatedTC=2
+	FAILED 1 time(s) with 1 different exception(s)"
+16:08:37.640 | DEBUG |  ... 
+16:08:37.640 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.canWrite(Type, Class, MediaType)
+16:08:37.641 | INFO  |  -- Remaining time budget: 91618 ms, #remaining_methods: 23, budget for method: 3983 ms, solver timeout: 1000 ms, budget for symbolic execution: 2783 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:37.648 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+16:08:37.951 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.canWrite(Type, Class, MediaType)1
+16:08:37.990 | INFO  | Finished (in 0.349 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.canWrite(Type, Class, MediaType) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+16:08:38.002 | DEBUG |  ... 
+16:08:38.003 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readInternal(Class, HttpInputMessage)
+16:08:38.003 | INFO  |  -- Remaining time budget: 91255 ms, #remaining_methods: 22, budget for method: 4147 ms, solver timeout: 1000 ms, budget for symbolic execution: 2947 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:38.011 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+16:08:38.722 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readInternal(Class, HttpInputMessage)1
+16:08:38.772 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readInternal(Class, HttpInputMessage)2
+16:08:39.208 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readInternal(Class, HttpInputMessage)3
+16:08:39.244 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readInternal(Class, HttpInputMessage)4
+16:08:39.247 | INFO  | Finished (in 1.244 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readInternal(Class, HttpInputMessage) 
+<StatsForMethod> :
+	#generatedTC=4
+	FAILED 1 time(s) with 1 different exception(s)"
+16:08:39.290 | DEBUG |  ... 
+16:08:39.291 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.writeInternal(Object, HttpOutputMessage)
+16:08:39.291 | INFO  |  -- Remaining time budget: 89967 ms, #remaining_methods: 21, budget for method: 4284 ms, solver timeout: 1000 ms, budget for symbolic execution: 3084 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:39.891 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.writeInternal(Object, HttpOutputMessage)1
+16:08:40.863 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.writeInternal(Object, HttpOutputMessage)2
+16:08:42.375 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.writeInternal(Object, HttpOutputMessage)
+16:08:42.707 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.writeInternal(Object, HttpOutputMessage)3
+16:08:43.087 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.writeInternal(Object, HttpOutputMessage)4
+16:08:43.576 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.writeInternal(Object, HttpOutputMessage)
+16:08:43.773 | INFO  | Finished (in 4.482 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.writeInternal(Object, HttpOutputMessage) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:08:43.871 | DEBUG |  ... 
+16:08:43.871 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.supports(Class)
+16:08:43.872 | INFO  |  -- Remaining time budget: 85387 ms, #remaining_methods: 20, budget for method: 4269 ms, solver timeout: 1000 ms, budget for symbolic execution: 3069 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:43.877 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+16:08:43.959 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.supports(Class)1
+16:08:43.960 | INFO  | Finished (in 0.088 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.supports(Class) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+16:08:43.961 | DEBUG |  ... 
+16:08:43.961 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getCharset()
+16:08:43.962 | INFO  |  -- Remaining time budget: 85297 ms, #remaining_methods: 19, budget for method: 4489 ms, solver timeout: 1000 ms, budget for symbolic execution: 3289 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:44.574 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getCharset()1
+16:08:44.601 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getCharset()2
+16:08:44.621 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getCharset()3
+16:08:44.622 | INFO  | Finished (in 0.660 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getCharset() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:08:44.622 | DEBUG |  ... 
+16:08:44.623 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.addSerializeFilter(SerializeFilter)
+16:08:44.623 | INFO  |  -- Remaining time budget: 84635 ms, #remaining_methods: 18, budget for method: 4701 ms, solver timeout: 1000 ms, budget for symbolic execution: 3501 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:45.197 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.addSerializeFilter(SerializeFilter)1
+16:08:45.239 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.addSerializeFilter(SerializeFilter)2
+16:08:45.246 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.addSerializeFilter(SerializeFilter)3
+16:08:45.267 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.addSerializeFilter(SerializeFilter)4
+16:08:45.940 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.addSerializeFilter(SerializeFilter)5
+16:08:46.103 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.addSerializeFilter(SerializeFilter)6
+16:08:46.299 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.addSerializeFilter(SerializeFilter)7
+16:08:46.300 | INFO  | Finished (in 1.676 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.addSerializeFilter(SerializeFilter) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+16:08:46.315 | DEBUG |  ... 
+16:08:46.316 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFastJsonConfig(FastJsonConfig)
+16:08:46.316 | INFO  |  -- Remaining time budget: 82942 ms, #remaining_methods: 17, budget for method: 4878 ms, solver timeout: 1000 ms, budget for symbolic execution: 3678 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:46.714 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFastJsonConfig(FastJsonConfig)1
+16:08:46.740 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFastJsonConfig(FastJsonConfig)2
+16:08:46.740 | INFO  | Finished (in 0.424 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFastJsonConfig(FastJsonConfig) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:08:46.741 | DEBUG |  ... 
+16:08:46.742 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFeatures()
+16:08:46.742 | INFO  |  -- Remaining time budget: 82516 ms, #remaining_methods: 16, budget for method: 5157 ms, solver timeout: 1000 ms, budget for symbolic execution: 3957 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:47.013 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFeatures()1
+16:08:47.039 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFeatures()2
+16:08:47.061 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFeatures()3
+16:08:47.062 | INFO  | Finished (in 0.320 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFeatures() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:08:47.064 | DEBUG |  ... 
+16:08:47.064 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFeatures(SerializerFeature[])
+16:08:47.064 | INFO  |  -- Remaining time budget: 82194 ms, #remaining_methods: 15, budget for method: 5479 ms, solver timeout: 1000 ms, budget for symbolic execution: 4279 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:47.408 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFeatures(SerializerFeature[])1
+16:08:47.437 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFeatures(SerializerFeature[])2
+16:08:47.458 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFeatures(SerializerFeature[])3
+16:08:47.458 | INFO  | Finished (in 0.394 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFeatures(SerializerFeature[]) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:08:47.459 | DEBUG |  ... 
+16:08:47.459 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.strangeCodeForJackson(Object)
+16:08:47.459 | INFO  |  -- Remaining time budget: 81799 ms, #remaining_methods: 14, budget for method: 5842 ms, solver timeout: 1000 ms, budget for symbolic execution: 4642 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:47.754 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.strangeCodeForJackson(Object)1
+16:08:47.904 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.strangeCodeForJackson(Object)2
+16:08:48.410 | INFO  | Finished (in 0.951 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.strangeCodeForJackson(Object) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:08:48.431 | DEBUG |  ... 
+16:08:48.432 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFilters()
+16:08:48.432 | INFO  |  -- Remaining time budget: 80826 ms, #remaining_methods: 13, budget for method: 6217 ms, solver timeout: 1000 ms, budget for symbolic execution: 5017 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:48.747 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFilters()1
+16:08:48.773 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFilters()2
+16:08:48.794 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFilters()3
+16:08:48.794 | INFO  | Finished (in 0.362 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFilters() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:08:48.795 | DEBUG |  ... 
+16:08:48.796 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFilters(SerializeFilter[])
+16:08:48.796 | INFO  |  -- Remaining time budget: 80463 ms, #remaining_methods: 12, budget for method: 6705 ms, solver timeout: 1000 ms, budget for symbolic execution: 5505 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:49.056 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFilters(SerializeFilter[])1
+16:08:49.084 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFilters(SerializeFilter[])2
+16:08:49.106 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFilters(SerializeFilter[])3
+16:08:49.106 | INFO  | Finished (in 0.310 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setFilters(SerializeFilter[]) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:08:49.107 | DEBUG |  ... 
+16:08:49.108 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setDateFormat(String)
+16:08:49.108 | INFO  |  -- Remaining time budget: 80151 ms, #remaining_methods: 11, budget for method: 7286 ms, solver timeout: 1000 ms, budget for symbolic execution: 6086 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:49.432 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setDateFormat(String)1
+16:08:49.458 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setDateFormat(String)2
+16:08:49.479 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setDateFormat(String)3
+16:08:49.480 | INFO  | Finished (in 0.372 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setDateFormat(String) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:08:49.480 | DEBUG |  ... 
+16:08:49.481 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getDateFormat()
+16:08:49.481 | INFO  |  -- Remaining time budget: 79778 ms, #remaining_methods: 10, budget for method: 7977 ms, solver timeout: 1000 ms, budget for symbolic execution: 6777 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:49.784 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getDateFormat()1
+16:08:49.809 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getDateFormat()2
+16:08:49.829 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getDateFormat()3
+16:08:49.830 | INFO  | Finished (in 0.349 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getDateFormat() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:08:49.830 | DEBUG |  ... 
+16:08:49.831 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readType(Type, HttpInputMessage)
+16:08:49.831 | INFO  |  -- Remaining time budget: 79427 ms, #remaining_methods: 9, budget for method: 8825 ms, solver timeout: 1000 ms, budget for symbolic execution: 7625 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:50.135 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readType(Type, HttpInputMessage)1
+16:08:50.187 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readType(Type, HttpInputMessage)2
+16:08:50.219 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readType(Type, HttpInputMessage)3
+16:08:50.467 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readType(Type, HttpInputMessage)4
+16:08:50.468 | INFO  | Finished (in 0.637 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.readType(Type, HttpInputMessage) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:08:50.469 | DEBUG |  ... 
+16:08:50.470 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setCharset(Charset)
+16:08:50.470 | INFO  |  -- Remaining time budget: 78789 ms, #remaining_methods: 8, budget for method: 9848 ms, solver timeout: 1000 ms, budget for symbolic execution: 8648 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:50.772 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setCharset(Charset)1
+16:08:50.798 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setCharset(Charset)2
+16:08:50.818 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setCharset(Charset)3
+16:08:50.819 | INFO  | Finished (in 0.349 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.setCharset(Charset) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:08:50.820 | DEBUG |  ... 
+16:08:50.820 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFastJsonConfig()
+16:08:50.820 | INFO  |  -- Remaining time budget: 78438 ms, #remaining_methods: 7, budget for method: 11205 ms, solver timeout: 1000 ms, budget for symbolic execution: 10005 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:51.114 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFastJsonConfig()1
+16:08:51.139 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFastJsonConfig()2
+16:08:51.140 | INFO  | Finished (in 0.320 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getFastJsonConfig() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:08:51.141 | DEBUG |  ... 
+16:08:51.142 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)
+16:08:51.142 | INFO  |  -- Remaining time budget: 78116 ms, #remaining_methods: 6, budget for method: 13019 ms, solver timeout: 1000 ms, budget for symbolic execution: 11819 ms, budget for concrete execution: 1200 ms,  -- 
+16:08:51.147 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+16:08:51.344 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)1
+16:08:51.639 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)2
+16:08:51.826 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)3
+16:08:51.951 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)4
+16:08:52.008 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)5
+16:08:52.051 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)6
+16:08:52.116 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)7
+16:08:52.148 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)8
+16:08:52.439 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)9
+16:08:52.469 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)10
+16:08:53.032 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)11
+16:08:53.147 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)12
+16:08:53.329 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)13
+16:08:54.755 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)14
+16:08:54.789 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)15
+16:08:54.833 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)16
+16:08:55.680 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)17
+16:08:55.897 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)18
+16:08:56.637 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)19
+16:08:56.931 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)20
+16:08:58.652 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)21
+16:08:58.767 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)22
+16:08:59.031 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)23
+16:08:59.470 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)24
+16:09:00.447 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)25
+16:09:00.486 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)26
+16:09:00.710 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)27
+16:09:01.825 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)28
+16:09:02.169 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)29
+16:09:02.961 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)
+16:09:03.726 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)30
+16:09:04.162 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class)
+16:09:04.342 | INFO  | Finished (in 13.199 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.getType(Type, Class) 
+<StatsForMethod> :
+	#generatedTC=30
+	FAILED 1 time(s) with 1 different exception(s)"
+16:09:04.673 | DEBUG |  ... 
+16:09:04.674 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.<init>()
+16:09:04.674 | INFO  |  -- Remaining time budget: 64584 ms, #remaining_methods: 5, budget for method: 12916 ms, solver timeout: 1000 ms, budget for symbolic execution: 11716 ms, budget for concrete execution: 1200 ms,  -- 
+16:09:04.953 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.<init>()1
+16:09:05.088 | INFO  | Finished (in 0.414 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:09:05.094 | DEBUG |  ... 
+16:09:05.095 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)
+16:09:05.095 | INFO  |  -- Remaining time budget: 64164 ms, #remaining_methods: 4, budget for method: 16041 ms, solver timeout: 1000 ms, budget for symbolic execution: 14841 ms, budget for concrete execution: 1200 ms,  -- 
+16:09:05.165 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)1
+16:09:05.287 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)2
+16:09:05.341 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)3
+16:09:05.363 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)4
+16:09:05.381 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)5
+16:09:05.407 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)6
+16:09:05.600 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)7
+16:09:05.645 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)8
+16:09:05.772 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)9
+16:09:05.951 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)10
+16:09:06.033 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType)11
+16:09:06.329 | INFO  | Finished (in 1.234 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.resolveVariable(TypeVariable, ResolvableType) 
+<StatsForMethod> :
+	#generatedTC=11
+	WITH NO EXCEPTIONS
+16:09:06.366 | DEBUG |  ... 
+16:09:06.367 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.isSupport()
+16:09:06.367 | INFO  |  -- Remaining time budget: 62892 ms, #remaining_methods: 3, budget for method: 20964 ms, solver timeout: 1000 ms, budget for symbolic execution: 19764 ms, budget for concrete execution: 1200 ms,  -- 
+16:09:06.369 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.isSupport()1
+16:09:06.471 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.isSupport()2
+16:09:06.471 | INFO  | Finished (in 0.104 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.isSupport() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:09:06.486 | DEBUG |  ... 
+16:09:06.487 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)
+16:09:06.487 | INFO  |  -- Remaining time budget: 62772 ms, #remaining_methods: 2, budget for method: 31386 ms, solver timeout: 1000 ms, budget for symbolic execution: 30186 ms, budget for concrete execution: 1200 ms,  -- 
+16:09:06.490 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+16:09:06.569 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)1
+16:09:06.652 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)2
+16:09:06.658 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)3
+16:09:06.681 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)4
+16:09:06.873 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)5
+16:09:06.991 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)6
+16:09:07.027 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)7
+16:09:07.068 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)8
+16:09:07.118 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)9
+16:09:07.197 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)10
+16:09:07.546 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)11
+16:09:07.790 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)12
+16:09:07.988 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)13
+16:09:08.018 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)14
+16:09:08.066 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)15
+16:09:08.091 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)16
+16:09:08.506 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)17
+16:09:08.560 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)18
+16:09:08.713 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)19
+16:09:08.842 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)20
+16:09:09.052 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)21
+16:09:09.082 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)22
+16:09:09.358 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)23
+16:09:09.555 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)24
+16:09:09.698 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)25
+16:09:09.842 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)26
+16:09:10.077 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)27
+16:09:10.250 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class)28
+16:09:10.316 | INFO  | Finished (in 3.829 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.getType(Type, Class) 
+<StatsForMethod> :
+	#generatedTC=28
+	FAILED 1 time(s) with 1 different exception(s)"
+16:09:10.442 | DEBUG |  ... 
+16:09:10.442 | INFO  | Started: method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.<init>()
+16:09:10.443 | INFO  |  -- Remaining time budget: 58816 ms, #remaining_methods: 1, budget for method: 58816 ms, solver timeout: 1000 ms, budget for symbolic execution: 57616 ms, budget for concrete execution: 1200 ms,  -- 
+16:09:10.445 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.<init>()1
+16:09:10.466 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.<init>()2
+16:09:10.466 | INFO  | Finished (in 0.023 sec): method com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.Spring4TypeResolvableHelper.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:09:10.472 | INFO  | Started: Flushing tests for [FastJsonHttpMessageConverter] on disk
+16:09:23.917 | INFO  | File size for FastJsonHttpMessageConverterTest: 242 KB
+16:09:23.919 | INFO  | Finished (in 13.447 sec): Flushing tests for [FastJsonHttpMessageConverter] on disk 
+16:09:23.919 | INFO  | Finished (in 56.634 sec): class com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 26, 
+	#methods started symbolic exploration = 26
+	#methods with at least one TC = 26
+	#methods with exceptions = 7
+	#generated TC = 133
+	#coverage = null
+[READY]

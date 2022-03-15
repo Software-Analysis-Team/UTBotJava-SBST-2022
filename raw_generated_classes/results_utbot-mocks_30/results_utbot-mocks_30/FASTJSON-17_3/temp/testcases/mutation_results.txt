@@ -1,0 +1,15 @@
+N. of generated mutants 6
+N. of covered mutants 2
+N. of killed mutants 2
+N. of ignored mutants 0
+
+
+ --- Tests killing mutants --- 
+ Mutant: 0	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.ClobSeriliazer, method=write, methodDesc=(Lcom/alibaba/fastjson/serializer/JSONSerializer;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/reflect/Type;I)V], indexes=[4], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ClobSeriliazer.java, block=1, lineNumber=17, description=negated conditional, testsInOrder=[]]
+Mutant: 1	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.ClobSeriliazer, method=write, methodDesc=(Lcom/alibaba/fastjson/serializer/JSONSerializer;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/reflect/Type;I)V], indexes=[8], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ClobSeriliazer.java, block=2, lineNumber=18, description=removed call to com/alibaba/fastjson/serializer/JSONSerializer::writeNull, testsInOrder=[]]
+
+
+ --- Mutants details--- 
+ Mutant: 0, killed by tests [(com.alibaba.fastjson.serializer.ClobSeriliazerTest),testClobSeriliazer1)]
+Mutant: 1, killed by tests [(com.alibaba.fastjson.serializer.ClobSeriliazerTest),testClobSeriliazer1)]
+

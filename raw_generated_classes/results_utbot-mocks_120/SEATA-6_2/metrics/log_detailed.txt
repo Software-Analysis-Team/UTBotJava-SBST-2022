@@ -1,0 +1,749 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  SEATA-6
+
+>>> RUN NUMBER: 2
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/seata/core/src/main/java
+>> /var/benchmarks/projects/seata/core/target/classes
+>> 18
+>> /var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar
+>> /var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 120
+
+
+### COMPUTING METRICS ###: io.seata.core.rpc.RpcContext
+
+
+Starting class io.seata.core.rpc.RpcContext
+
+
+Ending class io.seata.core.rpc.RpcContext
+Creating directory results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases -cp /var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases -cp /var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/io/seata/core/rpc/RpcContextTest.java
+
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/io/seata/core/rpc/RpcContextTest.java:28: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/io/seata/core/rpc/RpcContextTest.java:1635: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/io/seata/core/rpc/RpcContextTest.java:1636: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/io/seata/core/rpc/RpcContextTest.java:1638: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/io/seata/core/rpc/RpcContextTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+4 warnings
+Compiled 'io/seata/core/rpc/RpcContextTest.java'
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, io.seata.core.rpc.RpcContextTest]
+Executions terminated
+Failure: [testGetAddressFromChannel5(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetAddressFromChannel6(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetAddressFromChannel8(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetClientPortFromChannel11(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testHoldInIdentifiedChannels4(io.seata.core.rpc.RpcContextTest): Expected exception: java.lang.Throwable, testGetPortMap4(io.seata.core.rpc.RpcContextTest): Expected exception: java.lang.Throwable]
+Failing Tests: testGetAddressFromChannel5(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel5(RpcContextTest.java:988)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetAddressFromChannel6(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel6(RpcContextTest.java:1010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetAddressFromChannel8(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel8(RpcContextTest.java:1055)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetClientPortFromChannel11(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetClientPortFromChannel11(RpcContextTest.java:1379)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testHoldInIdentifiedChannels4(io.seata.core.rpc.RpcContextTest)
+java.lang.AssertionError: Expected exception: java.lang.Throwable
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetPortMap4(io.seata.core.rpc.RpcContextTest)
+java.lang.AssertionError: Expected exception: java.lang.Throwable
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, io.seata.core.rpc.RpcContextTest]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, io.seata.core.rpc.RpcContextTest]
+Failure: [testGetAddressFromChannel5(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetAddressFromChannel6(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetAddressFromChannel8(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetClientPortFromChannel11(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testHoldInIdentifiedChannels4(io.seata.core.rpc.RpcContextTest): Expected exception: java.lang.Throwable, testGetPortMap4(io.seata.core.rpc.RpcContextTest): Expected exception: java.lang.Throwable]
+Failing Tests: testGetAddressFromChannel5(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel5(RpcContextTest.java:988)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetAddressFromChannel6(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel6(RpcContextTest.java:1010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetAddressFromChannel8(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel8(RpcContextTest.java:1055)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetClientPortFromChannel11(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetClientPortFromChannel11(RpcContextTest.java:1379)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testHoldInIdentifiedChannels4(io.seata.core.rpc.RpcContextTest)
+java.lang.AssertionError: Expected exception: java.lang.Throwable
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetPortMap4(io.seata.core.rpc.RpcContextTest)
+java.lang.AssertionError: Expected exception: java.lang.Throwable
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, io.seata.core.rpc.RpcContextTest]
+Failure: [testGetAddressFromChannel5(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetAddressFromChannel6(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetAddressFromChannel8(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetClientPortFromChannel11(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testHoldInIdentifiedChannels4(io.seata.core.rpc.RpcContextTest): Expected exception: java.lang.Throwable, testGetPortMap4(io.seata.core.rpc.RpcContextTest): Expected exception: java.lang.Throwable]
+Failing Tests: testGetAddressFromChannel5(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel5(RpcContextTest.java:988)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetAddressFromChannel6(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel6(RpcContextTest.java:1010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetAddressFromChannel8(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel8(RpcContextTest.java:1055)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetClientPortFromChannel11(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetClientPortFromChannel11(RpcContextTest.java:1379)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testHoldInIdentifiedChannels4(io.seata.core.rpc.RpcContextTest)
+java.lang.AssertionError: Expected exception: java.lang.Throwable
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetPortMap4(io.seata.core.rpc.RpcContextTest)
+java.lang.AssertionError: Expected exception: java.lang.Throwable
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, io.seata.core.rpc.RpcContextTest]
+Failure: [testGetAddressFromChannel5(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetAddressFromChannel6(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetAddressFromChannel8(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetClientPortFromChannel11(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testHoldInIdentifiedChannels4(io.seata.core.rpc.RpcContextTest): Expected exception: java.lang.Throwable, testGetPortMap4(io.seata.core.rpc.RpcContextTest): Expected exception: java.lang.Throwable]
+Failing Tests: testGetAddressFromChannel5(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel5(RpcContextTest.java:988)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetAddressFromChannel6(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel6(RpcContextTest.java:1010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetAddressFromChannel8(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel8(RpcContextTest.java:1055)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetClientPortFromChannel11(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetClientPortFromChannel11(RpcContextTest.java:1379)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testHoldInIdentifiedChannels4(io.seata.core.rpc.RpcContextTest)
+java.lang.AssertionError: Expected exception: java.lang.Throwable
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetPortMap4(io.seata.core.rpc.RpcContextTest)
+java.lang.AssertionError: Expected exception: java.lang.Throwable
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Executions terminated
+Failure: [testGetAddressFromChannel5(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetAddressFromChannel6(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetAddressFromChannel8(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testGetClientPortFromChannel11(io.seata.core.rpc.RpcContextTest): 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class, testHoldInIdentifiedChannels4(io.seata.core.rpc.RpcContextTest): Expected exception: java.lang.Throwable, testGetPortMap4(io.seata.core.rpc.RpcContextTest): Expected exception: java.lang.Throwable]
+Failing Tests: testGetAddressFromChannel5(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel5(RpcContextTest.java:988)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetAddressFromChannel6(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel6(RpcContextTest.java:1010)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetAddressFromChannel8(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetAddressFromChannel8(RpcContextTest.java:1055)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetClientPortFromChannel11(io.seata.core.rpc.RpcContextTest)
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class io.netty.channel.unix.DomainSocketAddress
+Mockito cannot mock/spy because :
+ - final class
+	at io.seata.core.rpc.RpcContextTest.testGetClientPortFromChannel11(RpcContextTest.java:1379)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testHoldInIdentifiedChannels4(io.seata.core.rpc.RpcContextTest)
+java.lang.AssertionError: Expected exception: java.lang.Throwable
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testGetPortMap4(io.seata.core.rpc.RpcContextTest)
+java.lang.AssertionError: Expected exception: java.lang.Throwable
+	at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:32)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 7313
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/seata-core-0.5.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/mockito-core-2.23.4_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/byte-buddy-agent-1.9.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/assertj-core-2.6.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/seata-common-0.5.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/byte-buddy-1.9.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/objenesis-2.6_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/seata-discovery-core-0.5.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/commons-pool2-2.4.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/junit-4.12_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/hamcrest-core-1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/slf4j-api-1.7.22_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/seata-config-core-0.5.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/netty-all-4.1.24.Final_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/commons-lang-2.6_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/fastjson-1.2.48_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/config-1.2.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/commons-pool-1.6_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, io.seata.core.rpc.RpcContextTest]
+Executions terminated
+Number of file with coverage information = 120
+Extracted coverage data for the class io/seata/core/rpc/RpcContext
+Number of file with coverage information = 543
+Number of file with coverage information = 31
+Number of file with coverage information = 740
+Number of file with coverage information = 23
+Number of file with coverage information = 2286
+Number of file with coverage information = 43
+Number of file with coverage information = 10
+Number of file with coverage information = 68
+Number of file with coverage information = 286
+Number of file with coverage information = 45
+Number of file with coverage information = 34
+Number of file with coverage information = 12
+Number of file with coverage information = 2528
+Number of file with coverage information = 133
+Number of file with coverage information = 221
+Number of file with coverage information = 135
+Number of file with coverage information = 55
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 30 mutants 
+Evaluating mutant -1068554545 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT0
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=toString, methodDesc=()Ljava/lang/String;], indexes=[40], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant -2039172932 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT1
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getClientId, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant -634848544 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT2
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=addResources, methodDesc=(Ljava/util/Set;)V], indexes=[13], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant 358300178 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT3
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getTransactionServiceGroup, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant -441000708 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT4
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getResourceSets, methodDesc=()Ljava/util/Set;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant -20685138 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT5
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=addResource, methodDesc=(Ljava/lang/String;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant -541491959 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT6
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getChannel, methodDesc=()Lio/netty/channel/Channel;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant -634856232 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT7
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=addResources, methodDesc=(Ljava/util/Set;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant 34731042 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT8
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getVersion, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant -1745820954 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT9
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInClientChannels, methodDesc=(Ljava/util/concurrent/ConcurrentMap;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant 327157174 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT10
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInIdentifiedChannels, methodDesc=(Ljava/util/concurrent/ConcurrentMap;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant 1068231644 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT11
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getClientRMHolderMap, methodDesc=()Ljava/util/concurrent/ConcurrentMap;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant 1217994158 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT12
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getClientRole, methodDesc=()Lio/seata/core/rpc/netty/NettyPoolKey$TransactionRole;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant 1988769906 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT13
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInResourceManagerChannels, methodDesc=(Ljava/lang/String;Ljava/lang/Integer;)V], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant -1896848119 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT14
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInResourceManagerChannels, methodDesc=(Ljava/lang/String;Ljava/util/concurrent/ConcurrentMap;)V], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant 1365529567 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT15
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getPortMap, methodDesc=(Ljava/lang/String;)Ljava/util/Map;], indexes=[8], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+Evaluating mutant -259485291 using tests: [io.seata.core.rpc.RpcContextTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SEATA-6_2/temp/testcases/bin:results_utbot-mocks_120/SEATA-6_2/temp/testcases/mutated_code/CUT16
+
+Failed test testGetClientRole1(io.seata.core.rpc.RpcContextTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getApplicationId, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (io.seata.core.rpc.RpcContextTest),testGetClientRole1)
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=toString, methodDesc=()Ljava/lang/String;], indexes=[40], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=47, lineNumber=347, description=mutated return of Object value for io/seata/core/rpc/RpcContext::toString to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getClientId, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=22, lineNumber=178, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getClientId to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=addResources, methodDesc=(Ljava/util/Set;)V], indexes=[13], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=44, lineNumber=330, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getTransactionServiceGroup, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=27, lineNumber=223, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getTransactionServiceGroup to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getResourceSets, methodDesc=()Ljava/util/Set;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=38, lineNumber=299, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getResourceSets to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=addResource, methodDesc=(Ljava/lang/String;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=40, lineNumber=317, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getChannel, methodDesc=()Lio/netty/channel/Channel;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=23, lineNumber=187, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getChannel to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=addResources, methodDesc=(Ljava/util/Set;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=42, lineNumber=329, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getVersion, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=31, lineNumber=259, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getVersion to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInClientChannels, methodDesc=(Ljava/util/concurrent/ConcurrentMap;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=10, lineNumber=102, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInIdentifiedChannels, methodDesc=(Ljava/util/concurrent/ConcurrentMap;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=13, lineNumber=116, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getClientRMHolderMap, methodDesc=()Ljava/util/concurrent/ConcurrentMap;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=20, lineNumber=159, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getClientRMHolderMap to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getClientRole, methodDesc=()Lio/seata/core/rpc/netty/NettyPoolKey$TransactionRole;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=29, lineNumber=241, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getClientRole to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInResourceManagerChannels, methodDesc=(Ljava/lang/String;Ljava/lang/Integer;)V], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=18, lineNumber=145, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInResourceManagerChannels, methodDesc=(Ljava/lang/String;Ljava/util/concurrent/ConcurrentMap;)V], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=16, lineNumber=130, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getPortMap, methodDesc=(Ljava/lang/String;)Ljava/util/Map;], indexes=[8], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=21, lineNumber=169, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getPortMap to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getApplicationId, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=25, lineNumber=205, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getApplicationId to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: SEATA-6
+	Class Under Test: io.seata.core.rpc.RpcContext
+	Run number: 2
+	Tool preparation time (ms): 6845
+	Tool test cases generation time (ms): 88571
+	Test cases execution time (ms): 2206
+	Test case number: 90
+	Uncompilable Test Classes: 0
+	Broken tests number: 6
+	Failing tests number: 0
+	Lines total: 85
+	Lines covered: 50
+	Lines coverage ratio (%): 58.823532
+	Conditions total: 32
+	Conditions covered: 13
+	Conditions coverage ratio (%): 40.625
+	Mutants total: 30
+	Mutants covered: 17
+	Mutants coverage ratio (%): 56.666668
+	Mutants killed: 17
+	Mutants killed ratio (%): 56.666668
+	Mutants alive: 13
+
+
+Class io.seata.core.rpc.RpcContext ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 22102
+Killing master process 22102
+Executing command kill -9 22102
+Execution of command kill -9 22102 finished.
+Process was destroyed

@@ -1,0 +1,103 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+17:57:35.759 | INFO  | Started: warmup: kotlin reflection :: init
+17:57:35.862 | INFO  | Finished (in 0.102 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.reflect.visitor.ModelConsistencyChecker 30
+17:57:35.877 | DEBUG | -----------------------------------------------------------------------------
+17:57:35.878 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+17:57:35.881 | INFO  | ClassUnderTest[ FQN: spoon.reflect.visitor.ModelConsistencyChecker
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: ModelConsistencyCheckerTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/reflect/visitor/ModelConsistencyCheckerTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+17:57:35.911 | INFO  | Started: class spoon.reflect.visitor.ModelConsistencyChecker
+17:57:35.912 | INFO  | Started: preparation class class spoon.reflect.visitor.ModelConsistencyChecker: kotlin reflection :: run
+17:57:36.164 | INFO  | Finished (in 0.252 sec): preparation class class spoon.reflect.visitor.ModelConsistencyChecker: kotlin reflection :: run 
+17:57:36.167 | INFO  | Started: 2nd optional soot initialization
+17:57:36.168 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+17:57:36.176 | DEBUG |  ... 
+17:57:36.187 | INFO  | Started: method spoon.reflect.visitor.ModelConsistencyChecker.exit(CtElement)
+17:57:36.188 | INFO  |  -- Remaining time budget: 25201 ms, #remaining_methods: 4, budget for method: 6300 ms, solver timeout: 1000 ms, budget for symbolic execution: 5100 ms, budget for concrete execution: 1200 ms,  -- 
+17:57:36.529 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.exit(CtElement)1
+17:57:37.697 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.exit(CtElement)2
+17:57:38.464 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.exit(CtElement)3
+17:57:38.756 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.exit(CtElement)4
+17:57:41.286 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.ModelConsistencyChecker.exit(CtElement)
+17:57:42.251 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.exit(CtElement)5
+17:57:42.488 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.ModelConsistencyChecker.exit(CtElement)
+17:57:42.533 | INFO  | Finished (in 6.345 sec): method spoon.reflect.visitor.ModelConsistencyChecker.exit(CtElement) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+17:57:42.617 | DEBUG |  ... 
+17:57:42.618 | INFO  | Started: method spoon.reflect.visitor.ModelConsistencyChecker.enter(CtElement)
+17:57:42.618 | INFO  |  -- Remaining time budget: 18762 ms, #remaining_methods: 3, budget for method: 6254 ms, solver timeout: 1000 ms, budget for symbolic execution: 5054 ms, budget for concrete execution: 1200 ms,  -- 
+17:57:42.627 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.enter(CtElement)1
+17:57:42.695 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.enter(CtElement)2
+17:57:42.740 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.enter(CtElement)3
+17:57:47.672 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.ModelConsistencyChecker.enter(CtElement)
+17:57:47.787 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.enter(CtElement)4
+17:57:48.873 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.ModelConsistencyChecker.enter(CtElement)
+17:57:48.918 | INFO  | Finished (in 6.299 sec): method spoon.reflect.visitor.ModelConsistencyChecker.enter(CtElement) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+17:57:49.003 | DEBUG |  ... 
+17:57:49.004 | INFO  | Started: method spoon.reflect.visitor.ModelConsistencyChecker.dumpStack()
+17:57:49.004 | INFO  |  -- Remaining time budget: 12375 ms, #remaining_methods: 2, budget for method: 6187 ms, solver timeout: 1000 ms, budget for symbolic execution: 4987 ms, budget for concrete execution: 1200 ms,  -- 
+17:57:49.014 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.dumpStack()1
+17:57:49.046 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.dumpStack()2
+17:57:49.088 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.dumpStack()3
+17:57:49.111 | ERROR | Symbolic execution FAILED
+java.util.NoSuchElementException: List contains no element matching the predicate.
+	at com.huawei.utbot.engine.Hierarchy.chunkIdForField(Hierarchy.kt:76) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createFieldOrMock(UtBotSymbolicEngine.kt:1934) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.resolve(UtBotSymbolicEngine.kt:1745) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseAssignStmt(UtBotSymbolicEngine.kt:886) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseStmt(UtBotSymbolicEngine.kt:604) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invokeSuspend(UtBotSymbolicEngine.kt:464) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1.invokeSuspend(Unknown Source) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:57:52.549 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.dumpStack()4
+17:57:53.991 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.ModelConsistencyChecker.dumpStack()
+17:57:55.192 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.ModelConsistencyChecker.dumpStack()
+17:57:55.253 | INFO  | Finished (in 6.249 sec): method spoon.reflect.visitor.ModelConsistencyChecker.dumpStack() 
+<StatsForMethod> :
+	#generatedTC=4
+	FAILED 1 time(s) with 1 different exception(s)"
+17:57:55.553 | DEBUG |  ... 
+17:57:55.554 | INFO  | Started: method spoon.reflect.visitor.ModelConsistencyChecker.<init>(Environment, boolean, boolean)
+17:57:55.554 | INFO  |  -- Remaining time budget: 5826 ms, #remaining_methods: 1, budget for method: 5826 ms, solver timeout: 1000 ms, budget for symbolic execution: 4626 ms, budget for concrete execution: 1200 ms,  -- 
+17:57:55.565 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.<init>(Environment, boolean, boolean)1
+17:57:55.668 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.ModelConsistencyChecker.<init>(Environment, boolean, boolean)2
+17:57:55.669 | INFO  | Finished (in 0.115 sec): method spoon.reflect.visitor.ModelConsistencyChecker.<init>(Environment, boolean, boolean) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:57:55.679 | INFO  | Started: Flushing tests for [ModelConsistencyChecker] on disk
+17:57:55.886 | INFO  | File size for ModelConsistencyCheckerTest: 18 KB
+17:57:55.888 | INFO  | Finished (in 0.208 sec): Flushing tests for [ModelConsistencyChecker] on disk 
+17:57:55.889 | INFO  | Finished (in 19.977 sec): class spoon.reflect.visitor.ModelConsistencyChecker 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 4, 
+	#methods started symbolic exploration = 4
+	#methods with at least one TC = 4
+	#methods with exceptions = 1
+	#generated TC = 15
+	#coverage = null
+[READY]

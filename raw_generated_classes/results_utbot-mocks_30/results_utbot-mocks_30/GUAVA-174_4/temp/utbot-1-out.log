@@ -1,0 +1,240 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+16:32:58.903 | INFO  | Started: warmup: kotlin reflection :: init
+16:32:58.979 | INFO  | Finished (in 0.075 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.collect.TopKSelector 30
+16:32:58.990 | DEBUG | -----------------------------------------------------------------------------
+16:32:58.990 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+16:32:58.992 | INFO  | ClassUnderTest[ FQN: com.google.common.collect.TopKSelector
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: TopKSelectorTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/collect/TopKSelectorTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+16:32:59.014 | INFO  | Started: class com.google.common.collect.TopKSelector
+16:32:59.014 | INFO  | Started: preparation class class com.google.common.collect.TopKSelector: kotlin reflection :: run
+16:32:59.038 | INFO  | Finished (in 0.023 sec): preparation class class com.google.common.collect.TopKSelector: kotlin reflection :: run 
+16:32:59.039 | INFO  | Started: 2nd optional soot initialization
+16:32:59.041 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+16:32:59.049 | DEBUG |  ... 
+16:32:59.069 | INFO  | Started: method com.google.common.collect.TopKSelector.offer(T)
+16:32:59.070 | INFO  |  -- Remaining time budget: 25440 ms, #remaining_methods: 13, budget for method: 1956 ms, solver timeout: 978 ms, budget for symbolic execution: 978 ms, budget for concrete execution: 978 ms,  -- 
+16:32:59.367 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.offer(T)1
+16:32:59.730 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.offer(T)2
+16:33:00.043 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.offer(T)
+16:33:00.179 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.offer(T)3
+16:33:00.677 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.offer(T)4
+16:33:00.850 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.offer(T)5
+16:33:01.022 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.TopKSelector.offer(T)
+16:33:01.176 | INFO  | Finished (in 2.105 sec): method com.google.common.collect.TopKSelector.offer(T) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+16:33:01.180 | DEBUG |  ... 
+16:33:01.181 | INFO  | Started: method com.google.common.collect.TopKSelector.partition(int, int, int)
+16:33:01.181 | INFO  |  -- Remaining time budget: 23310 ms, #remaining_methods: 12, budget for method: 1942 ms, solver timeout: 971 ms, budget for symbolic execution: 971 ms, budget for concrete execution: 971 ms,  -- 
+16:33:01.193 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.partition(int, int, int)1
+16:33:01.405 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.partition(int, int, int)2
+16:33:01.563 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.partition(int, int, int)3
+16:33:01.815 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.partition(int, int, int)4
+16:33:02.064 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.partition(int, int, int)5
+16:33:02.152 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.partition(int, int, int)
+16:33:03.124 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.TopKSelector.partition(int, int, int)
+16:33:03.187 | INFO  | Finished (in 2.006 sec): method com.google.common.collect.TopKSelector.partition(int, int, int) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+16:33:03.207 | DEBUG |  ... 
+16:33:03.208 | INFO  | Started: method com.google.common.collect.TopKSelector.topK()
+16:33:03.208 | INFO  |  -- Remaining time budget: 21283 ms, #remaining_methods: 11, budget for method: 1934 ms, solver timeout: 967 ms, budget for symbolic execution: 967 ms, budget for concrete execution: 967 ms,  -- 
+16:33:03.215 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.topK()1
+16:33:04.175 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.topK()
+16:33:04.595 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.topK()2
+16:33:04.716 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.topK()3
+16:33:05.144 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.TopKSelector.topK()
+16:33:05.179 | INFO  | Finished (in 1.970 sec): method com.google.common.collect.TopKSelector.topK() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:33:05.222 | DEBUG |  ... 
+16:33:05.223 | INFO  | Started: method com.google.common.collect.TopKSelector.offerAll(Iterable)
+16:33:05.223 | INFO  |  -- Remaining time budget: 19268 ms, #remaining_methods: 10, budget for method: 1926 ms, solver timeout: 963 ms, budget for symbolic execution: 963 ms, budget for concrete execution: 963 ms,  -- 
+16:33:05.229 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.offerAll(Iterable)1
+16:33:05.327 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.offerAll(Iterable)2
+16:33:05.438 | ERROR | Symbolic execution FAILED
+java.util.NoSuchElementException: List contains no element matching the predicate.
+	at com.huawei.utbot.engine.Hierarchy.chunkIdForField(Hierarchy.kt:76) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createFieldOrMock(UtBotSymbolicEngine.kt:1934) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.resolve(UtBotSymbolicEngine.kt:1745) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseAssignStmt(UtBotSymbolicEngine.kt:886) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseStmt(UtBotSymbolicEngine.kt:604) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invokeSuspend(UtBotSymbolicEngine.kt:464) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1.invokeSuspend(Unknown Source) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+16:33:06.187 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.offerAll(Iterable)
+16:33:07.150 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.TopKSelector.offerAll(Iterable)
+16:33:07.352 | INFO  | Finished (in 2.128 sec): method com.google.common.collect.TopKSelector.offerAll(Iterable) 
+<StatsForMethod> :
+	#generatedTC=2
+	FAILED 1 time(s) with 1 different exception(s)"
+16:33:07.418 | DEBUG |  ... 
+16:33:07.418 | INFO  | Started: method com.google.common.collect.TopKSelector.offerAll(Iterator)
+16:33:07.419 | INFO  |  -- Remaining time budget: 17073 ms, #remaining_methods: 9, budget for method: 1897 ms, solver timeout: 948 ms, budget for symbolic execution: 949 ms, budget for concrete execution: 948 ms,  -- 
+16:33:07.425 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.offerAll(Iterator)1
+16:33:07.542 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.offerAll(Iterator)2
+16:33:07.815 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.offerAll(Iterator)3
+16:33:07.948 | ERROR | Symbolic execution FAILED
+java.util.NoSuchElementException: List contains no element matching the predicate.
+	at com.huawei.utbot.engine.Hierarchy.chunkIdForField(Hierarchy.kt:76) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createFieldOrMock(UtBotSymbolicEngine.kt:1934) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.resolve(UtBotSymbolicEngine.kt:1745) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseAssignStmt(UtBotSymbolicEngine.kt:886) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseStmt(UtBotSymbolicEngine.kt:604) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invokeSuspend(UtBotSymbolicEngine.kt:464) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1.invokeSuspend(Unknown Source) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+16:33:08.134 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.offerAll(Iterator)4
+16:33:08.368 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.offerAll(Iterator)
+16:33:09.316 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.TopKSelector.offerAll(Iterator)
+16:33:09.397 | INFO  | Finished (in 1.979 sec): method com.google.common.collect.TopKSelector.offerAll(Iterator) 
+<StatsForMethod> :
+	#generatedTC=4
+	FAILED 1 time(s) with 1 different exception(s)"
+16:33:09.468 | DEBUG |  ... 
+16:33:09.469 | INFO  | Started: method com.google.common.collect.TopKSelector.trim()
+16:33:09.469 | INFO  |  -- Remaining time budget: 15022 ms, #remaining_methods: 8, budget for method: 1877 ms, solver timeout: 938 ms, budget for symbolic execution: 939 ms, budget for concrete execution: 938 ms,  -- 
+16:33:09.477 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.trim()1
+16:33:10.408 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.trim()
+16:33:10.492 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.trim()2
+16:33:11.347 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.TopKSelector.trim()
+16:33:11.373 | INFO  | Finished (in 1.904 sec): method com.google.common.collect.TopKSelector.trim() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:33:11.441 | DEBUG |  ... 
+16:33:11.441 | INFO  | Started: method com.google.common.collect.TopKSelector.combine(TopKSelector)
+16:33:11.442 | INFO  |  -- Remaining time budget: 13050 ms, #remaining_methods: 7, budget for method: 1864 ms, solver timeout: 932 ms, budget for symbolic execution: 932 ms, budget for concrete execution: 932 ms,  -- 
+16:33:11.447 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.combine(TopKSelector)1
+16:33:11.539 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.combine(TopKSelector)2
+16:33:11.559 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.combine(TopKSelector)3
+16:33:11.879 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.combine(TopKSelector)4
+16:33:12.375 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.combine(TopKSelector)
+16:33:13.307 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.TopKSelector.combine(TopKSelector)
+16:33:13.435 | INFO  | Finished (in 1.993 sec): method com.google.common.collect.TopKSelector.combine(TopKSelector) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:33:13.437 | DEBUG |  ... 
+16:33:13.438 | INFO  | Started: method com.google.common.collect.TopKSelector.swap(int, int)
+16:33:13.438 | INFO  |  -- Remaining time budget: 11053 ms, #remaining_methods: 6, budget for method: 1842 ms, solver timeout: 921 ms, budget for symbolic execution: 921 ms, budget for concrete execution: 921 ms,  -- 
+16:33:13.444 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.swap(int, int)1
+16:33:13.621 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.swap(int, int)2
+16:33:13.771 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.swap(int, int)3
+16:33:14.042 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.swap(int, int)4
+16:33:14.267 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.swap(int, int)5
+16:33:14.359 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.swap(int, int)
+16:33:14.915 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.swap(int, int)6
+16:33:14.915 | INFO  | Finished (in 1.477 sec): method com.google.common.collect.TopKSelector.swap(int, int) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+16:33:14.924 | DEBUG |  ... 
+16:33:14.924 | INFO  | Started: method com.google.common.collect.TopKSelector.least(int)
+16:33:14.924 | INFO  |  -- Remaining time budget: 9567 ms, #remaining_methods: 5, budget for method: 1913 ms, solver timeout: 956 ms, budget for symbolic execution: 957 ms, budget for concrete execution: 956 ms,  -- 
+16:33:14.937 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.least(int)1
+16:33:15.882 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.least(int)
+16:33:16.135 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.least(int)2
+16:33:16.348 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.least(int)3
+16:33:16.551 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.least(int)4
+16:33:16.561 | INFO  | Finished (in 1.636 sec): method com.google.common.collect.TopKSelector.least(int) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:33:16.607 | DEBUG |  ... 
+16:33:16.608 | INFO  | Started: method com.google.common.collect.TopKSelector.least(int, Comparator)
+16:33:16.608 | INFO  |  -- Remaining time budget: 7884 ms, #remaining_methods: 4, budget for method: 1971 ms, solver timeout: 985 ms, budget for symbolic execution: 986 ms, budget for concrete execution: 985 ms,  -- 
+16:33:16.614 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.least(int, Comparator)1
+16:33:17.499 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.least(int, Comparator)2
+16:33:17.594 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.least(int, Comparator)
+16:33:17.653 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.least(int, Comparator)3
+16:33:17.730 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.least(int, Comparator)4
+16:33:17.808 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.least(int, Comparator)5
+16:33:17.813 | INFO  | Finished (in 1.205 sec): method com.google.common.collect.TopKSelector.least(int, Comparator) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+16:33:17.842 | DEBUG |  ... 
+16:33:17.842 | INFO  | Started: method com.google.common.collect.TopKSelector.greatest(int, Comparator)
+16:33:17.842 | INFO  |  -- Remaining time budget: 6649 ms, #remaining_methods: 3, budget for method: 2216 ms, solver timeout: 1000 ms, budget for symbolic execution: 1108 ms, budget for concrete execution: 1108 ms,  -- 
+16:33:17.849 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.greatest(int, Comparator)1
+16:33:17.892 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.greatest(int, Comparator)2
+16:33:18.852 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.greatest(int, Comparator)3
+16:33:18.936 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.greatest(int, Comparator)4
+16:33:18.951 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.greatest(int, Comparator)
+16:33:19.042 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.greatest(int, Comparator)5
+16:33:19.047 | INFO  | Finished (in 1.205 sec): method com.google.common.collect.TopKSelector.greatest(int, Comparator) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+16:33:19.077 | DEBUG |  ... 
+16:33:19.078 | INFO  | Started: method com.google.common.collect.TopKSelector.greatest(int)
+16:33:19.078 | INFO  |  -- Remaining time budget: 5413 ms, #remaining_methods: 2, budget for method: 2706 ms, solver timeout: 1000 ms, budget for symbolic execution: 1506 ms, budget for concrete execution: 1200 ms,  -- 
+16:33:19.086 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.greatest(int)1
+16:33:20.347 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.greatest(int)2
+16:33:20.427 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.greatest(int)3
+16:33:20.585 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.TopKSelector.greatest(int)
+16:33:20.638 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.greatest(int)4
+16:33:20.648 | INFO  | Finished (in 1.570 sec): method com.google.common.collect.TopKSelector.greatest(int) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:33:20.690 | DEBUG |  ... 
+16:33:20.691 | INFO  | Started: method com.google.common.collect.TopKSelector.<init>(Comparator, int)
+16:33:20.691 | INFO  |  -- Remaining time budget: 3801 ms, #remaining_methods: 1, budget for method: 3801 ms, solver timeout: 1000 ms, budget for symbolic execution: 2601 ms, budget for concrete execution: 1200 ms,  -- 
+16:33:20.697 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.<init>(Comparator, int)1
+16:33:20.958 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.<init>(Comparator, int)2
+16:33:21.401 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.<init>(Comparator, int)3
+16:33:21.415 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.TopKSelector.<init>(Comparator, int)4
+16:33:21.421 | INFO  | Finished (in 0.731 sec): method com.google.common.collect.TopKSelector.<init>(Comparator, int) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:33:21.432 | INFO  | Started: Flushing tests for [TopKSelector] on disk
+16:33:22.516 | INFO  | File size for TopKSelectorTest: 61 KB
+16:33:22.517 | INFO  | Finished (in 1.085 sec): Flushing tests for [TopKSelector] on disk 
+16:33:22.518 | INFO  | Finished (in 23.504 sec): class com.google.common.collect.TopKSelector 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 13, 
+	#methods started symbolic exploration = 13
+	#methods with at least one TC = 13
+	#methods with exceptions = 2
+	#generated TC = 53
+	#coverage = null
+[READY]

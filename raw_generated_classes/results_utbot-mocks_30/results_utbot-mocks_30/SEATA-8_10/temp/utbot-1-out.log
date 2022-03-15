@@ -1,0 +1,106 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+19:42:20.764 | INFO  | Started: warmup: kotlin reflection :: init
+19:42:20.856 | INFO  | Finished (in 0.091 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.protocol.MergedWarpMessage 30
+19:42:20.869 | DEBUG | -----------------------------------------------------------------------------
+19:42:20.870 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+19:42:20.872 | INFO  | ClassUnderTest[ FQN: io.seata.core.protocol.MergedWarpMessage
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: MergedWarpMessageTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/protocol/MergedWarpMessageTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+19:42:20.898 | INFO  | Started: class io.seata.core.protocol.MergedWarpMessage
+19:42:20.899 | INFO  | Started: preparation class class io.seata.core.protocol.MergedWarpMessage: kotlin reflection :: run
+19:42:20.938 | INFO  | Finished (in 0.038 sec): preparation class class io.seata.core.protocol.MergedWarpMessage: kotlin reflection :: run 
+19:42:20.939 | INFO  | Started: 2nd optional soot initialization
+19:42:20.940 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+19:42:20.948 | DEBUG |  ... 
+19:42:20.971 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.toString()
+19:42:20.973 | INFO  |  -- Remaining time budget: 25417 ms, #remaining_methods: 6, budget for method: 4236 ms, solver timeout: 1000 ms, budget for symbolic execution: 3036 ms, budget for concrete execution: 1200 ms,  -- 
+19:42:21.293 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.toString()1
+19:42:21.794 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.toString()2
+19:42:23.993 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.MergedWarpMessage.toString()
+19:42:23.996 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.toString()3
+19:42:24.459 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.toString()4
+19:42:24.591 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.toString()5
+19:42:25.195 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.MergedWarpMessage.toString()
+19:42:25.209 | INFO  | Finished (in 4.237 sec): method io.seata.core.protocol.MergedWarpMessage.toString() 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+19:42:25.331 | DEBUG |  ... 
+19:42:25.332 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)
+19:42:25.332 | INFO  |  -- Remaining time budget: 21040 ms, #remaining_methods: 5, budget for method: 4208 ms, solver timeout: 1000 ms, budget for symbolic execution: 3008 ms, budget for concrete execution: 1200 ms,  -- 
+19:42:25.348 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)1
+19:42:25.377 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)2
+19:42:25.413 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)3
+19:42:25.437 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)4
+19:42:25.446 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)5
+19:42:25.547 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)6
+19:42:25.591 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)7
+19:42:25.613 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)8
+19:42:25.638 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)9
+19:42:25.638 | INFO  | Finished (in 0.306 sec): method io.seata.core.protocol.MergedWarpMessage.decode(ByteBuf) 
+<StatsForMethod> :
+	#generatedTC=9
+	WITH NO EXCEPTIONS
+19:42:25.651 | DEBUG |  ... 
+19:42:25.652 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.encode()
+19:42:25.652 | INFO  |  -- Remaining time budget: 20720 ms, #remaining_methods: 4, budget for method: 5180 ms, solver timeout: 1000 ms, budget for symbolic execution: 3980 ms, budget for concrete execution: 1200 ms,  -- 
+19:42:25.660 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()1
+19:42:25.688 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()2
+19:42:26.661 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()3
+19:42:27.333 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()4
+19:42:28.314 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()5
+19:42:28.438 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()6
+19:42:29.632 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.MergedWarpMessage.encode()
+19:42:30.833 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.MergedWarpMessage.encode()
+19:42:30.833 | DEBUG |  ... 
+19:42:30.836 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.getTypeCode()
+19:42:30.836 | INFO  |  -- Remaining time budget: 15538 ms, #remaining_methods: 3, budget for method: 5179 ms, solver timeout: 1000 ms, budget for symbolic execution: 3979 ms, budget for concrete execution: 1200 ms,  -- 
+19:42:30.869 | INFO  | Finished (in 5.217 sec): method io.seata.core.protocol.MergedWarpMessage.encode() 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+19:42:31.146 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.getTypeCode()1
+19:42:31.170 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.getTypeCode()2
+19:42:31.171 | INFO  | Finished (in 0.335 sec): method io.seata.core.protocol.MergedWarpMessage.getTypeCode() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:42:31.172 | DEBUG |  ... 
+19:42:31.173 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)
+19:42:31.173 | INFO  |  -- Remaining time budget: 15199 ms, #remaining_methods: 2, budget for method: 7599 ms, solver timeout: 1000 ms, budget for symbolic execution: 6399 ms, budget for concrete execution: 1200 ms,  -- 
+19:42:31.184 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)1
+19:42:31.211 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)2
+19:42:31.248 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)3
+19:42:31.257 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)4
+19:42:31.281 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)5
+19:42:31.282 | INFO  | Finished (in 0.109 sec): method io.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+19:42:31.283 | DEBUG |  ... 
+19:42:31.283 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.<init>()
+19:42:31.284 | INFO  |  -- Remaining time budget: 15088 ms, #remaining_methods: 1, budget for method: 15088 ms, solver timeout: 1000 ms, budget for symbolic execution: 13888 ms, budget for concrete execution: 1200 ms,  -- 
+19:42:31.292 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.<init>()1
+19:42:31.423 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.<init>()2
+19:42:31.423 | INFO  | Finished (in 0.139 sec): method io.seata.core.protocol.MergedWarpMessage.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:42:31.439 | INFO  | Started: Flushing tests for [MergedWarpMessage] on disk
+19:42:32.453 | INFO  | File size for MergedWarpMessageTest: 27 KB
+19:42:32.455 | INFO  | Finished (in 1.015 sec): Flushing tests for [MergedWarpMessage] on disk 
+19:42:32.455 | INFO  | Finished (in 11.556 sec): class io.seata.core.protocol.MergedWarpMessage 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 6, 
+	#methods started symbolic exploration = 6
+	#methods with at least one TC = 6
+	#methods with exceptions = 0
+	#generated TC = 29
+	#coverage = null
+[READY]

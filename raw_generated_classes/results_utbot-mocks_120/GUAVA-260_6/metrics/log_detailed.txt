@@ -1,0 +1,383 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  GUAVA-260
+
+>>> RUN NUMBER: 6
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/guava/guava/src
+>> /var/benchmarks/projects/guava/guava/target/classes
+>> 6
+>> /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar
+>> /var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 120
+
+
+### COMPUTING METRICS ###: com.google.common.collect.TreeRangeMap
+
+
+Starting class com.google.common.collect.TreeRangeMap
+
+
+Ending class com.google.common.collect.TreeRangeMap
+Creating directory results_utbot-mocks_120/GUAVA-260_6/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/GUAVA-260_6/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/GUAVA-260_6/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java
+
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:4: warning: ConnectionResetException is internal proprietary API and may be removed in a future release
+import sun.net.ConnectionResetException;
+              ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:7: warning: ASCIICaseInsensitiveComparator is internal proprietary API and may be removed in a future release
+import sun.misc.ASCIICaseInsensitiveComparator;
+               ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:8: warning: ByteArrayLexOrder is internal proprietary API and may be removed in a future release
+import sun.security.util.ByteArrayLexOrder;
+                        ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:19: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:22: error: package org.mockito does not exist
+import static org.mockito.Mockito.mock;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:22: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mock;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:23: error: package org.mockito does not exist
+import static org.mockito.Mockito.when;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:23: error: static import only from classes and interfaces
+import static org.mockito.Mockito.when;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:26: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.any;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:26: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.any;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:27: error: package org.mockito does not exist
+import static org.mockito.Mockito.mockStatic;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:27: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mockStatic;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:36: warning: ConnectionResetException is internal proprietary API and may be removed in a future release
+        sun.net.ConnectionResetException[] connectionResetExceptionArray = new sun.net.ConnectionResetException[0];
+               ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:36: warning: ConnectionResetException is internal proprietary API and may be removed in a future release
+        sun.net.ConnectionResetException[] connectionResetExceptionArray = new sun.net.ConnectionResetException[0];
+                                                                                      ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:50: error: cannot find symbol
+        ImmutableList immutableListMock = mock(ImmutableList.class);
+                                          ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:51: error: cannot find symbol
+        when(immutableListMock.toString()).thenReturn(((String) null));
+        ^
+  symbol:   method when(String)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:121: error: cannot find symbol
+        ImmutableList immutableListMock = mock(ImmutableList.class);
+                                          ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:122: error: cannot find symbol
+        when(immutableListMock.size()).thenReturn(1);
+        ^
+  symbol:   method when(int)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:136: error: cannot find symbol
+        ImmutableSortedMap immutableSortedMapMock = mock(ImmutableSortedMap.class);
+                                                    ^
+  symbol:   method mock(Class<ImmutableSortedMap>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:138: error: cannot find symbol
+        when(immutableSortedMapMock.values()).thenReturn(((java.util.Collection) standardElementSet));
+        ^
+  symbol:   method when(ImmutableCollection)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:158: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:159: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:161: error: cannot find symbol
+            mockedStatic = mockStatic(Ordering.class);
+                           ^
+  symbol:   method mockStatic(Class<Ordering>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:162: error: cannot find symbol
+            Ordering orderingMock = mock(Ordering.class);
+                                    ^
+  symbol:   method mock(Class<Ordering>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:163: error: cannot find symbol
+            when(orderingMock.reverse()).thenReturn(((Ordering) null));
+            ^
+  symbol:   method when(Ordering)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:165: error: cannot find symbol
+                Ordering.from(any(java.util.Comparator.class));
+                              ^
+  symbol:   method any(Class<Comparator>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:167: error: cannot find symbol
+            mockedStatic1 = mockStatic(ImmutableSortedMap.class);
+                            ^
+  symbol:   method mockStatic(Class<ImmutableSortedMap>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:169: error: package org.mockito does not exist
+                ImmutableSortedMap.emptyMap(org.mockito.ArgumentMatchers.any());
+                                                       ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:174: error: cannot find symbol
+            ImmutableList immutableListMock = mock(ImmutableList.class);
+                                              ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:175: error: cannot find symbol
+            when(immutableListMock.size()).thenReturn(0);
+            ^
+  symbol:   method when(int)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:246: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:248: error: cannot find symbol
+            mockedStatic = mockStatic(Range.class);
+                           ^
+  symbol:   method mockStatic(Class<Range>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:251: error: cannot find symbol
+            Range rangeMock = mock(Range.class);
+                              ^
+  symbol:   method mock(Class<Range>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:268: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:270: error: cannot find symbol
+            mockedStatic = mockStatic(Range.class);
+                           ^
+  symbol:   method mockStatic(Class<Range>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:285: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:287: error: cannot find symbol
+            mockedStatic = mockStatic(Range.class);
+                           ^
+  symbol:   method mockStatic(Class<Range>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:290: error: cannot find symbol
+            Range rangeMock = mock(Range.class);
+                              ^
+  symbol:   method mock(Class<Range>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:321: error: cannot find symbol
+        Range rangeMock = mock(Range.class);
+                          ^
+  symbol:   method mock(Class<Range>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:322: error: cannot find symbol
+        when(rangeMock.isEmpty()).thenReturn(true);
+        ^
+  symbol:   method when(boolean)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:337: warning: ASCIICaseInsensitiveComparator is internal proprietary API and may be removed in a future release
+        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
+        ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:337: warning: ASCIICaseInsensitiveComparator is internal proprietary API and may be removed in a future release
+        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
+                                                                          ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:340: error: cannot find symbol
+        Range rangeMock = mock(Range.class);
+                          ^
+  symbol:   method mock(Class<Range>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:341: error: cannot find symbol
+        when(rangeMock.isEmpty()).thenReturn(false);
+        ^
+  symbol:   method when(boolean)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:342: error: cannot find symbol
+        Cut cutMock = mock(Cut.class);
+                      ^
+  symbol:   method mock(Class<Cut>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:358: warning: ByteArrayLexOrder is internal proprietary API and may be removed in a future release
+        ByteArrayLexOrder byteArrayLexOrder = ((ByteArrayLexOrder) createInstance("sun.security.util.ByteArrayLexOrder"));
+        ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:358: warning: ByteArrayLexOrder is internal proprietary API and may be removed in a future release
+        ByteArrayLexOrder byteArrayLexOrder = ((ByteArrayLexOrder) createInstance("sun.security.util.ByteArrayLexOrder"));
+                                                ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:361: error: cannot find symbol
+        Range rangeMock = mock(Range.class);
+                          ^
+  symbol:   method mock(Class<Range>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:362: error: cannot find symbol
+        when(rangeMock.isEmpty()).thenReturn(false);
+        ^
+  symbol:   method when(boolean)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:363: error: cannot find symbol
+        Cut cutMock = mock(Cut.class);
+                      ^
+  symbol:   method mock(Class<Cut>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:374: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:376: error: cannot find symbol
+            mockedStatic = mockStatic(Cut.class);
+                           ^
+  symbol:   method mockStatic(Class<Cut>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:377: error: cannot find symbol
+            Cut cutMock = mock(Cut.class);
+                          ^
+  symbol:   method mock(Class<Cut>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:379: error: package org.mockito does not exist
+                Cut.belowValue(org.mockito.ArgumentMatchers.any());
+                                          ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:413: error: cannot find symbol
+        Range rangeMock = mock(Range.class);
+                          ^
+  symbol:   method mock(Class<Range>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:414: error: cannot find symbol
+        when(rangeMock.isEmpty()).thenReturn(true);
+        ^
+  symbol:   method when(boolean)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:467: error: cannot find symbol
+        RangeMap rangeMapMock = mock(RangeMap.class);
+                                ^
+  symbol:   method mock(Class<RangeMap>)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:468: error: cannot find symbol
+        when(rangeMapMock.asMapOfRanges()).thenReturn(((Map) null));
+        ^
+  symbol:   method when(Map)
+  location: class TreeRangeMapTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:685: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:686: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java:688: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/com/google/common/collect/TreeRangeMapTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+48 errors
+13 warnings
+Failed to compile 'com/google/common/collect/TreeRangeMapTest.java'!
+shaded.org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)
+	at shaded.org.apache.commons.exec.DefaultExecutor.executeInternal(DefaultExecutor.java:377)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:160)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:147)
+	at sbst.benchmark.TestSuite.compile(TestSuite.java:250)
+	at sbst.benchmark.TestSuite.<init>(TestSuite.java:68)
+	at sbst.benchmark.TranscriptWriter.endClass(TranscriptWriter.java:136)
+	at sbst.benchmark.RunTool.execute(RunTool.java:141)
+	at sbst.benchmark.RunTool.run(RunTool.java:62)
+	at sbst.benchmark.Main.main(Main.java:160)
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 2323
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/guava-26.0-jre_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/checker-qual-2.5.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/error_prone_annotations-2.1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/j2objc-annotations-1.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/jsr305-3.0.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/animal-sniffer-annotations-1.14_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-260_6/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Number of file with coverage information = 1951
+Extracted coverage data for the class com/google/common/collect/TreeRangeMap
+Number of file with coverage information = 302
+Number of file with coverage information = 22
+Number of file with coverage information = 12
+Number of file with coverage information = 35
+Number of file with coverage information = 1
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 47 mutants 
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: GUAVA-260
+	Class Under Test: com.google.common.collect.TreeRangeMap
+	Run number: 6
+	Tool preparation time (ms): 13195
+	Tool test cases generation time (ms): 24365
+	Test cases execution time (ms): 13
+	Test case number: 22
+	Uncompilable Test Classes: 1
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 86
+	Lines covered: 0
+	Lines coverage ratio (%): 0.0
+	Conditions total: 36
+	Conditions covered: 0
+	Conditions coverage ratio (%): 0.0
+	Mutants total: 47
+	Mutants covered: 0
+	Mutants coverage ratio (%): 0.0
+	Mutants killed: 0
+	Mutants killed ratio (%): 0.0
+	Mutants alive: 47
+
+
+Class com.google.common.collect.TreeRangeMap ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 5800
+Killing master process 5800
+Executing command kill -9 5800
+Execution of command kill -9 5800 finished.
+Process was destroyed

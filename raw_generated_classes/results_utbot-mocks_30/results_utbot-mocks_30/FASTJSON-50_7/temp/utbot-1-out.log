@@ -1,0 +1,800 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/fastjson/target/classes, classpathString=/var/benchmarks/projects/fastjson/target/classes:/var/benchmarks/projects/fastjson/target/fastjson-1.2.50-SNAPSHOT.jar:/var/benchmarks/projects/./fastjson/target/dependency/deeptestutils-1.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-beanutils-1.8.0.jar:/var/benchmarks/projects/fastjson/target/dependency/woodstox-core-asl-4.4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-aop-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-core-5.2.10.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-kotlin-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-1.13.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.annotation-api-1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/gson-2.6.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-continuation-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/objenesis-2.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-reflect-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spring-web-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/guava-18.0.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-core-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/json-lib-2.4-jdk15.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-xml-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/xmlschema-core-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-support-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections4-4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cglib-nodep-2.2.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-debug-all-5.0.4.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-core-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-rs-client-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-io-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang3-3.4.jar:/var/benchmarks/projects/fastjson/target/dependency/stax2-api-3.1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-server-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/json-simple-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-tree-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-core-1.4.1.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jcl-over-slf4j-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-3.0.0.v201112011016.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-core-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/osgi-resource-locator-1.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javassist-3.18.0-GA.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-reflect-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-support-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-metadata-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-stdlib-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-keyvalue-1.2.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-commons-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-guava-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/groovy-2.1.5.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-api-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-security-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-core-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/dom4j-1.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-core-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-redis-1.8.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-mapper-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-jpa-2.1-api-1.0.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/junit-4.12.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-io-1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-util-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-generator-annprocess-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-base-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-core-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/slf4j-api-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/antlr-2.7.7.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-all-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-match-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-provider-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-entity-filtering-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jandex-2.0.3.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/ezmorph-1.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-json-provider-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-transports-http-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-beans-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-server-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-jaxb-annotations-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/jopt-simple-4.6.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-analysis-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/annotations-13.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-path-2.3.0.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spi-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-websocket-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-messaging-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-client-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.ws.rs-api-2.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/accessors-smart-1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-commons-annotations-5.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-logging-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-expression-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-jaxb-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/okhttp-3.6.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-math3-3.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-webapp-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.inject-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-core-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-http-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-config-3.2.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/okio-1.11.0.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-api-3.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-smart-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-tx-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-afterburner-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-util-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-web-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-webmvc-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-locator-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/retrofit-2.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/clojure-1.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-oauth2-2.3.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-test-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-repackaged-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-oxm-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-core-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-transaction-api_1.2_spec-1.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/lombok-1.14.4.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections-3.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-frontend-jaxrs-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/classmate-1.3.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-utils-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-common-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-databind-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-json-jackson-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang-2.5.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-servlet-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/validation-api-1.1.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-web-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jsoniter-0.9.8.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-logging-3.3.0.Final.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+17:47:19.380 | INFO  | Started: warmup: kotlin reflection :: init
+17:47:19.484 | INFO  | Finished (in 0.103 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.alibaba.fastjson.parser.DefaultJSONParser 30
+17:47:19.499 | DEBUG | -----------------------------------------------------------------------------
+17:47:19.501 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/fastjson/target/classes:/var/benchmarks/projects/fastjson/target/fastjson-1.2.50-SNAPSHOT.jar:/var/benchmarks/projects/./fastjson/target/dependency/deeptestutils-1.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-beanutils-1.8.0.jar:/var/benchmarks/projects/fastjson/target/dependency/woodstox-core-asl-4.4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-aop-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-core-5.2.10.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-kotlin-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-1.13.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.annotation-api-1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/gson-2.6.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-continuation-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/objenesis-2.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-reflect-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spring-web-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/guava-18.0.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-core-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/json-lib-2.4-jdk15.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-xml-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/xmlschema-core-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-support-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections4-4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cglib-nodep-2.2.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-debug-all-5.0.4.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-core-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-rs-client-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-io-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang3-3.4.jar:/var/benchmarks/projects/fastjson/target/dependency/stax2-api-3.1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-server-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/json-simple-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-tree-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-core-1.4.1.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jcl-over-slf4j-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-3.0.0.v201112011016.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-core-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/osgi-resource-locator-1.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javassist-3.18.0-GA.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-reflect-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-support-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-metadata-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-stdlib-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-keyvalue-1.2.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-commons-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-guava-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/groovy-2.1.5.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-api-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-security-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-core-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/dom4j-1.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-core-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-redis-1.8.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-mapper-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-jpa-2.1-api-1.0.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/junit-4.12.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-io-1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-util-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-generator-annprocess-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-base-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-core-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/slf4j-api-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/antlr-2.7.7.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-all-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-match-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-provider-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-entity-filtering-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jandex-2.0.3.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/ezmorph-1.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-json-provider-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-transports-http-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-beans-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-server-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-jaxb-annotations-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/jopt-simple-4.6.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-analysis-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/annotations-13.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-path-2.3.0.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spi-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-websocket-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-messaging-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-client-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.ws.rs-api-2.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/accessors-smart-1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-commons-annotations-5.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-logging-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-expression-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-jaxb-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/okhttp-3.6.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-math3-3.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-webapp-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.inject-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-core-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-http-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-config-3.2.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/okio-1.11.0.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-api-3.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-smart-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-tx-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-afterburner-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-util-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-web-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-webmvc-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-locator-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/retrofit-2.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/clojure-1.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-oauth2-2.3.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-test-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-repackaged-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-oxm-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-core-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-transaction-api_1.2_spec-1.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/lombok-1.14.4.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections-3.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-frontend-jaxrs-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/classmate-1.3.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-utils-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-common-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-databind-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-json-jackson-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang-2.5.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-servlet-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/validation-api-1.1.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-web-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jsoniter-0.9.8.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-logging-3.3.0.Final.jar, methodNameFilter=null
+17:47:19.506 | INFO  | ClassUnderTest[ FQN: com.alibaba.fastjson.parser.DefaultJSONParser
+    classfileDir: /var/benchmarks/projects/fastjson/target/classes
+    testClassSimpleName: DefaultJSONParserTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/alibaba/fastjson/parser/DefaultJSONParserTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+17:47:19.539 | INFO  | Started: class com.alibaba.fastjson.parser.DefaultJSONParser
+17:47:19.540 | INFO  | Started: preparation class class com.alibaba.fastjson.parser.DefaultJSONParser: kotlin reflection :: run
+17:47:19.663 | INFO  | Finished (in 0.122 sec): preparation class class com.alibaba.fastjson.parser.DefaultJSONParser: kotlin reflection :: run 
+17:47:19.664 | INFO  | Started: 2nd optional soot initialization
+17:47:19.666 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+17:47:19.676 | DEBUG |  ... 
+17:47:19.696 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.close()
+17:47:19.697 | INFO  |  -- Remaining time budget: 25325 ms, #remaining_methods: 64, budget for method: 395 ms, solver timeout: 197 ms, budget for symbolic execution: 198 ms, budget for concrete execution: 197 ms,  -- 
+17:47:19.888 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.close()
+17:47:20.038 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.close()1
+17:47:20.086 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.close()
+17:47:20.115 | INFO  | Finished (in 0.418 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.close() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:20.116 | DEBUG |  ... 
+17:47:20.119 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type, Collection, Object)
+17:47:20.120 | INFO  |  -- Remaining time budget: 24887 ms, #remaining_methods: 63, budget for method: 395 ms, solver timeout: 197 ms, budget for symbolic execution: 198 ms, budget for concrete execution: 197 ms,  -- 
+17:47:20.138 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type, Collection, Object)1
+17:47:20.315 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type, Collection, Object)
+17:47:20.513 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type, Collection, Object)
+17:47:20.654 | INFO  | Finished (in 0.535 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type, Collection, Object) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:20.656 | DEBUG |  ... 
+17:47:20.657 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Collection, Object)
+17:47:20.657 | INFO  |  -- Remaining time budget: 24347 ms, #remaining_methods: 62, budget for method: 392 ms, solver timeout: 196 ms, budget for symbolic execution: 196 ms, budget for concrete execution: 196 ms,  -- 
+17:47:20.671 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Collection, Object)1
+17:47:21.178 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Collection, Object)
+17:47:21.375 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Collection, Object)
+17:47:21.441 | INFO  | Finished (in 0.783 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Collection, Object) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:21.443 | DEBUG |  ... 
+17:47:21.443 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type[])
+17:47:21.443 | INFO  |  -- Remaining time budget: 23561 ms, #remaining_methods: 61, budget for method: 386 ms, solver timeout: 193 ms, budget for symbolic execution: 193 ms, budget for concrete execution: 193 ms,  -- 
+17:47:21.467 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type[])1
+17:47:21.578 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type[])2
+17:47:21.636 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type[])
+17:47:21.641 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type[])3
+17:47:21.668 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type[])4
+17:47:21.723 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type[])5
+17:47:21.757 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type[])6
+17:47:21.830 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type[])
+17:47:21.850 | INFO  | Finished (in 0.406 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type[]) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+17:47:21.853 | DEBUG |  ... 
+17:47:21.854 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Collection)
+17:47:21.855 | INFO  |  -- Remaining time budget: 23150 ms, #remaining_methods: 60, budget for method: 385 ms, solver timeout: 192 ms, budget for symbolic execution: 193 ms, budget for concrete execution: 192 ms,  -- 
+17:47:21.869 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Collection)1
+17:47:22.048 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Collection)
+17:47:22.240 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Collection)
+17:47:22.265 | INFO  | Finished (in 0.411 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Collection) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:22.267 | DEBUG |  ... 
+17:47:22.268 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Class)
+17:47:22.268 | INFO  |  -- Remaining time budget: 22737 ms, #remaining_methods: 59, budget for method: 385 ms, solver timeout: 192 ms, budget for symbolic execution: 193 ms, budget for concrete execution: 192 ms,  -- 
+17:47:22.286 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:47:22.461 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Class)
+17:47:22.653 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Class)
+17:47:22.668 | INFO  | Finished (in 0.400 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Class) 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 1 time(s) with 1 different exception(s)"
+17:47:22.676 | DEBUG |  ... 
+17:47:22.676 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Class, Collection)
+17:47:22.677 | INFO  |  -- Remaining time budget: 22328 ms, #remaining_methods: 58, budget for method: 384 ms, solver timeout: 192 ms, budget for symbolic execution: 192 ms, budget for concrete execution: 192 ms,  -- 
+17:47:22.682 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:47:22.869 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Class, Collection)
+17:47:23.061 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Class, Collection)
+17:47:23.119 | INFO  | Finished (in 0.442 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Class, Collection) 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 1 time(s) with 1 different exception(s)"
+17:47:23.120 | DEBUG |  ... 
+17:47:23.120 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type, Collection)
+17:47:23.121 | INFO  |  -- Remaining time budget: 21884 ms, #remaining_methods: 57, budget for method: 383 ms, solver timeout: 191 ms, budget for symbolic execution: 192 ms, budget for concrete execution: 191 ms,  -- 
+17:47:23.127 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type, Collection)1
+17:47:23.313 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type, Collection)
+17:47:23.505 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type, Collection)
+17:47:23.601 | INFO  | Finished (in 0.480 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseArray(Type, Collection) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:23.602 | DEBUG |  ... 
+17:47:23.603 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.setContext(ParseContext, Object, Object)
+17:47:23.603 | INFO  |  -- Remaining time budget: 21402 ms, #remaining_methods: 56, budget for method: 382 ms, solver timeout: 191 ms, budget for symbolic execution: 191 ms, budget for concrete execution: 191 ms,  -- 
+17:47:23.612 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.setContext(ParseContext, Object, Object)1
+17:47:23.794 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.setContext(ParseContext, Object, Object)
+17:47:23.986 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.setContext(ParseContext, Object, Object)
+17:47:24.008 | INFO  | Finished (in 0.405 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.setContext(ParseContext, Object, Object) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:24.009 | DEBUG |  ... 
+17:47:24.009 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.setContext(Object, Object)
+17:47:24.009 | INFO  |  -- Remaining time budget: 20995 ms, #remaining_methods: 55, budget for method: 381 ms, solver timeout: 190 ms, budget for symbolic execution: 191 ms, budget for concrete execution: 190 ms,  -- 
+17:47:24.064 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.setContext(Object, Object)1
+17:47:24.201 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.setContext(Object, Object)
+17:47:24.391 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.setContext(Object, Object)
+17:47:24.449 | INFO  | Finished (in 0.440 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.setContext(Object, Object) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:24.450 | DEBUG |  ... 
+17:47:24.450 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.setContext(ParseContext)
+17:47:24.451 | INFO  |  -- Remaining time budget: 20554 ms, #remaining_methods: 54, budget for method: 380 ms, solver timeout: 190 ms, budget for symbolic execution: 190 ms, budget for concrete execution: 190 ms,  -- 
+17:47:24.458 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.setContext(ParseContext)1
+17:47:24.588 | INFO  | Finished (in 0.137 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.setContext(ParseContext) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:24.598 | DEBUG |  ... 
+17:47:24.598 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.popContext()
+17:47:24.598 | INFO  |  -- Remaining time budget: 20406 ms, #remaining_methods: 53, budget for method: 385 ms, solver timeout: 192 ms, budget for symbolic execution: 193 ms, budget for concrete execution: 192 ms,  -- 
+17:47:24.604 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.popContext()1
+17:47:24.724 | INFO  | Finished (in 0.126 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.popContext() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:24.735 | DEBUG |  ... 
+17:47:24.735 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getInput()
+17:47:24.735 | INFO  |  -- Remaining time budget: 20269 ms, #remaining_methods: 52, budget for method: 389 ms, solver timeout: 194 ms, budget for symbolic execution: 195 ms, budget for concrete execution: 194 ms,  -- 
+17:47:24.740 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getInput()1
+17:47:24.930 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.getInput()
+17:47:25.125 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.getInput()
+17:47:25.643 | INFO  | Finished (in 0.907 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getInput() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:25.644 | DEBUG |  ... 
+17:47:25.644 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.setDateFomrat(DateFormat)
+17:47:25.644 | INFO  |  -- Remaining time budget: 19360 ms, #remaining_methods: 51, budget for method: 379 ms, solver timeout: 189 ms, budget for symbolic execution: 190 ms, budget for concrete execution: 189 ms,  -- 
+17:47:25.671 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.setDateFomrat(DateFormat)1
+17:47:25.698 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.setDateFomrat(DateFormat)2
+17:47:25.698 | INFO  | Finished (in 0.054 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.setDateFomrat(DateFormat) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:25.699 | DEBUG |  ... 
+17:47:25.699 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getLexer()
+17:47:25.700 | INFO  |  -- Remaining time budget: 19305 ms, #remaining_methods: 50, budget for method: 386 ms, solver timeout: 193 ms, budget for symbolic execution: 193 ms, budget for concrete execution: 193 ms,  -- 
+17:47:25.703 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getLexer()1
+17:47:25.728 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getLexer()2
+17:47:25.729 | INFO  | Finished (in 0.029 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getLexer() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:25.729 | DEBUG |  ... 
+17:47:25.729 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.resolveReference(String)
+17:47:25.730 | INFO  |  -- Remaining time budget: 19275 ms, #remaining_methods: 49, budget for method: 393 ms, solver timeout: 196 ms, budget for symbolic execution: 197 ms, budget for concrete execution: 196 ms,  -- 
+17:47:25.761 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.resolveReference(String)1
+17:47:25.791 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.resolveReference(String)2
+17:47:25.831 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.resolveReference(String)3
+17:47:25.839 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.resolveReference(String)4
+17:47:25.873 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.resolveReference(String)5
+17:47:25.918 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.resolveReference(String)6
+17:47:25.927 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.resolveReference(String)
+17:47:26.123 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.resolveReference(String)
+17:47:26.417 | INFO  | Finished (in 0.687 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.resolveReference(String) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+17:47:26.431 | DEBUG |  ... 
+17:47:26.432 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.handleResovleTask(Object)
+17:47:26.432 | INFO  |  -- Remaining time budget: 18573 ms, #remaining_methods: 48, budget for method: 386 ms, solver timeout: 193 ms, budget for symbolic execution: 193 ms, budget for concrete execution: 193 ms,  -- 
+17:47:26.436 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.handleResovleTask(Object)1
+17:47:26.625 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.handleResovleTask(Object)
+17:47:26.654 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.handleResovleTask(Object)2
+17:47:26.818 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.handleResovleTask(Object)
+17:47:26.867 | INFO  | Finished (in 0.435 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.handleResovleTask(Object) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:26.868 | DEBUG |  ... 
+17:47:26.869 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseExtra(Object, String)
+17:47:26.869 | INFO  |  -- Remaining time budget: 18135 ms, #remaining_methods: 47, budget for method: 385 ms, solver timeout: 192 ms, budget for symbolic execution: 193 ms, budget for concrete execution: 192 ms,  -- 
+17:47:26.875 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseExtra(Object, String)1
+17:47:27.062 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseExtra(Object, String)
+17:47:27.255 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseExtra(Object, String)
+17:47:27.369 | INFO  | Finished (in 0.500 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseExtra(Object, String) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:27.371 | DEBUG |  ... 
+17:47:27.372 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseKey()
+17:47:27.372 | INFO  |  -- Remaining time budget: 17633 ms, #remaining_methods: 46, budget for method: 383 ms, solver timeout: 191 ms, budget for symbolic execution: 192 ms, budget for concrete execution: 191 ms,  -- 
+17:47:27.377 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseKey()1
+17:47:27.442 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseKey()2
+17:47:27.564 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseKey()
+17:47:27.756 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseKey()
+17:47:27.794 | INFO  | Finished (in 0.422 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseKey() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:27.796 | DEBUG |  ... 
+17:47:27.796 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject()
+17:47:27.796 | INFO  |  -- Remaining time budget: 17208 ms, #remaining_methods: 45, budget for method: 382 ms, solver timeout: 191 ms, budget for symbolic execution: 191 ms, budget for concrete execution: 191 ms,  -- 
+17:47:27.814 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseObject()1
+17:47:27.935 | INFO  | Finished (in 0.139 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:27.945 | DEBUG |  ... 
+17:47:27.946 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Object)
+17:47:27.946 | INFO  |  -- Remaining time budget: 17058 ms, #remaining_methods: 44, budget for method: 387 ms, solver timeout: 193 ms, budget for symbolic execution: 194 ms, budget for concrete execution: 193 ms,  -- 
+17:47:27.952 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Object)1
+17:47:28.140 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Object)
+17:47:28.198 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Object)2
+17:47:28.334 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Object)
+17:47:28.355 | INFO  | Finished (in 0.409 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Object) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:28.356 | DEBUG |  ... 
+17:47:28.357 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Map, Object)
+17:47:28.357 | INFO  |  -- Remaining time budget: 16648 ms, #remaining_methods: 43, budget for method: 387 ms, solver timeout: 193 ms, budget for symbolic execution: 194 ms, budget for concrete execution: 193 ms,  -- 
+17:47:28.366 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Map, Object)1
+17:47:28.551 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Map, Object)
+17:47:28.744 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Map, Object)
+17:47:29.007 | INFO  | Finished (in 0.650 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Map, Object) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:29.009 | DEBUG |  ... 
+17:47:29.009 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Map)
+17:47:29.009 | INFO  |  -- Remaining time budget: 15995 ms, #remaining_methods: 42, budget for method: 380 ms, solver timeout: 190 ms, budget for symbolic execution: 190 ms, budget for concrete execution: 190 ms,  -- 
+17:47:29.014 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Map)1
+17:47:29.199 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Map)
+17:47:29.390 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Map)
+17:47:29.430 | INFO  | Finished (in 0.421 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Map) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:29.432 | DEBUG |  ... 
+17:47:29.432 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Class)
+17:47:29.432 | INFO  |  -- Remaining time budget: 15572 ms, #remaining_methods: 41, budget for method: 379 ms, solver timeout: 189 ms, budget for symbolic execution: 190 ms, budget for concrete execution: 189 ms,  -- 
+17:47:29.436 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:47:29.622 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Class)
+17:47:29.812 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Class)
+17:47:29.867 | INFO  | Finished (in 0.434 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Class) 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 1 time(s) with 1 different exception(s)"
+17:47:29.868 | DEBUG |  ... 
+17:47:29.869 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Type)
+17:47:29.869 | INFO  |  -- Remaining time budget: 15135 ms, #remaining_methods: 40, budget for method: 378 ms, solver timeout: 189 ms, budget for symbolic execution: 189 ms, budget for concrete execution: 189 ms,  -- 
+17:47:29.878 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Type)1
+17:47:30.058 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Type)
+17:47:30.248 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Type)
+17:47:30.306 | INFO  | Finished (in 0.437 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Type) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:30.308 | DEBUG |  ... 
+17:47:30.309 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Type, Object)
+17:47:30.309 | INFO  |  -- Remaining time budget: 14695 ms, #remaining_methods: 39, budget for method: 376 ms, solver timeout: 188 ms, budget for symbolic execution: 188 ms, budget for concrete execution: 188 ms,  -- 
+17:47:30.314 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Type, Object)1
+17:47:30.497 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Type, Object)
+17:47:30.686 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Type, Object)
+17:47:30.771 | INFO  | Finished (in 0.462 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseObject(Type, Object) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:30.773 | DEBUG |  ... 
+17:47:30.773 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.isEnabled(Feature)
+17:47:30.773 | INFO  |  -- Remaining time budget: 14231 ms, #remaining_methods: 38, budget for method: 374 ms, solver timeout: 187 ms, budget for symbolic execution: 187 ms, budget for concrete execution: 187 ms,  -- 
+17:47:30.777 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class com.alibaba.fastjson.parser.Feature with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:47:30.805 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.isEnabled(Feature)1
+17:47:30.806 | INFO  | Finished (in 0.033 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.isEnabled(Feature) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+17:47:30.806 | DEBUG |  ... 
+17:47:30.807 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.config(Feature, boolean)
+17:47:30.807 | INFO  |  -- Remaining time budget: 14198 ms, #remaining_methods: 37, budget for method: 383 ms, solver timeout: 191 ms, budget for symbolic execution: 192 ms, budget for concrete execution: 191 ms,  -- 
+17:47:30.811 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class com.alibaba.fastjson.parser.Feature with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:47:30.838 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.config(Feature, boolean)1
+17:47:30.839 | INFO  | Finished (in 0.032 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.config(Feature, boolean) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+17:47:30.839 | DEBUG |  ... 
+17:47:30.840 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getDateFomartPattern()
+17:47:30.840 | INFO  |  -- Remaining time budget: 14164 ms, #remaining_methods: 36, budget for method: 393 ms, solver timeout: 196 ms, budget for symbolic execution: 197 ms, budget for concrete execution: 196 ms,  -- 
+17:47:30.843 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getDateFomartPattern()1
+17:47:30.867 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getDateFomartPattern()2
+17:47:30.867 | INFO  | Finished (in 0.027 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getDateFomartPattern() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:30.868 | DEBUG |  ... 
+17:47:30.868 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.setConfig(ParserConfig)
+17:47:30.868 | INFO  |  -- Remaining time budget: 14136 ms, #remaining_methods: 35, budget for method: 403 ms, solver timeout: 201 ms, budget for symbolic execution: 202 ms, budget for concrete execution: 201 ms,  -- 
+17:47:31.071 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.setConfig(ParserConfig)
+17:47:31.272 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.setConfig(ParserConfig)
+17:47:31.273 | DEBUG |  ... 
+17:47:31.273 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.setDateFormat(String)
+17:47:31.273 | INFO  |  -- Remaining time budget: 13731 ms, #remaining_methods: 34, budget for method: 403 ms, solver timeout: 201 ms, budget for symbolic execution: 202 ms, budget for concrete execution: 201 ms,  -- 
+17:47:31.280 | INFO  | Finished (in 0.412 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.setConfig(ParserConfig) 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+17:47:31.475 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.setDateFormat(String)
+17:47:31.677 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.setDateFormat(String)
+17:47:31.678 | INFO  | Finished (in 0.405 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.setDateFormat(String) 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+17:47:31.678 | DEBUG |  ... 
+17:47:31.679 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getDateFormat()
+17:47:31.679 | INFO  |  -- Remaining time budget: 13325 ms, #remaining_methods: 33, budget for method: 403 ms, solver timeout: 201 ms, budget for symbolic execution: 202 ms, budget for concrete execution: 201 ms,  -- 
+17:47:31.881 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.getDateFormat()
+17:47:32.083 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.getDateFormat()
+17:47:32.084 | INFO  | Finished (in 0.405 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getDateFormat() 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+17:47:32.084 | DEBUG |  ... 
+17:47:32.085 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getConfig()
+17:47:32.085 | INFO  |  -- Remaining time budget: 12920 ms, #remaining_methods: 32, budget for method: 403 ms, solver timeout: 201 ms, budget for symbolic execution: 202 ms, budget for concrete execution: 201 ms,  -- 
+17:47:32.287 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.getConfig()
+17:47:32.489 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.getConfig()
+17:47:32.490 | INFO  | Finished (in 0.405 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getConfig() 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+17:47:32.491 | DEBUG |  ... 
+17:47:32.491 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.addContext(ParseContext)
+17:47:32.491 | INFO  |  -- Remaining time budget: 12513 ms, #remaining_methods: 31, budget for method: 403 ms, solver timeout: 201 ms, budget for symbolic execution: 202 ms, budget for concrete execution: 201 ms,  -- 
+17:47:32.561 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.addContext(ParseContext)1
+17:47:32.618 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.addContext(ParseContext)2
+17:47:32.639 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.addContext(ParseContext)3
+17:47:32.674 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.addContext(ParseContext)4
+17:47:32.693 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.addContext(ParseContext)
+17:47:32.895 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.addContext(ParseContext)
+17:47:32.935 | INFO  | Finished (in 0.444 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.addContext(ParseContext) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+17:47:32.941 | DEBUG |  ... 
+17:47:32.942 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getSymbolTable()
+17:47:32.942 | INFO  |  -- Remaining time budget: 12062 ms, #remaining_methods: 30, budget for method: 402 ms, solver timeout: 201 ms, budget for symbolic execution: 201 ms, budget for concrete execution: 201 ms,  -- 
+17:47:32.946 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getSymbolTable()1
+17:47:32.972 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getSymbolTable()2
+17:47:32.972 | INFO  | Finished (in 0.030 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getSymbolTable() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:32.973 | DEBUG |  ... 
+17:47:32.973 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parseArrayWithType(Type)
+17:47:32.974 | INFO  |  -- Remaining time budget: 12031 ms, #remaining_methods: 29, budget for method: 414 ms, solver timeout: 207 ms, budget for symbolic execution: 207 ms, budget for concrete execution: 207 ms,  -- 
+17:47:32.979 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArrayWithType(Type)1
+17:47:33.032 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArrayWithType(Type)2
+17:47:33.047 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArrayWithType(Type)3
+17:47:33.068 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArrayWithType(Type)4
+17:47:33.178 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArrayWithType(Type)5
+17:47:33.181 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parseArrayWithType(Type)
+17:47:33.386 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parseArrayWithType(Type)6
+17:47:33.389 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parseArrayWithType(Type)
+17:47:33.407 | INFO  | Finished (in 0.433 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parseArrayWithType(Type) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+17:47:33.418 | DEBUG |  ... 
+17:47:33.418 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.acceptType(String)
+17:47:33.419 | INFO  |  -- Remaining time budget: 11586 ms, #remaining_methods: 28, budget for method: 413 ms, solver timeout: 206 ms, budget for symbolic execution: 207 ms, budget for concrete execution: 206 ms,  -- 
+17:47:33.423 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.acceptType(String)1
+17:47:33.469 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.acceptType(String)2
+17:47:33.477 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.acceptType(String)3
+17:47:33.623 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.acceptType(String)4
+17:47:33.626 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.acceptType(String)
+17:47:33.646 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.acceptType(String)5
+17:47:33.669 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.acceptType(String)6
+17:47:33.813 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.acceptType(String)7
+17:47:33.833 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.acceptType(String)
+17:47:33.839 | INFO  | Finished (in 0.420 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.acceptType(String) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+17:47:33.866 | DEBUG |  ... 
+17:47:33.866 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getResolveStatus()
+17:47:33.866 | INFO  |  -- Remaining time budget: 11138 ms, #remaining_methods: 27, budget for method: 412 ms, solver timeout: 206 ms, budget for symbolic execution: 206 ms, budget for concrete execution: 206 ms,  -- 
+17:47:33.870 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getResolveStatus()1
+17:47:33.895 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getResolveStatus()2
+17:47:33.895 | INFO  | Finished (in 0.029 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getResolveStatus() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:33.896 | DEBUG |  ... 
+17:47:33.896 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.setResolveStatus(int)
+17:47:33.896 | INFO  |  -- Remaining time budget: 11108 ms, #remaining_methods: 26, budget for method: 427 ms, solver timeout: 213 ms, budget for symbolic execution: 214 ms, budget for concrete execution: 213 ms,  -- 
+17:47:33.899 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.setResolveStatus(int)1
+17:47:33.923 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.setResolveStatus(int)2
+17:47:33.923 | INFO  | Finished (in 0.027 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.setResolveStatus(int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:33.923 | DEBUG |  ... 
+17:47:33.924 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.checkListResolve(Collection)
+17:47:33.924 | INFO  |  -- Remaining time budget: 11080 ms, #remaining_methods: 25, budget for method: 443 ms, solver timeout: 221 ms, budget for symbolic execution: 222 ms, budget for concrete execution: 221 ms,  -- 
+17:47:33.928 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.checkListResolve(Collection)1
+17:47:34.146 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.checkListResolve(Collection)
+17:47:34.175 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.checkListResolve(Collection)2
+17:47:34.368 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.checkListResolve(Collection)
+17:47:34.440 | INFO  | Finished (in 0.515 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.checkListResolve(Collection) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:34.441 | DEBUG |  ... 
+17:47:34.442 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.checkMapResolve(Map, Object)
+17:47:34.442 | INFO  |  -- Remaining time budget: 10562 ms, #remaining_methods: 24, budget for method: 440 ms, solver timeout: 220 ms, budget for symbolic execution: 220 ms, budget for concrete execution: 220 ms,  -- 
+17:47:34.446 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.checkMapResolve(Map, Object)1
+17:47:34.664 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.checkMapResolve(Map, Object)
+17:47:34.819 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.checkMapResolve(Map, Object)2
+17:47:34.885 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.checkMapResolve(Map, Object)
+17:47:35.062 | INFO  | Finished (in 0.620 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.checkMapResolve(Map, Object) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:35.063 | DEBUG |  ... 
+17:47:35.063 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getResolveTaskList()
+17:47:35.064 | INFO  |  -- Remaining time budget: 9941 ms, #remaining_methods: 23, budget for method: 432 ms, solver timeout: 216 ms, budget for symbolic execution: 216 ms, budget for concrete execution: 216 ms,  -- 
+17:47:35.067 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getResolveTaskList()1
+17:47:35.113 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getResolveTaskList()2
+17:47:35.161 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getResolveTaskList()3
+17:47:35.162 | INFO  | Finished (in 0.098 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getResolveTaskList() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:47:35.168 | DEBUG |  ... 
+17:47:35.168 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.addResolveTask(DefaultJSONParser$ResolveTask)
+17:47:35.168 | INFO  |  -- Remaining time budget: 9836 ms, #remaining_methods: 22, budget for method: 447 ms, solver timeout: 223 ms, budget for symbolic execution: 224 ms, budget for concrete execution: 223 ms,  -- 
+17:47:35.172 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.addResolveTask(DefaultJSONParser$ResolveTask)1
+17:47:35.406 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.addResolveTask(DefaultJSONParser$ResolveTask)
+17:47:35.630 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.addResolveTask(DefaultJSONParser$ResolveTask)
+17:47:35.787 | INFO  | Finished (in 0.619 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.addResolveTask(DefaultJSONParser$ResolveTask) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:35.791 | DEBUG |  ... 
+17:47:35.792 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getLastResolveTask()
+17:47:35.792 | INFO  |  -- Remaining time budget: 9213 ms, #remaining_methods: 21, budget for method: 438 ms, solver timeout: 219 ms, budget for symbolic execution: 219 ms, budget for concrete execution: 219 ms,  -- 
+17:47:35.795 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getLastResolveTask()1
+17:47:35.841 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getLastResolveTask()2
+17:47:36.011 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.getLastResolveTask()
+17:47:36.230 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.getLastResolveTask()
+17:47:36.358 | INFO  | Finished (in 0.566 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getLastResolveTask() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:36.370 | DEBUG |  ... 
+17:47:36.371 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getExtraProcessors()
+17:47:36.371 | INFO  |  -- Remaining time budget: 8633 ms, #remaining_methods: 20, budget for method: 431 ms, solver timeout: 215 ms, budget for symbolic execution: 216 ms, budget for concrete execution: 215 ms,  -- 
+17:47:36.374 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getExtraProcessors()1
+17:47:36.416 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getExtraProcessors()2
+17:47:36.465 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getExtraProcessors()3
+17:47:36.466 | INFO  | Finished (in 0.095 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getExtraProcessors() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:47:36.472 | DEBUG |  ... 
+17:47:36.473 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getExtraTypeProviders()
+17:47:36.473 | INFO  |  -- Remaining time budget: 8532 ms, #remaining_methods: 19, budget for method: 449 ms, solver timeout: 224 ms, budget for symbolic execution: 225 ms, budget for concrete execution: 224 ms,  -- 
+17:47:36.477 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getExtraTypeProviders()1
+17:47:36.524 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getExtraTypeProviders()2
+17:47:36.570 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getExtraTypeProviders()3
+17:47:36.570 | INFO  | Finished (in 0.097 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getExtraTypeProviders() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:47:36.576 | DEBUG |  ... 
+17:47:36.576 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getFieldTypeResolver()
+17:47:36.576 | INFO  |  -- Remaining time budget: 8428 ms, #remaining_methods: 18, budget for method: 468 ms, solver timeout: 234 ms, budget for symbolic execution: 234 ms, budget for concrete execution: 234 ms,  -- 
+17:47:36.579 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getFieldTypeResolver()1
+17:47:36.603 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getFieldTypeResolver()2
+17:47:36.603 | INFO  | Finished (in 0.027 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getFieldTypeResolver() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:36.604 | DEBUG |  ... 
+17:47:36.604 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.setFieldTypeResolver(FieldTypeResolver)
+17:47:36.604 | INFO  |  -- Remaining time budget: 8400 ms, #remaining_methods: 17, budget for method: 494 ms, solver timeout: 247 ms, budget for symbolic execution: 247 ms, budget for concrete execution: 247 ms,  -- 
+17:47:36.608 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.setFieldTypeResolver(FieldTypeResolver)1
+17:47:36.632 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.setFieldTypeResolver(FieldTypeResolver)2
+17:47:36.632 | INFO  | Finished (in 0.028 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.setFieldTypeResolver(FieldTypeResolver) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:36.632 | DEBUG |  ... 
+17:47:36.633 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getObject(String)
+17:47:36.633 | INFO  |  -- Remaining time budget: 8371 ms, #remaining_methods: 16, budget for method: 523 ms, solver timeout: 261 ms, budget for symbolic execution: 262 ms, budget for concrete execution: 261 ms,  -- 
+17:47:36.636 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getObject(String)1
+17:47:36.662 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getObject(String)2
+17:47:36.697 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getObject(String)3
+17:47:36.722 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getObject(String)4
+17:47:36.744 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getObject(String)5
+17:47:36.752 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getObject(String)6
+17:47:36.895 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.getObject(String)
+17:47:37.157 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.getObject(String)
+17:47:37.234 | INFO  | Finished (in 0.601 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getObject(String) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+17:47:37.248 | DEBUG |  ... 
+17:47:37.248 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.throwException(int)
+17:47:37.249 | INFO  |  -- Remaining time budget: 7756 ms, #remaining_methods: 15, budget for method: 517 ms, solver timeout: 258 ms, budget for symbolic execution: 259 ms, budget for concrete execution: 258 ms,  -- 
+17:47:37.252 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.throwException(int)1
+17:47:37.287 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.throwException(int)2
+17:47:37.288 | INFO  | Finished (in 0.039 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.throwException(int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:37.288 | DEBUG |  ... 
+17:47:37.288 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.accept(int, int)
+17:47:37.289 | INFO  |  -- Remaining time budget: 7716 ms, #remaining_methods: 14, budget for method: 551 ms, solver timeout: 275 ms, budget for symbolic execution: 276 ms, budget for concrete execution: 275 ms,  -- 
+17:47:37.292 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.accept(int, int)1
+17:47:37.334 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.accept(int, int)2
+17:47:37.357 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.accept(int, int)3
+17:47:37.357 | INFO  | Finished (in 0.068 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.accept(int, int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:47:37.360 | DEBUG |  ... 
+17:47:37.360 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.accept(int)
+17:47:37.360 | INFO  |  -- Remaining time budget: 7644 ms, #remaining_methods: 13, budget for method: 588 ms, solver timeout: 294 ms, budget for symbolic execution: 294 ms, budget for concrete execution: 294 ms,  -- 
+17:47:37.364 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.accept(int)1
+17:47:37.407 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.accept(int)2
+17:47:37.411 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.accept(int)3
+17:47:37.411 | INFO  | Finished (in 0.050 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.accept(int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:47:37.411 | DEBUG |  ... 
+17:47:37.412 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.getContext()
+17:47:37.412 | INFO  |  -- Remaining time budget: 7592 ms, #remaining_methods: 12, budget for method: 632 ms, solver timeout: 316 ms, budget for symbolic execution: 316 ms, budget for concrete execution: 316 ms,  -- 
+17:47:37.414 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getContext()1
+17:47:37.442 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.getContext()2
+17:47:37.442 | INFO  | Finished (in 0.030 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.getContext() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:37.443 | DEBUG |  ... 
+17:47:37.444 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parse(Object)
+17:47:37.444 | INFO  |  -- Remaining time budget: 7561 ms, #remaining_methods: 11, budget for method: 687 ms, solver timeout: 343 ms, budget for symbolic execution: 344 ms, budget for concrete execution: 343 ms,  -- 
+17:47:37.448 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parse(Object)1
+17:47:37.788 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parse(Object)
+17:47:38.131 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parse(Object)
+17:47:38.258 | INFO  | Finished (in 0.814 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parse(Object) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:38.260 | DEBUG |  ... 
+17:47:38.260 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parse(PropertyProcessable, Object)
+17:47:38.260 | INFO  |  -- Remaining time budget: 6744 ms, #remaining_methods: 10, budget for method: 674 ms, solver timeout: 337 ms, budget for symbolic execution: 337 ms, budget for concrete execution: 337 ms,  -- 
+17:47:38.265 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parse(PropertyProcessable, Object)1
+17:47:38.597 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parse(PropertyProcessable, Object)
+17:47:38.935 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parse(PropertyProcessable, Object)
+17:47:39.051 | INFO  | Finished (in 0.791 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parse(PropertyProcessable, Object) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:39.073 | DEBUG |  ... 
+17:47:39.074 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.parse()
+17:47:39.074 | INFO  |  -- Remaining time budget: 5930 ms, #remaining_methods: 9, budget for method: 658 ms, solver timeout: 329 ms, budget for symbolic execution: 329 ms, budget for concrete execution: 329 ms,  -- 
+17:47:39.077 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parse()1
+17:47:39.403 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.parse()
+17:47:39.704 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.parse()2
+17:47:39.733 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.parse()
+17:47:39.787 | INFO  | Finished (in 0.713 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.parse() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:39.801 | DEBUG |  ... 
+17:47:39.802 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(String, ParserConfig, int)
+17:47:39.802 | INFO  |  -- Remaining time budget: 5203 ms, #remaining_methods: 8, budget for method: 650 ms, solver timeout: 325 ms, budget for symbolic execution: 325 ms, budget for concrete execution: 325 ms,  -- 
+17:47:40.127 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.<init>(String, ParserConfig, int)
+17:47:40.346 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.<init>(String, ParserConfig, int)1
+17:47:40.434 | INFO  | Finished (in 0.633 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(String, ParserConfig, int) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:40.442 | DEBUG |  ... 
+17:47:40.443 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(char[], int, ParserConfig, int)
+17:47:40.443 | INFO  |  -- Remaining time budget: 4561 ms, #remaining_methods: 7, budget for method: 651 ms, solver timeout: 325 ms, budget for symbolic execution: 326 ms, budget for concrete execution: 325 ms,  -- 
+17:47:40.769 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.<init>(char[], int, ParserConfig, int)
+17:47:41.095 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.<init>(char[], int, ParserConfig, int)
+17:47:41.096 | INFO  | Finished (in 0.653 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(char[], int, ParserConfig, int) 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+17:47:41.096 | DEBUG |  ... 
+17:47:41.097 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(String, ParserConfig)
+17:47:41.097 | INFO  |  -- Remaining time budget: 3908 ms, #remaining_methods: 6, budget for method: 651 ms, solver timeout: 325 ms, budget for symbolic execution: 326 ms, budget for concrete execution: 325 ms,  -- 
+17:47:41.423 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.<init>(String, ParserConfig)
+17:47:41.704 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.<init>(String, ParserConfig)1
+17:47:41.748 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.<init>(String, ParserConfig)
+17:47:41.762 | INFO  | Finished (in 0.665 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(String, ParserConfig) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:41.768 | DEBUG |  ... 
+17:47:41.768 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(String)
+17:47:41.768 | INFO  |  -- Remaining time budget: 3236 ms, #remaining_methods: 5, budget for method: 647 ms, solver timeout: 323 ms, budget for symbolic execution: 324 ms, budget for concrete execution: 323 ms,  -- 
+17:47:42.064 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.<init>(String)1
+17:47:42.093 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.<init>(String)
+17:47:42.122 | INFO  | Finished (in 0.354 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(String) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:42.128 | DEBUG |  ... 
+17:47:42.129 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(Object, JSONLexer, ParserConfig)
+17:47:42.129 | INFO  |  -- Remaining time budget: 2875 ms, #remaining_methods: 4, budget for method: 718 ms, solver timeout: 359 ms, budget for symbolic execution: 359 ms, budget for concrete execution: 359 ms,  -- 
+17:47:42.411 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.<init>(Object, JSONLexer, ParserConfig)1
+17:47:42.488 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.parser.DefaultJSONParser.<init>(Object, JSONLexer, ParserConfig)
+17:47:42.848 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.parser.DefaultJSONParser.<init>(Object, JSONLexer, ParserConfig)
+17:47:42.848 | INFO  | Finished (in 0.719 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(Object, JSONLexer, ParserConfig) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:42.865 | DEBUG |  ... 
+17:47:42.866 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(JSONLexer)
+17:47:42.866 | INFO  |  -- Remaining time budget: 2139 ms, #remaining_methods: 3, budget for method: 713 ms, solver timeout: 356 ms, budget for symbolic execution: 357 ms, budget for concrete execution: 356 ms,  -- 
+17:47:42.871 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.<init>(JSONLexer)1
+17:47:42.940 | INFO  | Finished (in 0.074 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(JSONLexer) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:42.948 | DEBUG |  ... 
+17:47:42.948 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(JSONLexer, ParserConfig)
+17:47:42.948 | INFO  |  -- Remaining time budget: 2056 ms, #remaining_methods: 2, budget for method: 1028 ms, solver timeout: 514 ms, budget for symbolic execution: 514 ms, budget for concrete execution: 514 ms,  -- 
+17:47:43.214 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.<init>(JSONLexer, ParserConfig)1
+17:47:43.277 | INFO  | Finished (in 0.329 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.<init>(JSONLexer, ParserConfig) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:47:43.285 | DEBUG |  ... 
+17:47:43.285 | INFO  | Started: method com.alibaba.fastjson.parser.DefaultJSONParser.ResolveTask.<init>(ParseContext, String)
+17:47:43.285 | INFO  |  -- Remaining time budget: 1719 ms, #remaining_methods: 1, budget for method: 1719 ms, solver timeout: 859 ms, budget for symbolic execution: 860 ms, budget for concrete execution: 859 ms,  -- 
+17:47:43.292 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.ResolveTask.<init>(ParseContext, String)1
+17:47:43.334 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.parser.DefaultJSONParser.ResolveTask.<init>(ParseContext, String)2
+17:47:43.334 | INFO  | Finished (in 0.049 sec): method com.alibaba.fastjson.parser.DefaultJSONParser.ResolveTask.<init>(ParseContext, String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:47:43.339 | INFO  | Started: Flushing tests for [DefaultJSONParser] on disk
+17:47:43.677 | INFO  | File size for DefaultJSONParserTest: 64 KB
+17:47:43.679 | INFO  | Finished (in 0.340 sec): Flushing tests for [DefaultJSONParser] on disk 
+17:47:43.680 | INFO  | Finished (in 24.140 sec): class com.alibaba.fastjson.parser.DefaultJSONParser 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 64, 
+	#methods started symbolic exploration = 64
+	#methods with at least one TC = 56
+	#methods with exceptions = 5
+	#generated TC = 113
+	#coverage = null
+[READY]

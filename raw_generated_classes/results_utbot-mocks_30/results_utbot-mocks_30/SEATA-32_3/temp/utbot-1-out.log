@@ -1,0 +1,104 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+16:10:06.269 | INFO  | Started: warmup: kotlin reflection :: init
+16:10:06.351 | INFO  | Finished (in 0.082 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.protocol.transaction.GlobalBeginResponse 30
+16:10:06.364 | DEBUG | -----------------------------------------------------------------------------
+16:10:06.364 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+16:10:06.366 | INFO  | ClassUnderTest[ FQN: io.seata.core.protocol.transaction.GlobalBeginResponse
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: GlobalBeginResponseTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/protocol/transaction/GlobalBeginResponseTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+16:10:06.395 | INFO  | Started: class io.seata.core.protocol.transaction.GlobalBeginResponse
+16:10:06.396 | INFO  | Started: preparation class class io.seata.core.protocol.transaction.GlobalBeginResponse: kotlin reflection :: run
+16:10:06.470 | INFO  | Finished (in 0.073 sec): preparation class class io.seata.core.protocol.transaction.GlobalBeginResponse: kotlin reflection :: run 
+16:10:06.475 | INFO  | Started: 2nd optional soot initialization
+16:10:06.477 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+16:10:06.487 | DEBUG |  ... 
+16:10:06.497 | INFO  | Started: method io.seata.core.protocol.transaction.GlobalBeginResponse.decode(ByteBuffer)
+16:10:06.498 | INFO  |  -- Remaining time budget: 25376 ms, #remaining_methods: 8, budget for method: 3172 ms, solver timeout: 1000 ms, budget for symbolic execution: 1972 ms, budget for concrete execution: 1200 ms,  -- 
+16:10:06.843 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.decode(ByteBuffer)1
+16:10:07.359 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.decode(ByteBuffer)2
+16:10:07.773 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.decode(ByteBuffer)3
+16:10:08.471 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.transaction.GlobalBeginResponse.decode(ByteBuffer)
+16:10:09.673 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.transaction.GlobalBeginResponse.decode(ByteBuffer)
+16:10:10.542 | INFO  | Finished (in 4.044 sec): method io.seata.core.protocol.transaction.GlobalBeginResponse.decode(ByteBuffer) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:10:10.600 | DEBUG |  ... 
+16:10:10.600 | INFO  | Started: method io.seata.core.protocol.transaction.GlobalBeginResponse.getTypeCode()
+16:10:10.600 | INFO  |  -- Remaining time budget: 21265 ms, #remaining_methods: 7, budget for method: 3037 ms, solver timeout: 1000 ms, budget for symbolic execution: 1837 ms, budget for concrete execution: 1200 ms,  -- 
+16:10:10.611 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.getTypeCode()1
+16:10:10.636 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.getTypeCode()2
+16:10:10.637 | INFO  | Finished (in 0.036 sec): method io.seata.core.protocol.transaction.GlobalBeginResponse.getTypeCode() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:10:10.638 | DEBUG |  ... 
+16:10:10.638 | INFO  | Started: method io.seata.core.protocol.transaction.GlobalBeginResponse.doEncode()
+16:10:10.638 | INFO  |  -- Remaining time budget: 21227 ms, #remaining_methods: 6, budget for method: 3537 ms, solver timeout: 1000 ms, budget for symbolic execution: 2337 ms, budget for concrete execution: 1200 ms,  -- 
+16:10:10.653 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.doEncode()1
+16:10:10.769 | INFO  | Finished (in 0.130 sec): method io.seata.core.protocol.transaction.GlobalBeginResponse.doEncode() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:10:10.777 | DEBUG |  ... 
+16:10:10.778 | INFO  | Started: method io.seata.core.protocol.transaction.GlobalBeginResponse.setXid(String)
+16:10:10.778 | INFO  |  -- Remaining time budget: 21087 ms, #remaining_methods: 5, budget for method: 4217 ms, solver timeout: 1000 ms, budget for symbolic execution: 3017 ms, budget for concrete execution: 1200 ms,  -- 
+16:10:10.808 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.setXid(String)1
+16:10:10.848 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.setXid(String)2
+16:10:10.848 | INFO  | Finished (in 0.070 sec): method io.seata.core.protocol.transaction.GlobalBeginResponse.setXid(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:10:10.849 | DEBUG |  ... 
+16:10:10.849 | INFO  | Started: method io.seata.core.protocol.transaction.GlobalBeginResponse.getXid()
+16:10:10.850 | INFO  |  -- Remaining time budget: 21016 ms, #remaining_methods: 4, budget for method: 5254 ms, solver timeout: 1000 ms, budget for symbolic execution: 4054 ms, budget for concrete execution: 1200 ms,  -- 
+16:10:10.859 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.getXid()1
+16:10:10.884 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.getXid()2
+16:10:10.885 | INFO  | Finished (in 0.035 sec): method io.seata.core.protocol.transaction.GlobalBeginResponse.getXid() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:10:10.885 | DEBUG |  ... 
+16:10:10.886 | INFO  | Started: method io.seata.core.protocol.transaction.GlobalBeginResponse.setExtraData(String)
+16:10:10.886 | INFO  |  -- Remaining time budget: 20979 ms, #remaining_methods: 3, budget for method: 6993 ms, solver timeout: 1000 ms, budget for symbolic execution: 5793 ms, budget for concrete execution: 1200 ms,  -- 
+16:10:10.900 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.setExtraData(String)1
+16:10:10.926 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.setExtraData(String)2
+16:10:10.926 | INFO  | Finished (in 0.040 sec): method io.seata.core.protocol.transaction.GlobalBeginResponse.setExtraData(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:10:10.927 | DEBUG |  ... 
+16:10:10.927 | INFO  | Started: method io.seata.core.protocol.transaction.GlobalBeginResponse.getExtraData()
+16:10:10.927 | INFO  |  -- Remaining time budget: 20938 ms, #remaining_methods: 2, budget for method: 10469 ms, solver timeout: 1000 ms, budget for symbolic execution: 9269 ms, budget for concrete execution: 1200 ms,  -- 
+16:10:10.933 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.getExtraData()1
+16:10:10.957 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.getExtraData()2
+16:10:10.957 | INFO  | Finished (in 0.030 sec): method io.seata.core.protocol.transaction.GlobalBeginResponse.getExtraData() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:10:10.958 | DEBUG |  ... 
+16:10:10.958 | INFO  | Started: method io.seata.core.protocol.transaction.GlobalBeginResponse.<init>()
+16:10:10.958 | INFO  |  -- Remaining time budget: 20907 ms, #remaining_methods: 1, budget for method: 20907 ms, solver timeout: 1000 ms, budget for symbolic execution: 19707 ms, budget for concrete execution: 1200 ms,  -- 
+16:10:10.965 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.GlobalBeginResponse.<init>()1
+16:10:11.092 | INFO  | Finished (in 0.134 sec): method io.seata.core.protocol.transaction.GlobalBeginResponse.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:10:11.106 | INFO  | Started: Flushing tests for [GlobalBeginResponse] on disk
+16:10:11.415 | INFO  | File size for GlobalBeginResponseTest: 10 KB
+16:10:11.416 | INFO  | Finished (in 0.309 sec): Flushing tests for [GlobalBeginResponse] on disk 
+16:10:11.417 | INFO  | Finished (in 5.021 sec): class io.seata.core.protocol.transaction.GlobalBeginResponse 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 8, 
+	#methods started symbolic exploration = 8
+	#methods with at least one TC = 8
+	#methods with exceptions = 0
+	#generated TC = 15
+	#coverage = null
+[READY]

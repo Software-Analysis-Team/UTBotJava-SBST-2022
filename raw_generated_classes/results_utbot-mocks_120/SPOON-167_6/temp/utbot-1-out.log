@@ -1,0 +1,206 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+21:34:47.349 | INFO  | Started: warmup: kotlin reflection :: init
+21:34:47.453 | INFO  | Finished (in 0.103 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.support.reflect.CtExtendedModifier 120
+21:34:47.466 | DEBUG | -----------------------------------------------------------------------------
+21:34:47.467 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+21:34:47.469 | INFO  | ClassUnderTest[ FQN: spoon.support.reflect.CtExtendedModifier
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: CtExtendedModifierTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/support/reflect/CtExtendedModifierTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+21:34:47.503 | INFO  | Started: class spoon.support.reflect.CtExtendedModifier
+21:34:47.504 | INFO  | Started: preparation class class spoon.support.reflect.CtExtendedModifier: kotlin reflection :: run
+21:34:47.529 | INFO  | Finished (in 0.024 sec): preparation class class spoon.support.reflect.CtExtendedModifier: kotlin reflection :: run 
+21:34:47.530 | INFO  | Started: 2nd optional soot initialization
+21:34:47.532 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+21:34:47.543 | DEBUG |  ... 
+21:34:47.564 | INFO  | Started: method spoon.support.reflect.CtExtendedModifier.equals(Object)
+21:34:47.566 | INFO  |  -- Remaining time budget: 101921 ms, #remaining_methods: 10, budget for method: 10192 ms, solver timeout: 1000 ms, budget for symbolic execution: 8992 ms, budget for concrete execution: 1200 ms,  -- 
+21:34:47.920 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.equals(Object)1
+21:34:48.742 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.equals(Object)2
+21:34:48.786 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.equals(Object)3
+21:34:49.208 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.equals(Object)4
+21:34:49.210 | INFO  | Finished (in 1.645 sec): method spoon.support.reflect.CtExtendedModifier.equals(Object) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+21:34:49.213 | DEBUG |  ... 
+21:34:49.214 | INFO  | Started: method spoon.support.reflect.CtExtendedModifier.hashCode()
+21:34:49.214 | INFO  |  -- Remaining time budget: 100254 ms, #remaining_methods: 9, budget for method: 11139 ms, solver timeout: 1000 ms, budget for symbolic execution: 9939 ms, budget for concrete execution: 1200 ms,  -- 
+21:34:49.223 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.hashCode()1
+21:34:49.323 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.hashCode()2
+21:34:49.351 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.hashCode()3
+21:34:49.357 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.hashCode()4
+21:34:49.361 | INFO  | Finished (in 0.146 sec): method spoon.support.reflect.CtExtendedModifier.hashCode() 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+21:34:49.362 | DEBUG |  ... 
+21:34:49.363 | INFO  | Started: method spoon.support.reflect.CtExtendedModifier.getPosition()
+21:34:49.363 | INFO  |  -- Remaining time budget: 100106 ms, #remaining_methods: 8, budget for method: 12513 ms, solver timeout: 1000 ms, budget for symbolic execution: 11313 ms, budget for concrete execution: 1200 ms,  -- 
+21:34:49.373 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.getPosition()1
+21:34:49.438 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.getPosition()2
+21:34:49.476 | INFO  | Finished (in 0.113 sec): method spoon.support.reflect.CtExtendedModifier.getPosition() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+21:34:49.482 | DEBUG |  ... 
+21:34:49.483 | INFO  | Started: method spoon.support.reflect.CtExtendedModifier.getKind()
+21:34:49.483 | INFO  |  -- Remaining time budget: 99985 ms, #remaining_methods: 7, budget for method: 14283 ms, solver timeout: 1000 ms, budget for symbolic execution: 13083 ms, budget for concrete execution: 1200 ms,  -- 
+21:34:49.491 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.getKind()1
+21:34:49.522 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.getKind()2
+21:34:49.523 | INFO  | Finished (in 0.040 sec): method spoon.support.reflect.CtExtendedModifier.getKind() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+21:34:49.524 | DEBUG |  ... 
+21:34:49.524 | INFO  | Started: method spoon.support.reflect.CtExtendedModifier.setKind(ModifierKind)
+21:34:49.525 | INFO  |  -- Remaining time budget: 99944 ms, #remaining_methods: 6, budget for method: 16657 ms, solver timeout: 1000 ms, budget for symbolic execution: 15457 ms, budget for concrete execution: 1200 ms,  -- 
+21:34:49.541 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class spoon.reflect.declaration.ModifierKind with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+21:34:49.581 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.setKind(ModifierKind)1
+21:34:49.582 | INFO  | Finished (in 0.057 sec): method spoon.support.reflect.CtExtendedModifier.setKind(ModifierKind) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+21:34:49.583 | DEBUG |  ... 
+21:34:49.583 | INFO  | Started: method spoon.support.reflect.CtExtendedModifier.setPosition(SourcePosition)
+21:34:49.583 | INFO  |  -- Remaining time budget: 99885 ms, #remaining_methods: 5, budget for method: 19977 ms, solver timeout: 1000 ms, budget for symbolic execution: 18777 ms, budget for concrete execution: 1200 ms,  -- 
+21:34:49.592 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.setPosition(SourcePosition)1
+21:34:49.628 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.setPosition(SourcePosition)2
+21:34:49.629 | INFO  | Finished (in 0.045 sec): method spoon.support.reflect.CtExtendedModifier.setPosition(SourcePosition) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+21:34:49.630 | DEBUG |  ... 
+21:34:49.630 | INFO  | Started: method spoon.support.reflect.CtExtendedModifier.setImplicit(boolean)
+21:34:49.630 | INFO  |  -- Remaining time budget: 99838 ms, #remaining_methods: 4, budget for method: 24959 ms, solver timeout: 1000 ms, budget for symbolic execution: 23759 ms, budget for concrete execution: 1200 ms,  -- 
+21:34:49.637 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.setImplicit(boolean)1
+21:34:49.667 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.setImplicit(boolean)2
+21:34:49.667 | INFO  | Finished (in 0.037 sec): method spoon.support.reflect.CtExtendedModifier.setImplicit(boolean) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+21:34:49.668 | DEBUG |  ... 
+21:34:49.668 | INFO  | Started: method spoon.support.reflect.CtExtendedModifier.isImplicit()
+21:34:49.668 | INFO  |  -- Remaining time budget: 99800 ms, #remaining_methods: 3, budget for method: 33266 ms, solver timeout: 1000 ms, budget for symbolic execution: 32066 ms, budget for concrete execution: 1200 ms,  -- 
+21:34:49.674 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.isImplicit()1
+21:34:49.704 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.isImplicit()2
+21:34:49.704 | INFO  | Finished (in 0.036 sec): method spoon.support.reflect.CtExtendedModifier.isImplicit() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+21:34:49.705 | DEBUG |  ... 
+21:34:49.705 | INFO  | Started: method spoon.support.reflect.CtExtendedModifier.<init>(ModifierKind)
+21:34:49.705 | INFO  |  -- Remaining time budget: 99763 ms, #remaining_methods: 2, budget for method: 49881 ms, solver timeout: 1000 ms, budget for symbolic execution: 48681 ms, budget for concrete execution: 1200 ms,  -- 
+21:34:49.711 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class spoon.reflect.declaration.ModifierKind with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+21:34:49.760 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.<init>(ModifierKind)1
+21:34:49.761 | INFO  | Finished (in 0.055 sec): method spoon.support.reflect.CtExtendedModifier.<init>(ModifierKind) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+21:34:49.764 | DEBUG |  ... 
+21:34:49.764 | INFO  | Started: method spoon.support.reflect.CtExtendedModifier.<init>(ModifierKind, boolean)
+21:34:49.764 | INFO  |  -- Remaining time budget: 99704 ms, #remaining_methods: 1, budget for method: 99704 ms, solver timeout: 1000 ms, budget for symbolic execution: 98504 ms, budget for concrete execution: 1200 ms,  -- 
+21:34:49.771 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class spoon.reflect.declaration.ModifierKind with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+21:34:49.839 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.CtExtendedModifier.<init>(ModifierKind, boolean)1
+21:34:49.840 | INFO  | Finished (in 0.075 sec): method spoon.support.reflect.CtExtendedModifier.<init>(ModifierKind, boolean) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+21:34:49.849 | INFO  | Started: Flushing tests for [CtExtendedModifier] on disk
+21:34:50.961 | INFO  | File size for CtExtendedModifierTest: 15 KB
+21:34:50.963 | INFO  | Finished (in 1.115 sec): Flushing tests for [CtExtendedModifier] on disk 
+21:34:50.964 | INFO  | Finished (in 3.460 sec): class spoon.support.reflect.CtExtendedModifier 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 10, 
+	#methods started symbolic exploration = 10
+	#methods with at least one TC = 10
+	#methods with exceptions = 3
+	#generated TC = 21
+	#coverage = null
+[READY]

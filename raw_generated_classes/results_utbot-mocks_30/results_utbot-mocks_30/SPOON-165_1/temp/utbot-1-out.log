@@ -1,0 +1,64 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+13:33:54.231 | INFO  | Started: warmup: kotlin reflection :: init
+13:33:54.331 | INFO  | Finished (in 0.099 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.reflect.visitor.AstParentConsistencyChecker 30
+13:33:54.348 | DEBUG | -----------------------------------------------------------------------------
+13:33:54.349 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+13:33:54.352 | INFO  | ClassUnderTest[ FQN: spoon.reflect.visitor.AstParentConsistencyChecker
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: AstParentConsistencyCheckerTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/reflect/visitor/AstParentConsistencyCheckerTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+13:33:54.382 | INFO  | Started: class spoon.reflect.visitor.AstParentConsistencyChecker
+13:33:54.383 | INFO  | Started: preparation class class spoon.reflect.visitor.AstParentConsistencyChecker: kotlin reflection :: run
+13:33:54.694 | INFO  | Finished (in 0.310 sec): preparation class class spoon.reflect.visitor.AstParentConsistencyChecker: kotlin reflection :: run 
+13:33:54.695 | INFO  | Started: 2nd optional soot initialization
+13:33:54.697 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+13:33:54.716 | DEBUG |  ... 
+13:33:54.728 | INFO  | Started: method spoon.reflect.visitor.AstParentConsistencyChecker.scan(CtElement)
+13:33:54.729 | INFO  |  -- Remaining time budget: 25133 ms, #remaining_methods: 3, budget for method: 8377 ms, solver timeout: 1000 ms, budget for symbolic execution: 7177 ms, budget for concrete execution: 1200 ms,  -- 
+13:33:55.087 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.AstParentConsistencyChecker.scan(CtElement)1
+13:33:56.110 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.AstParentConsistencyChecker.scan(CtElement)2
+13:33:56.276 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.AstParentConsistencyChecker.scan(CtElement)3
+13:33:56.320 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.AstParentConsistencyChecker.scan(CtElement)4
+13:33:56.348 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.AstParentConsistencyChecker.scan(CtElement)5
+13:33:56.375 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.AstParentConsistencyChecker.scan(CtElement)6
+13:33:56.376 | INFO  | Finished (in 1.648 sec): method spoon.reflect.visitor.AstParentConsistencyChecker.scan(CtElement) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+13:33:56.386 | DEBUG |  ... 
+13:33:56.387 | INFO  | Started: method spoon.reflect.visitor.AstParentConsistencyChecker.toDebugString(CtElement)
+13:33:56.387 | INFO  |  -- Remaining time budget: 23465 ms, #remaining_methods: 2, budget for method: 11732 ms, solver timeout: 1000 ms, budget for symbolic execution: 10532 ms, budget for concrete execution: 1200 ms,  -- 
+13:33:56.403 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.AstParentConsistencyChecker.toDebugString(CtElement)1
+13:33:58.487 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.AstParentConsistencyChecker.toDebugString(CtElement)2
+13:34:06.920 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.AstParentConsistencyChecker.toDebugString(CtElement)
+13:34:08.121 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.AstParentConsistencyChecker.toDebugString(CtElement)
+13:34:08.168 | INFO  | Finished (in 11.781 sec): method spoon.reflect.visitor.AstParentConsistencyChecker.toDebugString(CtElement) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+13:34:08.849 | DEBUG |  ... 
+13:34:08.849 | INFO  | Started: method spoon.reflect.visitor.AstParentConsistencyChecker.<init>()
+13:34:08.850 | INFO  |  -- Remaining time budget: 11002 ms, #remaining_methods: 1, budget for method: 11002 ms, solver timeout: 1000 ms, budget for symbolic execution: 9802 ms, budget for concrete execution: 1200 ms,  -- 
+13:34:08.860 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.AstParentConsistencyChecker.<init>()1
+13:34:08.894 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.AstParentConsistencyChecker.<init>()2
+13:34:08.894 | INFO  | Finished (in 0.045 sec): method spoon.reflect.visitor.AstParentConsistencyChecker.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+13:34:08.901 | INFO  | Started: Flushing tests for [AstParentConsistencyChecker] on disk
+13:34:09.032 | INFO  | File size for AstParentConsistencyCheckerTest: 6 KB
+13:34:09.034 | INFO  | Finished (in 0.133 sec): Flushing tests for [AstParentConsistencyChecker] on disk 
+13:34:09.035 | INFO  | Finished (in 14.652 sec): class spoon.reflect.visitor.AstParentConsistencyChecker 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 3, 
+	#methods started symbolic exploration = 3
+	#methods with at least one TC = 3
+	#methods with exceptions = 0
+	#generated TC = 10
+	#coverage = null
+[READY]

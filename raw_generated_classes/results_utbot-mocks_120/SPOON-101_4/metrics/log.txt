@@ -1,0 +1,116 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  SPOON-101
+
+>>> RUN NUMBER: 4
+
+>>> MODE: --only-compute-metrics
+
+
+### COMPUTING METRICS ###: spoon.reflect.visitor.PrintingContext
+
+---Compilation---
+Compiled 'spoon/reflect/visitor/PrintingContextTest.java'
+
+---Timing Information---
+
+---The tests are re-executed other four times to find the flaky ones---
+
+=== Run Jacoco for Coverage ===
+
+=== Run PIT ===
+Executing Mutation Analysis using 34 mutants 
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=forceWildcardGenerics, methodDesc=()Z], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=16, lineNumber=54, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=ignoreStaticAccess, methodDesc=()Z], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=12, lineNumber=48, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=noTypeDecl, methodDesc=()Z], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=PrintingContext.java, block=1, lineNumber=39, description=Replaced bitwise AND with OR, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=skipArray, methodDesc=()Z], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=9, lineNumber=45, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=pushCurrentThis, methodDesc=(Lspoon/reflect/declaration/CtType;)V], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=PrintingContext.java, block=29, lineNumber=125, description=removed call to java/util/Deque::push, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=noTypeDecl, methodDesc=()Z], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=1, lineNumber=39, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=noTypeDecl, methodDesc=()Z], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=3, lineNumber=39, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=forceWildcardGenerics, methodDesc=()Z], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=PrintingContext.java, block=16, lineNumber=54, description=Replaced bitwise AND with OR, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=ignoreGenerics, methodDesc=()Z], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=PrintingContext.java, block=4, lineNumber=42, description=Replaced bitwise AND with OR, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=ignoreEnclosingClass, methodDesc=()Z], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=15, lineNumber=51, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=ignoreStaticAccess, methodDesc=()Z], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=PrintingContext.java, block=10, lineNumber=48, description=Replaced bitwise AND with OR, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=ignoreEnclosingClass, methodDesc=()Z], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=13, lineNumber=51, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=getCurrentTypeReference, methodDesc=()Lspoon/reflect/reference/CtTypeReference;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=20, lineNumber=107, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=getCurrentTypeContext, methodDesc=()Lspoon/reflect/visitor/TypeContext;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=25, lineNumber=117, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=getCurrentTypeContext, methodDesc=()Lspoon/reflect/visitor/TypeContext;], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=PrintingContext.java, block=26, lineNumber=117, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=ignoreGenerics, methodDesc=()Z], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=4, lineNumber=42, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=skipArray, methodDesc=()Z], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=7, lineNumber=45, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=getCurrentTypeReference, methodDesc=()Lspoon/reflect/reference/CtTypeReference;], indexes=[31], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=24, lineNumber=114, description=mutated return of Object value for spoon/reflect/visitor/PrintingContext::getCurrentTypeReference to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=isInCurrentScope, methodDesc=(Lspoon/reflect/reference/CtTypeReference;)Z], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=32, lineNumber=148, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=forceWildcardGenerics, methodDesc=()Z], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=18, lineNumber=54, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=getCurrentTypeReference, methodDesc=()Lspoon/reflect/reference/CtTypeReference;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=21, lineNumber=109, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=isInCurrentScope, methodDesc=(Lspoon/reflect/reference/CtTypeReference;)Z], indexes=[13], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=33, lineNumber=148, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=isInCurrentScope, methodDesc=(Lspoon/reflect/reference/CtTypeReference;)Z], indexes=[21], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=35, lineNumber=148, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=getCurrentTypeReference, methodDesc=()Lspoon/reflect/reference/CtTypeReference;], indexes=[26], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=23, lineNumber=112, description=mutated return of Object value for spoon/reflect/visitor/PrintingContext::getCurrentTypeReference to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=getCurrentTypeReference, methodDesc=()Lspoon/reflect/reference/CtTypeReference;], indexes=[19], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=22, lineNumber=110, description=mutated return of Object value for spoon/reflect/visitor/PrintingContext::getCurrentTypeReference to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=getCurrentTypeContext, methodDesc=()Lspoon/reflect/visitor/TypeContext;], indexes=[20], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=27, lineNumber=119, description=mutated return of Object value for spoon/reflect/visitor/PrintingContext::getCurrentTypeContext to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=ignoreGenerics, methodDesc=()Z], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=6, lineNumber=42, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=getCurrentTypeContext, methodDesc=()Lspoon/reflect/visitor/TypeContext;], indexes=[25], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=28, lineNumber=121, description=mutated return of Object value for spoon/reflect/visitor/PrintingContext::getCurrentTypeContext to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=ignoreStaticAccess, methodDesc=()Z], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=10, lineNumber=48, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=modify, methodDesc=()Lspoon/reflect/visitor/PrintingContext$Writable;], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=19, lineNumber=98, description=mutated return of Object value for spoon/reflect/visitor/PrintingContext::modify to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=ignoreEnclosingClass, methodDesc=()Z], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=PrintingContext.java, block=13, lineNumber=51, description=Replaced bitwise AND with OR, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=skipArray, methodDesc=()Z], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=PrintingContext.java, block=7, lineNumber=45, description=Replaced bitwise AND with OR, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=getCurrentTypeContext, methodDesc=()Lspoon/reflect/visitor/TypeContext;], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=PrintingContext.java, block=26, lineNumber=117, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.PrintingContext, method=toString, methodDesc=()Ljava/lang/String;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=PrintingContext.java, block=31, lineNumber=140, description=mutated return of Object value for spoon/reflect/visitor/PrintingContext::toString to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: SPOON-101
+	Class Under Test: spoon.reflect.visitor.PrintingContext
+	Run number: 4
+	Tool preparation time (ms): 15173
+	Tool test cases generation time (ms): 38203
+	Test cases execution time (ms): 41948
+	Test case number: 89
+	Uncompilable Test Classes: 0
+	Broken tests number: 3
+	Failing tests number: 0
+	Lines total: 34
+	Lines covered: 34
+	Lines coverage ratio (%): 100.0
+	Conditions total: 24
+	Conditions covered: 23
+	Conditions coverage ratio (%): 95.83333
+	Mutants total: 34
+	Mutants covered: 34
+	Mutants coverage ratio (%): 100.0
+	Mutants killed: 34
+	Mutants killed ratio (%): 100.0
+	Mutants alive: 0

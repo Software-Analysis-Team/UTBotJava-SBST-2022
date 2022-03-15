@@ -1,0 +1,546 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  GUAVA-6
+
+>>> RUN NUMBER: 5
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/guava/guava/src
+>> /var/benchmarks/projects/guava/guava/target/classes
+>> 6
+>> /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar
+>> /var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 120
+
+
+### COMPUTING METRICS ###: com.google.common.base.Throwables
+
+
+Starting class com.google.common.base.Throwables
+
+
+Ending class com.google.common.base.Throwables
+Creating directory results_utbot-mocks_120/GUAVA-6_5/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/GUAVA-6_5/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/GUAVA-6_5/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java
+
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:13: error: package sun.nio.ch.InheritedChannel does not exist
+import sun.nio.ch.InheritedChannel.InheritedServerSocketChannelImpl;
+                                  ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:14: error: InheritedChannel is not public in sun.nio.ch; cannot be accessed from outside package
+import sun.nio.ch.InheritedChannel;
+                 ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:20: warning: NativePRNG is internal proprietary API and may be removed in a future release
+import sun.security.provider.NativePRNG.Blocking;
+                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:20: warning: NativePRNG is internal proprietary API and may be removed in a future release
+import sun.security.provider.NativePRNG.Blocking;
+                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:21: warning: NativePRNG is internal proprietary API and may be removed in a future release
+import sun.security.provider.NativePRNG;
+                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:31: error: package jdk.internal.org.xml.sax does not exist
+import jdk.internal.org.xml.sax.SAXException;
+                               ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:42: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:45: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.any;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:45: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.any;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:46: error: package org.mockito does not exist
+import static org.mockito.Mockito.mockStatic;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:46: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mockStatic;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:168: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:170: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:172: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:186: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:188: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:191: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:206: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:208: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:210: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:235: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:237: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:239: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:254: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:256: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:257: error: package sun.nio.ch.InheritedChannel does not exist
+            sun.nio.ch.InheritedChannel.InheritedServerSocketChannelImpl[] inheritedServerSocketChannelImplArray = new sun.nio.ch.InheritedChannel.InheritedServerSocketChannelImpl[0];
+                                       ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:257: error: package sun.nio.ch.InheritedChannel does not exist
+            sun.nio.ch.InheritedChannel.InheritedServerSocketChannelImpl[] inheritedServerSocketChannelImplArray = new sun.nio.ch.InheritedChannel.InheritedServerSocketChannelImpl[0];
+                                                                                                                                                  ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:259: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:273: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:275: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:277: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:311: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:313: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:316: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:330: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:332: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:334: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:359: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:361: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:364: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:378: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:380: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:382: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:397: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:399: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:401: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:425: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:427: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:429: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:445: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:447: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:449: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:465: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:467: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:469: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:485: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:487: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:488: warning: NativePRNG is internal proprietary API and may be removed in a future release
+            sun.security.provider.NativePRNG.Blocking[] blockingArray = new sun.security.provider.NativePRNG.Blocking[0];
+                                 ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:488: warning: NativePRNG is internal proprietary API and may be removed in a future release
+            sun.security.provider.NativePRNG.Blocking[] blockingArray = new sun.security.provider.NativePRNG.Blocking[0];
+                                                                                                 ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:490: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:506: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:508: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:510: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:526: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:528: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:530: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:544: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:546: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:548: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:576: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:578: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:581: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:605: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:607: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:610: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:626: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:628: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:630: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:646: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:648: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:650: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:666: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:668: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:671: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:705: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:707: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:709: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:724: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:726: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:728: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:743: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:745: error: cannot find symbol
+            mockedStatic = mockStatic(Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:747: error: cannot find symbol
+                Preconditions.checkNotNull(any());
+                                           ^
+  symbol:   method any()
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:828: error: cannot find symbol
+        SAXException sAXException = ((SAXException) createInstance("jdk.internal.org.xml.sax.SAXException"));
+        ^
+  symbol:   class SAXException
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:828: error: cannot find symbol
+        SAXException sAXException = ((SAXException) createInstance("jdk.internal.org.xml.sax.SAXException"));
+                                      ^
+  symbol:   class SAXException
+  location: class ThrowablesTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:902: warning: JavaLangAccess is internal proprietary API and may be removed in a future release
+        Class class1 = sun.misc.JavaLangAccess.class;
+                               ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:967: warning: JavaLangAccess is internal proprietary API and may be removed in a future release
+        Class class1 = sun.misc.JavaLangAccess.class;
+                               ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:1291: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:1292: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java:1294: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/com/google/common/base/ThrowablesTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+89 errors
+11 warnings
+Failed to compile 'com/google/common/base/ThrowablesTest.java'!
+shaded.org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)
+	at shaded.org.apache.commons.exec.DefaultExecutor.executeInternal(DefaultExecutor.java:377)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:160)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:147)
+	at sbst.benchmark.TestSuite.compile(TestSuite.java:250)
+	at sbst.benchmark.TestSuite.<init>(TestSuite.java:68)
+	at sbst.benchmark.TranscriptWriter.endClass(TranscriptWriter.java:136)
+	at sbst.benchmark.RunTool.execute(RunTool.java:141)
+	at sbst.benchmark.RunTool.run(RunTool.java:62)
+	at sbst.benchmark.Main.main(Main.java:160)
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 2323
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/guava-26.0-jre_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/checker-qual-2.5.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/error_prone_annotations-2.1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/j2objc-annotations-1.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/jsr305-3.0.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/animal-sniffer-annotations-1.14_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-6_5/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Number of file with coverage information = 1951
+Extracted coverage data for the class com/google/common/base/Throwables
+Number of file with coverage information = 302
+Number of file with coverage information = 22
+Number of file with coverage information = 12
+Number of file with coverage information = 35
+Number of file with coverage information = 1
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 41 mutants 
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: GUAVA-6
+	Class Under Test: com.google.common.base.Throwables
+	Run number: 5
+	Tool preparation time (ms): 12989
+	Tool test cases generation time (ms): 86266
+	Test cases execution time (ms): 11
+	Test case number: 56
+	Uncompilable Test Classes: 1
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 92
+	Lines covered: 0
+	Lines coverage ratio (%): 0.0
+	Conditions total: 38
+	Conditions covered: 0
+	Conditions coverage ratio (%): 0.0
+	Mutants total: 41
+	Mutants covered: 0
+	Mutants coverage ratio (%): 0.0
+	Mutants killed: 0
+	Mutants killed ratio (%): 0.0
+	Mutants alive: 41
+
+
+Class com.google.common.base.Throwables ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 32542
+Killing master process 32542
+Executing command kill -9 32542
+Execution of command kill -9 32542 finished.
+Process was destroyed

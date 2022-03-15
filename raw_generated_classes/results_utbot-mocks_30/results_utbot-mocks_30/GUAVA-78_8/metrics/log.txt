@@ -1,0 +1,54 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  GUAVA-78
+
+>>> RUN NUMBER: 8
+
+>>> MODE: --only-compute-metrics
+
+
+### COMPUTING METRICS ###: com.google.common.collect.Queues
+
+---Compilation---
+Compiled 'com/google/common/collect/QueuesTest.java'
+
+---Timing Information---
+
+---The tests are re-executed other four times to find the flaky ones---
+
+=== Run Jacoco for Coverage ===
+
+=== Run PIT ===
+Executing Mutation Analysis using 56 mutants 
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.collect.Queues, method=newPriorityQueue, methodDesc=(Ljava/lang/Iterable;)Ljava/util/PriorityQueue;], indexes=[13], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=Queues.java, block=26, lineNumber=240, description=mutated return of Object value for com/google/common/collect/Queues::newPriorityQueue to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.collect.Queues, method=newPriorityQueue, methodDesc=()Ljava/util/PriorityQueue;], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=Queues.java, block=24, lineNumber=226, description=mutated return of Object value for com/google/common/collect/Queues::newPriorityQueue to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.collect.Queues, method=newPriorityQueue, methodDesc=(Ljava/lang/Iterable;)Ljava/util/PriorityQueue;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=Queues.java, block=25, lineNumber=239, description=negated conditional, testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: GUAVA-78
+	Class Under Test: com.google.common.collect.Queues
+	Run number: 8
+	Tool preparation time (ms): 13020
+	Tool test cases generation time (ms): 3468
+	Test cases execution time (ms): 58
+	Test case number: 2
+	Uncompilable Test Classes: 0
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 75
+	Lines covered: 3
+	Lines coverage ratio (%): 4.0
+	Conditions total: 26
+	Conditions covered: 1
+	Conditions coverage ratio (%): 3.846154
+	Mutants total: 56
+	Mutants covered: 3
+	Mutants coverage ratio (%): 5.357143
+	Mutants killed: 3
+	Mutants killed ratio (%): 5.357143
+	Mutants alive: 53

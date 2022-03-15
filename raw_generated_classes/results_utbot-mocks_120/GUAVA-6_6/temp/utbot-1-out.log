@@ -1,0 +1,386 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+21:36:36.814 | INFO  | Started: warmup: kotlin reflection :: init
+21:36:36.889 | INFO  | Finished (in 0.075 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.base.Throwables 120
+21:36:36.898 | DEBUG | -----------------------------------------------------------------------------
+21:36:36.898 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+21:36:36.899 | INFO  | ClassUnderTest[ FQN: com.google.common.base.Throwables
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: ThrowablesTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/base/ThrowablesTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+21:36:36.920 | INFO  | Started: class com.google.common.base.Throwables
+21:36:36.921 | INFO  | Started: preparation class class com.google.common.base.Throwables: kotlin reflection :: run
+21:36:36.952 | INFO  | Finished (in 0.030 sec): preparation class class com.google.common.base.Throwables: kotlin reflection :: run 
+21:36:36.952 | INFO  | Started: 2nd optional soot initialization
+21:36:36.953 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+21:36:36.961 | DEBUG |  ... 
+21:36:36.973 | INFO  | Started: method com.google.common.base.Throwables.getRootCause(Throwable)
+21:36:36.974 | INFO  |  -- Remaining time budget: 101937 ms, #remaining_methods: 20, budget for method: 5096 ms, solver timeout: 1000 ms, budget for symbolic execution: 3896 ms, budget for concrete execution: 1200 ms,  -- 
+21:36:37.295 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getRootCause(Throwable)1
+21:36:37.633 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getRootCause(Throwable)2
+21:36:37.911 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getRootCause(Throwable)3
+21:36:38.544 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getRootCause(Throwable)4
+21:36:39.035 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getRootCause(Throwable)5
+21:36:39.448 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getRootCause(Throwable)6
+21:36:40.863 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.Throwables.getRootCause(Throwable)
+21:36:41.974 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getRootCause(Throwable)7
+21:36:42.064 | INFO  | (X) Cancelling concrete execution: com.google.common.base.Throwables.getRootCause(Throwable)
+21:36:42.667 | INFO  | Finished (in 5.694 sec): method com.google.common.base.Throwables.getRootCause(Throwable) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+21:36:42.764 | DEBUG |  ... 
+21:36:42.765 | INFO  | Started: method com.google.common.base.Throwables.propagate(Throwable)
+21:36:42.765 | INFO  |  -- Remaining time budget: 96135 ms, #remaining_methods: 19, budget for method: 5059 ms, solver timeout: 1000 ms, budget for symbolic execution: 3859 ms, budget for concrete execution: 1200 ms,  -- 
+21:36:42.780 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagate(Throwable)1
+21:36:43.464 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagate(Throwable)2
+21:36:43.741 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagate(Throwable)3
+21:36:43.914 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagate(Throwable)4
+21:36:43.915 | INFO  | Finished (in 1.150 sec): method com.google.common.base.Throwables.propagate(Throwable) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+21:36:43.939 | DEBUG |  ... 
+21:36:43.940 | INFO  | Started: method com.google.common.base.Throwables.throwIfUnchecked(Throwable)
+21:36:43.940 | INFO  |  -- Remaining time budget: 94960 ms, #remaining_methods: 18, budget for method: 5275 ms, solver timeout: 1000 ms, budget for symbolic execution: 4075 ms, budget for concrete execution: 1200 ms,  -- 
+21:36:43.949 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.throwIfUnchecked(Throwable)1
+21:36:44.200 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.throwIfUnchecked(Throwable)2
+21:36:44.375 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.throwIfUnchecked(Throwable)3
+21:36:44.527 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.throwIfUnchecked(Throwable)4
+21:36:44.528 | INFO  | Finished (in 0.587 sec): method com.google.common.base.Throwables.throwIfUnchecked(Throwable) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+21:36:44.530 | DEBUG |  ... 
+21:36:44.530 | INFO  | Started: method com.google.common.base.Throwables.throwIfInstanceOf(Throwable, Class)
+21:36:44.531 | INFO  |  -- Remaining time budget: 94369 ms, #remaining_methods: 17, budget for method: 5551 ms, solver timeout: 1000 ms, budget for symbolic execution: 4351 ms, budget for concrete execution: 1200 ms,  -- 
+21:36:44.544 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+21:36:44.903 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.throwIfInstanceOf(Throwable, Class)1
+21:36:45.072 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.throwIfInstanceOf(Throwable, Class)2
+21:36:45.569 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.throwIfInstanceOf(Throwable, Class)3
+21:36:45.615 | INFO  | Finished (in 1.084 sec): method com.google.common.base.Throwables.throwIfInstanceOf(Throwable, Class) 
+<StatsForMethod> :
+	#generatedTC=3
+	FAILED 1 time(s) with 1 different exception(s)"
+21:36:45.626 | DEBUG |  ... 
+21:36:45.627 | INFO  | Started: method com.google.common.base.Throwables.propagateIfInstanceOf(Throwable, Class)
+21:36:45.627 | INFO  |  -- Remaining time budget: 93272 ms, #remaining_methods: 16, budget for method: 5829 ms, solver timeout: 1000 ms, budget for symbolic execution: 4629 ms, budget for concrete execution: 1200 ms,  -- 
+21:36:45.633 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+21:36:45.668 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfInstanceOf(Throwable, Class)1
+21:36:46.431 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfInstanceOf(Throwable, Class)2
+21:36:46.770 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfInstanceOf(Throwable, Class)3
+21:36:46.949 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfInstanceOf(Throwable, Class)4
+21:36:46.949 | INFO  | Finished (in 1.322 sec): method com.google.common.base.Throwables.propagateIfInstanceOf(Throwable, Class) 
+<StatsForMethod> :
+	#generatedTC=4
+	FAILED 1 time(s) with 1 different exception(s)"
+21:36:46.982 | DEBUG |  ... 
+21:36:46.983 | INFO  | Started: method com.google.common.base.Throwables.propagateIfPossible(Throwable, Class)
+21:36:46.983 | INFO  |  -- Remaining time budget: 91917 ms, #remaining_methods: 15, budget for method: 6127 ms, solver timeout: 1000 ms, budget for symbolic execution: 4927 ms, budget for concrete execution: 1200 ms,  -- 
+21:36:46.989 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+21:36:48.391 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable, Class)1
+21:36:48.411 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable, Class)2
+21:36:48.806 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable, Class)3
+21:36:48.954 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable, Class)4
+21:36:49.141 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable, Class)5
+21:36:49.345 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable, Class)6
+21:36:49.346 | INFO  | Finished (in 2.363 sec): method com.google.common.base.Throwables.propagateIfPossible(Throwable, Class) 
+<StatsForMethod> :
+	#generatedTC=6
+	FAILED 1 time(s) with 1 different exception(s)"
+21:36:49.408 | DEBUG |  ... 
+21:36:49.409 | INFO  | Started: method com.google.common.base.Throwables.propagateIfPossible(Throwable)
+21:36:49.409 | INFO  |  -- Remaining time budget: 89490 ms, #remaining_methods: 14, budget for method: 6392 ms, solver timeout: 1000 ms, budget for symbolic execution: 5192 ms, budget for concrete execution: 1200 ms,  -- 
+21:36:49.416 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable)1
+21:36:49.532 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable)2
+21:36:50.099 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable)3
+21:36:50.235 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable)4
+21:36:50.418 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable)5
+21:36:50.419 | INFO  | Finished (in 1.009 sec): method com.google.common.base.Throwables.propagateIfPossible(Throwable) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+21:36:50.442 | DEBUG |  ... 
+21:36:50.443 | INFO  | Started: method com.google.common.base.Throwables.propagateIfPossible(Throwable, Class, Class)
+21:36:50.443 | INFO  |  -- Remaining time budget: 88456 ms, #remaining_methods: 13, budget for method: 6804 ms, solver timeout: 1000 ms, budget for symbolic execution: 5604 ms, budget for concrete execution: 1200 ms,  -- 
+21:36:50.450 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+21:36:51.797 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable, Class, Class)1
+21:36:52.329 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable, Class, Class)2
+21:36:53.716 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable, Class, Class)3
+21:36:54.017 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.propagateIfPossible(Throwable, Class, Class)4
+21:36:54.018 | INFO  | Finished (in 3.574 sec): method com.google.common.base.Throwables.propagateIfPossible(Throwable, Class, Class) 
+<StatsForMethod> :
+	#generatedTC=4
+	FAILED 1 time(s) with 1 different exception(s)"
+21:36:54.141 | DEBUG |  ... 
+21:36:54.143 | INFO  | Started: method com.google.common.base.Throwables.getCausalChain(Throwable)
+21:36:54.143 | INFO  |  -- Remaining time budget: 84756 ms, #remaining_methods: 12, budget for method: 7063 ms, solver timeout: 1000 ms, budget for symbolic execution: 5863 ms, budget for concrete execution: 1200 ms,  -- 
+21:36:54.154 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getCausalChain(Throwable)1
+21:36:55.274 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getCausalChain(Throwable)2
+21:36:59.388 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getCausalChain(Throwable)3
+21:37:00.006 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.Throwables.getCausalChain(Throwable)
+21:37:01.207 | INFO  | (X) Cancelling concrete execution: com.google.common.base.Throwables.getCausalChain(Throwable)
+21:37:01.338 | INFO  | Finished (in 7.194 sec): method com.google.common.base.Throwables.getCausalChain(Throwable) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+21:37:01.533 | DEBUG |  ... 
+21:37:01.534 | INFO  | Started: method com.google.common.base.Throwables.getCauseAs(Throwable, Class)
+21:37:01.534 | INFO  |  -- Remaining time budget: 77366 ms, #remaining_methods: 11, budget for method: 7033 ms, solver timeout: 1000 ms, budget for symbolic execution: 5833 ms, budget for concrete execution: 1200 ms,  -- 
+21:37:01.541 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+21:37:01.642 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getCauseAs(Throwable, Class)1
+21:37:02.048 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getCauseAs(Throwable, Class)2
+21:37:02.142 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getCauseAs(Throwable, Class)3
+21:37:02.700 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getCauseAs(Throwable, Class)4
+21:37:03.155 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getCauseAs(Throwable, Class)5
+21:37:03.721 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getCauseAs(Throwable, Class)6
+21:37:04.173 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getCauseAs(Throwable, Class)7
+21:37:04.433 | INFO  | Finished (in 2.899 sec): method com.google.common.base.Throwables.getCauseAs(Throwable, Class) 
+<StatsForMethod> :
+	#generatedTC=7
+	FAILED 1 time(s) with 1 different exception(s)"
+21:37:04.544 | DEBUG |  ... 
+21:37:04.545 | INFO  | Started: method com.google.common.base.Throwables.getStackTraceAsString(Throwable)
+21:37:04.545 | INFO  |  -- Remaining time budget: 74355 ms, #remaining_methods: 10, budget for method: 7435 ms, solver timeout: 1000 ms, budget for symbolic execution: 6235 ms, budget for concrete execution: 1200 ms,  -- 
+21:37:04.557 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getStackTraceAsString(Throwable)1
+21:37:05.304 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getStackTraceAsString(Throwable)2
+21:37:05.304 | INFO  | Finished (in 0.759 sec): method com.google.common.base.Throwables.getStackTraceAsString(Throwable) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+21:37:05.346 | DEBUG |  ... 
+21:37:05.347 | INFO  | Started: method com.google.common.base.Throwables.lazyStackTrace(Throwable)
+21:37:05.347 | INFO  |  -- Remaining time budget: 73552 ms, #remaining_methods: 9, budget for method: 8172 ms, solver timeout: 1000 ms, budget for symbolic execution: 6972 ms, budget for concrete execution: 1200 ms,  -- 
+21:37:12.319 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.Throwables.lazyStackTrace(Throwable)
+21:37:13.520 | INFO  | (X) Cancelling concrete execution: com.google.common.base.Throwables.lazyStackTrace(Throwable)
+21:37:13.540 | INFO  | Finished (in 8.192 sec): method com.google.common.base.Throwables.lazyStackTrace(Throwable) 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+21:37:13.991 | DEBUG |  ... 
+21:37:13.991 | INFO  | Started: method com.google.common.base.Throwables.lazyStackTraceIsLazy()
+21:37:13.992 | INFO  |  -- Remaining time budget: 64908 ms, #remaining_methods: 8, budget for method: 8113 ms, solver timeout: 1000 ms, budget for symbolic execution: 6913 ms, budget for concrete execution: 1200 ms,  -- 
+21:37:13.996 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.lazyStackTraceIsLazy()1
+21:37:20.905 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.Throwables.lazyStackTraceIsLazy()
+21:37:21.519 | INFO  | Finished (in 7.528 sec): method com.google.common.base.Throwables.lazyStackTraceIsLazy() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+21:37:21.697 | DEBUG |  ... 
+21:37:21.697 | INFO  | Started: method com.google.common.base.Throwables.jlaStackTrace(Throwable)
+21:37:21.698 | INFO  |  -- Remaining time budget: 57202 ms, #remaining_methods: 7, budget for method: 8171 ms, solver timeout: 1000 ms, budget for symbolic execution: 6971 ms, budget for concrete execution: 1200 ms,  -- 
+21:37:21.911 | INFO  | Finished (in 0.214 sec): method com.google.common.base.Throwables.jlaStackTrace(Throwable) 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+21:37:21.922 | DEBUG |  ... 
+21:37:21.923 | INFO  | Started: method com.google.common.base.Throwables.invokeAccessibleNonThrowingMethod(Method, Object, Object[])
+21:37:21.923 | INFO  |  -- Remaining time budget: 56977 ms, #remaining_methods: 6, budget for method: 9496 ms, solver timeout: 1000 ms, budget for symbolic execution: 8296 ms, budget for concrete execution: 1200 ms,  -- 
+21:37:21.938 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ReadingFromKryoException: Failure reading from kryo
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:392) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+Caused by: com.esotericsoftware.kryo.KryoException: Encountered unregistered class ID: 30
+	at com.esotericsoftware.kryo.util.DefaultClassResolver.readClass(DefaultClassResolver.java:159) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClass(Kryo.java:758) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readClassAndObject(Kryo.java:869) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.util.KryoHelper.readCommand(KryoHelper.kt:46) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$restartIfNeeded$$inlined$bracket$lambda$1$1$1.invokeSuspend(ConcreteExecutor.kt:256) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:274) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:84) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:59) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:38) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$restartIfNeeded$$inlined$bracket$lambda$1$1.invoke(ConcreteExecutor.kt:253) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$restartIfNeeded$$inlined$bracket$lambda$1$1.invoke(ConcreteExecutor.kt:101) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.concurrent.ThreadsKt$thread$thread$1.run(Thread.kt:30) ~[utbot-junit-contest-1.0.jar:?]
+21:37:22.293 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.invokeAccessibleNonThrowingMethod(Method, Object, Object[])1
+21:37:30.219 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.Throwables.invokeAccessibleNonThrowingMethod(Method, Object, Object[])
+21:37:31.420 | INFO  | (X) Cancelling concrete execution: com.google.common.base.Throwables.invokeAccessibleNonThrowingMethod(Method, Object, Object[])
+21:37:31.705 | INFO  | Finished (in 9.782 sec): method com.google.common.base.Throwables.invokeAccessibleNonThrowingMethod(Method, Object, Object[]) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+21:37:31.873 | DEBUG |  ... 
+21:37:31.873 | INFO  | Started: method com.google.common.base.Throwables.getJLA()
+21:37:31.874 | INFO  |  -- Remaining time budget: 47026 ms, #remaining_methods: 5, budget for method: 9405 ms, solver timeout: 1000 ms, budget for symbolic execution: 8205 ms, budget for concrete execution: 1200 ms,  -- 
+21:37:39.986 | INFO  | Finished (in 8.113 sec): method com.google.common.base.Throwables.getJLA() 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+21:37:40.156 | DEBUG |  ... 
+21:37:40.157 | INFO  | Started: method com.google.common.base.Throwables.getGetMethod()
+21:37:40.157 | INFO  |  -- Remaining time budget: 38742 ms, #remaining_methods: 4, budget for method: 9685 ms, solver timeout: 1000 ms, budget for symbolic execution: 8485 ms, budget for concrete execution: 1200 ms,  -- 
+21:37:40.189 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getGetMethod()1
+21:37:47.475 | INFO  | Finished (in 7.317 sec): method com.google.common.base.Throwables.getGetMethod() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+21:37:47.909 | DEBUG |  ... 
+21:37:47.910 | INFO  | Started: method com.google.common.base.Throwables.getSizeMethod()
+21:37:47.910 | INFO  |  -- Remaining time budget: 30989 ms, #remaining_methods: 3, budget for method: 10329 ms, solver timeout: 1000 ms, budget for symbolic execution: 9129 ms, budget for concrete execution: 1200 ms,  -- 
+21:37:47.918 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getSizeMethod()1
+21:37:55.343 | INFO  | Finished (in 7.433 sec): method com.google.common.base.Throwables.getSizeMethod() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+21:37:55.574 | DEBUG |  ... 
+21:37:55.575 | INFO  | Started: method com.google.common.base.Throwables.getJlaMethod(String, Class)
+21:37:55.575 | INFO  |  -- Remaining time budget: 23325 ms, #remaining_methods: 2, budget for method: 11662 ms, solver timeout: 1000 ms, budget for symbolic execution: 10462 ms, budget for concrete execution: 1200 ms,  -- 
+21:37:55.602 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.getJlaMethod(String, Class)1
+21:38:02.582 | INFO  | Finished (in 7.007 sec): method com.google.common.base.Throwables.getJlaMethod(String, Class) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+21:38:03.018 | DEBUG |  ... 
+21:38:03.019 | INFO  | Started: method com.google.common.base.Throwables.<init>()
+21:38:03.019 | INFO  |  -- Remaining time budget: 15880 ms, #remaining_methods: 1, budget for method: 15880 ms, solver timeout: 1000 ms, budget for symbolic execution: 14680 ms, budget for concrete execution: 1200 ms,  -- 
+21:38:03.025 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.<init>()1
+21:38:03.046 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.Throwables.<init>()2
+21:38:03.047 | INFO  | Finished (in 0.027 sec): method com.google.common.base.Throwables.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+21:38:03.053 | INFO  | Started: Flushing tests for [Throwables] on disk
+21:38:03.405 | INFO  | File size for ThrowablesTest: 50 KB
+21:38:03.407 | INFO  | Finished (in 0.354 sec): Flushing tests for [Throwables] on disk 
+21:38:03.408 | INFO  | Finished (in 86.487 sec): class com.google.common.base.Throwables 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 20, 
+	#methods started symbolic exploration = 20
+	#methods with at least one TC = 17
+	#methods with exceptions = 6
+	#generated TC = 56
+	#coverage = null
+[READY]

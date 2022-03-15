@@ -1,0 +1,402 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  SPOON-11
+
+>>> RUN NUMBER: 5
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/spoon/src/main/java
+>> /var/benchmarks/projects/spoon/target/classes
+>> 31
+>> /var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar
+>> /var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar
+>> /var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar
+>> /var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar
+>> /var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar
+>> /var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar
+>> /var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar
+>> /var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar
+>> /var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 30
+
+
+### COMPUTING METRICS ###: spoon.reflect.factory.TypeFactory
+
+
+Starting class spoon.reflect.factory.TypeFactory
+
+
+Ending class spoon.reflect.factory.TypeFactory
+Creating directory results_utbot-mocks_30/SPOON-11_5/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases -cp /var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_30/SPOON-11_5/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases -cp /var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_30/SPOON-11_5/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java
+
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:28: warning: StreamEncoder is internal proprietary API and may be removed in a future release
+import sun.nio.cs.StreamEncoder;
+                 ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:29: warning: US_ASCII is internal proprietary API and may be removed in a future release
+import sun.nio.cs.US_ASCII;
+                 ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:30: warning: StandardCharsets is internal proprietary API and may be removed in a future release
+import sun.nio.cs.StandardCharsets;
+                 ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:32: warning: Surrogate is internal proprietary API and may be removed in a future release
+import sun.nio.cs.Surrogate.Parser;
+                 ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:32: warning: Surrogate is internal proprietary API and may be removed in a future release
+import sun.nio.cs.Surrogate.Parser;
+                 ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:33: warning: Surrogate is internal proprietary API and may be removed in a future release
+import sun.nio.cs.Surrogate;
+                 ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:53: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:59: error: cannot find symbol
+import static org.mockito.ArgumentMatchers.anyString;
+                         ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:59: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyString;
+^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:60: error: cannot find symbol
+import static org.mockito.ArgumentMatchers.any;
+                         ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:60: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.any;
+^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:265: error: cannot find symbol
+        when(ctTypeReferenceMock.setSimpleName(anyString())).thenReturn(((CtReference) null));
+                                               ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:331: error: cannot find symbol
+        when(ctTypeReferenceMock.setSimpleName(anyString())).thenReturn(ctReferenceMock);
+                                               ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:356: error: cannot find symbol
+        when(packageFactoryMock.createReference(any(CtPackage.class))).thenReturn(((CtPackageReference) null));
+                                                ^
+  symbol:   method any(Class<CtPackage>)
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:377: error: cannot find symbol
+        when(ctTypeReferenceMock.setPackage(org.mockito.ArgumentMatchers.any())).thenReturn(((CtTypeReference) null));
+                                                       ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:378: error: cannot find symbol
+        when(ctTypeReferenceMock.setSimpleName(anyString())).thenReturn(((CtReference) null));
+                                               ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:382: error: cannot find symbol
+        when(packageFactoryMock.createReference(any(CtPackage.class))).thenReturn(((CtPackageReference) null));
+                                                ^
+  symbol:   method any(Class<CtPackage>)
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:514: error: cannot find symbol
+        when(ctTypeReferenceMock.setSimpleName(anyString())).thenReturn(((CtReference) null));
+                                               ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:539: error: cannot find symbol
+        when(ctTypeReferenceMock.setPackage(org.mockito.ArgumentMatchers.any())).thenReturn(((CtTypeReference) null));
+                                                       ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:540: error: cannot find symbol
+        when(ctTypeReferenceMock.setSimpleName(anyString())).thenReturn(((CtReference) null));
+                                               ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:544: error: cannot find symbol
+        when(packageFactoryMock.createReference(any(CtPackage.class))).thenReturn(((CtPackageReference) null));
+                                                ^
+  symbol:   method any(Class<CtPackage>)
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:570: error: cannot find symbol
+        when(ctTypeReferenceMock.setDeclaringType(org.mockito.ArgumentMatchers.any())).thenReturn(((CtTypeReference) null));
+                                                             ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:571: error: cannot find symbol
+        when(ctTypeReferenceMock.setSimpleName(anyString())).thenReturn(((CtReference) null), ((CtReference) null));
+                                               ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:572: error: cannot find symbol
+        when(ctTypeReferenceMock.setPackage(org.mockito.ArgumentMatchers.any())).thenReturn(((CtTypeReference) null));
+                                                       ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:576: error: cannot find symbol
+        when(packageFactoryMock.createReference(any(CtPackage.class))).thenReturn(((CtPackageReference) null));
+                                                ^
+  symbol:   method any(Class<CtPackage>)
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:691: error: cannot find symbol
+        when(ctTypeParameterReferenceMock.setBoundingType(org.mockito.ArgumentMatchers.any())).thenReturn(((CtTypeParameterReference) null));
+                                                                     ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1421: error: cannot find symbol
+        when(ctArrayTypeReferenceMock.setComponentType(org.mockito.ArgumentMatchers.any())).thenReturn(((CtArrayTypeReference) null));
+                                                                  ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1442: error: cannot find symbol
+        when(ctArrayTypeReferenceMock.setComponentType(org.mockito.ArgumentMatchers.any())).thenReturn(((CtArrayTypeReference) null));
+                                                                  ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1459: error: cannot find symbol
+        when(ctArrayTypeReferenceMock.setComponentType(org.mockito.ArgumentMatchers.any())).thenReturn(((CtArrayTypeReference) null), ((CtArrayTypeReference) null));
+                                                                  ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1480: error: cannot find symbol
+        when(ctArrayTypeReferenceMock.setComponentType(org.mockito.ArgumentMatchers.any())).thenReturn(((CtArrayTypeReference) null));
+                                                                  ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1549: error: cannot find symbol
+        when(ctArrayTypeReferenceMock.setComponentType(org.mockito.ArgumentMatchers.any())).thenReturn(((CtArrayTypeReference) null));
+                                                                  ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1642: error: cannot find symbol
+        when(ctTypeReferenceMock.setPackage(org.mockito.ArgumentMatchers.any())).thenReturn(((CtTypeReference) null));
+                                                       ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1643: error: cannot find symbol
+        when(ctTypeReferenceMock.setSimpleName(anyString())).thenReturn(((CtReference) null));
+                                               ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1647: error: cannot find symbol
+        when(packageFactoryMock.createReference(any(CtPackage.class))).thenReturn(((CtPackageReference) null));
+                                                ^
+  symbol:   method any(Class<CtPackage>)
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1669: error: cannot find symbol
+        when(ctArrayTypeReferenceMock.setComponentType(org.mockito.ArgumentMatchers.any())).thenReturn(((CtArrayTypeReference) null));
+                                                                  ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1672: error: cannot find symbol
+        when(ctTypeReferenceMock.setPackage(org.mockito.ArgumentMatchers.any())).thenReturn(((CtTypeReference) null));
+                                                       ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1673: error: cannot find symbol
+        when(ctTypeReferenceMock.setSimpleName(anyString())).thenReturn(((CtReference) null));
+                                               ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1677: error: cannot find symbol
+        when(packageFactoryMock.createReference(any(CtPackage.class))).thenReturn(((CtPackageReference) null));
+                                                ^
+  symbol:   method any(Class<CtPackage>)
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1703: error: cannot find symbol
+        when(ctArrayTypeReferenceMock.setComponentType(org.mockito.ArgumentMatchers.any())).thenReturn(((CtArrayTypeReference) null));
+                                                                  ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1706: error: cannot find symbol
+        when(ctTypeReferenceMock.setSimpleName(anyString())).thenReturn(((CtReference) null));
+                                               ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1846: error: cannot find symbol
+        when(ctTypeReferenceMock.setPackage(org.mockito.ArgumentMatchers.any())).thenReturn(((CtTypeReference) null));
+                                                       ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1847: error: cannot find symbol
+        when(ctTypeReferenceMock.setSimpleName(anyString())).thenReturn(((CtReference) null));
+                                               ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:1871: error: cannot find symbol
+        when(ctTypeReferenceMock.setSimpleName(anyString())).thenReturn(((CtReference) null));
+                                               ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:2164: error: cannot find symbol
+        when(ctTypeParameterReferenceMock.setSimpleName(anyString())).thenReturn(((CtReference) null));
+                                                        ^
+  symbol:   method anyString()
+  location: class TypeFactoryTest
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:2363: error: cannot find symbol
+        when(ctImportMock.setReference(org.mockito.ArgumentMatchers.any())).thenReturn(((CtImport) null));
+                                                  ^
+  symbol:   class ArgumentMatchers
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:2593: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:2594: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java:2596: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+38 errors
+10 warnings
+Failed to compile 'spoon/reflect/factory/TypeFactoryTest.java'!
+shaded.org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)
+	at shaded.org.apache.commons.exec.DefaultExecutor.executeInternal(DefaultExecutor.java:377)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:160)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:147)
+	at sbst.benchmark.TestSuite.compile(TestSuite.java:250)
+	at sbst.benchmark.TestSuite.<init>(TestSuite.java:68)
+	at sbst.benchmark.TranscriptWriter.endClass(TranscriptWriter.java:136)
+	at sbst.benchmark.RunTool.execute(RunTool.java:141)
+	at sbst.benchmark.RunTool.run(RunTool.java:62)
+	at sbst.benchmark.Main.main(Main.java:160)
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 9764
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/spoon-core-7.0.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.text-3.12.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.equinox.app-1.6.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.core.contenttype-3.8.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/mockito-all-2.0.2-beta_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/jackson-databind-2.9.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/guava-18.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.core.expressions-3.8.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.core.commands-3.10.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/jackson-annotations-2.9.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.jdt.core-3.13.102_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.core.runtime-3.24.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.core.resources-3.16.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/jackson-core-2.9.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/junit-4.12_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.equinox.registry-3.11.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/hamcrest-core-1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/maven-model-3.3.9_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/plexus-utils-3.0.22_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/jsap-2.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/bridge-method-annotation-1.13_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.equinox.common-3.15.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.core.jobs-3.12.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/commons-io-2.5_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/commons-lang3-3.5_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/system-rules-1.9.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/querydsl-core-3.6.9_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.core.filesystem-1.9.200_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.equinox.preferences-3.9.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/org.eclipse.osgi-3.17.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/log4j-1.2.17_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-11_5/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Number of file with coverage information = 1009
+Extracted coverage data for the class spoon/reflect/factory/TypeFactory
+Number of file with coverage information = 180
+Number of file with coverage information = 32
+Number of file with coverage information = 47
+Number of file with coverage information = 752
+Number of file with coverage information = 617
+Number of file with coverage information = 1690
+Number of file with coverage information = 50
+Number of file with coverage information = 84
+Number of file with coverage information = 68
+Number of file with coverage information = 2122
+Number of file with coverage information = 22
+Number of file with coverage information = 361
+Number of file with coverage information = 105
+Number of file with coverage information = 286
+Number of file with coverage information = 89
+Number of file with coverage information = 45
+Number of file with coverage information = 54
+Number of file with coverage information = 104
+Number of file with coverage information = 69
+Number of file with coverage information = 2
+Number of file with coverage information = 73
+Number of file with coverage information = 48
+Number of file with coverage information = 123
+Number of file with coverage information = 260
+Number of file with coverage information = 18
+Number of file with coverage information = 348
+Number of file with coverage information = 35
+Number of file with coverage information = 70
+Number of file with coverage information = 687
+Number of file with coverage information = 314
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 121 mutants 
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: SPOON-11
+	Class Under Test: spoon.reflect.factory.TypeFactory
+	Run number: 5
+	Tool preparation time (ms): 14714
+	Tool test cases generation time (ms): 30248
+	Test cases execution time (ms): 22
+	Test case number: 120
+	Uncompilable Test Classes: 1
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 217
+	Lines covered: 0
+	Lines coverage ratio (%): 0.0
+	Conditions total: 70
+	Conditions covered: 0
+	Conditions coverage ratio (%): 0.0
+	Mutants total: 121
+	Mutants covered: 0
+	Mutants coverage ratio (%): 0.0
+	Mutants killed: 0
+	Mutants killed ratio (%): 0.0
+	Mutants alive: 121
+
+
+Class spoon.reflect.factory.TypeFactory ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 4641
+Killing master process 4641
+Executing command kill -9 4641
+Execution of command kill -9 4641 finished.
+Process was destroyed

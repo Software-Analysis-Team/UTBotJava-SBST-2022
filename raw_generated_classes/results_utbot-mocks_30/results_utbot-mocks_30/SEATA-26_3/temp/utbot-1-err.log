@@ -1,0 +1,9 @@
+Exception in thread "ConcreteExecutor-26833-receiver" java.lang.InterruptedException
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:83)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:59)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:38)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source)
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$restartIfNeeded$$inlined$bracket$lambda$1$1.invoke(ConcreteExecutor.kt:253)
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$restartIfNeeded$$inlined$bracket$lambda$1$1.invoke(ConcreteExecutor.kt:101)
+	at kotlin.concurrent.ThreadsKt$thread$thread$1.run(Thread.kt:30)

@@ -1,0 +1,181 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+17:29:51.211 | INFO  | Started: warmup: kotlin reflection :: init
+17:29:51.293 | INFO  | Finished (in 0.081 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.base.internal.Finalizer 30
+17:29:51.301 | DEBUG | -----------------------------------------------------------------------------
+17:29:51.302 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+17:29:51.303 | INFO  | ClassUnderTest[ FQN: com.google.common.base.internal.Finalizer
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: FinalizerTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/base/internal/FinalizerTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+17:29:51.324 | INFO  | Started: class com.google.common.base.internal.Finalizer
+17:29:51.325 | INFO  | Started: preparation class class com.google.common.base.internal.Finalizer: kotlin reflection :: run
+17:29:51.346 | INFO  | Finished (in 0.020 sec): preparation class class com.google.common.base.internal.Finalizer: kotlin reflection :: run 
+17:29:51.347 | INFO  | Started: 2nd optional soot initialization
+17:29:51.348 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+17:29:51.356 | DEBUG |  ... 
+17:29:51.366 | INFO  | Started: method com.google.common.base.internal.Finalizer.run()
+17:29:51.376 | INFO  |  -- Remaining time budget: 25445 ms, #remaining_methods: 7, budget for method: 3635 ms, solver timeout: 1000 ms, budget for symbolic execution: 2435 ms, budget for concrete execution: 1200 ms,  -- 
+17:29:51.676 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.run()1
+17:29:53.561 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.run()2
+17:29:53.802 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.internal.Finalizer.run()
+17:29:53.961 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.run()3
+17:29:55.003 | INFO  | (X) Cancelling concrete execution: com.google.common.base.internal.Finalizer.run()
+17:29:55.036 | INFO  | Finished (in 3.668 sec): method com.google.common.base.internal.Finalizer.run() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:29:55.088 | DEBUG |  ... 
+17:29:55.089 | INFO  | Started: method com.google.common.base.internal.Finalizer.cleanUp(Reference)
+17:29:55.089 | INFO  |  -- Remaining time budget: 21715 ms, #remaining_methods: 6, budget for method: 3619 ms, solver timeout: 1000 ms, budget for symbolic execution: 2419 ms, budget for concrete execution: 1200 ms,  -- 
+17:29:55.101 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.cleanUp(Reference)1
+17:29:55.574 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.cleanUp(Reference)2
+17:29:55.718 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.cleanUp(Reference)3
+17:29:57.508 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.internal.Finalizer.cleanUp(Reference)
+17:29:58.709 | INFO  | (X) Cancelling concrete execution: com.google.common.base.internal.Finalizer.cleanUp(Reference)
+17:29:58.829 | INFO  | Finished (in 3.739 sec): method com.google.common.base.internal.Finalizer.cleanUp(Reference) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:29:58.940 | DEBUG |  ... 
+17:29:58.941 | INFO  | Started: method com.google.common.base.internal.Finalizer.getFinalizeReferentMethod()
+17:29:58.941 | INFO  |  -- Remaining time budget: 17862 ms, #remaining_methods: 5, budget for method: 3572 ms, solver timeout: 1000 ms, budget for symbolic execution: 2372 ms, budget for concrete execution: 1200 ms,  -- 
+17:29:58.949 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.getFinalizeReferentMethod()1
+17:29:59.165 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.getFinalizeReferentMethod()2
+17:29:59.234 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.getFinalizeReferentMethod()3
+17:30:01.313 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.internal.Finalizer.getFinalizeReferentMethod()
+17:30:02.514 | INFO  | (X) Cancelling concrete execution: com.google.common.base.internal.Finalizer.getFinalizeReferentMethod()
+17:30:02.581 | INFO  | Finished (in 3.639 sec): method com.google.common.base.internal.Finalizer.getFinalizeReferentMethod() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:30:02.698 | DEBUG |  ... 
+17:30:02.699 | INFO  | Started: method com.google.common.base.internal.Finalizer.startFinalizer(Class, ReferenceQueue, PhantomReference)
+17:30:02.699 | INFO  |  -- Remaining time budget: 14104 ms, #remaining_methods: 4, budget for method: 3526 ms, solver timeout: 1000 ms, budget for symbolic execution: 2326 ms, budget for concrete execution: 1200 ms,  -- 
+17:30:02.714 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:30:02.849 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.startFinalizer(Class, ReferenceQueue, PhantomReference)1
+17:30:02.896 | INFO  | Finished (in 0.197 sec): method com.google.common.base.internal.Finalizer.startFinalizer(Class, ReferenceQueue, PhantomReference) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+17:30:02.905 | DEBUG |  ... 
+17:30:02.906 | INFO  | Started: method com.google.common.base.internal.Finalizer.getInheritableThreadLocalsField()
+17:30:02.906 | INFO  |  -- Remaining time budget: 13898 ms, #remaining_methods: 3, budget for method: 4632 ms, solver timeout: 1000 ms, budget for symbolic execution: 3432 ms, budget for concrete execution: 1200 ms,  -- 
+17:30:02.924 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.getInheritableThreadLocalsField()1
+17:30:05.552 | ERROR | Symbolic execution FAILED
+java.lang.RuntimeException: No method source set for method <java.lang.String: java.lang.String intern()>
+	at soot.SootMethod.retrieveActiveBody(SootMethod.java:398) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.ExtensionsKt.jimpleBody(Extensions.kt:136) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.BaseOverriddenWrapper.invoke(CollectionWrappers.kt:89) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.overrideInvocation(UtBotSymbolicEngine.kt:2663) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.commonInvokePart(UtBotSymbolicEngine.kt:2399) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.virtualAndInterfaceInvoke(UtBotSymbolicEngine.kt:2289) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.invokeResult(UtBotSymbolicEngine.kt:2153) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseAssignStmt(UtBotSymbolicEngine.kt:884) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseStmt(UtBotSymbolicEngine.kt:604) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invokeSuspend(UtBotSymbolicEngine.kt:464) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1.invokeSuspend(Unknown Source) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:30:05.945 | ERROR | Symbolic execution FAILED ... <<stack trace duplicated>>
+17:30:06.338 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.internal.Finalizer.getInheritableThreadLocalsField()
+17:30:07.538 | INFO  | (X) Cancelling concrete execution: com.google.common.base.internal.Finalizer.getInheritableThreadLocalsField()
+17:30:07.610 | INFO  | Finished (in 4.704 sec): method com.google.common.base.internal.Finalizer.getInheritableThreadLocalsField() 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 2 time(s) with 1 different exception(s)"
+17:30:07.743 | DEBUG |  ... 
+17:30:07.744 | INFO  | Started: method com.google.common.base.internal.Finalizer.getBigThreadConstructor()
+17:30:07.744 | INFO  |  -- Remaining time budget: 9059 ms, #remaining_methods: 2, budget for method: 4529 ms, solver timeout: 1000 ms, budget for symbolic execution: 3329 ms, budget for concrete execution: 1200 ms,  -- 
+17:30:07.750 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.getBigThreadConstructor()1
+17:30:11.073 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.internal.Finalizer.getBigThreadConstructor()
+17:30:11.716 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.getBigThreadConstructor()2
+17:30:12.219 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.getBigThreadConstructor()3
+17:30:12.274 | INFO  | (X) Cancelling concrete execution: com.google.common.base.internal.Finalizer.getBigThreadConstructor()
+17:30:12.308 | INFO  | Finished (in 4.564 sec): method com.google.common.base.internal.Finalizer.getBigThreadConstructor() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:30:12.486 | DEBUG |  ... 
+17:30:12.487 | INFO  | Started: method com.google.common.base.internal.Finalizer.<init>(Class, ReferenceQueue, PhantomReference)
+17:30:12.487 | INFO  |  -- Remaining time budget: 4317 ms, #remaining_methods: 1, budget for method: 4317 ms, solver timeout: 1000 ms, budget for symbolic execution: 3117 ms, budget for concrete execution: 1200 ms,  -- 
+17:30:12.493 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:30:12.767 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.internal.Finalizer.<init>(Class, ReferenceQueue, PhantomReference)1
+17:30:12.768 | INFO  | Finished (in 0.281 sec): method com.google.common.base.internal.Finalizer.<init>(Class, ReferenceQueue, PhantomReference) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+17:30:12.783 | INFO  | Started: Flushing tests for [Finalizer] on disk
+17:30:13.013 | INFO  | File size for FinalizerTest: 28 KB
+17:30:13.014 | INFO  | Finished (in 0.231 sec): Flushing tests for [Finalizer] on disk 
+17:30:13.015 | INFO  | Finished (in 21.691 sec): class com.google.common.base.internal.Finalizer 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 7, 
+	#methods started symbolic exploration = 7
+	#methods with at least one TC = 7
+	#methods with exceptions = 3
+	#generated TC = 15
+	#coverage = null
+[READY]

@@ -1,0 +1,248 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+17:52:44.726 | INFO  | Started: warmup: kotlin reflection :: init
+17:52:44.824 | INFO  | Finished (in 0.097 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.support.reflect.cu.position.SourcePositionImpl 30
+17:52:44.835 | DEBUG | -----------------------------------------------------------------------------
+17:52:44.836 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+17:52:44.839 | INFO  | ClassUnderTest[ FQN: spoon.support.reflect.cu.position.SourcePositionImpl
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: SourcePositionImplTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/support/reflect/cu/position/SourcePositionImplTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+17:52:44.870 | INFO  | Started: class spoon.support.reflect.cu.position.SourcePositionImpl
+17:52:44.871 | INFO  | Started: preparation class class spoon.support.reflect.cu.position.SourcePositionImpl: kotlin reflection :: run
+17:52:44.912 | INFO  | Finished (in 0.041 sec): preparation class class spoon.support.reflect.cu.position.SourcePositionImpl: kotlin reflection :: run 
+17:52:44.913 | INFO  | Started: 2nd optional soot initialization
+17:52:44.914 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+17:52:44.925 | DEBUG |  ... 
+17:52:44.939 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.equals(Object)
+17:52:44.940 | INFO  |  -- Remaining time budget: 25409 ms, #remaining_methods: 18, budget for method: 1411 ms, solver timeout: 705 ms, budget for symbolic execution: 706 ms, budget for concrete execution: 705 ms,  -- 
+17:52:45.277 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.equals(Object)1
+17:52:45.641 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.cu.position.SourcePositionImpl.equals(Object)
+17:52:45.898 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.equals(Object)2
+17:52:46.348 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.cu.position.SourcePositionImpl.equals(Object)
+17:52:46.363 | INFO  | Finished (in 1.423 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.equals(Object) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:52:46.375 | DEBUG |  ... 
+17:52:46.375 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.hashCode()
+17:52:46.375 | INFO  |  -- Remaining time budget: 23962 ms, #remaining_methods: 17, budget for method: 1409 ms, solver timeout: 704 ms, budget for symbolic execution: 705 ms, budget for concrete execution: 704 ms,  -- 
+17:52:46.390 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.hashCode()1
+17:52:47.081 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.cu.position.SourcePositionImpl.hashCode()
+17:52:48.620 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.cu.position.SourcePositionImpl.hashCode()
+17:52:48.647 | INFO  | Finished (in 2.271 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.hashCode() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:52:48.723 | DEBUG |  ... 
+17:52:48.723 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.toString()
+17:52:48.723 | INFO  |  -- Remaining time budget: 21614 ms, #remaining_methods: 16, budget for method: 1350 ms, solver timeout: 675 ms, budget for symbolic execution: 675 ms, budget for concrete execution: 675 ms,  -- 
+17:52:48.732 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.toString()1
+17:52:48.807 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.toString()2
+17:52:49.398 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.cu.position.SourcePositionImpl.toString()
+17:52:49.857 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.toString()3
+17:52:50.074 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.cu.position.SourcePositionImpl.toString()
+17:52:50.097 | INFO  | Finished (in 1.374 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.toString() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:52:50.203 | DEBUG |  ... 
+17:52:50.203 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.getFile()
+17:52:50.203 | INFO  |  -- Remaining time budget: 20134 ms, #remaining_methods: 15, budget for method: 1342 ms, solver timeout: 671 ms, budget for symbolic execution: 671 ms, budget for concrete execution: 671 ms,  -- 
+17:52:50.216 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getFile()1
+17:52:50.249 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getFile()2
+17:52:50.249 | INFO  | Finished (in 0.046 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.getFile() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:52:50.250 | DEBUG |  ... 
+17:52:50.251 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.getLine()
+17:52:50.251 | INFO  |  -- Remaining time budget: 20087 ms, #remaining_methods: 14, budget for method: 1434 ms, solver timeout: 717 ms, budget for symbolic execution: 717 ms, budget for concrete execution: 717 ms,  -- 
+17:52:50.259 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getLine()1
+17:52:50.300 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getLine()2
+17:52:50.444 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getLine()3
+17:52:50.520 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getLine()4
+17:52:50.584 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getLine()5
+17:52:50.650 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getLine()6
+17:52:50.658 | INFO  | Finished (in 0.407 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.getLine() 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+17:52:50.678 | DEBUG |  ... 
+17:52:50.678 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.getCompilationUnit()
+17:52:50.678 | INFO  |  -- Remaining time budget: 19659 ms, #remaining_methods: 13, budget for method: 1512 ms, solver timeout: 756 ms, budget for symbolic execution: 756 ms, budget for concrete execution: 756 ms,  -- 
+17:52:50.685 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getCompilationUnit()1
+17:52:50.712 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getCompilationUnit()2
+17:52:50.713 | INFO  | Finished (in 0.034 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.getCompilationUnit() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:52:50.713 | DEBUG |  ... 
+17:52:50.713 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.isValidPosition()
+17:52:50.714 | INFO  |  -- Remaining time budget: 19624 ms, #remaining_methods: 12, budget for method: 1635 ms, solver timeout: 817 ms, budget for symbolic execution: 818 ms, budget for concrete execution: 817 ms,  -- 
+17:52:50.719 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.isValidPosition()1
+17:52:50.744 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.isValidPosition()2
+17:52:50.745 | INFO  | Finished (in 0.031 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.isValidPosition() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:52:50.745 | DEBUG |  ... 
+17:52:50.745 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.getColumn()
+17:52:50.745 | INFO  |  -- Remaining time budget: 19592 ms, #remaining_methods: 11, budget for method: 1781 ms, solver timeout: 890 ms, budget for symbolic execution: 891 ms, budget for concrete execution: 890 ms,  -- 
+17:52:50.751 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getColumn()1
+17:52:50.820 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getColumn()2
+17:52:50.883 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getColumn()3
+17:52:51.048 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getColumn()4
+17:52:51.192 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getColumn()5
+17:52:51.241 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getColumn()6
+17:52:51.567 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getColumn()7
+17:52:51.637 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.cu.position.SourcePositionImpl.getColumn()
+17:52:51.764 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getColumn()8
+17:52:51.822 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getColumn()9
+17:52:52.527 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.cu.position.SourcePositionImpl.getColumn()
+17:52:52.574 | INFO  | Finished (in 1.829 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.getColumn() 
+<StatsForMethod> :
+	#generatedTC=9
+	WITH NO EXCEPTIONS
+17:52:52.682 | DEBUG |  ... 
+17:52:52.683 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()
+17:52:52.683 | INFO  |  -- Remaining time budget: 17654 ms, #remaining_methods: 10, budget for method: 1765 ms, solver timeout: 882 ms, budget for symbolic execution: 883 ms, budget for concrete execution: 882 ms,  -- 
+17:52:52.688 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()1
+17:52:52.754 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()2
+17:52:52.813 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()3
+17:52:52.965 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()4
+17:52:53.104 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()5
+17:52:53.150 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()6
+17:52:53.462 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()7
+17:52:53.566 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()
+17:52:53.624 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()8
+17:52:53.663 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()9
+17:52:54.449 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn()
+17:52:54.479 | INFO  | Finished (in 1.796 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.getEndColumn() 
+<StatsForMethod> :
+	#generatedTC=9
+	WITH NO EXCEPTIONS
+17:52:54.604 | DEBUG |  ... 
+17:52:54.605 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.getEndLine()
+17:52:54.605 | INFO  |  -- Remaining time budget: 15733 ms, #remaining_methods: 9, budget for method: 1748 ms, solver timeout: 874 ms, budget for symbolic execution: 874 ms, budget for concrete execution: 874 ms,  -- 
+17:52:54.612 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndLine()1
+17:52:54.769 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndLine()2
+17:52:54.821 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndLine()3
+17:52:54.856 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndLine()4
+17:52:54.970 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getEndLine()5
+17:52:54.978 | INFO  | Finished (in 0.373 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.getEndLine() 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+17:52:54.998 | DEBUG |  ... 
+17:52:54.998 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.getSourceEnd()
+17:52:54.998 | INFO  |  -- Remaining time budget: 15339 ms, #remaining_methods: 8, budget for method: 1917 ms, solver timeout: 958 ms, budget for symbolic execution: 959 ms, budget for concrete execution: 958 ms,  -- 
+17:52:55.002 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getSourceEnd()1
+17:52:55.026 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getSourceEnd()2
+17:52:55.027 | INFO  | Finished (in 0.029 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.getSourceEnd() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:52:55.028 | DEBUG |  ... 
+17:52:55.029 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.getSourceStart()
+17:52:55.029 | INFO  |  -- Remaining time budget: 15309 ms, #remaining_methods: 7, budget for method: 2187 ms, solver timeout: 1000 ms, budget for symbolic execution: 1094 ms, budget for concrete execution: 1093 ms,  -- 
+17:52:55.032 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getSourceStart()1
+17:52:55.057 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getSourceStart()2
+17:52:55.058 | INFO  | Finished (in 0.029 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.getSourceStart() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:52:55.058 | DEBUG |  ... 
+17:52:55.059 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.getFragment(int, int)
+17:52:55.059 | INFO  |  -- Remaining time budget: 15278 ms, #remaining_methods: 6, budget for method: 2546 ms, solver timeout: 1000 ms, budget for symbolic execution: 1346 ms, budget for concrete execution: 1200 ms,  -- 
+17:52:55.069 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getFragment(int, int)1
+17:52:56.405 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.cu.position.SourcePositionImpl.getFragment(int, int)
+17:52:57.606 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.cu.position.SourcePositionImpl.getFragment(int, int)
+17:52:57.696 | INFO  | Finished (in 2.637 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.getFragment(int, int) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:52:57.776 | DEBUG |  ... 
+17:52:57.776 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)
+17:52:57.777 | INFO  |  -- Remaining time budget: 12561 ms, #remaining_methods: 5, budget for method: 2512 ms, solver timeout: 1000 ms, budget for symbolic execution: 1312 ms, budget for concrete execution: 1200 ms,  -- 
+17:52:57.781 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)1
+17:52:57.823 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)2
+17:52:57.875 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)3
+17:52:57.953 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)4
+17:52:57.975 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)5
+17:52:58.054 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)6
+17:52:58.124 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)7
+17:52:58.188 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)8
+17:52:58.232 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)9
+17:52:58.365 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)10
+17:52:58.393 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)11
+17:52:58.446 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)12
+17:52:59.089 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)
+17:53:00.289 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int)
+17:53:00.323 | INFO  | Finished (in 2.546 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.searchColumnNumber(int) 
+<StatsForMethod> :
+	#generatedTC=12
+	WITH NO EXCEPTIONS
+17:53:00.490 | DEBUG |  ... 
+17:53:00.490 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.searchLineNumber(int)
+17:53:00.491 | INFO  |  -- Remaining time budget: 9847 ms, #remaining_methods: 4, budget for method: 2461 ms, solver timeout: 1000 ms, budget for symbolic execution: 1261 ms, budget for concrete execution: 1200 ms,  -- 
+17:53:00.495 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchLineNumber(int)1
+17:53:00.540 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchLineNumber(int)2
+17:53:00.661 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchLineNumber(int)3
+17:53:00.737 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchLineNumber(int)4
+17:53:00.792 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.searchLineNumber(int)5
+17:53:00.794 | INFO  | Finished (in 0.303 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.searchLineNumber(int) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+17:53:00.813 | DEBUG |  ... 
+17:53:00.813 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.getSourceDetails()
+17:53:00.814 | INFO  |  -- Remaining time budget: 9524 ms, #remaining_methods: 3, budget for method: 3174 ms, solver timeout: 1000 ms, budget for symbolic execution: 1974 ms, budget for concrete execution: 1200 ms,  -- 
+17:53:00.818 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.getSourceDetails()1
+17:53:02.788 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.cu.position.SourcePositionImpl.getSourceDetails()
+17:53:03.988 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.cu.position.SourcePositionImpl.getSourceDetails()
+17:53:04.057 | INFO  | Finished (in 3.244 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.getSourceDetails() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:53:04.177 | DEBUG |  ... 
+17:53:04.177 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(int[])
+17:53:04.177 | INFO  |  -- Remaining time budget: 6160 ms, #remaining_methods: 2, budget for method: 3080 ms, solver timeout: 1000 ms, budget for symbolic execution: 1880 ms, budget for concrete execution: 1200 ms,  -- 
+17:53:04.182 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(int[])1
+17:53:04.202 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(int[])2
+17:53:04.232 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(int[])3
+17:53:04.260 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(int[])4
+17:53:04.266 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(int[])5
+17:53:04.287 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(int[])6
+17:53:04.288 | INFO  | Finished (in 0.110 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(int[]) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+17:53:04.288 | DEBUG |  ... 
+17:53:04.289 | INFO  | Started: method spoon.support.reflect.cu.position.SourcePositionImpl.<init>(CompilationUnit, int, int, int[])
+17:53:04.289 | INFO  |  -- Remaining time budget: 6048 ms, #remaining_methods: 1, budget for method: 6048 ms, solver timeout: 1000 ms, budget for symbolic execution: 4848 ms, budget for concrete execution: 1200 ms,  -- 
+17:53:04.296 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.<init>(CompilationUnit, int, int, int[])1
+17:53:04.393 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.<init>(CompilationUnit, int, int, int[])2
+17:53:04.414 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.<init>(CompilationUnit, int, int, int[])3
+17:53:04.454 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.<init>(CompilationUnit, int, int, int[])4
+17:53:04.479 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.cu.position.SourcePositionImpl.<init>(CompilationUnit, int, int, int[])5
+17:53:04.480 | INFO  | Finished (in 0.191 sec): method spoon.support.reflect.cu.position.SourcePositionImpl.<init>(CompilationUnit, int, int, int[]) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+17:53:04.495 | INFO  | Started: Flushing tests for [SourcePositionImpl] on disk
+17:53:04.946 | INFO  | File size for SourcePositionImplTest: 72 KB
+17:53:04.947 | INFO  | Finished (in 0.452 sec): Flushing tests for [SourcePositionImpl] on disk 
+17:53:04.948 | INFO  | Finished (in 20.078 sec): class spoon.support.reflect.cu.position.SourcePositionImpl 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 18, 
+	#methods started symbolic exploration = 18
+	#methods with at least one TC = 18
+	#methods with exceptions = 0
+	#generated TC = 75
+	#coverage = null
+[READY]

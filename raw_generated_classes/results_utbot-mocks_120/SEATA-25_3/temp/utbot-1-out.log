@@ -1,0 +1,108 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+18:54:55.585 | INFO  | Started: warmup: kotlin reflection :: init
+18:54:55.674 | INFO  | Finished (in 0.088 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.rpc.netty.NettyPoolableFactory 120
+18:54:55.691 | DEBUG | -----------------------------------------------------------------------------
+18:54:55.692 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+18:54:55.693 | INFO  | ClassUnderTest[ FQN: io.seata.core.rpc.netty.NettyPoolableFactory
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: NettyPoolableFactoryTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/rpc/netty/NettyPoolableFactoryTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+18:54:55.720 | INFO  | Started: class io.seata.core.rpc.netty.NettyPoolableFactory
+18:54:55.721 | INFO  | Started: preparation class class io.seata.core.rpc.netty.NettyPoolableFactory: kotlin reflection :: run
+18:54:55.766 | INFO  | Finished (in 0.044 sec): preparation class class io.seata.core.rpc.netty.NettyPoolableFactory: kotlin reflection :: run 
+18:54:55.767 | INFO  | Started: 2nd optional soot initialization
+18:54:55.769 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+18:54:55.778 | DEBUG |  ... 
+18:54:55.793 | INFO  | Started: method io.seata.core.rpc.netty.NettyPoolableFactory.validateObject(NettyPoolKey, Channel)
+18:54:55.794 | INFO  |  -- Remaining time budget: 101911 ms, #remaining_methods: 8, budget for method: 12738 ms, solver timeout: 1000 ms, budget for symbolic execution: 11538 ms, budget for concrete execution: 1200 ms,  -- 
+18:54:56.118 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.validateObject(NettyPoolKey, Channel)1
+18:54:56.414 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.validateObject(NettyPoolKey, Channel)2
+18:54:56.639 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.validateObject(NettyPoolKey, Channel)3
+18:54:56.830 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.validateObject(NettyPoolKey, Channel)4
+18:54:58.059 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.validateObject(NettyPoolKey, Channel)5
+18:54:58.061 | INFO  | Finished (in 2.268 sec): method io.seata.core.rpc.netty.NettyPoolableFactory.validateObject(NettyPoolKey, Channel) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+18:54:58.163 | DEBUG |  ... 
+18:54:58.164 | INFO  | Started: method io.seata.core.rpc.netty.NettyPoolableFactory.destroyObject(NettyPoolKey, Channel)
+18:54:58.164 | INFO  |  -- Remaining time budget: 99529 ms, #remaining_methods: 7, budget for method: 14218 ms, solver timeout: 1000 ms, budget for symbolic execution: 13018 ms, budget for concrete execution: 1200 ms,  -- 
+18:54:58.174 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.destroyObject(NettyPoolKey, Channel)1
+18:54:58.225 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.destroyObject(NettyPoolKey, Channel)2
+18:54:58.348 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.destroyObject(NettyPoolKey, Channel)3
+18:54:59.053 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.destroyObject(NettyPoolKey, Channel)4
+18:54:59.056 | INFO  | Finished (in 0.891 sec): method io.seata.core.rpc.netty.NettyPoolableFactory.destroyObject(NettyPoolKey, Channel) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:54:59.116 | DEBUG |  ... 
+18:54:59.117 | INFO  | Started: method io.seata.core.rpc.netty.NettyPoolableFactory.passivateObject(NettyPoolKey, Channel)
+18:54:59.117 | INFO  |  -- Remaining time budget: 98575 ms, #remaining_methods: 6, budget for method: 16429 ms, solver timeout: 1000 ms, budget for symbolic execution: 15229 ms, budget for concrete execution: 1200 ms,  -- 
+18:54:59.129 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.passivateObject(NettyPoolKey, Channel)1
+18:54:59.156 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.passivateObject(NettyPoolKey, Channel)2
+18:54:59.158 | INFO  | Finished (in 0.041 sec): method io.seata.core.rpc.netty.NettyPoolableFactory.passivateObject(NettyPoolKey, Channel) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:54:59.159 | DEBUG |  ... 
+18:54:59.160 | INFO  | Started: method io.seata.core.rpc.netty.NettyPoolableFactory.activateObject(NettyPoolKey, Channel)
+18:54:59.160 | INFO  |  -- Remaining time budget: 98532 ms, #remaining_methods: 5, budget for method: 19706 ms, solver timeout: 1000 ms, budget for symbolic execution: 18506 ms, budget for concrete execution: 1200 ms,  -- 
+18:54:59.171 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.activateObject(NettyPoolKey, Channel)1
+18:54:59.197 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.activateObject(NettyPoolKey, Channel)2
+18:54:59.198 | INFO  | Finished (in 0.037 sec): method io.seata.core.rpc.netty.NettyPoolableFactory.activateObject(NettyPoolKey, Channel) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:54:59.199 | DEBUG |  ... 
+18:54:59.200 | INFO  | Started: method io.seata.core.rpc.netty.NettyPoolableFactory.makeObject(NettyPoolKey)
+18:54:59.200 | INFO  |  -- Remaining time budget: 98493 ms, #remaining_methods: 4, budget for method: 24623 ms, solver timeout: 1000 ms, budget for symbolic execution: 23423 ms, budget for concrete execution: 1200 ms,  -- 
+18:54:59.219 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.makeObject(NettyPoolKey)1
+18:54:59.264 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.makeObject(NettyPoolKey)2
+18:54:59.407 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.makeObject(NettyPoolKey)3
+18:55:00.275 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.makeObject(NettyPoolKey)4
+18:55:00.900 | INFO  | Finished (in 1.700 sec): method io.seata.core.rpc.netty.NettyPoolableFactory.makeObject(NettyPoolKey) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:55:01.013 | DEBUG |  ... 
+18:55:01.014 | INFO  | Started: method io.seata.core.rpc.netty.NettyPoolableFactory.isResponseSuccess(Object, NettyPoolKey$TransactionRole)
+18:55:01.014 | INFO  |  -- Remaining time budget: 96678 ms, #remaining_methods: 3, budget for method: 32226 ms, solver timeout: 1000 ms, budget for symbolic execution: 31026 ms, budget for concrete execution: 1200 ms,  -- 
+18:55:01.026 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.isResponseSuccess(Object, NettyPoolKey$TransactionRole)1
+18:55:01.655 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.isResponseSuccess(Object, NettyPoolKey$TransactionRole)2
+18:55:01.927 | INFO  | Finished (in 0.912 sec): method io.seata.core.rpc.netty.NettyPoolableFactory.isResponseSuccess(Object, NettyPoolKey$TransactionRole) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:55:01.943 | DEBUG |  ... 
+18:55:01.943 | INFO  | Started: method io.seata.core.rpc.netty.NettyPoolableFactory.getVersion(Object, NettyPoolKey$TransactionRole)
+18:55:01.944 | INFO  |  -- Remaining time budget: 95749 ms, #remaining_methods: 2, budget for method: 47874 ms, solver timeout: 1000 ms, budget for symbolic execution: 46674 ms, budget for concrete execution: 1200 ms,  -- 
+18:55:01.954 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.getVersion(Object, NettyPoolKey$TransactionRole)1
+18:55:02.216 | INFO  | Finished (in 0.272 sec): method io.seata.core.rpc.netty.NettyPoolableFactory.getVersion(Object, NettyPoolKey$TransactionRole) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+18:55:02.232 | DEBUG |  ... 
+18:55:02.233 | INFO  | Started: method io.seata.core.rpc.netty.NettyPoolableFactory.<init>(AbstractRpcRemotingClient)
+18:55:02.233 | INFO  |  -- Remaining time budget: 95459 ms, #remaining_methods: 1, budget for method: 95459 ms, solver timeout: 1000 ms, budget for symbolic execution: 94259 ms, budget for concrete execution: 1200 ms,  -- 
+18:55:02.249 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.netty.NettyPoolableFactory.<init>(AbstractRpcRemotingClient)1
+18:55:02.292 | INFO  | Finished (in 0.059 sec): method io.seata.core.rpc.netty.NettyPoolableFactory.<init>(AbstractRpcRemotingClient) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+18:55:02.302 | INFO  | Started: Flushing tests for [NettyPoolableFactory] on disk
+18:55:02.505 | INFO  | File size for NettyPoolableFactoryTest: 18 KB
+18:55:02.507 | INFO  | Finished (in 0.205 sec): Flushing tests for [NettyPoolableFactory] on disk 
+18:55:02.508 | INFO  | Finished (in 6.787 sec): class io.seata.core.rpc.netty.NettyPoolableFactory 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 8, 
+	#methods started symbolic exploration = 8
+	#methods with at least one TC = 8
+	#methods with exceptions = 0
+	#generated TC = 21
+	#coverage = null
+[READY]

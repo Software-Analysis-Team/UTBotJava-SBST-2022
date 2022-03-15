@@ -1,0 +1,809 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+18:32:37.225 | INFO  | Started: warmup: kotlin reflection :: init
+18:32:37.311 | INFO  | Finished (in 0.085 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.primitives.Shorts 30
+18:32:37.319 | DEBUG | -----------------------------------------------------------------------------
+18:32:37.319 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+18:32:37.320 | INFO  | ClassUnderTest[ FQN: com.google.common.primitives.Shorts
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: ShortsTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/primitives/ShortsTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+18:32:37.342 | INFO  | Started: class com.google.common.primitives.Shorts
+18:32:37.343 | INFO  | Started: preparation class class com.google.common.primitives.Shorts: kotlin reflection :: run
+18:32:37.781 | INFO  | Finished (in 0.438 sec): preparation class class com.google.common.primitives.Shorts: kotlin reflection :: run 
+18:32:37.782 | INFO  | Started: 2nd optional soot initialization
+18:32:37.783 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+18:32:37.795 | DEBUG |  ... 
+18:32:37.808 | INFO  | Started: method com.google.common.primitives.Shorts.sortDescending(short[])
+18:32:37.809 | INFO  |  -- Remaining time budget: 25022 ms, #remaining_methods: 52, budget for method: 481 ms, solver timeout: 240 ms, budget for symbolic execution: 241 ms, budget for concrete execution: 240 ms,  -- 
+18:32:38.045 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.sortDescending(short[])
+18:32:38.107 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.sortDescending(short[])1
+18:32:38.286 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.sortDescending(short[])
+18:32:38.927 | INFO  | Finished (in 1.118 sec): method com.google.common.primitives.Shorts.sortDescending(short[]) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+18:32:38.930 | DEBUG |  ... 
+18:32:38.930 | INFO  | Started: method com.google.common.primitives.Shorts.sortDescending(short[], int, int)
+18:32:38.930 | INFO  |  -- Remaining time budget: 23889 ms, #remaining_methods: 51, budget for method: 468 ms, solver timeout: 234 ms, budget for symbolic execution: 234 ms, budget for concrete execution: 234 ms,  -- 
+18:32:38.938 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.sortDescending(short[], int, int)1
+18:32:39.102 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.sortDescending(short[], int, int)2
+18:32:39.165 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.sortDescending(short[], int, int)
+18:32:39.399 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.sortDescending(short[], int, int)
+18:32:39.447 | INFO  | Finished (in 0.517 sec): method com.google.common.primitives.Shorts.sortDescending(short[], int, int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:39.450 | DEBUG |  ... 
+18:32:39.450 | INFO  | Started: method com.google.common.primitives.Shorts.saturatedCast(long)
+18:32:39.450 | INFO  |  -- Remaining time budget: 23369 ms, #remaining_methods: 50, budget for method: 467 ms, solver timeout: 233 ms, budget for symbolic execution: 234 ms, budget for concrete execution: 233 ms,  -- 
+18:32:39.455 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.saturatedCast(long)1
+18:32:39.496 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.saturatedCast(long)2
+18:32:39.519 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.saturatedCast(long)3
+18:32:39.525 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.saturatedCast(long)4
+18:32:39.525 | INFO  | Finished (in 0.075 sec): method com.google.common.primitives.Shorts.saturatedCast(long) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:32:39.526 | DEBUG |  ... 
+18:32:39.527 | INFO  | Started: method com.google.common.primitives.Shorts.constrainToRange(short, short, short)
+18:32:39.527 | INFO  |  -- Remaining time budget: 23292 ms, #remaining_methods: 49, budget for method: 475 ms, solver timeout: 237 ms, budget for symbolic execution: 238 ms, budget for concrete execution: 237 ms,  -- 
+18:32:39.535 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.constrainToRange(short, short, short)1
+18:32:39.577 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.constrainToRange(short, short, short)2
+18:32:39.586 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.constrainToRange(short, short, short)3
+18:32:39.587 | INFO  | Finished (in 0.060 sec): method com.google.common.primitives.Shorts.constrainToRange(short, short, short) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:32:39.594 | DEBUG |  ... 
+18:32:39.594 | INFO  | Started: method com.google.common.primitives.Shorts.checkedCast(long)
+18:32:39.594 | INFO  |  -- Remaining time budget: 23225 ms, #remaining_methods: 48, budget for method: 483 ms, solver timeout: 241 ms, budget for symbolic execution: 242 ms, budget for concrete execution: 241 ms,  -- 
+18:32:39.600 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.checkedCast(long)1
+18:32:39.654 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.checkedCast(long)2
+18:32:39.660 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.checkedCast(long)3
+18:32:39.661 | INFO  | Finished (in 0.066 sec): method com.google.common.primitives.Shorts.checkedCast(long) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:32:39.662 | DEBUG |  ... 
+18:32:39.662 | INFO  | Started: method com.google.common.primitives.Shorts.fromByteArray(byte[])
+18:32:39.662 | INFO  |  -- Remaining time budget: 23157 ms, #remaining_methods: 47, budget for method: 492 ms, solver timeout: 246 ms, budget for symbolic execution: 246 ms, budget for concrete execution: 246 ms,  -- 
+18:32:39.669 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.fromByteArray(byte[])1
+18:32:39.709 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.fromByteArray(byte[])2
+18:32:39.741 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.fromByteArray(byte[])3
+18:32:39.770 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.fromByteArray(byte[])4
+18:32:39.807 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.fromByteArray(byte[])5
+18:32:39.807 | INFO  | Finished (in 0.145 sec): method com.google.common.primitives.Shorts.fromByteArray(byte[]) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+18:32:39.811 | DEBUG |  ... 
+18:32:39.812 | INFO  | Started: method com.google.common.primitives.Shorts.fromBytes(byte, byte)
+18:32:39.812 | INFO  |  -- Remaining time budget: 23007 ms, #remaining_methods: 46, budget for method: 500 ms, solver timeout: 250 ms, budget for symbolic execution: 250 ms, budget for concrete execution: 250 ms,  -- 
+18:32:39.817 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.fromBytes(byte, byte)1
+18:32:39.839 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.fromBytes(byte, byte)2
+18:32:39.839 | INFO  | Finished (in 0.027 sec): method com.google.common.primitives.Shorts.fromBytes(byte, byte) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:39.840 | DEBUG |  ... 
+18:32:39.840 | INFO  | Started: method com.google.common.primitives.Shorts.stringConverter()
+18:32:39.840 | INFO  |  -- Remaining time budget: 22979 ms, #remaining_methods: 45, budget for method: 510 ms, solver timeout: 255 ms, budget for symbolic execution: 255 ms, budget for concrete execution: 255 ms,  -- 
+18:32:39.848 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.stringConverter()1
+18:32:39.958 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.stringConverter()2
+18:32:39.959 | INFO  | Finished (in 0.118 sec): method com.google.common.primitives.Shorts.stringConverter() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:39.969 | DEBUG |  ... 
+18:32:39.970 | INFO  | Started: method com.google.common.primitives.Shorts.lexicographicalComparator()
+18:32:39.970 | INFO  |  -- Remaining time budget: 22849 ms, #remaining_methods: 44, budget for method: 519 ms, solver timeout: 259 ms, budget for symbolic execution: 260 ms, budget for concrete execution: 259 ms,  -- 
+18:32:39.978 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lexicographicalComparator()1
+18:32:40.109 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lexicographicalComparator()2
+18:32:40.109 | INFO  | Finished (in 0.139 sec): method com.google.common.primitives.Shorts.lexicographicalComparator() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:40.120 | DEBUG |  ... 
+18:32:40.121 | INFO  | Started: method com.google.common.primitives.Shorts.hashCode(short)
+18:32:40.121 | INFO  |  -- Remaining time budget: 22698 ms, #remaining_methods: 43, budget for method: 527 ms, solver timeout: 263 ms, budget for symbolic execution: 264 ms, budget for concrete execution: 263 ms,  -- 
+18:32:40.126 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.hashCode(short)1
+18:32:40.145 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.hashCode(short)2
+18:32:40.145 | INFO  | Finished (in 0.024 sec): method com.google.common.primitives.Shorts.hashCode(short) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:40.145 | DEBUG |  ... 
+18:32:40.146 | INFO  | Started: method com.google.common.primitives.Shorts.min(short[])
+18:32:40.146 | INFO  |  -- Remaining time budget: 22674 ms, #remaining_methods: 42, budget for method: 539 ms, solver timeout: 269 ms, budget for symbolic execution: 270 ms, budget for concrete execution: 269 ms,  -- 
+18:32:40.154 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.min(short[])1
+18:32:40.191 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.min(short[])2
+18:32:40.214 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.min(short[])3
+18:32:40.260 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.min(short[])4
+18:32:40.269 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.min(short[])5
+18:32:40.278 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.min(short[])6
+18:32:40.279 | INFO  | Finished (in 0.133 sec): method com.google.common.primitives.Shorts.min(short[]) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+18:32:40.280 | DEBUG |  ... 
+18:32:40.280 | INFO  | Started: method com.google.common.primitives.Shorts.max(short[])
+18:32:40.280 | INFO  |  -- Remaining time budget: 22539 ms, #remaining_methods: 41, budget for method: 549 ms, solver timeout: 274 ms, budget for symbolic execution: 275 ms, budget for concrete execution: 274 ms,  -- 
+18:32:40.285 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.max(short[])1
+18:32:40.326 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.max(short[])2
+18:32:40.350 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.max(short[])3
+18:32:40.396 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.max(short[])4
+18:32:40.405 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.max(short[])5
+18:32:40.412 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.max(short[])6
+18:32:40.412 | INFO  | Finished (in 0.132 sec): method com.google.common.primitives.Shorts.max(short[]) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+18:32:40.413 | DEBUG |  ... 
+18:32:40.413 | INFO  | Started: method com.google.common.primitives.Shorts.indexOf(short[], short)
+18:32:40.413 | INFO  |  -- Remaining time budget: 22406 ms, #remaining_methods: 40, budget for method: 560 ms, solver timeout: 280 ms, budget for symbolic execution: 280 ms, budget for concrete execution: 280 ms,  -- 
+18:32:40.417 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short)1
+18:32:40.440 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short)2
+18:32:40.509 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short)3
+18:32:40.530 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short)4
+18:32:40.532 | INFO  | Finished (in 0.119 sec): method com.google.common.primitives.Shorts.indexOf(short[], short) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:32:40.535 | DEBUG |  ... 
+18:32:40.536 | INFO  | Started: method com.google.common.primitives.Shorts.indexOf(short[], short, int, int)
+18:32:40.536 | INFO  |  -- Remaining time budget: 22284 ms, #remaining_methods: 39, budget for method: 571 ms, solver timeout: 285 ms, budget for symbolic execution: 286 ms, budget for concrete execution: 285 ms,  -- 
+18:32:40.540 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short, int, int)1
+18:32:40.593 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short, int, int)2
+18:32:40.612 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short, int, int)3
+18:32:40.633 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short, int, int)4
+18:32:40.655 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short, int, int)5
+18:32:40.675 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short, int, int)6
+18:32:40.682 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short, int, int)7
+18:32:40.683 | INFO  | Finished (in 0.147 sec): method com.google.common.primitives.Shorts.indexOf(short[], short, int, int) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+18:32:40.684 | DEBUG |  ... 
+18:32:40.684 | INFO  | Started: method com.google.common.primitives.Shorts.indexOf(short[], short[])
+18:32:40.684 | INFO  |  -- Remaining time budget: 22135 ms, #remaining_methods: 38, budget for method: 582 ms, solver timeout: 291 ms, budget for symbolic execution: 291 ms, budget for concrete execution: 291 ms,  -- 
+18:32:40.689 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short[])1
+18:32:40.949 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short[])2
+18:32:40.975 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.indexOf(short[], short[])
+18:32:41.102 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short[])3
+18:32:41.259 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.indexOf(short[], short[])4
+18:32:41.267 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.indexOf(short[], short[])
+18:32:41.415 | INFO  | Finished (in 0.731 sec): method com.google.common.primitives.Shorts.indexOf(short[], short[]) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:32:41.417 | DEBUG |  ... 
+18:32:41.417 | INFO  | Started: method com.google.common.primitives.Shorts.lastIndexOf(short[], short)
+18:32:41.417 | INFO  |  -- Remaining time budget: 21402 ms, #remaining_methods: 37, budget for method: 578 ms, solver timeout: 289 ms, budget for symbolic execution: 289 ms, budget for concrete execution: 289 ms,  -- 
+18:32:41.421 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short)1
+18:32:41.442 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short)2
+18:32:41.526 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short)3
+18:32:41.545 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short)4
+18:32:41.565 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short)5
+18:32:41.566 | INFO  | Finished (in 0.148 sec): method com.google.common.primitives.Shorts.lastIndexOf(short[], short) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+18:32:41.571 | DEBUG |  ... 
+18:32:41.572 | INFO  | Started: method com.google.common.primitives.Shorts.lastIndexOf(short[], short, int, int)
+18:32:41.572 | INFO  |  -- Remaining time budget: 21248 ms, #remaining_methods: 36, budget for method: 590 ms, solver timeout: 295 ms, budget for symbolic execution: 295 ms, budget for concrete execution: 295 ms,  -- 
+18:32:41.577 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short, int, int)1
+18:32:41.615 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short, int, int)2
+18:32:41.635 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short, int, int)3
+18:32:41.655 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short, int, int)4
+18:32:41.676 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short, int, int)5
+18:32:41.696 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short, int, int)6
+18:32:41.705 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.lastIndexOf(short[], short, int, int)7
+18:32:41.706 | INFO  | Finished (in 0.134 sec): method com.google.common.primitives.Shorts.lastIndexOf(short[], short, int, int) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+18:32:41.707 | DEBUG |  ... 
+18:32:41.707 | INFO  | Started: method com.google.common.primitives.Shorts.concat(short[][])
+18:32:41.707 | INFO  |  -- Remaining time budget: 21112 ms, #remaining_methods: 35, budget for method: 603 ms, solver timeout: 301 ms, budget for symbolic execution: 302 ms, budget for concrete execution: 301 ms,  -- 
+18:32:41.715 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.concat(short[][])1
+18:32:41.738 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.concat(short[][])2
+18:32:41.778 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.concat(short[][])3
+18:32:41.784 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.concat(short[][])4
+18:32:41.986 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.concat(short[][])5
+18:32:41.993 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.concat(short[][])6
+18:32:41.993 | INFO  | Finished (in 0.286 sec): method com.google.common.primitives.Shorts.concat(short[][]) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+18:32:41.997 | DEBUG |  ... 
+18:32:41.998 | INFO  | Started: method com.google.common.primitives.Shorts.contains(short[], short)
+18:32:41.998 | INFO  |  -- Remaining time budget: 20822 ms, #remaining_methods: 34, budget for method: 612 ms, solver timeout: 306 ms, budget for symbolic execution: 306 ms, budget for concrete execution: 306 ms,  -- 
+18:32:42.002 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.contains(short[], short)1
+18:32:42.027 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.contains(short[], short)2
+18:32:42.064 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.contains(short[], short)3
+18:32:42.092 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.contains(short[], short)4
+18:32:42.104 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.contains(short[], short)5
+18:32:42.104 | INFO  | Finished (in 0.107 sec): method com.google.common.primitives.Shorts.contains(short[], short) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+18:32:42.105 | DEBUG |  ... 
+18:32:42.105 | INFO  | Started: method com.google.common.primitives.Shorts.join(String, short[])
+18:32:42.105 | INFO  |  -- Remaining time budget: 20714 ms, #remaining_methods: 33, budget for method: 627 ms, solver timeout: 313 ms, budget for symbolic execution: 314 ms, budget for concrete execution: 313 ms,  -- 
+18:32:42.120 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.join(String, short[])1
+18:32:42.249 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.join(String, short[])2
+18:32:42.347 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.join(String, short[])3
+18:32:42.420 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.join(String, short[])
+18:32:42.733 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.join(String, short[])
+18:32:42.857 | INFO  | Finished (in 0.751 sec): method com.google.common.primitives.Shorts.join(String, short[]) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:32:42.869 | DEBUG |  ... 
+18:32:42.869 | INFO  | Started: method com.google.common.primitives.Shorts.compare(short, short)
+18:32:42.869 | INFO  |  -- Remaining time budget: 19950 ms, #remaining_methods: 32, budget for method: 623 ms, solver timeout: 311 ms, budget for symbolic execution: 312 ms, budget for concrete execution: 311 ms,  -- 
+18:32:42.873 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.compare(short, short)1
+18:32:42.892 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.compare(short, short)2
+18:32:42.892 | INFO  | Finished (in 0.023 sec): method com.google.common.primitives.Shorts.compare(short, short) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:42.893 | DEBUG |  ... 
+18:32:42.893 | INFO  | Started: method com.google.common.primitives.Shorts.toArray(Collection)
+18:32:42.894 | INFO  |  -- Remaining time budget: 19926 ms, #remaining_methods: 31, budget for method: 642 ms, solver timeout: 321 ms, budget for symbolic execution: 321 ms, budget for concrete execution: 321 ms,  -- 
+18:32:42.898 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.toArray(Collection)1
+18:32:43.074 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.toArray(Collection)2
+18:32:43.215 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.toArray(Collection)
+18:32:43.536 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.toArray(Collection)
+18:32:43.562 | INFO  | Finished (in 0.669 sec): method com.google.common.primitives.Shorts.toArray(Collection) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:43.567 | DEBUG |  ... 
+18:32:43.567 | INFO  | Started: method com.google.common.primitives.Shorts.asList(short[])
+18:32:43.567 | INFO  |  -- Remaining time budget: 19252 ms, #remaining_methods: 30, budget for method: 641 ms, solver timeout: 320 ms, budget for symbolic execution: 321 ms, budget for concrete execution: 320 ms,  -- 
+18:32:43.571 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.asList(short[])1
+18:32:43.609 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.asList(short[])2
+18:32:43.708 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.asList(short[])3
+18:32:43.842 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.asList(short[])4
+18:32:43.843 | INFO  | Finished (in 0.275 sec): method com.google.common.primitives.Shorts.asList(short[]) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:32:43.862 | DEBUG |  ... 
+18:32:43.863 | INFO  | Started: method com.google.common.primitives.Shorts.ensureCapacity(short[], int, int)
+18:32:43.863 | INFO  |  -- Remaining time budget: 18957 ms, #remaining_methods: 29, budget for method: 653 ms, solver timeout: 326 ms, budget for symbolic execution: 327 ms, budget for concrete execution: 326 ms,  -- 
+18:32:43.867 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ensureCapacity(short[], int, int)1
+18:32:43.973 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ensureCapacity(short[], int, int)2
+18:32:43.980 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ensureCapacity(short[], int, int)3
+18:32:44.022 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ensureCapacity(short[], int, int)4
+18:32:44.177 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ensureCapacity(short[], int, int)5
+18:32:44.190 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.ensureCapacity(short[], int, int)
+18:32:44.470 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ensureCapacity(short[], int, int)6
+18:32:44.476 | INFO  | Finished (in 0.613 sec): method com.google.common.primitives.Shorts.ensureCapacity(short[], int, int) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+18:32:44.493 | DEBUG |  ... 
+18:32:44.494 | INFO  | Started: method com.google.common.primitives.Shorts.reverse(short[], int, int)
+18:32:44.494 | INFO  |  -- Remaining time budget: 18325 ms, #remaining_methods: 28, budget for method: 654 ms, solver timeout: 327 ms, budget for symbolic execution: 327 ms, budget for concrete execution: 327 ms,  -- 
+18:32:44.498 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.reverse(short[], int, int)1
+18:32:44.617 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.reverse(short[], int, int)2
+18:32:44.705 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.reverse(short[], int, int)3
+18:32:44.821 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.reverse(short[], int, int)
+18:32:44.876 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.reverse(short[], int, int)4
+18:32:45.059 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.reverse(short[], int, int)5
+18:32:45.072 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.reverse(short[], int, int)6
+18:32:45.149 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.reverse(short[], int, int)
+18:32:45.190 | INFO  | Finished (in 0.696 sec): method com.google.common.primitives.Shorts.reverse(short[], int, int) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+18:32:45.202 | DEBUG |  ... 
+18:32:45.202 | INFO  | Started: method com.google.common.primitives.Shorts.reverse(short[])
+18:32:45.203 | INFO  |  -- Remaining time budget: 17617 ms, #remaining_methods: 27, budget for method: 652 ms, solver timeout: 326 ms, budget for symbolic execution: 326 ms, budget for concrete execution: 326 ms,  -- 
+18:32:45.206 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.reverse(short[])1
+18:32:45.328 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.reverse(short[])2
+18:32:45.529 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.reverse(short[])
+18:32:45.805 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.reverse(short[])3
+18:32:45.855 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.reverse(short[])
+18:32:45.940 | INFO  | Finished (in 0.737 sec): method com.google.common.primitives.Shorts.reverse(short[]) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:32:45.959 | DEBUG |  ... 
+18:32:45.960 | INFO  | Started: method com.google.common.primitives.Shorts.toByteArray(short)
+18:32:45.960 | INFO  |  -- Remaining time budget: 16860 ms, #remaining_methods: 26, budget for method: 648 ms, solver timeout: 324 ms, budget for symbolic execution: 324 ms, budget for concrete execution: 324 ms,  -- 
+18:32:45.963 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.toByteArray(short)1
+18:32:45.984 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.toByteArray(short)2
+18:32:45.985 | INFO  | Finished (in 0.025 sec): method com.google.common.primitives.Shorts.toByteArray(short) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:45.985 | DEBUG |  ... 
+18:32:45.986 | INFO  | Started: method com.google.common.primitives.Shorts.<init>()
+18:32:45.986 | INFO  |  -- Remaining time budget: 16834 ms, #remaining_methods: 25, budget for method: 673 ms, solver timeout: 336 ms, budget for symbolic execution: 337 ms, budget for concrete execution: 336 ms,  -- 
+18:32:45.991 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.<init>()1
+18:32:46.013 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.<init>()2
+18:32:46.014 | INFO  | Finished (in 0.028 sec): method com.google.common.primitives.Shorts.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:46.017 | DEBUG |  ... 
+18:32:46.018 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.contains(Object)
+18:32:46.018 | INFO  |  -- Remaining time budget: 16802 ms, #remaining_methods: 24, budget for method: 700 ms, solver timeout: 350 ms, budget for symbolic execution: 350 ms, budget for concrete execution: 350 ms,  -- 
+18:32:46.025 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.contains(Object)1
+18:32:46.206 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.contains(Object)2
+18:32:46.286 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.contains(Object)3
+18:32:46.301 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.contains(Object)4
+18:32:46.302 | INFO  | Finished (in 0.284 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.contains(Object) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:32:46.306 | DEBUG |  ... 
+18:32:46.306 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.isEmpty()
+18:32:46.306 | INFO  |  -- Remaining time budget: 16513 ms, #remaining_methods: 23, budget for method: 717 ms, solver timeout: 358 ms, budget for symbolic execution: 359 ms, budget for concrete execution: 358 ms,  -- 
+18:32:46.309 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.isEmpty()1
+18:32:46.333 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.isEmpty()2
+18:32:46.333 | INFO  | Finished (in 0.027 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.isEmpty() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:46.334 | DEBUG |  ... 
+18:32:46.334 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.equals(Object)
+18:32:46.335 | INFO  |  -- Remaining time budget: 16485 ms, #remaining_methods: 22, budget for method: 749 ms, solver timeout: 374 ms, budget for symbolic execution: 375 ms, budget for concrete execution: 374 ms,  -- 
+18:32:46.338 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.equals(Object)1
+18:32:46.540 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.equals(Object)2
+18:32:46.710 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.ShortArrayAsList.equals(Object)
+18:32:46.889 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.equals(Object)3
+18:32:47.084 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.ShortArrayAsList.equals(Object)
+18:32:47.170 | INFO  | Finished (in 0.835 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.equals(Object) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:32:47.184 | DEBUG |  ... 
+18:32:47.185 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.hashCode()
+18:32:47.185 | INFO  |  -- Remaining time budget: 15634 ms, #remaining_methods: 21, budget for method: 744 ms, solver timeout: 372 ms, budget for symbolic execution: 372 ms, budget for concrete execution: 372 ms,  -- 
+18:32:47.188 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.hashCode()1
+18:32:47.229 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.hashCode()2
+18:32:47.264 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.hashCode()3
+18:32:47.286 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.hashCode()4
+18:32:47.311 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.hashCode()5
+18:32:47.311 | INFO  | Finished (in 0.126 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.hashCode() 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+18:32:47.313 | DEBUG |  ... 
+18:32:47.313 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.toString()
+18:32:47.314 | INFO  |  -- Remaining time budget: 15506 ms, #remaining_methods: 20, budget for method: 775 ms, solver timeout: 387 ms, budget for symbolic execution: 388 ms, budget for concrete execution: 387 ms,  -- 
+18:32:47.320 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.toString()1
+18:32:47.434 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.toString()2
+18:32:47.457 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.toString()3
+18:32:47.702 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.ShortArrayAsList.toString()
+18:32:48.089 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.ShortArrayAsList.toString()
+18:32:48.423 | INFO  | Finished (in 1.110 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.toString() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:32:48.460 | DEBUG |  ... 
+18:32:48.460 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.set(int, Short)
+18:32:48.460 | INFO  |  -- Remaining time budget: 14359 ms, #remaining_methods: 19, budget for method: 755 ms, solver timeout: 377 ms, budget for symbolic execution: 378 ms, budget for concrete execution: 377 ms,  -- 
+18:32:48.480 | ERROR | Symbolic execution FAILED
+kotlin.reflect.jvm.internal.KotlinReflectionInternalError: Could not compute caller for function: private constructor Short() defined in kotlin.Short[DeserializedClassConstructorDescriptor@62a86e7a] (member = null)
+	at kotlin.reflect.jvm.internal.KFunctionImpl$caller$2.invoke(KFunctionImpl.kt:89) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.KFunctionImpl$caller$2.invoke(KFunctionImpl.kt:36) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.ReflectProperties$LazyVal.invoke(ReflectProperties.java:62) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.ReflectProperties$Val.getValue(ReflectProperties.java:31) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.KFunctionImpl.getCaller(KFunctionImpl.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.ReflectJvmMapping.getJavaMethod(ReflectJvmMapping.kt:63) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.framework.plugin.api.util.IdUtilKt.getExecutableId(IdUtil.kt:394) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createSimpleModelByKClass(UtBotSymbolicEngine.kt:587) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createModelByClassId(UtBotSymbolicEngine.kt:569) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.access$createModelByClassId(UtBotSymbolicEngine.kt:245) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invokeSuspend(UtBotSymbolicEngine.kt:502) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.contest.ContestKt$runGeneration$1$invokeSuspend$$inlined$bracket$lambda$1$1.invokeSuspend(Contest.kt:531) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:32:48.528 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.set(int, Short)1
+18:32:48.550 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.set(int, Short)2
+18:32:48.700 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.set(int, Short)3
+18:32:48.738 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.set(int, Short)4
+18:32:48.838 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.ShortArrayAsList.set(int, Short)
+18:32:48.879 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.set(int, Short)5
+18:32:48.880 | INFO  | Finished (in 0.420 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.set(int, Short) 
+<StatsForMethod> :
+	#generatedTC=5
+	FAILED 1 time(s) with 1 different exception(s)"
+18:32:48.889 | DEBUG |  ... 
+18:32:48.890 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.subList(int, int)
+18:32:48.890 | INFO  |  -- Remaining time budget: 13929 ms, #remaining_methods: 18, budget for method: 773 ms, solver timeout: 386 ms, budget for symbolic execution: 387 ms, budget for concrete execution: 386 ms,  -- 
+18:32:48.893 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.subList(int, int)1
+18:32:49.002 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.subList(int, int)2
+18:32:49.135 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.subList(int, int)3
+18:32:49.135 | INFO  | Finished (in 0.245 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.subList(int, int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:32:49.155 | DEBUG |  ... 
+18:32:49.156 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.get(int)
+18:32:49.156 | INFO  |  -- Remaining time budget: 13663 ms, #remaining_methods: 17, budget for method: 803 ms, solver timeout: 401 ms, budget for symbolic execution: 402 ms, budget for concrete execution: 401 ms,  -- 
+18:32:49.163 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.get(int)1
+18:32:49.206 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.get(int)2
+18:32:49.244 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.get(int)3
+18:32:49.254 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.get(int)4
+18:32:49.254 | INFO  | Finished (in 0.098 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.get(int) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:32:49.260 | DEBUG |  ... 
+18:32:49.260 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.indexOf(Object)
+18:32:49.261 | INFO  |  -- Remaining time budget: 13559 ms, #remaining_methods: 16, budget for method: 847 ms, solver timeout: 423 ms, budget for symbolic execution: 424 ms, budget for concrete execution: 423 ms,  -- 
+18:32:49.264 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.indexOf(Object)1
+18:32:49.437 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.indexOf(Object)2
+18:32:49.486 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.indexOf(Object)3
+18:32:49.529 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.indexOf(Object)4
+18:32:49.530 | INFO  | Finished (in 0.269 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.indexOf(Object) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:32:49.534 | DEBUG |  ... 
+18:32:49.534 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.lastIndexOf(Object)
+18:32:49.534 | INFO  |  -- Remaining time budget: 13285 ms, #remaining_methods: 15, budget for method: 885 ms, solver timeout: 442 ms, budget for symbolic execution: 443 ms, budget for concrete execution: 442 ms,  -- 
+18:32:49.537 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.lastIndexOf(Object)1
+18:32:49.708 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.lastIndexOf(Object)2
+18:32:49.757 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.lastIndexOf(Object)3
+18:32:49.802 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.lastIndexOf(Object)4
+18:32:49.802 | INFO  | Finished (in 0.268 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.lastIndexOf(Object) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:32:49.806 | DEBUG |  ... 
+18:32:49.806 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.toShortArray()
+18:32:49.806 | INFO  |  -- Remaining time budget: 13013 ms, #remaining_methods: 14, budget for method: 929 ms, solver timeout: 464 ms, budget for symbolic execution: 465 ms, budget for concrete execution: 464 ms,  -- 
+18:32:49.809 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.toShortArray()1
+18:32:49.974 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.toShortArray()2
+18:32:50.173 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.toShortArray()3
+18:32:50.272 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.ShortArrayAsList.toShortArray()
+18:32:50.302 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.toShortArray()4
+18:32:50.305 | INFO  | Finished (in 0.499 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.toShortArray() 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:32:50.337 | DEBUG |  ... 
+18:32:50.337 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.size()
+18:32:50.338 | INFO  |  -- Remaining time budget: 12482 ms, #remaining_methods: 13, budget for method: 960 ms, solver timeout: 480 ms, budget for symbolic execution: 480 ms, budget for concrete execution: 480 ms,  -- 
+18:32:50.341 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.size()1
+18:32:50.364 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.size()2
+18:32:50.365 | INFO  | Finished (in 0.027 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.size() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:50.365 | DEBUG |  ... 
+18:32:50.366 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.<init>(short[])
+18:32:50.366 | INFO  |  -- Remaining time budget: 12453 ms, #remaining_methods: 12, budget for method: 1037 ms, solver timeout: 518 ms, budget for symbolic execution: 519 ms, budget for concrete execution: 518 ms,  -- 
+18:32:50.369 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.<init>(short[])1
+18:32:50.393 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.<init>(short[])2
+18:32:50.449 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.<init>(short[])3
+18:32:50.449 | INFO  | Finished (in 0.083 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.<init>(short[]) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:32:50.455 | DEBUG |  ... 
+18:32:50.456 | INFO  | Started: method com.google.common.primitives.Shorts.ShortArrayAsList.<init>(short[], int, int)
+18:32:50.456 | INFO  |  -- Remaining time budget: 12363 ms, #remaining_methods: 11, budget for method: 1123 ms, solver timeout: 561 ms, budget for symbolic execution: 562 ms, budget for concrete execution: 561 ms,  -- 
+18:32:50.459 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.<init>(short[], int, int)1
+18:32:50.503 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortArrayAsList.<init>(short[], int, int)2
+18:32:50.504 | INFO  | Finished (in 0.048 sec): method com.google.common.primitives.Shorts.ShortArrayAsList.<init>(short[], int, int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:50.507 | DEBUG |  ... 
+18:32:50.507 | INFO  | Started: method com.google.common.primitives.Shorts.LexicographicalComparator.toString()
+18:32:50.508 | INFO  |  -- Remaining time budget: 12312 ms, #remaining_methods: 10, budget for method: 1231 ms, solver timeout: 615 ms, budget for symbolic execution: 616 ms, budget for concrete execution: 615 ms,  -- 
+18:32:50.515 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class com.google.common.primitives.Shorts$LexicographicalComparator with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:32:50.546 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.LexicographicalComparator.toString()1
+18:32:50.547 | INFO  | Finished (in 0.039 sec): method com.google.common.primitives.Shorts.LexicographicalComparator.toString() 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+18:32:50.548 | DEBUG |  ... 
+18:32:50.548 | INFO  | Started: method com.google.common.primitives.Shorts.LexicographicalComparator.compare(short[], short[])
+18:32:50.548 | INFO  |  -- Remaining time budget: 12271 ms, #remaining_methods: 9, budget for method: 1363 ms, solver timeout: 681 ms, budget for symbolic execution: 682 ms, budget for concrete execution: 681 ms,  -- 
+18:32:50.551 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class com.google.common.primitives.Shorts$LexicographicalComparator with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:32:50.580 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.LexicographicalComparator.compare(short[], short[])1
+18:32:50.601 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.LexicographicalComparator.compare(short[], short[])2
+18:32:50.696 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.LexicographicalComparator.compare(short[], short[])3
+18:32:50.702 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.LexicographicalComparator.compare(short[], short[])4
+18:32:50.751 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.LexicographicalComparator.compare(short[], short[])5
+18:32:50.754 | INFO  | Finished (in 0.205 sec): method com.google.common.primitives.Shorts.LexicographicalComparator.compare(short[], short[]) 
+<StatsForMethod> :
+	#generatedTC=5
+	FAILED 1 time(s) with 1 different exception(s)"
+18:32:50.761 | DEBUG |  ... 
+18:32:50.761 | INFO  | Started: method com.google.common.primitives.Shorts.LexicographicalComparator.valueOf(String)
+18:32:50.761 | INFO  |  -- Remaining time budget: 12058 ms, #remaining_methods: 8, budget for method: 1507 ms, solver timeout: 753 ms, budget for symbolic execution: 754 ms, budget for concrete execution: 753 ms,  -- 
+18:32:50.766 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.LexicographicalComparator.valueOf(String)1
+18:32:51.516 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.LexicographicalComparator.valueOf(String)
+18:32:52.269 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.LexicographicalComparator.valueOf(String)
+18:32:52.361 | INFO  | Finished (in 1.599 sec): method com.google.common.primitives.Shorts.LexicographicalComparator.valueOf(String) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+18:32:52.407 | DEBUG |  ... 
+18:32:52.407 | INFO  | Started: method com.google.common.primitives.Shorts.LexicographicalComparator.values()
+18:32:52.407 | INFO  |  -- Remaining time budget: 10412 ms, #remaining_methods: 7, budget for method: 1487 ms, solver timeout: 743 ms, budget for symbolic execution: 744 ms, budget for concrete execution: 743 ms,  -- 
+18:32:52.410 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.LexicographicalComparator.values()1
+18:32:52.544 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.LexicographicalComparator.values()2
+18:32:52.544 | INFO  | Finished (in 0.136 sec): method com.google.common.primitives.Shorts.LexicographicalComparator.values() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:52.558 | DEBUG |  ... 
+18:32:52.558 | INFO  | Started: method com.google.common.primitives.Shorts.LexicographicalComparator.<init>()
+18:32:52.558 | INFO  |  -- Remaining time budget: 10261 ms, #remaining_methods: 6, budget for method: 1710 ms, solver timeout: 855 ms, budget for symbolic execution: 855 ms, budget for concrete execution: 855 ms,  -- 
+18:32:52.561 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalArgumentException: Cannot reflectively create enum objects
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:417)
+	at com.huawei.utbot.instrumentation.instrumentation.InvokeInstrumentation$invoke$$inlined$run$lambda$2.invoke(InvokeInstrumentation.kt:70)
+	at com.huawei.utbot.common.ThreadBasedExecutor$invokeWithTimeout$1.invoke(ThreadUtil.kt:43)
+	at com.huawei.utbot.common.ThreadBasedExecutor$invokeWithTimeout$1.invoke(ThreadUtil.kt:22)
+	at kotlin.concurrent.ThreadsKt$thread$thread$1.run(Thread.kt:30)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:32:52.619 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.LexicographicalComparator.<init>()1
+18:32:52.620 | INFO  | Finished (in 0.061 sec): method com.google.common.primitives.Shorts.LexicographicalComparator.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+18:32:52.625 | DEBUG |  ... 
+18:32:52.626 | INFO  | Started: method com.google.common.primitives.Shorts.ShortConverter.toString()
+18:32:52.626 | INFO  |  -- Remaining time budget: 10193 ms, #remaining_methods: 5, budget for method: 2038 ms, solver timeout: 1000 ms, budget for symbolic execution: 1019 ms, budget for concrete execution: 1019 ms,  -- 
+18:32:52.629 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class com.google.common.primitives.Shorts$ShortConverter with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:32:52.656 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortConverter.toString()1
+18:32:52.656 | INFO  | Finished (in 0.030 sec): method com.google.common.primitives.Shorts.ShortConverter.toString() 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+18:32:52.657 | DEBUG |  ... 
+18:32:52.657 | INFO  | Started: method com.google.common.primitives.Shorts.ShortConverter.doBackward(Short)
+18:32:52.657 | INFO  |  -- Remaining time budget: 10162 ms, #remaining_methods: 4, budget for method: 2540 ms, solver timeout: 1000 ms, budget for symbolic execution: 1340 ms, budget for concrete execution: 1200 ms,  -- 
+18:32:52.659 | ERROR | Symbolic execution FAILED
+kotlin.reflect.jvm.internal.KotlinReflectionInternalError: Could not compute caller for function: private constructor Short() defined in kotlin.Short[DeserializedClassConstructorDescriptor@62a86e7a] (member = null)
+	at kotlin.reflect.jvm.internal.KFunctionImpl$caller$2.invoke(KFunctionImpl.kt:89) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.KFunctionImpl$caller$2.invoke(KFunctionImpl.kt:36) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.ReflectProperties$LazyVal.invoke(ReflectProperties.java:62) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.ReflectProperties$Val.getValue(ReflectProperties.java:31) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.KFunctionImpl.getCaller(KFunctionImpl.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.ReflectJvmMapping.getJavaMethod(ReflectJvmMapping.kt:63) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.framework.plugin.api.util.IdUtilKt.getExecutableId(IdUtil.kt:394) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createSimpleModelByKClass(UtBotSymbolicEngine.kt:587) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createModelByClassId(UtBotSymbolicEngine.kt:569) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.access$createModelByClassId(UtBotSymbolicEngine.kt:245) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invokeSuspend(UtBotSymbolicEngine.kt:502) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.contest.ContestKt$runGeneration$1$invokeSuspend$$inlined$bracket$lambda$1$1.invokeSuspend(Contest.kt:531) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:32:52.683 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortConverter.doBackward(Short)1
+18:32:53.998 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.ShortConverter.doBackward(Short)
+18:32:55.198 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.ShortConverter.doBackward(Short)
+18:32:55.360 | INFO  | Finished (in 2.702 sec): method com.google.common.primitives.Shorts.ShortConverter.doBackward(Short) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+18:32:55.416 | DEBUG |  ... 
+18:32:55.416 | INFO  | Started: method com.google.common.primitives.Shorts.ShortConverter.doForward(String)
+18:32:55.416 | INFO  |  -- Remaining time budget: 7403 ms, #remaining_methods: 3, budget for method: 2467 ms, solver timeout: 1000 ms, budget for symbolic execution: 1267 ms, budget for concrete execution: 1200 ms,  -- 
+18:32:55.418 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class com.google.common.primitives.Shorts$ShortConverter with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:32:55.663 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortConverter.doForward(String)1
+18:32:56.684 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Shorts.ShortConverter.doForward(String)
+18:32:57.885 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Shorts.ShortConverter.doForward(String)
+18:32:57.926 | INFO  | Finished (in 2.509 sec): method com.google.common.primitives.Shorts.ShortConverter.doForward(String) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+18:32:58.098 | DEBUG |  ... 
+18:32:58.098 | INFO  | Started: method com.google.common.primitives.Shorts.ShortConverter.readResolve()
+18:32:58.098 | INFO  |  -- Remaining time budget: 4721 ms, #remaining_methods: 2, budget for method: 2360 ms, solver timeout: 1000 ms, budget for symbolic execution: 1180 ms, budget for concrete execution: 1180 ms,  -- 
+18:32:58.101 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class com.google.common.primitives.Shorts$ShortConverter with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:32:58.199 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortConverter.readResolve()1
+18:32:58.200 | INFO  | Finished (in 0.101 sec): method com.google.common.primitives.Shorts.ShortConverter.readResolve() 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+18:32:58.212 | DEBUG |  ... 
+18:32:58.212 | INFO  | Started: method com.google.common.primitives.Shorts.ShortConverter.<init>()
+18:32:58.212 | INFO  |  -- Remaining time budget: 4607 ms, #remaining_methods: 1, budget for method: 4607 ms, solver timeout: 1000 ms, budget for symbolic execution: 3407 ms, budget for concrete execution: 1200 ms,  -- 
+18:32:58.215 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortConverter.<init>()1
+18:32:58.281 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Shorts.ShortConverter.<init>()2
+18:32:58.281 | INFO  | Finished (in 0.069 sec): method com.google.common.primitives.Shorts.ShortConverter.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:32:58.291 | INFO  | Started: Flushing tests for [Shorts] on disk
+18:32:58.861 | INFO  | File size for ShortsTest: 123 KB
+18:32:58.862 | INFO  | Finished (in 0.571 sec): Flushing tests for [Shorts] on disk 
+18:32:58.863 | INFO  | Finished (in 21.521 sec): class com.google.common.primitives.Shorts 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 52, 
+	#methods started symbolic exploration = 52
+	#methods with at least one TC = 52
+	#methods with exceptions = 8
+	#generated TC = 170
+	#coverage = null
+[READY]

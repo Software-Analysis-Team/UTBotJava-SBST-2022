@@ -1,0 +1,574 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  GUAVA-110
+
+>>> RUN NUMBER: 3
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/guava/guava/src
+>> /var/benchmarks/projects/guava/guava/target/classes
+>> 6
+>> /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar
+>> /var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 120
+
+
+### COMPUTING METRICS ###: com.google.common.math.IntMath
+
+
+Starting class com.google.common.math.IntMath
+
+
+Ending class com.google.common.math.IntMath
+Creating directory results_utbot-mocks_120/GUAVA-110_3/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/GUAVA-110_3/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/GUAVA-110_3/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java
+
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:8: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:10: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyString;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:10: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyString;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:11: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyInt;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:11: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyInt;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:12: error: package org.mockito does not exist
+import static org.mockito.Mockito.mockStatic;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:12: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mockStatic;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:14: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyLong;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:14: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyLong;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:17: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyBoolean;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:17: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyBoolean;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:18: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.any;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:18: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.any;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:35: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:37: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:39: error: cannot find symbol
+                MathPreconditions.checkPositive(anyString(), anyInt());
+                                                ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:39: error: cannot find symbol
+                MathPreconditions.checkPositive(anyString(), anyInt());
+                                                             ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:99: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:101: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:103: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:103: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:119: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:121: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:123: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:123: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:139: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:141: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:143: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:143: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:169: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:171: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.primitives.Ints.class);
+                           ^
+  symbol:   method mockStatic(Class<Ints>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:173: error: cannot find symbol
+                com.google.common.primitives.Ints.saturatedCast(anyLong());
+                                                                ^
+  symbol:   method anyLong()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:199: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:201: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.primitives.Ints.class);
+                           ^
+  symbol:   method mockStatic(Class<Ints>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:203: error: cannot find symbol
+                com.google.common.primitives.Ints.saturatedCast(anyLong());
+                                                                ^
+  symbol:   method anyLong()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:267: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:269: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:271: error: cannot find symbol
+                MathPreconditions.checkPositive(anyString(), anyInt());
+                                                ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:271: error: cannot find symbol
+                MathPreconditions.checkPositive(anyString(), anyInt());
+                                                             ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:285: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:287: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:289: error: cannot find symbol
+                MathPreconditions.checkPositive(anyString(), anyInt());
+                                                ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:289: error: cannot find symbol
+                MathPreconditions.checkPositive(anyString(), anyInt());
+                                                             ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:415: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:417: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:432: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:434: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:459: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:461: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:476: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:478: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:503: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:505: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:530: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:532: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:534: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:534: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:550: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:552: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:554: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:554: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:570: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:572: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:574: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:574: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:590: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:592: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:594: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:594: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:610: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:612: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:614: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:614: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:630: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:632: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:634: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:634: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:650: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:652: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:654: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:654: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:670: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:672: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:674: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:674: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:690: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:692: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:694: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:694: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:710: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:712: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:714: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:714: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:730: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:732: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:734: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:734: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:750: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:752: error: cannot find symbol
+            mockedStatic = mockStatic(MathPreconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<MathPreconditions>)
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:754: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                   ^
+  symbol:   method anyString()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:754: error: cannot find symbol
+                MathPreconditions.checkNonNegative(anyString(), anyInt());
+                                                                ^
+  symbol:   method anyInt()
+  location: class IntMathTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:2001: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:2002: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java:2004: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/com/google/common/math/IntMathTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+100 errors
+4 warnings
+Failed to compile 'com/google/common/math/IntMathTest.java'!
+shaded.org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)
+	at shaded.org.apache.commons.exec.DefaultExecutor.executeInternal(DefaultExecutor.java:377)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:160)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:147)
+	at sbst.benchmark.TestSuite.compile(TestSuite.java:250)
+	at sbst.benchmark.TestSuite.<init>(TestSuite.java:68)
+	at sbst.benchmark.TranscriptWriter.endClass(TranscriptWriter.java:136)
+	at sbst.benchmark.RunTool.execute(RunTool.java:141)
+	at sbst.benchmark.RunTool.run(RunTool.java:62)
+	at sbst.benchmark.Main.main(Main.java:160)
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 2323
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/guava-26.0-jre_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/checker-qual-2.5.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/error_prone_annotations-2.1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/j2objc-annotations-1.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/jsr305-3.0.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/animal-sniffer-annotations-1.14_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-110_3/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Number of file with coverage information = 1951
+Extracted coverage data for the class com/google/common/math/IntMath
+Number of file with coverage information = 302
+Number of file with coverage information = 22
+Number of file with coverage information = 12
+Number of file with coverage information = 35
+Number of file with coverage information = 1
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 126 mutants 
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: GUAVA-110
+	Class Under Test: com.google.common.math.IntMath
+	Run number: 3
+	Tool preparation time (ms): 13250
+	Tool test cases generation time (ms): 87212
+	Test cases execution time (ms): 16
+	Test case number: 115
+	Uncompilable Test Classes: 1
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 180
+	Lines covered: 0
+	Lines coverage ratio (%): 0.0
+	Conditions total: 164
+	Conditions covered: 0
+	Conditions coverage ratio (%): 0.0
+	Mutants total: 126
+	Mutants covered: 0
+	Mutants coverage ratio (%): 0.0
+	Mutants killed: 0
+	Mutants killed ratio (%): 0.0
+	Mutants alive: 126
+
+
+Class com.google.common.math.IntMath ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 27893
+Killing master process 27893
+Executing command kill -9 27893
+Execution of command kill -9 27893 finished.
+Process was destroyed

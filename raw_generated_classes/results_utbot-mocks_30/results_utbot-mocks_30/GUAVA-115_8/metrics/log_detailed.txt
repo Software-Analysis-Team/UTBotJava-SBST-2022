@@ -1,0 +1,267 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  GUAVA-115
+
+>>> RUN NUMBER: 8
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/guava/guava/src
+>> /var/benchmarks/projects/guava/guava/target/classes
+>> 6
+>> /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar
+>> /var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 30
+
+
+### COMPUTING METRICS ###: com.google.common.util.concurrent.SimpleTimeLimiter
+
+
+Starting class com.google.common.util.concurrent.SimpleTimeLimiter
+
+
+Ending class com.google.common.util.concurrent.SimpleTimeLimiter
+Creating directory results_utbot-mocks_30/GUAVA-115_8/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_30/GUAVA-115_8/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_30/GUAVA-115_8/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java
+
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:26: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:28: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.any;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:28: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.any;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:29: error: package org.mockito does not exist
+import static org.mockito.Mockito.mockStatic;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:29: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mockStatic;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:30: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyBoolean;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:30: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyBoolean;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:31: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyString;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:31: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyString;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:32: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyLong;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:32: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyLong;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:42: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:44: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:46: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:207: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:209: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:212: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:232: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:234: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:237: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:493: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:495: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.collect.Sets.class);
+                           ^
+  symbol:   method mockStatic(Class<Sets>)
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:644: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:646: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:665: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:667: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:700: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:702: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:705: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:724: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:726: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:729: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class SimpleTimeLimiterTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:955: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:956: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java:958: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/com/google/common/util/concurrent/SimpleTimeLimiterTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+31 errors
+4 warnings
+Failed to compile 'com/google/common/util/concurrent/SimpleTimeLimiterTest.java'!
+shaded.org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)
+	at shaded.org.apache.commons.exec.DefaultExecutor.executeInternal(DefaultExecutor.java:377)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:160)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:147)
+	at sbst.benchmark.TestSuite.compile(TestSuite.java:250)
+	at sbst.benchmark.TestSuite.<init>(TestSuite.java:68)
+	at sbst.benchmark.TranscriptWriter.endClass(TranscriptWriter.java:136)
+	at sbst.benchmark.RunTool.execute(RunTool.java:141)
+	at sbst.benchmark.RunTool.run(RunTool.java:62)
+	at sbst.benchmark.Main.main(Main.java:160)
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 2323
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/guava-26.0-jre_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/checker-qual-2.5.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/error_prone_annotations-2.1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/j2objc-annotations-1.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/jsr305-3.0.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/animal-sniffer-annotations-1.14_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-115_8/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Number of file with coverage information = 1951
+Extracted coverage data for the class com/google/common/util/concurrent/SimpleTimeLimiter
+Number of file with coverage information = 302
+Number of file with coverage information = 22
+Number of file with coverage information = 12
+Number of file with coverage information = 35
+Number of file with coverage information = 1
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 41 mutants 
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: GUAVA-115
+	Class Under Test: com.google.common.util.concurrent.SimpleTimeLimiter
+	Run number: 8
+	Tool preparation time (ms): 13200
+	Tool test cases generation time (ms): 21134
+	Test cases execution time (ms): 19
+	Test case number: 33
+	Uncompilable Test Classes: 1
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 110
+	Lines covered: 0
+	Lines coverage ratio (%): 0.0
+	Conditions total: 26
+	Conditions covered: 0
+	Conditions coverage ratio (%): 0.0
+	Mutants total: 41
+	Mutants covered: 0
+	Mutants coverage ratio (%): 0.0
+	Mutants killed: 0
+	Mutants killed ratio (%): 0.0
+	Mutants alive: 41
+
+
+Class com.google.common.util.concurrent.SimpleTimeLimiter ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 6512
+Killing master process 6512
+Executing command kill -9 6512
+Execution of command kill -9 6512 finished.
+Process was destroyed

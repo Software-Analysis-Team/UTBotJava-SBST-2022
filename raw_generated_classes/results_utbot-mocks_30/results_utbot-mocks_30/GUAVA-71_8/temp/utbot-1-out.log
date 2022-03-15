@@ -1,0 +1,287 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+18:33:13.309 | INFO  | Started: warmup: kotlin reflection :: init
+18:33:13.389 | INFO  | Finished (in 0.079 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.collect.SparseImmutableTable 30
+18:33:13.399 | DEBUG | -----------------------------------------------------------------------------
+18:33:13.399 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+18:33:13.400 | INFO  | ClassUnderTest[ FQN: com.google.common.collect.SparseImmutableTable
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: SparseImmutableTableTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+18:33:13.422 | INFO  | Started: class com.google.common.collect.SparseImmutableTable
+18:33:13.423 | INFO  | Started: preparation class class com.google.common.collect.SparseImmutableTable: kotlin reflection :: run
+18:33:13.662 | INFO  | Finished (in 0.238 sec): preparation class class com.google.common.collect.SparseImmutableTable: kotlin reflection :: run 
+18:33:13.663 | INFO  | Started: 2nd optional soot initialization
+18:33:13.664 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+18:33:13.674 | DEBUG |  ... 
+18:33:13.687 | INFO  | Started: method com.google.common.collect.SparseImmutableTable.columnMap()
+18:33:13.688 | INFO  |  -- Remaining time budget: 25223 ms, #remaining_methods: 7, budget for method: 3603 ms, solver timeout: 1000 ms, budget for symbolic execution: 2403 ms, budget for concrete execution: 1200 ms,  -- 
+18:33:14.010 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.util.NoSuchElementException: List is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:212)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.sortOutException(UtExecutionInstrumentation.kt:179)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.access$sortOutException(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:152)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.withStaticFields(UtExecutionInstrumentation.kt:225)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:137)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:33:14.196 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.columnMap()1
+18:33:14.198 | INFO  | Finished (in 0.510 sec): method com.google.common.collect.SparseImmutableTable.columnMap() 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+18:33:14.200 | DEBUG |  ... 
+18:33:14.200 | INFO  | Started: method com.google.common.collect.SparseImmutableTable.rowMap()
+18:33:14.201 | INFO  |  -- Remaining time budget: 24700 ms, #remaining_methods: 6, budget for method: 4116 ms, solver timeout: 1000 ms, budget for symbolic execution: 2916 ms, budget for concrete execution: 1200 ms,  -- 
+18:33:14.209 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.util.NoSuchElementException: List is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:212)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.sortOutException(UtExecutionInstrumentation.kt:179)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.access$sortOutException(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:152)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.withStaticFields(UtExecutionInstrumentation.kt:225)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:137)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:33:14.255 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.rowMap()1
+18:33:14.256 | INFO  | Finished (in 0.055 sec): method com.google.common.collect.SparseImmutableTable.rowMap() 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+18:33:14.257 | DEBUG |  ... 
+18:33:14.257 | INFO  | Started: method com.google.common.collect.SparseImmutableTable.size()
+18:33:14.258 | INFO  |  -- Remaining time budget: 24643 ms, #remaining_methods: 5, budget for method: 4928 ms, solver timeout: 1000 ms, budget for symbolic execution: 3728 ms, budget for concrete execution: 1200 ms,  -- 
+18:33:14.263 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.util.NoSuchElementException: List is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:212)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.sortOutException(UtExecutionInstrumentation.kt:179)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.access$sortOutException(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:152)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.withStaticFields(UtExecutionInstrumentation.kt:225)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:137)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:33:14.304 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.size()1
+18:33:14.304 | INFO  | Finished (in 0.047 sec): method com.google.common.collect.SparseImmutableTable.size() 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+18:33:14.305 | DEBUG |  ... 
+18:33:14.306 | INFO  | Started: method com.google.common.collect.SparseImmutableTable.createSerializedForm()
+18:33:14.306 | INFO  |  -- Remaining time budget: 24594 ms, #remaining_methods: 4, budget for method: 6148 ms, solver timeout: 1000 ms, budget for symbolic execution: 4948 ms, budget for concrete execution: 1200 ms,  -- 
+18:33:14.317 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.util.NoSuchElementException: List is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:212)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.sortOutException(UtExecutionInstrumentation.kt:179)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.access$sortOutException(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:152)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.withStaticFields(UtExecutionInstrumentation.kt:225)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:137)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:33:15.354 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.createSerializedForm()1
+18:33:15.528 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.createSerializedForm()2
+18:33:15.558 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.createSerializedForm()3
+18:33:15.607 | INFO  | Finished (in 1.300 sec): method com.google.common.collect.SparseImmutableTable.createSerializedForm() 
+<StatsForMethod> :
+	#generatedTC=3
+	FAILED 1 time(s) with 1 different exception(s)"
+18:33:15.636 | DEBUG |  ... 
+18:33:15.637 | INFO  | Started: method com.google.common.collect.SparseImmutableTable.getCell(int)
+18:33:15.637 | INFO  |  -- Remaining time budget: 23264 ms, #remaining_methods: 3, budget for method: 7754 ms, solver timeout: 1000 ms, budget for symbolic execution: 6554 ms, budget for concrete execution: 1200 ms,  -- 
+18:33:15.644 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.util.NoSuchElementException: List is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:212)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.sortOutException(UtExecutionInstrumentation.kt:179)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.access$sortOutException(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:152)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.withStaticFields(UtExecutionInstrumentation.kt:225)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:137)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:33:15.675 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)1
+18:33:15.697 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)2
+18:33:15.894 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)3
+18:33:15.921 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)4
+18:33:15.946 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)5
+18:33:16.025 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)6
+18:33:16.359 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)7
+18:33:16.514 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)8
+18:33:16.663 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)9
+18:33:16.803 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)10
+18:33:17.001 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)11
+18:33:17.218 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)12
+18:33:17.646 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)13
+18:33:18.001 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)14
+18:33:19.261 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)15
+18:33:20.499 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)16
+18:33:21.400 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)17
+18:33:22.191 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.SparseImmutableTable.getCell(int)
+18:33:22.785 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)18
+18:33:23.272 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getCell(int)19
+18:33:23.393 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.SparseImmutableTable.getCell(int)
+18:33:23.593 | INFO  | Finished (in 7.956 sec): method com.google.common.collect.SparseImmutableTable.getCell(int) 
+<StatsForMethod> :
+	#generatedTC=19
+	FAILED 1 time(s) with 1 different exception(s)"
+18:33:23.724 | DEBUG |  ... 
+18:33:23.725 | INFO  | Started: method com.google.common.collect.SparseImmutableTable.getValue(int)
+18:33:23.725 | INFO  |  -- Remaining time budget: 15175 ms, #remaining_methods: 2, budget for method: 7587 ms, solver timeout: 1000 ms, budget for symbolic execution: 6387 ms, budget for concrete execution: 1200 ms,  -- 
+18:33:23.731 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.util.NoSuchElementException: List is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.first(_Collections.kt:212)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.sortOutException(UtExecutionInstrumentation.kt:179)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.access$sortOutException(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:152)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.withStaticFields(UtExecutionInstrumentation.kt:225)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:137)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:33:23.764 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getValue(int)1
+18:33:23.787 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getValue(int)2
+18:33:23.950 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getValue(int)3
+18:33:23.975 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getValue(int)4
+18:33:23.997 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getValue(int)5
+18:33:24.089 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getValue(int)6
+18:33:24.160 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getValue(int)7
+18:33:24.237 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getValue(int)8
+18:33:24.349 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.getValue(int)9
+18:33:24.409 | INFO  | Finished (in 0.683 sec): method com.google.common.collect.SparseImmutableTable.getValue(int) 
+<StatsForMethod> :
+	#generatedTC=9
+	FAILED 1 time(s) with 1 different exception(s)"
+18:33:24.415 | DEBUG |  ... 
+18:33:24.416 | INFO  | Started: method com.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)
+18:33:24.416 | INFO  |  -- Remaining time budget: 14484 ms, #remaining_methods: 1, budget for method: 14484 ms, solver timeout: 1000 ms, budget for symbolic execution: 13284 ms, budget for concrete execution: 1200 ms,  -- 
+18:33:24.433 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)1
+18:33:24.556 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)2
+18:33:24.580 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)3
+18:33:24.666 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)4
+18:33:24.775 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)5
+18:33:24.955 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)6
+18:33:24.966 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)7
+18:33:24.990 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)8
+18:33:25.135 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)9
+18:33:25.232 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)10
+18:33:25.448 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)11
+18:33:26.581 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)12
+18:33:27.563 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)13
+18:33:27.731 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)14
+18:33:28.261 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)15
+18:33:28.986 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)16
+18:33:30.506 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)17
+18:33:30.919 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)18
+18:33:37.701 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)
+18:33:38.901 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet)
+18:33:38.903 | WARN  | Cancelling job because timeout 25500 ms elapsed (real cancellation can take time)
+18:33:39.083 | INFO  | Finished (in 14.667 sec): method com.google.common.collect.SparseImmutableTable.<init>(ImmutableList, ImmutableSet, ImmutableSet) 
+<StatsForMethod> :
+	#generatedTC=18
+	WITH NO EXCEPTIONS
+18:33:39.105 | INFO  | Started: Flushing tests for [SparseImmutableTable] on disk
+18:33:39.552 | INFO  | File size for SparseImmutableTableTest: 78 KB
+18:33:39.554 | INFO  | Finished (in 0.449 sec): Flushing tests for [SparseImmutableTable] on disk 
+18:33:39.555 | INFO  | Finished (in 26.132 sec): class com.google.common.collect.SparseImmutableTable 
+<StatsForClass> :
+	canceled by timeout = true
+	#methods = 7, 
+	#methods started symbolic exploration = 7
+	#methods with at least one TC = 7
+	#methods with exceptions = 6
+	#generated TC = 52
+	#coverage = null
+[READY]

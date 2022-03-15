@@ -1,0 +1,230 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+19:45:25.615 | INFO  | Started: warmup: kotlin reflection :: init
+19:45:25.689 | INFO  | Finished (in 0.074 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.protocol.transaction.BranchReportRequest 30
+19:45:25.700 | DEBUG | -----------------------------------------------------------------------------
+19:45:25.701 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+19:45:25.703 | INFO  | ClassUnderTest[ FQN: io.seata.core.protocol.transaction.BranchReportRequest
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: BranchReportRequestTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/protocol/transaction/BranchReportRequestTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+19:45:25.730 | INFO  | Started: class io.seata.core.protocol.transaction.BranchReportRequest
+19:45:25.731 | INFO  | Started: preparation class class io.seata.core.protocol.transaction.BranchReportRequest: kotlin reflection :: run
+19:45:25.811 | INFO  | Finished (in 0.079 sec): preparation class class io.seata.core.protocol.transaction.BranchReportRequest: kotlin reflection :: run 
+19:45:25.811 | INFO  | Started: 2nd optional soot initialization
+19:45:25.813 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+19:45:25.823 | DEBUG |  ... 
+19:45:25.843 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.toString()
+19:45:25.843 | INFO  |  -- Remaining time budget: 25377 ms, #remaining_methods: 18, budget for method: 1409 ms, solver timeout: 704 ms, budget for symbolic execution: 705 ms, budget for concrete execution: 704 ms,  -- 
+19:45:26.188 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.toString()1
+19:45:26.538 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.transaction.BranchReportRequest.toString()
+19:45:27.244 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.transaction.BranchReportRequest.toString()
+19:45:27.272 | INFO  | Finished (in 1.429 sec): method io.seata.core.protocol.transaction.BranchReportRequest.toString() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+19:45:27.317 | DEBUG |  ... 
+19:45:27.320 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.decode(ByteBuffer)
+19:45:27.320 | INFO  |  -- Remaining time budget: 23883 ms, #remaining_methods: 17, budget for method: 1404 ms, solver timeout: 702 ms, budget for symbolic execution: 702 ms, budget for concrete execution: 702 ms,  -- 
+19:45:27.349 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.decode(ByteBuffer)1
+19:45:27.408 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.decode(ByteBuffer)2
+19:45:27.622 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.decode(ByteBuffer)3
+19:45:28.022 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.transaction.BranchReportRequest.decode(ByteBuffer)
+19:45:28.724 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.transaction.BranchReportRequest.decode(ByteBuffer)
+19:45:29.457 | INFO  | Finished (in 2.137 sec): method io.seata.core.protocol.transaction.BranchReportRequest.decode(ByteBuffer) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:45:29.483 | DEBUG |  ... 
+19:45:29.484 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.encode()
+19:45:29.484 | INFO  |  -- Remaining time budget: 21718 ms, #remaining_methods: 16, budget for method: 1357 ms, solver timeout: 678 ms, budget for symbolic execution: 679 ms, budget for concrete execution: 678 ms,  -- 
+19:45:29.500 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.encode()1
+19:45:29.573 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.encode()2
+19:45:29.612 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.encode()3
+19:45:29.680 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.encode()4
+19:45:29.722 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.encode()5
+19:45:29.756 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.encode()6
+19:45:30.164 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.transaction.BranchReportRequest.encode()
+19:45:30.842 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.transaction.BranchReportRequest.encode()
+19:45:30.843 | DEBUG |  ... 
+19:45:30.844 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.getTypeCode()
+19:45:30.845 | INFO  |  -- Remaining time budget: 20358 ms, #remaining_methods: 15, budget for method: 1357 ms, solver timeout: 678 ms, budget for symbolic execution: 679 ms, budget for concrete execution: 678 ms,  -- 
+19:45:30.857 | INFO  | Finished (in 1.372 sec): method io.seata.core.protocol.transaction.BranchReportRequest.encode() 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+19:45:31.080 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getTypeCode()1
+19:45:31.105 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getTypeCode()2
+19:45:31.105 | INFO  | Finished (in 0.260 sec): method io.seata.core.protocol.transaction.BranchReportRequest.getTypeCode() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:31.106 | DEBUG |  ... 
+19:45:31.106 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.handle(RpcContext)
+19:45:31.107 | INFO  |  -- Remaining time budget: 20096 ms, #remaining_methods: 14, budget for method: 1435 ms, solver timeout: 717 ms, budget for symbolic execution: 718 ms, budget for concrete execution: 717 ms,  -- 
+19:45:31.133 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.handle(RpcContext)1
+19:45:31.169 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.handle(RpcContext)2
+19:45:31.194 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.handle(RpcContext)3
+19:45:31.195 | INFO  | Finished (in 0.088 sec): method io.seata.core.protocol.transaction.BranchReportRequest.handle(RpcContext) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:45:31.196 | DEBUG |  ... 
+19:45:31.196 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.getStatus()
+19:45:31.196 | INFO  |  -- Remaining time budget: 20006 ms, #remaining_methods: 13, budget for method: 1538 ms, solver timeout: 769 ms, budget for symbolic execution: 769 ms, budget for concrete execution: 769 ms,  -- 
+19:45:31.218 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getStatus()1
+19:45:31.249 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getStatus()2
+19:45:31.249 | INFO  | Finished (in 0.053 sec): method io.seata.core.protocol.transaction.BranchReportRequest.getStatus() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:31.250 | DEBUG |  ... 
+19:45:31.250 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.getApplicationData()
+19:45:31.251 | INFO  |  -- Remaining time budget: 19952 ms, #remaining_methods: 12, budget for method: 1662 ms, solver timeout: 831 ms, budget for symbolic execution: 831 ms, budget for concrete execution: 831 ms,  -- 
+19:45:31.271 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getApplicationData()1
+19:45:31.297 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getApplicationData()2
+19:45:31.298 | INFO  | Finished (in 0.047 sec): method io.seata.core.protocol.transaction.BranchReportRequest.getApplicationData() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:31.299 | DEBUG |  ... 
+19:45:31.299 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.setXid(String)
+19:45:31.300 | INFO  |  -- Remaining time budget: 19903 ms, #remaining_methods: 11, budget for method: 1809 ms, solver timeout: 904 ms, budget for symbolic execution: 905 ms, budget for concrete execution: 904 ms,  -- 
+19:45:31.674 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.setXid(String)1
+19:45:31.716 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.setXid(String)2
+19:45:31.716 | INFO  | Finished (in 0.416 sec): method io.seata.core.protocol.transaction.BranchReportRequest.setXid(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:31.717 | DEBUG |  ... 
+19:45:31.717 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.getBranchId()
+19:45:31.717 | INFO  |  -- Remaining time budget: 19485 ms, #remaining_methods: 10, budget for method: 1948 ms, solver timeout: 974 ms, budget for symbolic execution: 974 ms, budget for concrete execution: 974 ms,  -- 
+19:45:31.732 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getBranchId()1
+19:45:31.757 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getBranchId()2
+19:45:31.757 | INFO  | Finished (in 0.040 sec): method io.seata.core.protocol.transaction.BranchReportRequest.getBranchId() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:31.758 | DEBUG |  ... 
+19:45:31.758 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.setResourceId(String)
+19:45:31.759 | INFO  |  -- Remaining time budget: 19444 ms, #remaining_methods: 9, budget for method: 2160 ms, solver timeout: 1000 ms, budget for symbolic execution: 1080 ms, budget for concrete execution: 1080 ms,  -- 
+19:45:31.773 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.setResourceId(String)1
+19:45:31.806 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.setResourceId(String)2
+19:45:31.806 | INFO  | Finished (in 0.047 sec): method io.seata.core.protocol.transaction.BranchReportRequest.setResourceId(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:31.807 | DEBUG |  ... 
+19:45:31.807 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.getBranchType()
+19:45:31.807 | INFO  |  -- Remaining time budget: 19395 ms, #remaining_methods: 8, budget for method: 2424 ms, solver timeout: 1000 ms, budget for symbolic execution: 1224 ms, budget for concrete execution: 1200 ms,  -- 
+19:45:31.820 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getBranchType()1
+19:45:31.846 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getBranchType()2
+19:45:31.846 | INFO  | Finished (in 0.039 sec): method io.seata.core.protocol.transaction.BranchReportRequest.getBranchType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:31.846 | DEBUG |  ... 
+19:45:31.847 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.setApplicationData(String)
+19:45:31.847 | INFO  |  -- Remaining time budget: 19356 ms, #remaining_methods: 7, budget for method: 2765 ms, solver timeout: 1000 ms, budget for symbolic execution: 1565 ms, budget for concrete execution: 1200 ms,  -- 
+19:45:31.862 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.setApplicationData(String)1
+19:45:31.889 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.setApplicationData(String)2
+19:45:31.889 | INFO  | Finished (in 0.043 sec): method io.seata.core.protocol.transaction.BranchReportRequest.setApplicationData(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:31.890 | DEBUG |  ... 
+19:45:31.890 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.setBranchId(long)
+19:45:31.890 | INFO  |  -- Remaining time budget: 19312 ms, #remaining_methods: 6, budget for method: 3218 ms, solver timeout: 1000 ms, budget for symbolic execution: 2018 ms, budget for concrete execution: 1200 ms,  -- 
+19:45:31.898 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.setBranchId(long)1
+19:45:31.923 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.setBranchId(long)2
+19:45:31.923 | INFO  | Finished (in 0.033 sec): method io.seata.core.protocol.transaction.BranchReportRequest.setBranchId(long) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:31.924 | DEBUG |  ... 
+19:45:31.924 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.setStatus(BranchStatus)
+19:45:31.924 | INFO  |  -- Remaining time budget: 19278 ms, #remaining_methods: 5, budget for method: 3855 ms, solver timeout: 1000 ms, budget for symbolic execution: 2655 ms, budget for concrete execution: 1200 ms,  -- 
+19:45:31.938 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.setStatus(BranchStatus)1
+19:45:31.966 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.setStatus(BranchStatus)2
+19:45:31.967 | INFO  | Finished (in 0.043 sec): method io.seata.core.protocol.transaction.BranchReportRequest.setStatus(BranchStatus) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:31.968 | DEBUG |  ... 
+19:45:31.968 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.setBranchType(BranchType)
+19:45:31.968 | INFO  |  -- Remaining time budget: 19234 ms, #remaining_methods: 4, budget for method: 4808 ms, solver timeout: 1000 ms, budget for symbolic execution: 3608 ms, budget for concrete execution: 1200 ms,  -- 
+19:45:31.977 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class io.seata.core.model.BranchType with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+19:45:32.006 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.setBranchType(BranchType)1
+19:45:32.006 | INFO  | Finished (in 0.038 sec): method io.seata.core.protocol.transaction.BranchReportRequest.setBranchType(BranchType) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+19:45:32.007 | DEBUG |  ... 
+19:45:32.007 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.getResourceId()
+19:45:32.007 | INFO  |  -- Remaining time budget: 19195 ms, #remaining_methods: 3, budget for method: 6398 ms, solver timeout: 1000 ms, budget for symbolic execution: 5198 ms, budget for concrete execution: 1200 ms,  -- 
+19:45:32.017 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getResourceId()1
+19:45:32.043 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getResourceId()2
+19:45:32.043 | INFO  | Finished (in 0.035 sec): method io.seata.core.protocol.transaction.BranchReportRequest.getResourceId() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:32.043 | DEBUG |  ... 
+19:45:32.044 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.getXid()
+19:45:32.044 | INFO  |  -- Remaining time budget: 19159 ms, #remaining_methods: 2, budget for method: 9579 ms, solver timeout: 1000 ms, budget for symbolic execution: 8379 ms, budget for concrete execution: 1200 ms,  -- 
+19:45:32.051 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getXid()1
+19:45:32.076 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.getXid()2
+19:45:32.076 | INFO  | Finished (in 0.032 sec): method io.seata.core.protocol.transaction.BranchReportRequest.getXid() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:45:32.077 | DEBUG |  ... 
+19:45:32.077 | INFO  | Started: method io.seata.core.protocol.transaction.BranchReportRequest.<init>()
+19:45:32.077 | INFO  |  -- Remaining time budget: 19125 ms, #remaining_methods: 1, budget for method: 19125 ms, solver timeout: 1000 ms, budget for symbolic execution: 17925 ms, budget for concrete execution: 1200 ms,  -- 
+19:45:32.094 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.transaction.BranchReportRequest.<init>()1
+19:45:32.242 | INFO  | Finished (in 0.164 sec): method io.seata.core.protocol.transaction.BranchReportRequest.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+19:45:32.258 | INFO  | Started: Flushing tests for [BranchReportRequest] on disk
+19:45:32.474 | INFO  | File size for BranchReportRequestTest: 28 KB
+19:45:32.475 | INFO  | Finished (in 0.217 sec): Flushing tests for [BranchReportRequest] on disk 
+19:45:32.476 | INFO  | Finished (in 6.746 sec): class io.seata.core.protocol.transaction.BranchReportRequest 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 18, 
+	#methods started symbolic exploration = 18
+	#methods with at least one TC = 18
+	#methods with exceptions = 1
+	#generated TC = 39
+	#coverage = null
+[READY]

@@ -1,0 +1,258 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+16:57:36.321 | INFO  | Started: warmup: kotlin reflection :: init
+16:57:36.433 | INFO  | Finished (in 0.111 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.support.reflect.code.CtStatementListImpl 30
+16:57:36.446 | DEBUG | -----------------------------------------------------------------------------
+16:57:36.447 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+16:57:36.449 | INFO  | ClassUnderTest[ FQN: spoon.support.reflect.code.CtStatementListImpl
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: CtStatementListImplTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/support/reflect/code/CtStatementListImplTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+16:57:36.482 | INFO  | Started: class spoon.support.reflect.code.CtStatementListImpl
+16:57:36.483 | INFO  | Started: preparation class class spoon.support.reflect.code.CtStatementListImpl: kotlin reflection :: run
+16:57:36.930 | INFO  | Finished (in 0.447 sec): preparation class class spoon.support.reflect.code.CtStatementListImpl: kotlin reflection :: run 
+16:57:36.931 | INFO  | Started: 2nd optional soot initialization
+16:57:36.933 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+16:57:36.941 | DEBUG |  ... 
+16:57:36.952 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.accept(CtVisitor)
+16:57:36.953 | INFO  |  -- Remaining time budget: 25005 ms, #remaining_methods: 22, budget for method: 1136 ms, solver timeout: 568 ms, budget for symbolic execution: 568 ms, budget for concrete execution: 568 ms,  -- 
+16:57:37.401 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.accept(CtVisitor)1
+16:57:37.522 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.accept(CtVisitor)
+16:57:38.328 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.accept(CtVisitor)
+16:57:38.395 | INFO  | Finished (in 1.443 sec): method spoon.support.reflect.code.CtStatementListImpl.accept(CtVisitor) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:57:38.397 | DEBUG |  ... 
+16:57:38.398 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.clone()
+16:57:38.398 | INFO  |  -- Remaining time budget: 23550 ms, #remaining_methods: 21, budget for method: 1121 ms, solver timeout: 560 ms, budget for symbolic execution: 561 ms, budget for concrete execution: 560 ms,  -- 
+16:57:38.646 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.clone()1
+16:57:38.745 | INFO  | Finished (in 0.347 sec): method spoon.support.reflect.code.CtStatementListImpl.clone() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:57:38.751 | DEBUG |  ... 
+16:57:38.752 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.setPosition(SourcePosition)
+16:57:38.752 | INFO  |  -- Remaining time budget: 23196 ms, #remaining_methods: 20, budget for method: 1159 ms, solver timeout: 579 ms, budget for symbolic execution: 580 ms, budget for concrete execution: 579 ms,  -- 
+16:57:38.761 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.setPosition(SourcePosition)1
+16:57:39.332 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.setPosition(SourcePosition)
+16:57:39.912 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.setPosition(SourcePosition)
+16:57:40.102 | INFO  | Finished (in 1.350 sec): method spoon.support.reflect.code.CtStatementListImpl.setPosition(SourcePosition) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:57:40.116 | DEBUG |  ... 
+16:57:40.116 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.iterator()
+16:57:40.117 | INFO  |  -- Remaining time budget: 21832 ms, #remaining_methods: 19, budget for method: 1149 ms, solver timeout: 574 ms, budget for symbolic execution: 575 ms, budget for concrete execution: 574 ms,  -- 
+16:57:40.125 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.iterator()1
+16:57:40.692 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.iterator()
+16:57:41.266 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.iterator()
+16:57:41.532 | INFO  | Finished (in 1.416 sec): method spoon.support.reflect.code.CtStatementListImpl.iterator() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:57:41.560 | DEBUG |  ... 
+16:57:41.561 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatementList)
+16:57:41.562 | INFO  |  -- Remaining time budget: 20387 ms, #remaining_methods: 18, budget for method: 1132 ms, solver timeout: 566 ms, budget for symbolic execution: 566 ms, budget for concrete execution: 566 ms,  -- 
+16:57:41.573 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatementList)1
+16:57:41.663 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatementList)2
+16:57:42.128 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatementList)
+16:57:42.694 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatementList)
+16:57:42.805 | INFO  | Finished (in 1.243 sec): method spoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatementList) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:57:42.820 | DEBUG |  ... 
+16:57:42.821 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatement)
+16:57:42.821 | INFO  |  -- Remaining time budget: 19127 ms, #remaining_methods: 17, budget for method: 1125 ms, solver timeout: 562 ms, budget for symbolic execution: 563 ms, budget for concrete execution: 562 ms,  -- 
+16:57:42.829 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatement)1
+16:57:42.891 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatement)2
+16:57:43.385 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatement)
+16:57:43.947 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatement)
+16:57:44.011 | INFO  | Finished (in 1.190 sec): method spoon.support.reflect.code.CtStatementListImpl.insertBefore(Filter, CtStatement) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:57:44.026 | DEBUG |  ... 
+16:57:44.027 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatement)
+16:57:44.027 | INFO  |  -- Remaining time budget: 17921 ms, #remaining_methods: 16, budget for method: 1120 ms, solver timeout: 560 ms, budget for symbolic execution: 560 ms, budget for concrete execution: 560 ms,  -- 
+16:57:44.035 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatement)1
+16:57:44.096 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatement)2
+16:57:44.587 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatement)
+16:57:45.148 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatement)
+16:57:45.205 | INFO  | Finished (in 1.178 sec): method spoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatement) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:57:45.220 | DEBUG |  ... 
+16:57:45.220 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatementList)
+16:57:45.220 | INFO  |  -- Remaining time budget: 16728 ms, #remaining_methods: 15, budget for method: 1115 ms, solver timeout: 557 ms, budget for symbolic execution: 558 ms, budget for concrete execution: 557 ms,  -- 
+16:57:45.227 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatementList)1
+16:57:45.287 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatementList)2
+16:57:45.779 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatementList)
+16:57:46.336 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatementList)
+16:57:46.391 | INFO  | Finished (in 1.171 sec): method spoon.support.reflect.code.CtStatementListImpl.insertAfter(Filter, CtStatementList) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:57:46.405 | DEBUG |  ... 
+16:57:46.406 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.insertEnd(CtStatement)
+16:57:46.406 | INFO  |  -- Remaining time budget: 15542 ms, #remaining_methods: 14, budget for method: 1110 ms, solver timeout: 555 ms, budget for symbolic execution: 555 ms, budget for concrete execution: 555 ms,  -- 
+16:57:46.416 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertEnd(CtStatement)1
+16:57:46.962 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.insertEnd(CtStatement)
+16:57:47.517 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.insertEnd(CtStatement)
+16:57:47.546 | INFO  | Finished (in 1.140 sec): method spoon.support.reflect.code.CtStatementListImpl.insertEnd(CtStatement) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:57:47.564 | DEBUG |  ... 
+16:57:47.565 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.insertEnd(CtStatementList)
+16:57:47.565 | INFO  |  -- Remaining time budget: 14384 ms, #remaining_methods: 13, budget for method: 1106 ms, solver timeout: 553 ms, budget for symbolic execution: 553 ms, budget for concrete execution: 553 ms,  -- 
+16:57:47.573 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertEnd(CtStatementList)1
+16:57:47.619 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertEnd(CtStatementList)2
+16:57:48.118 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.insertEnd(CtStatementList)
+16:57:48.671 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.insertEnd(CtStatementList)
+16:57:48.747 | INFO  | Finished (in 1.182 sec): method spoon.support.reflect.code.CtStatementListImpl.insertEnd(CtStatementList) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:57:48.758 | DEBUG |  ... 
+16:57:48.759 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.getStatement(int)
+16:57:48.759 | INFO  |  -- Remaining time budget: 13190 ms, #remaining_methods: 12, budget for method: 1099 ms, solver timeout: 549 ms, budget for symbolic execution: 550 ms, budget for concrete execution: 549 ms,  -- 
+16:57:48.765 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.getStatement(int)1
+16:57:49.309 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.getStatement(int)
+16:57:49.859 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.getStatement(int)
+16:57:50.090 | INFO  | Finished (in 1.331 sec): method spoon.support.reflect.code.CtStatementListImpl.getStatement(int) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:57:50.117 | DEBUG |  ... 
+16:57:50.117 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.getLastStatement()
+16:57:50.118 | INFO  |  -- Remaining time budget: 11831 ms, #remaining_methods: 11, budget for method: 1075 ms, solver timeout: 537 ms, budget for symbolic execution: 538 ms, budget for concrete execution: 537 ms,  -- 
+16:57:50.122 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.getLastStatement()1
+16:57:50.656 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.getLastStatement()
+16:57:51.193 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.getLastStatement()
+16:57:51.433 | INFO  | Finished (in 1.315 sec): method spoon.support.reflect.code.CtStatementListImpl.getLastStatement() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:57:51.462 | DEBUG |  ... 
+16:57:51.462 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.removeStatement(CtStatement)
+16:57:51.463 | INFO  |  -- Remaining time budget: 10486 ms, #remaining_methods: 10, budget for method: 1048 ms, solver timeout: 524 ms, budget for symbolic execution: 524 ms, budget for concrete execution: 524 ms,  -- 
+16:57:51.469 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.removeStatement(CtStatement)1
+16:57:51.524 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.removeStatement(CtStatement)2
+16:57:51.594 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.removeStatement(CtStatement)3
+16:57:51.746 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.removeStatement(CtStatement)4
+16:57:51.955 | INFO  | Finished (in 0.492 sec): method spoon.support.reflect.code.CtStatementListImpl.removeStatement(CtStatement) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:57:51.971 | DEBUG |  ... 
+16:57:51.972 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatement)
+16:57:51.972 | INFO  |  -- Remaining time budget: 9976 ms, #remaining_methods: 9, budget for method: 1108 ms, solver timeout: 554 ms, budget for symbolic execution: 554 ms, budget for concrete execution: 554 ms,  -- 
+16:57:51.976 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatement)1
+16:57:52.054 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatement)2
+16:57:52.405 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatement)3
+16:57:52.526 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatement)
+16:57:53.081 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatement)
+16:57:53.116 | INFO  | Finished (in 1.144 sec): method spoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatement) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:57:53.164 | DEBUG |  ... 
+16:57:53.165 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatementList)
+16:57:53.165 | INFO  |  -- Remaining time budget: 8783 ms, #remaining_methods: 8, budget for method: 1097 ms, solver timeout: 548 ms, budget for symbolic execution: 549 ms, budget for concrete execution: 548 ms,  -- 
+16:57:53.170 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatementList)1
+16:57:53.247 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatementList)2
+16:57:53.271 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatementList)3
+16:57:53.714 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatementList)
+16:57:54.263 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatementList)
+16:57:54.397 | INFO  | Finished (in 1.232 sec): method spoon.support.reflect.code.CtStatementListImpl.insertBegin(CtStatementList) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:57:54.417 | DEBUG |  ... 
+16:57:54.417 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.addStatement(int, CtStatement)
+16:57:54.418 | INFO  |  -- Remaining time budget: 7531 ms, #remaining_methods: 7, budget for method: 1075 ms, solver timeout: 537 ms, budget for symbolic execution: 538 ms, budget for concrete execution: 537 ms,  -- 
+16:57:54.423 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.addStatement(int, CtStatement)1
+16:57:54.528 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.addStatement(int, CtStatement)2
+16:57:54.692 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.addStatement(int, CtStatement)3
+16:57:54.787 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.addStatement(int, CtStatement)4
+16:57:54.956 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.addStatement(int, CtStatement)
+16:57:55.017 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.addStatement(int, CtStatement)5
+16:57:55.319 | INFO  | Finished (in 0.901 sec): method spoon.support.reflect.code.CtStatementListImpl.addStatement(int, CtStatement) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+16:57:55.357 | DEBUG |  ... 
+16:57:55.358 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.addStatement(CtStatement)
+16:57:55.358 | INFO  |  -- Remaining time budget: 6591 ms, #remaining_methods: 6, budget for method: 1098 ms, solver timeout: 549 ms, budget for symbolic execution: 549 ms, budget for concrete execution: 549 ms,  -- 
+16:57:55.362 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.addStatement(CtStatement)1
+16:57:55.907 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.addStatement(CtStatement)
+16:57:56.457 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.addStatement(CtStatement)
+16:57:56.721 | INFO  | Finished (in 1.363 sec): method spoon.support.reflect.code.CtStatementListImpl.addStatement(CtStatement) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:57:56.750 | DEBUG |  ... 
+16:57:56.750 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.getStatements()
+16:57:56.751 | INFO  |  -- Remaining time budget: 5198 ms, #remaining_methods: 5, budget for method: 1039 ms, solver timeout: 519 ms, budget for symbolic execution: 520 ms, budget for concrete execution: 519 ms,  -- 
+16:57:56.755 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.getStatements()1
+16:57:56.783 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.getStatements()2
+16:57:56.783 | INFO  | Finished (in 0.033 sec): method spoon.support.reflect.code.CtStatementListImpl.getStatements() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:57:56.784 | DEBUG |  ... 
+16:57:56.785 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.setStatements(List)
+16:57:56.785 | INFO  |  -- Remaining time budget: 5164 ms, #remaining_methods: 4, budget for method: 1291 ms, solver timeout: 645 ms, budget for symbolic execution: 646 ms, budget for concrete execution: 645 ms,  -- 
+16:57:56.788 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.setStatements(List)1
+16:57:56.880 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.setStatements(List)2
+16:57:57.431 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtStatementListImpl.setStatements(List)
+16:57:58.077 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtStatementListImpl.setStatements(List)
+16:57:58.255 | INFO  | Finished (in 1.471 sec): method spoon.support.reflect.code.CtStatementListImpl.setStatements(List) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:57:58.284 | DEBUG |  ... 
+16:57:58.284 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.getSubstitution(CtType)
+16:57:58.284 | INFO  |  -- Remaining time budget: 3664 ms, #remaining_methods: 3, budget for method: 1221 ms, solver timeout: 610 ms, budget for symbolic execution: 611 ms, budget for concrete execution: 610 ms,  -- 
+16:57:58.363 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.getSubstitution(CtType)1
+16:57:58.492 | INFO  | Finished (in 0.207 sec): method spoon.support.reflect.code.CtStatementListImpl.getSubstitution(CtType) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:57:58.497 | DEBUG |  ... 
+16:57:58.498 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.ensureModifiableStatementsList()
+16:57:58.498 | INFO  |  -- Remaining time budget: 3450 ms, #remaining_methods: 2, budget for method: 1725 ms, solver timeout: 862 ms, budget for symbolic execution: 863 ms, budget for concrete execution: 862 ms,  -- 
+16:57:58.502 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.ensureModifiableStatementsList()1
+16:57:58.555 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.ensureModifiableStatementsList()2
+16:57:58.611 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.ensureModifiableStatementsList()3
+16:57:58.611 | INFO  | Finished (in 0.113 sec): method spoon.support.reflect.code.CtStatementListImpl.ensureModifiableStatementsList() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:57:58.617 | DEBUG |  ... 
+16:57:58.618 | INFO  | Started: method spoon.support.reflect.code.CtStatementListImpl.<init>()
+16:57:58.618 | INFO  |  -- Remaining time budget: 3330 ms, #remaining_methods: 1, budget for method: 3330 ms, solver timeout: 1000 ms, budget for symbolic execution: 2130 ms, budget for concrete execution: 1200 ms,  -- 
+16:57:58.623 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtStatementListImpl.<init>()1
+16:57:58.705 | INFO  | Finished (in 0.087 sec): method spoon.support.reflect.code.CtStatementListImpl.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:57:58.715 | INFO  | Started: Flushing tests for [CtStatementListImpl] on disk
+16:57:59.284 | INFO  | File size for CtStatementListImplTest: 34 KB
+16:57:59.285 | INFO  | Finished (in 0.570 sec): Flushing tests for [CtStatementListImpl] on disk 
+16:57:59.286 | INFO  | Finished (in 22.804 sec): class spoon.support.reflect.code.CtStatementListImpl 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 22, 
+	#methods started symbolic exploration = 22
+	#methods with at least one TC = 22
+	#methods with exceptions = 0
+	#generated TC = 42
+	#coverage = null
+[READY]

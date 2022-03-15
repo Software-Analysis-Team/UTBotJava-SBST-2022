@@ -1,0 +1,818 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/fastjson/target/classes, classpathString=/var/benchmarks/projects/fastjson/target/classes:/var/benchmarks/projects/fastjson/target/fastjson-1.2.50-SNAPSHOT.jar:/var/benchmarks/projects/./fastjson/target/dependency/deeptestutils-1.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-beanutils-1.8.0.jar:/var/benchmarks/projects/fastjson/target/dependency/woodstox-core-asl-4.4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-aop-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-core-5.2.10.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-kotlin-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-1.13.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.annotation-api-1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/gson-2.6.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-continuation-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/objenesis-2.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-reflect-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spring-web-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/guava-18.0.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-core-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/json-lib-2.4-jdk15.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-xml-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/xmlschema-core-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-support-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections4-4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cglib-nodep-2.2.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-debug-all-5.0.4.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-core-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-rs-client-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-io-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang3-3.4.jar:/var/benchmarks/projects/fastjson/target/dependency/stax2-api-3.1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-server-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/json-simple-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-tree-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-core-1.4.1.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jcl-over-slf4j-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-3.0.0.v201112011016.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-core-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/osgi-resource-locator-1.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javassist-3.18.0-GA.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-reflect-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-support-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-metadata-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-stdlib-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-keyvalue-1.2.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-commons-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-guava-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/groovy-2.1.5.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-api-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-security-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-core-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/dom4j-1.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-core-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-redis-1.8.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-mapper-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-jpa-2.1-api-1.0.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/junit-4.12.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-io-1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-util-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-generator-annprocess-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-base-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-core-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/slf4j-api-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/antlr-2.7.7.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-all-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-match-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-provider-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-entity-filtering-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jandex-2.0.3.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/ezmorph-1.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-json-provider-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-transports-http-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-beans-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-server-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-jaxb-annotations-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/jopt-simple-4.6.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-analysis-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/annotations-13.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-path-2.3.0.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spi-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-websocket-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-messaging-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-client-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.ws.rs-api-2.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/accessors-smart-1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-commons-annotations-5.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-logging-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-expression-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-jaxb-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/okhttp-3.6.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-math3-3.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-webapp-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.inject-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-core-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-http-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-config-3.2.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/okio-1.11.0.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-api-3.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-smart-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-tx-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-afterburner-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-util-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-web-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-webmvc-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-locator-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/retrofit-2.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/clojure-1.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-oauth2-2.3.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-test-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-repackaged-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-oxm-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-core-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-transaction-api_1.2_spec-1.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/lombok-1.14.4.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections-3.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-frontend-jaxrs-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/classmate-1.3.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-utils-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-common-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-databind-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-json-jackson-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang-2.5.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-servlet-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/validation-api-1.1.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-web-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jsoniter-0.9.8.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-logging-3.3.0.Final.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+23:14:11.255 | INFO  | Started: warmup: kotlin reflection :: init
+23:14:11.343 | INFO  | Finished (in 0.088 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.alibaba.fastjson.serializer.ASMSerializerFactory 120
+23:14:11.355 | DEBUG | -----------------------------------------------------------------------------
+23:14:11.356 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/fastjson/target/classes:/var/benchmarks/projects/fastjson/target/fastjson-1.2.50-SNAPSHOT.jar:/var/benchmarks/projects/./fastjson/target/dependency/deeptestutils-1.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-beanutils-1.8.0.jar:/var/benchmarks/projects/fastjson/target/dependency/woodstox-core-asl-4.4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-aop-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-core-5.2.10.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-kotlin-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-1.13.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.annotation-api-1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/gson-2.6.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-continuation-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/objenesis-2.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-reflect-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spring-web-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/guava-18.0.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-core-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/json-lib-2.4-jdk15.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-xml-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/xmlschema-core-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-support-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections4-4.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cglib-nodep-2.2.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-debug-all-5.0.4.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-core-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-rs-client-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-io-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang3-3.4.jar:/var/benchmarks/projects/fastjson/target/dependency/stax2-api-3.1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-server-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/json-simple-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-tree-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-commons-core-1.4.1.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jcl-over-slf4j-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-3.0.0.v201112011016.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-core-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/osgi-resource-locator-1.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/javassist-3.18.0-GA.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-reflect-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-support-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-plugin-metadata-1.2.0.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/kotlin-stdlib-1.1.3-2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-keyvalue-1.2.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-commons-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-guava-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/groovy-2.1.5.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-api-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-security-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-core-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-servlet-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/dom4j-1.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-core-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-data-redis-1.8.6.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-mapper-asl-1.9.13.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-jpa-2.1-api-1.0.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/junit-4.12.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-io-1.4.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-util-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/fastjson/target/dependency/jmh-generator-annprocess-1.21.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-base-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-module-junit4-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-core-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/slf4j-api-1.7.25.jar:/var/benchmarks/projects/fastjson/target/dependency/antlr-2.7.7.jar:/var/benchmarks/projects/fastjson/target/dependency/mockito-all-1.10.19.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-container-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javaslang-match-2.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-provider-jdk-http-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-entity-filtering-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jandex-2.0.3.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/ezmorph-1.0.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-jaxrs-json-provider-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-transports-http-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-beans-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-server-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-jaxb-annotations-2.8.7.jar:/var/benchmarks/projects/fastjson/target/dependency/jopt-simple-4.6.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-analysis-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/annotations-13.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-path-2.3.0.jar:/var/benchmarks/projects/fastjson/target/dependency/springfox-spi-2.6.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-websocket-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-messaging-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-client-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.ws.rs-api-2.0.1.jar:/var/benchmarks/projects/fastjson/target/dependency/accessors-smart-1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hibernate-commons-annotations-5.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-logging-1.1.1.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-core-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-expression-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-jaxb-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/okhttp-3.6.0.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-math3-3.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-webapp-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.inject-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-core-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/powermock-api-mockito-common-1.6.6.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-http-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-config-3.2.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/okio-1.11.0.jar:/var/benchmarks/projects/fastjson/target/dependency/javax.servlet-api-3.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/json-smart-2.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-tx-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-module-afterburner-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/asm-util-4.0.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-web-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-webmvc-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-locator-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/retrofit-2.1.0.jar:/var/benchmarks/projects/fastjson/target/dependency/clojure-1.5.1.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-oauth2-2.3.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-test-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/aopalliance-repackaged-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-oxm-4.3.10.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-security-core-4.2.3.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-transaction-api_1.2_spec-1.0.1.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/lombok-1.14.4.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-collections-3.2.1.jar:/var/benchmarks/projects/fastjson/target/dependency/cxf-rt-frontend-jaxrs-3.1.2.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-context-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-test-framework-core-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/classmate-1.3.1.jar:/var/benchmarks/projects/fastjson/target/dependency/hk2-utils-2.5.0-b05.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-common-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/jackson-databind-2.9.0.jar:/var/benchmarks/projects/fastjson/target/dependency/jersey-media-json-jackson-2.23.2.jar:/var/benchmarks/projects/fastjson/target/dependency/commons-lang-2.5.jar:/var/benchmarks/projects/fastjson/target/dependency/jetty-servlet-8.1.8.v20121106.jar:/var/benchmarks/projects/fastjson/target/dependency/validation-api-1.1.0.Final.jar:/var/benchmarks/projects/fastjson/target/dependency/spring-web-4.3.7.RELEASE.jar:/var/benchmarks/projects/fastjson/target/dependency/jsoniter-0.9.8.jar:/var/benchmarks/projects/fastjson/target/dependency/jboss-logging-3.3.0.Final.jar, methodNameFilter=null
+23:14:11.361 | INFO  | ClassUnderTest[ FQN: com.alibaba.fastjson.serializer.ASMSerializerFactory
+    classfileDir: /var/benchmarks/projects/fastjson/target/classes
+    testClassSimpleName: ASMSerializerFactoryTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/alibaba/fastjson/serializer/ASMSerializerFactoryTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+23:14:11.392 | INFO  | Started: class com.alibaba.fastjson.serializer.ASMSerializerFactory
+23:14:11.393 | INFO  | Started: preparation class class com.alibaba.fastjson.serializer.ASMSerializerFactory: kotlin reflection :: run
+23:14:11.486 | INFO  | Finished (in 0.093 sec): preparation class class com.alibaba.fastjson.serializer.ASMSerializerFactory: kotlin reflection :: run 
+23:14:11.487 | INFO  | Started: 2nd optional soot initialization
+23:14:11.488 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+23:14:11.496 | DEBUG |  ... 
+23:14:11.508 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo)
+23:14:11.509 | INFO  |  -- Remaining time budget: 101862 ms, #remaining_methods: 33, budget for method: 3086 ms, solver timeout: 1000 ms, budget for symbolic execution: 1886 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:13.625 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo)
+23:14:14.028 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo)1
+23:14:14.259 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo)2
+23:14:14.318 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo)3
+23:14:14.353 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo)4
+23:14:14.451 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo)5
+23:14:14.647 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo)6
+23:14:14.698 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo)7
+23:14:14.742 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo)8
+23:14:14.807 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo)9
+23:14:14.811 | INFO  | Finished (in 3.303 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._get(MethodVisitor, ASMSerializerFactory$Context, FieldInfo) 
+<StatsForMethod> :
+	#generatedTC=9
+	WITH NO EXCEPTIONS
+23:14:14.828 | DEBUG |  ... 
+23:14:14.829 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._double(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:14.829 | INFO  |  -- Remaining time budget: 98531 ms, #remaining_methods: 32, budget for method: 3079 ms, solver timeout: 1000 ms, budget for symbolic execution: 1879 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:14.845 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:14:15.125 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._double(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)1
+23:14:15.153 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._double(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)2
+23:14:15.388 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._double(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)3
+23:14:15.434 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._double(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)4
+23:14:15.895 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._double(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)5
+23:14:15.944 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._double(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)6
+23:14:16.444 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._double(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)7
+23:14:16.709 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._double(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:17.910 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._double(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:17.975 | INFO  | Finished (in 3.145 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._double(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=7
+	FAILED 1 time(s) with 1 different exception(s)"
+23:14:18.114 | DEBUG |  ... 
+23:14:18.115 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._float(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:18.116 | INFO  |  -- Remaining time budget: 95245 ms, #remaining_methods: 31, budget for method: 3072 ms, solver timeout: 1000 ms, budget for symbolic execution: 1872 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:18.124 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:14:18.350 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._float(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)1
+23:14:18.372 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._float(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)2
+23:14:18.541 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._float(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)3
+23:14:18.594 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._float(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)4
+23:14:18.908 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._float(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)5
+23:14:18.943 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._float(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)6
+23:14:19.316 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._float(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)7
+23:14:19.988 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._float(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:21.188 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._float(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:21.236 | INFO  | Finished (in 3.121 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._float(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=7
+	FAILED 1 time(s) with 1 different exception(s)"
+23:14:21.406 | DEBUG |  ... 
+23:14:21.407 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._int(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context, int, char)
+23:14:21.407 | INFO  |  -- Remaining time budget: 91953 ms, #remaining_methods: 30, budget for method: 3065 ms, solver timeout: 1000 ms, budget for symbolic execution: 1865 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:21.416 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:14:21.665 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._int(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context, int, char)1
+23:14:21.809 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._int(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context, int, char)2
+23:14:21.838 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._int(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context, int, char)3
+23:14:21.871 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._int(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context, int, char)4
+23:14:21.899 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._int(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context, int, char)5
+23:14:22.101 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._int(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context, int, char)6
+23:14:22.778 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._int(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context, int, char)7
+23:14:23.272 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._int(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context, int, char)
+23:14:24.473 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._int(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context, int, char)
+23:14:24.524 | INFO  | Finished (in 3.116 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._int(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context, int, char) 
+<StatsForMethod> :
+	#generatedTC=7
+	FAILED 1 time(s) with 1 different exception(s)"
+23:14:24.706 | DEBUG |  ... 
+23:14:24.706 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._long(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:24.707 | INFO  |  -- Remaining time budget: 88654 ms, #remaining_methods: 29, budget for method: 3057 ms, solver timeout: 1000 ms, budget for symbolic execution: 1857 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:24.716 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:14:24.928 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._long(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)1
+23:14:24.952 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._long(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)2
+23:14:25.113 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._long(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)3
+23:14:25.151 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._long(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)4
+23:14:25.467 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._long(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)5
+23:14:25.499 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._long(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)6
+23:14:25.869 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._long(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)7
+23:14:26.564 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._long(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:27.764 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._long(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:27.812 | INFO  | Finished (in 3.106 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._long(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=7
+	FAILED 1 time(s) with 1 different exception(s)"
+23:14:27.986 | DEBUG |  ... 
+23:14:27.986 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._enum(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:27.987 | INFO  |  -- Remaining time budget: 85374 ms, #remaining_methods: 28, budget for method: 3049 ms, solver timeout: 1000 ms, budget for symbolic execution: 1849 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:27.994 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:14:28.245 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._enum(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)1
+23:14:28.338 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._enum(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)2
+23:14:28.364 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._enum(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)3
+23:14:28.450 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._enum(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)4
+23:14:28.505 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._enum(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)5
+23:14:28.610 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._enum(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)6
+23:14:28.979 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._enum(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)7
+23:14:29.836 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._enum(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:31.036 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._enum(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:31.120 | INFO  | Finished (in 3.134 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._enum(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=7
+	FAILED 1 time(s) with 1 different exception(s)"
+23:14:31.137 | DEBUG |  ... 
+23:14:31.138 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo)
+23:14:31.138 | INFO  |  -- Remaining time budget: 82222 ms, #remaining_methods: 27, budget for method: 3045 ms, solver timeout: 1000 ms, budget for symbolic execution: 1845 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:31.704 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo)1
+23:14:31.801 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo)2
+23:14:31.846 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo)3
+23:14:31.856 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo)4
+23:14:31.914 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo)5
+23:14:32.028 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo)6
+23:14:32.273 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo)7
+23:14:32.750 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo)8
+23:14:32.983 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo)
+23:14:34.184 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo)
+23:14:34.234 | INFO  | Finished (in 3.096 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer(SerializeBeanInfo) 
+<StatsForMethod> :
+	#generatedTC=8
+	WITH NO EXCEPTIONS
+23:14:34.388 | DEBUG |  ... 
+23:14:34.388 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteMethod(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context)
+23:14:34.389 | INFO  |  -- Remaining time budget: 78972 ms, #remaining_methods: 26, budget for method: 3037 ms, solver timeout: 1000 ms, budget for symbolic execution: 1837 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:34.396 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:14:34.563 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteMethod(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context)1
+23:14:35.026 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteMethod(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context)2
+23:14:35.231 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteMethod(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context)3
+23:14:35.255 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteMethod(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context)4
+23:14:36.226 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteMethod(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context)
+23:14:37.426 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteMethod(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context)
+23:14:37.459 | INFO  | Finished (in 3.070 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteMethod(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=4
+	FAILED 1 time(s) with 1 different exception(s)"
+23:14:37.672 | DEBUG |  ... 
+23:14:37.673 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._object(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:37.673 | INFO  |  -- Remaining time budget: 75687 ms, #remaining_methods: 25, budget for method: 3027 ms, solver timeout: 1000 ms, budget for symbolic execution: 1827 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:37.679 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:14:37.878 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._object(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)1
+23:14:37.900 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._object(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)2
+23:14:38.056 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._object(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)3
+23:14:38.094 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._object(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)4
+23:14:38.394 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._object(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)5
+23:14:38.425 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._object(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)6
+23:14:38.772 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._object(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)7
+23:14:39.500 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._object(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:40.701 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._object(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:40.754 | INFO  | Finished (in 3.081 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._object(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=7
+	FAILED 1 time(s) with 1 different exception(s)"
+23:14:40.926 | DEBUG |  ... 
+23:14:40.926 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteAsArray(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context)
+23:14:40.927 | INFO  |  -- Remaining time budget: 72434 ms, #remaining_methods: 24, budget for method: 3018 ms, solver timeout: 1000 ms, budget for symbolic execution: 1818 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:40.932 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngineKt.executeConcretely(UtBotSymbolicEngine.kt:3203) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invokeSuspend(UtBotSymbolicEngine.kt:515) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.contest.ContestKt$runGeneration$1$invokeSuspend$$inlined$bracket$lambda$1$1.invokeSuspend(Contest.kt:531) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:14:41.175 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteAsArray(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context)1
+23:14:42.745 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteAsArray(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context)
+23:14:43.946 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteAsArray(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context)
+23:14:43.950 | INFO  | Finished (in 3.023 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory.generateWriteAsArray(Class, MethodVisitor, FieldInfo[], ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+23:14:44.155 | DEBUG |  ... 
+23:14:44.155 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._decimal(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:44.156 | INFO  |  -- Remaining time budget: 69205 ms, #remaining_methods: 23, budget for method: 3008 ms, solver timeout: 1000 ms, budget for symbolic execution: 1808 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:44.167 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:14:44.359 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._decimal(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)1
+23:14:44.384 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._decimal(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)2
+23:14:44.537 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._decimal(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)3
+23:14:44.571 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._decimal(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)4
+23:14:44.863 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._decimal(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)5
+23:14:44.894 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._decimal(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)6
+23:14:45.153 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._decimal(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)7
+23:14:45.964 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._decimal(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:47.164 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._decimal(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:47.408 | INFO  | Finished (in 3.253 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._decimal(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=7
+	FAILED 1 time(s) with 1 different exception(s)"
+23:14:47.411 | DEBUG |  ... 
+23:14:47.412 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:47.412 | INFO  |  -- Remaining time budget: 65949 ms, #remaining_methods: 22, budget for method: 2997 ms, solver timeout: 1000 ms, budget for symbolic execution: 1797 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:47.418 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:14:47.529 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)1
+23:14:47.667 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)2
+23:14:48.262 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)3
+23:14:48.412 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)4
+23:14:48.508 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)5
+23:14:48.662 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)6
+23:14:48.730 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)7
+23:14:48.864 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)8
+23:14:49.209 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:49.626 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)9
+23:14:50.410 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:50.476 | INFO  | Finished (in 3.064 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._string(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=9
+	FAILED 1 time(s) with 1 different exception(s)"
+23:14:50.639 | DEBUG |  ... 
+23:14:50.640 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:50.640 | INFO  |  -- Remaining time budget: 62720 ms, #remaining_methods: 21, budget for method: 2986 ms, solver timeout: 1000 ms, budget for symbolic execution: 1786 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:50.644 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:14:50.747 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)1
+23:14:51.185 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)2
+23:14:51.337 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)3
+23:14:51.444 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)4
+23:14:51.478 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)5
+23:14:51.758 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)6
+23:14:52.071 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)7
+23:14:52.426 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:52.452 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)8
+23:14:53.627 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:14:53.689 | INFO  | Finished (in 3.049 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._list(Class, MethodVisitor, FieldInfo, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=8
+	FAILED 1 time(s) with 1 different exception(s)"
+23:14:53.848 | DEBUG |  ... 
+23:14:53.848 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:14:53.849 | INFO  |  -- Remaining time budget: 59512 ms, #remaining_methods: 20, budget for method: 2975 ms, solver timeout: 1000 ms, budget for symbolic execution: 1775 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:54.563 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)1
+23:14:54.591 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)2
+23:14:54.632 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)3
+23:14:54.682 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)4
+23:14:54.732 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)5
+23:14:54.801 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)6
+23:14:54.904 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)7
+23:14:54.972 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)8
+23:14:55.013 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)9
+23:14:55.242 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)10
+23:14:55.386 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)11
+23:14:55.594 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)12
+23:14:55.624 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:14:55.648 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)13
+23:14:55.701 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)14
+23:14:55.786 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)15
+23:14:55.870 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)16
+23:14:55.943 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)17
+23:14:56.079 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)18
+23:14:56.215 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)19
+23:14:56.247 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)20
+23:14:56.824 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:14:56.885 | INFO  | Finished (in 3.036 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._filters(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label) 
+<StatsForMethod> :
+	#generatedTC=20
+	WITH NO EXCEPTIONS
+23:14:57.006 | DEBUG |  ... 
+23:14:57.007 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._nameApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:14:57.007 | INFO  |  -- Remaining time budget: 56353 ms, #remaining_methods: 19, budget for method: 2965 ms, solver timeout: 1000 ms, budget for symbolic execution: 1765 ms, budget for concrete execution: 1200 ms,  -- 
+23:14:57.240 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._nameApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)1
+23:14:57.288 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._nameApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)2
+23:14:57.295 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._nameApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)3
+23:14:57.319 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._nameApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)4
+23:14:58.772 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._nameApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:14:59.973 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._nameApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:14:59.989 | INFO  | Finished (in 2.982 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._nameApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+23:15:00.188 | DEBUG |  ... 
+23:15:00.188 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._labelApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:15:00.189 | INFO  |  -- Remaining time budget: 53172 ms, #remaining_methods: 18, budget for method: 2954 ms, solver timeout: 1000 ms, budget for symbolic execution: 1754 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:00.522 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._labelApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)1
+23:15:00.550 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._labelApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)2
+23:15:00.588 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._labelApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)3
+23:15:01.943 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._labelApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:15:03.144 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._labelApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:15:03.184 | INFO  | Finished (in 2.996 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._labelApply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+23:15:03.379 | DEBUG |  ... 
+23:15:03.379 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._writeObject(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:15:03.380 | INFO  |  -- Remaining time budget: 49981 ms, #remaining_methods: 17, budget for method: 2940 ms, solver timeout: 1000 ms, budget for symbolic execution: 1740 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:03.696 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._writeObject(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)1
+23:15:03.734 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._writeObject(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)2
+23:15:03.798 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._writeObject(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)3
+23:15:03.805 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._writeObject(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)4
+23:15:03.900 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._writeObject(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)5
+23:15:03.924 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._writeObject(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)6
+23:15:05.120 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._writeObject(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:15:06.320 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._writeObject(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:15:06.369 | INFO  | Finished (in 2.989 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._writeObject(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+23:15:06.494 | DEBUG |  ... 
+23:15:06.494 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._before(MethodVisitor, ASMSerializerFactory$Context)
+23:15:06.494 | INFO  |  -- Remaining time budget: 46866 ms, #remaining_methods: 16, budget for method: 2929 ms, solver timeout: 1000 ms, budget for symbolic execution: 1729 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:06.767 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._before(MethodVisitor, ASMSerializerFactory$Context)1
+23:15:06.793 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._before(MethodVisitor, ASMSerializerFactory$Context)2
+23:15:06.815 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._before(MethodVisitor, ASMSerializerFactory$Context)3
+23:15:08.224 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._before(MethodVisitor, ASMSerializerFactory$Context)
+23:15:09.424 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._before(MethodVisitor, ASMSerializerFactory$Context)
+23:15:09.494 | INFO  | Finished (in 3.000 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._before(MethodVisitor, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+23:15:09.684 | DEBUG |  ... 
+23:15:09.685 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._after(MethodVisitor, ASMSerializerFactory$Context)
+23:15:09.685 | INFO  |  -- Remaining time budget: 43676 ms, #remaining_methods: 15, budget for method: 2911 ms, solver timeout: 1000 ms, budget for symbolic execution: 1711 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:09.973 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._after(MethodVisitor, ASMSerializerFactory$Context)1
+23:15:10.000 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._after(MethodVisitor, ASMSerializerFactory$Context)2
+23:15:10.020 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._after(MethodVisitor, ASMSerializerFactory$Context)3
+23:15:11.396 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._after(MethodVisitor, ASMSerializerFactory$Context)
+23:15:12.597 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._after(MethodVisitor, ASMSerializerFactory$Context)
+23:15:12.601 | INFO  | Finished (in 2.916 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._after(MethodVisitor, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+23:15:12.798 | DEBUG |  ... 
+23:15:12.798 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:15:12.799 | INFO  |  -- Remaining time budget: 40562 ms, #remaining_methods: 14, budget for method: 2897 ms, solver timeout: 1000 ms, budget for symbolic execution: 1697 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:13.062 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)1
+23:15:13.091 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)2
+23:15:13.134 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)3
+23:15:13.155 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)4
+23:15:13.177 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)5
+23:15:13.225 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)6
+23:15:13.258 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)7
+23:15:13.292 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)8
+23:15:13.329 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)9
+23:15:13.366 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)10
+23:15:13.433 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)11
+23:15:13.448 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)12
+23:15:13.463 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)13
+23:15:13.463 | INFO  | Finished (in 0.665 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._notWriteDefault(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label) 
+<StatsForMethod> :
+	#generatedTC=13
+	WITH NO EXCEPTIONS
+23:15:13.473 | DEBUG |  ... 
+23:15:13.474 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:15:13.474 | INFO  |  -- Remaining time budget: 39886 ms, #remaining_methods: 13, budget for method: 3068 ms, solver timeout: 1000 ms, budget for symbolic execution: 1868 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:13.748 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)1
+23:15:13.776 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)2
+23:15:13.799 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)3
+23:15:13.881 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)4
+23:15:13.999 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)5
+23:15:14.086 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)6
+23:15:14.162 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)7
+23:15:14.292 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)8
+23:15:14.326 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)9
+23:15:14.634 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)10
+23:15:14.707 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)11
+23:15:14.802 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)12
+23:15:14.858 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)13
+23:15:15.342 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:15:15.361 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)14
+23:15:15.424 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)15
+23:15:16.543 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:15:16.567 | INFO  | Finished (in 3.093 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._apply(MethodVisitor, FieldInfo, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=15
+	WITH NO EXCEPTIONS
+23:15:16.750 | DEBUG |  ... 
+23:15:16.750 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._processValue(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:15:16.750 | INFO  |  -- Remaining time budget: 36610 ms, #remaining_methods: 12, budget for method: 3050 ms, solver timeout: 1000 ms, budget for symbolic execution: 1850 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:17.033 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._processValue(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)1
+23:15:17.106 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._processValue(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)2
+23:15:17.130 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._processValue(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)3
+23:15:17.174 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._processValue(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)4
+23:15:17.295 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._processValue(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)5
+23:15:17.452 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._processValue(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)6
+23:15:18.601 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._processValue(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:15:19.801 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._processValue(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label)
+23:15:19.813 | INFO  | Finished (in 3.063 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._processValue(MethodVisitor, FieldInfo, ASMSerializerFactory$Context, Label) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+23:15:19.979 | DEBUG |  ... 
+23:15:19.980 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._processKey(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:15:19.980 | INFO  |  -- Remaining time budget: 33380 ms, #remaining_methods: 11, budget for method: 3034 ms, solver timeout: 1000 ms, budget for symbolic execution: 1834 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:20.250 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._processKey(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)1
+23:15:20.299 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._processKey(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)2
+23:15:20.319 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._processKey(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)3
+23:15:20.361 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._processKey(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)4
+23:15:21.814 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._processKey(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:15:23.015 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._processKey(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:15:23.043 | INFO  | Finished (in 3.062 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._processKey(MethodVisitor, FieldInfo, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+23:15:23.229 | DEBUG |  ... 
+23:15:23.230 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:15:23.230 | INFO  |  -- Remaining time budget: 30130 ms, #remaining_methods: 10, budget for method: 3013 ms, solver timeout: 1000 ms, budget for symbolic execution: 1813 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:23.488 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)1
+23:15:23.518 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)2
+23:15:23.620 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)3
+23:15:23.870 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)4
+23:15:23.895 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)5
+23:15:23.914 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)6
+23:15:24.123 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)7
+23:15:24.306 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)8
+23:15:24.446 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)9
+23:15:25.043 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:15:26.244 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context)
+23:15:26.301 | INFO  | Finished (in 3.071 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._if_write_null(MethodVisitor, FieldInfo, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=9
+	WITH NO EXCEPTIONS
+23:15:26.413 | DEBUG |  ... 
+23:15:26.414 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._writeFieldName(MethodVisitor, ASMSerializerFactory$Context)
+23:15:26.414 | INFO  |  -- Remaining time budget: 26947 ms, #remaining_methods: 9, budget for method: 2994 ms, solver timeout: 1000 ms, budget for symbolic execution: 1794 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:26.674 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._writeFieldName(MethodVisitor, ASMSerializerFactory$Context)1
+23:15:26.718 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._writeFieldName(MethodVisitor, ASMSerializerFactory$Context)2
+23:15:26.723 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._writeFieldName(MethodVisitor, ASMSerializerFactory$Context)3
+23:15:26.760 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._writeFieldName(MethodVisitor, ASMSerializerFactory$Context)4
+23:15:26.780 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._writeFieldName(MethodVisitor, ASMSerializerFactory$Context)5
+23:15:28.208 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._writeFieldName(MethodVisitor, ASMSerializerFactory$Context)
+23:15:29.408 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._writeFieldName(MethodVisitor, ASMSerializerFactory$Context)
+23:15:29.413 | INFO  | Finished (in 2.999 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._writeFieldName(MethodVisitor, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+23:15:29.625 | DEBUG |  ... 
+23:15:29.626 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._seperator(MethodVisitor, ASMSerializerFactory$Context)
+23:15:29.626 | INFO  |  -- Remaining time budget: 23734 ms, #remaining_methods: 8, budget for method: 2966 ms, solver timeout: 1000 ms, budget for symbolic execution: 1766 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:29.880 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._seperator(MethodVisitor, ASMSerializerFactory$Context)1
+23:15:29.907 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._seperator(MethodVisitor, ASMSerializerFactory$Context)2
+23:15:29.926 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._seperator(MethodVisitor, ASMSerializerFactory$Context)3
+23:15:29.947 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._seperator(MethodVisitor, ASMSerializerFactory$Context)4
+23:15:29.947 | INFO  | Finished (in 0.321 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._seperator(MethodVisitor, ASMSerializerFactory$Context) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+23:15:29.948 | DEBUG |  ... 
+23:15:29.949 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._getListFieldItemSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo, Class)
+23:15:29.949 | INFO  |  -- Remaining time budget: 23412 ms, #remaining_methods: 7, budget for method: 3344 ms, solver timeout: 1000 ms, budget for symbolic execution: 2144 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:29.954 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:15:30.062 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._getListFieldItemSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo, Class)1
+23:15:30.149 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._getListFieldItemSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo, Class)2
+23:15:32.093 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._getListFieldItemSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo, Class)
+23:15:33.294 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._getListFieldItemSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo, Class)
+23:15:33.460 | INFO  | Finished (in 3.511 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._getListFieldItemSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo, Class) 
+<StatsForMethod> :
+	#generatedTC=2
+	FAILED 1 time(s) with 1 different exception(s)"
+23:15:33.466 | DEBUG |  ... 
+23:15:33.466 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory._getFieldSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo)
+23:15:33.467 | INFO  |  -- Remaining time budget: 19894 ms, #remaining_methods: 6, budget for method: 3315 ms, solver timeout: 1000 ms, budget for symbolic execution: 2115 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:33.742 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._getFieldSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo)1
+23:15:33.788 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._getFieldSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo)2
+23:15:33.850 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory._getFieldSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo)3
+23:15:35.582 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory._getFieldSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo)
+23:15:36.782 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory._getFieldSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo)
+23:15:36.799 | INFO  | Finished (in 3.332 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory._getFieldSer(ASMSerializerFactory$Context, MethodVisitor, FieldInfo) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+23:15:37.005 | DEBUG |  ... 
+23:15:37.006 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory.<init>()
+23:15:37.006 | INFO  |  -- Remaining time budget: 16354 ms, #remaining_methods: 5, budget for method: 3270 ms, solver timeout: 1000 ms, budget for symbolic execution: 2070 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:37.280 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.<init>()1
+23:15:39.076 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory.<init>()
+23:15:40.277 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory.<init>()
+23:15:40.289 | INFO  | Finished (in 3.283 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+23:15:40.496 | DEBUG |  ... 
+23:15:40.496 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String, int)
+23:15:40.496 | INFO  |  -- Remaining time budget: 12864 ms, #remaining_methods: 4, budget for method: 3216 ms, solver timeout: 1000 ms, budget for symbolic execution: 2016 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:40.525 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String, int)1
+23:15:40.565 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String, int)2
+23:15:42.512 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String, int)
+23:15:43.714 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String, int)
+23:15:43.742 | INFO  | Finished (in 3.246 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String, int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:15:43.836 | DEBUG |  ... 
+23:15:43.836 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String)
+23:15:43.836 | INFO  |  -- Remaining time budget: 9524 ms, #remaining_methods: 3, budget for method: 3174 ms, solver timeout: 1000 ms, budget for symbolic execution: 1974 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:43.841 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String)1
+23:15:44.103 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String)2
+23:15:45.811 | INFO  | |> Starting concrete execution for remaining state: com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String)
+23:15:47.011 | INFO  | (X) Cancelling concrete execution: com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String)
+23:15:47.200 | INFO  | Finished (in 3.364 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.var(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:15:47.293 | DEBUG |  ... 
+23:15:47.294 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.getFieldOrinal(String)
+23:15:47.294 | INFO  |  -- Remaining time budget: 6066 ms, #remaining_methods: 2, budget for method: 3033 ms, solver timeout: 1000 ms, budget for symbolic execution: 1833 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:47.298 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.getFieldOrinal(String)1
+23:15:47.342 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.getFieldOrinal(String)2
+23:15:47.350 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.getFieldOrinal(String)3
+23:15:47.499 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.getFieldOrinal(String)4
+23:15:47.548 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.getFieldOrinal(String)5
+23:15:47.673 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.getFieldOrinal(String)6
+23:15:47.905 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.getFieldOrinal(String)7
+23:15:47.909 | INFO  | Finished (in 0.615 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.getFieldOrinal(String) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+23:15:47.961 | DEBUG |  ... 
+23:15:47.961 | INFO  | Started: method com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.<init>(FieldInfo[], SerializeBeanInfo, String, boolean, boolean)
+23:15:47.961 | INFO  |  -- Remaining time budget: 5399 ms, #remaining_methods: 1, budget for method: 5399 ms, solver timeout: 1000 ms, budget for symbolic execution: 4199 ms, budget for concrete execution: 1200 ms,  -- 
+23:15:47.968 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.<init>(FieldInfo[], SerializeBeanInfo, String, boolean, boolean)1
+23:15:48.210 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.<init>(FieldInfo[], SerializeBeanInfo, String, boolean, boolean)2
+23:15:48.636 | DEBUG | --new testCase collected, to generate: testCom.alibaba.fastjson.serializer.ASMSerializerFactory.Context.<init>(FieldInfo[], SerializeBeanInfo, String, boolean, boolean)3
+23:15:48.638 | INFO  | Finished (in 0.676 sec): method com.alibaba.fastjson.serializer.ASMSerializerFactory.Context.<init>(FieldInfo[], SerializeBeanInfo, String, boolean, boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+23:15:48.666 | INFO  | Started: Flushing tests for [ASMSerializerFactory] on disk
+23:15:49.487 | INFO  | File size for ASMSerializerFactoryTest: 304 KB
+23:15:49.490 | INFO  | Finished (in 0.824 sec): Flushing tests for [ASMSerializerFactory] on disk 
+23:15:49.490 | INFO  | Finished (in 98.098 sec): class com.alibaba.fastjson.serializer.ASMSerializerFactory 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 33, 
+	#methods started symbolic exploration = 33
+	#methods with at least one TC = 33
+	#methods with exceptions = 12
+	#generated TC = 203
+	#coverage = null
+[READY]

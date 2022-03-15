@@ -1,0 +1,340 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+17:06:05.555 | INFO  | Started: warmup: kotlin reflection :: init
+17:06:05.649 | INFO  | Finished (in 0.094 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.rpc.RpcContext 30
+17:06:05.662 | DEBUG | -----------------------------------------------------------------------------
+17:06:05.663 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+17:06:05.664 | INFO  | ClassUnderTest[ FQN: io.seata.core.rpc.RpcContext
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: RpcContextTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/rpc/RpcContextTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+17:06:05.686 | INFO  | Started: class io.seata.core.rpc.RpcContext
+17:06:05.687 | INFO  | Started: preparation class class io.seata.core.rpc.RpcContext: kotlin reflection :: run
+17:06:05.726 | INFO  | Finished (in 0.038 sec): preparation class class io.seata.core.rpc.RpcContext: kotlin reflection :: run 
+17:06:05.726 | INFO  | Started: 2nd optional soot initialization
+17:06:05.728 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+17:06:05.735 | DEBUG |  ... 
+17:06:05.745 | INFO  | Started: method io.seata.core.rpc.RpcContext.toString()
+17:06:05.745 | INFO  |  -- Remaining time budget: 25425 ms, #remaining_methods: 27, budget for method: 941 ms, solver timeout: 470 ms, budget for symbolic execution: 471 ms, budget for concrete execution: 470 ms,  -- 
+17:06:06.068 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.toString()1
+17:06:06.218 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.RpcContext.toString()
+17:06:06.689 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.RpcContext.toString()
+17:06:06.699 | INFO  | Finished (in 0.953 sec): method io.seata.core.rpc.RpcContext.toString() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+17:06:06.719 | DEBUG |  ... 
+17:06:06.719 | INFO  | Started: method io.seata.core.rpc.RpcContext.release()
+17:06:06.720 | INFO  |  -- Remaining time budget: 24444 ms, #remaining_methods: 26, budget for method: 940 ms, solver timeout: 470 ms, budget for symbolic execution: 470 ms, budget for concrete execution: 470 ms,  -- 
+17:06:06.731 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.release()1
+17:06:06.885 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.release()2
+17:06:06.922 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.release()3
+17:06:07.190 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.RpcContext.release()
+17:06:07.661 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.RpcContext.release()
+17:06:07.681 | INFO  | Finished (in 0.961 sec): method io.seata.core.rpc.RpcContext.release() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:06:07.729 | DEBUG |  ... 
+17:06:07.731 | INFO  | Started: method io.seata.core.rpc.RpcContext.setVersion(String)
+17:06:07.731 | INFO  |  -- Remaining time budget: 23433 ms, #remaining_methods: 25, budget for method: 937 ms, solver timeout: 468 ms, budget for symbolic execution: 469 ms, budget for concrete execution: 468 ms,  -- 
+17:06:07.767 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setVersion(String)1
+17:06:07.793 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setVersion(String)2
+17:06:07.793 | INFO  | Finished (in 0.062 sec): method io.seata.core.rpc.RpcContext.setVersion(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:07.794 | DEBUG |  ... 
+17:06:07.795 | INFO  | Started: method io.seata.core.rpc.RpcContext.getVersion()
+17:06:07.795 | INFO  |  -- Remaining time budget: 23368 ms, #remaining_methods: 24, budget for method: 973 ms, solver timeout: 486 ms, budget for symbolic execution: 487 ms, budget for concrete execution: 486 ms,  -- 
+17:06:07.800 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getVersion()1
+17:06:07.826 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getVersion()2
+17:06:07.826 | INFO  | Finished (in 0.031 sec): method io.seata.core.rpc.RpcContext.getVersion() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:07.827 | DEBUG |  ... 
+17:06:07.828 | INFO  | Started: method io.seata.core.rpc.RpcContext.holdInClientChannels(ConcurrentMap)
+17:06:07.828 | INFO  |  -- Remaining time budget: 23336 ms, #remaining_methods: 23, budget for method: 1014 ms, solver timeout: 507 ms, budget for symbolic execution: 507 ms, budget for concrete execution: 507 ms,  -- 
+17:06:07.835 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.holdInClientChannels(ConcurrentMap)1
+17:06:07.873 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.holdInClientChannels(ConcurrentMap)2
+17:06:08.027 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.holdInClientChannels(ConcurrentMap)3
+17:06:08.335 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.RpcContext.holdInClientChannels(ConcurrentMap)
+17:06:08.843 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.RpcContext.holdInClientChannels(ConcurrentMap)
+17:06:08.858 | INFO  | Finished (in 1.030 sec): method io.seata.core.rpc.RpcContext.holdInClientChannels(ConcurrentMap) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:06:08.921 | DEBUG |  ... 
+17:06:08.921 | INFO  | Started: method io.seata.core.rpc.RpcContext.holdInIdentifiedChannels(ConcurrentMap)
+17:06:08.921 | INFO  |  -- Remaining time budget: 22242 ms, #remaining_methods: 22, budget for method: 1011 ms, solver timeout: 505 ms, budget for symbolic execution: 506 ms, budget for concrete execution: 505 ms,  -- 
+17:06:08.927 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.holdInIdentifiedChannels(ConcurrentMap)1
+17:06:08.963 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.holdInIdentifiedChannels(ConcurrentMap)2
+17:06:08.989 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.holdInIdentifiedChannels(ConcurrentMap)3
+17:06:09.478 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.RpcContext.holdInIdentifiedChannels(ConcurrentMap)
+17:06:09.984 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.RpcContext.holdInIdentifiedChannels(ConcurrentMap)
+17:06:10.004 | INFO  | Finished (in 1.082 sec): method io.seata.core.rpc.RpcContext.holdInIdentifiedChannels(ConcurrentMap) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:06:10.033 | DEBUG |  ... 
+17:06:10.033 | INFO  | Started: method io.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, Integer)
+17:06:10.033 | INFO  |  -- Remaining time budget: 21130 ms, #remaining_methods: 21, budget for method: 1006 ms, solver timeout: 503 ms, budget for symbolic execution: 503 ms, budget for concrete execution: 503 ms,  -- 
+17:06:10.053 | ERROR | Symbolic execution FAILED
+kotlin.reflect.jvm.internal.KotlinReflectionInternalError: Could not compute caller for function: private constructor Int() defined in kotlin.Int[DeserializedClassConstructorDescriptor@2b4bce20] (member = null)
+	at kotlin.reflect.jvm.internal.KFunctionImpl$caller$2.invoke(KFunctionImpl.kt:89) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.KFunctionImpl$caller$2.invoke(KFunctionImpl.kt:36) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.ReflectProperties$LazyVal.invoke(ReflectProperties.java:62) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.ReflectProperties$Val.getValue(ReflectProperties.java:31) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.KFunctionImpl.getCaller(KFunctionImpl.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.ReflectJvmMapping.getJavaMethod(ReflectJvmMapping.kt:63) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.framework.plugin.api.util.IdUtilKt.getExecutableId(IdUtil.kt:394) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createSimpleModelByKClass(UtBotSymbolicEngine.kt:587) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createModelByClassId(UtBotSymbolicEngine.kt:569) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.access$createModelByClassId(UtBotSymbolicEngine.kt:245) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invokeSuspend(UtBotSymbolicEngine.kt:502) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.contest.ContestKt$runGeneration$1$invokeSuspend$$inlined$bracket$lambda$1$1.invokeSuspend(Contest.kt:531) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:06:10.404 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, Integer)1
+17:06:10.537 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, Integer)
+17:06:11.040 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, Integer)
+17:06:11.086 | INFO  | Finished (in 1.053 sec): method io.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, Integer) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+17:06:11.143 | DEBUG |  ... 
+17:06:11.144 | INFO  | Started: method io.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, ConcurrentMap)
+17:06:11.144 | INFO  |  -- Remaining time budget: 20020 ms, #remaining_methods: 20, budget for method: 1001 ms, solver timeout: 500 ms, budget for symbolic execution: 501 ms, budget for concrete execution: 500 ms,  -- 
+17:06:11.155 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, ConcurrentMap)1
+17:06:11.371 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, ConcurrentMap)2
+17:06:11.445 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, ConcurrentMap)3
+17:06:11.645 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, ConcurrentMap)
+17:06:11.724 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, ConcurrentMap)4
+17:06:12.146 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, ConcurrentMap)
+17:06:12.162 | INFO  | Finished (in 1.018 sec): method io.seata.core.rpc.RpcContext.holdInResourceManagerChannels(String, ConcurrentMap) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+17:06:12.235 | DEBUG |  ... 
+17:06:12.236 | INFO  | Started: method io.seata.core.rpc.RpcContext.getClientRMHolderMap()
+17:06:12.236 | INFO  |  -- Remaining time budget: 18928 ms, #remaining_methods: 19, budget for method: 996 ms, solver timeout: 498 ms, budget for symbolic execution: 498 ms, budget for concrete execution: 498 ms,  -- 
+17:06:12.241 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientRMHolderMap()1
+17:06:12.265 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientRMHolderMap()2
+17:06:12.266 | INFO  | Finished (in 0.030 sec): method io.seata.core.rpc.RpcContext.getClientRMHolderMap() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:12.267 | DEBUG |  ... 
+17:06:12.267 | INFO  | Started: method io.seata.core.rpc.RpcContext.getPortMap(String)
+17:06:12.267 | INFO  |  -- Remaining time budget: 18896 ms, #remaining_methods: 18, budget for method: 1049 ms, solver timeout: 524 ms, budget for symbolic execution: 525 ms, budget for concrete execution: 524 ms,  -- 
+17:06:12.273 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getPortMap(String)1
+17:06:12.316 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getPortMap(String)2
+17:06:12.473 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getPortMap(String)3
+17:06:12.793 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.RpcContext.getPortMap(String)
+17:06:13.317 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.RpcContext.getPortMap(String)
+17:06:13.397 | INFO  | Finished (in 1.130 sec): method io.seata.core.rpc.RpcContext.getPortMap(String) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:06:13.453 | DEBUG |  ... 
+17:06:13.453 | INFO  | Started: method io.seata.core.rpc.RpcContext.getClientId()
+17:06:13.454 | INFO  |  -- Remaining time budget: 17710 ms, #remaining_methods: 17, budget for method: 1041 ms, solver timeout: 520 ms, budget for symbolic execution: 521 ms, budget for concrete execution: 520 ms,  -- 
+17:06:13.459 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientId()1
+17:06:13.483 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientId()2
+17:06:13.483 | INFO  | Finished (in 0.030 sec): method io.seata.core.rpc.RpcContext.getClientId() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:13.484 | DEBUG |  ... 
+17:06:13.484 | INFO  | Started: method io.seata.core.rpc.RpcContext.setChannel(Channel)
+17:06:13.485 | INFO  |  -- Remaining time budget: 17679 ms, #remaining_methods: 16, budget for method: 1104 ms, solver timeout: 552 ms, budget for symbolic execution: 552 ms, budget for concrete execution: 552 ms,  -- 
+17:06:13.490 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setChannel(Channel)1
+17:06:13.514 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setChannel(Channel)2
+17:06:13.515 | INFO  | Finished (in 0.030 sec): method io.seata.core.rpc.RpcContext.setChannel(Channel) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:13.516 | DEBUG |  ... 
+17:06:13.516 | INFO  | Started: method io.seata.core.rpc.RpcContext.getApplicationId()
+17:06:13.516 | INFO  |  -- Remaining time budget: 17647 ms, #remaining_methods: 15, budget for method: 1176 ms, solver timeout: 588 ms, budget for symbolic execution: 588 ms, budget for concrete execution: 588 ms,  -- 
+17:06:13.521 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getApplicationId()1
+17:06:13.545 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getApplicationId()2
+17:06:13.545 | INFO  | Finished (in 0.029 sec): method io.seata.core.rpc.RpcContext.getApplicationId() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:13.546 | DEBUG |  ... 
+17:06:13.546 | INFO  | Started: method io.seata.core.rpc.RpcContext.setApplicationId(String)
+17:06:13.547 | INFO  |  -- Remaining time budget: 17617 ms, #remaining_methods: 14, budget for method: 1258 ms, solver timeout: 629 ms, budget for symbolic execution: 629 ms, budget for concrete execution: 629 ms,  -- 
+17:06:13.551 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setApplicationId(String)1
+17:06:13.576 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setApplicationId(String)2
+17:06:13.576 | INFO  | Finished (in 0.029 sec): method io.seata.core.rpc.RpcContext.setApplicationId(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:13.577 | DEBUG |  ... 
+17:06:13.577 | INFO  | Started: method io.seata.core.rpc.RpcContext.getTransactionServiceGroup()
+17:06:13.577 | INFO  |  -- Remaining time budget: 17586 ms, #remaining_methods: 13, budget for method: 1352 ms, solver timeout: 676 ms, budget for symbolic execution: 676 ms, budget for concrete execution: 676 ms,  -- 
+17:06:13.582 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getTransactionServiceGroup()1
+17:06:13.605 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getTransactionServiceGroup()2
+17:06:13.606 | INFO  | Finished (in 0.028 sec): method io.seata.core.rpc.RpcContext.getTransactionServiceGroup() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:13.607 | DEBUG |  ... 
+17:06:13.607 | INFO  | Started: method io.seata.core.rpc.RpcContext.setTransactionServiceGroup(String)
+17:06:13.607 | INFO  |  -- Remaining time budget: 17556 ms, #remaining_methods: 12, budget for method: 1463 ms, solver timeout: 731 ms, budget for symbolic execution: 732 ms, budget for concrete execution: 731 ms,  -- 
+17:06:13.612 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setTransactionServiceGroup(String)1
+17:06:13.636 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setTransactionServiceGroup(String)2
+17:06:13.636 | INFO  | Finished (in 0.029 sec): method io.seata.core.rpc.RpcContext.setTransactionServiceGroup(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:13.637 | DEBUG |  ... 
+17:06:13.637 | INFO  | Started: method io.seata.core.rpc.RpcContext.getClientRole()
+17:06:13.638 | INFO  |  -- Remaining time budget: 17526 ms, #remaining_methods: 11, budget for method: 1593 ms, solver timeout: 796 ms, budget for symbolic execution: 797 ms, budget for concrete execution: 796 ms,  -- 
+17:06:13.642 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientRole()1
+17:06:13.665 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientRole()2
+17:06:13.666 | INFO  | Finished (in 0.028 sec): method io.seata.core.rpc.RpcContext.getClientRole() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:13.666 | DEBUG |  ... 
+17:06:13.667 | INFO  | Started: method io.seata.core.rpc.RpcContext.setClientRole(NettyPoolKey$TransactionRole)
+17:06:13.667 | INFO  |  -- Remaining time budget: 17496 ms, #remaining_methods: 10, budget for method: 1749 ms, solver timeout: 874 ms, budget for symbolic execution: 875 ms, budget for concrete execution: 874 ms,  -- 
+17:06:13.677 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setClientRole(NettyPoolKey$TransactionRole)1
+17:06:13.703 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setClientRole(NettyPoolKey$TransactionRole)2
+17:06:13.703 | INFO  | Finished (in 0.036 sec): method io.seata.core.rpc.RpcContext.setClientRole(NettyPoolKey$TransactionRole) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:13.704 | DEBUG |  ... 
+17:06:13.704 | INFO  | Started: method io.seata.core.rpc.RpcContext.getResourceSets()
+17:06:13.705 | INFO  |  -- Remaining time budget: 17459 ms, #remaining_methods: 9, budget for method: 1939 ms, solver timeout: 969 ms, budget for symbolic execution: 970 ms, budget for concrete execution: 969 ms,  -- 
+17:06:13.712 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getResourceSets()1
+17:06:13.739 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getResourceSets()2
+17:06:13.740 | INFO  | Finished (in 0.035 sec): method io.seata.core.rpc.RpcContext.getResourceSets() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:13.741 | DEBUG |  ... 
+17:06:13.741 | INFO  | Started: method io.seata.core.rpc.RpcContext.setResourceSets(Set)
+17:06:13.741 | INFO  |  -- Remaining time budget: 17422 ms, #remaining_methods: 8, budget for method: 2177 ms, solver timeout: 1000 ms, budget for symbolic execution: 1089 ms, budget for concrete execution: 1088 ms,  -- 
+17:06:13.747 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setResourceSets(Set)1
+17:06:13.773 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setResourceSets(Set)2
+17:06:13.773 | INFO  | Finished (in 0.032 sec): method io.seata.core.rpc.RpcContext.setResourceSets(Set) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:13.774 | DEBUG |  ... 
+17:06:13.775 | INFO  | Started: method io.seata.core.rpc.RpcContext.addResource(String)
+17:06:13.775 | INFO  |  -- Remaining time budget: 17389 ms, #remaining_methods: 7, budget for method: 2484 ms, solver timeout: 1000 ms, budget for symbolic execution: 1284 ms, budget for concrete execution: 1200 ms,  -- 
+17:06:13.782 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.addResource(String)1
+17:06:13.834 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.addResource(String)2
+17:06:15.059 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.RpcContext.addResource(String)
+17:06:16.260 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.RpcContext.addResource(String)
+17:06:16.372 | INFO  | Finished (in 2.597 sec): method io.seata.core.rpc.RpcContext.addResource(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:16.441 | DEBUG |  ... 
+17:06:16.442 | INFO  | Started: method io.seata.core.rpc.RpcContext.addResources(Set)
+17:06:16.442 | INFO  |  -- Remaining time budget: 14721 ms, #remaining_methods: 6, budget for method: 2453 ms, solver timeout: 1000 ms, budget for symbolic execution: 1253 ms, budget for concrete execution: 1200 ms,  -- 
+17:06:16.449 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.addResources(Set)1
+17:06:16.492 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.addResources(Set)2
+17:06:17.696 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.RpcContext.addResources(Set)
+17:06:18.897 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.RpcContext.addResources(Set)
+17:06:19.160 | INFO  | Finished (in 2.718 sec): method io.seata.core.rpc.RpcContext.addResources(Set) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:19.217 | DEBUG |  ... 
+17:06:19.218 | INFO  | Started: method io.seata.core.rpc.RpcContext.setClientId(String)
+17:06:19.218 | INFO  |  -- Remaining time budget: 11945 ms, #remaining_methods: 5, budget for method: 2389 ms, solver timeout: 1000 ms, budget for symbolic execution: 1195 ms, budget for concrete execution: 1194 ms,  -- 
+17:06:19.224 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setClientId(String)1
+17:06:19.248 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.setClientId(String)2
+17:06:19.248 | INFO  | Finished (in 0.030 sec): method io.seata.core.rpc.RpcContext.setClientId(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:19.249 | DEBUG |  ... 
+17:06:19.249 | INFO  | Started: method io.seata.core.rpc.RpcContext.getChannel()
+17:06:19.249 | INFO  |  -- Remaining time budget: 11914 ms, #remaining_methods: 4, budget for method: 2978 ms, solver timeout: 1000 ms, budget for symbolic execution: 1778 ms, budget for concrete execution: 1200 ms,  -- 
+17:06:19.255 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getChannel()1
+17:06:19.279 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getChannel()2
+17:06:19.279 | INFO  | Finished (in 0.030 sec): method io.seata.core.rpc.RpcContext.getChannel() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:19.280 | DEBUG |  ... 
+17:06:19.280 | INFO  | Started: method io.seata.core.rpc.RpcContext.getAddressFromChannel(Channel)
+17:06:19.280 | INFO  |  -- Remaining time budget: 11883 ms, #remaining_methods: 3, budget for method: 3961 ms, solver timeout: 1000 ms, budget for symbolic execution: 2761 ms, budget for concrete execution: 1200 ms,  -- 
+17:06:19.283 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getAddressFromChannel(Channel)1
+17:06:19.309 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getAddressFromChannel(Channel)2
+17:06:19.343 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getAddressFromChannel(Channel)3
+17:06:20.614 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getAddressFromChannel(Channel)4
+17:06:21.520 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getAddressFromChannel(Channel)5
+17:06:21.887 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getAddressFromChannel(Channel)6
+17:06:22.042 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.RpcContext.getAddressFromChannel(Channel)
+17:06:22.157 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getAddressFromChannel(Channel)7
+17:06:22.918 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getAddressFromChannel(Channel)8
+17:06:23.243 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.RpcContext.getAddressFromChannel(Channel)
+17:06:23.430 | INFO  | Finished (in 4.150 sec): method io.seata.core.rpc.RpcContext.getAddressFromChannel(Channel) 
+<StatsForMethod> :
+	#generatedTC=8
+	WITH NO EXCEPTIONS
+17:06:23.435 | DEBUG |  ... 
+17:06:23.436 | INFO  | Started: method io.seata.core.rpc.RpcContext.getClientPortFromChannel(Channel)
+17:06:23.436 | INFO  |  -- Remaining time budget: 7727 ms, #remaining_methods: 2, budget for method: 3863 ms, solver timeout: 1000 ms, budget for symbolic execution: 2663 ms, budget for concrete execution: 1200 ms,  -- 
+17:06:23.440 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientPortFromChannel(Channel)1
+17:06:23.517 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientPortFromChannel(Channel)2
+17:06:23.574 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientPortFromChannel(Channel)3
+17:06:24.545 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientPortFromChannel(Channel)4
+17:06:25.288 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientPortFromChannel(Channel)5
+17:06:25.457 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientPortFromChannel(Channel)6
+17:06:25.863 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.getClientPortFromChannel(Channel)7
+17:06:26.099 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.RpcContext.getClientPortFromChannel(Channel)
+17:06:27.300 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.RpcContext.getClientPortFromChannel(Channel)
+17:06:27.356 | INFO  | Finished (in 3.920 sec): method io.seata.core.rpc.RpcContext.getClientPortFromChannel(Channel) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+17:06:27.627 | DEBUG |  ... 
+17:06:27.627 | INFO  | Started: method io.seata.core.rpc.RpcContext.<init>()
+17:06:27.628 | INFO  |  -- Remaining time budget: 3536 ms, #remaining_methods: 1, budget for method: 3536 ms, solver timeout: 1000 ms, budget for symbolic execution: 2336 ms, budget for concrete execution: 1200 ms,  -- 
+17:06:27.631 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.<init>()1
+17:06:27.652 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.RpcContext.<init>()2
+17:06:27.652 | INFO  | Finished (in 0.024 sec): method io.seata.core.rpc.RpcContext.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:06:27.657 | INFO  | Started: Flushing tests for [RpcContext] on disk
+17:06:27.927 | INFO  | File size for RpcContextTest: 45 KB
+17:06:27.929 | INFO  | Finished (in 0.271 sec): Flushing tests for [RpcContext] on disk 
+17:06:27.929 | INFO  | Finished (in 22.243 sec): class io.seata.core.rpc.RpcContext 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 27, 
+	#methods started symbolic exploration = 27
+	#methods with at least one TC = 27
+	#methods with exceptions = 1
+	#generated TC = 69
+	#coverage = null
+[READY]

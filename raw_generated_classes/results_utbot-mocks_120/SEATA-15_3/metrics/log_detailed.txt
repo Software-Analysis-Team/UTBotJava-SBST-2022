@@ -1,0 +1,672 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  SEATA-15
+
+>>> RUN NUMBER: 3
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/seata/core/src/main/java
+>> /var/benchmarks/projects/seata/core/target/classes
+>> 18
+>> /var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar
+>> /var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar
+>> /var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 120
+
+
+### COMPUTING METRICS ###: io.seata.core.rpc.netty.RpcServer
+
+
+Starting class io.seata.core.rpc.netty.RpcServer
+
+
+Ending class io.seata.core.rpc.netty.RpcServer
+Creating directory results_utbot-mocks_120/SEATA-15_3/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases -cp /var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/SEATA-15_3/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases -cp /var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/SEATA-15_3/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java
+
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:31: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:34: error: cannot find symbol
+import static org.mockito.Mockito.mockStatic;
+^
+  symbol:   static mockStatic
+  location: class
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:57: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:59: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:79: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:81: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:133: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:135: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:161: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:163: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:189: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:191: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:218: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:219: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:220: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic2 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:222: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:229: error: cannot find symbol
+            mockedStatic1 = mockStatic(io.seata.common.util.NetUtil.class);
+                            ^
+  symbol:   method mockStatic(Class<NetUtil>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:233: error: cannot find symbol
+            mockedStatic2 = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                            ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:267: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:268: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:269: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic2 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:271: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:278: error: cannot find symbol
+            mockedStatic1 = mockStatic(io.seata.common.util.NetUtil.class);
+                            ^
+  symbol:   method mockStatic(Class<NetUtil>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:282: error: cannot find symbol
+            mockedStatic2 = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                            ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:315: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:316: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:317: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic2 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:319: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:326: error: cannot find symbol
+            mockedStatic1 = mockStatic(io.seata.common.util.NetUtil.class);
+                            ^
+  symbol:   method mockStatic(Class<NetUtil>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:330: error: cannot find symbol
+            mockedStatic2 = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                            ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:459: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:461: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                           ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:482: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:484: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                           ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:533: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:534: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:536: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                           ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:540: error: cannot find symbol
+            mockedStatic1 = mockStatic(org.slf4j.LoggerFactory.class);
+                            ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:565: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:566: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:568: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                           ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:572: error: cannot find symbol
+            mockedStatic1 = mockStatic(org.slf4j.LoggerFactory.class);
+                            ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:597: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:598: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:600: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                           ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:604: error: cannot find symbol
+            mockedStatic1 = mockStatic(org.slf4j.LoggerFactory.class);
+                            ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:652: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:654: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                           ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:684: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:686: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:712: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:713: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:715: error: cannot find symbol
+            mockedStatic = mockStatic(NettyServerConfig.class);
+                           ^
+  symbol:   method mockStatic(Class<NettyServerConfig>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:717: error: cannot find symbol
+            mockedStatic1 = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                            ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:736: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:737: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:739: error: cannot find symbol
+            mockedStatic = mockStatic(NettyServerConfig.class);
+                           ^
+  symbol:   method mockStatic(Class<NettyServerConfig>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:741: error: cannot find symbol
+            mockedStatic1 = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                            ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:774: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:776: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                           ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:795: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:797: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                           ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:885: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:887: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:915: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:917: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:945: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:947: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:975: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:977: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1065: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1067: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1086: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1088: error: cannot find symbol
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                           ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1166: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1167: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1168: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic2 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1170: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.common.util.NetUtil.class);
+                           ^
+  symbol:   method mockStatic(Class<NetUtil>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1175: error: cannot find symbol
+            mockedStatic1 = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                            ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1182: error: cannot find symbol
+            mockedStatic2 = mockStatic(org.slf4j.LoggerFactory.class);
+                            ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1214: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1215: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1216: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic2 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1218: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.common.util.NetUtil.class);
+                           ^
+  symbol:   method mockStatic(Class<NetUtil>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1223: error: cannot find symbol
+            mockedStatic1 = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                            ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1229: error: cannot find symbol
+            mockedStatic2 = mockStatic(org.slf4j.LoggerFactory.class);
+                            ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1261: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1262: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1263: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic2 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1265: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.common.util.NetUtil.class);
+                           ^
+  symbol:   method mockStatic(Class<NetUtil>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1270: error: cannot find symbol
+            mockedStatic1 = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                            ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1274: error: cannot find symbol
+            mockedStatic2 = mockStatic(org.slf4j.LoggerFactory.class);
+                            ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1306: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1307: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1308: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic2 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1310: error: cannot find symbol
+            mockedStatic = mockStatic(io.seata.common.util.NetUtil.class);
+                           ^
+  symbol:   method mockStatic(Class<NetUtil>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1314: error: cannot find symbol
+            mockedStatic1 = mockStatic(io.seata.core.rpc.ChannelManager.class);
+                            ^
+  symbol:   method mockStatic(Class<ChannelManager>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1318: error: cannot find symbol
+            mockedStatic2 = mockStatic(org.slf4j.LoggerFactory.class);
+                            ^
+  symbol:   method mockStatic(Class<LoggerFactory>)
+  location: class RpcServerTest
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1351: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1352: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1353: error: cannot find symbol
+        org.mockito.MockedStatic mockedStatic2 = null;
+                   ^
+  symbol:   class MockedStatic
+  location: package org.mockito
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1502: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1503: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java:1505: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/io/seata/core/rpc/netty/RpcServerTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+100 errors
+4 warnings
+Failed to compile 'io/seata/core/rpc/netty/RpcServerTest.java'!
+shaded.org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)
+	at shaded.org.apache.commons.exec.DefaultExecutor.executeInternal(DefaultExecutor.java:377)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:160)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:147)
+	at sbst.benchmark.TestSuite.compile(TestSuite.java:250)
+	at sbst.benchmark.TestSuite.<init>(TestSuite.java:68)
+	at sbst.benchmark.TranscriptWriter.endClass(TranscriptWriter.java:136)
+	at sbst.benchmark.RunTool.execute(RunTool.java:141)
+	at sbst.benchmark.RunTool.run(RunTool.java:62)
+	at sbst.benchmark.Main.main(Main.java:160)
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 7313
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/seata-core-0.5.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/mockito-core-2.23.4_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/byte-buddy-agent-1.9.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/assertj-core-2.6.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/seata-common-0.5.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/byte-buddy-1.9.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/objenesis-2.6_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/seata-discovery-core-0.5.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/commons-pool2-2.4.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/junit-4.12_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/hamcrest-core-1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/slf4j-api-1.7.22_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/seata-config-core-0.5.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/netty-all-4.1.24.Final_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/commons-lang-2.6_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/fastjson-1.2.48_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/config-1.2.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/commons-pool-1.6_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_120/SEATA-15_3/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Number of file with coverage information = 120
+Extracted coverage data for the class io/seata/core/rpc/netty/RpcServer
+Number of file with coverage information = 543
+Number of file with coverage information = 31
+Number of file with coverage information = 740
+Number of file with coverage information = 23
+Number of file with coverage information = 2286
+Number of file with coverage information = 43
+Number of file with coverage information = 10
+Number of file with coverage information = 68
+Number of file with coverage information = 286
+Number of file with coverage information = 45
+Number of file with coverage information = 34
+Number of file with coverage information = 12
+Number of file with coverage information = 2528
+Number of file with coverage information = 133
+Number of file with coverage information = 221
+Number of file with coverage information = 135
+Number of file with coverage information = 55
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 42 mutants 
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: SEATA-15
+	Class Under Test: io.seata.core.rpc.netty.RpcServer
+	Run number: 3
+	Tool preparation time (ms): 7004
+	Tool test cases generation time (ms): 53874
+	Test cases execution time (ms): 18
+	Test case number: 63
+	Uncompilable Test Classes: 1
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 102
+	Lines covered: 0
+	Lines coverage ratio (%): 0.0
+	Conditions total: 44
+	Conditions covered: 0
+	Conditions coverage ratio (%): 0.0
+	Mutants total: 42
+	Mutants covered: 0
+	Mutants coverage ratio (%): 0.0
+	Mutants killed: 0
+	Mutants killed ratio (%): 0.0
+	Mutants alive: 42
+
+
+Class io.seata.core.rpc.netty.RpcServer ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 11702
+Killing master process 11702
+Executing command kill -9 11702
+Execution of command kill -9 11702 finished.
+Process was destroyed

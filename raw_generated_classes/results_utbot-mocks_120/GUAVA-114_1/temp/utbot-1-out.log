@@ -1,0 +1,252 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+16:31:53.393 | INFO  | Started: warmup: kotlin reflection :: init
+16:31:53.467 | INFO  | Finished (in 0.073 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.util.concurrent.AtomicDoubleArray 120
+16:31:53.479 | DEBUG | -----------------------------------------------------------------------------
+16:31:53.480 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+16:31:53.481 | INFO  | ClassUnderTest[ FQN: com.google.common.util.concurrent.AtomicDoubleArray
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: AtomicDoubleArrayTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/util/concurrent/AtomicDoubleArrayTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+16:31:53.501 | INFO  | Started: class com.google.common.util.concurrent.AtomicDoubleArray
+16:31:53.502 | INFO  | Started: preparation class class com.google.common.util.concurrent.AtomicDoubleArray: kotlin reflection :: run
+16:31:53.524 | INFO  | Finished (in 0.021 sec): preparation class class com.google.common.util.concurrent.AtomicDoubleArray: kotlin reflection :: run 
+16:31:53.525 | INFO  | Started: 2nd optional soot initialization
+16:31:53.526 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+16:31:53.533 | DEBUG |  ... 
+16:31:53.545 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.toString()
+16:31:53.546 | INFO  |  -- Remaining time budget: 101945 ms, #remaining_methods: 14, budget for method: 7281 ms, solver timeout: 1000 ms, budget for symbolic execution: 6081 ms, budget for concrete execution: 1200 ms,  -- 
+16:31:53.845 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.toString()1
+16:31:54.135 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.toString()2
+16:31:59.621 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.AtomicDoubleArray.toString()
+16:32:00.823 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.AtomicDoubleArray.toString()
+16:32:00.881 | INFO  | Finished (in 7.335 sec): method com.google.common.util.concurrent.AtomicDoubleArray.toString() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:32:01.175 | DEBUG |  ... 
+16:32:01.176 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.get(int)
+16:32:01.176 | INFO  |  -- Remaining time budget: 94305 ms, #remaining_methods: 13, budget for method: 7254 ms, solver timeout: 1000 ms, budget for symbolic execution: 6054 ms, budget for concrete execution: 1200 ms,  -- 
+16:32:01.182 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.get(int)1
+16:32:01.224 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.get(int)2
+16:32:01.345 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.get(int)3
+16:32:07.230 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.AtomicDoubleArray.get(int)
+16:32:08.431 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.AtomicDoubleArray.get(int)
+16:32:08.535 | INFO  | Finished (in 7.359 sec): method com.google.common.util.concurrent.AtomicDoubleArray.get(int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:32:08.998 | DEBUG |  ... 
+16:32:08.998 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.length()
+16:32:08.999 | INFO  |  -- Remaining time budget: 86482 ms, #remaining_methods: 12, budget for method: 7206 ms, solver timeout: 1000 ms, budget for symbolic execution: 6006 ms, budget for concrete execution: 1200 ms,  -- 
+16:32:09.004 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.length()1
+16:32:09.030 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.length()2
+16:32:09.069 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.length()3
+16:32:09.069 | INFO  | Finished (in 0.071 sec): method com.google.common.util.concurrent.AtomicDoubleArray.length() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:32:09.073 | DEBUG |  ... 
+16:32:09.073 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.readObject(ObjectInputStream)
+16:32:09.073 | INFO  |  -- Remaining time budget: 86407 ms, #remaining_methods: 11, budget for method: 7855 ms, solver timeout: 1000 ms, budget for symbolic execution: 6655 ms, budget for concrete execution: 1200 ms,  -- 
+16:32:09.087 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class java.io.ObjectInputStream with modifiers "protected"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+16:32:09.128 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.readObject(ObjectInputStream)1
+16:32:09.376 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.readObject(ObjectInputStream)2
+16:32:11.370 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.readObject(ObjectInputStream)3
+16:32:12.183 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.readObject(ObjectInputStream)4
+16:32:12.299 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.readObject(ObjectInputStream)5
+16:32:15.729 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.AtomicDoubleArray.readObject(ObjectInputStream)
+16:32:16.929 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.AtomicDoubleArray.readObject(ObjectInputStream)
+16:32:17.099 | INFO  | Finished (in 8.026 sec): method com.google.common.util.concurrent.AtomicDoubleArray.readObject(ObjectInputStream) 
+<StatsForMethod> :
+	#generatedTC=5
+	FAILED 1 time(s) with 1 different exception(s)"
+16:32:17.271 | DEBUG |  ... 
+16:32:17.271 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.writeObject(ObjectOutputStream)
+16:32:17.272 | INFO  |  -- Remaining time budget: 78209 ms, #remaining_methods: 10, budget for method: 7820 ms, solver timeout: 1000 ms, budget for symbolic execution: 6620 ms, budget for concrete execution: 1200 ms,  -- 
+16:32:17.278 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class java.io.ObjectOutputStream with modifiers "protected"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+16:32:17.305 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.writeObject(ObjectOutputStream)1
+16:32:17.522 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.writeObject(ObjectOutputStream)2
+16:32:20.756 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.writeObject(ObjectOutputStream)3
+16:32:21.491 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.writeObject(ObjectOutputStream)4
+16:32:22.222 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.writeObject(ObjectOutputStream)5
+16:32:23.075 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.writeObject(ObjectOutputStream)6
+16:32:23.892 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.AtomicDoubleArray.writeObject(ObjectOutputStream)
+16:32:24.886 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.writeObject(ObjectOutputStream)7
+16:32:25.092 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.AtomicDoubleArray.writeObject(ObjectOutputStream)
+16:32:25.161 | INFO  | Finished (in 7.890 sec): method com.google.common.util.concurrent.AtomicDoubleArray.writeObject(ObjectOutputStream) 
+<StatsForMethod> :
+	#generatedTC=7
+	FAILED 1 time(s) with 1 different exception(s)"
+16:32:25.219 | DEBUG |  ... 
+16:32:25.220 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.set(int, double)
+16:32:25.220 | INFO  |  -- Remaining time budget: 70261 ms, #remaining_methods: 9, budget for method: 7806 ms, solver timeout: 1000 ms, budget for symbolic execution: 6606 ms, budget for concrete execution: 1200 ms,  -- 
+16:32:25.228 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.set(int, double)1
+16:32:25.270 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.set(int, double)2
+16:32:31.826 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.AtomicDoubleArray.set(int, double)
+16:32:33.027 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.AtomicDoubleArray.set(int, double)
+16:32:33.102 | INFO  | Finished (in 7.882 sec): method com.google.common.util.concurrent.AtomicDoubleArray.set(int, double) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:32:33.637 | DEBUG |  ... 
+16:32:33.638 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.lazySet(int, double)
+16:32:33.638 | INFO  |  -- Remaining time budget: 61842 ms, #remaining_methods: 8, budget for method: 7730 ms, solver timeout: 1000 ms, budget for symbolic execution: 6530 ms, budget for concrete execution: 1200 ms,  -- 
+16:32:33.643 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.lazySet(int, double)1
+16:32:33.685 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.lazySet(int, double)2
+16:32:40.168 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.AtomicDoubleArray.lazySet(int, double)
+16:32:41.369 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.AtomicDoubleArray.lazySet(int, double)
+16:32:41.470 | INFO  | Finished (in 7.832 sec): method com.google.common.util.concurrent.AtomicDoubleArray.lazySet(int, double) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:32:42.017 | DEBUG |  ... 
+16:32:42.018 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.getAndAdd(int, double)
+16:32:42.018 | INFO  |  -- Remaining time budget: 53462 ms, #remaining_methods: 7, budget for method: 7637 ms, solver timeout: 1000 ms, budget for symbolic execution: 6437 ms, budget for concrete execution: 1200 ms,  -- 
+16:32:42.023 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.getAndAdd(int, double)1
+16:32:42.048 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.getAndAdd(int, double)2
+16:32:42.163 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.getAndAdd(int, double)3
+16:32:48.455 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.AtomicDoubleArray.getAndAdd(int, double)
+16:32:49.656 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.AtomicDoubleArray.getAndAdd(int, double)
+16:32:49.756 | INFO  | Finished (in 7.738 sec): method com.google.common.util.concurrent.AtomicDoubleArray.getAndAdd(int, double) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:32:49.940 | DEBUG |  ... 
+16:32:49.941 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.getAndSet(int, double)
+16:32:49.941 | INFO  |  -- Remaining time budget: 45539 ms, #remaining_methods: 6, budget for method: 7589 ms, solver timeout: 1000 ms, budget for symbolic execution: 6389 ms, budget for concrete execution: 1200 ms,  -- 
+16:32:49.948 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.getAndSet(int, double)1
+16:32:49.988 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.getAndSet(int, double)2
+16:32:56.330 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.AtomicDoubleArray.getAndSet(int, double)
+16:32:57.531 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.AtomicDoubleArray.getAndSet(int, double)
+16:32:57.617 | INFO  | Finished (in 7.676 sec): method com.google.common.util.concurrent.AtomicDoubleArray.getAndSet(int, double) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:32:58.168 | DEBUG |  ... 
+16:32:58.169 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.compareAndSet(int, double, double)
+16:32:58.169 | INFO  |  -- Remaining time budget: 37311 ms, #remaining_methods: 5, budget for method: 7462 ms, solver timeout: 1000 ms, budget for symbolic execution: 6262 ms, budget for concrete execution: 1200 ms,  -- 
+16:32:58.177 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.compareAndSet(int, double, double)1
+16:32:58.213 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.compareAndSet(int, double, double)2
+16:32:58.331 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.compareAndSet(int, double, double)3
+16:33:04.431 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.AtomicDoubleArray.compareAndSet(int, double, double)
+16:33:05.632 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.AtomicDoubleArray.compareAndSet(int, double, double)
+16:33:05.720 | INFO  | Finished (in 7.550 sec): method com.google.common.util.concurrent.AtomicDoubleArray.compareAndSet(int, double, double) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:33:06.267 | DEBUG |  ... 
+16:33:06.267 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.weakCompareAndSet(int, double, double)
+16:33:06.268 | INFO  |  -- Remaining time budget: 29213 ms, #remaining_methods: 4, budget for method: 7303 ms, solver timeout: 1000 ms, budget for symbolic execution: 6103 ms, budget for concrete execution: 1200 ms,  -- 
+16:33:06.274 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.weakCompareAndSet(int, double, double)1
+16:33:06.301 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.weakCompareAndSet(int, double, double)2
+16:33:06.465 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.weakCompareAndSet(int, double, double)3
+16:33:12.371 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.AtomicDoubleArray.weakCompareAndSet(int, double, double)
+16:33:13.572 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.AtomicDoubleArray.weakCompareAndSet(int, double, double)
+16:33:13.666 | INFO  | Finished (in 7.398 sec): method com.google.common.util.concurrent.AtomicDoubleArray.weakCompareAndSet(int, double, double) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:33:13.974 | DEBUG |  ... 
+16:33:13.974 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.addAndGet(int, double)
+16:33:13.975 | INFO  |  -- Remaining time budget: 21506 ms, #remaining_methods: 3, budget for method: 7168 ms, solver timeout: 1000 ms, budget for symbolic execution: 5968 ms, budget for concrete execution: 1200 ms,  -- 
+16:33:13.979 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.addAndGet(int, double)1
+16:33:14.004 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.addAndGet(int, double)2
+16:33:14.114 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.addAndGet(int, double)3
+16:33:19.943 | INFO  | |> Starting concrete execution for remaining state: com.google.common.util.concurrent.AtomicDoubleArray.addAndGet(int, double)
+16:33:21.143 | INFO  | (X) Cancelling concrete execution: com.google.common.util.concurrent.AtomicDoubleArray.addAndGet(int, double)
+16:33:21.237 | INFO  | Finished (in 7.262 sec): method com.google.common.util.concurrent.AtomicDoubleArray.addAndGet(int, double) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:33:21.752 | DEBUG |  ... 
+16:33:21.752 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.<init>(int)
+16:33:21.753 | INFO  |  -- Remaining time budget: 13728 ms, #remaining_methods: 2, budget for method: 6864 ms, solver timeout: 1000 ms, budget for symbolic execution: 5664 ms, budget for concrete execution: 1200 ms,  -- 
+16:33:21.758 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.<init>(int)1
+16:33:21.835 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.<init>(int)2
+16:33:21.854 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.<init>(int)3
+16:33:21.855 | INFO  | Finished (in 0.102 sec): method com.google.common.util.concurrent.AtomicDoubleArray.<init>(int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:33:21.864 | DEBUG |  ... 
+16:33:21.865 | INFO  | Started: method com.google.common.util.concurrent.AtomicDoubleArray.<init>(double[])
+16:33:21.865 | INFO  |  -- Remaining time budget: 13616 ms, #remaining_methods: 1, budget for method: 13616 ms, solver timeout: 1000 ms, budget for symbolic execution: 12416 ms, budget for concrete execution: 1200 ms,  -- 
+16:33:21.870 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.<init>(double[])1
+16:33:21.892 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.<init>(double[])2
+16:33:22.027 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.<init>(double[])3
+16:33:22.134 | DEBUG | --new testCase collected, to generate: testCom.google.common.util.concurrent.AtomicDoubleArray.<init>(double[])4
+16:33:22.139 | INFO  | Finished (in 0.274 sec): method com.google.common.util.concurrent.AtomicDoubleArray.<init>(double[]) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:33:22.164 | INFO  | Started: Flushing tests for [AtomicDoubleArray] on disk
+16:33:22.398 | INFO  | File size for AtomicDoubleArrayTest: 45 KB
+16:33:22.399 | INFO  | Finished (in 0.235 sec): Flushing tests for [AtomicDoubleArray] on disk 
+16:33:22.400 | INFO  | Finished (in 88.898 sec): class com.google.common.util.concurrent.AtomicDoubleArray 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 14, 
+	#methods started symbolic exploration = 14
+	#methods with at least one TC = 14
+	#methods with exceptions = 2
+	#generated TC = 45
+	#coverage = null
+[READY]

@@ -1,0 +1,576 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  SPOON-157
+
+>>> RUN NUMBER: 3
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/spoon/src/main/java
+>> /var/benchmarks/projects/spoon/target/classes
+>> 31
+>> /var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar
+>> /var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar
+>> /var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar
+>> /var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar
+>> /var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar
+>> /var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar
+>> /var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar
+>> /var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar
+>> /var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 120
+
+
+### COMPUTING METRICS ###: spoon.support.DefaultCoreFactory
+
+
+Starting class spoon.support.DefaultCoreFactory
+
+
+Ending class spoon.support.DefaultCoreFactory
+Creating directory results_utbot-mocks_120/SPOON-157_3/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases -cp /var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/SPOON-157_3/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases -cp /var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/SPOON-157_3/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/spoon/support/DefaultCoreFactoryTest.java
+
+/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/spoon/support/DefaultCoreFactoryTest.java:28: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/spoon/support/DefaultCoreFactoryTest.java:1431: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/spoon/support/DefaultCoreFactoryTest.java:1432: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/spoon/support/DefaultCoreFactoryTest.java:1434: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/spoon/support/DefaultCoreFactoryTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+4 warnings
+Compiled 'spoon/support/DefaultCoreFactoryTest.java'
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.DefaultCoreFactoryTest]
+Executions terminated
+Failure: [testCreateBodyHolderSourcePosition2(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateBodyHolderSourcePosition3(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateDeclarationSourcePosition2(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateDeclarationSourcePosition3(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal]
+Failing Tests: testCreateBodyHolderSourcePosition2(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl.<init>(BodyHolderSourcePositionImpl.java:43)
+	at spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(DefaultCoreFactory.java:714)
+	at spoon.support.DefaultCoreFactoryTest.testCreateBodyHolderSourcePosition2(DefaultCoreFactoryTest.java:1004)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateBodyHolderSourcePosition3(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl.<init>(BodyHolderSourcePositionImpl.java:43)
+	at spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(DefaultCoreFactory.java:714)
+	at spoon.support.DefaultCoreFactoryTest.testCreateBodyHolderSourcePosition3(DefaultCoreFactoryTest.java:1032)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateDeclarationSourcePosition2(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(DefaultCoreFactory.java:709)
+	at spoon.support.DefaultCoreFactoryTest.testCreateDeclarationSourcePosition2(DefaultCoreFactoryTest.java:941)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateDeclarationSourcePosition3(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(DefaultCoreFactory.java:709)
+	at spoon.support.DefaultCoreFactoryTest.testCreateDeclarationSourcePosition3(DefaultCoreFactoryTest.java:967)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.DefaultCoreFactoryTest]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.DefaultCoreFactoryTest]
+Failure: [testCreateBodyHolderSourcePosition2(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateBodyHolderSourcePosition3(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateDeclarationSourcePosition2(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateDeclarationSourcePosition3(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal]
+Failing Tests: testCreateBodyHolderSourcePosition2(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl.<init>(BodyHolderSourcePositionImpl.java:43)
+	at spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(DefaultCoreFactory.java:714)
+	at spoon.support.DefaultCoreFactoryTest.testCreateBodyHolderSourcePosition2(DefaultCoreFactoryTest.java:1004)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateBodyHolderSourcePosition3(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl.<init>(BodyHolderSourcePositionImpl.java:43)
+	at spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(DefaultCoreFactory.java:714)
+	at spoon.support.DefaultCoreFactoryTest.testCreateBodyHolderSourcePosition3(DefaultCoreFactoryTest.java:1032)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateDeclarationSourcePosition2(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(DefaultCoreFactory.java:709)
+	at spoon.support.DefaultCoreFactoryTest.testCreateDeclarationSourcePosition2(DefaultCoreFactoryTest.java:941)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateDeclarationSourcePosition3(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(DefaultCoreFactory.java:709)
+	at spoon.support.DefaultCoreFactoryTest.testCreateDeclarationSourcePosition3(DefaultCoreFactoryTest.java:967)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.DefaultCoreFactoryTest]
+Failure: [testCreateBodyHolderSourcePosition2(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateBodyHolderSourcePosition3(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateDeclarationSourcePosition2(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateDeclarationSourcePosition3(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal]
+Failing Tests: testCreateBodyHolderSourcePosition2(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl.<init>(BodyHolderSourcePositionImpl.java:43)
+	at spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(DefaultCoreFactory.java:714)
+	at spoon.support.DefaultCoreFactoryTest.testCreateBodyHolderSourcePosition2(DefaultCoreFactoryTest.java:1004)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateBodyHolderSourcePosition3(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl.<init>(BodyHolderSourcePositionImpl.java:43)
+	at spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(DefaultCoreFactory.java:714)
+	at spoon.support.DefaultCoreFactoryTest.testCreateBodyHolderSourcePosition3(DefaultCoreFactoryTest.java:1032)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateDeclarationSourcePosition2(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(DefaultCoreFactory.java:709)
+	at spoon.support.DefaultCoreFactoryTest.testCreateDeclarationSourcePosition2(DefaultCoreFactoryTest.java:941)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateDeclarationSourcePosition3(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(DefaultCoreFactory.java:709)
+	at spoon.support.DefaultCoreFactoryTest.testCreateDeclarationSourcePosition3(DefaultCoreFactoryTest.java:967)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Executions terminated
+Failure: [testCreateBodyHolderSourcePosition2(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateBodyHolderSourcePosition3(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateDeclarationSourcePosition2(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateDeclarationSourcePosition3(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal]
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.DefaultCoreFactoryTest]
+Failing Tests: testCreateBodyHolderSourcePosition2(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl.<init>(BodyHolderSourcePositionImpl.java:43)
+	at spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(DefaultCoreFactory.java:714)
+	at spoon.support.DefaultCoreFactoryTest.testCreateBodyHolderSourcePosition2(DefaultCoreFactoryTest.java:1004)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateBodyHolderSourcePosition3(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl.<init>(BodyHolderSourcePositionImpl.java:43)
+	at spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(DefaultCoreFactory.java:714)
+	at spoon.support.DefaultCoreFactoryTest.testCreateBodyHolderSourcePosition3(DefaultCoreFactoryTest.java:1032)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateDeclarationSourcePosition2(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(DefaultCoreFactory.java:709)
+	at spoon.support.DefaultCoreFactoryTest.testCreateDeclarationSourcePosition2(DefaultCoreFactoryTest.java:941)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateDeclarationSourcePosition3(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(DefaultCoreFactory.java:709)
+	at spoon.support.DefaultCoreFactoryTest.testCreateDeclarationSourcePosition3(DefaultCoreFactoryTest.java:967)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Executions terminated
+Failure: [testCreateBodyHolderSourcePosition2(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateBodyHolderSourcePosition3(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateDeclarationSourcePosition2(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal, testCreateDeclarationSourcePosition3(spoon.support.DefaultCoreFactoryTest): SourcePosition values must be ascending or equal]
+Failing Tests: testCreateBodyHolderSourcePosition2(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl.<init>(BodyHolderSourcePositionImpl.java:43)
+	at spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(DefaultCoreFactory.java:714)
+	at spoon.support.DefaultCoreFactoryTest.testCreateBodyHolderSourcePosition2(DefaultCoreFactoryTest.java:1004)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateBodyHolderSourcePosition3(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl.<init>(BodyHolderSourcePositionImpl.java:43)
+	at spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(DefaultCoreFactory.java:714)
+	at spoon.support.DefaultCoreFactoryTest.testCreateBodyHolderSourcePosition3(DefaultCoreFactoryTest.java:1032)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateDeclarationSourcePosition2(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(DefaultCoreFactory.java:709)
+	at spoon.support.DefaultCoreFactoryTest.testCreateDeclarationSourcePosition2(DefaultCoreFactoryTest.java:941)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+Failing Tests: testCreateDeclarationSourcePosition3(spoon.support.DefaultCoreFactoryTest)
+spoon.SpoonException: SourcePosition values must be ascending or equal
+	at spoon.support.reflect.cu.position.SourcePositionImpl.checkArgsAreAscending(SourcePositionImpl.java:221)
+	at spoon.support.reflect.cu.position.DeclarationSourcePositionImpl.<init>(DeclarationSourcePositionImpl.java:41)
+	at spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(DefaultCoreFactory.java:709)
+	at spoon.support.DefaultCoreFactoryTest.testCreateDeclarationSourcePosition3(DefaultCoreFactoryTest.java:967)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$StatementThread.run(FailOnTimeout.java:74)
+
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 9764
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/spoon-core-7.0.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.text-3.12.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.equinox.app-1.6.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.core.contenttype-3.8.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/mockito-all-2.0.2-beta_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/jackson-databind-2.9.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/guava-18.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.core.expressions-3.8.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.core.commands-3.10.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/jackson-annotations-2.9.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.jdt.core-3.13.102_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.core.runtime-3.24.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.core.resources-3.16.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/jackson-core-2.9.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/junit-4.12_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.equinox.registry-3.11.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/hamcrest-core-1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/maven-model-3.3.9_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/plexus-utils-3.0.22_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/jsap-2.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/bridge-method-annotation-1.13_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.equinox.common-3.15.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.core.jobs-3.12.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/commons-io-2.5_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/commons-lang3-3.5_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/system-rules-1.9.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/querydsl-core-3.6.9_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.core.filesystem-1.9.200_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.equinox.preferences-3.9.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/org.eclipse.osgi-3.17.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/log4j-1.2.17_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.DefaultCoreFactoryTest]
+Executions terminated
+Number of file with coverage information = 1009
+Extracted coverage data for the class spoon/support/DefaultCoreFactory
+Number of file with coverage information = 180
+Number of file with coverage information = 32
+Number of file with coverage information = 47
+Number of file with coverage information = 752
+Number of file with coverage information = 617
+Number of file with coverage information = 1690
+Number of file with coverage information = 50
+Number of file with coverage information = 84
+Number of file with coverage information = 68
+Number of file with coverage information = 2122
+Number of file with coverage information = 22
+Number of file with coverage information = 361
+Number of file with coverage information = 105
+Number of file with coverage information = 286
+Number of file with coverage information = 89
+Number of file with coverage information = 45
+Number of file with coverage information = 54
+Number of file with coverage information = 104
+Number of file with coverage information = 69
+Number of file with coverage information = 2
+Number of file with coverage information = 73
+Number of file with coverage information = 48
+Number of file with coverage information = 123
+Number of file with coverage information = 260
+Number of file with coverage information = 18
+Number of file with coverage information = 348
+Number of file with coverage information = 35
+Number of file with coverage information = 70
+Number of file with coverage information = 687
+Number of file with coverage information = 314
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 167 mutants 
+Evaluating mutant 946537035 using tests: [spoon.support.DefaultCoreFactoryTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/bin:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/CUT0
+
+Failed test testDefaultCoreFactory1(spoon.support.DefaultCoreFactoryTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createCompilationUnit, methodDesc=()Lspoon/reflect/cu/CompilationUnit;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)
+Evaluating mutant -694435592 using tests: [spoon.support.DefaultCoreFactoryTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/bin:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/CUT1
+
+Failed test testDefaultCoreFactory1(spoon.support.DefaultCoreFactoryTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createCompoundSourcePosition, methodDesc=(Lspoon/reflect/cu/CompilationUnit;IIII[I)Lspoon/reflect/cu/position/CompoundSourcePosition;], indexes=[12], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)
+Evaluating mutant 164999153 using tests: [spoon.support.DefaultCoreFactoryTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/bin:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/CUT2
+
+Failed test testDefaultCoreFactory1(spoon.support.DefaultCoreFactoryTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createPackageReference, methodDesc=()Lspoon/reflect/reference/CtPackageReference;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)
+Evaluating mutant -495169224 using tests: [spoon.support.DefaultCoreFactoryTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/bin:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/CUT3
+
+Failed test testDefaultCoreFactory1(spoon.support.DefaultCoreFactoryTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createSourcePosition, methodDesc=(Lspoon/reflect/cu/CompilationUnit;II[I)Lspoon/reflect/cu/SourcePosition;], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)
+Evaluating mutant 1159098481 using tests: [spoon.support.DefaultCoreFactoryTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/bin:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/CUT4
+
+Failed test testDefaultCoreFactory1(spoon.support.DefaultCoreFactoryTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createTypeReference, methodDesc=()Lspoon/reflect/reference/CtTypeReference;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)
+Evaluating mutant 1102088088 using tests: [spoon.support.DefaultCoreFactoryTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_120/SPOON-157_3/temp/testcases/bin:results_utbot-mocks_120/SPOON-157_3/temp/testcases/mutated_code/CUT5
+
+Failed test testDefaultCoreFactory1(spoon.support.DefaultCoreFactoryTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=clone, methodDesc=(Lspoon/reflect/declaration/CtElement;)Lspoon/reflect/declaration/CtElement;], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createCompilationUnit, methodDesc=()Lspoon/reflect/cu/CompilationUnit;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=82, lineNumber=725, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createCompilationUnit to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createCompoundSourcePosition, methodDesc=(Lspoon/reflect/cu/CompilationUnit;IIII[I)Lspoon/reflect/cu/position/CompoundSourcePosition;], indexes=[12], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=79, lineNumber=704, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createCompoundSourcePosition to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createPackageReference, methodDesc=()Lspoon/reflect/reference/CtPackageReference;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=50, lineNumber=529, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createPackageReference to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createSourcePosition, methodDesc=(Lspoon/reflect/cu/CompilationUnit;II[I)Lspoon/reflect/cu/SourcePosition;], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=77, lineNumber=694, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createSourcePosition to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createTypeReference, methodDesc=()Lspoon/reflect/reference/CtTypeReference;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=63, lineNumber=610, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createTypeReference to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=clone, methodDesc=(Lspoon/reflect/declaration/CtElement;)Lspoon/reflect/declaration/CtElement;], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=1, lineNumber=217, description=mutated return of Object value for spoon/support/DefaultCoreFactory::clone to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: SPOON-157
+	Class Under Test: spoon.support.DefaultCoreFactory
+	Run number: 3
+	Tool preparation time (ms): 14739
+	Tool test cases generation time (ms): 14921
+	Test cases execution time (ms): 1898
+	Test case number: 105
+	Uncompilable Test Classes: 0
+	Broken tests number: 4
+	Failing tests number: 0
+	Lines total: 429
+	Lines covered: 177
+	Lines coverage ratio (%): 41.25874
+	Conditions total: 160
+	Conditions covered: 80
+	Conditions coverage ratio (%): 50.0
+	Mutants total: 167
+	Mutants covered: 6
+	Mutants coverage ratio (%): 3.5928144
+	Mutants killed: 6
+	Mutants killed ratio (%): 3.5928144
+	Mutants alive: 161
+
+
+Class spoon.support.DefaultCoreFactory ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 23898
+Killing master process 23898
+Executing command kill -9 23898
+Execution of command kill -9 23898 finished.
+Process was destroyed

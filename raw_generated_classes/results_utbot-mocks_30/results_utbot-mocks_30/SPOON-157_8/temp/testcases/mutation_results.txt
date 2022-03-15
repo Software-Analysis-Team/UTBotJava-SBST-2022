@@ -1,0 +1,23 @@
+N. of generated mutants 167
+N. of covered mutants 6
+N. of killed mutants 6
+N. of ignored mutants 0
+
+
+ --- Tests killing mutants --- 
+ Mutant: 0	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createCompilationUnit, methodDesc=()Lspoon/reflect/cu/CompilationUnit;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=82, lineNumber=725, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createCompilationUnit to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+Mutant: 1	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createCompoundSourcePosition, methodDesc=(Lspoon/reflect/cu/CompilationUnit;IIII[I)Lspoon/reflect/cu/position/CompoundSourcePosition;], indexes=[12], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=79, lineNumber=704, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createCompoundSourcePosition to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+Mutant: 2	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createPackageReference, methodDesc=()Lspoon/reflect/reference/CtPackageReference;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=50, lineNumber=529, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createPackageReference to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+Mutant: 3	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createSourcePosition, methodDesc=(Lspoon/reflect/cu/CompilationUnit;II[I)Lspoon/reflect/cu/SourcePosition;], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=77, lineNumber=694, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createSourcePosition to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+Mutant: 4	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createTypeReference, methodDesc=()Lspoon/reflect/reference/CtTypeReference;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=63, lineNumber=610, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createTypeReference to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+Mutant: 5	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=clone, methodDesc=(Lspoon/reflect/declaration/CtElement;)Lspoon/reflect/declaration/CtElement;], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=1, lineNumber=217, description=mutated return of Object value for spoon/support/DefaultCoreFactory::clone to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+
+
+ --- Mutants details--- 
+ Mutant: 0, killed by tests [(spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)]
+Mutant: 1, killed by tests [(spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)]
+Mutant: 2, killed by tests [(spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)]
+Mutant: 3, killed by tests [(spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)]
+Mutant: 4, killed by tests [(spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)]
+Mutant: 5, killed by tests [(spoon.support.DefaultCoreFactoryTest),testDefaultCoreFactory1)]
+

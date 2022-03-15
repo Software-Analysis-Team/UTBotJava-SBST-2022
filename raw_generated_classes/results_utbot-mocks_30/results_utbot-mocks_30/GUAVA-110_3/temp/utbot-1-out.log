@@ -1,0 +1,334 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+11:31:55.860 | INFO  | Started: warmup: kotlin reflection :: init
+11:31:55.937 | INFO  | Finished (in 0.077 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.math.IntMath 30
+11:31:55.949 | DEBUG | -----------------------------------------------------------------------------
+11:31:55.950 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+11:31:55.951 | INFO  | ClassUnderTest[ FQN: com.google.common.math.IntMath
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: IntMathTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/math/IntMathTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+11:31:55.973 | INFO  | Started: class com.google.common.math.IntMath
+11:31:55.973 | INFO  | Started: preparation class class com.google.common.math.IntMath: kotlin reflection :: run
+11:31:55.995 | INFO  | Finished (in 0.021 sec): preparation class class com.google.common.math.IntMath: kotlin reflection :: run 
+11:31:55.995 | INFO  | Started: 2nd optional soot initialization
+11:31:55.996 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+11:31:56.004 | DEBUG |  ... 
+11:31:56.014 | INFO  | Started: method com.google.common.math.IntMath.log2(int, RoundingMode)
+11:31:56.017 | INFO  |  -- Remaining time budget: 25444 ms, #remaining_methods: 26, budget for method: 978 ms, solver timeout: 489 ms, budget for symbolic execution: 489 ms, budget for concrete execution: 489 ms,  -- 
+11:31:56.334 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.log2(int, RoundingMode)1
+11:31:56.502 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.IntMath.log2(int, RoundingMode)
+11:31:56.992 | INFO  | (X) Cancelling concrete execution: com.google.common.math.IntMath.log2(int, RoundingMode)
+11:31:57.011 | INFO  | Finished (in 0.994 sec): method com.google.common.math.IntMath.log2(int, RoundingMode) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+11:31:57.033 | DEBUG |  ... 
+11:31:57.034 | INFO  | Started: method com.google.common.math.IntMath.mod(int, int)
+11:31:57.034 | INFO  |  -- Remaining time budget: 24416 ms, #remaining_methods: 25, budget for method: 976 ms, solver timeout: 488 ms, budget for symbolic execution: 488 ms, budget for concrete execution: 488 ms,  -- 
+11:31:57.042 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.mod(int, int)1
+11:31:57.118 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.mod(int, int)2
+11:31:57.214 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.mod(int, int)3
+11:31:57.227 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.mod(int, int)4
+11:31:57.227 | INFO  | Finished (in 0.193 sec): method com.google.common.math.IntMath.mod(int, int) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+11:31:57.228 | DEBUG |  ... 
+11:31:57.229 | INFO  | Started: method com.google.common.math.IntMath.gcd(int, int)
+11:31:57.229 | INFO  |  -- Remaining time budget: 24221 ms, #remaining_methods: 24, budget for method: 1009 ms, solver timeout: 504 ms, budget for symbolic execution: 505 ms, budget for concrete execution: 504 ms,  -- 
+11:31:57.235 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.gcd(int, int)1
+11:31:57.286 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.gcd(int, int)2
+11:31:57.288 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.gcd(int, int)3
+11:31:57.985 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.IntMath.gcd(int, int)
+11:31:58.490 | INFO  | (X) Cancelling concrete execution: com.google.common.math.IntMath.gcd(int, int)
+11:31:58.526 | INFO  | Finished (in 1.297 sec): method com.google.common.math.IntMath.gcd(int, int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:31:58.544 | DEBUG |  ... 
+11:31:58.545 | INFO  | Started: method com.google.common.math.IntMath.sqrt(int, RoundingMode)
+11:31:58.545 | INFO  |  -- Remaining time budget: 22906 ms, #remaining_methods: 23, budget for method: 995 ms, solver timeout: 497 ms, budget for symbolic execution: 498 ms, budget for concrete execution: 497 ms,  -- 
+11:31:58.558 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.sqrt(int, RoundingMode)1
+11:31:59.043 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.IntMath.sqrt(int, RoundingMode)
+11:31:59.541 | INFO  | (X) Cancelling concrete execution: com.google.common.math.IntMath.sqrt(int, RoundingMode)
+11:31:59.802 | INFO  | Finished (in 1.257 sec): method com.google.common.math.IntMath.sqrt(int, RoundingMode) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+11:31:59.809 | DEBUG |  ... 
+11:31:59.809 | INFO  | Started: method com.google.common.math.IntMath.log10(int, RoundingMode)
+11:31:59.809 | INFO  |  -- Remaining time budget: 21641 ms, #remaining_methods: 22, budget for method: 983 ms, solver timeout: 491 ms, budget for symbolic execution: 492 ms, budget for concrete execution: 491 ms,  -- 
+11:31:59.816 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.log10(int, RoundingMode)1
+11:32:00.302 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.IntMath.log10(int, RoundingMode)
+11:32:00.793 | INFO  | (X) Cancelling concrete execution: com.google.common.math.IntMath.log10(int, RoundingMode)
+11:32:00.805 | INFO  | Finished (in 0.995 sec): method com.google.common.math.IntMath.log10(int, RoundingMode) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+11:32:00.841 | DEBUG |  ... 
+11:32:00.841 | INFO  | Started: method com.google.common.math.IntMath.pow(int, int)
+11:32:00.842 | INFO  |  -- Remaining time budget: 20609 ms, #remaining_methods: 21, budget for method: 981 ms, solver timeout: 490 ms, budget for symbolic execution: 491 ms, budget for concrete execution: 490 ms,  -- 
+11:32:00.851 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)1
+11:32:00.925 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)2
+11:32:00.951 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)3
+11:32:00.956 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)4
+11:32:00.975 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)5
+11:32:00.998 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)6
+11:32:00.999 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)7
+11:32:01.004 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)8
+11:32:01.029 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)9
+11:32:01.071 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)10
+11:32:01.078 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)11
+11:32:01.097 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)12
+11:32:01.101 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)13
+11:32:01.104 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)14
+11:32:01.125 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.pow(int, int)15
+11:32:01.129 | INFO  | Finished (in 0.287 sec): method com.google.common.math.IntMath.pow(int, int) 
+<StatsForMethod> :
+	#generatedTC=15
+	WITH NO EXCEPTIONS
+11:32:01.130 | DEBUG |  ... 
+11:32:01.131 | INFO  | Started: method com.google.common.math.IntMath.divide(int, int, RoundingMode)
+11:32:01.131 | INFO  |  -- Remaining time budget: 20319 ms, #remaining_methods: 20, budget for method: 1015 ms, solver timeout: 507 ms, budget for symbolic execution: 508 ms, budget for concrete execution: 507 ms,  -- 
+11:32:01.143 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.divide(int, int, RoundingMode)1
+11:32:01.355 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.divide(int, int, RoundingMode)2
+11:32:01.500 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.divide(int, int, RoundingMode)3
+11:32:01.639 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.IntMath.divide(int, int, RoundingMode)
+11:32:02.147 | INFO  | (X) Cancelling concrete execution: com.google.common.math.IntMath.divide(int, int, RoundingMode)
+11:32:02.159 | INFO  | Finished (in 1.028 sec): method com.google.common.math.IntMath.divide(int, int, RoundingMode) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:32:02.206 | DEBUG |  ... 
+11:32:02.206 | INFO  | Started: method com.google.common.math.IntMath.saturatedSubtract(int, int)
+11:32:02.206 | INFO  |  -- Remaining time budget: 19244 ms, #remaining_methods: 19, budget for method: 1012 ms, solver timeout: 506 ms, budget for symbolic execution: 506 ms, budget for concrete execution: 506 ms,  -- 
+11:32:02.214 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedSubtract(int, int)1
+11:32:02.239 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedSubtract(int, int)2
+11:32:02.239 | INFO  | Finished (in 0.032 sec): method com.google.common.math.IntMath.saturatedSubtract(int, int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:32:02.239 | DEBUG |  ... 
+11:32:02.240 | INFO  | Started: method com.google.common.math.IntMath.saturatedAdd(int, int)
+11:32:02.240 | INFO  |  -- Remaining time budget: 19210 ms, #remaining_methods: 18, budget for method: 1067 ms, solver timeout: 533 ms, budget for symbolic execution: 534 ms, budget for concrete execution: 533 ms,  -- 
+11:32:02.246 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedAdd(int, int)1
+11:32:02.266 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedAdd(int, int)2
+11:32:02.266 | INFO  | Finished (in 0.026 sec): method com.google.common.math.IntMath.saturatedAdd(int, int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:32:02.267 | DEBUG |  ... 
+11:32:02.268 | INFO  | Started: method com.google.common.math.IntMath.isPowerOfTwo(int)
+11:32:02.268 | INFO  |  -- Remaining time budget: 19183 ms, #remaining_methods: 17, budget for method: 1128 ms, solver timeout: 564 ms, budget for symbolic execution: 564 ms, budget for concrete execution: 564 ms,  -- 
+11:32:02.275 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.isPowerOfTwo(int)1
+11:32:02.313 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.isPowerOfTwo(int)2
+11:32:02.333 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.isPowerOfTwo(int)3
+11:32:02.351 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.isPowerOfTwo(int)4
+11:32:02.354 | INFO  | Finished (in 0.086 sec): method com.google.common.math.IntMath.isPowerOfTwo(int) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+11:32:02.355 | DEBUG |  ... 
+11:32:02.355 | INFO  | Started: method com.google.common.math.IntMath.ceilingPowerOfTwo(int)
+11:32:02.356 | INFO  |  -- Remaining time budget: 19095 ms, #remaining_methods: 16, budget for method: 1193 ms, solver timeout: 596 ms, budget for symbolic execution: 597 ms, budget for concrete execution: 596 ms,  -- 
+11:32:02.362 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.ceilingPowerOfTwo(int)1
+11:32:02.406 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.ceilingPowerOfTwo(int)2
+11:32:02.592 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.ceilingPowerOfTwo(int)3
+11:32:02.608 | INFO  | Finished (in 0.252 sec): method com.google.common.math.IntMath.ceilingPowerOfTwo(int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:32:02.614 | DEBUG |  ... 
+11:32:02.615 | INFO  | Started: method com.google.common.math.IntMath.lessThanBranchFree(int, int)
+11:32:02.615 | INFO  |  -- Remaining time budget: 18835 ms, #remaining_methods: 15, budget for method: 1255 ms, solver timeout: 627 ms, budget for symbolic execution: 628 ms, budget for concrete execution: 627 ms,  -- 
+11:32:02.619 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.lessThanBranchFree(int, int)1
+11:32:02.641 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.lessThanBranchFree(int, int)2
+11:32:02.641 | INFO  | Finished (in 0.026 sec): method com.google.common.math.IntMath.lessThanBranchFree(int, int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:32:02.643 | DEBUG |  ... 
+11:32:02.643 | INFO  | Started: method com.google.common.math.IntMath.log10Floor(int)
+11:32:02.643 | INFO  |  -- Remaining time budget: 18807 ms, #remaining_methods: 14, budget for method: 1343 ms, solver timeout: 671 ms, budget for symbolic execution: 672 ms, budget for concrete execution: 671 ms,  -- 
+11:32:02.648 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.log10Floor(int)1
+11:32:03.316 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.IntMath.log10Floor(int)
+11:32:03.987 | INFO  | (X) Cancelling concrete execution: com.google.common.math.IntMath.log10Floor(int)
+11:32:04.040 | INFO  | Finished (in 1.397 sec): method com.google.common.math.IntMath.log10Floor(int) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+11:32:04.103 | DEBUG |  ... 
+11:32:04.103 | INFO  | Started: method com.google.common.math.IntMath.sqrtFloor(int)
+11:32:04.104 | INFO  |  -- Remaining time budget: 17347 ms, #remaining_methods: 13, budget for method: 1334 ms, solver timeout: 667 ms, budget for symbolic execution: 667 ms, budget for concrete execution: 667 ms,  -- 
+11:32:04.108 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.sqrtFloor(int)1
+11:32:04.771 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.IntMath.sqrtFloor(int)
+11:32:05.439 | INFO  | (X) Cancelling concrete execution: com.google.common.math.IntMath.sqrtFloor(int)
+11:32:05.478 | INFO  | Finished (in 1.374 sec): method com.google.common.math.IntMath.sqrtFloor(int) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+11:32:05.485 | DEBUG |  ... 
+11:32:05.486 | INFO  | Started: method com.google.common.math.IntMath.checkedAdd(int, int)
+11:32:05.486 | INFO  |  -- Remaining time budget: 15965 ms, #remaining_methods: 12, budget for method: 1330 ms, solver timeout: 665 ms, budget for symbolic execution: 665 ms, budget for concrete execution: 665 ms,  -- 
+11:32:05.490 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedAdd(int, int)1
+11:32:05.545 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedAdd(int, int)2
+11:32:05.552 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedAdd(int, int)3
+11:32:05.552 | INFO  | Finished (in 0.066 sec): method com.google.common.math.IntMath.checkedAdd(int, int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:32:05.553 | DEBUG |  ... 
+11:32:05.554 | INFO  | Started: method com.google.common.math.IntMath.checkedSubtract(int, int)
+11:32:05.554 | INFO  |  -- Remaining time budget: 15896 ms, #remaining_methods: 11, budget for method: 1445 ms, solver timeout: 722 ms, budget for symbolic execution: 723 ms, budget for concrete execution: 722 ms,  -- 
+11:32:05.558 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedSubtract(int, int)1
+11:32:05.612 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedSubtract(int, int)2
+11:32:05.619 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedSubtract(int, int)3
+11:32:05.620 | INFO  | Finished (in 0.066 sec): method com.google.common.math.IntMath.checkedSubtract(int, int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:32:05.621 | DEBUG |  ... 
+11:32:05.621 | INFO  | Started: method com.google.common.math.IntMath.checkedMultiply(int, int)
+11:32:05.621 | INFO  |  -- Remaining time budget: 15829 ms, #remaining_methods: 10, budget for method: 1582 ms, solver timeout: 791 ms, budget for symbolic execution: 791 ms, budget for concrete execution: 791 ms,  -- 
+11:32:05.625 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedMultiply(int, int)1
+11:32:06.413 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.IntMath.checkedMultiply(int, int)
+11:32:06.533 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedMultiply(int, int)2
+11:32:06.534 | INFO  | Finished (in 0.912 sec): method com.google.common.math.IntMath.checkedMultiply(int, int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:32:06.535 | DEBUG |  ... 
+11:32:06.535 | INFO  | Started: method com.google.common.math.IntMath.checkedPow(int, int)
+11:32:06.535 | INFO  |  -- Remaining time budget: 14915 ms, #remaining_methods: 9, budget for method: 1657 ms, solver timeout: 828 ms, budget for symbolic execution: 829 ms, budget for concrete execution: 828 ms,  -- 
+11:32:06.539 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)1
+11:32:06.608 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)2
+11:32:06.630 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)3
+11:32:06.647 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)4
+11:32:06.669 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)5
+11:32:06.705 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)6
+11:32:06.729 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)7
+11:32:06.734 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)8
+11:32:06.757 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)9
+11:32:06.819 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)10
+11:32:06.825 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)11
+11:32:06.829 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)12
+11:32:06.987 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)13
+11:32:07.120 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)14
+11:32:07.288 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.checkedPow(int, int)15
+11:32:07.364 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.IntMath.checkedPow(int, int)
+11:32:08.193 | INFO  | (X) Cancelling concrete execution: com.google.common.math.IntMath.checkedPow(int, int)
+11:32:08.413 | INFO  | Finished (in 1.877 sec): method com.google.common.math.IntMath.checkedPow(int, int) 
+<StatsForMethod> :
+	#generatedTC=15
+	WITH NO EXCEPTIONS
+11:32:08.434 | DEBUG |  ... 
+11:32:08.435 | INFO  | Started: method com.google.common.math.IntMath.saturatedMultiply(int, int)
+11:32:08.435 | INFO  |  -- Remaining time budget: 13016 ms, #remaining_methods: 8, budget for method: 1627 ms, solver timeout: 813 ms, budget for symbolic execution: 814 ms, budget for concrete execution: 813 ms,  -- 
+11:32:08.439 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedMultiply(int, int)1
+11:32:08.459 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedMultiply(int, int)2
+11:32:08.459 | INFO  | Finished (in 0.024 sec): method com.google.common.math.IntMath.saturatedMultiply(int, int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:32:08.460 | DEBUG |  ... 
+11:32:08.460 | INFO  | Started: method com.google.common.math.IntMath.saturatedPow(int, int)
+11:32:08.460 | INFO  |  -- Remaining time budget: 12990 ms, #remaining_methods: 7, budget for method: 1855 ms, solver timeout: 927 ms, budget for symbolic execution: 928 ms, budget for concrete execution: 927 ms,  -- 
+11:32:08.464 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)1
+11:32:08.533 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)2
+11:32:08.579 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)3
+11:32:08.584 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)4
+11:32:08.589 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)5
+11:32:08.609 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)6
+11:32:08.614 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)7
+11:32:08.631 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)8
+11:32:08.665 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)9
+11:32:08.704 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)10
+11:32:08.705 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)11
+11:32:08.729 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)12
+11:32:08.736 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)13
+11:32:08.741 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)14
+11:32:08.769 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)15
+11:32:08.852 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)16
+11:32:08.925 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.saturatedPow(int, int)17
+11:32:09.389 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.IntMath.saturatedPow(int, int)
+11:32:10.316 | INFO  | (X) Cancelling concrete execution: com.google.common.math.IntMath.saturatedPow(int, int)
+11:32:11.103 | INFO  | Finished (in 2.642 sec): method com.google.common.math.IntMath.saturatedPow(int, int) 
+<StatsForMethod> :
+	#generatedTC=17
+	WITH NO EXCEPTIONS
+11:32:11.117 | DEBUG |  ... 
+11:32:11.118 | INFO  | Started: method com.google.common.math.IntMath.factorial(int)
+11:32:11.118 | INFO  |  -- Remaining time budget: 10332 ms, #remaining_methods: 6, budget for method: 1722 ms, solver timeout: 861 ms, budget for symbolic execution: 861 ms, budget for concrete execution: 861 ms,  -- 
+11:32:11.121 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.factorial(int)1
+11:32:11.242 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.factorial(int)2
+11:32:11.270 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.factorial(int)3
+11:32:11.296 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.factorial(int)4
+11:32:11.296 | INFO  | Finished (in 0.178 sec): method com.google.common.math.IntMath.factorial(int) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+11:32:11.304 | DEBUG |  ... 
+11:32:11.304 | INFO  | Started: method com.google.common.math.IntMath.binomial(int, int)
+11:32:11.304 | INFO  |  -- Remaining time budget: 10146 ms, #remaining_methods: 5, budget for method: 2029 ms, solver timeout: 1000 ms, budget for symbolic execution: 1015 ms, budget for concrete execution: 1014 ms,  -- 
+11:32:11.308 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.binomial(int, int)1
+11:32:11.742 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.binomial(int, int)2
+11:32:12.320 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.IntMath.binomial(int, int)
+11:32:12.804 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.binomial(int, int)3
+11:32:13.334 | INFO  | (X) Cancelling concrete execution: com.google.common.math.IntMath.binomial(int, int)
+11:32:13.843 | INFO  | Finished (in 2.538 sec): method com.google.common.math.IntMath.binomial(int, int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:32:13.867 | DEBUG |  ... 
+11:32:13.867 | INFO  | Started: method com.google.common.math.IntMath.mean(int, int)
+11:32:13.868 | INFO  |  -- Remaining time budget: 7583 ms, #remaining_methods: 4, budget for method: 1895 ms, solver timeout: 947 ms, budget for symbolic execution: 948 ms, budget for concrete execution: 947 ms,  -- 
+11:32:13.870 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.mean(int, int)1
+11:32:13.889 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.mean(int, int)2
+11:32:13.890 | INFO  | Finished (in 0.022 sec): method com.google.common.math.IntMath.mean(int, int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:32:13.891 | DEBUG |  ... 
+11:32:13.891 | INFO  | Started: method com.google.common.math.IntMath.isPrime(int)
+11:32:13.892 | INFO  |  -- Remaining time budget: 7559 ms, #remaining_methods: 3, budget for method: 2519 ms, solver timeout: 1000 ms, budget for symbolic execution: 1319 ms, budget for concrete execution: 1200 ms,  -- 
+11:32:13.899 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.isPrime(int)1
+11:32:13.922 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.isPrime(int)2
+11:32:13.922 | INFO  | Finished (in 0.030 sec): method com.google.common.math.IntMath.isPrime(int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:32:13.923 | DEBUG |  ... 
+11:32:13.923 | INFO  | Started: method com.google.common.math.IntMath.floorPowerOfTwo(int)
+11:32:13.923 | INFO  |  -- Remaining time budget: 7527 ms, #remaining_methods: 2, budget for method: 3763 ms, solver timeout: 1000 ms, budget for symbolic execution: 2563 ms, budget for concrete execution: 1200 ms,  -- 
+11:32:13.926 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.floorPowerOfTwo(int)1
+11:32:13.953 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.floorPowerOfTwo(int)2
+11:32:13.953 | INFO  | Finished (in 0.030 sec): method com.google.common.math.IntMath.floorPowerOfTwo(int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:32:13.956 | DEBUG |  ... 
+11:32:13.957 | INFO  | Started: method com.google.common.math.IntMath.<init>()
+11:32:13.957 | INFO  |  -- Remaining time budget: 7493 ms, #remaining_methods: 1, budget for method: 7493 ms, solver timeout: 1000 ms, budget for symbolic execution: 6293 ms, budget for concrete execution: 1200 ms,  -- 
+11:32:13.962 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.<init>()1
+11:32:13.985 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.IntMath.<init>()2
+11:32:13.986 | INFO  | Finished (in 0.029 sec): method com.google.common.math.IntMath.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:32:13.991 | INFO  | Started: Flushing tests for [IntMath] on disk
+11:32:14.248 | INFO  | File size for IntMathTest: 48 KB
+11:32:14.249 | INFO  | Finished (in 0.258 sec): Flushing tests for [IntMath] on disk 
+11:32:14.250 | INFO  | Finished (in 18.277 sec): class com.google.common.math.IntMath 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 26, 
+	#methods started symbolic exploration = 26
+	#methods with at least one TC = 26
+	#methods with exceptions = 0
+	#generated TC = 100
+	#coverage = null
+[READY]

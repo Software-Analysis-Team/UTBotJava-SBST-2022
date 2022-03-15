@@ -1,0 +1,140 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+19:44:33.977 | INFO  | Started: warmup: kotlin reflection :: init
+19:44:34.059 | INFO  | Finished (in 0.081 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.protocol.RegisterRMRequest 30
+19:44:34.071 | DEBUG | -----------------------------------------------------------------------------
+19:44:34.072 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+19:44:34.073 | INFO  | ClassUnderTest[ FQN: io.seata.core.protocol.RegisterRMRequest
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: RegisterRMRequestTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/protocol/RegisterRMRequestTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+19:44:34.096 | INFO  | Started: class io.seata.core.protocol.RegisterRMRequest
+19:44:34.097 | INFO  | Started: preparation class class io.seata.core.protocol.RegisterRMRequest: kotlin reflection :: run
+19:44:34.145 | INFO  | Finished (in 0.047 sec): preparation class class io.seata.core.protocol.RegisterRMRequest: kotlin reflection :: run 
+19:44:34.146 | INFO  | Started: 2nd optional soot initialization
+19:44:34.147 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+19:44:34.155 | DEBUG |  ... 
+19:44:34.164 | INFO  | Started: method io.seata.core.protocol.RegisterRMRequest.toString()
+19:44:34.165 | INFO  |  -- Remaining time budget: 25415 ms, #remaining_methods: 8, budget for method: 3176 ms, solver timeout: 1000 ms, budget for symbolic execution: 1976 ms, budget for concrete execution: 1200 ms,  -- 
+19:44:34.542 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.toString()1
+19:44:36.141 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.RegisterRMRequest.toString()
+19:44:36.167 | INFO  | Finished (in 2.002 sec): method io.seata.core.protocol.RegisterRMRequest.toString() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+19:44:36.247 | DEBUG |  ... 
+19:44:36.249 | INFO  | Started: method io.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)
+19:44:36.249 | INFO  |  -- Remaining time budget: 23324 ms, #remaining_methods: 7, budget for method: 3332 ms, solver timeout: 1000 ms, budget for symbolic execution: 2132 ms, budget for concrete execution: 1200 ms,  -- 
+19:44:36.314 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)1
+19:44:36.381 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)2
+19:44:36.421 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)3
+19:44:36.482 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)4
+19:44:36.561 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)5
+19:44:36.588 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)6
+19:44:36.628 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)7
+19:44:36.661 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)8
+19:44:36.709 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)9
+19:44:38.381 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)
+19:44:39.582 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.RegisterRMRequest.decode(ByteBuf)
+19:44:40.551 | INFO  | Finished (in 4.302 sec): method io.seata.core.protocol.RegisterRMRequest.decode(ByteBuf) 
+<StatsForMethod> :
+	#generatedTC=9
+	WITH NO EXCEPTIONS
+19:44:40.609 | DEBUG |  ... 
+19:44:40.610 | INFO  | Started: method io.seata.core.protocol.RegisterRMRequest.getTypeCode()
+19:44:40.610 | INFO  |  -- Remaining time budget: 18962 ms, #remaining_methods: 6, budget for method: 3160 ms, solver timeout: 1000 ms, budget for symbolic execution: 1960 ms, budget for concrete execution: 1200 ms,  -- 
+19:44:40.640 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.getTypeCode()1
+19:44:40.675 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.getTypeCode()2
+19:44:40.675 | INFO  | Finished (in 0.065 sec): method io.seata.core.protocol.RegisterRMRequest.getTypeCode() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:44:40.676 | DEBUG |  ... 
+19:44:40.677 | INFO  | Started: method io.seata.core.protocol.RegisterRMRequest.doEncode()
+19:44:40.677 | INFO  |  -- Remaining time budget: 18896 ms, #remaining_methods: 5, budget for method: 3779 ms, solver timeout: 1000 ms, budget for symbolic execution: 2579 ms, budget for concrete execution: 1200 ms,  -- 
+19:44:40.703 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.doEncode()1
+19:44:41.014 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.doEncode()2
+19:44:42.486 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalStateException: No field $__is_mock_null in class java.nio.charset.Charset
+	at com.huawei.utbot.framework.concrete.MethodMockController.<init>(MethodMockController.kt:38)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.mockMethods(MockValueConstructor.kt:245)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.mockStaticMethods(MockValueConstructor.kt:263)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:139)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.withStaticFields(UtExecutionInstrumentation.kt:225)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:137)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+19:44:42.505 | ERROR | Symbolic execution FAILED ... <<stack trace duplicated>>
+19:44:42.517 | ERROR | Symbolic execution FAILED ... <<stack trace duplicated>>
+19:44:42.529 | ERROR | Symbolic execution FAILED ... <<stack trace duplicated>>
+19:44:42.529 | INFO  | Finished (in 1.852 sec): method io.seata.core.protocol.RegisterRMRequest.doEncode() 
+<StatsForMethod> :
+	#generatedTC=2
+	FAILED 4 time(s) with 1 different exception(s)"
+19:44:42.557 | DEBUG |  ... 
+19:44:42.557 | INFO  | Started: method io.seata.core.protocol.RegisterRMRequest.setResourceIds(String)
+19:44:42.558 | INFO  |  -- Remaining time budget: 17015 ms, #remaining_methods: 4, budget for method: 4253 ms, solver timeout: 1000 ms, budget for symbolic execution: 3053 ms, budget for concrete execution: 1200 ms,  -- 
+19:44:42.630 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.setResourceIds(String)1
+19:44:42.656 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.setResourceIds(String)2
+19:44:42.657 | INFO  | Finished (in 0.099 sec): method io.seata.core.protocol.RegisterRMRequest.setResourceIds(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:44:42.658 | DEBUG |  ... 
+19:44:42.658 | INFO  | Started: method io.seata.core.protocol.RegisterRMRequest.getResourceIds()
+19:44:42.658 | INFO  |  -- Remaining time budget: 16914 ms, #remaining_methods: 3, budget for method: 5638 ms, solver timeout: 1000 ms, budget for symbolic execution: 4438 ms, budget for concrete execution: 1200 ms,  -- 
+19:44:42.692 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.getResourceIds()1
+19:44:42.726 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.getResourceIds()2
+19:44:42.727 | INFO  | Finished (in 0.068 sec): method io.seata.core.protocol.RegisterRMRequest.getResourceIds() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:44:42.728 | DEBUG |  ... 
+19:44:42.728 | INFO  | Started: method io.seata.core.protocol.RegisterRMRequest.<init>()
+19:44:42.728 | INFO  |  -- Remaining time budget: 16844 ms, #remaining_methods: 2, budget for method: 8422 ms, solver timeout: 1000 ms, budget for symbolic execution: 7222 ms, budget for concrete execution: 1200 ms,  -- 
+19:44:42.747 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.<init>()1
+19:44:42.830 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.<init>()2
+19:44:42.831 | INFO  | Finished (in 0.102 sec): method io.seata.core.protocol.RegisterRMRequest.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:44:42.838 | DEBUG |  ... 
+19:44:42.839 | INFO  | Started: method io.seata.core.protocol.RegisterRMRequest.<init>(String, String)
+19:44:42.839 | INFO  |  -- Remaining time budget: 16733 ms, #remaining_methods: 1, budget for method: 16733 ms, solver timeout: 1000 ms, budget for symbolic execution: 15533 ms, budget for concrete execution: 1200 ms,  -- 
+19:44:42.855 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.<init>(String, String)1
+19:44:42.925 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.RegisterRMRequest.<init>(String, String)2
+19:44:42.926 | INFO  | Finished (in 0.086 sec): method io.seata.core.protocol.RegisterRMRequest.<init>(String, String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:44:42.935 | INFO  | Started: Flushing tests for [RegisterRMRequest] on disk
+19:44:43.154 | INFO  | File size for RegisterRMRequestTest: 17 KB
+19:44:43.156 | INFO  | Finished (in 0.221 sec): Flushing tests for [RegisterRMRequest] on disk 
+19:44:43.157 | INFO  | Finished (in 9.060 sec): class io.seata.core.protocol.RegisterRMRequest 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 8, 
+	#methods started symbolic exploration = 8
+	#methods with at least one TC = 8
+	#methods with exceptions = 1
+	#generated TC = 22
+	#coverage = null
+[READY]

@@ -1,0 +1,1340 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+01:39:14.804 | INFO  | Started: warmup: kotlin reflection :: init
+01:39:14.886 | INFO  | Finished (in 0.081 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.reflect.visitor.PrintingContext 120
+01:39:14.900 | DEBUG | -----------------------------------------------------------------------------
+01:39:14.901 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+01:39:14.903 | INFO  | ClassUnderTest[ FQN: spoon.reflect.visitor.PrintingContext
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: PrintingContextTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/reflect/visitor/PrintingContextTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+01:39:14.938 | INFO  | Started: class spoon.reflect.visitor.PrintingContext
+01:39:14.939 | INFO  | Started: preparation class class spoon.reflect.visitor.PrintingContext: kotlin reflection :: run
+01:39:15.000 | INFO  | Finished (in 0.060 sec): preparation class class spoon.reflect.visitor.PrintingContext: kotlin reflection :: run 
+01:39:15.002 | INFO  | Started: 2nd optional soot initialization
+01:39:15.003 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+01:39:15.014 | DEBUG |  ... 
+01:39:15.024 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.toString()
+01:39:15.028 | INFO  |  -- Remaining time budget: 101885 ms, #remaining_methods: 23, budget for method: 4429 ms, solver timeout: 1000 ms, budget for symbolic execution: 3229 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:15.383 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.toString()1
+01:39:16.796 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.toString()2
+01:39:16.886 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.toString()3
+01:39:16.887 | INFO  | Finished (in 1.861 sec): method spoon.reflect.visitor.PrintingContext.toString() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:16.966 | DEBUG |  ... 
+01:39:16.967 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.skipArray()
+01:39:16.967 | INFO  |  -- Remaining time budget: 99935 ms, #remaining_methods: 22, budget for method: 4542 ms, solver timeout: 1000 ms, budget for symbolic execution: 3342 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:16.977 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.skipArray()1
+01:39:17.024 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.skipArray()2
+01:39:17.030 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.skipArray()3
+01:39:17.031 | INFO  | Finished (in 0.063 sec): method spoon.reflect.visitor.PrintingContext.skipArray() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:17.032 | DEBUG |  ... 
+01:39:17.032 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.ignoreStaticAccess()
+01:39:17.032 | INFO  |  -- Remaining time budget: 99870 ms, #remaining_methods: 21, budget for method: 4755 ms, solver timeout: 1000 ms, budget for symbolic execution: 3555 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:17.887 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreStaticAccess()1
+01:39:17.938 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreStaticAccess()2
+01:39:17.944 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreStaticAccess()3
+01:39:17.945 | INFO  | Finished (in 0.913 sec): method spoon.reflect.visitor.PrintingContext.ignoreStaticAccess() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:17.946 | DEBUG |  ... 
+01:39:17.947 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.ignoreEnclosingClass()
+01:39:17.947 | INFO  |  -- Remaining time budget: 98956 ms, #remaining_methods: 20, budget for method: 4947 ms, solver timeout: 1000 ms, budget for symbolic execution: 3747 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:17.956 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreEnclosingClass()1
+01:39:18.003 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreEnclosingClass()2
+01:39:18.010 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreEnclosingClass()3
+01:39:18.011 | INFO  | Finished (in 0.064 sec): method spoon.reflect.visitor.PrintingContext.ignoreEnclosingClass() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:18.013 | DEBUG |  ... 
+01:39:18.014 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.getCurrentTypeContext()
+01:39:18.014 | INFO  |  -- Remaining time budget: 98889 ms, #remaining_methods: 19, budget for method: 5204 ms, solver timeout: 1000 ms, budget for symbolic execution: 4004 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:18.024 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()1
+01:39:18.059 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()2
+01:39:19.179 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()3
+01:39:19.237 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()4
+01:39:19.861 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()5
+01:39:20.249 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()6
+01:39:22.019 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.PrintingContext.getCurrentTypeContext()
+01:39:22.385 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()7
+01:39:22.844 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()8
+01:39:23.220 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.PrintingContext.getCurrentTypeContext()
+01:39:23.263 | INFO  | Finished (in 5.249 sec): method spoon.reflect.visitor.PrintingContext.getCurrentTypeContext() 
+<StatsForMethod> :
+	#generatedTC=8
+	WITH NO EXCEPTIONS
+01:39:23.339 | DEBUG |  ... 
+01:39:23.340 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.forceWildcardGenerics()
+01:39:23.340 | INFO  |  -- Remaining time budget: 93563 ms, #remaining_methods: 18, budget for method: 5197 ms, solver timeout: 1000 ms, budget for symbolic execution: 3997 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:23.354 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.forceWildcardGenerics()1
+01:39:23.402 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.forceWildcardGenerics()2
+01:39:23.407 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.forceWildcardGenerics()3
+01:39:23.408 | INFO  | Finished (in 0.068 sec): method spoon.reflect.visitor.PrintingContext.forceWildcardGenerics() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:23.409 | DEBUG |  ... 
+01:39:23.409 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.noTypeDecl()
+01:39:23.410 | INFO  |  -- Remaining time budget: 93493 ms, #remaining_methods: 17, budget for method: 5499 ms, solver timeout: 1000 ms, budget for symbolic execution: 4299 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:23.416 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.noTypeDecl()1
+01:39:23.464 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.noTypeDecl()2
+01:39:23.469 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.noTypeDecl()3
+01:39:23.469 | INFO  | Finished (in 0.060 sec): method spoon.reflect.visitor.PrintingContext.noTypeDecl() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:23.470 | DEBUG |  ... 
+01:39:23.471 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.ignoreGenerics()
+01:39:23.471 | INFO  |  -- Remaining time budget: 93432 ms, #remaining_methods: 16, budget for method: 5839 ms, solver timeout: 1000 ms, budget for symbolic execution: 4639 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:23.477 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreGenerics()1
+01:39:23.520 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreGenerics()2
+01:39:23.524 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreGenerics()3
+01:39:23.525 | INFO  | Finished (in 0.054 sec): method spoon.reflect.visitor.PrintingContext.ignoreGenerics() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:23.526 | DEBUG |  ... 
+01:39:23.526 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.modify()
+01:39:23.526 | INFO  |  -- Remaining time budget: 93376 ms, #remaining_methods: 15, budget for method: 6225 ms, solver timeout: 1000 ms, budget for symbolic execution: 5025 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:23.534 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.modify()1
+01:39:23.573 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.modify()2
+01:39:23.573 | INFO  | Finished (in 0.047 sec): method spoon.reflect.visitor.PrintingContext.modify() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+01:39:23.578 | DEBUG |  ... 
+01:39:23.579 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.getCurrentTypeReference()
+01:39:23.580 | INFO  |  -- Remaining time budget: 93323 ms, #remaining_methods: 14, budget for method: 6665 ms, solver timeout: 1000 ms, budget for symbolic execution: 5465 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:23.587 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()1
+01:39:23.616 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()2
+01:39:23.705 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()3
+01:39:24.117 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()4
+01:39:24.145 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()5
+01:39:24.316 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()6
+01:39:24.626 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()7
+01:39:25.879 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()8
+01:39:29.045 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.PrintingContext.getCurrentTypeReference()
+01:39:29.268 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()9
+01:39:29.619 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()10
+01:39:29.952 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()11
+01:39:30.245 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.PrintingContext.getCurrentTypeReference()
+01:39:30.284 | INFO  | Finished (in 6.704 sec): method spoon.reflect.visitor.PrintingContext.getCurrentTypeReference() 
+<StatsForMethod> :
+	#generatedTC=11
+	WITH NO EXCEPTIONS
+01:39:30.409 | DEBUG |  ... 
+01:39:30.411 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType)
+01:39:30.412 | INFO  |  -- Remaining time budget: 86492 ms, #remaining_methods: 13, budget for method: 6653 ms, solver timeout: 1000 ms, budget for symbolic execution: 5453 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:30.427 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType)1
+01:39:32.269 | ERROR | Symbolic execution FAILED
+java.util.NoSuchElementException: List contains no element matching the predicate.
+	at com.huawei.utbot.engine.Hierarchy.chunkIdForField(Hierarchy.kt:76) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.objectUpdate(UtBotSymbolicEngine.kt:2072) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseAssignLeftPart(UtBotSymbolicEngine.kt:994) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseAssignStmt(UtBotSymbolicEngine.kt:907) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseStmt(UtBotSymbolicEngine.kt:604) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invokeSuspend(UtBotSymbolicEngine.kt:464) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1.invokeSuspend(Unknown Source) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+01:39:32.574 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType)2
+01:39:32.924 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType)3
+01:39:33.628 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType)4
+01:39:35.827 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType)5
+01:39:35.863 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType)
+01:39:35.932 | INFO  | Finished (in 5.520 sec): method spoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType) 
+<StatsForMethod> :
+	#generatedTC=5
+	FAILED 1 time(s) with 1 different exception(s)"
+01:39:36.054 | DEBUG |  ... 
+01:39:36.054 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.popCurrentThis()
+01:39:36.054 | INFO  |  -- Remaining time budget: 80848 ms, #remaining_methods: 12, budget for method: 6737 ms, solver timeout: 1000 ms, budget for symbolic execution: 5537 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:36.061 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.popCurrentThis()1
+01:39:36.092 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.popCurrentThis()2
+01:39:36.640 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.popCurrentThis()3
+01:39:36.703 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.popCurrentThis()4
+01:39:40.371 | ERROR | Symbolic execution FAILED
+java.lang.StackOverflowError: null
+	at java.util.IdentityHashMap.hash(IdentityHashMap.java:295) ~[?:1.8.0_312]
+	at java.util.IdentityHashMap.put(IdentityHashMap.java:426) ~[?:1.8.0_312]
+	at com.microsoft.z3.IDecRefQueue.storeReference(IDecRefQueue.java:58) ~[utbot-junit-contest-1.0.jar:?]
+	at com.microsoft.z3.AST.addToReferenceQueue(AST.java:199) ~[utbot-junit-contest-1.0.jar:?]
+	at com.microsoft.z3.Z3Object.<init>(Z3Object.java:34) ~[utbot-junit-contest-1.0.jar:?]
+	at com.microsoft.z3.AST.<init>(AST.java:189) ~[utbot-junit-contest-1.0.jar:?]
+	at com.microsoft.z3.Sort.<init>(Sort.java:104) ~[utbot-junit-contest-1.0.jar:?]
+	at com.microsoft.z3.BitVecSort.<init>(BitVecSort.java:37) ~[utbot-junit-contest-1.0.jar:?]
+	at com.microsoft.z3.Context.mkBitVecSort(Context.java:214) ~[utbot-junit-contest-1.0.jar:?]
+	at com.microsoft.z3.Context.mkBV(Context.java:2422) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.z3.ExtensionsKt.makeBV(Extensions.kt:140) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.Z3TranslatorVisitor.visit(Z3TranslatorVisitor.kt:78) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.Z3EvaluatorVisitor.visit(Z3EvaluatorVisitor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.Z3EvaluatorVisitor.visit(Z3EvaluatorVisitor.kt:22) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.UtBvLiteral.accept(UtExpression.kt:280) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.Z3EvaluatorVisitor.eval(Z3EvaluatorVisitor.kt:58) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.Z3EvaluatorVisitor.visit(Z3EvaluatorVisitor.kt:177) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.Z3EvaluatorVisitor.visit(Z3EvaluatorVisitor.kt:22) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.UtAddrExpression.accept(UtExpression.kt:503) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.Z3EvaluatorVisitor.eval(Z3EvaluatorVisitor.kt:58) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.Z3EvaluatorVisitor.visit(Z3EvaluatorVisitor.kt:333) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.Z3EvaluatorVisitor.visit(Z3EvaluatorVisitor.kt:22) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.UtArraySelectExpression.accept(UtExpression.kt:205) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.Z3EvaluatorVisitor.eval(Z3EvaluatorVisitor.kt:58) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.pc.UtSolverStatusSAT.eval(UtSolverStatus.kt:54) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.isTouched(Resolver.kt:584) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructTypeOrNull(Resolver.kt:619) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:871) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.toModel(Resolver.kt:819) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:787) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.constructArrayModel(Resolver.kt:749) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.Resolver.arrayOfObjectsElementModel(Resolver.kt:874) ~[utbot-junit-contest-1.0.jar:?]
+01:39:41.311 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.popCurrentThis()5
+01:39:41.522 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.popCurrentThis()6
+01:39:41.592 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.PrintingContext.popCurrentThis()
+01:39:41.595 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.popCurrentThis()7
+01:39:42.792 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.PrintingContext.popCurrentThis()
+01:39:42.814 | INFO  | Finished (in 6.759 sec): method spoon.reflect.visitor.PrintingContext.popCurrentThis() 
+<StatsForMethod> :
+	#generatedTC=7
+	FAILED 1 time(s) with 1 different exception(s)"
+01:39:42.881 | DEBUG |  ... 
+01:39:42.882 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)
+01:39:42.882 | INFO  |  -- Remaining time budget: 74020 ms, #remaining_methods: 11, budget for method: 6729 ms, solver timeout: 1000 ms, budget for symbolic execution: 5529 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:42.888 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)1
+01:39:43.093 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)2
+01:39:43.154 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)3
+01:39:43.176 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)4
+01:39:43.559 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)5
+01:39:44.365 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)6
+01:39:44.538 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)7
+01:39:44.854 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)8
+01:39:48.411 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)
+01:39:48.980 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)9
+01:39:49.612 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)
+01:39:49.685 | INFO  | Finished (in 6.803 sec): method spoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference) 
+<StatsForMethod> :
+	#generatedTC=9
+	WITH NO EXCEPTIONS
+01:39:49.839 | DEBUG |  ... 
+01:39:49.839 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.<init>()
+01:39:49.839 | INFO  |  -- Remaining time budget: 67063 ms, #remaining_methods: 10, budget for method: 6706 ms, solver timeout: 1000 ms, budget for symbolic execution: 5506 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:49.845 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.<init>()1
+01:39:50.044 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.<init>()2
+01:39:50.044 | INFO  | Finished (in 0.205 sec): method spoon.reflect.visitor.PrintingContext.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+01:39:50.063 | DEBUG |  ... 
+01:39:50.063 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.close()
+01:39:50.064 | INFO  |  -- Remaining time budget: 66839 ms, #remaining_methods: 9, budget for method: 7426 ms, solver timeout: 1000 ms, budget for symbolic execution: 6226 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:50.070 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.close()1
+01:39:50.111 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.close()2
+01:39:50.111 | INFO  | Finished (in 0.048 sec): method spoon.reflect.visitor.PrintingContext.Writable.close() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+01:39:50.112 | DEBUG |  ... 
+01:39:50.113 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.skipArray(boolean)
+01:39:50.113 | INFO  |  -- Remaining time budget: 66789 ms, #remaining_methods: 8, budget for method: 8348 ms, solver timeout: 1000 ms, budget for symbolic execution: 7148 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:50.117 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.skipArray(boolean)1
+01:39:50.163 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.skipArray(boolean)2
+01:39:50.165 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.skipArray(boolean)3
+01:39:50.165 | INFO  | Finished (in 0.052 sec): method spoon.reflect.visitor.PrintingContext.Writable.skipArray(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:50.171 | DEBUG |  ... 
+01:39:50.171 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.setState(long, boolean)
+01:39:50.171 | INFO  |  -- Remaining time budget: 66731 ms, #remaining_methods: 7, budget for method: 9533 ms, solver timeout: 1000 ms, budget for symbolic execution: 8333 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:50.175 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.setState(long, boolean)1
+01:39:50.221 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.setState(long, boolean)2
+01:39:50.227 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.setState(long, boolean)3
+01:39:50.228 | INFO  | Finished (in 0.056 sec): method spoon.reflect.visitor.PrintingContext.Writable.setState(long, boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:50.229 | DEBUG |  ... 
+01:39:50.229 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.ignoreStaticAccess(boolean)
+01:39:50.229 | INFO  |  -- Remaining time budget: 66673 ms, #remaining_methods: 6, budget for method: 11112 ms, solver timeout: 1000 ms, budget for symbolic execution: 9912 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:50.233 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreStaticAccess(boolean)1
+01:39:50.277 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreStaticAccess(boolean)2
+01:39:50.279 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreStaticAccess(boolean)3
+01:39:50.280 | INFO  | Finished (in 0.050 sec): method spoon.reflect.visitor.PrintingContext.Writable.ignoreStaticAccess(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:50.285 | DEBUG |  ... 
+01:39:50.286 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.ignoreEnclosingClass(boolean)
+01:39:50.286 | INFO  |  -- Remaining time budget: 66616 ms, #remaining_methods: 5, budget for method: 13323 ms, solver timeout: 1000 ms, budget for symbolic execution: 12123 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:50.291 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreEnclosingClass(boolean)1
+01:39:50.342 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreEnclosingClass(boolean)2
+01:39:50.345 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreEnclosingClass(boolean)3
+01:39:50.345 | INFO  | Finished (in 0.059 sec): method spoon.reflect.visitor.PrintingContext.Writable.ignoreEnclosingClass(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:50.351 | DEBUG |  ... 
+01:39:50.352 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.forceWildcardGenerics(boolean)
+01:39:50.352 | INFO  |  -- Remaining time budget: 66551 ms, #remaining_methods: 4, budget for method: 16637 ms, solver timeout: 1000 ms, budget for symbolic execution: 15437 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:50.357 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.forceWildcardGenerics(boolean)1
+01:39:50.401 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.forceWildcardGenerics(boolean)2
+01:39:50.403 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.forceWildcardGenerics(boolean)3
+01:39:50.404 | INFO  | Finished (in 0.052 sec): method spoon.reflect.visitor.PrintingContext.Writable.forceWildcardGenerics(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:50.409 | DEBUG |  ... 
+01:39:50.410 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.noTypeDecl(boolean)
+01:39:50.410 | INFO  |  -- Remaining time budget: 66492 ms, #remaining_methods: 3, budget for method: 22164 ms, solver timeout: 1000 ms, budget for symbolic execution: 20964 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:50.416 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.noTypeDecl(boolean)1
+01:39:50.461 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.noTypeDecl(boolean)2
+01:39:50.462 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.noTypeDecl(boolean)3
+01:39:50.463 | INFO  | Finished (in 0.052 sec): method spoon.reflect.visitor.PrintingContext.Writable.noTypeDecl(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:50.468 | DEBUG |  ... 
+01:39:50.469 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.ignoreGenerics(boolean)
+01:39:50.469 | INFO  |  -- Remaining time budget: 66434 ms, #remaining_methods: 2, budget for method: 33217 ms, solver timeout: 1000 ms, budget for symbolic execution: 32017 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:50.473 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreGenerics(boolean)1
+01:39:50.517 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreGenerics(boolean)2
+01:39:50.519 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreGenerics(boolean)3
+01:39:50.519 | INFO  | Finished (in 0.050 sec): method spoon.reflect.visitor.PrintingContext.Writable.ignoreGenerics(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+01:39:50.525 | DEBUG |  ... 
+01:39:50.525 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.<init>()
+01:39:50.526 | INFO  |  -- Remaining time budget: 66377 ms, #remaining_methods: 1, budget for method: 66377 ms, solver timeout: 1000 ms, budget for symbolic execution: 65177 ms, budget for concrete execution: 1200 ms,  -- 
+01:39:50.529 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.<init>()1
+01:39:50.573 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.<init>()2
+01:39:50.573 | INFO  | Finished (in 0.047 sec): method spoon.reflect.visitor.PrintingContext.Writable.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+01:39:50.580 | INFO  | Started: Flushing tests for [PrintingContext] on disk
+01:39:50.924 | INFO  | File size for PrintingContextTest: 65 KB
+01:39:50.926 | INFO  | Finished (in 0.346 sec): Flushing tests for [PrintingContext] on disk 
+01:39:50.927 | INFO  | Finished (in 35.988 sec): class spoon.reflect.visitor.PrintingContext 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 23, 
+	#methods started symbolic exploration = 23
+	#methods with at least one TC = 23
+	#methods with exceptions = 2
+	#generated TC = 90
+	#coverage = null
+[READY]

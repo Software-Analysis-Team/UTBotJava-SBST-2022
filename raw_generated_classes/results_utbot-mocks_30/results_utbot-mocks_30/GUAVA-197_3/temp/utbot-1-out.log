@@ -1,0 +1,664 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+11:34:48.966 | INFO  | Started: warmup: kotlin reflection :: init
+11:34:49.043 | INFO  | Finished (in 0.076 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.primitives.Booleans 30
+11:34:49.053 | DEBUG | -----------------------------------------------------------------------------
+11:34:49.054 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+11:34:49.056 | INFO  | ClassUnderTest[ FQN: com.google.common.primitives.Booleans
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: BooleansTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/primitives/BooleansTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+11:34:49.077 | INFO  | Started: class com.google.common.primitives.Booleans
+11:34:49.078 | INFO  | Started: preparation class class com.google.common.primitives.Booleans: kotlin reflection :: run
+11:34:49.504 | INFO  | Finished (in 0.425 sec): preparation class class com.google.common.primitives.Booleans: kotlin reflection :: run 
+11:34:49.508 | INFO  | Started: 2nd optional soot initialization
+11:34:49.509 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+11:34:49.516 | DEBUG |  ... 
+11:34:49.525 | INFO  | Started: method com.google.common.primitives.Booleans.falseFirst()
+11:34:49.525 | INFO  |  -- Remaining time budget: 25037 ms, #remaining_methods: 44, budget for method: 569 ms, solver timeout: 284 ms, budget for symbolic execution: 285 ms, budget for concrete execution: 284 ms,  -- 
+11:34:49.811 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.falseFirst()
+11:34:49.829 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.falseFirst()1
+11:34:50.097 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Booleans.falseFirst()
+11:34:50.116 | INFO  | Finished (in 0.590 sec): method com.google.common.primitives.Booleans.falseFirst() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+11:34:50.122 | DEBUG |  ... 
+11:34:50.123 | INFO  | Started: method com.google.common.primitives.Booleans.trueFirst()
+11:34:50.123 | INFO  |  -- Remaining time budget: 24432 ms, #remaining_methods: 43, budget for method: 568 ms, solver timeout: 284 ms, budget for symbolic execution: 284 ms, budget for concrete execution: 284 ms,  -- 
+11:34:50.639 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.trueFirst()
+11:34:50.648 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.trueFirst()1
+11:34:50.924 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Booleans.trueFirst()
+11:34:50.929 | INFO  | Finished (in 0.806 sec): method com.google.common.primitives.Booleans.trueFirst() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+11:34:50.945 | DEBUG |  ... 
+11:34:50.946 | INFO  | Started: method com.google.common.primitives.Booleans.lexicographicalComparator()
+11:34:50.946 | INFO  |  -- Remaining time budget: 23610 ms, #remaining_methods: 42, budget for method: 562 ms, solver timeout: 281 ms, budget for symbolic execution: 281 ms, budget for concrete execution: 281 ms,  -- 
+11:34:50.953 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lexicographicalComparator()1
+11:34:51.098 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lexicographicalComparator()2
+11:34:51.098 | INFO  | Finished (in 0.152 sec): method com.google.common.primitives.Booleans.lexicographicalComparator() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:34:51.110 | DEBUG |  ... 
+11:34:51.114 | INFO  | Started: method com.google.common.primitives.Booleans.countTrue(boolean[])
+11:34:51.114 | INFO  |  -- Remaining time budget: 23444 ms, #remaining_methods: 41, budget for method: 571 ms, solver timeout: 285 ms, budget for symbolic execution: 286 ms, budget for concrete execution: 285 ms,  -- 
+11:34:51.121 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.countTrue(boolean[])1
+11:34:51.146 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.countTrue(boolean[])2
+11:34:51.196 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.countTrue(boolean[])3
+11:34:51.221 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.countTrue(boolean[])4
+11:34:51.229 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.countTrue(boolean[])5
+11:34:51.229 | INFO  | Finished (in 0.115 sec): method com.google.common.primitives.Booleans.countTrue(boolean[]) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+11:34:51.230 | DEBUG |  ... 
+11:34:51.231 | INFO  | Started: method com.google.common.primitives.Booleans.hashCode(boolean)
+11:34:51.231 | INFO  |  -- Remaining time budget: 23324 ms, #remaining_methods: 40, budget for method: 583 ms, solver timeout: 291 ms, budget for symbolic execution: 292 ms, budget for concrete execution: 291 ms,  -- 
+11:34:51.236 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.hashCode(boolean)1
+11:34:51.270 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.hashCode(boolean)2
+11:34:51.273 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.hashCode(boolean)3
+11:34:51.273 | INFO  | Finished (in 0.042 sec): method com.google.common.primitives.Booleans.hashCode(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:34:51.274 | DEBUG |  ... 
+11:34:51.274 | INFO  | Started: method com.google.common.primitives.Booleans.indexOf(boolean[], boolean[])
+11:34:51.274 | INFO  |  -- Remaining time budget: 23281 ms, #remaining_methods: 39, budget for method: 596 ms, solver timeout: 298 ms, budget for symbolic execution: 298 ms, budget for concrete execution: 298 ms,  -- 
+11:34:51.287 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean[])1
+11:34:51.572 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.indexOf(boolean[], boolean[])
+11:34:51.626 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean[])2
+11:34:51.790 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean[])3
+11:34:51.871 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Booleans.indexOf(boolean[], boolean[])
+11:34:51.942 | INFO  | Finished (in 0.668 sec): method com.google.common.primitives.Booleans.indexOf(boolean[], boolean[]) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:34:51.944 | DEBUG |  ... 
+11:34:51.944 | INFO  | Started: method com.google.common.primitives.Booleans.indexOf(boolean[], boolean, int, int)
+11:34:51.944 | INFO  |  -- Remaining time budget: 22611 ms, #remaining_methods: 38, budget for method: 595 ms, solver timeout: 297 ms, budget for symbolic execution: 298 ms, budget for concrete execution: 297 ms,  -- 
+11:34:51.950 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean, int, int)1
+11:34:51.993 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean, int, int)2
+11:34:52.013 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean, int, int)3
+11:34:52.033 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean, int, int)4
+11:34:52.056 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean, int, int)5
+11:34:52.078 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean, int, int)6
+11:34:52.087 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean, int, int)7
+11:34:52.087 | INFO  | Finished (in 0.143 sec): method com.google.common.primitives.Booleans.indexOf(boolean[], boolean, int, int) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+11:34:52.088 | DEBUG |  ... 
+11:34:52.088 | INFO  | Started: method com.google.common.primitives.Booleans.indexOf(boolean[], boolean)
+11:34:52.089 | INFO  |  -- Remaining time budget: 22467 ms, #remaining_methods: 37, budget for method: 607 ms, solver timeout: 303 ms, budget for symbolic execution: 304 ms, budget for concrete execution: 303 ms,  -- 
+11:34:52.094 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean)1
+11:34:52.116 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean)2
+11:34:52.184 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean)3
+11:34:52.205 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.indexOf(boolean[], boolean)4
+11:34:52.208 | INFO  | Finished (in 0.119 sec): method com.google.common.primitives.Booleans.indexOf(boolean[], boolean) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+11:34:52.211 | DEBUG |  ... 
+11:34:52.211 | INFO  | Started: method com.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean, int, int)
+11:34:52.211 | INFO  |  -- Remaining time budget: 22344 ms, #remaining_methods: 36, budget for method: 620 ms, solver timeout: 310 ms, budget for symbolic execution: 310 ms, budget for concrete execution: 310 ms,  -- 
+11:34:52.218 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean, int, int)1
+11:34:52.260 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean, int, int)2
+11:34:52.280 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean, int, int)3
+11:34:52.301 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean, int, int)4
+11:34:52.323 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean, int, int)5
+11:34:52.344 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean, int, int)6
+11:34:52.355 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean, int, int)7
+11:34:52.356 | INFO  | Finished (in 0.144 sec): method com.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean, int, int) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+11:34:52.357 | DEBUG |  ... 
+11:34:52.357 | INFO  | Started: method com.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean)
+11:34:52.357 | INFO  |  -- Remaining time budget: 22198 ms, #remaining_methods: 35, budget for method: 634 ms, solver timeout: 317 ms, budget for symbolic execution: 317 ms, budget for concrete execution: 317 ms,  -- 
+11:34:52.367 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean)1
+11:34:52.389 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean)2
+11:34:52.478 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean)3
+11:34:52.498 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean)4
+11:34:52.518 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean)5
+11:34:52.519 | INFO  | Finished (in 0.161 sec): method com.google.common.primitives.Booleans.lastIndexOf(boolean[], boolean) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+11:34:52.525 | DEBUG |  ... 
+11:34:52.525 | INFO  | Started: method com.google.common.primitives.Booleans.concat(boolean[][])
+11:34:52.525 | INFO  |  -- Remaining time budget: 22030 ms, #remaining_methods: 34, budget for method: 647 ms, solver timeout: 323 ms, budget for symbolic execution: 324 ms, budget for concrete execution: 323 ms,  -- 
+11:34:52.536 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.concat(boolean[][])1
+11:34:52.561 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.concat(boolean[][])2
+11:34:52.609 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.concat(boolean[][])3
+11:34:52.615 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.concat(boolean[][])4
+11:34:52.783 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.concat(boolean[][])5
+11:34:52.785 | INFO  | Finished (in 0.260 sec): method com.google.common.primitives.Booleans.concat(boolean[][]) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+11:34:52.789 | DEBUG |  ... 
+11:34:52.789 | INFO  | Started: method com.google.common.primitives.Booleans.contains(boolean[], boolean)
+11:34:52.789 | INFO  |  -- Remaining time budget: 21766 ms, #remaining_methods: 33, budget for method: 659 ms, solver timeout: 329 ms, budget for symbolic execution: 330 ms, budget for concrete execution: 329 ms,  -- 
+11:34:52.795 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.contains(boolean[], boolean)1
+11:34:52.816 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.contains(boolean[], boolean)2
+11:34:52.850 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.contains(boolean[], boolean)3
+11:34:52.869 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.contains(boolean[], boolean)4
+11:34:52.876 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.contains(boolean[], boolean)5
+11:34:52.876 | INFO  | Finished (in 0.086 sec): method com.google.common.primitives.Booleans.contains(boolean[], boolean) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+11:34:52.877 | DEBUG |  ... 
+11:34:52.877 | INFO  | Started: method com.google.common.primitives.Booleans.join(String, boolean[])
+11:34:52.877 | INFO  |  -- Remaining time budget: 21678 ms, #remaining_methods: 32, budget for method: 677 ms, solver timeout: 338 ms, budget for symbolic execution: 339 ms, budget for concrete execution: 338 ms,  -- 
+11:34:52.893 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.join(String, boolean[])1
+11:34:53.040 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.join(String, boolean[])2
+11:34:53.136 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.join(String, boolean[])3
+11:34:53.216 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.join(String, boolean[])
+11:34:53.555 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Booleans.join(String, boolean[])
+11:34:53.561 | INFO  | Finished (in 0.684 sec): method com.google.common.primitives.Booleans.join(String, boolean[]) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:34:53.578 | DEBUG |  ... 
+11:34:53.578 | INFO  | Started: method com.google.common.primitives.Booleans.compare(boolean, boolean)
+11:34:53.578 | INFO  |  -- Remaining time budget: 20977 ms, #remaining_methods: 31, budget for method: 676 ms, solver timeout: 338 ms, budget for symbolic execution: 338 ms, budget for concrete execution: 338 ms,  -- 
+11:34:53.583 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.compare(boolean, boolean)1
+11:34:53.657 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.compare(boolean, boolean)2
+11:34:53.661 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.compare(boolean, boolean)3
+11:34:53.665 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.compare(boolean, boolean)4
+11:34:53.665 | INFO  | Finished (in 0.086 sec): method com.google.common.primitives.Booleans.compare(boolean, boolean) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+11:34:53.666 | DEBUG |  ... 
+11:34:53.666 | INFO  | Started: method com.google.common.primitives.Booleans.toArray(Collection)
+11:34:53.666 | INFO  |  -- Remaining time budget: 20889 ms, #remaining_methods: 30, budget for method: 696 ms, solver timeout: 348 ms, budget for symbolic execution: 348 ms, budget for concrete execution: 348 ms,  -- 
+11:34:53.671 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.toArray(Collection)1
+11:34:53.868 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.toArray(Collection)2
+11:34:54.014 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.toArray(Collection)
+11:34:54.363 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Booleans.toArray(Collection)
+11:34:54.413 | INFO  | Finished (in 0.747 sec): method com.google.common.primitives.Booleans.toArray(Collection) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:34:54.418 | DEBUG |  ... 
+11:34:54.418 | INFO  | Started: method com.google.common.primitives.Booleans.asList(boolean[])
+11:34:54.418 | INFO  |  -- Remaining time budget: 20137 ms, #remaining_methods: 29, budget for method: 694 ms, solver timeout: 347 ms, budget for symbolic execution: 347 ms, budget for concrete execution: 347 ms,  -- 
+11:34:54.423 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.asList(boolean[])1
+11:34:54.464 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.asList(boolean[])2
+11:34:54.564 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.asList(boolean[])3
+11:34:54.698 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.asList(boolean[])4
+11:34:54.699 | INFO  | Finished (in 0.280 sec): method com.google.common.primitives.Booleans.asList(boolean[]) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+11:34:54.717 | DEBUG |  ... 
+11:34:54.717 | INFO  | Started: method com.google.common.primitives.Booleans.ensureCapacity(boolean[], int, int)
+11:34:54.718 | INFO  |  -- Remaining time budget: 19838 ms, #remaining_methods: 28, budget for method: 708 ms, solver timeout: 354 ms, budget for symbolic execution: 354 ms, budget for concrete execution: 354 ms,  -- 
+11:34:54.723 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.ensureCapacity(boolean[], int, int)1
+11:34:54.829 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.ensureCapacity(boolean[], int, int)2
+11:34:54.837 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.ensureCapacity(boolean[], int, int)3
+11:34:54.879 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.ensureCapacity(boolean[], int, int)4
+11:34:55.044 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.ensureCapacity(boolean[], int, int)5
+11:34:55.072 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.ensureCapacity(boolean[], int, int)
+11:34:55.358 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.ensureCapacity(boolean[], int, int)6
+11:34:55.365 | INFO  | Finished (in 0.647 sec): method com.google.common.primitives.Booleans.ensureCapacity(boolean[], int, int) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+11:34:55.381 | DEBUG |  ... 
+11:34:55.382 | INFO  | Started: method com.google.common.primitives.Booleans.reverse(boolean[])
+11:34:55.382 | INFO  |  -- Remaining time budget: 19173 ms, #remaining_methods: 27, budget for method: 710 ms, solver timeout: 355 ms, budget for symbolic execution: 355 ms, budget for concrete execution: 355 ms,  -- 
+11:34:55.389 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.reverse(boolean[])1
+11:34:55.526 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.reverse(boolean[])2
+11:34:55.737 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.reverse(boolean[])
+11:34:56.044 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.reverse(boolean[])3
+11:34:56.093 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Booleans.reverse(boolean[])
+11:34:56.187 | INFO  | Finished (in 0.805 sec): method com.google.common.primitives.Booleans.reverse(boolean[]) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:34:56.213 | DEBUG |  ... 
+11:34:56.213 | INFO  | Started: method com.google.common.primitives.Booleans.reverse(boolean[], int, int)
+11:34:56.213 | INFO  |  -- Remaining time budget: 18342 ms, #remaining_methods: 26, budget for method: 705 ms, solver timeout: 352 ms, budget for symbolic execution: 353 ms, budget for concrete execution: 352 ms,  -- 
+11:34:56.218 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.reverse(boolean[], int, int)1
+11:34:56.335 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.reverse(boolean[], int, int)2
+11:34:56.425 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.reverse(boolean[], int, int)3
+11:34:56.567 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.reverse(boolean[], int, int)
+11:34:56.602 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.reverse(boolean[], int, int)4
+11:34:56.786 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.reverse(boolean[], int, int)5
+11:34:56.799 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.reverse(boolean[], int, int)6
+11:34:56.919 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Booleans.reverse(boolean[], int, int)
+11:34:56.926 | INFO  | Finished (in 0.712 sec): method com.google.common.primitives.Booleans.reverse(boolean[], int, int) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+11:34:56.938 | DEBUG |  ... 
+11:34:56.939 | INFO  | Started: method com.google.common.primitives.Booleans.<init>()
+11:34:56.939 | INFO  |  -- Remaining time budget: 17617 ms, #remaining_methods: 25, budget for method: 704 ms, solver timeout: 352 ms, budget for symbolic execution: 352 ms, budget for concrete execution: 352 ms,  -- 
+11:34:56.942 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.<init>()1
+11:34:56.965 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.<init>()2
+11:34:56.965 | INFO  | Finished (in 0.027 sec): method com.google.common.primitives.Booleans.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:34:56.969 | DEBUG |  ... 
+11:34:56.970 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.contains(Object)
+11:34:56.970 | INFO  |  -- Remaining time budget: 17586 ms, #remaining_methods: 24, budget for method: 732 ms, solver timeout: 366 ms, budget for symbolic execution: 366 ms, budget for concrete execution: 366 ms,  -- 
+11:34:56.977 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.contains(Object)1
+11:34:57.190 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.contains(Object)2
+11:34:57.269 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.contains(Object)3
+11:34:57.284 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.contains(Object)4
+11:34:57.285 | INFO  | Finished (in 0.315 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.contains(Object) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+11:34:57.288 | DEBUG |  ... 
+11:34:57.289 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.isEmpty()
+11:34:57.289 | INFO  |  -- Remaining time budget: 17266 ms, #remaining_methods: 23, budget for method: 750 ms, solver timeout: 375 ms, budget for symbolic execution: 375 ms, budget for concrete execution: 375 ms,  -- 
+11:34:57.292 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.isEmpty()1
+11:34:57.315 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.isEmpty()2
+11:34:57.316 | INFO  | Finished (in 0.027 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.isEmpty() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:34:57.317 | DEBUG |  ... 
+11:34:57.317 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.equals(Object)
+11:34:57.317 | INFO  |  -- Remaining time budget: 17238 ms, #remaining_methods: 22, budget for method: 783 ms, solver timeout: 391 ms, budget for symbolic execution: 392 ms, budget for concrete execution: 391 ms,  -- 
+11:34:57.321 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.equals(Object)1
+11:34:57.557 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.equals(Object)2
+11:34:57.709 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.BooleanArrayAsList.equals(Object)
+11:34:57.882 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.equals(Object)3
+11:34:58.101 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Booleans.BooleanArrayAsList.equals(Object)
+11:34:58.112 | INFO  | Finished (in 0.795 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.equals(Object) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:34:58.126 | DEBUG |  ... 
+11:34:58.126 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.hashCode()
+11:34:58.126 | INFO  |  -- Remaining time budget: 16429 ms, #remaining_methods: 21, budget for method: 782 ms, solver timeout: 391 ms, budget for symbolic execution: 391 ms, budget for concrete execution: 391 ms,  -- 
+11:34:58.132 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.hashCode()1
+11:34:58.158 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.hashCode()2
+11:34:58.188 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.hashCode()3
+11:34:58.210 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.hashCode()4
+11:34:58.243 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.hashCode()5
+11:34:58.243 | INFO  | Finished (in 0.117 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.hashCode() 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+11:34:58.244 | DEBUG |  ... 
+11:34:58.245 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.toString()
+11:34:58.245 | INFO  |  -- Remaining time budget: 16311 ms, #remaining_methods: 20, budget for method: 815 ms, solver timeout: 407 ms, budget for symbolic execution: 408 ms, budget for concrete execution: 407 ms,  -- 
+11:34:58.252 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.toString()1
+11:34:58.342 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.toString()2
+11:34:58.366 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.toString()3
+11:34:58.625 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.toString()4
+11:34:58.653 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.BooleanArrayAsList.toString()
+11:34:58.893 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.toString()5
+11:34:59.061 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Booleans.BooleanArrayAsList.toString()
+11:34:59.084 | INFO  | Finished (in 0.839 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.toString() 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+11:34:59.130 | DEBUG |  ... 
+11:34:59.131 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.set(int, Boolean)
+11:34:59.131 | INFO  |  -- Remaining time budget: 15424 ms, #remaining_methods: 19, budget for method: 811 ms, solver timeout: 405 ms, budget for symbolic execution: 406 ms, budget for concrete execution: 405 ms,  -- 
+11:34:59.150 | ERROR | Symbolic execution FAILED
+kotlin.reflect.jvm.internal.KotlinReflectionInternalError: Could not compute caller for function: private constructor Boolean() defined in kotlin.Boolean[DeserializedClassConstructorDescriptor@78dbfc81] (member = null)
+	at kotlin.reflect.jvm.internal.KFunctionImpl$caller$2.invoke(KFunctionImpl.kt:89) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.KFunctionImpl$caller$2.invoke(KFunctionImpl.kt:36) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.ReflectProperties$LazyVal.invoke(ReflectProperties.java:62) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.ReflectProperties$Val.getValue(ReflectProperties.java:31) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.KFunctionImpl.getCaller(KFunctionImpl.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.ReflectJvmMapping.getJavaMethod(ReflectJvmMapping.kt:63) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.framework.plugin.api.util.IdUtilKt.getExecutableId(IdUtil.kt:394) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createSimpleModelByKClass(UtBotSymbolicEngine.kt:587) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createModelByClassId(UtBotSymbolicEngine.kt:569) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.access$createModelByClassId(UtBotSymbolicEngine.kt:245) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invokeSuspend(UtBotSymbolicEngine.kt:502) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.contest.ContestKt$runGeneration$1$invokeSuspend$$inlined$bracket$lambda$1$1.invokeSuspend(Contest.kt:531) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+11:34:59.206 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.set(int, Boolean)1
+11:34:59.227 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.set(int, Boolean)2
+11:34:59.413 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.set(int, Boolean)3
+11:34:59.451 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.set(int, Boolean)4
+11:34:59.538 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.BooleanArrayAsList.set(int, Boolean)
+11:34:59.588 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.set(int, Boolean)5
+11:34:59.588 | INFO  | Finished (in 0.457 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.set(int, Boolean) 
+<StatsForMethod> :
+	#generatedTC=5
+	FAILED 1 time(s) with 1 different exception(s)"
+11:34:59.598 | DEBUG |  ... 
+11:34:59.598 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.subList(int, int)
+11:34:59.598 | INFO  |  -- Remaining time budget: 14957 ms, #remaining_methods: 18, budget for method: 830 ms, solver timeout: 415 ms, budget for symbolic execution: 415 ms, budget for concrete execution: 415 ms,  -- 
+11:34:59.602 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.subList(int, int)1
+11:34:59.712 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.subList(int, int)2
+11:34:59.848 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.subList(int, int)3
+11:34:59.849 | INFO  | Finished (in 0.250 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.subList(int, int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:34:59.868 | DEBUG |  ... 
+11:34:59.869 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.get(int)
+11:34:59.869 | INFO  |  -- Remaining time budget: 14686 ms, #remaining_methods: 17, budget for method: 863 ms, solver timeout: 431 ms, budget for symbolic execution: 432 ms, budget for concrete execution: 431 ms,  -- 
+11:34:59.879 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.get(int)1
+11:34:59.923 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.get(int)2
+11:34:59.960 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.get(int)3
+11:34:59.970 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.get(int)4
+11:34:59.970 | INFO  | Finished (in 0.101 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.get(int) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+11:34:59.976 | DEBUG |  ... 
+11:34:59.977 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.indexOf(Object)
+11:34:59.977 | INFO  |  -- Remaining time budget: 14578 ms, #remaining_methods: 16, budget for method: 911 ms, solver timeout: 455 ms, budget for symbolic execution: 456 ms, budget for concrete execution: 455 ms,  -- 
+11:34:59.980 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.indexOf(Object)1
+11:35:00.183 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.indexOf(Object)2
+11:35:00.231 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.indexOf(Object)3
+11:35:00.275 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.indexOf(Object)4
+11:35:00.275 | INFO  | Finished (in 0.298 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.indexOf(Object) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+11:35:00.279 | DEBUG |  ... 
+11:35:00.280 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.lastIndexOf(Object)
+11:35:00.280 | INFO  |  -- Remaining time budget: 14275 ms, #remaining_methods: 15, budget for method: 951 ms, solver timeout: 475 ms, budget for symbolic execution: 476 ms, budget for concrete execution: 475 ms,  -- 
+11:35:00.283 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.lastIndexOf(Object)1
+11:35:00.485 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.lastIndexOf(Object)2
+11:35:00.535 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.lastIndexOf(Object)3
+11:35:00.579 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.lastIndexOf(Object)4
+11:35:00.580 | INFO  | Finished (in 0.300 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.lastIndexOf(Object) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+11:35:00.583 | DEBUG |  ... 
+11:35:00.584 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.toBooleanArray()
+11:35:00.584 | INFO  |  -- Remaining time budget: 13971 ms, #remaining_methods: 14, budget for method: 997 ms, solver timeout: 498 ms, budget for symbolic execution: 499 ms, budget for concrete execution: 498 ms,  -- 
+11:35:00.588 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.toBooleanArray()1
+11:35:00.779 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.toBooleanArray()2
+11:35:00.888 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.toBooleanArray()3
+11:35:00.891 | INFO  | Finished (in 0.307 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.toBooleanArray() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:35:00.907 | DEBUG |  ... 
+11:35:00.908 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.size()
+11:35:00.908 | INFO  |  -- Remaining time budget: 13648 ms, #remaining_methods: 13, budget for method: 1049 ms, solver timeout: 524 ms, budget for symbolic execution: 525 ms, budget for concrete execution: 524 ms,  -- 
+11:35:00.911 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.size()1
+11:35:00.934 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.size()2
+11:35:00.934 | INFO  | Finished (in 0.026 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.size() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:35:00.935 | DEBUG |  ... 
+11:35:00.935 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.<init>(boolean[])
+11:35:00.935 | INFO  |  -- Remaining time budget: 13620 ms, #remaining_methods: 12, budget for method: 1135 ms, solver timeout: 567 ms, budget for symbolic execution: 568 ms, budget for concrete execution: 567 ms,  -- 
+11:35:00.938 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.<init>(boolean[])1
+11:35:00.962 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.<init>(boolean[])2
+11:35:01.018 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.<init>(boolean[])3
+11:35:01.018 | INFO  | Finished (in 0.083 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.<init>(boolean[]) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+11:35:01.024 | DEBUG |  ... 
+11:35:01.024 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanArrayAsList.<init>(boolean[], int, int)
+11:35:01.024 | INFO  |  -- Remaining time budget: 13531 ms, #remaining_methods: 11, budget for method: 1230 ms, solver timeout: 615 ms, budget for symbolic execution: 615 ms, budget for concrete execution: 615 ms,  -- 
+11:35:01.027 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.<init>(boolean[], int, int)1
+11:35:01.071 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanArrayAsList.<init>(boolean[], int, int)2
+11:35:01.072 | INFO  | Finished (in 0.047 sec): method com.google.common.primitives.Booleans.BooleanArrayAsList.<init>(boolean[], int, int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:35:01.075 | DEBUG |  ... 
+11:35:01.075 | INFO  | Started: method com.google.common.primitives.Booleans.LexicographicalComparator.toString()
+11:35:01.075 | INFO  |  -- Remaining time budget: 13480 ms, #remaining_methods: 10, budget for method: 1348 ms, solver timeout: 674 ms, budget for symbolic execution: 674 ms, budget for concrete execution: 674 ms,  -- 
+11:35:01.083 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class com.google.common.primitives.Booleans$LexicographicalComparator with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+11:35:01.111 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.LexicographicalComparator.toString()1
+11:35:01.111 | INFO  | Finished (in 0.036 sec): method com.google.common.primitives.Booleans.LexicographicalComparator.toString() 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+11:35:01.112 | DEBUG |  ... 
+11:35:01.113 | INFO  | Started: method com.google.common.primitives.Booleans.LexicographicalComparator.compare(boolean[], boolean[])
+11:35:01.113 | INFO  |  -- Remaining time budget: 13442 ms, #remaining_methods: 9, budget for method: 1493 ms, solver timeout: 746 ms, budget for symbolic execution: 747 ms, budget for concrete execution: 746 ms,  -- 
+11:35:01.116 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class com.google.common.primitives.Booleans$LexicographicalComparator with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+11:35:01.153 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.LexicographicalComparator.compare(boolean[], boolean[])1
+11:35:01.174 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.LexicographicalComparator.compare(boolean[], boolean[])2
+11:35:01.267 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.LexicographicalComparator.compare(boolean[], boolean[])3
+11:35:01.273 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.LexicographicalComparator.compare(boolean[], boolean[])4
+11:35:01.318 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.LexicographicalComparator.compare(boolean[], boolean[])5
+11:35:01.320 | INFO  | Finished (in 0.208 sec): method com.google.common.primitives.Booleans.LexicographicalComparator.compare(boolean[], boolean[]) 
+<StatsForMethod> :
+	#generatedTC=5
+	FAILED 1 time(s) with 1 different exception(s)"
+11:35:01.327 | DEBUG |  ... 
+11:35:01.328 | INFO  | Started: method com.google.common.primitives.Booleans.LexicographicalComparator.valueOf(String)
+11:35:01.328 | INFO  |  -- Remaining time budget: 13227 ms, #remaining_methods: 8, budget for method: 1653 ms, solver timeout: 826 ms, budget for symbolic execution: 827 ms, budget for concrete execution: 826 ms,  -- 
+11:35:01.333 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.LexicographicalComparator.valueOf(String)1
+11:35:02.155 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.LexicographicalComparator.valueOf(String)
+11:35:02.982 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Booleans.LexicographicalComparator.valueOf(String)
+11:35:03.043 | INFO  | Finished (in 1.715 sec): method com.google.common.primitives.Booleans.LexicographicalComparator.valueOf(String) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+11:35:03.094 | DEBUG |  ... 
+11:35:03.095 | INFO  | Started: method com.google.common.primitives.Booleans.LexicographicalComparator.values()
+11:35:03.095 | INFO  |  -- Remaining time budget: 11461 ms, #remaining_methods: 7, budget for method: 1637 ms, solver timeout: 818 ms, budget for symbolic execution: 819 ms, budget for concrete execution: 818 ms,  -- 
+11:35:03.098 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.LexicographicalComparator.values()1
+11:35:03.232 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.LexicographicalComparator.values()2
+11:35:03.232 | INFO  | Finished (in 0.137 sec): method com.google.common.primitives.Booleans.LexicographicalComparator.values() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:35:03.246 | DEBUG |  ... 
+11:35:03.247 | INFO  | Started: method com.google.common.primitives.Booleans.LexicographicalComparator.<init>()
+11:35:03.247 | INFO  |  -- Remaining time budget: 11308 ms, #remaining_methods: 6, budget for method: 1884 ms, solver timeout: 942 ms, budget for symbolic execution: 942 ms, budget for concrete execution: 942 ms,  -- 
+11:35:03.250 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalArgumentException: Cannot reflectively create enum objects
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:417)
+	at com.huawei.utbot.instrumentation.instrumentation.InvokeInstrumentation$invoke$$inlined$run$lambda$2.invoke(InvokeInstrumentation.kt:70)
+	at com.huawei.utbot.common.ThreadBasedExecutor$invokeWithTimeout$1.invoke(ThreadUtil.kt:43)
+	at com.huawei.utbot.common.ThreadBasedExecutor$invokeWithTimeout$1.invoke(ThreadUtil.kt:22)
+	at kotlin.concurrent.ThreadsKt$thread$thread$1.run(Thread.kt:30)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+11:35:03.307 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.LexicographicalComparator.<init>()1
+11:35:03.307 | INFO  | Finished (in 0.060 sec): method com.google.common.primitives.Booleans.LexicographicalComparator.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+11:35:03.313 | DEBUG |  ... 
+11:35:03.313 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanComparator.toString()
+11:35:03.313 | INFO  |  -- Remaining time budget: 11242 ms, #remaining_methods: 5, budget for method: 2248 ms, solver timeout: 1000 ms, budget for symbolic execution: 1124 ms, budget for concrete execution: 1124 ms,  -- 
+11:35:03.316 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.toString()1
+11:35:03.340 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.toString()2
+11:35:03.341 | INFO  | Finished (in 0.027 sec): method com.google.common.primitives.Booleans.BooleanComparator.toString() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:35:03.341 | DEBUG |  ... 
+11:35:03.342 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanComparator.compare(Boolean, Boolean)
+11:35:03.342 | INFO  |  -- Remaining time budget: 11213 ms, #remaining_methods: 4, budget for method: 2803 ms, solver timeout: 1000 ms, budget for symbolic execution: 1603 ms, budget for concrete execution: 1200 ms,  -- 
+11:35:03.343 | ERROR | Symbolic execution FAILED
+kotlin.reflect.jvm.internal.KotlinReflectionInternalError: Could not compute caller for function: private constructor Boolean() defined in kotlin.Boolean[DeserializedClassConstructorDescriptor@78dbfc81] (member = null)
+	at kotlin.reflect.jvm.internal.KFunctionImpl$caller$2.invoke(KFunctionImpl.kt:89) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.KFunctionImpl$caller$2.invoke(KFunctionImpl.kt:36) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.ReflectProperties$LazyVal.invoke(ReflectProperties.java:62) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.ReflectProperties$Val.getValue(ReflectProperties.java:31) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.internal.KFunctionImpl.getCaller(KFunctionImpl.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.reflect.jvm.ReflectJvmMapping.getJavaMethod(ReflectJvmMapping.kt:63) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.framework.plugin.api.util.IdUtilKt.getExecutableId(IdUtil.kt:394) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createSimpleModelByKClass(UtBotSymbolicEngine.kt:587) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createModelByClassId(UtBotSymbolicEngine.kt:569) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.access$createModelByClassId(UtBotSymbolicEngine.kt:245) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invokeSuspend(UtBotSymbolicEngine.kt:502) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$fuzzing$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.contest.ContestKt$runGeneration$1$invokeSuspend$$inlined$bracket$lambda$1$1.invokeSuspend(Contest.kt:531) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+11:35:03.384 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.compare(Boolean, Boolean)1
+11:35:03.405 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.compare(Boolean, Boolean)2
+11:35:03.408 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.compare(Boolean, Boolean)3
+11:35:03.460 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.compare(Boolean, Boolean)4
+11:35:03.462 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.compare(Boolean, Boolean)5
+11:35:03.464 | INFO  | Finished (in 0.122 sec): method com.google.common.primitives.Booleans.BooleanComparator.compare(Boolean, Boolean) 
+<StatsForMethod> :
+	#generatedTC=5
+	FAILED 1 time(s) with 1 different exception(s)"
+11:35:03.470 | DEBUG |  ... 
+11:35:03.470 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanComparator.valueOf(String)
+11:35:03.470 | INFO  |  -- Remaining time budget: 11085 ms, #remaining_methods: 3, budget for method: 3695 ms, solver timeout: 1000 ms, budget for symbolic execution: 2495 ms, budget for concrete execution: 1200 ms,  -- 
+11:35:03.474 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.valueOf(String)1
+11:35:05.966 | INFO  | |> Starting concrete execution for remaining state: com.google.common.primitives.Booleans.BooleanComparator.valueOf(String)
+11:35:06.041 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.valueOf(String)2
+11:35:07.166 | INFO  | (X) Cancelling concrete execution: com.google.common.primitives.Booleans.BooleanComparator.valueOf(String)
+11:35:07.297 | INFO  | Finished (in 3.827 sec): method com.google.common.primitives.Booleans.BooleanComparator.valueOf(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:35:07.401 | DEBUG |  ... 
+11:35:07.401 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanComparator.values()
+11:35:07.401 | INFO  |  -- Remaining time budget: 7154 ms, #remaining_methods: 2, budget for method: 3577 ms, solver timeout: 1000 ms, budget for symbolic execution: 2377 ms, budget for concrete execution: 1200 ms,  -- 
+11:35:07.404 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.values()1
+11:35:07.615 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.values()2
+11:35:07.631 | INFO  | Finished (in 0.230 sec): method com.google.common.primitives.Booleans.BooleanComparator.values() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+11:35:07.653 | DEBUG |  ... 
+11:35:07.654 | INFO  | Started: method com.google.common.primitives.Booleans.BooleanComparator.<init>(int, String)
+11:35:07.654 | INFO  |  -- Remaining time budget: 6901 ms, #remaining_methods: 1, budget for method: 6901 ms, solver timeout: 1000 ms, budget for symbolic execution: 5701 ms, budget for concrete execution: 1200 ms,  -- 
+11:35:07.660 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalArgumentException: Cannot reflectively create enum objects
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:417)
+	at com.huawei.utbot.instrumentation.instrumentation.InvokeInstrumentation$invoke$$inlined$run$lambda$2.invoke(InvokeInstrumentation.kt:70)
+	at com.huawei.utbot.common.ThreadBasedExecutor$invokeWithTimeout$1.invoke(ThreadUtil.kt:43)
+	at com.huawei.utbot.common.ThreadBasedExecutor$invokeWithTimeout$1.invoke(ThreadUtil.kt:22)
+	at kotlin.concurrent.ThreadsKt$thread$thread$1.run(Thread.kt:30)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+11:35:07.734 | DEBUG | --new testCase collected, to generate: testCom.google.common.primitives.Booleans.BooleanComparator.<init>(int, String)1
+11:35:07.734 | INFO  | Finished (in 0.080 sec): method com.google.common.primitives.Booleans.BooleanComparator.<init>(int, String) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+11:35:07.744 | INFO  | Started: Flushing tests for [Booleans] on disk
+11:35:08.331 | INFO  | File size for BooleansTest: 121 KB
+11:35:08.333 | INFO  | Finished (in 0.589 sec): Flushing tests for [Booleans] on disk 
+11:35:08.334 | INFO  | Finished (in 19.256 sec): class com.google.common.primitives.Booleans 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 44, 
+	#methods started symbolic exploration = 44
+	#methods with at least one TC = 44
+	#methods with exceptions = 6
+	#generated TC = 149
+	#coverage = null
+[READY]

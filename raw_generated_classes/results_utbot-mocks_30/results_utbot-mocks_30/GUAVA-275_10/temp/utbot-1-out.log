@@ -1,0 +1,169 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+19:41:16.291 | INFO  | Started: warmup: kotlin reflection :: init
+19:41:16.361 | INFO  | Finished (in 0.070 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.math.PairedStatsAccumulator 30
+19:41:16.370 | DEBUG | -----------------------------------------------------------------------------
+19:41:16.371 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+19:41:16.372 | INFO  | ClassUnderTest[ FQN: com.google.common.math.PairedStatsAccumulator
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: PairedStatsAccumulatorTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+19:41:16.392 | INFO  | Started: class com.google.common.math.PairedStatsAccumulator
+19:41:16.392 | INFO  | Started: preparation class class com.google.common.math.PairedStatsAccumulator: kotlin reflection :: run
+19:41:16.405 | INFO  | Finished (in 0.012 sec): preparation class class com.google.common.math.PairedStatsAccumulator: kotlin reflection :: run 
+19:41:16.406 | INFO  | Started: 2nd optional soot initialization
+19:41:16.407 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+19:41:16.414 | DEBUG |  ... 
+19:41:16.423 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.snapshot()
+19:41:16.424 | INFO  |  -- Remaining time budget: 25456 ms, #remaining_methods: 13, budget for method: 1958 ms, solver timeout: 979 ms, budget for symbolic execution: 979 ms, budget for concrete execution: 979 ms,  -- 
+19:41:16.727 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.snapshot()1
+19:41:17.050 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.snapshot()2
+19:41:17.051 | INFO  | Finished (in 0.628 sec): method com.google.common.math.PairedStatsAccumulator.snapshot() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:41:17.059 | DEBUG |  ... 
+19:41:17.059 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.yStats()
+19:41:17.059 | INFO  |  -- Remaining time budget: 24812 ms, #remaining_methods: 12, budget for method: 2067 ms, solver timeout: 1000 ms, budget for symbolic execution: 1034 ms, budget for concrete execution: 1033 ms,  -- 
+19:41:17.067 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.yStats()1
+19:41:17.100 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.yStats()2
+19:41:17.101 | INFO  | Finished (in 0.041 sec): method com.google.common.math.PairedStatsAccumulator.yStats() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:41:17.102 | DEBUG |  ... 
+19:41:17.103 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.ensurePositive(double)
+19:41:17.103 | INFO  |  -- Remaining time budget: 24769 ms, #remaining_methods: 11, budget for method: 2251 ms, solver timeout: 1000 ms, budget for symbolic execution: 1126 ms, budget for concrete execution: 1125 ms,  -- 
+19:41:17.109 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.ensurePositive(double)1
+19:41:17.157 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.ensurePositive(double)2
+19:41:17.185 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.ensurePositive(double)3
+19:41:17.185 | INFO  | Finished (in 0.082 sec): method com.google.common.math.PairedStatsAccumulator.ensurePositive(double) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:41:17.186 | DEBUG |  ... 
+19:41:17.187 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.sampleCovariance()
+19:41:17.187 | INFO  |  -- Remaining time budget: 24684 ms, #remaining_methods: 10, budget for method: 2468 ms, solver timeout: 1000 ms, budget for symbolic execution: 1268 ms, budget for concrete execution: 1200 ms,  -- 
+19:41:17.199 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.sampleCovariance()1
+19:41:17.336 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.sampleCovariance()2
+19:41:17.362 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.sampleCovariance()3
+19:41:17.363 | INFO  | Finished (in 0.176 sec): method com.google.common.math.PairedStatsAccumulator.sampleCovariance() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:41:17.371 | DEBUG |  ... 
+19:41:17.372 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.leastSquaresFit()
+19:41:17.372 | INFO  |  -- Remaining time budget: 24500 ms, #remaining_methods: 9, budget for method: 2722 ms, solver timeout: 1000 ms, budget for symbolic execution: 1522 ms, budget for concrete execution: 1200 ms,  -- 
+19:41:17.379 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.leastSquaresFit()1
+19:41:17.658 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.leastSquaresFit()2
+19:41:17.670 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.leastSquaresFit()3
+19:41:17.701 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.leastSquaresFit()4
+19:41:17.716 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.leastSquaresFit()5
+19:41:17.734 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.leastSquaresFit()6
+19:41:17.769 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.leastSquaresFit()7
+19:41:17.910 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.leastSquaresFit()8
+19:41:17.918 | INFO  | Finished (in 0.546 sec): method com.google.common.math.PairedStatsAccumulator.leastSquaresFit() 
+<StatsForMethod> :
+	#generatedTC=8
+	WITH NO EXCEPTIONS
+19:41:17.928 | DEBUG |  ... 
+19:41:17.929 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.xStats()
+19:41:17.930 | INFO  |  -- Remaining time budget: 23943 ms, #remaining_methods: 8, budget for method: 2992 ms, solver timeout: 1000 ms, budget for symbolic execution: 1792 ms, budget for concrete execution: 1200 ms,  -- 
+19:41:17.937 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.xStats()1
+19:41:17.967 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.xStats()2
+19:41:17.967 | INFO  | Finished (in 0.037 sec): method com.google.common.math.PairedStatsAccumulator.xStats() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:41:17.968 | DEBUG |  ... 
+19:41:17.968 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.populationCovariance()
+19:41:17.968 | INFO  |  -- Remaining time budget: 23903 ms, #remaining_methods: 7, budget for method: 3414 ms, solver timeout: 1000 ms, budget for symbolic execution: 2214 ms, budget for concrete execution: 1200 ms,  -- 
+19:41:17.975 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.populationCovariance()1
+19:41:18.050 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.populationCovariance()2
+19:41:18.054 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.populationCovariance()3
+19:41:18.054 | INFO  | Finished (in 0.086 sec): method com.google.common.math.PairedStatsAccumulator.populationCovariance() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:41:18.063 | DEBUG |  ... 
+19:41:18.063 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.pearsonsCorrelationCoefficient()
+19:41:18.063 | INFO  |  -- Remaining time budget: 23808 ms, #remaining_methods: 6, budget for method: 3968 ms, solver timeout: 1000 ms, budget for symbolic execution: 2768 ms, budget for concrete execution: 1200 ms,  -- 
+19:41:18.071 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.pearsonsCorrelationCoefficient()1
+19:41:18.870 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.pearsonsCorrelationCoefficient()2
+19:41:20.832 | INFO  | |> Starting concrete execution for remaining state: com.google.common.math.PairedStatsAccumulator.pearsonsCorrelationCoefficient()
+19:41:21.583 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.pearsonsCorrelationCoefficient()3
+19:41:22.034 | INFO  | (X) Cancelling concrete execution: com.google.common.math.PairedStatsAccumulator.pearsonsCorrelationCoefficient()
+19:41:22.625 | INFO  | Finished (in 4.561 sec): method com.google.common.math.PairedStatsAccumulator.pearsonsCorrelationCoefficient() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:41:22.633 | DEBUG |  ... 
+19:41:22.633 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.add(double, double)
+19:41:22.633 | INFO  |  -- Remaining time budget: 19238 ms, #remaining_methods: 5, budget for method: 3847 ms, solver timeout: 1000 ms, budget for symbolic execution: 2647 ms, budget for concrete execution: 1200 ms,  -- 
+19:41:22.645 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.add(double, double)1
+19:41:22.723 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.add(double, double)2
+19:41:22.732 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.add(double, double)3
+19:41:22.743 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.add(double, double)4
+19:41:22.775 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.add(double, double)5
+19:41:22.775 | INFO  | Finished (in 0.142 sec): method com.google.common.math.PairedStatsAccumulator.add(double, double) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+19:41:22.777 | DEBUG |  ... 
+19:41:22.777 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.count()
+19:41:22.778 | INFO  |  -- Remaining time budget: 19094 ms, #remaining_methods: 4, budget for method: 4773 ms, solver timeout: 1000 ms, budget for symbolic execution: 3573 ms, budget for concrete execution: 1200 ms,  -- 
+19:41:22.783 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.count()1
+19:41:22.811 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.count()2
+19:41:22.812 | INFO  | Finished (in 0.034 sec): method com.google.common.math.PairedStatsAccumulator.count() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:41:22.813 | DEBUG |  ... 
+19:41:22.813 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.addAll(PairedStats)
+19:41:22.813 | INFO  |  -- Remaining time budget: 19058 ms, #remaining_methods: 3, budget for method: 6352 ms, solver timeout: 1000 ms, budget for symbolic execution: 5152 ms, budget for concrete execution: 1200 ms,  -- 
+19:41:22.827 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.addAll(PairedStats)1
+19:41:22.854 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.addAll(PairedStats)2
+19:41:22.875 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.addAll(PairedStats)3
+19:41:22.930 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.addAll(PairedStats)4
+19:41:22.963 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.addAll(PairedStats)5
+19:41:22.974 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.addAll(PairedStats)6
+19:41:23.003 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.addAll(PairedStats)7
+19:41:23.003 | INFO  | Finished (in 0.190 sec): method com.google.common.math.PairedStatsAccumulator.addAll(PairedStats) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+19:41:23.005 | DEBUG |  ... 
+19:41:23.005 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.ensureInUnitRange(double)
+19:41:23.005 | INFO  |  -- Remaining time budget: 18866 ms, #remaining_methods: 2, budget for method: 9433 ms, solver timeout: 1000 ms, budget for symbolic execution: 8233 ms, budget for concrete execution: 1200 ms,  -- 
+19:41:23.009 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.ensureInUnitRange(double)1
+19:41:23.050 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.ensureInUnitRange(double)2
+19:41:23.071 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.ensureInUnitRange(double)3
+19:41:23.076 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.ensureInUnitRange(double)4
+19:41:23.076 | INFO  | Finished (in 0.071 sec): method com.google.common.math.PairedStatsAccumulator.ensureInUnitRange(double) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+19:41:23.077 | DEBUG |  ... 
+19:41:23.077 | INFO  | Started: method com.google.common.math.PairedStatsAccumulator.<init>()
+19:41:23.077 | INFO  |  -- Remaining time budget: 18794 ms, #remaining_methods: 1, budget for method: 18794 ms, solver timeout: 1000 ms, budget for symbolic execution: 17594 ms, budget for concrete execution: 1200 ms,  -- 
+19:41:23.083 | DEBUG | --new testCase collected, to generate: testCom.google.common.math.PairedStatsAccumulator.<init>()1
+19:41:23.145 | INFO  | Finished (in 0.068 sec): method com.google.common.math.PairedStatsAccumulator.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+19:41:23.153 | INFO  | Started: Flushing tests for [PairedStatsAccumulator] on disk
+19:41:23.499 | INFO  | File size for PairedStatsAccumulatorTest: 50 KB
+19:41:23.501 | INFO  | Finished (in 0.348 sec): Flushing tests for [PairedStatsAccumulator] on disk 
+19:41:23.501 | INFO  | Finished (in 7.109 sec): class com.google.common.math.PairedStatsAccumulator 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 13, 
+	#methods started symbolic exploration = 13
+	#methods with at least one TC = 13
+	#methods with exceptions = 0
+	#generated TC = 45
+	#coverage = null
+[READY]

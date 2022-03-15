@@ -1,0 +1,564 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  GUAVA-174
+
+>>> RUN NUMBER: 10
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/guava/guava/src
+>> /var/benchmarks/projects/guava/guava/target/classes
+>> 6
+>> /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar
+>> /var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 30
+
+
+### COMPUTING METRICS ###: com.google.common.collect.TopKSelector
+
+
+Starting class com.google.common.collect.TopKSelector
+
+
+Ending class com.google.common.collect.TopKSelector
+Creating directory results_utbot-mocks_30/GUAVA-174_10/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_30/GUAVA-174_10/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_30/GUAVA-174_10/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java
+
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:17: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:21: error: package org.mockito does not exist
+import static org.mockito.Mockito.mockStatic;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:21: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mockStatic;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:22: error: package org.mockito does not exist
+import static org.mockito.Mockito.mock;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:22: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mock;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:23: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.any;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:23: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.any;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:24: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyBoolean;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:24: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyBoolean;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:25: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyString;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:25: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyString;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:26: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyInt;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:26: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyInt;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:27: error: package org.mockito does not exist
+import static org.mockito.Mockito.when;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:27: error: static import only from classes and interfaces
+import static org.mockito.Mockito.when;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:642: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:643: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:645: error: cannot find symbol
+            mockedStatic = mockStatic(Ordering.class);
+                           ^
+  symbol:   method mockStatic(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:646: error: cannot find symbol
+            Ordering orderingMock = mock(Ordering.class);
+                                    ^
+  symbol:   method mock(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:648: error: cannot find symbol
+            mockedStatic1 = mockStatic(com.google.common.base.Preconditions.class);
+                            ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:651: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:651: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:677: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:678: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:680: error: cannot find symbol
+            mockedStatic = mockStatic(Ordering.class);
+                           ^
+  symbol:   method mockStatic(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:682: error: cannot find symbol
+            mockedStatic1 = mockStatic(com.google.common.base.Preconditions.class);
+                            ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:685: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:685: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:700: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:701: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:703: error: cannot find symbol
+            mockedStatic = mockStatic(Ordering.class);
+                           ^
+  symbol:   method mockStatic(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:705: error: cannot find symbol
+            mockedStatic1 = mockStatic(com.google.common.base.Preconditions.class);
+                            ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:708: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:708: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:731: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:733: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:736: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:736: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:750: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:752: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:756: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:756: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:792: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:794: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:798: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:798: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:812: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:814: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:818: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:818: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:840: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:842: error: cannot find symbol
+            mockedStatic = mockStatic(Ordering.class);
+                           ^
+  symbol:   method mockStatic(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:844: error: package org.mockito does not exist
+                Ordering.from(org.mockito.ArgumentMatchers.any(java.util.Comparator.class));
+                                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:871: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:872: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:874: error: cannot find symbol
+            mockedStatic = mockStatic(Ordering.class);
+                           ^
+  symbol:   method mockStatic(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:875: error: cannot find symbol
+            Ordering orderingMock = mock(Ordering.class);
+                                    ^
+  symbol:   method mock(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:876: error: cannot find symbol
+            Ordering orderingMock1 = mock(Ordering.class);
+                                     ^
+  symbol:   method mock(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:877: error: cannot find symbol
+            when(orderingMock.reverse()).thenReturn(orderingMock1);
+            ^
+  symbol:   method when(Ordering)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:879: error: package org.mockito does not exist
+                Ordering.from(org.mockito.ArgumentMatchers.any(java.util.Comparator.class));
+                                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:881: error: cannot find symbol
+            mockedStatic1 = mockStatic(com.google.common.base.Preconditions.class);
+                            ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:885: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:885: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:921: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:922: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:924: error: cannot find symbol
+            mockedStatic = mockStatic(Ordering.class);
+                           ^
+  symbol:   method mockStatic(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:925: error: cannot find symbol
+            Ordering orderingMock = mock(Ordering.class);
+                                    ^
+  symbol:   method mock(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:926: error: cannot find symbol
+            when(orderingMock.reverse()).thenReturn(((Ordering) null));
+            ^
+  symbol:   method when(Ordering)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:928: error: package org.mockito does not exist
+                Ordering.from(org.mockito.ArgumentMatchers.any(java.util.Comparator.class));
+                                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:930: error: cannot find symbol
+            mockedStatic1 = mockStatic(com.google.common.base.Preconditions.class);
+                            ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:934: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:934: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:962: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:963: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:965: error: cannot find symbol
+            mockedStatic = mockStatic(Ordering.class);
+                           ^
+  symbol:   method mockStatic(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:966: error: cannot find symbol
+            Ordering orderingMock = mock(Ordering.class);
+                                    ^
+  symbol:   method mock(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:967: error: cannot find symbol
+            when(orderingMock.reverse()).thenReturn(((Ordering) null));
+            ^
+  symbol:   method when(Ordering)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:969: error: package org.mockito does not exist
+                Ordering.from(org.mockito.ArgumentMatchers.any(java.util.Comparator.class));
+                                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:971: error: cannot find symbol
+            mockedStatic1 = mockStatic(com.google.common.base.Preconditions.class);
+                            ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:974: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:974: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1035: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1036: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1038: error: cannot find symbol
+            mockedStatic = mockStatic(Ordering.class);
+                           ^
+  symbol:   method mockStatic(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1040: error: cannot find symbol
+            Ordering orderingMock = mock(Ordering.class);
+                                    ^
+  symbol:   method mock(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1041: error: cannot find symbol
+            when(orderingMock.reverse()).thenReturn(((Ordering) null));
+            ^
+  symbol:   method when(Ordering)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1043: error: package org.mockito does not exist
+                Ordering.from(org.mockito.ArgumentMatchers.any(java.util.Comparator.class));
+                                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1045: error: cannot find symbol
+            mockedStatic1 = mockStatic(com.google.common.base.Preconditions.class);
+                            ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1048: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1048: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1063: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1064: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1066: error: cannot find symbol
+            mockedStatic = mockStatic(Ordering.class);
+                           ^
+  symbol:   method mockStatic(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1067: error: cannot find symbol
+            Ordering orderingMock = mock(Ordering.class);
+                                    ^
+  symbol:   method mock(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1069: error: cannot find symbol
+            Ordering orderingMock1 = mock(Ordering.class);
+                                     ^
+  symbol:   method mock(Class<Ordering>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1070: error: cannot find symbol
+            when(orderingMock1.reverse()).thenReturn(((Ordering) null));
+            ^
+  symbol:   method when(Ordering)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1072: error: package org.mockito does not exist
+                Ordering.from(org.mockito.ArgumentMatchers.any(java.util.Comparator.class));
+                                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1074: error: cannot find symbol
+            mockedStatic1 = mockStatic(com.google.common.base.Preconditions.class);
+                            ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1077: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1077: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class TopKSelectorTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1108: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1420: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1421: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java:1423: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/com/google/common/collect/TopKSelectorTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+100 errors
+4 warnings
+Failed to compile 'com/google/common/collect/TopKSelectorTest.java'!
+shaded.org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)
+	at shaded.org.apache.commons.exec.DefaultExecutor.executeInternal(DefaultExecutor.java:377)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:160)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:147)
+	at sbst.benchmark.TestSuite.compile(TestSuite.java:250)
+	at sbst.benchmark.TestSuite.<init>(TestSuite.java:68)
+	at sbst.benchmark.TranscriptWriter.endClass(TranscriptWriter.java:136)
+	at sbst.benchmark.RunTool.execute(RunTool.java:141)
+	at sbst.benchmark.RunTool.run(RunTool.java:62)
+	at sbst.benchmark.Main.main(Main.java:160)
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 2323
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/guava-26.0-jre_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/checker-qual-2.5.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/error_prone_annotations-2.1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/j2objc-annotations-1.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/jsr305-3.0.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/animal-sniffer-annotations-1.14_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-174_10/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Number of file with coverage information = 1951
+Extracted coverage data for the class com/google/common/collect/TopKSelector
+Number of file with coverage information = 302
+Number of file with coverage information = 22
+Number of file with coverage information = 12
+Number of file with coverage information = 35
+Number of file with coverage information = 1
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 68 mutants 
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: GUAVA-174
+	Class Under Test: com.google.common.collect.TopKSelector
+	Run number: 10
+	Tool preparation time (ms): 12932
+	Tool test cases generation time (ms): 25340
+	Test cases execution time (ms): 21
+	Test case number: 52
+	Uncompilable Test Classes: 1
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 79
+	Lines covered: 0
+	Lines coverage ratio (%): 0.0
+	Conditions total: 36
+	Conditions covered: 0
+	Conditions coverage ratio (%): 0.0
+	Mutants total: 68
+	Mutants covered: 0
+	Mutants coverage ratio (%): 0.0
+	Mutants killed: 0
+	Mutants killed ratio (%): 0.0
+	Mutants alive: 68
+
+
+Class com.google.common.collect.TopKSelector ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 13826
+Killing master process 13826
+Executing command kill -9 13826
+Execution of command kill -9 13826 finished.
+Process was destroyed

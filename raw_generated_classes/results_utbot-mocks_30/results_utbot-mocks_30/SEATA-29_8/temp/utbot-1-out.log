@@ -1,0 +1,176 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+18:44:03.383 | INFO  | Started: warmup: kotlin reflection :: init
+18:44:03.459 | INFO  | Finished (in 0.076 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.rpc.DefaultServerMessageListenerImpl 30
+18:44:03.471 | DEBUG | -----------------------------------------------------------------------------
+18:44:03.471 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+18:44:03.473 | INFO  | ClassUnderTest[ FQN: io.seata.core.rpc.DefaultServerMessageListenerImpl
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: DefaultServerMessageListenerImplTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/rpc/DefaultServerMessageListenerImplTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+18:44:03.495 | INFO  | Started: class io.seata.core.rpc.DefaultServerMessageListenerImpl
+18:44:03.496 | INFO  | Started: preparation class class io.seata.core.rpc.DefaultServerMessageListenerImpl: kotlin reflection :: run
+18:44:03.540 | INFO  | Finished (in 0.044 sec): preparation class class io.seata.core.rpc.DefaultServerMessageListenerImpl: kotlin reflection :: run 
+18:44:03.541 | INFO  | Started: 2nd optional soot initialization
+18:44:03.542 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+18:44:03.551 | DEBUG |  ... 
+18:44:03.571 | INFO  | Started: method io.seata.core.rpc.DefaultServerMessageListenerImpl.onTrxMessage(long, ChannelHandlerContext, Object, ServerMessageSender)
+18:44:03.572 | INFO  |  -- Remaining time budget: 25418 ms, #remaining_methods: 10, budget for method: 2541 ms, solver timeout: 1000 ms, budget for symbolic execution: 1341 ms, budget for concrete execution: 1200 ms,  -- 
+18:44:03.883 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onTrxMessage(long, ChannelHandlerContext, Object, ServerMessageSender)1
+18:44:04.262 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onTrxMessage(long, ChannelHandlerContext, Object, ServerMessageSender)2
+18:44:04.900 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.DefaultServerMessageListenerImpl.onTrxMessage(long, ChannelHandlerContext, Object, ServerMessageSender)
+18:44:06.101 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.DefaultServerMessageListenerImpl.onTrxMessage(long, ChannelHandlerContext, Object, ServerMessageSender)
+18:44:06.187 | INFO  | Finished (in 2.615 sec): method io.seata.core.rpc.DefaultServerMessageListenerImpl.onTrxMessage(long, ChannelHandlerContext, Object, ServerMessageSender) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:44:06.260 | DEBUG |  ... 
+18:44:06.260 | INFO  | Started: method io.seata.core.rpc.DefaultServerMessageListenerImpl.onRegRmMessage(long, ChannelHandlerContext, RegisterRMRequest, ServerMessageSender, RegisterCheckAuthHandler)
+18:44:06.260 | INFO  |  -- Remaining time budget: 22712 ms, #remaining_methods: 9, budget for method: 2523 ms, solver timeout: 1000 ms, budget for symbolic execution: 1323 ms, budget for concrete execution: 1200 ms,  -- 
+18:44:06.341 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onRegRmMessage(long, ChannelHandlerContext, RegisterRMRequest, ServerMessageSender, RegisterCheckAuthHandler)1
+18:44:06.476 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onRegRmMessage(long, ChannelHandlerContext, RegisterRMRequest, ServerMessageSender, RegisterCheckAuthHandler)2
+18:44:07.047 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onRegRmMessage(long, ChannelHandlerContext, RegisterRMRequest, ServerMessageSender, RegisterCheckAuthHandler)3
+18:44:07.583 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.DefaultServerMessageListenerImpl.onRegRmMessage(long, ChannelHandlerContext, RegisterRMRequest, ServerMessageSender, RegisterCheckAuthHandler)
+18:44:08.784 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.DefaultServerMessageListenerImpl.onRegRmMessage(long, ChannelHandlerContext, RegisterRMRequest, ServerMessageSender, RegisterCheckAuthHandler)
+18:44:08.807 | INFO  | Finished (in 2.546 sec): method io.seata.core.rpc.DefaultServerMessageListenerImpl.onRegRmMessage(long, ChannelHandlerContext, RegisterRMRequest, ServerMessageSender, RegisterCheckAuthHandler) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:44:08.950 | DEBUG |  ... 
+18:44:08.951 | INFO  | Started: method io.seata.core.rpc.DefaultServerMessageListenerImpl.onRegTmMessage(long, ChannelHandlerContext, RegisterTMRequest, ServerMessageSender, RegisterCheckAuthHandler)
+18:44:08.951 | INFO  |  -- Remaining time budget: 20022 ms, #remaining_methods: 8, budget for method: 2502 ms, solver timeout: 1000 ms, budget for symbolic execution: 1302 ms, budget for concrete execution: 1200 ms,  -- 
+18:44:09.004 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onRegTmMessage(long, ChannelHandlerContext, RegisterTMRequest, ServerMessageSender, RegisterCheckAuthHandler)1
+18:44:09.036 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onRegTmMessage(long, ChannelHandlerContext, RegisterTMRequest, ServerMessageSender, RegisterCheckAuthHandler)2
+18:44:09.060 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onRegTmMessage(long, ChannelHandlerContext, RegisterTMRequest, ServerMessageSender, RegisterCheckAuthHandler)3
+18:44:09.085 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onRegTmMessage(long, ChannelHandlerContext, RegisterTMRequest, ServerMessageSender, RegisterCheckAuthHandler)4
+18:44:09.411 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onRegTmMessage(long, ChannelHandlerContext, RegisterTMRequest, ServerMessageSender, RegisterCheckAuthHandler)5
+18:44:09.444 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onRegTmMessage(long, ChannelHandlerContext, RegisterTMRequest, ServerMessageSender, RegisterCheckAuthHandler)6
+18:44:10.253 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.rpc.DefaultServerMessageListenerImpl.onRegTmMessage(long, ChannelHandlerContext, RegisterTMRequest, ServerMessageSender, RegisterCheckAuthHandler)
+18:44:11.453 | INFO  | (X) Cancelling concrete execution: io.seata.core.rpc.DefaultServerMessageListenerImpl.onRegTmMessage(long, ChannelHandlerContext, RegisterTMRequest, ServerMessageSender, RegisterCheckAuthHandler)
+18:44:11.467 | INFO  | Finished (in 2.516 sec): method io.seata.core.rpc.DefaultServerMessageListenerImpl.onRegTmMessage(long, ChannelHandlerContext, RegisterTMRequest, ServerMessageSender, RegisterCheckAuthHandler) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+18:44:11.515 | DEBUG |  ... 
+18:44:11.516 | INFO  | Started: method io.seata.core.rpc.DefaultServerMessageListenerImpl.onCheckMessage(long, ChannelHandlerContext, ServerMessageSender)
+18:44:11.516 | INFO  |  -- Remaining time budget: 17457 ms, #remaining_methods: 7, budget for method: 2493 ms, solver timeout: 1000 ms, budget for symbolic execution: 1293 ms, budget for concrete execution: 1200 ms,  -- 
+18:44:11.526 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.onCheckMessage(long, ChannelHandlerContext, ServerMessageSender)1
+18:44:11.920 | INFO  | Finished (in 0.404 sec): method io.seata.core.rpc.DefaultServerMessageListenerImpl.onCheckMessage(long, ChannelHandlerContext, ServerMessageSender) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+18:44:11.951 | DEBUG |  ... 
+18:44:11.952 | INFO  | Started: method io.seata.core.rpc.DefaultServerMessageListenerImpl.setServerMessageSender(ServerMessageSender)
+18:44:11.952 | INFO  |  -- Remaining time budget: 17020 ms, #remaining_methods: 6, budget for method: 2836 ms, solver timeout: 1000 ms, budget for symbolic execution: 1636 ms, budget for concrete execution: 1200 ms,  -- 
+18:44:11.959 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.setServerMessageSender(ServerMessageSender)1
+18:44:11.984 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.setServerMessageSender(ServerMessageSender)2
+18:44:11.985 | INFO  | Finished (in 0.032 sec): method io.seata.core.rpc.DefaultServerMessageListenerImpl.setServerMessageSender(ServerMessageSender) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:44:11.985 | DEBUG |  ... 
+18:44:11.986 | INFO  | Started: method io.seata.core.rpc.DefaultServerMessageListenerImpl.getServerMessageSender()
+18:44:11.986 | INFO  |  -- Remaining time budget: 16986 ms, #remaining_methods: 5, budget for method: 3397 ms, solver timeout: 1000 ms, budget for symbolic execution: 2197 ms, budget for concrete execution: 1200 ms,  -- 
+18:44:11.992 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.getServerMessageSender()1
+18:44:12.017 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.getServerMessageSender()2
+18:44:12.017 | INFO  | Finished (in 0.031 sec): method io.seata.core.rpc.DefaultServerMessageListenerImpl.getServerMessageSender() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:44:12.018 | DEBUG |  ... 
+18:44:12.019 | INFO  | Started: method io.seata.core.rpc.DefaultServerMessageListenerImpl.init()
+18:44:12.019 | INFO  |  -- Remaining time budget: 16954 ms, #remaining_methods: 4, budget for method: 4238 ms, solver timeout: 1000 ms, budget for symbolic execution: 3038 ms, budget for concrete execution: 1200 ms,  -- 
+18:44:12.041 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.init()1
+18:44:12.737 | INFO  | Finished (in 0.718 sec): method io.seata.core.rpc.DefaultServerMessageListenerImpl.init() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+18:44:12.793 | DEBUG |  ... 
+18:44:12.794 | INFO  | Started: method io.seata.core.rpc.DefaultServerMessageListenerImpl.<init>(TransactionMessageHandler)
+18:44:12.794 | INFO  |  -- Remaining time budget: 16178 ms, #remaining_methods: 3, budget for method: 5392 ms, solver timeout: 1000 ms, budget for symbolic execution: 4192 ms, budget for concrete execution: 1200 ms,  -- 
+18:44:12.802 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.<init>(TransactionMessageHandler)1
+18:44:12.845 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.<init>(TransactionMessageHandler)2
+18:44:12.846 | INFO  | Finished (in 0.051 sec): method io.seata.core.rpc.DefaultServerMessageListenerImpl.<init>(TransactionMessageHandler) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:44:12.850 | DEBUG |  ... 
+18:44:12.850 | INFO  | Started: method io.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable.run()
+18:44:12.850 | INFO  |  -- Remaining time budget: 16122 ms, #remaining_methods: 2, budget for method: 8061 ms, solver timeout: 1000 ms, budget for symbolic execution: 6861 ms, budget for concrete execution: 1200 ms,  -- 
+18:44:12.974 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.util.concurrent.TimeoutException: Timeout 100 elapsed
+	at com.huawei.utbot.instrumentation.instrumentation.InvokeInstrumentation.invoke-d1pmJ48(InvokeInstrumentation.kt:75)
+	at com.huawei.utbot.instrumentation.instrumentation.InvokeInstrumentation.invoke(InvokeInstrumentation.kt:22)
+	at com.huawei.utbot.instrumentation.instrumentation.Instrumentation$DefaultImpls.invoke$default(Instrumentation.kt:25)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:146)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.withStaticFields(UtExecutionInstrumentation.kt:225)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:137)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:44:13.003 | ERROR | Symbolic execution FAILED
+java.lang.IllegalArgumentException: No targets for Invocation(instance=ObjectValue(typeStorage=java.util.concurrent.BlockingQueue, addr=addr: Int32 2), method=<java.util.Collection: int size()>, parameters=[], generator=() -> kotlin.collections.List<com.huawei.utbot.engine.InvocationTarget>)
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.commonInvokePart(UtBotSymbolicEngine.kt:2417) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.virtualAndInterfaceInvoke(UtBotSymbolicEngine.kt:2289) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.invokeResult(UtBotSymbolicEngine.kt:2152) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseAssignStmt(UtBotSymbolicEngine.kt:884) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseStmt(UtBotSymbolicEngine.kt:604) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invokeSuspend(UtBotSymbolicEngine.kt:464) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1.invokeSuspend(Unknown Source) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+18:44:13.004 | INFO  | Finished (in 0.154 sec): method io.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable.run() 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 2 time(s) with 2 different exception(s)"
+18:44:13.005 | DEBUG |  ... 
+18:44:13.005 | INFO  | Started: method io.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable.<init>()
+18:44:13.005 | INFO  |  -- Remaining time budget: 15967 ms, #remaining_methods: 1, budget for method: 15967 ms, solver timeout: 1000 ms, budget for symbolic execution: 14767 ms, budget for concrete execution: 1200 ms,  -- 
+18:44:13.013 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable.<init>()1
+18:44:13.053 | DEBUG | --new testCase collected, to generate: testIo.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable.<init>()2
+18:44:13.053 | INFO  | Finished (in 0.048 sec): method io.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:44:13.059 | INFO  | Started: Flushing tests for [DefaultServerMessageListenerImpl] on disk
+18:44:13.228 | INFO  | File size for DefaultServerMessageListenerImplTest: 17 KB
+18:44:13.229 | INFO  | Finished (in 0.170 sec): Flushing tests for [DefaultServerMessageListenerImpl] on disk 
+18:44:13.230 | INFO  | Finished (in 9.735 sec): class io.seata.core.rpc.DefaultServerMessageListenerImpl 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 10, 
+	#methods started symbolic exploration = 10
+	#methods with at least one TC = 9
+	#methods with exceptions = 1
+	#generated TC = 21
+	#coverage = null
+[READY]

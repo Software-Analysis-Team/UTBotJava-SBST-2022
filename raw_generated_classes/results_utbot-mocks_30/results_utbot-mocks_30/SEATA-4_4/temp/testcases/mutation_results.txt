@@ -1,0 +1,27 @@
+N. of generated mutants 13
+N. of covered mutants 8
+N. of killed mutants 8
+N. of ignored mutants 0
+
+
+ --- Tests killing mutants --- 
+ Mutant: 0	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.protocol.MessageFuture, method=setResultMessage, methodDesc=(Ljava/lang/Object;)V], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=MessageFuture.java, block=13, lineNumber=78, description=removed call to java/util/concurrent/CountDownLatch::countDown, testsInOrder=[]]
+Mutant: 1	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.protocol.MessageFuture, method=isTimeout, methodDesc=()Z], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=MessageFuture.java, block=3, lineNumber=43, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+Mutant: 2	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.protocol.MessageFuture, method=getRequestMessage, methodDesc=()Lio/seata/core/protocol/RpcMessage;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=MessageFuture.java, block=14, lineNumber=87, description=mutated return of Object value for io/seata/core/protocol/MessageFuture::getRequestMessage to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+Mutant: 3	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.protocol.MessageFuture, method=setResultMessage, methodDesc=(Ljava/lang/Object;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=MessageFuture.java, block=11, lineNumber=77, description=negated conditional, testsInOrder=[]]
+Mutant: 4	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.protocol.MessageFuture, method=isTimeout, methodDesc=()Z], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=MessageFuture.java, block=1, lineNumber=43, description=Replaced long subtraction with addition, testsInOrder=[]]
+Mutant: 5	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.protocol.MessageFuture, method=isTimeout, methodDesc=()Z], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=MessageFuture.java, block=1, lineNumber=43, description=negated conditional, testsInOrder=[]]
+Mutant: 6	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.protocol.MessageFuture, method=getTimeout, methodDesc=()J], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=MessageFuture.java, block=16, lineNumber=105, description=replaced return of long value with value + 1 for io/seata/core/protocol/MessageFuture::getTimeout, testsInOrder=[]]
+Mutant: 7	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.protocol.MessageFuture, method=isTimeout, methodDesc=()Z], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=MessageFuture.java, block=1, lineNumber=43, description=changed conditional boundary, testsInOrder=[]]
+
+
+ --- Mutants details--- 
+ Mutant: 0, killed by tests [(io.seata.core.protocol.MessageFutureTest),testSetResultMessage2)]
+Mutant: 1, killed by tests [(io.seata.core.protocol.MessageFutureTest),testSetResultMessage2)]
+Mutant: 2, killed by tests [(io.seata.core.protocol.MessageFutureTest),testSetResultMessage2)]
+Mutant: 3, killed by tests [(io.seata.core.protocol.MessageFutureTest),testSetResultMessage2)]
+Mutant: 4, killed by tests [(io.seata.core.protocol.MessageFutureTest),testSetResultMessage2)]
+Mutant: 5, killed by tests [(io.seata.core.protocol.MessageFutureTest),testSetResultMessage2)]
+Mutant: 6, killed by tests [(io.seata.core.protocol.MessageFutureTest),testSetResultMessage2)]
+Mutant: 7, killed by tests [(io.seata.core.protocol.MessageFutureTest),testSetResultMessage2)]
+

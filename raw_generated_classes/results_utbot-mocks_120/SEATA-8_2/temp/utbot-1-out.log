@@ -1,0 +1,162 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+17:44:46.828 | INFO  | Started: warmup: kotlin reflection :: init
+17:44:46.902 | INFO  | Finished (in 0.074 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.protocol.MergedWarpMessage 120
+17:44:46.917 | DEBUG | -----------------------------------------------------------------------------
+17:44:46.917 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+17:44:46.919 | INFO  | ClassUnderTest[ FQN: io.seata.core.protocol.MergedWarpMessage
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: MergedWarpMessageTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/protocol/MergedWarpMessageTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+17:44:46.954 | INFO  | Started: class io.seata.core.protocol.MergedWarpMessage
+17:44:46.955 | INFO  | Started: preparation class class io.seata.core.protocol.MergedWarpMessage: kotlin reflection :: run
+17:44:47.017 | INFO  | Finished (in 0.061 sec): preparation class class io.seata.core.protocol.MergedWarpMessage: kotlin reflection :: run 
+17:44:47.019 | INFO  | Started: 2nd optional soot initialization
+17:44:47.020 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+17:44:47.031 | DEBUG |  ... 
+17:44:47.049 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.toString()
+17:44:47.050 | INFO  |  -- Remaining time budget: 101884 ms, #remaining_methods: 6, budget for method: 16980 ms, solver timeout: 1000 ms, budget for symbolic execution: 15780 ms, budget for concrete execution: 1200 ms,  -- 
+17:44:47.405 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.toString()1
+17:44:47.923 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.toString()2
+17:44:50.092 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.toString()3
+17:44:50.548 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.toString()4
+17:44:50.676 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.toString()5
+17:45:02.825 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.protocol.MergedWarpMessage.toString()
+17:45:04.026 | INFO  | (X) Cancelling concrete execution: io.seata.core.protocol.MergedWarpMessage.toString()
+17:45:04.230 | INFO  | Finished (in 17.180 sec): method io.seata.core.protocol.MergedWarpMessage.toString() 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+17:45:04.794 | DEBUG |  ... 
+17:45:04.795 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)
+17:45:04.796 | INFO  |  -- Remaining time budget: 84124 ms, #remaining_methods: 5, budget for method: 16824 ms, solver timeout: 1000 ms, budget for symbolic execution: 15624 ms, budget for concrete execution: 1200 ms,  -- 
+17:45:04.986 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)1
+17:45:05.018 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)2
+17:45:05.058 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)3
+17:45:05.081 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)4
+17:45:05.091 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)5
+17:45:05.188 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)6
+17:45:05.233 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)7
+17:45:05.256 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)8
+17:45:05.281 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.decode(ByteBuf)9
+17:45:05.282 | INFO  | Finished (in 0.486 sec): method io.seata.core.protocol.MergedWarpMessage.decode(ByteBuf) 
+<StatsForMethod> :
+	#generatedTC=9
+	WITH NO EXCEPTIONS
+17:45:05.294 | DEBUG |  ... 
+17:45:05.295 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.encode()
+17:45:05.295 | INFO  |  -- Remaining time budget: 83623 ms, #remaining_methods: 4, budget for method: 20905 ms, solver timeout: 1000 ms, budget for symbolic execution: 19705 ms, budget for concrete execution: 1200 ms,  -- 
+17:45:05.303 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()1
+17:45:05.333 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()2
+17:45:06.030 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()3
+17:45:06.713 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()4
+17:45:07.697 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()5
+17:45:07.824 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.encode()6
+17:45:10.568 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ReadingFromKryoException: Failure reading from kryo
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:392) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+Caused by: com.esotericsoftware.kryo.KryoException: Buffer underflow.
+	at com.esotericsoftware.kryo.io.Input.require(Input.java:219) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.io.Input.readVarLong(Input.java:570) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.DefaultSerializers$LongSerializer.read(DefaultSerializers.java:131) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.serializers.DefaultSerializers$LongSerializer.read(DefaultSerializers.java:125) ~[utbot-junit-contest-1.0.jar:?]
+	at com.esotericsoftware.kryo.Kryo.readObject(Kryo.java:774) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.util.KryoHelper.readLong(KryoHelper.kt:36) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$restartIfNeeded$$inlined$bracket$lambda$1$1$1.invokeSuspend(ConcreteExecutor.kt:256) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:274) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:84) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:59) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:38) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$restartIfNeeded$$inlined$bracket$lambda$1$1.invoke(ConcreteExecutor.kt:253) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$restartIfNeeded$$inlined$bracket$lambda$1$1.invoke(ConcreteExecutor.kt:101) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.concurrent.ThreadsKt$thread$thread$1.run(Thread.kt:30) ~[utbot-junit-contest-1.0.jar:?]
+17:45:12.329 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalStateException: No field $__is_mock_null in class java.nio.ByteBuffer
+	at com.huawei.utbot.framework.concrete.MethodMockController.<init>(MethodMockController.kt:38)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.mockMethods(MockValueConstructor.kt:245)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.mockStaticMethods(MockValueConstructor.kt:263)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:139)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation$invoke$$inlined$use$lambda$1.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.withStaticFields(UtExecutionInstrumentation.kt:225)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:137)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:45:12.501 | ERROR | Symbolic execution FAILED ... <<stack trace duplicated>>
+17:45:12.502 | INFO  | Finished (in 7.207 sec): method io.seata.core.protocol.MergedWarpMessage.encode() 
+<StatsForMethod> :
+	#generatedTC=6
+	FAILED 3 time(s) with 2 different exception(s)"
+17:45:12.653 | DEBUG |  ... 
+17:45:12.654 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.getTypeCode()
+17:45:12.654 | INFO  |  -- Remaining time budget: 76264 ms, #remaining_methods: 3, budget for method: 25421 ms, solver timeout: 1000 ms, budget for symbolic execution: 24221 ms, budget for concrete execution: 1200 ms,  -- 
+17:45:12.782 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.getTypeCode()1
+17:45:12.806 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.getTypeCode()2
+17:45:12.807 | INFO  | Finished (in 0.153 sec): method io.seata.core.protocol.MergedWarpMessage.getTypeCode() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:45:12.808 | DEBUG |  ... 
+17:45:12.808 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)
+17:45:12.808 | INFO  |  -- Remaining time budget: 76110 ms, #remaining_methods: 2, budget for method: 38055 ms, solver timeout: 1000 ms, budget for symbolic execution: 36855 ms, budget for concrete execution: 1200 ms,  -- 
+17:45:12.821 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)1
+17:45:12.847 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)2
+17:45:12.884 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)3
+17:45:12.892 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)4
+17:45:12.917 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer)5
+17:45:12.917 | INFO  | Finished (in 0.109 sec): method io.seata.core.protocol.MergedWarpMessage.doDecode(ByteBuffer) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+17:45:12.918 | DEBUG |  ... 
+17:45:12.919 | INFO  | Started: method io.seata.core.protocol.MergedWarpMessage.<init>()
+17:45:12.919 | INFO  |  -- Remaining time budget: 76000 ms, #remaining_methods: 1, budget for method: 76000 ms, solver timeout: 1000 ms, budget for symbolic execution: 74800 ms, budget for concrete execution: 1200 ms,  -- 
+17:45:12.931 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.<init>()1
+17:45:13.056 | DEBUG | --new testCase collected, to generate: testIo.seata.core.protocol.MergedWarpMessage.<init>()2
+17:45:13.057 | INFO  | Finished (in 0.138 sec): method io.seata.core.protocol.MergedWarpMessage.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:45:13.072 | INFO  | Started: Flushing tests for [MergedWarpMessage] on disk
+17:45:13.937 | INFO  | File size for MergedWarpMessageTest: 27 KB
+17:45:13.939 | INFO  | Finished (in 0.866 sec): Flushing tests for [MergedWarpMessage] on disk 
+17:45:13.940 | INFO  | Finished (in 26.985 sec): class io.seata.core.protocol.MergedWarpMessage 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 6, 
+	#methods started symbolic exploration = 6
+	#methods with at least one TC = 6
+	#methods with exceptions = 1
+	#generated TC = 29
+	#coverage = null
+[READY]

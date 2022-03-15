@@ -1,0 +1,916 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  SPOON-9
+
+>>> RUN NUMBER: 4
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/spoon/src/main/java
+>> /var/benchmarks/projects/spoon/target/classes
+>> 31
+>> /var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar
+>> /var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar
+>> /var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar
+>> /var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar
+>> /var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar
+>> /var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar
+>> /var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar
+>> /var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar
+>> /var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar
+>> /var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar
+>> /var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar
+>> /var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 30
+
+
+### COMPUTING METRICS ###: spoon.support.reflect.cu.position.SourcePositionImpl
+
+
+Starting class spoon.support.reflect.cu.position.SourcePositionImpl
+
+
+Ending class spoon.support.reflect.cu.position.SourcePositionImpl
+Creating directory results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases -cp /var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases -cp /var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/spoon/support/reflect/cu/position/SourcePositionImplTest.java
+
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/spoon/support/reflect/cu/position/SourcePositionImplTest.java:20: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/spoon/support/reflect/cu/position/SourcePositionImplTest.java:1815: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/spoon/support/reflect/cu/position/SourcePositionImplTest.java:1816: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/spoon/support/reflect/cu/position/SourcePositionImplTest.java:1818: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/spoon/support/reflect/cu/position/SourcePositionImplTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+4 warnings
+Compiled 'spoon/support/reflect/cu/position/SourcePositionImplTest.java'
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.reflect.cu.position.SourcePositionImplTest]
+Executions terminated
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.reflect.cu.position.SourcePositionImplTest]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.reflect.cu.position.SourcePositionImplTest]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.reflect.cu.position.SourcePositionImplTest]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.reflect.cu.position.SourcePositionImplTest]
+Executions terminated
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 9764
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/spoon-core-7.0.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.text-3.12.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.equinox.app-1.6.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.core.contenttype-3.8.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/mockito-all-2.0.2-beta_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/jackson-databind-2.9.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/guava-18.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.core.expressions-3.8.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.core.commands-3.10.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/jackson-annotations-2.9.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.jdt.core-3.13.102_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.core.runtime-3.24.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.core.resources-3.16.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/jackson-core-2.9.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/junit-4.12_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.equinox.registry-3.11.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/hamcrest-core-1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/maven-model-3.3.9_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/plexus-utils-3.0.22_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/jsap-2.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bridge-method-annotation-1.13_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.equinox.common-3.15.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.core.jobs-3.12.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/commons-io-2.5_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/commons-lang3-3.5_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/system-rules-1.9.0_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/querydsl-core-3.6.9_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.core.filesystem-1.9.200_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.equinox.preferences-3.9.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/org.eclipse.osgi-3.17.100_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/log4j-1.2.17_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation, spoon.support.reflect.cu.position.SourcePositionImplTest]
+Executions terminated
+Number of file with coverage information = 1009
+Extracted coverage data for the class spoon/support/reflect/cu/position/SourcePositionImpl
+Number of file with coverage information = 180
+Number of file with coverage information = 32
+Number of file with coverage information = 47
+Number of file with coverage information = 752
+Number of file with coverage information = 617
+Number of file with coverage information = 1690
+Number of file with coverage information = 50
+Number of file with coverage information = 84
+Number of file with coverage information = 68
+Number of file with coverage information = 2122
+Number of file with coverage information = 22
+Number of file with coverage information = 361
+Number of file with coverage information = 105
+Number of file with coverage information = 286
+Number of file with coverage information = 89
+Number of file with coverage information = 45
+Number of file with coverage information = 54
+Number of file with coverage information = 104
+Number of file with coverage information = 69
+Number of file with coverage information = 2
+Number of file with coverage information = 73
+Number of file with coverage information = 48
+Number of file with coverage information = 123
+Number of file with coverage information = 260
+Number of file with coverage information = 18
+Number of file with coverage information = 348
+Number of file with coverage information = 35
+Number of file with coverage information = 70
+Number of file with coverage information = 687
+Number of file with coverage information = 314
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 93 mutants 
+Evaluating mutant 236153619 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT0
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=equals, methodDesc=(Ljava/lang/Object;)Z], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1341971966 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT1
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[51], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1341973888 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT2
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[49], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 2060050890 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT3
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[44], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -540033461 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT4
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[99], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1760085359 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT5
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[39], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1843828706 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT6
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -507074225 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT7
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[122], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 361882910 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT8
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[20], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -941822001 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT9
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[24], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1042296884 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT10
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getLine, methodDesc=()I], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1922943631 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT11
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getCompilationUnit, methodDesc=()Lspoon/reflect/cu/CompilationUnit;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 1688959807 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT12
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[63], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -507070381 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT13
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[126], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -507123236 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT14
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[71], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -540086316 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT15
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[44], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1067551292 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT16
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=equals, methodDesc=(Ljava/lang/Object;)Z], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -439989286 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT17
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[41], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1704035380 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT18
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[42], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 2060021099 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT19
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[13], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -540123795 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT20
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1341943136 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT21
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[81], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1063719365 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT22
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=toString, methodDesc=()Ljava/lang/String;], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 361904052 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT23
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[42], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 1688972300 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT24
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[76], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 468922324 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT25
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1760105540 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT26
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1341935448 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT27
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[89], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 1948975111 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT28
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getLine, methodDesc=()I], indexes=[20], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 361911740 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT29
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[50], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -439975832 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT30
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[55], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 468930012 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT31
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[26], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1781799302 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT32
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getFile, methodDesc=()Ljava/io/File;], indexes=[15], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1704020004 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT33
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[58], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1445353493 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT34
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getEndColumn, methodDesc=()I], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 2060038397 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT35
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[31], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1843750865 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT36
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[90], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 1558239317 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT37
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[49], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 955038299 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT38
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=<init>, methodDesc=(Lspoon/reflect/cu/CompilationUnit;II[I)V], indexes=[22], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -439892225 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT39
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[142], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1341914306 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT40
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[111], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1704027692 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT41
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[50], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -540055564 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT42
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[76], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -439896069 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT43
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[138], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -439897991 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT44
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[136], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 2060032631 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT45
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[25], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -478100157 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT46
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getFile, methodDesc=()Ljava/io/File;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 1688941548 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT47
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[44], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 239985546 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT48
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=toString, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 962274711 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT49
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=isValidPosition, methodDesc=()Z], indexes=[4], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1433033639 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT50
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[34], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 1688994403 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT51
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[99], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1341955629 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT52
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[68], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 361978049 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT53
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[119], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1760097852 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT54
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[26], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 361919428 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT55
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[58], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -941707642 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT56
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[143], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 468942505 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT57
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[39], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -941836416 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT58
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 361868495 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT59
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1843729723 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT60
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[112], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1550433719 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT61
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getEndLine, methodDesc=()I], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 1665841195 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT62
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[54], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1484866404 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT63
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getColumn, methodDesc=()I], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1843736450 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT64
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[105], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1564803745 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT65
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getSourceStart, methodDesc=()I], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -941780678 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT66
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[67], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 2060023982 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT67
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -540068057 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT68
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[63], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 361971322 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT69
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[112], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -540109380 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT70
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[20], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1341989264 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT71
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[33], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 361946336 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT72
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[86], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1843814291 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT73
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[24], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1341921033 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT74
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[104], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -439965261 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT75
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[66], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 247927858 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT76
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=<init>, methodDesc=(Lspoon/reflect/cu/CompilationUnit;II[I)V], indexes=[24], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -439893186 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT77
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[141], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant -1703968110 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT78
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[112], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 2060029748 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT79
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[22], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+Evaluating mutant 606512984 using tests: [spoon.support.reflect.cu.position.SourcePositionImplTest]
+
+ CP : /usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/SUT:/home/utbot_mocks/results_utbot-mocks_30/SPOON-9_4/temp/testcases/bin:results_utbot-mocks_30/SPOON-9_4/temp/testcases/mutated_code/CUT80
+
+Failed test testEquals1(spoon.support.reflect.cu.position.SourcePositionImplTest)
+	 actual test, will stop test execution !
+TestExec4MutationTask: Mutant MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getSourceEnd, methodDesc=()I], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator] killed by test (spoon.support.reflect.cu.position.SourcePositionImplTest),testEquals1)
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=equals, methodDesc=(Ljava/lang/Object;)Z], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=44, lineNumber=173, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[51], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=5, lineNumber=50, description=Replaced integer division with multiplication, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[49], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=5, lineNumber=50, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[44], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=56, lineNumber=186, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[99], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=10, lineNumber=59, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[39], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=63, lineNumber=220, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=1, lineNumber=41, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[122], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=SourcePositionImpl.java, block=25, lineNumber=89, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[20], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=15, lineNumber=73, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[24], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=16, lineNumber=74, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getLine, methodDesc=()I], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=34, lineNumber=140, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getCompilationUnit, methodDesc=()Lspoon/reflect/cu/CompilationUnit;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=57, lineNumber=193, description=mutated return of Object value for spoon/support/reflect/cu/position/SourcePositionImpl::getCompilationUnit to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[63], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=SourcePositionImpl.java, block=5, lineNumber=51, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[126], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=SourcePositionImpl.java, block=25, lineNumber=87, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[71], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=SourcePositionImpl.java, block=21, lineNumber=77, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[44], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=4, lineNumber=49, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=equals, methodDesc=(Ljava/lang/Object;)Z], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=45, lineNumber=174, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[41], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=17, lineNumber=77, description=Replaced integer subtraction with addition, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[42], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=SourcePositionImpl.java, block=17, lineNumber=77, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[13], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=54, lineNumber=184, description=Replaced integer multiplication with division, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=0, lineNumber=40, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[81], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=8, lineNumber=54, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=toString, methodDesc=()Ljava/lang/String;], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=40, lineNumber=165, description=mutated return of Object value for spoon/support/reflect/cu/position/SourcePositionImpl::toString to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[42], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=17, lineNumber=77, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[76], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=SourcePositionImpl.java, block=7, lineNumber=53, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=SourcePositionImpl.java, block=60, lineNumber=216, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=60, lineNumber=216, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[89], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=9, lineNumber=56, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getLine, methodDesc=()I], indexes=[20], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=35, lineNumber=143, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[50], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=18, lineNumber=78, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[55], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=19, lineNumber=78, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[26], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=SourcePositionImpl.java, block=61, lineNumber=217, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getFile, methodDesc=()Ljava/io/File;], indexes=[15], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=33, lineNumber=136, description=mutated return of Object value for spoon/support/reflect/cu/position/SourcePositionImpl::getFile to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[58], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=SourcePositionImpl.java, block=19, lineNumber=78, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getEndColumn, methodDesc=()I], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=30, lineNumber=132, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[31], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=54, lineNumber=186, description=Replaced integer multiplication with division, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[90], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=9, lineNumber=56, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[49], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=56, lineNumber=187, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=<init>, methodDesc=(Lspoon/reflect/cu/CompilationUnit;II[I)V], indexes=[22], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=27, lineNumber=115, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[142], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=26, lineNumber=93, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[111], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=12, lineNumber=62, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[50], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=SourcePositionImpl.java, block=18, lineNumber=78, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[76], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=7, lineNumber=53, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[138], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=26, lineNumber=93, description=Replaced integer subtraction with addition, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[136], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=26, lineNumber=93, description=Replaced integer subtraction with addition, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[25], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=54, lineNumber=185, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getFile, methodDesc=()Ljava/io/File;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=31, lineNumber=136, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[44], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=SourcePositionImpl.java, block=4, lineNumber=49, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=toString, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=39, lineNumber=164, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=isValidPosition, methodDesc=()Z], indexes=[4], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=28, lineNumber=124, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[34], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=54, lineNumber=186, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[99], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=SourcePositionImpl.java, block=10, lineNumber=59, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[68], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=6, lineNumber=52, description=Replaced integer subtraction with addition, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[119], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=24, lineNumber=88, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[26], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=61, lineNumber=217, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[58], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=19, lineNumber=78, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[143], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=26, lineNumber=93, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[39], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=SourcePositionImpl.java, block=63, lineNumber=220, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=14, lineNumber=70, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=13, lineNumber=69, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[112], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=12, lineNumber=62, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getEndLine, methodDesc=()I], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=36, lineNumber=147, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=checkArgsAreAscending, methodDesc=([I)V], indexes=[54], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=SourcePositionImpl.java, block=65, lineNumber=216, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getColumn, methodDesc=()I], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=29, lineNumber=128, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[105], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=11, lineNumber=60, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getSourceStart, methodDesc=()I], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=38, lineNumber=155, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[67], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=20, lineNumber=79, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=54, lineNumber=184, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[63], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=5, lineNumber=51, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[112], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=23, lineNumber=87, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[20], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=2, lineNumber=44, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[33], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=4, lineNumber=47, description=Replaced integer subtraction with addition, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[86], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=SourcePositionImpl.java, block=22, lineNumber=84, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[24], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=3, lineNumber=45, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchLineNumber, methodDesc=(I)I], indexes=[104], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=11, lineNumber=60, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[66], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=20, lineNumber=79, description=Replaced integer subtraction with addition, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=<init>, methodDesc=(Lspoon/reflect/cu/CompilationUnit;II[I)V], indexes=[24], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=SourcePositionImpl.java, block=27, lineNumber=115, description=removed call to spoon/support/reflect/cu/position/SourcePositionImpl::checkArgsAreAscending, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[141], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=26, lineNumber=93, description=Replaced integer multiplication with division, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=searchColumnNumber, methodDesc=(I)I], indexes=[112], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=SourcePositionImpl.java, block=23, lineNumber=87, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=hashCode, methodDesc=()I], indexes=[22], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=SourcePositionImpl.java, block=54, lineNumber=185, description=Replaced integer multiplication with division, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.reflect.cu.position.SourcePositionImpl, method=getSourceEnd, methodDesc=()I], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=SourcePositionImpl.java, block=37, lineNumber=151, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: SPOON-9
+	Class Under Test: spoon.support.reflect.cu.position.SourcePositionImpl
+	Run number: 4
+	Tool preparation time (ms): 13704
+	Tool test cases generation time (ms): 21274
+	Test cases execution time (ms): 2067
+	Test case number: 75
+	Uncompilable Test Classes: 0
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 78
+	Lines covered: 73
+	Lines coverage ratio (%): 93.589745
+	Conditions total: 56
+	Conditions covered: 41
+	Conditions coverage ratio (%): 73.21429
+	Mutants total: 93
+	Mutants covered: 81
+	Mutants coverage ratio (%): 87.09677
+	Mutants killed: 81
+	Mutants killed ratio (%): 87.09677
+	Mutants alive: 12
+
+
+Class spoon.support.reflect.cu.position.SourcePositionImpl ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 1289
+Killing master process 1289
+Executing command kill -9 1289
+Execution of command kill -9 1289 finished.
+Process was destroyed

@@ -1,0 +1,815 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+14:03:02.682 | INFO  | Started: warmup: kotlin reflection :: init
+14:03:02.768 | INFO  | Finished (in 0.086 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.support.DefaultCoreFactory 30
+14:03:02.782 | DEBUG | -----------------------------------------------------------------------------
+14:03:02.782 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+14:03:02.785 | INFO  | ClassUnderTest[ FQN: spoon.support.DefaultCoreFactory
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: DefaultCoreFactoryTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/support/DefaultCoreFactoryTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+14:03:02.808 | INFO  | Started: class spoon.support.DefaultCoreFactory
+14:03:02.809 | INFO  | Started: preparation class class spoon.support.DefaultCoreFactory: kotlin reflection :: run
+14:03:03.035 | INFO  | Finished (in 0.226 sec): preparation class class spoon.support.DefaultCoreFactory: kotlin reflection :: run 
+14:03:03.036 | INFO  | Started: 2nd optional soot initialization
+14:03:03.038 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+14:03:03.046 | DEBUG |  ... 
+14:03:03.055 | INFO  | Started: method spoon.support.DefaultCoreFactory.createComment()
+14:03:03.056 | INFO  |  -- Remaining time budget: 25234 ms, #remaining_methods: 93, budget for method: 271 ms, solver timeout: 135 ms, budget for symbolic execution: 136 ms, budget for concrete execution: 135 ms,  -- 
+14:03:03.189 | INFO  | |> Starting concrete execution for remaining state: spoon.support.DefaultCoreFactory.createComment()
+14:03:03.325 | INFO  | (X) Cancelling concrete execution: spoon.support.DefaultCoreFactory.createComment()
+14:03:03.397 | INFO  | Finished (in 0.342 sec): method spoon.support.DefaultCoreFactory.createComment() 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+14:03:03.398 | DEBUG |  ... 
+14:03:03.401 | INFO  | Started: method spoon.support.DefaultCoreFactory.clone(T)
+14:03:03.401 | INFO  |  -- Remaining time budget: 24885 ms, #remaining_methods: 92, budget for method: 270 ms, solver timeout: 135 ms, budget for symbolic execution: 135 ms, budget for concrete execution: 135 ms,  -- 
+14:03:03.537 | INFO  | |> Starting concrete execution for remaining state: spoon.support.DefaultCoreFactory.clone(T)
+14:03:03.543 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.clone(T)1
+14:03:04.423 | INFO  | (X) Cancelling concrete execution: spoon.support.DefaultCoreFactory.clone(T)
+14:03:04.449 | INFO  | Finished (in 1.048 sec): method spoon.support.DefaultCoreFactory.clone(T) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:04.450 | DEBUG |  ... 
+14:03:04.451 | INFO  | Started: method spoon.support.DefaultCoreFactory.create(Class)
+14:03:04.451 | INFO  |  -- Remaining time budget: 23834 ms, #remaining_methods: 91, budget for method: 261 ms, solver timeout: 130 ms, budget for symbolic execution: 131 ms, budget for concrete execution: 130 ms,  -- 
+14:03:04.465 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+14:03:04.582 | INFO  | |> Starting concrete execution for remaining state: spoon.support.DefaultCoreFactory.create(Class)
+14:03:04.713 | INFO  | (X) Cancelling concrete execution: spoon.support.DefaultCoreFactory.create(Class)
+14:03:04.738 | INFO  | Finished (in 0.287 sec): method spoon.support.DefaultCoreFactory.create(Class) 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 1 time(s) with 1 different exception(s)"
+14:03:04.740 | DEBUG |  ... 
+14:03:04.740 | INFO  | Started: method spoon.support.DefaultCoreFactory.createClass()
+14:03:04.740 | INFO  |  -- Remaining time budget: 23544 ms, #remaining_methods: 90, budget for method: 261 ms, solver timeout: 130 ms, budget for symbolic execution: 131 ms, budget for concrete execution: 130 ms,  -- 
+14:03:04.752 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createClass()1
+14:03:04.834 | INFO  | Finished (in 0.093 sec): method spoon.support.DefaultCoreFactory.createClass() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:04.838 | DEBUG |  ... 
+14:03:04.838 | INFO  | Started: method spoon.support.DefaultCoreFactory.createAnonymousExecutable()
+14:03:04.839 | INFO  |  -- Remaining time budget: 23446 ms, #remaining_methods: 89, budget for method: 263 ms, solver timeout: 131 ms, budget for symbolic execution: 132 ms, budget for concrete execution: 131 ms,  -- 
+14:03:04.850 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createAnonymousExecutable()1
+14:03:04.896 | INFO  | Finished (in 0.057 sec): method spoon.support.DefaultCoreFactory.createAnonymousExecutable() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:04.899 | DEBUG |  ... 
+14:03:04.899 | INFO  | Started: method spoon.support.DefaultCoreFactory.createAnnotationType()
+14:03:04.899 | INFO  |  -- Remaining time budget: 23385 ms, #remaining_methods: 88, budget for method: 265 ms, solver timeout: 132 ms, budget for symbolic execution: 133 ms, budget for concrete execution: 132 ms,  -- 
+14:03:04.907 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createAnnotationType()1
+14:03:04.951 | INFO  | Finished (in 0.052 sec): method spoon.support.DefaultCoreFactory.createAnnotationType() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:04.954 | DEBUG |  ... 
+14:03:04.955 | INFO  | Started: method spoon.support.DefaultCoreFactory.createBlock()
+14:03:04.955 | INFO  |  -- Remaining time budget: 23329 ms, #remaining_methods: 87, budget for method: 268 ms, solver timeout: 134 ms, budget for symbolic execution: 134 ms, budget for concrete execution: 134 ms,  -- 
+14:03:04.962 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createBlock()1
+14:03:05.003 | INFO  | Finished (in 0.048 sec): method spoon.support.DefaultCoreFactory.createBlock() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.006 | DEBUG |  ... 
+14:03:05.007 | INFO  | Started: method spoon.support.DefaultCoreFactory.createArrayTypeReference()
+14:03:05.007 | INFO  |  -- Remaining time budget: 23278 ms, #remaining_methods: 86, budget for method: 270 ms, solver timeout: 135 ms, budget for symbolic execution: 135 ms, budget for concrete execution: 135 ms,  -- 
+14:03:05.013 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createArrayTypeReference()1
+14:03:05.052 | INFO  | Finished (in 0.045 sec): method spoon.support.DefaultCoreFactory.createArrayTypeReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.055 | DEBUG |  ... 
+14:03:05.055 | INFO  | Started: method spoon.support.DefaultCoreFactory.createCase()
+14:03:05.055 | INFO  |  -- Remaining time budget: 23229 ms, #remaining_methods: 85, budget for method: 273 ms, solver timeout: 136 ms, budget for symbolic execution: 137 ms, budget for concrete execution: 136 ms,  -- 
+14:03:05.062 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createCase()1
+14:03:05.098 | INFO  | Finished (in 0.043 sec): method spoon.support.DefaultCoreFactory.createCase() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.101 | DEBUG |  ... 
+14:03:05.102 | INFO  | Started: method spoon.support.DefaultCoreFactory.createBreak()
+14:03:05.102 | INFO  |  -- Remaining time budget: 23182 ms, #remaining_methods: 84, budget for method: 275 ms, solver timeout: 137 ms, budget for symbolic execution: 138 ms, budget for concrete execution: 137 ms,  -- 
+14:03:05.108 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createBreak()1
+14:03:05.145 | INFO  | Finished (in 0.043 sec): method spoon.support.DefaultCoreFactory.createBreak() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.148 | DEBUG |  ... 
+14:03:05.149 | INFO  | Started: method spoon.support.DefaultCoreFactory.createBinaryOperator()
+14:03:05.149 | INFO  |  -- Remaining time budget: 23135 ms, #remaining_methods: 83, budget for method: 278 ms, solver timeout: 139 ms, budget for symbolic execution: 139 ms, budget for concrete execution: 139 ms,  -- 
+14:03:05.153 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createBinaryOperator()1
+14:03:05.193 | INFO  | Finished (in 0.044 sec): method spoon.support.DefaultCoreFactory.createBinaryOperator() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.196 | DEBUG |  ... 
+14:03:05.197 | INFO  | Started: method spoon.support.DefaultCoreFactory.createCatch()
+14:03:05.197 | INFO  |  -- Remaining time budget: 23088 ms, #remaining_methods: 82, budget for method: 281 ms, solver timeout: 140 ms, budget for symbolic execution: 141 ms, budget for concrete execution: 140 ms,  -- 
+14:03:05.202 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createCatch()1
+14:03:05.233 | INFO  | Finished (in 0.036 sec): method spoon.support.DefaultCoreFactory.createCatch() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.236 | DEBUG |  ... 
+14:03:05.237 | INFO  | Started: method spoon.support.DefaultCoreFactory.createContinue()
+14:03:05.237 | INFO  |  -- Remaining time budget: 23047 ms, #remaining_methods: 81, budget for method: 284 ms, solver timeout: 142 ms, budget for symbolic execution: 142 ms, budget for concrete execution: 142 ms,  -- 
+14:03:05.241 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createContinue()1
+14:03:05.273 | INFO  | Finished (in 0.036 sec): method spoon.support.DefaultCoreFactory.createContinue() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.276 | DEBUG |  ... 
+14:03:05.277 | INFO  | Started: method spoon.support.DefaultCoreFactory.createAssignment()
+14:03:05.277 | INFO  |  -- Remaining time budget: 23008 ms, #remaining_methods: 80, budget for method: 287 ms, solver timeout: 143 ms, budget for symbolic execution: 144 ms, budget for concrete execution: 143 ms,  -- 
+14:03:05.282 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createAssignment()1
+14:03:05.314 | INFO  | Finished (in 0.037 sec): method spoon.support.DefaultCoreFactory.createAssignment() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.317 | DEBUG |  ... 
+14:03:05.318 | INFO  | Started: method spoon.support.DefaultCoreFactory.createAnnotation()
+14:03:05.318 | INFO  |  -- Remaining time budget: 22967 ms, #remaining_methods: 79, budget for method: 290 ms, solver timeout: 145 ms, budget for symbolic execution: 145 ms, budget for concrete execution: 145 ms,  -- 
+14:03:05.323 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createAnnotation()1
+14:03:05.356 | INFO  | Finished (in 0.038 sec): method spoon.support.DefaultCoreFactory.createAnnotation() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.360 | DEBUG |  ... 
+14:03:05.360 | INFO  | Started: method spoon.support.DefaultCoreFactory.createAssert()
+14:03:05.360 | INFO  |  -- Remaining time budget: 22924 ms, #remaining_methods: 78, budget for method: 293 ms, solver timeout: 146 ms, budget for symbolic execution: 147 ms, budget for concrete execution: 146 ms,  -- 
+14:03:05.365 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createAssert()1
+14:03:05.396 | INFO  | Finished (in 0.036 sec): method spoon.support.DefaultCoreFactory.createAssert() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.400 | DEBUG |  ... 
+14:03:05.400 | INFO  | Started: method spoon.support.DefaultCoreFactory.createArrayWrite()
+14:03:05.400 | INFO  |  -- Remaining time budget: 22884 ms, #remaining_methods: 77, budget for method: 297 ms, solver timeout: 148 ms, budget for symbolic execution: 149 ms, budget for concrete execution: 148 ms,  -- 
+14:03:05.405 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createArrayWrite()1
+14:03:05.452 | INFO  | Finished (in 0.052 sec): method spoon.support.DefaultCoreFactory.createArrayWrite() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.455 | DEBUG |  ... 
+14:03:05.456 | INFO  | Started: method spoon.support.DefaultCoreFactory.createArrayRead()
+14:03:05.456 | INFO  |  -- Remaining time budget: 22829 ms, #remaining_methods: 76, budget for method: 300 ms, solver timeout: 150 ms, budget for symbolic execution: 150 ms, budget for concrete execution: 150 ms,  -- 
+14:03:05.460 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createArrayRead()1
+14:03:05.491 | INFO  | Finished (in 0.035 sec): method spoon.support.DefaultCoreFactory.createArrayRead() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.494 | DEBUG |  ... 
+14:03:05.495 | INFO  | Started: method spoon.support.DefaultCoreFactory.createTypeParameter()
+14:03:05.495 | INFO  |  -- Remaining time budget: 22789 ms, #remaining_methods: 75, budget for method: 303 ms, solver timeout: 151 ms, budget for symbolic execution: 152 ms, budget for concrete execution: 151 ms,  -- 
+14:03:05.500 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createTypeParameter()1
+14:03:05.532 | INFO  | Finished (in 0.037 sec): method spoon.support.DefaultCoreFactory.createTypeParameter() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.536 | DEBUG |  ... 
+14:03:05.536 | INFO  | Started: method spoon.support.DefaultCoreFactory.createConditional()
+14:03:05.536 | INFO  |  -- Remaining time budget: 22748 ms, #remaining_methods: 74, budget for method: 307 ms, solver timeout: 153 ms, budget for symbolic execution: 154 ms, budget for concrete execution: 153 ms,  -- 
+14:03:05.540 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createConditional()1
+14:03:05.569 | INFO  | Finished (in 0.033 sec): method spoon.support.DefaultCoreFactory.createConditional() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.572 | DEBUG |  ... 
+14:03:05.572 | INFO  | Started: method spoon.support.DefaultCoreFactory.createConstructor()
+14:03:05.572 | INFO  |  -- Remaining time budget: 22712 ms, #remaining_methods: 73, budget for method: 311 ms, solver timeout: 155 ms, budget for symbolic execution: 156 ms, budget for concrete execution: 155 ms,  -- 
+14:03:05.578 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createConstructor()1
+14:03:05.609 | INFO  | Finished (in 0.037 sec): method spoon.support.DefaultCoreFactory.createConstructor() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.612 | DEBUG |  ... 
+14:03:05.612 | INFO  | Started: method spoon.support.DefaultCoreFactory.createInvisibleArrayConstructor()
+14:03:05.612 | INFO  |  -- Remaining time budget: 22672 ms, #remaining_methods: 72, budget for method: 314 ms, solver timeout: 157 ms, budget for symbolic execution: 157 ms, budget for concrete execution: 157 ms,  -- 
+14:03:05.619 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createInvisibleArrayConstructor()1
+14:03:05.650 | INFO  | Finished (in 0.038 sec): method spoon.support.DefaultCoreFactory.createInvisibleArrayConstructor() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.653 | DEBUG |  ... 
+14:03:05.653 | INFO  | Started: method spoon.support.DefaultCoreFactory.createDo()
+14:03:05.653 | INFO  |  -- Remaining time budget: 22631 ms, #remaining_methods: 71, budget for method: 318 ms, solver timeout: 159 ms, budget for symbolic execution: 159 ms, budget for concrete execution: 159 ms,  -- 
+14:03:05.659 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createDo()1
+14:03:05.692 | INFO  | Finished (in 0.039 sec): method spoon.support.DefaultCoreFactory.createDo() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.697 | DEBUG |  ... 
+14:03:05.697 | INFO  | Started: method spoon.support.DefaultCoreFactory.createEnum()
+14:03:05.697 | INFO  |  -- Remaining time budget: 22587 ms, #remaining_methods: 70, budget for method: 322 ms, solver timeout: 161 ms, budget for symbolic execution: 161 ms, budget for concrete execution: 161 ms,  -- 
+14:03:05.702 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createEnum()1
+14:03:05.734 | INFO  | Finished (in 0.037 sec): method spoon.support.DefaultCoreFactory.createEnum() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.737 | DEBUG |  ... 
+14:03:05.737 | INFO  | Started: method spoon.support.DefaultCoreFactory.createExecutableReference()
+14:03:05.737 | INFO  |  -- Remaining time budget: 22547 ms, #remaining_methods: 69, budget for method: 326 ms, solver timeout: 163 ms, budget for symbolic execution: 163 ms, budget for concrete execution: 163 ms,  -- 
+14:03:05.742 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createExecutableReference()1
+14:03:05.772 | INFO  | Finished (in 0.035 sec): method spoon.support.DefaultCoreFactory.createExecutableReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.776 | DEBUG |  ... 
+14:03:05.776 | INFO  | Started: method spoon.support.DefaultCoreFactory.createField()
+14:03:05.777 | INFO  |  -- Remaining time budget: 22508 ms, #remaining_methods: 68, budget for method: 331 ms, solver timeout: 165 ms, budget for symbolic execution: 166 ms, budget for concrete execution: 165 ms,  -- 
+14:03:05.781 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createField()1
+14:03:05.811 | INFO  | Finished (in 0.034 sec): method spoon.support.DefaultCoreFactory.createField() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.816 | DEBUG |  ... 
+14:03:05.817 | INFO  | Started: method spoon.support.DefaultCoreFactory.createEnumValue()
+14:03:05.818 | INFO  |  -- Remaining time budget: 22467 ms, #remaining_methods: 67, budget for method: 335 ms, solver timeout: 167 ms, budget for symbolic execution: 168 ms, budget for concrete execution: 167 ms,  -- 
+14:03:05.823 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createEnumValue()1
+14:03:05.854 | INFO  | Finished (in 0.035 sec): method spoon.support.DefaultCoreFactory.createEnumValue() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.857 | DEBUG |  ... 
+14:03:05.857 | INFO  | Started: method spoon.support.DefaultCoreFactory.createFieldRead()
+14:03:05.858 | INFO  |  -- Remaining time budget: 22427 ms, #remaining_methods: 66, budget for method: 339 ms, solver timeout: 169 ms, budget for symbolic execution: 170 ms, budget for concrete execution: 169 ms,  -- 
+14:03:05.863 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createFieldRead()1
+14:03:05.896 | INFO  | Finished (in 0.038 sec): method spoon.support.DefaultCoreFactory.createFieldRead() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.899 | DEBUG |  ... 
+14:03:05.900 | INFO  | Started: method spoon.support.DefaultCoreFactory.createFieldWrite()
+14:03:05.900 | INFO  |  -- Remaining time budget: 22385 ms, #remaining_methods: 65, budget for method: 344 ms, solver timeout: 172 ms, budget for symbolic execution: 172 ms, budget for concrete execution: 172 ms,  -- 
+14:03:05.904 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createFieldWrite()1
+14:03:05.938 | INFO  | Finished (in 0.038 sec): method spoon.support.DefaultCoreFactory.createFieldWrite() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.941 | DEBUG |  ... 
+14:03:05.941 | INFO  | Started: method spoon.support.DefaultCoreFactory.createAnnotationFieldAccess()
+14:03:05.941 | INFO  |  -- Remaining time budget: 22343 ms, #remaining_methods: 64, budget for method: 349 ms, solver timeout: 174 ms, budget for symbolic execution: 175 ms, budget for concrete execution: 174 ms,  -- 
+14:03:05.946 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createAnnotationFieldAccess()1
+14:03:05.976 | INFO  | Finished (in 0.034 sec): method spoon.support.DefaultCoreFactory.createAnnotationFieldAccess() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:05.979 | DEBUG |  ... 
+14:03:05.979 | INFO  | Started: method spoon.support.DefaultCoreFactory.createUnboundVariableReference()
+14:03:05.979 | INFO  |  -- Remaining time budget: 22305 ms, #remaining_methods: 63, budget for method: 354 ms, solver timeout: 177 ms, budget for symbolic execution: 177 ms, budget for concrete execution: 177 ms,  -- 
+14:03:05.983 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createUnboundVariableReference()1
+14:03:06.015 | INFO  | Finished (in 0.035 sec): method spoon.support.DefaultCoreFactory.createUnboundVariableReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.017 | DEBUG |  ... 
+14:03:06.018 | INFO  | Started: method spoon.support.DefaultCoreFactory.createFieldReference()
+14:03:06.018 | INFO  |  -- Remaining time budget: 22266 ms, #remaining_methods: 62, budget for method: 359 ms, solver timeout: 179 ms, budget for symbolic execution: 180 ms, budget for concrete execution: 179 ms,  -- 
+14:03:06.021 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createFieldReference()1
+14:03:06.049 | INFO  | Finished (in 0.032 sec): method spoon.support.DefaultCoreFactory.createFieldReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.052 | DEBUG |  ... 
+14:03:06.052 | INFO  | Started: method spoon.support.DefaultCoreFactory.createFor()
+14:03:06.052 | INFO  |  -- Remaining time budget: 22232 ms, #remaining_methods: 61, budget for method: 364 ms, solver timeout: 182 ms, budget for symbolic execution: 182 ms, budget for concrete execution: 182 ms,  -- 
+14:03:06.056 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createFor()1
+14:03:06.085 | INFO  | Finished (in 0.033 sec): method spoon.support.DefaultCoreFactory.createFor() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.090 | DEBUG |  ... 
+14:03:06.090 | INFO  | Started: method spoon.support.DefaultCoreFactory.createForEach()
+14:03:06.090 | INFO  |  -- Remaining time budget: 22194 ms, #remaining_methods: 60, budget for method: 369 ms, solver timeout: 184 ms, budget for symbolic execution: 185 ms, budget for concrete execution: 184 ms,  -- 
+14:03:06.094 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createForEach()1
+14:03:06.129 | INFO  | Finished (in 0.038 sec): method spoon.support.DefaultCoreFactory.createForEach() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.131 | DEBUG |  ... 
+14:03:06.132 | INFO  | Started: method spoon.support.DefaultCoreFactory.createIf()
+14:03:06.132 | INFO  |  -- Remaining time budget: 22152 ms, #remaining_methods: 59, budget for method: 375 ms, solver timeout: 187 ms, budget for symbolic execution: 188 ms, budget for concrete execution: 187 ms,  -- 
+14:03:06.136 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createIf()1
+14:03:06.163 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createIf() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.166 | DEBUG |  ... 
+14:03:06.166 | INFO  | Started: method spoon.support.DefaultCoreFactory.createInterface()
+14:03:06.166 | INFO  |  -- Remaining time budget: 22118 ms, #remaining_methods: 58, budget for method: 381 ms, solver timeout: 190 ms, budget for symbolic execution: 191 ms, budget for concrete execution: 190 ms,  -- 
+14:03:06.170 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createInterface()1
+14:03:06.199 | INFO  | Finished (in 0.033 sec): method spoon.support.DefaultCoreFactory.createInterface() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.201 | DEBUG |  ... 
+14:03:06.202 | INFO  | Started: method spoon.support.DefaultCoreFactory.createInvocation()
+14:03:06.202 | INFO  |  -- Remaining time budget: 22082 ms, #remaining_methods: 57, budget for method: 387 ms, solver timeout: 193 ms, budget for symbolic execution: 194 ms, budget for concrete execution: 193 ms,  -- 
+14:03:06.206 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createInvocation()1
+14:03:06.235 | INFO  | Finished (in 0.033 sec): method spoon.support.DefaultCoreFactory.createInvocation() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.238 | DEBUG |  ... 
+14:03:06.238 | INFO  | Started: method spoon.support.DefaultCoreFactory.createLiteral()
+14:03:06.238 | INFO  |  -- Remaining time budget: 22046 ms, #remaining_methods: 56, budget for method: 393 ms, solver timeout: 196 ms, budget for symbolic execution: 197 ms, budget for concrete execution: 196 ms,  -- 
+14:03:06.241 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createLiteral()1
+14:03:06.271 | INFO  | Finished (in 0.033 sec): method spoon.support.DefaultCoreFactory.createLiteral() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.275 | DEBUG |  ... 
+14:03:06.275 | INFO  | Started: method spoon.support.DefaultCoreFactory.createLocalVariable()
+14:03:06.276 | INFO  |  -- Remaining time budget: 22009 ms, #remaining_methods: 55, budget for method: 400 ms, solver timeout: 200 ms, budget for symbolic execution: 200 ms, budget for concrete execution: 200 ms,  -- 
+14:03:06.280 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createLocalVariable()1
+14:03:06.310 | INFO  | Finished (in 0.034 sec): method spoon.support.DefaultCoreFactory.createLocalVariable() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.313 | DEBUG |  ... 
+14:03:06.313 | INFO  | Started: method spoon.support.DefaultCoreFactory.createLocalVariableReference()
+14:03:06.313 | INFO  |  -- Remaining time budget: 21971 ms, #remaining_methods: 54, budget for method: 406 ms, solver timeout: 203 ms, budget for symbolic execution: 203 ms, budget for concrete execution: 203 ms,  -- 
+14:03:06.318 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createLocalVariableReference()1
+14:03:06.353 | INFO  | Finished (in 0.040 sec): method spoon.support.DefaultCoreFactory.createLocalVariableReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.356 | DEBUG |  ... 
+14:03:06.356 | INFO  | Started: method spoon.support.DefaultCoreFactory.createCatchVariable()
+14:03:06.356 | INFO  |  -- Remaining time budget: 21928 ms, #remaining_methods: 53, budget for method: 413 ms, solver timeout: 206 ms, budget for symbolic execution: 207 ms, budget for concrete execution: 206 ms,  -- 
+14:03:06.360 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createCatchVariable()1
+14:03:06.388 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createCatchVariable() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.391 | DEBUG |  ... 
+14:03:06.391 | INFO  | Started: method spoon.support.DefaultCoreFactory.createCatchVariableReference()
+14:03:06.391 | INFO  |  -- Remaining time budget: 21893 ms, #remaining_methods: 52, budget for method: 421 ms, solver timeout: 210 ms, budget for symbolic execution: 211 ms, budget for concrete execution: 210 ms,  -- 
+14:03:06.395 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createCatchVariableReference()1
+14:03:06.423 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createCatchVariableReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.425 | DEBUG |  ... 
+14:03:06.426 | INFO  | Started: method spoon.support.DefaultCoreFactory.createMethod()
+14:03:06.426 | INFO  |  -- Remaining time budget: 21858 ms, #remaining_methods: 51, budget for method: 428 ms, solver timeout: 214 ms, budget for symbolic execution: 214 ms, budget for concrete execution: 214 ms,  -- 
+14:03:06.432 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createMethod()1
+14:03:06.460 | INFO  | Finished (in 0.034 sec): method spoon.support.DefaultCoreFactory.createMethod() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.463 | DEBUG |  ... 
+14:03:06.463 | INFO  | Started: method spoon.support.DefaultCoreFactory.createAnnotationMethod()
+14:03:06.463 | INFO  |  -- Remaining time budget: 21821 ms, #remaining_methods: 50, budget for method: 436 ms, solver timeout: 218 ms, budget for symbolic execution: 218 ms, budget for concrete execution: 218 ms,  -- 
+14:03:06.467 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createAnnotationMethod()1
+14:03:06.496 | INFO  | Finished (in 0.033 sec): method spoon.support.DefaultCoreFactory.createAnnotationMethod() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.499 | DEBUG |  ... 
+14:03:06.499 | INFO  | Started: method spoon.support.DefaultCoreFactory.createNewArray()
+14:03:06.499 | INFO  |  -- Remaining time budget: 21785 ms, #remaining_methods: 49, budget for method: 444 ms, solver timeout: 222 ms, budget for symbolic execution: 222 ms, budget for concrete execution: 222 ms,  -- 
+14:03:06.503 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createNewArray()1
+14:03:06.531 | INFO  | Finished (in 0.032 sec): method spoon.support.DefaultCoreFactory.createNewArray() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.534 | DEBUG |  ... 
+14:03:06.534 | INFO  | Started: method spoon.support.DefaultCoreFactory.createConstructorCall()
+14:03:06.534 | INFO  |  -- Remaining time budget: 21750 ms, #remaining_methods: 48, budget for method: 453 ms, solver timeout: 226 ms, budget for symbolic execution: 227 ms, budget for concrete execution: 226 ms,  -- 
+14:03:06.538 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createConstructorCall()1
+14:03:06.566 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createConstructorCall() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.569 | DEBUG |  ... 
+14:03:06.569 | INFO  | Started: method spoon.support.DefaultCoreFactory.createNewClass()
+14:03:06.569 | INFO  |  -- Remaining time budget: 21715 ms, #remaining_methods: 47, budget for method: 462 ms, solver timeout: 231 ms, budget for symbolic execution: 231 ms, budget for concrete execution: 231 ms,  -- 
+14:03:06.573 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createNewClass()1
+14:03:06.601 | INFO  | Finished (in 0.032 sec): method spoon.support.DefaultCoreFactory.createNewClass() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.604 | DEBUG |  ... 
+14:03:06.604 | INFO  | Started: method spoon.support.DefaultCoreFactory.createLambda()
+14:03:06.604 | INFO  |  -- Remaining time budget: 21680 ms, #remaining_methods: 46, budget for method: 471 ms, solver timeout: 235 ms, budget for symbolic execution: 236 ms, budget for concrete execution: 235 ms,  -- 
+14:03:06.608 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createLambda()1
+14:03:06.636 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createLambda() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.639 | DEBUG |  ... 
+14:03:06.639 | INFO  | Started: method spoon.support.DefaultCoreFactory.createExecutableReferenceExpression()
+14:03:06.639 | INFO  |  -- Remaining time budget: 21645 ms, #remaining_methods: 45, budget for method: 481 ms, solver timeout: 240 ms, budget for symbolic execution: 241 ms, budget for concrete execution: 240 ms,  -- 
+14:03:06.643 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createExecutableReferenceExpression()1
+14:03:06.685 | INFO  | Finished (in 0.046 sec): method spoon.support.DefaultCoreFactory.createExecutableReferenceExpression() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.689 | DEBUG |  ... 
+14:03:06.689 | INFO  | Started: method spoon.support.DefaultCoreFactory.createOperatorAssignment()
+14:03:06.690 | INFO  |  -- Remaining time budget: 21595 ms, #remaining_methods: 44, budget for method: 490 ms, solver timeout: 245 ms, budget for symbolic execution: 245 ms, budget for concrete execution: 245 ms,  -- 
+14:03:06.694 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createOperatorAssignment()1
+14:03:06.735 | INFO  | Finished (in 0.046 sec): method spoon.support.DefaultCoreFactory.createOperatorAssignment() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.738 | DEBUG |  ... 
+14:03:06.738 | INFO  | Started: method spoon.support.DefaultCoreFactory.createPackage()
+14:03:06.738 | INFO  |  -- Remaining time budget: 21546 ms, #remaining_methods: 43, budget for method: 501 ms, solver timeout: 250 ms, budget for symbolic execution: 251 ms, budget for concrete execution: 250 ms,  -- 
+14:03:06.742 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createPackage()1
+14:03:06.769 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createPackage() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.772 | DEBUG |  ... 
+14:03:06.772 | INFO  | Started: method spoon.support.DefaultCoreFactory.createPackageReference()
+14:03:06.773 | INFO  |  -- Remaining time budget: 21512 ms, #remaining_methods: 42, budget for method: 512 ms, solver timeout: 256 ms, budget for symbolic execution: 256 ms, budget for concrete execution: 256 ms,  -- 
+14:03:06.776 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createPackageReference()1
+14:03:06.803 | INFO  | Finished (in 0.030 sec): method spoon.support.DefaultCoreFactory.createPackageReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.806 | DEBUG |  ... 
+14:03:06.806 | INFO  | Started: method spoon.support.DefaultCoreFactory.createParameter()
+14:03:06.806 | INFO  |  -- Remaining time budget: 21478 ms, #remaining_methods: 41, budget for method: 523 ms, solver timeout: 261 ms, budget for symbolic execution: 262 ms, budget for concrete execution: 261 ms,  -- 
+14:03:06.809 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createParameter()1
+14:03:06.836 | INFO  | Finished (in 0.030 sec): method spoon.support.DefaultCoreFactory.createParameter() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.839 | DEBUG |  ... 
+14:03:06.839 | INFO  | Started: method spoon.support.DefaultCoreFactory.createParameterReference()
+14:03:06.839 | INFO  |  -- Remaining time budget: 21445 ms, #remaining_methods: 40, budget for method: 536 ms, solver timeout: 268 ms, budget for symbolic execution: 268 ms, budget for concrete execution: 268 ms,  -- 
+14:03:06.843 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createParameterReference()1
+14:03:06.869 | INFO  | Finished (in 0.030 sec): method spoon.support.DefaultCoreFactory.createParameterReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.872 | DEBUG |  ... 
+14:03:06.872 | INFO  | Started: method spoon.support.DefaultCoreFactory.createReturn()
+14:03:06.872 | INFO  |  -- Remaining time budget: 21412 ms, #remaining_methods: 39, budget for method: 549 ms, solver timeout: 274 ms, budget for symbolic execution: 275 ms, budget for concrete execution: 274 ms,  -- 
+14:03:06.877 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createReturn()1
+14:03:06.904 | INFO  | Finished (in 0.032 sec): method spoon.support.DefaultCoreFactory.createReturn() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.907 | DEBUG |  ... 
+14:03:06.907 | INFO  | Started: method spoon.support.DefaultCoreFactory.createStatementList()
+14:03:06.907 | INFO  |  -- Remaining time budget: 21377 ms, #remaining_methods: 38, budget for method: 562 ms, solver timeout: 281 ms, budget for symbolic execution: 281 ms, budget for concrete execution: 281 ms,  -- 
+14:03:06.911 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createStatementList()1
+14:03:06.937 | INFO  | Finished (in 0.030 sec): method spoon.support.DefaultCoreFactory.createStatementList() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.940 | DEBUG |  ... 
+14:03:06.940 | INFO  | Started: method spoon.support.DefaultCoreFactory.createSwitch()
+14:03:06.941 | INFO  |  -- Remaining time budget: 21344 ms, #remaining_methods: 37, budget for method: 576 ms, solver timeout: 288 ms, budget for symbolic execution: 288 ms, budget for concrete execution: 288 ms,  -- 
+14:03:06.944 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createSwitch()1
+14:03:06.971 | INFO  | Finished (in 0.030 sec): method spoon.support.DefaultCoreFactory.createSwitch() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:06.973 | DEBUG |  ... 
+14:03:06.974 | INFO  | Started: method spoon.support.DefaultCoreFactory.createSynchronized()
+14:03:06.974 | INFO  |  -- Remaining time budget: 21311 ms, #remaining_methods: 36, budget for method: 591 ms, solver timeout: 295 ms, budget for symbolic execution: 296 ms, budget for concrete execution: 295 ms,  -- 
+14:03:06.977 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createSynchronized()1
+14:03:07.005 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createSynchronized() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.009 | DEBUG |  ... 
+14:03:07.009 | INFO  | Started: method spoon.support.DefaultCoreFactory.createThrow()
+14:03:07.009 | INFO  |  -- Remaining time budget: 21275 ms, #remaining_methods: 35, budget for method: 607 ms, solver timeout: 303 ms, budget for symbolic execution: 304 ms, budget for concrete execution: 303 ms,  -- 
+14:03:07.013 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createThrow()1
+14:03:07.041 | INFO  | Finished (in 0.032 sec): method spoon.support.DefaultCoreFactory.createThrow() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.044 | DEBUG |  ... 
+14:03:07.044 | INFO  | Started: method spoon.support.DefaultCoreFactory.createTry()
+14:03:07.044 | INFO  |  -- Remaining time budget: 21240 ms, #remaining_methods: 34, budget for method: 624 ms, solver timeout: 312 ms, budget for symbolic execution: 312 ms, budget for concrete execution: 312 ms,  -- 
+14:03:07.048 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createTry()1
+14:03:07.075 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createTry() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.078 | DEBUG |  ... 
+14:03:07.078 | INFO  | Started: method spoon.support.DefaultCoreFactory.createTryWithResource()
+14:03:07.078 | INFO  |  -- Remaining time budget: 21206 ms, #remaining_methods: 33, budget for method: 642 ms, solver timeout: 321 ms, budget for symbolic execution: 321 ms, budget for concrete execution: 321 ms,  -- 
+14:03:07.082 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createTryWithResource()1
+14:03:07.111 | INFO  | Finished (in 0.032 sec): method spoon.support.DefaultCoreFactory.createTryWithResource() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.114 | DEBUG |  ... 
+14:03:07.115 | INFO  | Started: method spoon.support.DefaultCoreFactory.createTypeParameterReference()
+14:03:07.115 | INFO  |  -- Remaining time budget: 21170 ms, #remaining_methods: 32, budget for method: 661 ms, solver timeout: 330 ms, budget for symbolic execution: 331 ms, budget for concrete execution: 330 ms,  -- 
+14:03:07.118 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createTypeParameterReference()1
+14:03:07.145 | INFO  | Finished (in 0.030 sec): method spoon.support.DefaultCoreFactory.createTypeParameterReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.148 | DEBUG |  ... 
+14:03:07.148 | INFO  | Started: method spoon.support.DefaultCoreFactory.createWildcardReference()
+14:03:07.148 | INFO  |  -- Remaining time budget: 21136 ms, #remaining_methods: 31, budget for method: 681 ms, solver timeout: 340 ms, budget for symbolic execution: 341 ms, budget for concrete execution: 340 ms,  -- 
+14:03:07.153 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createWildcardReference()1
+14:03:07.189 | INFO  | Finished (in 0.040 sec): method spoon.support.DefaultCoreFactory.createWildcardReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.192 | DEBUG |  ... 
+14:03:07.192 | INFO  | Started: method spoon.support.DefaultCoreFactory.createIntersectionTypeReference()
+14:03:07.192 | INFO  |  -- Remaining time budget: 21092 ms, #remaining_methods: 30, budget for method: 703 ms, solver timeout: 351 ms, budget for symbolic execution: 352 ms, budget for concrete execution: 351 ms,  -- 
+14:03:07.196 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createIntersectionTypeReference()1
+14:03:07.224 | INFO  | Finished (in 0.032 sec): method spoon.support.DefaultCoreFactory.createIntersectionTypeReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.227 | DEBUG |  ... 
+14:03:07.227 | INFO  | Started: method spoon.support.DefaultCoreFactory.createTypeReference()
+14:03:07.228 | INFO  |  -- Remaining time budget: 21057 ms, #remaining_methods: 29, budget for method: 726 ms, solver timeout: 363 ms, budget for symbolic execution: 363 ms, budget for concrete execution: 363 ms,  -- 
+14:03:07.231 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createTypeReference()1
+14:03:07.258 | INFO  | Finished (in 0.030 sec): method spoon.support.DefaultCoreFactory.createTypeReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.260 | DEBUG |  ... 
+14:03:07.261 | INFO  | Started: method spoon.support.DefaultCoreFactory.createTypeAccess()
+14:03:07.261 | INFO  |  -- Remaining time budget: 21024 ms, #remaining_methods: 28, budget for method: 750 ms, solver timeout: 375 ms, budget for symbolic execution: 375 ms, budget for concrete execution: 375 ms,  -- 
+14:03:07.264 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createTypeAccess()1
+14:03:07.291 | INFO  | Finished (in 0.030 sec): method spoon.support.DefaultCoreFactory.createTypeAccess() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.294 | DEBUG |  ... 
+14:03:07.294 | INFO  | Started: method spoon.support.DefaultCoreFactory.createUnaryOperator()
+14:03:07.294 | INFO  |  -- Remaining time budget: 20990 ms, #remaining_methods: 27, budget for method: 777 ms, solver timeout: 388 ms, budget for symbolic execution: 389 ms, budget for concrete execution: 388 ms,  -- 
+14:03:07.297 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createUnaryOperator()1
+14:03:07.325 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createUnaryOperator() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.328 | DEBUG |  ... 
+14:03:07.328 | INFO  | Started: method spoon.support.DefaultCoreFactory.createVariableRead()
+14:03:07.328 | INFO  |  -- Remaining time budget: 20956 ms, #remaining_methods: 26, budget for method: 806 ms, solver timeout: 403 ms, budget for symbolic execution: 403 ms, budget for concrete execution: 403 ms,  -- 
+14:03:07.334 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createVariableRead()1
+14:03:07.362 | INFO  | Finished (in 0.033 sec): method spoon.support.DefaultCoreFactory.createVariableRead() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.364 | DEBUG |  ... 
+14:03:07.365 | INFO  | Started: method spoon.support.DefaultCoreFactory.createVariableWrite()
+14:03:07.365 | INFO  |  -- Remaining time budget: 20919 ms, #remaining_methods: 25, budget for method: 836 ms, solver timeout: 418 ms, budget for symbolic execution: 418 ms, budget for concrete execution: 418 ms,  -- 
+14:03:07.368 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createVariableWrite()1
+14:03:07.395 | INFO  | Finished (in 0.030 sec): method spoon.support.DefaultCoreFactory.createVariableWrite() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.398 | DEBUG |  ... 
+14:03:07.398 | INFO  | Started: method spoon.support.DefaultCoreFactory.createCodeSnippetExpression()
+14:03:07.398 | INFO  |  -- Remaining time budget: 20886 ms, #remaining_methods: 24, budget for method: 870 ms, solver timeout: 435 ms, budget for symbolic execution: 435 ms, budget for concrete execution: 435 ms,  -- 
+14:03:07.401 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createCodeSnippetExpression()1
+14:03:07.439 | INFO  | Finished (in 0.041 sec): method spoon.support.DefaultCoreFactory.createCodeSnippetExpression() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.442 | DEBUG |  ... 
+14:03:07.443 | INFO  | Started: method spoon.support.DefaultCoreFactory.createCodeSnippetStatement()
+14:03:07.443 | INFO  |  -- Remaining time budget: 20841 ms, #remaining_methods: 23, budget for method: 906 ms, solver timeout: 453 ms, budget for symbolic execution: 453 ms, budget for concrete execution: 453 ms,  -- 
+14:03:07.447 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createCodeSnippetStatement()1
+14:03:07.476 | INFO  | Finished (in 0.033 sec): method spoon.support.DefaultCoreFactory.createCodeSnippetStatement() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.479 | DEBUG |  ... 
+14:03:07.479 | INFO  | Started: method spoon.support.DefaultCoreFactory.createJavaDoc()
+14:03:07.479 | INFO  |  -- Remaining time budget: 20805 ms, #remaining_methods: 22, budget for method: 945 ms, solver timeout: 472 ms, budget for symbolic execution: 473 ms, budget for concrete execution: 472 ms,  -- 
+14:03:07.482 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createJavaDoc()1
+14:03:07.628 | INFO  | Finished (in 0.149 sec): method spoon.support.DefaultCoreFactory.createJavaDoc() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.635 | DEBUG |  ... 
+14:03:07.636 | INFO  | Started: method spoon.support.DefaultCoreFactory.createJavaDocTag()
+14:03:07.636 | INFO  |  -- Remaining time budget: 20648 ms, #remaining_methods: 21, budget for method: 983 ms, solver timeout: 491 ms, budget for symbolic execution: 492 ms, budget for concrete execution: 491 ms,  -- 
+14:03:07.640 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createJavaDocTag()1
+14:03:07.675 | INFO  | Finished (in 0.039 sec): method spoon.support.DefaultCoreFactory.createJavaDocTag() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.678 | DEBUG |  ... 
+14:03:07.679 | INFO  | Started: method spoon.support.DefaultCoreFactory.createWhile()
+14:03:07.679 | INFO  |  -- Remaining time budget: 20605 ms, #remaining_methods: 20, budget for method: 1030 ms, solver timeout: 515 ms, budget for symbolic execution: 515 ms, budget for concrete execution: 515 ms,  -- 
+14:03:07.682 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createWhile()1
+14:03:07.708 | INFO  | Finished (in 0.029 sec): method spoon.support.DefaultCoreFactory.createWhile() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.711 | DEBUG |  ... 
+14:03:07.713 | INFO  | Started: method spoon.support.DefaultCoreFactory.createImport()
+14:03:07.713 | INFO  |  -- Remaining time budget: 20572 ms, #remaining_methods: 19, budget for method: 1082 ms, solver timeout: 541 ms, budget for symbolic execution: 541 ms, budget for concrete execution: 541 ms,  -- 
+14:03:07.716 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createImport()1
+14:03:07.741 | INFO  | Finished (in 0.029 sec): method spoon.support.DefaultCoreFactory.createImport() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:07.745 | DEBUG |  ... 
+14:03:07.745 | INFO  | Started: method spoon.support.DefaultCoreFactory.getMainFactory()
+14:03:07.745 | INFO  |  -- Remaining time budget: 20539 ms, #remaining_methods: 18, budget for method: 1141 ms, solver timeout: 570 ms, budget for symbolic execution: 571 ms, budget for concrete execution: 570 ms,  -- 
+14:03:07.748 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.getMainFactory()1
+14:03:07.775 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.getMainFactory()2
+14:03:07.775 | INFO  | Finished (in 0.030 sec): method spoon.support.DefaultCoreFactory.getMainFactory() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:03:07.776 | DEBUG |  ... 
+14:03:07.776 | INFO  | Started: method spoon.support.DefaultCoreFactory.setMainFactory(Factory)
+14:03:07.776 | INFO  |  -- Remaining time budget: 20508 ms, #remaining_methods: 17, budget for method: 1206 ms, solver timeout: 603 ms, budget for symbolic execution: 603 ms, budget for concrete execution: 603 ms,  -- 
+14:03:07.783 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.setMainFactory(Factory)1
+14:03:07.810 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.setMainFactory(Factory)2
+14:03:07.811 | INFO  | Finished (in 0.034 sec): method spoon.support.DefaultCoreFactory.setMainFactory(Factory) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:03:07.811 | DEBUG |  ... 
+14:03:07.811 | INFO  | Started: method spoon.support.DefaultCoreFactory.createSourcePosition(CompilationUnit, int, int, int[])
+14:03:07.812 | INFO  |  -- Remaining time budget: 20473 ms, #remaining_methods: 16, budget for method: 1279 ms, solver timeout: 639 ms, budget for symbolic execution: 640 ms, budget for concrete execution: 639 ms,  -- 
+14:03:07.820 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createSourcePosition(CompilationUnit, int, int, int[])1
+14:03:07.917 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createSourcePosition(CompilationUnit, int, int, int[])2
+14:03:07.918 | INFO  | Finished (in 0.106 sec): method spoon.support.DefaultCoreFactory.createSourcePosition(CompilationUnit, int, int, int[]) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:03:07.923 | DEBUG |  ... 
+14:03:07.924 | INFO  | Started: method spoon.support.DefaultCoreFactory.createPartialSourcePosition(CompilationUnit)
+14:03:07.924 | INFO  |  -- Remaining time budget: 20360 ms, #remaining_methods: 15, budget for method: 1357 ms, solver timeout: 678 ms, budget for symbolic execution: 679 ms, budget for concrete execution: 678 ms,  -- 
+14:03:07.931 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createPartialSourcePosition(CompilationUnit)1
+14:03:07.961 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createPartialSourcePosition(CompilationUnit)2
+14:03:07.980 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createPartialSourcePosition(CompilationUnit)3
+14:03:07.981 | INFO  | Finished (in 0.057 sec): method spoon.support.DefaultCoreFactory.createPartialSourcePosition(CompilationUnit) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+14:03:07.981 | DEBUG |  ... 
+14:03:07.982 | INFO  | Started: method spoon.support.DefaultCoreFactory.createCompoundSourcePosition(CompilationUnit, int, int, int, int, int[])
+14:03:07.982 | INFO  |  -- Remaining time budget: 20302 ms, #remaining_methods: 14, budget for method: 1450 ms, solver timeout: 725 ms, budget for symbolic execution: 725 ms, budget for concrete execution: 725 ms,  -- 
+14:03:07.990 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createCompoundSourcePosition(CompilationUnit, int, int, int, int, int[])1
+14:03:08.118 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createCompoundSourcePosition(CompilationUnit, int, int, int, int, int[])2
+14:03:08.118 | INFO  | Finished (in 0.136 sec): method spoon.support.DefaultCoreFactory.createCompoundSourcePosition(CompilationUnit, int, int, int, int, int[]) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:03:08.127 | DEBUG |  ... 
+14:03:08.128 | INFO  | Started: method spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(CompilationUnit, int, int, int, int, int, int, int[])
+14:03:08.128 | INFO  |  -- Remaining time budget: 20157 ms, #remaining_methods: 13, budget for method: 1550 ms, solver timeout: 775 ms, budget for symbolic execution: 775 ms, budget for concrete execution: 775 ms,  -- 
+14:03:08.136 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createDeclarationSourcePosition(CompilationUnit, int, int, int, int, int, int, int[])1
+14:03:08.325 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createDeclarationSourcePosition(CompilationUnit, int, int, int, int, int, int, int[])2
+14:03:08.357 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createDeclarationSourcePosition(CompilationUnit, int, int, int, int, int, int, int[])3
+14:03:08.357 | INFO  | Finished (in 0.229 sec): method spoon.support.DefaultCoreFactory.createDeclarationSourcePosition(CompilationUnit, int, int, int, int, int, int, int[]) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+14:03:08.370 | DEBUG |  ... 
+14:03:08.371 | INFO  | Started: method spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(CompilationUnit, int, int, int, int, int, int, int, int, int[])
+14:03:08.371 | INFO  |  -- Remaining time budget: 19914 ms, #remaining_methods: 12, budget for method: 1659 ms, solver timeout: 829 ms, budget for symbolic execution: 830 ms, budget for concrete execution: 829 ms,  -- 
+14:03:08.379 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(CompilationUnit, int, int, int, int, int, int, int, int, int[])1
+14:03:08.612 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(CompilationUnit, int, int, int, int, int, int, int, int, int[])2
+14:03:08.678 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(CompilationUnit, int, int, int, int, int, int, int, int, int[])3
+14:03:08.678 | INFO  | Finished (in 0.307 sec): method spoon.support.DefaultCoreFactory.createBodyHolderSourcePosition(CompilationUnit, int, int, int, int, int, int, int, int, int[]) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+14:03:08.699 | DEBUG |  ... 
+14:03:08.700 | INFO  | Started: method spoon.support.DefaultCoreFactory.createCompilationUnit()
+14:03:08.700 | INFO  |  -- Remaining time budget: 19584 ms, #remaining_methods: 11, budget for method: 1780 ms, solver timeout: 890 ms, budget for symbolic execution: 890 ms, budget for concrete execution: 890 ms,  -- 
+14:03:08.708 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createCompilationUnit()1
+14:03:08.907 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createCompilationUnit()2
+14:03:08.907 | INFO  | Finished (in 0.207 sec): method spoon.support.DefaultCoreFactory.createCompilationUnit() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:03:08.926 | DEBUG |  ... 
+14:03:08.926 | INFO  | Started: method spoon.support.DefaultCoreFactory.createThisAccess()
+14:03:08.927 | INFO  |  -- Remaining time budget: 19358 ms, #remaining_methods: 10, budget for method: 1935 ms, solver timeout: 967 ms, budget for symbolic execution: 968 ms, budget for concrete execution: 967 ms,  -- 
+14:03:08.930 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createThisAccess()1
+14:03:08.958 | INFO  | Finished (in 0.032 sec): method spoon.support.DefaultCoreFactory.createThisAccess() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:08.962 | DEBUG |  ... 
+14:03:08.962 | INFO  | Started: method spoon.support.DefaultCoreFactory.createSuperAccess()
+14:03:08.962 | INFO  |  -- Remaining time budget: 19322 ms, #remaining_methods: 9, budget for method: 2146 ms, solver timeout: 1000 ms, budget for symbolic execution: 1073 ms, budget for concrete execution: 1073 ms,  -- 
+14:03:08.966 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createSuperAccess()1
+14:03:08.993 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createSuperAccess() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:08.997 | DEBUG |  ... 
+14:03:08.997 | INFO  | Started: method spoon.support.DefaultCoreFactory.createWildcardStaticTypeMemberReference()
+14:03:08.997 | INFO  |  -- Remaining time budget: 19287 ms, #remaining_methods: 8, budget for method: 2410 ms, solver timeout: 1000 ms, budget for symbolic execution: 1210 ms, budget for concrete execution: 1200 ms,  -- 
+14:03:09.001 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createWildcardStaticTypeMemberReference()1
+14:03:09.028 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createWildcardStaticTypeMemberReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:09.032 | DEBUG |  ... 
+14:03:09.032 | INFO  | Started: method spoon.support.DefaultCoreFactory.createModule()
+14:03:09.032 | INFO  |  -- Remaining time budget: 19252 ms, #remaining_methods: 7, budget for method: 2750 ms, solver timeout: 1000 ms, budget for symbolic execution: 1550 ms, budget for concrete execution: 1200 ms,  -- 
+14:03:09.035 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createModule()1
+14:03:09.062 | INFO  | Finished (in 0.030 sec): method spoon.support.DefaultCoreFactory.createModule() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:09.065 | DEBUG |  ... 
+14:03:09.065 | INFO  | Started: method spoon.support.DefaultCoreFactory.createModuleReference()
+14:03:09.066 | INFO  |  -- Remaining time budget: 19219 ms, #remaining_methods: 6, budget for method: 3203 ms, solver timeout: 1000 ms, budget for symbolic execution: 2003 ms, budget for concrete execution: 1200 ms,  -- 
+14:03:09.069 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createModuleReference()1
+14:03:09.095 | INFO  | Finished (in 0.029 sec): method spoon.support.DefaultCoreFactory.createModuleReference() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:09.098 | DEBUG |  ... 
+14:03:09.098 | INFO  | Started: method spoon.support.DefaultCoreFactory.createModuleRequirement()
+14:03:09.098 | INFO  |  -- Remaining time budget: 19186 ms, #remaining_methods: 5, budget for method: 3837 ms, solver timeout: 1000 ms, budget for symbolic execution: 2637 ms, budget for concrete execution: 1200 ms,  -- 
+14:03:09.102 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createModuleRequirement()1
+14:03:09.128 | INFO  | Finished (in 0.029 sec): method spoon.support.DefaultCoreFactory.createModuleRequirement() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:09.131 | DEBUG |  ... 
+14:03:09.132 | INFO  | Started: method spoon.support.DefaultCoreFactory.createPackageExport()
+14:03:09.132 | INFO  |  -- Remaining time budget: 19152 ms, #remaining_methods: 4, budget for method: 4788 ms, solver timeout: 1000 ms, budget for symbolic execution: 3588 ms, budget for concrete execution: 1200 ms,  -- 
+14:03:09.135 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createPackageExport()1
+14:03:09.161 | INFO  | Finished (in 0.029 sec): method spoon.support.DefaultCoreFactory.createPackageExport() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:09.164 | DEBUG |  ... 
+14:03:09.164 | INFO  | Started: method spoon.support.DefaultCoreFactory.createProvidedService()
+14:03:09.164 | INFO  |  -- Remaining time budget: 19120 ms, #remaining_methods: 3, budget for method: 6373 ms, solver timeout: 1000 ms, budget for symbolic execution: 5173 ms, budget for concrete execution: 1200 ms,  -- 
+14:03:09.169 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createProvidedService()1
+14:03:09.195 | INFO  | Finished (in 0.031 sec): method spoon.support.DefaultCoreFactory.createProvidedService() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:09.198 | DEBUG |  ... 
+14:03:09.199 | INFO  | Started: method spoon.support.DefaultCoreFactory.createUsedService()
+14:03:09.199 | INFO  |  -- Remaining time budget: 19085 ms, #remaining_methods: 2, budget for method: 9542 ms, solver timeout: 1000 ms, budget for symbolic execution: 8342 ms, budget for concrete execution: 1200 ms,  -- 
+14:03:09.202 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.createUsedService()1
+14:03:09.228 | INFO  | Finished (in 0.029 sec): method spoon.support.DefaultCoreFactory.createUsedService() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+14:03:09.231 | DEBUG |  ... 
+14:03:09.231 | INFO  | Started: method spoon.support.DefaultCoreFactory.<init>()
+14:03:09.231 | INFO  |  -- Remaining time budget: 19053 ms, #remaining_methods: 1, budget for method: 19053 ms, solver timeout: 1000 ms, budget for symbolic execution: 17853 ms, budget for concrete execution: 1200 ms,  -- 
+14:03:09.235 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.<init>()1
+14:03:09.291 | DEBUG | --new testCase collected, to generate: testSpoon.support.DefaultCoreFactory.<init>()2
+14:03:09.291 | INFO  | Finished (in 0.060 sec): method spoon.support.DefaultCoreFactory.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+14:03:09.298 | INFO  | Started: Flushing tests for [DefaultCoreFactory] on disk
+14:03:09.568 | INFO  | File size for DefaultCoreFactoryTest: 46 KB
+14:03:09.569 | INFO  | Finished (in 0.271 sec): Flushing tests for [DefaultCoreFactory] on disk 
+14:03:09.570 | INFO  | Finished (in 6.761 sec): class spoon.support.DefaultCoreFactory 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 93, 
+	#methods started symbolic exploration = 93
+	#methods with at least one TC = 91
+	#methods with exceptions = 1
+	#generated TC = 103
+	#coverage = null
+[READY]

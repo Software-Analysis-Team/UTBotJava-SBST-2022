@@ -1,0 +1,557 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  GUAVA-45
+
+>>> RUN NUMBER: 5
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/guava/guava/src
+>> /var/benchmarks/projects/guava/guava/target/classes
+>> 6
+>> /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar
+>> /var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 30
+
+
+### COMPUTING METRICS ###: com.google.common.primitives.Shorts
+
+
+Starting class com.google.common.primitives.Shorts
+
+
+Ending class com.google.common.primitives.Shorts
+Creating directory results_utbot-mocks_30/GUAVA-45_5/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_30/GUAVA-45_5/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_30/GUAVA-45_5/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java
+
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:21: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:24: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyBoolean;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:24: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyBoolean;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:25: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyString;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:25: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyString;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:26: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyLong;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:26: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyLong;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:27: error: package org.mockito does not exist
+import static org.mockito.Mockito.mockStatic;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:27: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mockStatic;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:28: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyInt;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:28: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyInt;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:30: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.any;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:30: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.any;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:33: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyShort;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:33: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyShort;
+^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:60: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:62: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:77: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:79: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:112: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:114: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:128: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:130: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:144: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:146: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:249: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:251: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:254: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:278: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:280: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:282: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:374: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:376: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:390: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:392: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:408: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:410: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:427: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:429: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:464: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:466: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:480: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:482: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:498: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:500: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:517: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:519: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:755: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:757: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:761: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:761: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:775: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:777: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:779: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:779: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:797: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:799: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:802: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:802: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any(), any());
+                                                                         ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1048: warning: non-varargs call of varargs method with inexact argument type for last parameter;
+        Shorts.concat(null);
+                      ^
+  cast to short[] for a varargs call
+  cast to short[][] for a non-varargs call and to suppress this warning
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1198: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1200: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1202: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1223: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1225: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1228: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1353: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1355: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1368: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1370: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1386: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1388: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1401: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1403: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1417: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1419: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1446: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1448: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1450: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1464: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1466: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1468: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1483: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1485: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1487: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1502: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1504: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1506: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1521: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1523: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1525: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1550: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1552: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1555: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1569: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1571: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1573: error: cannot find symbol
+                com.google.common.base.Preconditions.checkNotNull(any());
+                                                                  ^
+  symbol:   method any()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1881: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1883: error: cannot find symbol
+            mockedStatic = mockStatic(Shorts.class);
+                           ^
+  symbol:   method mockStatic(Class<Shorts>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1885: error: cannot find symbol
+                Shorts.hashCode(anyShort());
+                                ^
+  symbol:   method anyShort()
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1969: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:1971: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class ShortsTest
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:3250: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:3251: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java:3253: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/com/google/common/primitives/ShortsTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+100 errors
+5 warnings
+Failed to compile 'com/google/common/primitives/ShortsTest.java'!
+shaded.org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)
+	at shaded.org.apache.commons.exec.DefaultExecutor.executeInternal(DefaultExecutor.java:377)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:160)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:147)
+	at sbst.benchmark.TestSuite.compile(TestSuite.java:250)
+	at sbst.benchmark.TestSuite.<init>(TestSuite.java:68)
+	at sbst.benchmark.TranscriptWriter.endClass(TranscriptWriter.java:136)
+	at sbst.benchmark.RunTool.execute(RunTool.java:141)
+	at sbst.benchmark.RunTool.run(RunTool.java:62)
+	at sbst.benchmark.Main.main(Main.java:160)
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 2323
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/guava-26.0-jre_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/checker-qual-2.5.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/error_prone_annotations-2.1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/j2objc-annotations-1.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/jsr305-3.0.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/animal-sniffer-annotations-1.14_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_30/GUAVA-45_5/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Number of file with coverage information = 1951
+Extracted coverage data for the class com/google/common/primitives/Shorts
+Number of file with coverage information = 302
+Number of file with coverage information = 22
+Number of file with coverage information = 12
+Number of file with coverage information = 35
+Number of file with coverage information = 1
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 133 mutants 
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: GUAVA-45
+	Class Under Test: com.google.common.primitives.Shorts
+	Run number: 5
+	Tool preparation time (ms): 12519
+	Tool test cases generation time (ms): 22598
+	Test cases execution time (ms): 10
+	Test case number: 169
+	Uncompilable Test Classes: 1
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 103
+	Lines covered: 0
+	Lines coverage ratio (%): 0.0
+	Conditions total: 68
+	Conditions covered: 0
+	Conditions coverage ratio (%): 0.0
+	Mutants total: 133
+	Mutants covered: 0
+	Mutants coverage ratio (%): 0.0
+	Mutants killed: 0
+	Mutants killed ratio (%): 0.0
+	Mutants alive: 133
+
+
+Class com.google.common.primitives.Shorts ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 4272
+Killing master process 4272
+Executing command kill -9 4272
+Execution of command kill -9 4272 finished.
+Process was destroyed

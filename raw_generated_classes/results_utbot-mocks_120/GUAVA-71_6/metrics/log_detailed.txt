@@ -1,0 +1,629 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  GUAVA-71
+
+>>> RUN NUMBER: 6
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/guava/guava/src
+>> /var/benchmarks/projects/guava/guava/target/classes
+>> 6
+>> /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar
+>> /var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 120
+
+
+### COMPUTING METRICS ###: com.google.common.collect.SparseImmutableTable
+
+
+Starting class com.google.common.collect.SparseImmutableTable
+
+
+Ending class com.google.common.collect.SparseImmutableTable
+Creating directory results_utbot-mocks_120/GUAVA-71_6/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/GUAVA-71_6/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/GUAVA-71_6/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java
+
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:7: warning: ChunkedInputStream is internal proprietary API and may be removed in a future release
+import sun.net.www.http.ChunkedInputStream;
+                       ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:31: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:34: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.any;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:34: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.any;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:35: error: package org.mockito does not exist
+import static org.mockito.Mockito.mockStatic;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:35: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mockStatic;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:36: error: package org.mockito does not exist
+import static org.mockito.Mockito.mock;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:36: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mock;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:38: error: package org.mockito does not exist
+import static org.mockito.Mockito.when;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:38: error: static import only from classes and interfaces
+import static org.mockito.Mockito.when;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:40: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyInt;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:40: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyInt;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:62: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:64: error: cannot find symbol
+            mockedStatic = mockStatic(ImmutableMap.class);
+                           ^
+  symbol:   method mockStatic(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:65: error: cannot find symbol
+            ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                            ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:67: error: cannot find symbol
+                ImmutableMap.copyOf(any(Map.class));
+                                    ^
+  symbol:   method any(Class<Map>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:70: error: cannot find symbol
+            ImmutableMap immutableMapMock1 = mock(ImmutableMap.class);
+                                             ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:88: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:90: error: cannot find symbol
+            mockedStatic = mockStatic(ImmutableMap.class);
+                           ^
+  symbol:   method mockStatic(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:91: error: cannot find symbol
+            ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                            ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:93: error: cannot find symbol
+                ImmutableMap.copyOf(any(Map.class));
+                                    ^
+  symbol:   method any(Class<Map>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:96: error: cannot find symbol
+            ImmutableMap immutableMapMock1 = mock(ImmutableMap.class);
+                                             ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:114: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:115: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:117: error: cannot find symbol
+            mockedStatic = mockStatic(ImmutableMap.class);
+                           ^
+  symbol:   method mockStatic(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:118: error: cannot find symbol
+            ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                            ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:119: error: cannot find symbol
+            when(immutableMapMock.keySet()).thenReturn(((ImmutableSet) null));
+            ^
+  symbol:   method when(ImmutableSet)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:121: error: cannot find symbol
+                ImmutableMap.copyOf(any(Map.class));
+                                    ^
+  symbol:   method any(Class<Map>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:123: error: cannot find symbol
+            mockedStatic1 = mockStatic(Maps.class);
+                            ^
+  symbol:   method mockStatic(Class<Maps>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:125: error: package org.mockito does not exist
+                Maps.indexMap(org.mockito.ArgumentMatchers.any());
+                                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:130: error: cannot find symbol
+            ImmutableMap immutableMapMock1 = mock(ImmutableMap.class);
+                                             ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:145: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:146: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:147: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic2 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:149: error: cannot find symbol
+            mockedStatic = mockStatic(ImmutableMap.class);
+                           ^
+  symbol:   method mockStatic(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:150: error: cannot find symbol
+            ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                            ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:151: error: cannot find symbol
+            when(immutableMapMock.keySet()).thenReturn(((ImmutableSet) null));
+            ^
+  symbol:   method when(ImmutableSet)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:153: error: cannot find symbol
+                ImmutableMap.copyOf(any(Map.class));
+                                    ^
+  symbol:   method any(Class<Map>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:155: error: cannot find symbol
+            mockedStatic1 = mockStatic(Maps.class);
+                            ^
+  symbol:   method mockStatic(Class<Maps>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:157: error: package org.mockito does not exist
+                Maps.indexMap(org.mockito.ArgumentMatchers.any());
+                                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:159: error: cannot find symbol
+            mockedStatic2 = mockStatic(ImmutableSet.class);
+                            ^
+  symbol:   method mockStatic(Class<ImmutableSet>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:160: error: cannot find symbol
+            ImmutableSet immutableSetMock = mock(ImmutableSet.class);
+                                            ^
+  symbol:   method mock(Class<ImmutableSet>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:166: error: cannot find symbol
+            ImmutableMap immutableMapMock1 = mock(ImmutableMap.class);
+                                             ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:188: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:189: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:190: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic2 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:192: error: cannot find symbol
+            mockedStatic = mockStatic(ImmutableMap.class);
+                           ^
+  symbol:   method mockStatic(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:193: error: cannot find symbol
+            ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                            ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:194: error: cannot find symbol
+            when(immutableMapMock.keySet()).thenReturn(((ImmutableSet) null));
+            ^
+  symbol:   method when(ImmutableSet)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:196: error: cannot find symbol
+                ImmutableMap.copyOf(any(Map.class));
+                                    ^
+  symbol:   method any(Class<Map>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:198: error: cannot find symbol
+            mockedStatic1 = mockStatic(Maps.class);
+                            ^
+  symbol:   method mockStatic(Class<Maps>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:200: error: package org.mockito does not exist
+                Maps.indexMap(org.mockito.ArgumentMatchers.any());
+                                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:202: error: cannot find symbol
+            mockedStatic2 = mockStatic(ImmutableSet.class);
+                            ^
+  symbol:   method mockStatic(Class<ImmutableSet>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:208: error: cannot find symbol
+            ImmutableMap immutableMapMock1 = mock(ImmutableMap.class);
+                                             ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:209: error: cannot find symbol
+            when(immutableMapMock1.copyOf(any(Map.class))).thenReturn(immutableMapMock);
+                                          ^
+  symbol:   method any(Class<Map>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:252: error: cannot find symbol
+        ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                        ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:253: error: cannot find symbol
+        ImmutableCollection immutableCollectionMock = mock(ImmutableCollection.class);
+                                                      ^
+  symbol:   method mock(Class<ImmutableCollection>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:254: error: cannot find symbol
+        ImmutableList immutableListMock = mock(ImmutableList.class);
+                                          ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:256: error: cannot find symbol
+        when(immutableListMock.get(anyInt())).thenReturn(((Object) abortPolicyArray));
+                                   ^
+  symbol:   method anyInt()
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:257: error: cannot find symbol
+        when(immutableCollectionMock.asList()).thenReturn(immutableListMock);
+        ^
+  symbol:   method when(ImmutableList)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:258: error: cannot find symbol
+        when(immutableMapMock.values()).thenReturn(immutableCollectionMock);
+        ^
+  symbol:   method when(ImmutableCollection)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:272: error: cannot find symbol
+        ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                        ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:273: error: cannot find symbol
+        ImmutableCollection immutableCollectionMock = mock(ImmutableCollection.class);
+                                                      ^
+  symbol:   method mock(Class<ImmutableCollection>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:274: error: cannot find symbol
+        when(immutableCollectionMock.asList()).thenReturn(((ImmutableList) null));
+        ^
+  symbol:   method when(ImmutableList)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:275: error: cannot find symbol
+        when(immutableMapMock.values()).thenReturn(immutableCollectionMock);
+        ^
+  symbol:   method when(ImmutableCollection)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:289: error: cannot find symbol
+        ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                        ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:290: error: cannot find symbol
+        when(immutableMapMock.values()).thenReturn(((ImmutableCollection) null));
+        ^
+  symbol:   method when(ImmutableCollection)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:306: error: cannot find symbol
+        ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                        ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:307: error: cannot find symbol
+        ImmutableCollection immutableCollectionMock = mock(ImmutableCollection.class);
+                                                      ^
+  symbol:   method mock(Class<ImmutableCollection>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:308: error: cannot find symbol
+        ImmutableList immutableListMock = mock(ImmutableList.class);
+                                          ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:309: error: cannot find symbol
+        when(immutableListMock.get(anyInt())).thenReturn(null);
+                                   ^
+  symbol:   method anyInt()
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:310: error: cannot find symbol
+        when(immutableCollectionMock.asList()).thenReturn(immutableListMock);
+        ^
+  symbol:   method when(ImmutableList)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:311: error: cannot find symbol
+        when(immutableMapMock.values()).thenReturn(immutableCollectionMock);
+        ^
+  symbol:   method when(ImmutableCollection)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:326: error: cannot find symbol
+        ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                        ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:327: error: cannot find symbol
+        ImmutableCollection immutableCollectionMock = mock(ImmutableCollection.class);
+                                                      ^
+  symbol:   method mock(Class<ImmutableCollection>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:328: error: cannot find symbol
+        ImmutableList immutableListMock = mock(ImmutableList.class);
+                                          ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:329: error: cannot find symbol
+        when(immutableListMock.get(anyInt())).thenReturn(null);
+                                   ^
+  symbol:   method anyInt()
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:330: error: cannot find symbol
+        when(immutableCollectionMock.asList()).thenReturn(immutableListMock);
+        ^
+  symbol:   method when(ImmutableList)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:331: error: cannot find symbol
+        when(immutableMapMock.values()).thenReturn(immutableCollectionMock);
+        ^
+  symbol:   method when(ImmutableCollection)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:347: error: cannot find symbol
+        ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                        ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:348: error: cannot find symbol
+        ImmutableCollection immutableCollectionMock = mock(ImmutableCollection.class);
+                                                      ^
+  symbol:   method mock(Class<ImmutableCollection>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:349: error: cannot find symbol
+        ImmutableList immutableListMock = mock(ImmutableList.class);
+                                          ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:351: error: cannot find symbol
+        ImmutableList immutableListMock1 = mock(ImmutableList.class);
+                                           ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:352: error: cannot find symbol
+        when(immutableListMock1.asList()).thenReturn(((ImmutableList) null));
+        ^
+  symbol:   method when(ImmutableList)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:354: error: cannot find symbol
+        when(immutableListMock.get(anyInt())).thenReturn(((Object) immutableSortedMap));
+                                   ^
+  symbol:   method anyInt()
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:355: error: cannot find symbol
+        when(immutableCollectionMock.asList()).thenReturn(immutableListMock);
+        ^
+  symbol:   method when(ImmutableList)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:356: error: cannot find symbol
+        when(immutableMapMock.values()).thenReturn(immutableCollectionMock);
+        ^
+  symbol:   method when(ImmutableCollection)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:372: error: cannot find symbol
+        ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                        ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:373: error: cannot find symbol
+        ImmutableCollection immutableCollectionMock = mock(ImmutableCollection.class);
+                                                      ^
+  symbol:   method mock(Class<ImmutableCollection>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:374: error: cannot find symbol
+        ImmutableList immutableListMock = mock(ImmutableList.class);
+                                          ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:376: error: cannot find symbol
+        ImmutableList immutableListMock1 = mock(ImmutableList.class);
+                                           ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:377: error: cannot find symbol
+        ImmutableList immutableListMock2 = mock(ImmutableList.class);
+                                           ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:378: error: cannot find symbol
+        when(immutableListMock2.get(anyInt())).thenReturn(((Object) immutableSortedMap), null);
+                                    ^
+  symbol:   method anyInt()
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:379: error: cannot find symbol
+        when(immutableListMock1.asList()).thenReturn(immutableListMock2);
+        ^
+  symbol:   method when(ImmutableList)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:381: error: cannot find symbol
+        when(immutableListMock.get(anyInt())).thenReturn(((Object) immutableSortedMap), null);
+                                   ^
+  symbol:   method anyInt()
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:382: error: cannot find symbol
+        when(immutableCollectionMock.asList()).thenReturn(immutableListMock);
+        ^
+  symbol:   method when(ImmutableList)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:383: error: cannot find symbol
+        when(immutableMapMock.values()).thenReturn(immutableCollectionMock);
+        ^
+  symbol:   method when(ImmutableCollection)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:423: error: cannot find symbol
+        ImmutableMap immutableMapMock = mock(ImmutableMap.class);
+                                        ^
+  symbol:   method mock(Class<ImmutableMap>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:424: error: cannot find symbol
+        ImmutableSet immutableSetMock = mock(ImmutableSet.class);
+                                        ^
+  symbol:   method mock(Class<ImmutableSet>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:425: error: cannot find symbol
+        ImmutableList immutableListMock = mock(ImmutableList.class);
+                                          ^
+  symbol:   method mock(Class<ImmutableList>)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:427: error: cannot find symbol
+        when(immutableListMock.get(anyInt())).thenReturn(((Object) abortPolicyArray));
+                                   ^
+  symbol:   method anyInt()
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:428: error: cannot find symbol
+        when(immutableSetMock.asList()).thenReturn(immutableListMock);
+        ^
+  symbol:   method when(ImmutableList)
+  location: class SparseImmutableTableTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:750: warning: ChunkedInputStream is internal proprietary API and may be removed in a future release
+            sun.net.www.http.ChunkedInputStream[] chunkedInputStreamArray = new sun.net.www.http.ChunkedInputStream[0];
+                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:750: warning: ChunkedInputStream is internal proprietary API and may be removed in a future release
+            sun.net.www.http.ChunkedInputStream[] chunkedInputStreamArray = new sun.net.www.http.ChunkedInputStream[0];
+                                                                                                ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:800: warning: ChunkedInputStream is internal proprietary API and may be removed in a future release
+            sun.net.www.http.ChunkedInputStream[] chunkedInputStreamArray = new sun.net.www.http.ChunkedInputStream[0];
+                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:800: warning: ChunkedInputStream is internal proprietary API and may be removed in a future release
+            sun.net.www.http.ChunkedInputStream[] chunkedInputStreamArray = new sun.net.www.http.ChunkedInputStream[0];
+                                                                                                ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:938: warning: ChunkedInputStream is internal proprietary API and may be removed in a future release
+            sun.net.www.http.ChunkedInputStream[] chunkedInputStreamArray = new sun.net.www.http.ChunkedInputStream[0];
+                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:938: warning: ChunkedInputStream is internal proprietary API and may be removed in a future release
+            sun.net.www.http.ChunkedInputStream[] chunkedInputStreamArray = new sun.net.www.http.ChunkedInputStream[0];
+                                                                                                ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:1007: warning: ChunkedInputStream is internal proprietary API and may be removed in a future release
+            sun.net.www.http.ChunkedInputStream[] chunkedInputStreamArray = new sun.net.www.http.ChunkedInputStream[0];
+                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:1007: warning: ChunkedInputStream is internal proprietary API and may be removed in a future release
+            sun.net.www.http.ChunkedInputStream[] chunkedInputStreamArray = new sun.net.www.http.ChunkedInputStream[0];
+                                                                                                ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:1903: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:1904: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java:1906: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/com/google/common/collect/SparseImmutableTableTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+100 errors
+13 warnings
+Failed to compile 'com/google/common/collect/SparseImmutableTableTest.java'!
+shaded.org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)
+	at shaded.org.apache.commons.exec.DefaultExecutor.executeInternal(DefaultExecutor.java:377)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:160)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:147)
+	at sbst.benchmark.TestSuite.compile(TestSuite.java:250)
+	at sbst.benchmark.TestSuite.<init>(TestSuite.java:68)
+	at sbst.benchmark.TranscriptWriter.endClass(TranscriptWriter.java:136)
+	at sbst.benchmark.RunTool.execute(RunTool.java:141)
+	at sbst.benchmark.RunTool.run(RunTool.java:62)
+	at sbst.benchmark.Main.main(Main.java:160)
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 2323
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/guava-26.0-jre_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/checker-qual-2.5.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/error_prone_annotations-2.1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/j2objc-annotations-1.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/jsr305-3.0.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/animal-sniffer-annotations-1.14_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-71_6/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Number of file with coverage information = 1951
+Extracted coverage data for the class com/google/common/collect/SparseImmutableTable
+Number of file with coverage information = 302
+Number of file with coverage information = 22
+Number of file with coverage information = 12
+Number of file with coverage information = 35
+Number of file with coverage information = 1
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 16 mutants 
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: GUAVA-71
+	Class Under Test: com.google.common.collect.SparseImmutableTable
+	Run number: 6
+	Tool preparation time (ms): 12745
+	Tool test cases generation time (ms): 103656
+	Test cases execution time (ms): 13
+	Test case number: 61
+	Uncompilable Test Classes: 1
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 63
+	Lines covered: 0
+	Lines coverage ratio (%): 0.0
+	Conditions total: 14
+	Conditions covered: 0
+	Conditions coverage ratio (%): 0.0
+	Mutants total: 16
+	Mutants covered: 0
+	Mutants coverage ratio (%): 0.0
+	Mutants killed: 0
+	Mutants killed ratio (%): 0.0
+	Mutants alive: 16
+
+
+Class com.google.common.collect.SparseImmutableTable ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 9570
+Killing master process 9570
+Executing command kill -9 9570
+Execution of command kill -9 9570 finished.
+Process was destroyed

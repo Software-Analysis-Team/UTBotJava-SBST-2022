@@ -1,0 +1,194 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  FASTJSON-93
+
+>>> RUN NUMBER: 6
+
+>>> MODE: --only-compute-metrics
+
+
+### COMPUTING METRICS ###: com.alibaba.fastjson.asm.ByteVector
+
+---Compilation---
+Compiled 'com/alibaba/fastjson/asm/ByteVectorTest.java'
+
+---Timing Information---
+
+---The tests are re-executed other four times to find the flaky ones---
+
+=== Run Jacoco for Coverage ===
+
+=== Run PIT ===
+Executing Mutation Analysis using 73 mutants 
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByte, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=ByteVector.java, block=2, lineNumber=74, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put11, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=4, lineNumber=91, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put12, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[37], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=9, lineNumber=133, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=enlarge, methodDesc=(I)V], indexes=[37], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ByteVector.java, block=25, lineNumber=220, description=removed call to java/lang/System::arraycopy, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByte, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[37], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=ByteVector.java, block=3, lineNumber=79, description=mutated return of Object value for com/alibaba/fastjson/asm/ByteVector::putByte to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[73], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=ByteVector.java, block=15, lineNumber=182, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[48], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=13, lineNumber=179, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putShort, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=6, lineNumber=109, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putShort, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[39], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=7, lineNumber=114, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put12, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[29], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=9, lineNumber=132, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[38], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=13, lineNumber=178, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=10, lineNumber=147, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put12, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[19], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ByteVector.java, block=9, lineNumber=129, description=removed call to com/alibaba/fastjson/asm/ByteVector::enlarge, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[28], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ByteVector.java, block=13, lineNumber=169, description=removed call to com/alibaba/fastjson/asm/ByteVector::enlarge, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[70], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=14, lineNumber=182, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[59], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=ByteVector.java, block=13, lineNumber=180, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put11, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=ByteVector.java, block=4, lineNumber=91, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=enlarge, methodDesc=(I)V], indexes=[7], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=23, lineNumber=217, description=Replaced integer multiplication with division, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[59], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=11, lineNumber=154, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=enlarge, methodDesc=(I)V], indexes=[20], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=23, lineNumber=219, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByteArray, methodDesc=([BII)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[36], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=22, lineNumber=207, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByte, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=2, lineNumber=74, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put12, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=8, lineNumber=128, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put12, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[40], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=9, lineNumber=133, description=Replaced Unsigned Shift Right with Shift Left, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[78], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=16, lineNumber=183, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=10, lineNumber=147, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByteArray, methodDesc=([BII)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=20, lineNumber=201, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByte, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[25], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=3, lineNumber=77, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[21], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=12, lineNumber=168, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByteArray, methodDesc=([BII)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[15], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ByteVector.java, block=21, lineNumber=202, description=removed call to com/alibaba/fastjson/asm/ByteVector::enlarge, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByteArray, methodDesc=([BII)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=20, lineNumber=201, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put11, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[49], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=ByteVector.java, block=5, lineNumber=98, description=mutated return of Object value for com/alibaba/fastjson/asm/ByteVector::put11 to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putShort, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[19], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ByteVector.java, block=7, lineNumber=110, description=removed call to com/alibaba/fastjson/asm/ByteVector::enlarge, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[19], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ByteVector.java, block=11, lineNumber=148, description=removed call to com/alibaba/fastjson/asm/ByteVector::enlarge, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByteArray, methodDesc=([BII)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[29], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ByteVector.java, block=22, lineNumber=205, description=removed call to java/lang/System::arraycopy, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put11, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[37], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=5, lineNumber=96, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[101], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=ByteVector.java, block=19, lineNumber=189, description=mutated return of Object value for com/alibaba/fastjson/asm/ByteVector::putUTF8 to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[42], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=11, lineNumber=152, description=Replaced Unsigned Shift Right with Shift Left, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[17], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=12, lineNumber=168, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[73], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=15, lineNumber=182, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putShort, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=ByteVector.java, block=6, lineNumber=109, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByte, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=2, lineNumber=74, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put12, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=8, lineNumber=128, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put11, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[29], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=5, lineNumber=95, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putShort, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=6, lineNumber=109, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[21], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=ByteVector.java, block=12, lineNumber=168, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put11, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[19], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ByteVector.java, block=5, lineNumber=92, description=removed call to com/alibaba/fastjson/asm/ByteVector::enlarge, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[15], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=12, lineNumber=168, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=enlarge, methodDesc=(I)V], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=23, lineNumber=218, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=enlarge, methodDesc=(I)V], indexes=[20], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=ByteVector.java, block=23, lineNumber=219, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putShort, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[51], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=ByteVector.java, block=7, lineNumber=116, description=mutated return of Object value for com/alibaba/fastjson/asm/ByteVector::putShort to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[52], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=11, lineNumber=153, description=Replaced Unsigned Shift Right with Shift Left, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=ByteVector.java, block=10, lineNumber=147, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put12, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=ByteVector.java, block=8, lineNumber=128, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[59], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=13, lineNumber=180, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByte, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[19], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ByteVector.java, block=3, lineNumber=75, description=removed call to com/alibaba/fastjson/asm/ByteVector::enlarge, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[32], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=11, lineNumber=151, description=Replaced Unsigned Shift Right with Shift Left, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[27], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=13, lineNumber=169, description=Replaced integer addition with subtraction, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByteArray, methodDesc=([BII)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=ByteVector.java, block=20, lineNumber=201, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[70], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=ByteVector.java, block=14, lineNumber=182, description=changed conditional boundary, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put11, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=4, lineNumber=91, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putShort, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[32], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=7, lineNumber=113, description=Replaced Unsigned Shift Right with Shift Left, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[71], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=ByteVector.java, block=11, lineNumber=156, description=mutated return of Object value for com/alibaba/fastjson/asm/ByteVector::putInt to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put12, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[59], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=ByteVector.java, block=9, lineNumber=136, description=mutated return of Object value for com/alibaba/fastjson/asm/ByteVector::put12 to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[39], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=11, lineNumber=152, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() SURVIVED
+* Alived mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[41], mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator], filename=ByteVector.java, block=13, lineNumber=178, description=Replaced Unsigned Shift Right with Shift Left, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[49], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=11, lineNumber=153, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByteArray, methodDesc=([BII)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[19], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ByteVector.java, block=21, lineNumber=204, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putInt, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[29], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=11, lineNumber=151, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putUTF8, methodDesc=(Ljava/lang/String;)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[91], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=18, lineNumber=180, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putShort, methodDesc=(I)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[29], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=7, lineNumber=113, description=Changed increment from 1 to -1, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=putByteArray, methodDesc=([BII)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[41], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=ByteVector.java, block=22, lineNumber=208, description=mutated return of Object value for com/alibaba/fastjson/asm/ByteVector::putByteArray to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.asm.ByteVector, method=put12, methodDesc=(II)Lcom/alibaba/fastjson/asm/ByteVector;], indexes=[47], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=ByteVector.java, block=9, lineNumber=134, description=Changed increment from 1 to -1, testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: FASTJSON-93
+	Class Under Test: com.alibaba.fastjson.asm.ByteVector
+	Run number: 6
+	Tool preparation time (ms): 11657
+	Tool test cases generation time (ms): 9493
+	Test cases execution time (ms): 316
+	Test case number: 67
+	Uncompilable Test Classes: 0
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 73
+	Lines covered: 73
+	Lines coverage ratio (%): 100.0
+	Conditions total: 24
+	Conditions covered: 24
+	Conditions coverage ratio (%): 100.0
+	Mutants total: 73
+	Mutants covered: 73
+	Mutants coverage ratio (%): 100.0
+	Mutants killed: 55
+	Mutants killed ratio (%): 75.34247
+	Mutants alive: 18

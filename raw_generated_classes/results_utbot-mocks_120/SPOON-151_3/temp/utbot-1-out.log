@@ -1,0 +1,111 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+18:21:03.249 | INFO  | Started: warmup: kotlin reflection :: init
+18:21:03.328 | INFO  | Finished (in 0.079 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.support.compiler.jdt.JDTBatchCompiler 120
+18:21:03.460 | DEBUG | -----------------------------------------------------------------------------
+18:21:03.461 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+18:21:03.462 | INFO  | ClassUnderTest[ FQN: spoon.support.compiler.jdt.JDTBatchCompiler
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: JDTBatchCompilerTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/support/compiler/jdt/JDTBatchCompilerTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+18:21:03.484 | INFO  | Started: class spoon.support.compiler.jdt.JDTBatchCompiler
+18:21:03.485 | INFO  | Started: preparation class class spoon.support.compiler.jdt.JDTBatchCompiler: kotlin reflection :: run
+18:21:03.687 | INFO  | Finished (in 0.201 sec): preparation class class spoon.support.compiler.jdt.JDTBatchCompiler: kotlin reflection :: run 
+18:21:03.688 | INFO  | Started: 2nd optional soot initialization
+18:21:03.689 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+18:21:03.700 | DEBUG |  ... 
+18:21:03.710 | INFO  | Started: method spoon.support.compiler.jdt.JDTBatchCompiler.getBatchRequestor()
+18:21:03.711 | INFO  |  -- Remaining time budget: 101759 ms, #remaining_methods: 8, budget for method: 12719 ms, solver timeout: 1000 ms, budget for symbolic execution: 11519 ms, budget for concrete execution: 1200 ms,  -- 
+18:21:05.266 | INFO  | Finished (in 1.555 sec): method spoon.support.compiler.jdt.JDTBatchCompiler.getBatchRequestor() 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+18:21:05.275 | DEBUG |  ... 
+18:21:05.275 | INFO  | Started: method spoon.support.compiler.jdt.JDTBatchCompiler.getCompilationUnits()
+18:21:05.276 | INFO  |  -- Remaining time budget: 100186 ms, #remaining_methods: 7, budget for method: 14312 ms, solver timeout: 1000 ms, budget for symbolic execution: 13112 ms, budget for concrete execution: 1200 ms,  -- 
+18:21:05.300 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.getCompilationUnits()1
+18:21:05.467 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.getCompilationUnits()2
+18:21:05.557 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.getCompilationUnits()3
+18:21:06.902 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.getCompilationUnits()4
+18:21:18.388 | INFO  | |> Starting concrete execution for remaining state: spoon.support.compiler.jdt.JDTBatchCompiler.getCompilationUnits()
+18:21:19.590 | INFO  | (X) Cancelling concrete execution: spoon.support.compiler.jdt.JDTBatchCompiler.getCompilationUnits()
+18:21:19.718 | INFO  | Finished (in 14.442 sec): method spoon.support.compiler.jdt.JDTBatchCompiler.getCompilationUnits() 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:21:20.019 | DEBUG |  ... 
+18:21:20.019 | INFO  | Started: method spoon.support.compiler.jdt.JDTBatchCompiler.getUnits()
+18:21:20.020 | INFO  |  -- Remaining time budget: 85442 ms, #remaining_methods: 6, budget for method: 14240 ms, solver timeout: 1000 ms, budget for symbolic execution: 13040 ms, budget for concrete execution: 1200 ms,  -- 
+18:21:20.029 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.getUnits()1
+18:21:21.673 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.getUnits()2
+18:21:21.688 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.getUnits()3
+18:21:21.689 | INFO  | Finished (in 1.669 sec): method spoon.support.compiler.jdt.JDTBatchCompiler.getUnits() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:21:21.705 | DEBUG |  ... 
+18:21:21.706 | INFO  | Started: method spoon.support.compiler.jdt.JDTBatchCompiler.ignoreFile(String)
+18:21:21.707 | INFO  |  -- Remaining time budget: 83755 ms, #remaining_methods: 5, budget for method: 16751 ms, solver timeout: 1000 ms, budget for symbolic execution: 15551 ms, budget for concrete execution: 1200 ms,  -- 
+18:21:21.745 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.ignoreFile(String)1
+18:21:21.810 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.ignoreFile(String)2
+18:21:35.821 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.ignoreFile(String)3
+18:21:37.258 | INFO  | |> Starting concrete execution for remaining state: spoon.support.compiler.jdt.JDTBatchCompiler.ignoreFile(String)
+18:21:38.459 | INFO  | (X) Cancelling concrete execution: spoon.support.compiler.jdt.JDTBatchCompiler.ignoreFile(String)
+18:21:38.841 | INFO  | Finished (in 17.134 sec): method spoon.support.compiler.jdt.JDTBatchCompiler.ignoreFile(String) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:21:38.945 | DEBUG |  ... 
+18:21:38.947 | INFO  | Started: method spoon.support.compiler.jdt.JDTBatchCompiler.setCompilationUnits(CompilationUnit[])
+18:21:38.947 | INFO  |  -- Remaining time budget: 66515 ms, #remaining_methods: 4, budget for method: 16628 ms, solver timeout: 1000 ms, budget for symbolic execution: 15428 ms, budget for concrete execution: 1200 ms,  -- 
+18:21:38.961 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.setCompilationUnits(CompilationUnit[])1
+18:21:38.993 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.setCompilationUnits(CompilationUnit[])2
+18:21:38.994 | INFO  | Finished (in 0.047 sec): method spoon.support.compiler.jdt.JDTBatchCompiler.setCompilationUnits(CompilationUnit[]) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:21:38.995 | DEBUG |  ... 
+18:21:38.996 | INFO  | Started: method spoon.support.compiler.jdt.JDTBatchCompiler.getJdtCompiler()
+18:21:38.996 | INFO  |  -- Remaining time budget: 66465 ms, #remaining_methods: 3, budget for method: 22155 ms, solver timeout: 1000 ms, budget for symbolic execution: 20955 ms, budget for concrete execution: 1200 ms,  -- 
+18:21:39.006 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.getJdtCompiler()1
+18:21:39.038 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.getJdtCompiler()2
+18:21:39.039 | INFO  | Finished (in 0.043 sec): method spoon.support.compiler.jdt.JDTBatchCompiler.getJdtCompiler() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:21:39.040 | DEBUG |  ... 
+18:21:39.040 | INFO  | Started: method spoon.support.compiler.jdt.JDTBatchCompiler.<init>(JDTBasedSpoonCompiler, OutputStream, OutputStream)
+18:21:39.041 | INFO  |  -- Remaining time budget: 66421 ms, #remaining_methods: 2, budget for method: 33210 ms, solver timeout: 1000 ms, budget for symbolic execution: 32010 ms, budget for concrete execution: 1200 ms,  -- 
+18:21:39.054 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.<init>(JDTBasedSpoonCompiler, OutputStream, OutputStream)1
+18:21:39.347 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.<init>(JDTBasedSpoonCompiler, OutputStream, OutputStream)2
+18:21:39.704 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.<init>(JDTBasedSpoonCompiler, OutputStream, OutputStream)3
+18:21:39.705 | INFO  | Finished (in 0.664 sec): method spoon.support.compiler.jdt.JDTBatchCompiler.<init>(JDTBasedSpoonCompiler, OutputStream, OutputStream) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:21:39.741 | DEBUG |  ... 
+18:21:39.742 | INFO  | Started: method spoon.support.compiler.jdt.JDTBatchCompiler.<init>(JDTBasedSpoonCompiler)
+18:21:39.742 | INFO  |  -- Remaining time budget: 65720 ms, #remaining_methods: 1, budget for method: 65720 ms, solver timeout: 1000 ms, budget for symbolic execution: 64520 ms, budget for concrete execution: 1200 ms,  -- 
+18:21:39.840 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.<init>(JDTBasedSpoonCompiler)1
+18:21:40.357 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.<init>(JDTBasedSpoonCompiler)2
+18:21:40.463 | DEBUG | --new testCase collected, to generate: testSpoon.support.compiler.jdt.JDTBatchCompiler.<init>(JDTBasedSpoonCompiler)3
+18:21:40.463 | INFO  | Finished (in 0.722 sec): method spoon.support.compiler.jdt.JDTBatchCompiler.<init>(JDTBasedSpoonCompiler) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:21:40.500 | INFO  | Started: Flushing tests for [JDTBatchCompiler] on disk
+18:21:40.666 | INFO  | File size for JDTBatchCompilerTest: 22 KB
+18:21:40.668 | INFO  | Finished (in 0.167 sec): Flushing tests for [JDTBatchCompiler] on disk 
+18:21:40.668 | INFO  | Finished (in 37.184 sec): class spoon.support.compiler.jdt.JDTBatchCompiler 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 8, 
+	#methods started symbolic exploration = 8
+	#methods with at least one TC = 7
+	#methods with exceptions = 0
+	#generated TC = 20
+	#coverage = null
+[READY]

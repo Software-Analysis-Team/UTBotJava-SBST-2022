@@ -1,0 +1,694 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+19:19:59.731 | INFO  | Started: warmup: kotlin reflection :: init
+19:19:59.802 | INFO  | Finished (in 0.071 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.reflect.factory.TypeFactory 120
+19:19:59.816 | DEBUG | -----------------------------------------------------------------------------
+19:19:59.817 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+19:19:59.819 | INFO  | ClassUnderTest[ FQN: spoon.reflect.factory.TypeFactory
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: TypeFactoryTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/reflect/factory/TypeFactoryTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+19:19:59.842 | INFO  | Started: class spoon.reflect.factory.TypeFactory
+19:19:59.843 | INFO  | Started: preparation class class spoon.reflect.factory.TypeFactory: kotlin reflection :: run
+19:19:59.954 | INFO  | Finished (in 0.111 sec): preparation class class spoon.reflect.factory.TypeFactory: kotlin reflection :: run 
+19:19:59.955 | INFO  | Started: 2nd optional soot initialization
+19:19:59.956 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+19:19:59.965 | DEBUG |  ... 
+19:19:59.972 | INFO  | Started: method spoon.reflect.factory.TypeFactory.objectType()
+19:19:59.973 | INFO  |  -- Remaining time budget: 101851 ms, #remaining_methods: 51, budget for method: 1997 ms, solver timeout: 998 ms, budget for symbolic execution: 999 ms, budget for concrete execution: 998 ms,  -- 
+19:20:00.749 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.objectType()1
+19:20:00.972 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.objectType()
+19:20:00.991 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.objectType()2
+19:20:00.992 | INFO  | Finished (in 1.019 sec): method spoon.reflect.factory.TypeFactory.objectType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:00.994 | DEBUG |  ... 
+19:20:00.994 | INFO  | Started: method spoon.reflect.factory.TypeFactory.getAll()
+19:20:00.995 | INFO  |  -- Remaining time budget: 100824 ms, #remaining_methods: 50, budget for method: 2016 ms, solver timeout: 1000 ms, budget for symbolic execution: 1008 ms, budget for concrete execution: 1008 ms,  -- 
+19:20:01.096 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getAll()1
+19:20:01.170 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getAll()2
+19:20:01.195 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getAll()3
+19:20:02.322 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.getAll()
+19:20:03.331 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.getAll()
+19:20:03.380 | INFO  | Finished (in 2.385 sec): method spoon.reflect.factory.TypeFactory.getAll() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:20:03.408 | DEBUG |  ... 
+19:20:03.409 | INFO  | Started: method spoon.reflect.factory.TypeFactory.getAll(boolean)
+19:20:03.409 | INFO  |  -- Remaining time budget: 98410 ms, #remaining_methods: 49, budget for method: 2008 ms, solver timeout: 1000 ms, budget for symbolic execution: 1004 ms, budget for concrete execution: 1004 ms,  -- 
+19:20:03.510 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getAll(boolean)1
+19:20:03.770 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getAll(boolean)2
+19:20:03.795 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getAll(boolean)3
+19:20:03.955 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getAll(boolean)4
+19:20:04.413 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.getAll(boolean)
+19:20:04.974 | ERROR | Symbolic execution FAILED
+java.util.NoSuchElementException: List contains no element matching the predicate.
+	at com.huawei.utbot.engine.Hierarchy.chunkIdForField(Hierarchy.kt:76) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.createFieldOrMock(UtBotSymbolicEngine.kt:1934) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.resolve(UtBotSymbolicEngine.kt:1745) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseAssignStmt(UtBotSymbolicEngine.kt:886) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseStmt(UtBotSymbolicEngine.kt:604) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invokeSuspend(UtBotSymbolicEngine.kt:464) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1.invokeSuspend(Unknown Source) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+19:20:05.418 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.getAll(boolean)
+19:20:05.467 | INFO  | Finished (in 2.058 sec): method spoon.reflect.factory.TypeFactory.getAll(boolean) 
+<StatsForMethod> :
+	#generatedTC=4
+	FAILED 1 time(s) with 1 different exception(s)"
+19:20:05.520 | DEBUG |  ... 
+19:20:05.520 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createReference(String)
+19:20:05.521 | INFO  |  -- Remaining time budget: 96298 ms, #remaining_methods: 48, budget for method: 2006 ms, solver timeout: 1000 ms, budget for symbolic execution: 1003 ms, budget for concrete execution: 1003 ms,  -- 
+19:20:05.610 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(String)1
+19:20:05.648 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(String)2
+19:20:05.826 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(String)3
+19:20:05.871 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(String)4
+19:20:06.183 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(String)5
+19:20:06.524 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.createReference(String)
+19:20:07.528 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.createReference(String)
+19:20:07.568 | INFO  | Finished (in 2.047 sec): method spoon.reflect.factory.TypeFactory.createReference(String) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+19:20:07.683 | DEBUG |  ... 
+19:20:07.684 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createReference(CtTypeParameter)
+19:20:07.684 | INFO  |  -- Remaining time budget: 94134 ms, #remaining_methods: 47, budget for method: 2002 ms, solver timeout: 1000 ms, budget for symbolic execution: 1001 ms, budget for concrete execution: 1001 ms,  -- 
+19:20:07.755 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtTypeParameter)1
+19:20:07.804 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtTypeParameter)2
+19:20:07.824 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtTypeParameter)3
+19:20:07.847 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtTypeParameter)4
+19:20:07.913 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtTypeParameter)5
+19:20:07.927 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtTypeParameter)6
+19:20:07.977 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtTypeParameter)7
+19:20:08.001 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtTypeParameter)8
+19:20:08.686 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.createReference(CtTypeParameter)
+19:20:09.687 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.createReference(CtTypeParameter)
+19:20:09.972 | INFO  | Finished (in 2.288 sec): method spoon.reflect.factory.TypeFactory.createReference(CtTypeParameter) 
+<StatsForMethod> :
+	#generatedTC=8
+	WITH NO EXCEPTIONS
+19:20:09.992 | DEBUG |  ... 
+19:20:09.993 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createReference(Class)
+19:20:09.993 | INFO  |  -- Remaining time budget: 91825 ms, #remaining_methods: 46, budget for method: 1996 ms, solver timeout: 998 ms, budget for symbolic execution: 998 ms, budget for concrete execution: 998 ms,  -- 
+19:20:10.005 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+19:20:10.145 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(Class)1
+19:20:10.991 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.createReference(Class)
+19:20:11.990 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.createReference(Class)
+19:20:12.009 | INFO  | Finished (in 2.016 sec): method spoon.reflect.factory.TypeFactory.createReference(Class) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+19:20:12.147 | DEBUG |  ... 
+19:20:12.148 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createReference(CtType)
+19:20:12.148 | INFO  |  -- Remaining time budget: 89670 ms, #remaining_methods: 45, budget for method: 1992 ms, solver timeout: 996 ms, budget for symbolic execution: 996 ms, budget for concrete execution: 996 ms,  -- 
+19:20:12.209 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType)1
+19:20:12.376 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType)2
+19:20:12.402 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType)3
+19:20:12.532 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType)4
+19:20:13.144 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.createReference(CtType)
+19:20:14.141 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.createReference(CtType)
+19:20:14.151 | INFO  | Finished (in 2.003 sec): method spoon.reflect.factory.TypeFactory.createReference(CtType) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+19:20:14.281 | DEBUG |  ... 
+19:20:14.282 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createReference(CtType, boolean)
+19:20:14.282 | INFO  |  -- Remaining time budget: 87537 ms, #remaining_methods: 44, budget for method: 1989 ms, solver timeout: 994 ms, budget for symbolic execution: 995 ms, budget for concrete execution: 994 ms,  -- 
+19:20:14.334 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType, boolean)1
+19:20:14.422 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType, boolean)2
+19:20:14.444 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType, boolean)3
+19:20:14.483 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType, boolean)4
+19:20:14.563 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType, boolean)5
+19:20:14.572 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType, boolean)6
+19:20:14.580 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType, boolean)7
+19:20:14.588 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType, boolean)8
+19:20:14.614 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType, boolean)9
+19:20:14.678 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(CtType, boolean)10
+19:20:15.277 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.createReference(CtType, boolean)
+19:20:16.272 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.createReference(CtType, boolean)
+19:20:16.314 | INFO  | Finished (in 2.032 sec): method spoon.reflect.factory.TypeFactory.createReference(CtType, boolean) 
+<StatsForMethod> :
+	#generatedTC=10
+	WITH NO EXCEPTIONS
+19:20:16.334 | DEBUG |  ... 
+19:20:16.334 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createReference(Class, boolean)
+19:20:16.334 | INFO  |  -- Remaining time budget: 85484 ms, #remaining_methods: 43, budget for method: 1988 ms, solver timeout: 994 ms, budget for symbolic execution: 994 ms, budget for concrete execution: 994 ms,  -- 
+19:20:16.340 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+19:20:16.425 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(Class, boolean)1
+19:20:16.479 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(Class, boolean)2
+19:20:16.486 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReference(Class, boolean)3
+19:20:17.329 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.createReference(Class, boolean)
+19:20:18.323 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.createReference(Class, boolean)
+19:20:18.352 | INFO  | Finished (in 2.017 sec): method spoon.reflect.factory.TypeFactory.createReference(Class, boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	FAILED 1 time(s) with 1 different exception(s)"
+19:20:18.490 | DEBUG |  ... 
+19:20:18.490 | INFO  | Started: method spoon.reflect.factory.TypeFactory.booleanType()
+19:20:18.490 | INFO  |  -- Remaining time budget: 83328 ms, #remaining_methods: 42, budget for method: 1984 ms, solver timeout: 992 ms, budget for symbolic execution: 992 ms, budget for concrete execution: 992 ms,  -- 
+19:20:18.535 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.booleanType()1
+19:20:18.561 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.booleanType()2
+19:20:18.562 | INFO  | Finished (in 0.071 sec): method spoon.reflect.factory.TypeFactory.booleanType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:18.563 | DEBUG |  ... 
+19:20:18.563 | INFO  | Started: method spoon.reflect.factory.TypeFactory.shortType()
+19:20:18.563 | INFO  |  -- Remaining time budget: 83255 ms, #remaining_methods: 41, budget for method: 2030 ms, solver timeout: 1000 ms, budget for symbolic execution: 1015 ms, budget for concrete execution: 1015 ms,  -- 
+19:20:18.605 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.shortType()1
+19:20:18.633 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.shortType()2
+19:20:18.633 | INFO  | Finished (in 0.070 sec): method spoon.reflect.factory.TypeFactory.shortType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:18.634 | DEBUG |  ... 
+19:20:18.634 | INFO  | Started: method spoon.reflect.factory.TypeFactory.doubleType()
+19:20:18.635 | INFO  |  -- Remaining time budget: 83184 ms, #remaining_methods: 40, budget for method: 2079 ms, solver timeout: 1000 ms, budget for symbolic execution: 1040 ms, budget for concrete execution: 1039 ms,  -- 
+19:20:18.675 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.doubleType()1
+19:20:18.702 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.doubleType()2
+19:20:18.702 | INFO  | Finished (in 0.068 sec): method spoon.reflect.factory.TypeFactory.doubleType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:18.703 | DEBUG |  ... 
+19:20:18.704 | INFO  | Started: method spoon.reflect.factory.TypeFactory.nullType()
+19:20:18.704 | INFO  |  -- Remaining time budget: 83115 ms, #remaining_methods: 39, budget for method: 2131 ms, solver timeout: 1000 ms, budget for symbolic execution: 1066 ms, budget for concrete execution: 1065 ms,  -- 
+19:20:18.755 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.nullType()1
+19:20:18.781 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.nullType()2
+19:20:18.782 | INFO  | Finished (in 0.078 sec): method spoon.reflect.factory.TypeFactory.nullType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:18.783 | DEBUG |  ... 
+19:20:18.783 | INFO  | Started: method spoon.reflect.factory.TypeFactory.floatType()
+19:20:18.783 | INFO  |  -- Remaining time budget: 83035 ms, #remaining_methods: 38, budget for method: 2185 ms, solver timeout: 1000 ms, budget for symbolic execution: 1093 ms, budget for concrete execution: 1092 ms,  -- 
+19:20:18.826 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.floatType()1
+19:20:18.852 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.floatType()2
+19:20:18.852 | INFO  | Finished (in 0.069 sec): method spoon.reflect.factory.TypeFactory.floatType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:18.853 | DEBUG |  ... 
+19:20:18.854 | INFO  | Started: method spoon.reflect.factory.TypeFactory.byteType()
+19:20:18.854 | INFO  |  -- Remaining time budget: 82965 ms, #remaining_methods: 37, budget for method: 2242 ms, solver timeout: 1000 ms, budget for symbolic execution: 1121 ms, budget for concrete execution: 1121 ms,  -- 
+19:20:18.913 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.byteType()1
+19:20:18.940 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.byteType()2
+19:20:18.940 | INFO  | Finished (in 0.086 sec): method spoon.reflect.factory.TypeFactory.byteType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:18.941 | DEBUG |  ... 
+19:20:18.941 | INFO  | Started: method spoon.reflect.factory.TypeFactory.longType()
+19:20:18.941 | INFO  |  -- Remaining time budget: 82877 ms, #remaining_methods: 36, budget for method: 2302 ms, solver timeout: 1000 ms, budget for symbolic execution: 1151 ms, budget for concrete execution: 1151 ms,  -- 
+19:20:18.993 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.longType()1
+19:20:19.019 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.longType()2
+19:20:19.020 | INFO  | Finished (in 0.078 sec): method spoon.reflect.factory.TypeFactory.longType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:19.020 | DEBUG |  ... 
+19:20:19.021 | INFO  | Started: method spoon.reflect.factory.TypeFactory.hasPackage(String)
+19:20:19.021 | INFO  |  -- Remaining time budget: 82798 ms, #remaining_methods: 35, budget for method: 2365 ms, solver timeout: 1000 ms, budget for symbolic execution: 1183 ms, budget for concrete execution: 1182 ms,  -- 
+19:20:19.063 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.hasPackage(String)1
+19:20:19.090 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.hasPackage(String)2
+19:20:19.364 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.hasPackage(String)3
+19:20:19.390 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.hasPackage(String)4
+19:20:19.393 | INFO  | Finished (in 0.372 sec): method spoon.reflect.factory.TypeFactory.hasPackage(String) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+19:20:19.418 | DEBUG |  ... 
+19:20:19.419 | INFO  | Started: method spoon.reflect.factory.TypeFactory.voidType()
+19:20:19.419 | INFO  |  -- Remaining time budget: 82400 ms, #remaining_methods: 34, budget for method: 2423 ms, solver timeout: 1000 ms, budget for symbolic execution: 1223 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:19.461 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.voidType()1
+19:20:19.487 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.voidType()2
+19:20:19.487 | INFO  | Finished (in 0.069 sec): method spoon.reflect.factory.TypeFactory.voidType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:19.488 | DEBUG |  ... 
+19:20:19.488 | INFO  | Started: method spoon.reflect.factory.TypeFactory.stringType()
+19:20:19.489 | INFO  |  -- Remaining time budget: 82330 ms, #remaining_methods: 33, budget for method: 2494 ms, solver timeout: 1000 ms, budget for symbolic execution: 1294 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:19.564 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.stringType()1
+19:20:19.591 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.stringType()2
+19:20:19.591 | INFO  | Finished (in 0.102 sec): method spoon.reflect.factory.TypeFactory.stringType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:19.592 | DEBUG |  ... 
+19:20:19.592 | INFO  | Started: method spoon.reflect.factory.TypeFactory.booleanPrimitiveType()
+19:20:19.592 | INFO  |  -- Remaining time budget: 82226 ms, #remaining_methods: 32, budget for method: 2569 ms, solver timeout: 1000 ms, budget for symbolic execution: 1369 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:19.636 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.booleanPrimitiveType()1
+19:20:19.663 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.booleanPrimitiveType()2
+19:20:19.663 | INFO  | Finished (in 0.071 sec): method spoon.reflect.factory.TypeFactory.booleanPrimitiveType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:19.664 | DEBUG |  ... 
+19:20:19.664 | INFO  | Started: method spoon.reflect.factory.TypeFactory.bytePrimitiveType()
+19:20:19.664 | INFO  |  -- Remaining time budget: 82154 ms, #remaining_methods: 31, budget for method: 2650 ms, solver timeout: 1000 ms, budget for symbolic execution: 1450 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:19.700 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.bytePrimitiveType()1
+19:20:19.726 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.bytePrimitiveType()2
+19:20:19.727 | INFO  | Finished (in 0.062 sec): method spoon.reflect.factory.TypeFactory.bytePrimitiveType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:19.727 | DEBUG |  ... 
+19:20:19.728 | INFO  | Started: method spoon.reflect.factory.TypeFactory.characterType()
+19:20:19.728 | INFO  |  -- Remaining time budget: 82091 ms, #remaining_methods: 30, budget for method: 2736 ms, solver timeout: 1000 ms, budget for symbolic execution: 1536 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:19.759 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.characterType()1
+19:20:19.785 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.characterType()2
+19:20:19.786 | INFO  | Finished (in 0.058 sec): method spoon.reflect.factory.TypeFactory.characterType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:19.786 | DEBUG |  ... 
+19:20:19.787 | INFO  | Started: method spoon.reflect.factory.TypeFactory.characterPrimitiveType()
+19:20:19.787 | INFO  |  -- Remaining time budget: 82031 ms, #remaining_methods: 29, budget for method: 2828 ms, solver timeout: 1000 ms, budget for symbolic execution: 1628 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:19.822 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.characterPrimitiveType()1
+19:20:19.848 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.characterPrimitiveType()2
+19:20:19.848 | INFO  | Finished (in 0.061 sec): method spoon.reflect.factory.TypeFactory.characterPrimitiveType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:19.849 | DEBUG |  ... 
+19:20:19.849 | INFO  | Started: method spoon.reflect.factory.TypeFactory.integerType()
+19:20:19.849 | INFO  |  -- Remaining time budget: 81969 ms, #remaining_methods: 28, budget for method: 2927 ms, solver timeout: 1000 ms, budget for symbolic execution: 1727 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:19.884 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.integerType()1
+19:20:19.910 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.integerType()2
+19:20:19.910 | INFO  | Finished (in 0.061 sec): method spoon.reflect.factory.TypeFactory.integerType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:19.911 | DEBUG |  ... 
+19:20:19.911 | INFO  | Started: method spoon.reflect.factory.TypeFactory.integerPrimitiveType()
+19:20:19.911 | INFO  |  -- Remaining time budget: 81907 ms, #remaining_methods: 27, budget for method: 3033 ms, solver timeout: 1000 ms, budget for symbolic execution: 1833 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:19.948 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.integerPrimitiveType()1
+19:20:19.974 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.integerPrimitiveType()2
+19:20:19.974 | INFO  | Finished (in 0.063 sec): method spoon.reflect.factory.TypeFactory.integerPrimitiveType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:19.975 | DEBUG |  ... 
+19:20:19.975 | INFO  | Started: method spoon.reflect.factory.TypeFactory.longPrimitiveType()
+19:20:19.976 | INFO  |  -- Remaining time budget: 81843 ms, #remaining_methods: 26, budget for method: 3147 ms, solver timeout: 1000 ms, budget for symbolic execution: 1947 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:20.009 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.longPrimitiveType()1
+19:20:20.036 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.longPrimitiveType()2
+19:20:20.036 | INFO  | Finished (in 0.060 sec): method spoon.reflect.factory.TypeFactory.longPrimitiveType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:20.037 | DEBUG |  ... 
+19:20:20.037 | INFO  | Started: method spoon.reflect.factory.TypeFactory.floatPrimitiveType()
+19:20:20.037 | INFO  |  -- Remaining time budget: 81781 ms, #remaining_methods: 25, budget for method: 3271 ms, solver timeout: 1000 ms, budget for symbolic execution: 2071 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:20.074 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.floatPrimitiveType()1
+19:20:20.102 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.floatPrimitiveType()2
+19:20:20.102 | INFO  | Finished (in 0.065 sec): method spoon.reflect.factory.TypeFactory.floatPrimitiveType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:20.103 | DEBUG |  ... 
+19:20:20.103 | INFO  | Started: method spoon.reflect.factory.TypeFactory.doublePrimitiveType()
+19:20:20.103 | INFO  |  -- Remaining time budget: 81715 ms, #remaining_methods: 24, budget for method: 3404 ms, solver timeout: 1000 ms, budget for symbolic execution: 2204 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:20.139 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.doublePrimitiveType()1
+19:20:20.165 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.doublePrimitiveType()2
+19:20:20.166 | INFO  | Finished (in 0.062 sec): method spoon.reflect.factory.TypeFactory.doublePrimitiveType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:20.167 | DEBUG |  ... 
+19:20:20.167 | INFO  | Started: method spoon.reflect.factory.TypeFactory.shortPrimitiveType()
+19:20:20.167 | INFO  |  -- Remaining time budget: 81651 ms, #remaining_methods: 23, budget for method: 3550 ms, solver timeout: 1000 ms, budget for symbolic execution: 2350 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:20.207 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.shortPrimitiveType()1
+19:20:20.233 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.shortPrimitiveType()2
+19:20:20.234 | INFO  | Finished (in 0.067 sec): method spoon.reflect.factory.TypeFactory.shortPrimitiveType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:20.234 | DEBUG |  ... 
+19:20:20.235 | INFO  | Started: method spoon.reflect.factory.TypeFactory.dateType()
+19:20:20.235 | INFO  |  -- Remaining time budget: 81584 ms, #remaining_methods: 22, budget for method: 3708 ms, solver timeout: 1000 ms, budget for symbolic execution: 2508 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:20.271 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.dateType()1
+19:20:20.297 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.dateType()2
+19:20:20.298 | INFO  | Finished (in 0.063 sec): method spoon.reflect.factory.TypeFactory.dateType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:20.298 | DEBUG |  ... 
+19:20:20.299 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createArrayReference(CtType)
+19:20:20.299 | INFO  |  -- Remaining time budget: 81519 ms, #remaining_methods: 21, budget for method: 3881 ms, solver timeout: 1000 ms, budget for symbolic execution: 2681 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:20.338 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtType)1
+19:20:20.425 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtType)2
+19:20:20.446 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtType)3
+19:20:20.549 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtType)4
+19:20:20.576 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtType)5
+19:20:20.602 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtType)6
+19:20:20.707 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtType)7
+19:20:22.980 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.createArrayReference(CtType)
+19:20:24.181 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.createArrayReference(CtType)
+19:20:24.208 | INFO  | Finished (in 3.909 sec): method spoon.reflect.factory.TypeFactory.createArrayReference(CtType) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+19:20:24.235 | DEBUG |  ... 
+19:20:24.236 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference)
+19:20:24.236 | INFO  |  -- Remaining time budget: 77582 ms, #remaining_methods: 20, budget for method: 3879 ms, solver timeout: 1000 ms, budget for symbolic execution: 2679 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:24.278 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference)1
+19:20:24.362 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference)2
+19:20:24.382 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference)3
+19:20:24.403 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference)4
+19:20:24.425 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference)5
+19:20:24.425 | INFO  | Finished (in 0.189 sec): method spoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+19:20:24.426 | DEBUG |  ... 
+19:20:24.427 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference, int)
+19:20:24.427 | INFO  |  -- Remaining time budget: 77392 ms, #remaining_methods: 19, budget for method: 4073 ms, solver timeout: 1000 ms, budget for symbolic execution: 2873 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:24.520 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference, int)1
+19:20:24.659 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference, int)2
+19:20:24.721 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference, int)3
+19:20:24.744 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference, int)4
+19:20:24.766 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference, int)5
+19:20:24.768 | INFO  | Finished (in 0.341 sec): method spoon.reflect.factory.TypeFactory.createArrayReference(CtTypeReference, int) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+19:20:24.779 | DEBUG |  ... 
+19:20:24.779 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createArrayReference(String)
+19:20:24.779 | INFO  |  -- Remaining time budget: 77039 ms, #remaining_methods: 18, budget for method: 4279 ms, solver timeout: 1000 ms, budget for symbolic execution: 3079 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:24.820 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(String)1
+19:20:24.848 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(String)2
+19:20:24.869 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createArrayReference(String)3
+19:20:27.859 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.createArrayReference(String)
+19:20:29.059 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.createArrayReference(String)
+19:20:29.186 | INFO  | Finished (in 4.406 sec): method spoon.reflect.factory.TypeFactory.createArrayReference(String) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:20:29.390 | DEBUG |  ... 
+19:20:29.391 | INFO  | Started: method spoon.reflect.factory.TypeFactory.voidPrimitiveType()
+19:20:29.391 | INFO  |  -- Remaining time budget: 72427 ms, #remaining_methods: 17, budget for method: 4260 ms, solver timeout: 1000 ms, budget for symbolic execution: 3060 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:29.430 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.voidPrimitiveType()1
+19:20:29.456 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.voidPrimitiveType()2
+19:20:29.456 | INFO  | Finished (in 0.065 sec): method spoon.reflect.factory.TypeFactory.voidPrimitiveType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:29.457 | DEBUG |  ... 
+19:20:29.458 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference)
+19:20:29.458 | INFO  |  -- Remaining time budget: 72361 ms, #remaining_methods: 16, budget for method: 4522 ms, solver timeout: 1000 ms, budget for symbolic execution: 3322 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:29.499 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference)1
+19:20:29.527 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference)2
+19:20:29.547 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference)3
+19:20:29.587 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference)4
+19:20:29.607 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference)5
+19:20:29.631 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference)6
+19:20:29.657 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference)7
+19:20:29.682 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference)8
+19:20:29.710 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference)9
+19:20:29.720 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference)10
+19:20:29.720 | INFO  | Finished (in 0.262 sec): method spoon.reflect.factory.TypeFactory.createWildcardStaticTypeMemberReference(CtTypeReference) 
+<StatsForMethod> :
+	#generatedTC=10
+	WITH NO EXCEPTIONS
+19:20:29.722 | DEBUG |  ... 
+19:20:29.722 | INFO  | Started: method spoon.reflect.factory.TypeFactory.addNestedType(List, CtType)
+19:20:29.722 | INFO  |  -- Remaining time budget: 72096 ms, #remaining_methods: 15, budget for method: 4806 ms, solver timeout: 1000 ms, budget for symbolic execution: 3606 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:29.760 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.addNestedType(List, CtType)1
+19:20:29.875 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.addNestedType(List, CtType)2
+19:20:31.882 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.addNestedType(List, CtType)3
+19:20:32.420 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.addNestedType(List, CtType)4
+19:20:33.329 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.addNestedType(List, CtType)
+19:20:34.529 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.addNestedType(List, CtType)
+19:20:35.043 | INFO  | Finished (in 5.320 sec): method spoon.reflect.factory.TypeFactory.addNestedType(List, CtType) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+19:20:35.112 | DEBUG |  ... 
+19:20:35.113 | INFO  | Started: method spoon.reflect.factory.TypeFactory.getDeclaringTypeName(String)
+19:20:35.113 | INFO  |  -- Remaining time budget: 66706 ms, #remaining_methods: 14, budget for method: 4764 ms, solver timeout: 1000 ms, budget for symbolic execution: 3564 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:35.147 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getDeclaringTypeName(String)1
+19:20:35.799 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getDeclaringTypeName(String)2
+19:20:35.803 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getDeclaringTypeName(String)3
+19:20:35.806 | INFO  | Finished (in 0.694 sec): method spoon.reflect.factory.TypeFactory.getDeclaringTypeName(String) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:20:35.866 | DEBUG |  ... 
+19:20:35.867 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createReferences(List)
+19:20:35.867 | INFO  |  -- Remaining time budget: 65952 ms, #remaining_methods: 13, budget for method: 5073 ms, solver timeout: 1000 ms, budget for symbolic execution: 3873 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:35.907 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReferences(List)1
+19:20:35.958 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReferences(List)2
+19:20:39.740 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.createReferences(List)
+19:20:40.054 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createReferences(List)3
+19:20:40.941 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.createReferences(List)
+19:20:40.975 | INFO  | Finished (in 5.108 sec): method spoon.reflect.factory.TypeFactory.createReferences(List) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:20:41.106 | DEBUG |  ... 
+19:20:41.106 | INFO  | Started: method spoon.reflect.factory.TypeFactory.hasInnerType(String)
+19:20:41.106 | INFO  |  -- Remaining time budget: 60712 ms, #remaining_methods: 12, budget for method: 5059 ms, solver timeout: 1000 ms, budget for symbolic execution: 3859 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:41.144 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.hasInnerType(String)1
+19:20:41.174 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.hasInnerType(String)2
+19:20:41.445 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.hasInnerType(String)3
+19:20:41.472 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.hasInnerType(String)4
+19:20:41.475 | INFO  | Finished (in 0.368 sec): method spoon.reflect.factory.TypeFactory.hasInnerType(String) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+19:20:41.502 | DEBUG |  ... 
+19:20:41.502 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createTypeParameterReference(String)
+19:20:41.502 | INFO  |  -- Remaining time budget: 60316 ms, #remaining_methods: 11, budget for method: 5483 ms, solver timeout: 1000 ms, budget for symbolic execution: 4283 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:41.549 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createTypeParameterReference(String)1
+19:20:41.578 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createTypeParameterReference(String)2
+19:20:41.599 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createTypeParameterReference(String)3
+19:20:41.620 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createTypeParameterReference(String)4
+19:20:41.641 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createTypeParameterReference(String)5
+19:20:41.642 | INFO  | Finished (in 0.139 sec): method spoon.reflect.factory.TypeFactory.createTypeParameterReference(String) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+19:20:41.643 | DEBUG |  ... 
+19:20:41.643 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createTypeAdapter(CtFormalTypeDeclarer)
+19:20:41.643 | INFO  |  -- Remaining time budget: 60175 ms, #remaining_methods: 10, budget for method: 6017 ms, solver timeout: 1000 ms, budget for symbolic execution: 4817 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:41.680 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createTypeAdapter(CtFormalTypeDeclarer)1
+19:20:41.716 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createTypeAdapter(CtFormalTypeDeclarer)2
+19:20:41.736 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createTypeAdapter(CtFormalTypeDeclarer)3
+19:20:41.736 | INFO  | Finished (in 0.093 sec): method spoon.reflect.factory.TypeFactory.createTypeAdapter(CtFormalTypeDeclarer) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:20:41.739 | DEBUG |  ... 
+19:20:41.740 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createIntersectionTypeReferenceWithBounds(List)
+19:20:41.740 | INFO  |  -- Remaining time budget: 60078 ms, #remaining_methods: 9, budget for method: 6675 ms, solver timeout: 1000 ms, budget for symbolic execution: 5475 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:41.787 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createIntersectionTypeReferenceWithBounds(List)1
+19:20:41.817 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createIntersectionTypeReferenceWithBounds(List)2
+19:20:41.839 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createIntersectionTypeReferenceWithBounds(List)3
+19:20:41.887 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createIntersectionTypeReferenceWithBounds(List)4
+19:20:44.978 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createIntersectionTypeReferenceWithBounds(List)5
+19:20:47.215 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.createIntersectionTypeReferenceWithBounds(List)
+19:20:47.750 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createIntersectionTypeReferenceWithBounds(List)6
+19:20:48.416 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.createIntersectionTypeReferenceWithBounds(List)
+19:20:48.494 | INFO  | Finished (in 6.753 sec): method spoon.reflect.factory.TypeFactory.createIntersectionTypeReferenceWithBounds(List) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+19:20:48.594 | DEBUG |  ... 
+19:20:48.594 | INFO  | Started: method spoon.reflect.factory.TypeFactory.getDefaultBoundingType()
+19:20:48.594 | INFO  |  -- Remaining time budget: 53224 ms, #remaining_methods: 8, budget for method: 6653 ms, solver timeout: 1000 ms, budget for symbolic execution: 5453 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:48.636 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getDefaultBoundingType()1
+19:20:48.662 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getDefaultBoundingType()2
+19:20:48.662 | INFO  | Finished (in 0.068 sec): method spoon.reflect.factory.TypeFactory.getDefaultBoundingType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:20:48.663 | DEBUG |  ... 
+19:20:48.663 | INFO  | Started: method spoon.reflect.factory.TypeFactory.createImport(CtReference)
+19:20:48.663 | INFO  |  -- Remaining time budget: 53155 ms, #remaining_methods: 7, budget for method: 7593 ms, solver timeout: 1000 ms, budget for symbolic execution: 6393 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:48.691 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createImport(CtReference)1
+19:20:48.719 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createImport(CtReference)2
+19:20:48.739 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createImport(CtReference)3
+19:20:48.760 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createImport(CtReference)4
+19:20:48.782 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createImport(CtReference)5
+19:20:48.804 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.createImport(CtReference)6
+19:20:48.804 | INFO  | Finished (in 0.141 sec): method spoon.reflect.factory.TypeFactory.createImport(CtReference) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+19:20:48.805 | DEBUG |  ... 
+19:20:48.806 | INFO  | Started: method spoon.reflect.factory.TypeFactory.get(Class)
+19:20:48.806 | INFO  |  -- Remaining time budget: 53013 ms, #remaining_methods: 6, budget for method: 8835 ms, solver timeout: 1000 ms, budget for symbolic execution: 7635 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:48.810 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: java.lang.Class
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+19:20:48.909 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(Class)1
+19:20:51.019 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(Class)2
+19:20:52.273 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(Class)3
+19:20:56.000 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(Class)4
+19:20:56.442 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.get(Class)
+19:20:57.643 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.get(Class)
+19:20:57.736 | INFO  | Finished (in 8.930 sec): method spoon.reflect.factory.TypeFactory.get(Class) 
+<StatsForMethod> :
+	#generatedTC=4
+	FAILED 1 time(s) with 1 different exception(s)"
+19:20:58.109 | DEBUG |  ... 
+19:20:58.110 | INFO  | Started: method spoon.reflect.factory.TypeFactory.get(String)
+19:20:58.110 | INFO  |  -- Remaining time budget: 43708 ms, #remaining_methods: 5, budget for method: 8741 ms, solver timeout: 1000 ms, budget for symbolic execution: 7541 ms, budget for concrete execution: 1200 ms,  -- 
+19:20:58.149 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(String)1
+19:20:58.179 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(String)2
+19:20:58.446 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(String)3
+19:20:58.471 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(String)4
+19:20:58.545 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(String)5
+19:20:58.569 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(String)6
+19:20:58.871 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(String)7
+19:20:59.214 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(String)8
+19:21:00.541 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(String)9
+19:21:01.094 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(String)10
+19:21:03.719 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.get(String)11
+19:21:05.651 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.get(String)
+19:21:06.852 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.get(String)
+19:21:06.956 | INFO  | Finished (in 8.846 sec): method spoon.reflect.factory.TypeFactory.get(String) 
+<StatsForMethod> :
+	#generatedTC=11
+	WITH NO EXCEPTIONS
+19:21:07.547 | DEBUG |  ... 
+19:21:07.548 | INFO  | Started: method spoon.reflect.factory.TypeFactory.getSimpleName(String)
+19:21:07.548 | INFO  |  -- Remaining time budget: 34270 ms, #remaining_methods: 4, budget for method: 8567 ms, solver timeout: 1000 ms, budget for symbolic execution: 7367 ms, budget for concrete execution: 1200 ms,  -- 
+19:21:07.585 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getSimpleName(String)1
+19:21:09.753 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getSimpleName(String)2
+19:21:09.855 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getSimpleName(String)3
+19:21:11.688 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getSimpleName(String)4
+19:21:14.916 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.getSimpleName(String)
+19:21:16.117 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.getSimpleName(String)
+19:21:16.192 | INFO  | Finished (in 8.644 sec): method spoon.reflect.factory.TypeFactory.getSimpleName(String) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+19:21:16.863 | DEBUG |  ... 
+19:21:16.863 | INFO  | Started: method spoon.reflect.factory.TypeFactory.getPackageName(String)
+19:21:16.864 | INFO  |  -- Remaining time budget: 24955 ms, #remaining_methods: 3, budget for method: 8318 ms, solver timeout: 1000 ms, budget for symbolic execution: 7118 ms, budget for concrete execution: 1200 ms,  -- 
+19:21:16.900 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getPackageName(String)1
+19:21:17.210 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getPackageName(String)2
+19:21:19.190 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.getPackageName(String)3
+19:21:19.225 | INFO  | Finished (in 2.362 sec): method spoon.reflect.factory.TypeFactory.getPackageName(String) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:21:19.254 | DEBUG |  ... 
+19:21:19.255 | INFO  | Started: method spoon.reflect.factory.TypeFactory.<init>(Factory)
+19:21:19.255 | INFO  |  -- Remaining time budget: 22563 ms, #remaining_methods: 2, budget for method: 11281 ms, solver timeout: 1000 ms, budget for symbolic execution: 10081 ms, budget for concrete execution: 1200 ms,  -- 
+19:21:19.260 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.<init>(Factory)1
+19:21:29.336 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.factory.TypeFactory.<init>(Factory)
+19:21:30.537 | INFO  | (X) Cancelling concrete execution: spoon.reflect.factory.TypeFactory.<init>(Factory)
+19:21:31.278 | INFO  | Finished (in 12.023 sec): method spoon.reflect.factory.TypeFactory.<init>(Factory) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+19:21:31.462 | DEBUG |  ... 
+19:21:31.463 | INFO  | Started: method spoon.reflect.factory.TypeFactory.<init>()
+19:21:31.463 | INFO  |  -- Remaining time budget: 10355 ms, #remaining_methods: 1, budget for method: 10355 ms, solver timeout: 1000 ms, budget for symbolic execution: 9155 ms, budget for concrete execution: 1200 ms,  -- 
+19:21:31.514 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.factory.TypeFactory.<init>()1
+19:21:31.656 | INFO  | Finished (in 0.193 sec): method spoon.reflect.factory.TypeFactory.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+19:21:31.674 | INFO  | Started: Flushing tests for [TypeFactory] on disk
+19:21:35.623 | INFO  | File size for TypeFactoryTest: 120 KB
+19:21:35.625 | INFO  | Finished (in 3.951 sec): Flushing tests for [TypeFactory] on disk 
+19:21:35.626 | INFO  | Finished (in 95.783 sec): class spoon.reflect.factory.TypeFactory 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 51, 
+	#methods started symbolic exploration = 51
+	#methods with at least one TC = 51
+	#methods with exceptions = 4
+	#generated TC = 176
+	#coverage = null
+[READY]

@@ -1,0 +1,219 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+19:46:23.409 | INFO  | Started: warmup: kotlin reflection :: init
+19:46:23.491 | INFO  | Finished (in 0.081 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.io.FileBackedOutputStream 120
+19:46:23.499 | DEBUG | -----------------------------------------------------------------------------
+19:46:23.500 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+19:46:23.501 | INFO  | ClassUnderTest[ FQN: com.google.common.io.FileBackedOutputStream
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: FileBackedOutputStreamTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/io/FileBackedOutputStreamTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+19:46:23.522 | INFO  | Started: class com.google.common.io.FileBackedOutputStream
+19:46:23.523 | INFO  | Started: preparation class class com.google.common.io.FileBackedOutputStream: kotlin reflection :: run
+19:46:23.569 | INFO  | Finished (in 0.046 sec): preparation class class com.google.common.io.FileBackedOutputStream: kotlin reflection :: run 
+19:46:23.570 | INFO  | Started: 2nd optional soot initialization
+19:46:23.571 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+19:46:23.578 | DEBUG |  ... 
+19:46:23.589 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.close()
+19:46:23.590 | INFO  |  -- Remaining time budget: 101920 ms, #remaining_methods: 16, budget for method: 6370 ms, solver timeout: 1000 ms, budget for symbolic execution: 5170 ms, budget for concrete execution: 1200 ms,  -- 
+19:46:23.893 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.close()1
+19:46:24.127 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.close()2
+19:46:26.592 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.close()3
+19:46:27.061 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.close()4
+19:46:28.758 | INFO  | |> Starting concrete execution for remaining state: com.google.common.io.FileBackedOutputStream.close()
+19:46:29.959 | INFO  | (X) Cancelling concrete execution: com.google.common.io.FileBackedOutputStream.close()
+19:46:30.029 | INFO  | Finished (in 6.439 sec): method com.google.common.io.FileBackedOutputStream.close() 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+19:46:30.147 | DEBUG |  ... 
+19:46:30.148 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.flush()
+19:46:30.148 | INFO  |  -- Remaining time budget: 95353 ms, #remaining_methods: 15, budget for method: 6356 ms, solver timeout: 1000 ms, budget for symbolic execution: 5156 ms, budget for concrete execution: 1200 ms,  -- 
+19:46:30.154 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.flush()1
+19:46:30.187 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.flush()2
+19:46:31.332 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.flush()3
+19:46:31.474 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.flush()4
+19:46:33.063 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.flush()5
+19:46:33.451 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.flush()6
+19:46:34.990 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.flush()7
+19:46:35.304 | INFO  | |> Starting concrete execution for remaining state: com.google.common.io.FileBackedOutputStream.flush()
+19:46:36.505 | INFO  | (X) Cancelling concrete execution: com.google.common.io.FileBackedOutputStream.flush()
+19:46:36.559 | INFO  | Finished (in 6.411 sec): method com.google.common.io.FileBackedOutputStream.flush() 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+19:46:36.786 | DEBUG |  ... 
+19:46:36.787 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.write(byte[], int, int)
+19:46:36.787 | INFO  |  -- Remaining time budget: 88714 ms, #remaining_methods: 14, budget for method: 6336 ms, solver timeout: 1000 ms, budget for symbolic execution: 5136 ms, budget for concrete execution: 1200 ms,  -- 
+19:46:36.796 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)1
+19:46:36.902 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)2
+19:46:36.997 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)3
+19:46:37.020 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)4
+19:46:37.367 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)5
+19:46:38.078 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)6
+19:46:38.257 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)7
+19:46:39.468 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)8
+19:46:40.884 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)9
+19:46:40.954 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)10
+19:46:41.320 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)11
+19:46:41.513 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[], int, int)12
+19:46:41.923 | INFO  | |> Starting concrete execution for remaining state: com.google.common.io.FileBackedOutputStream.write(byte[], int, int)
+19:46:43.123 | INFO  | (X) Cancelling concrete execution: com.google.common.io.FileBackedOutputStream.write(byte[], int, int)
+19:46:43.214 | INFO  | Finished (in 6.427 sec): method com.google.common.io.FileBackedOutputStream.write(byte[], int, int) 
+<StatsForMethod> :
+	#generatedTC=12
+	WITH NO EXCEPTIONS
+19:46:43.247 | DEBUG |  ... 
+19:46:43.248 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.write(byte[])
+19:46:43.248 | INFO  |  -- Remaining time budget: 82253 ms, #remaining_methods: 13, budget for method: 6327 ms, solver timeout: 1000 ms, budget for symbolic execution: 5127 ms, budget for concrete execution: 1200 ms,  -- 
+19:46:43.254 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[])1
+19:46:43.284 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[])2
+19:46:43.594 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[])3
+19:46:44.251 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[])4
+19:46:44.652 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[])5
+19:46:44.719 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[])6
+19:46:45.121 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[])7
+19:46:45.548 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[])8
+19:46:47.765 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[])9
+19:46:48.375 | INFO  | |> Starting concrete execution for remaining state: com.google.common.io.FileBackedOutputStream.write(byte[])
+19:46:49.237 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(byte[])10
+19:46:49.576 | INFO  | (X) Cancelling concrete execution: com.google.common.io.FileBackedOutputStream.write(byte[])
+19:46:49.723 | INFO  | Finished (in 6.475 sec): method com.google.common.io.FileBackedOutputStream.write(byte[]) 
+<StatsForMethod> :
+	#generatedTC=10
+	WITH NO EXCEPTIONS
+19:46:50.011 | DEBUG |  ... 
+19:46:50.012 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.write(int)
+19:46:50.012 | INFO  |  -- Remaining time budget: 75488 ms, #remaining_methods: 12, budget for method: 6290 ms, solver timeout: 1000 ms, budget for symbolic execution: 5090 ms, budget for concrete execution: 1200 ms,  -- 
+19:46:50.019 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)1
+19:46:50.061 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)2
+19:46:50.089 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)3
+19:46:50.342 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)4
+19:46:50.438 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)5
+19:46:50.483 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)6
+19:46:50.576 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)7
+19:46:50.768 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)8
+19:46:50.924 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)9
+19:46:50.991 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)10
+19:46:51.166 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)11
+19:46:51.217 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)12
+19:46:51.355 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)13
+19:46:51.390 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)14
+19:46:52.263 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)15
+19:46:52.516 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)16
+19:46:53.327 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)17
+19:46:53.409 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)18
+19:46:54.099 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)19
+19:46:54.852 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.write(int)20
+19:46:55.102 | INFO  | |> Starting concrete execution for remaining state: com.google.common.io.FileBackedOutputStream.write(int)
+19:46:56.303 | INFO  | (X) Cancelling concrete execution: com.google.common.io.FileBackedOutputStream.write(int)
+19:46:56.382 | INFO  | Finished (in 6.370 sec): method com.google.common.io.FileBackedOutputStream.write(int) 
+<StatsForMethod> :
+	#generatedTC=20
+	WITH NO EXCEPTIONS
+19:46:56.696 | DEBUG |  ... 
+19:46:56.697 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.update(int)
+19:46:56.697 | INFO  |  -- Remaining time budget: 68803 ms, #remaining_methods: 11, budget for method: 6254 ms, solver timeout: 1000 ms, budget for symbolic execution: 5054 ms, budget for concrete execution: 1200 ms,  -- 
+19:46:56.703 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.update(int)1
+19:46:56.743 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.update(int)2
+19:46:56.762 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.update(int)3
+19:46:56.805 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.update(int)4
+19:47:01.778 | INFO  | |> Starting concrete execution for remaining state: com.google.common.io.FileBackedOutputStream.update(int)
+19:47:02.978 | INFO  | (X) Cancelling concrete execution: com.google.common.io.FileBackedOutputStream.update(int)
+19:47:02.989 | INFO  | Finished (in 6.292 sec): method com.google.common.io.FileBackedOutputStream.update(int) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+19:47:03.040 | DEBUG |  ... 
+19:47:03.040 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.reset()
+19:47:03.041 | INFO  |  -- Remaining time budget: 62460 ms, #remaining_methods: 10, budget for method: 6246 ms, solver timeout: 1000 ms, budget for symbolic execution: 5046 ms, budget for concrete execution: 1200 ms,  -- 
+19:47:03.056 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.reset()1
+19:47:08.087 | INFO  | |> Starting concrete execution for remaining state: com.google.common.io.FileBackedOutputStream.reset()
+19:47:09.287 | INFO  | (X) Cancelling concrete execution: com.google.common.io.FileBackedOutputStream.reset()
+19:47:09.385 | INFO  | Finished (in 6.345 sec): method com.google.common.io.FileBackedOutputStream.reset() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+19:47:09.635 | DEBUG |  ... 
+19:47:09.636 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.getFile()
+19:47:09.636 | INFO  |  -- Remaining time budget: 55864 ms, #remaining_methods: 9, budget for method: 6207 ms, solver timeout: 1000 ms, budget for symbolic execution: 5007 ms, budget for concrete execution: 1200 ms,  -- 
+19:47:09.642 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.getFile()1
+19:47:09.668 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.getFile()2
+19:47:09.669 | INFO  | Finished (in 0.033 sec): method com.google.common.io.FileBackedOutputStream.getFile() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:47:09.670 | DEBUG |  ... 
+19:47:09.671 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.openInputStream()
+19:47:09.671 | INFO  |  -- Remaining time budget: 55829 ms, #remaining_methods: 8, budget for method: 6978 ms, solver timeout: 1000 ms, budget for symbolic execution: 5778 ms, budget for concrete execution: 1200 ms,  -- 
+19:47:09.678 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.openInputStream()1
+19:47:09.725 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.openInputStream()2
+19:47:09.926 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.openInputStream()3
+19:47:15.450 | INFO  | |> Starting concrete execution for remaining state: com.google.common.io.FileBackedOutputStream.openInputStream()
+19:47:16.651 | INFO  | (X) Cancelling concrete execution: com.google.common.io.FileBackedOutputStream.openInputStream()
+19:47:16.698 | INFO  | Finished (in 7.027 sec): method com.google.common.io.FileBackedOutputStream.openInputStream() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+19:47:16.751 | DEBUG |  ... 
+19:47:16.751 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.asByteSource()
+19:47:16.752 | INFO  |  -- Remaining time budget: 48749 ms, #remaining_methods: 7, budget for method: 6964 ms, solver timeout: 1000 ms, budget for symbolic execution: 5764 ms, budget for concrete execution: 1200 ms,  -- 
+19:47:16.756 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.asByteSource()1
+19:47:16.782 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.asByteSource()2
+19:47:16.783 | INFO  | Finished (in 0.031 sec): method com.google.common.io.FileBackedOutputStream.asByteSource() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+19:47:16.784 | DEBUG |  ... 
+19:47:16.784 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.<init>(int, boolean)
+19:47:16.784 | INFO  |  -- Remaining time budget: 48716 ms, #remaining_methods: 6, budget for method: 8119 ms, solver timeout: 1000 ms, budget for symbolic execution: 6919 ms, budget for concrete execution: 1200 ms,  -- 
+19:47:16.792 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.<init>(int, boolean)1
+19:47:16.947 | INFO  | Finished (in 0.163 sec): method com.google.common.io.FileBackedOutputStream.<init>(int, boolean) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+19:47:16.966 | DEBUG |  ... 
+19:47:16.967 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.<init>(int)
+19:47:16.967 | INFO  |  -- Remaining time budget: 48533 ms, #remaining_methods: 5, budget for method: 9706 ms, solver timeout: 1000 ms, budget for symbolic execution: 8506 ms, budget for concrete execution: 1200 ms,  -- 
+19:47:16.975 | DEBUG | --new testCase collected, to generate: testCom.google.common.io.FileBackedOutputStream.<init>(int)1
+19:47:17.091 | INFO  | Finished (in 0.123 sec): method com.google.common.io.FileBackedOutputStream.<init>(int) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+19:47:17.106 | DEBUG |  ... 
+19:47:17.106 | INFO  | Started: method com.google.common.io.FileBackedOutputStream.<init>(int, boolean, File)
+19:47:17.107 | INFO  |  -- Remaining time budget: 48394 ms, #remaining_methods: 4, budget for method: 12098 ms, solver timeout: 1000 ms, budget for symbolic execution: 10898 ms, budget for concrete execution: 1200 ms,  -- 
+19:47:17.109 | ERROR | Finished (in 0.002 sec): method com.google.common.io.FileBackedOutputStream.<init>(int, boolean, File) :: EXCEPTION :: 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+java.lang.IllegalStateException: No such <init>(IZLjava/io/File;)V found
+	at com.huawei.utbot.framework.plugin.api.UtBotTestCaseGenerator.graph(UtBotTestCaseGenerator.kt:274) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.framework.plugin.api.UtBotTestCaseGenerator.generateAsync(UtBotTestCaseGenerator.kt:158) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.framework.plugin.api.UtBotTestCaseGenerator.generateAsync$default(UtBotTestCaseGenerator.kt:305) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.contest.ContestKt$runGeneration$1$invokeSuspend$$inlined$bracket$lambda$1$1.invokeSuspend(Contest.kt:334) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+19:47:17.119 | INFO  | Started: Flushing tests for [FileBackedOutputStream] on disk
+19:47:17.439 | INFO  | File size for FileBackedOutputStreamTest: 66 KB
+19:47:17.441 | INFO  | Finished (in 0.322 sec): Flushing tests for [FileBackedOutputStream] on disk 
+19:47:17.442 | INFO  | Finished (in 53.919 sec): class com.google.common.io.FileBackedOutputStream 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 16, 
+	#methods started symbolic exploration = 13
+	#methods with at least one TC = 12
+	#methods with exceptions = 0
+	#generated TC = 67
+	#coverage = null
+[READY]

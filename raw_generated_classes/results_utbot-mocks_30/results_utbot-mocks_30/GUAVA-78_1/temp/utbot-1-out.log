@@ -1,0 +1,264 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+13:37:50.344 | INFO  | Started: warmup: kotlin reflection :: init
+13:37:50.426 | INFO  | Finished (in 0.082 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.collect.Queues 30
+13:37:50.434 | DEBUG | -----------------------------------------------------------------------------
+13:37:50.435 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+13:37:50.436 | INFO  | ClassUnderTest[ FQN: com.google.common.collect.Queues
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: QueuesTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/collect/QueuesTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+13:37:50.457 | INFO  | Started: class com.google.common.collect.Queues
+13:37:50.459 | INFO  | Started: preparation class class com.google.common.collect.Queues: kotlin reflection :: run
+13:37:50.499 | INFO  | Finished (in 0.040 sec): preparation class class com.google.common.collect.Queues: kotlin reflection :: run 
+13:37:50.500 | INFO  | Started: 2nd optional soot initialization
+13:37:50.501 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+13:37:50.509 | DEBUG |  ... 
+13:37:50.528 | INFO  | Started: method com.google.common.collect.Queues.newPriorityQueue(Iterable)
+13:37:50.528 | INFO  |  -- Remaining time budget: 25423 ms, #remaining_methods: 23, budget for method: 1105 ms, solver timeout: 552 ms, budget for symbolic execution: 553 ms, budget for concrete execution: 552 ms,  -- 
+13:37:50.828 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newPriorityQueue(Iterable)1
+13:37:51.072 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.Queues.newPriorityQueue(Iterable)
+13:37:51.625 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.Queues.newPriorityQueue(Iterable)
+13:37:51.687 | INFO  | Finished (in 1.159 sec): method com.google.common.collect.Queues.newPriorityQueue(Iterable) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+13:37:51.701 | DEBUG |  ... 
+13:37:51.702 | INFO  | Started: method com.google.common.collect.Queues.newPriorityQueue()
+13:37:51.702 | INFO  |  -- Remaining time budget: 24233 ms, #remaining_methods: 22, budget for method: 1101 ms, solver timeout: 550 ms, budget for symbolic execution: 551 ms, budget for concrete execution: 550 ms,  -- 
+13:37:51.710 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newPriorityQueue()1
+13:37:51.819 | INFO  | Finished (in 0.117 sec): method com.google.common.collect.Queues.newPriorityQueue() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+13:37:51.825 | DEBUG |  ... 
+13:37:51.825 | INFO  | Started: method com.google.common.collect.Queues.newArrayDeque(Iterable)
+13:37:51.826 | INFO  |  -- Remaining time budget: 24110 ms, #remaining_methods: 21, budget for method: 1148 ms, solver timeout: 574 ms, budget for symbolic execution: 574 ms, budget for concrete execution: 574 ms,  -- 
+13:37:51.832 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newArrayDeque(Iterable)1
+13:37:52.400 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.Queues.newArrayDeque(Iterable)
+13:37:52.976 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.Queues.newArrayDeque(Iterable)
+13:37:53.023 | INFO  | Finished (in 1.197 sec): method com.google.common.collect.Queues.newArrayDeque(Iterable) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+13:37:53.051 | DEBUG |  ... 
+13:37:53.052 | INFO  | Started: method com.google.common.collect.Queues.newArrayDeque()
+13:37:53.052 | INFO  |  -- Remaining time budget: 22883 ms, #remaining_methods: 20, budget for method: 1144 ms, solver timeout: 572 ms, budget for symbolic execution: 572 ms, budget for concrete execution: 572 ms,  -- 
+13:37:53.058 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newArrayDeque()1
+13:37:53.137 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newArrayDeque()2
+13:37:53.137 | INFO  | Finished (in 0.085 sec): method com.google.common.collect.Queues.newArrayDeque() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+13:37:53.142 | DEBUG |  ... 
+13:37:53.143 | INFO  | Started: method com.google.common.collect.Queues.newConcurrentLinkedQueue(Iterable)
+13:37:53.143 | INFO  |  -- Remaining time budget: 22793 ms, #remaining_methods: 19, budget for method: 1199 ms, solver timeout: 599 ms, budget for symbolic execution: 600 ms, budget for concrete execution: 599 ms,  -- 
+13:37:53.643 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newConcurrentLinkedQueue(Iterable)1
+13:37:53.743 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.Queues.newConcurrentLinkedQueue(Iterable)
+13:37:54.343 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.Queues.newConcurrentLinkedQueue(Iterable)
+13:37:54.359 | INFO  | Finished (in 1.216 sec): method com.google.common.collect.Queues.newConcurrentLinkedQueue(Iterable) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+13:37:54.387 | DEBUG |  ... 
+13:37:54.387 | INFO  | Started: method com.google.common.collect.Queues.newConcurrentLinkedQueue()
+13:37:54.388 | INFO  |  -- Remaining time budget: 21548 ms, #remaining_methods: 18, budget for method: 1197 ms, solver timeout: 598 ms, budget for symbolic execution: 599 ms, budget for concrete execution: 598 ms,  -- 
+13:37:54.394 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newConcurrentLinkedQueue()1
+13:37:54.987 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.Queues.newConcurrentLinkedQueue()
+13:37:55.586 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.Queues.newConcurrentLinkedQueue()
+13:37:55.609 | INFO  | Finished (in 1.222 sec): method com.google.common.collect.Queues.newConcurrentLinkedQueue() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+13:37:55.682 | DEBUG |  ... 
+13:37:55.683 | INFO  | Started: method com.google.common.collect.Queues.newLinkedBlockingDeque(Iterable)
+13:37:55.683 | INFO  |  -- Remaining time budget: 20252 ms, #remaining_methods: 17, budget for method: 1191 ms, solver timeout: 595 ms, budget for symbolic execution: 596 ms, budget for concrete execution: 595 ms,  -- 
+13:37:55.691 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newLinkedBlockingDeque(Iterable)1
+13:37:56.279 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.Queues.newLinkedBlockingDeque(Iterable)
+13:37:56.875 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.Queues.newLinkedBlockingDeque(Iterable)
+13:37:56.888 | INFO  | Finished (in 1.205 sec): method com.google.common.collect.Queues.newLinkedBlockingDeque(Iterable) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+13:37:56.938 | DEBUG |  ... 
+13:37:56.939 | INFO  | Started: method com.google.common.collect.Queues.newLinkedBlockingDeque(int)
+13:37:56.939 | INFO  |  -- Remaining time budget: 18996 ms, #remaining_methods: 16, budget for method: 1187 ms, solver timeout: 593 ms, budget for symbolic execution: 594 ms, budget for concrete execution: 593 ms,  -- 
+13:37:56.949 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newLinkedBlockingDeque(int)1
+13:37:57.163 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newLinkedBlockingDeque(int)2
+13:37:57.166 | INFO  | Finished (in 0.227 sec): method com.google.common.collect.Queues.newLinkedBlockingDeque(int) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+13:37:57.183 | DEBUG |  ... 
+13:37:57.184 | INFO  | Started: method com.google.common.collect.Queues.newLinkedBlockingDeque()
+13:37:57.184 | INFO  |  -- Remaining time budget: 18751 ms, #remaining_methods: 15, budget for method: 1250 ms, solver timeout: 625 ms, budget for symbolic execution: 625 ms, budget for concrete execution: 625 ms,  -- 
+13:37:57.190 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newLinkedBlockingDeque()1
+13:37:57.410 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newLinkedBlockingDeque()2
+13:37:57.410 | INFO  | Finished (in 0.226 sec): method com.google.common.collect.Queues.newLinkedBlockingDeque() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+13:37:57.429 | DEBUG |  ... 
+13:37:57.429 | INFO  | Started: method com.google.common.collect.Queues.newLinkedBlockingQueue(int)
+13:37:57.430 | INFO  |  -- Remaining time budget: 18506 ms, #remaining_methods: 14, budget for method: 1321 ms, solver timeout: 660 ms, budget for symbolic execution: 661 ms, budget for concrete execution: 660 ms,  -- 
+13:37:57.436 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newLinkedBlockingQueue(int)1
+13:37:57.753 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newLinkedBlockingQueue(int)2
+13:37:57.839 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newLinkedBlockingQueue(int)3
+13:37:57.840 | INFO  | Finished (in 0.410 sec): method com.google.common.collect.Queues.newLinkedBlockingQueue(int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+13:37:57.869 | DEBUG |  ... 
+13:37:57.869 | INFO  | Started: method com.google.common.collect.Queues.newLinkedBlockingQueue()
+13:37:57.869 | INFO  |  -- Remaining time budget: 18066 ms, #remaining_methods: 13, budget for method: 1389 ms, solver timeout: 694 ms, budget for symbolic execution: 695 ms, budget for concrete execution: 694 ms,  -- 
+13:37:57.878 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newLinkedBlockingQueue()1
+13:37:58.201 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newLinkedBlockingQueue()2
+13:37:58.201 | INFO  | Finished (in 0.332 sec): method com.google.common.collect.Queues.newLinkedBlockingQueue() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+13:37:58.227 | DEBUG |  ... 
+13:37:58.228 | INFO  | Started: method com.google.common.collect.Queues.newLinkedBlockingQueue(Iterable)
+13:37:58.228 | INFO  |  -- Remaining time budget: 17707 ms, #remaining_methods: 12, budget for method: 1475 ms, solver timeout: 737 ms, budget for symbolic execution: 738 ms, budget for concrete execution: 737 ms,  -- 
+13:37:58.239 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newLinkedBlockingQueue(Iterable)1
+13:37:58.966 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.Queues.newLinkedBlockingQueue(Iterable)
+13:37:59.704 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.Queues.newLinkedBlockingQueue(Iterable)
+13:37:59.853 | INFO  | Finished (in 1.624 sec): method com.google.common.collect.Queues.newLinkedBlockingQueue(Iterable) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+13:37:59.924 | DEBUG |  ... 
+13:37:59.925 | INFO  | Started: method com.google.common.collect.Queues.newArrayBlockingQueue(int)
+13:37:59.925 | INFO  |  -- Remaining time budget: 16010 ms, #remaining_methods: 11, budget for method: 1455 ms, solver timeout: 727 ms, budget for symbolic execution: 728 ms, budget for concrete execution: 727 ms,  -- 
+13:37:59.931 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newArrayBlockingQueue(int)1
+13:38:00.097 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newArrayBlockingQueue(int)2
+13:38:00.446 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newArrayBlockingQueue(int)3
+13:38:00.446 | INFO  | Finished (in 0.521 sec): method com.google.common.collect.Queues.newArrayBlockingQueue(int) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+13:38:00.471 | DEBUG |  ... 
+13:38:00.471 | INFO  | Started: method com.google.common.collect.Queues.newPriorityBlockingQueue(Iterable)
+13:38:00.472 | INFO  |  -- Remaining time budget: 15464 ms, #remaining_methods: 10, budget for method: 1546 ms, solver timeout: 773 ms, budget for symbolic execution: 773 ms, budget for concrete execution: 773 ms,  -- 
+13:38:00.481 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newPriorityBlockingQueue(Iterable)1
+13:38:01.245 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.Queues.newPriorityBlockingQueue(Iterable)
+13:38:01.995 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newPriorityBlockingQueue(Iterable)2
+13:38:02.018 | INFO  | (X) Cancelling concrete execution: com.google.common.collect.Queues.newPriorityBlockingQueue(Iterable)
+13:38:02.148 | INFO  | Finished (in 1.677 sec): method com.google.common.collect.Queues.newPriorityBlockingQueue(Iterable) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+13:38:02.218 | DEBUG |  ... 
+13:38:02.219 | INFO  | Started: method com.google.common.collect.Queues.newPriorityBlockingQueue()
+13:38:02.219 | INFO  |  -- Remaining time budget: 13716 ms, #remaining_methods: 9, budget for method: 1524 ms, solver timeout: 762 ms, budget for symbolic execution: 762 ms, budget for concrete execution: 762 ms,  -- 
+13:38:02.224 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newPriorityBlockingQueue()1
+13:38:02.409 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newPriorityBlockingQueue()2
+13:38:02.410 | INFO  | Finished (in 0.191 sec): method com.google.common.collect.Queues.newPriorityBlockingQueue() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+13:38:02.428 | DEBUG |  ... 
+13:38:02.429 | INFO  | Started: method com.google.common.collect.Queues.newSynchronousQueue()
+13:38:02.429 | INFO  |  -- Remaining time budget: 13507 ms, #remaining_methods: 8, budget for method: 1688 ms, solver timeout: 844 ms, budget for symbolic execution: 844 ms, budget for concrete execution: 844 ms,  -- 
+13:38:02.434 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newSynchronousQueue()1
+13:38:02.479 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.newSynchronousQueue()2
+13:38:02.480 | INFO  | Finished (in 0.051 sec): method com.google.common.collect.Queues.newSynchronousQueue() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+13:38:02.486 | DEBUG |  ... 
+13:38:02.486 | INFO  | Started: method com.google.common.collect.Queues.drainUninterruptibly(BlockingQueue, Collection, int, long, TimeUnit)
+13:38:02.486 | INFO  |  -- Remaining time budget: 13449 ms, #remaining_methods: 7, budget for method: 1921 ms, solver timeout: 960 ms, budget for symbolic execution: 961 ms, budget for concrete execution: 960 ms,  -- 
+13:38:02.504 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class java.util.concurrent.TimeUnit with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+13:38:02.607 | ERROR | Symbolic execution FAILED
+java.lang.IllegalArgumentException: No targets for Invocation(instance=ObjectValue(typeStorage=java.util.concurrent.TimeUnit, addr=addr: (BVInt32 p4)), method=<java.util.concurrent.TimeUnit: long toNanos(long)>, parameters=[(long (BVLong64 p3))], generator=() -> kotlin.collections.List<com.huawei.utbot.engine.InvocationTarget>)
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.commonInvokePart(UtBotSymbolicEngine.kt:2417) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.virtualAndInterfaceInvoke(UtBotSymbolicEngine.kt:2289) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.invokeResult(UtBotSymbolicEngine.kt:2153) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseAssignStmt(UtBotSymbolicEngine.kt:884) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseStmt(UtBotSymbolicEngine.kt:604) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invokeSuspend(UtBotSymbolicEngine.kt:464) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1.invokeSuspend(Unknown Source) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+13:38:02.746 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.Queues.drainUninterruptibly(BlockingQueue, Collection, int, long, TimeUnit)1
+13:38:02.746 | INFO  | Finished (in 0.260 sec): method com.google.common.collect.Queues.drainUninterruptibly(BlockingQueue, Collection, int, long, TimeUnit) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 2 time(s) with 2 different exception(s)"
+13:38:02.747 | DEBUG |  ... 
+13:38:02.748 | INFO  | Started: method com.google.common.collect.Queues.drainUninterruptibly(BlockingQueue, Collection, int, Duration)
+13:38:02.748 | INFO  |  -- Remaining time budget: 13187 ms, #remaining_methods: 6, budget for method: 2197 ms, solver timeout: 1000 ms, budget for symbolic execution: 1099 ms, budget for concrete execution: 1098 ms,  -- 
+13:38:02.750 | ERROR | Finished (in 0.002 sec): method com.google.common.collect.Queues.drainUninterruptibly(BlockingQueue, Collection, int, Duration) :: EXCEPTION :: 
+<StatsForMethod> : SUSPICIOUS
+	#generatedTC=0
+	WITH NO EXCEPTIONS
+java.lang.IllegalStateException: No such drainUninterruptibly(Ljava/util/concurrent/BlockingQueue;Ljava/util/Collection;ILjava/time/Duration;)I found
+	at com.huawei.utbot.framework.plugin.api.UtBotTestCaseGenerator.graph(UtBotTestCaseGenerator.kt:274) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.framework.plugin.api.UtBotTestCaseGenerator.generateAsync(UtBotTestCaseGenerator.kt:158) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.framework.plugin.api.UtBotTestCaseGenerator.generateAsync$default(UtBotTestCaseGenerator.kt:305) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.contest.ContestKt$runGeneration$1$invokeSuspend$$inlined$bracket$lambda$1$1.invokeSuspend(Contest.kt:334) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+13:38:02.756 | INFO  | Started: Flushing tests for [Queues] on disk
+13:38:02.984 | INFO  | File size for QueuesTest: 36 KB
+13:38:02.985 | INFO  | Finished (in 0.229 sec): Flushing tests for [Queues] on disk 
+13:38:02.986 | INFO  | Finished (in 12.527 sec): class com.google.common.collect.Queues 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 23, 
+	#methods started symbolic exploration = 18
+	#methods with at least one TC = 17
+	#methods with exceptions = 1
+	#generated TC = 28
+	#coverage = null
+[READY]

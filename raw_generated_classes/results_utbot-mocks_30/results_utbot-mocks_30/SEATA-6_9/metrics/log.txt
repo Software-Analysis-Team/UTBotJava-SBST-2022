@@ -1,0 +1,82 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  SEATA-6
+
+>>> RUN NUMBER: 9
+
+>>> MODE: --only-compute-metrics
+
+
+### COMPUTING METRICS ###: io.seata.core.rpc.RpcContext
+
+---Compilation---
+Compiled 'io/seata/core/rpc/RpcContextTest.java'
+
+---Timing Information---
+
+---The tests are re-executed other four times to find the flaky ones---
+
+=== Run Jacoco for Coverage ===
+
+=== Run PIT ===
+Executing Mutation Analysis using 30 mutants 
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=toString, methodDesc=()Ljava/lang/String;], indexes=[40], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=47, lineNumber=347, description=mutated return of Object value for io/seata/core/rpc/RpcContext::toString to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getClientId, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=22, lineNumber=178, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getClientId to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=addResources, methodDesc=(Ljava/util/Set;)V], indexes=[13], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=44, lineNumber=330, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getTransactionServiceGroup, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=27, lineNumber=223, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getTransactionServiceGroup to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getResourceSets, methodDesc=()Ljava/util/Set;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=38, lineNumber=299, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getResourceSets to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=addResource, methodDesc=(Ljava/lang/String;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=40, lineNumber=317, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getChannel, methodDesc=()Lio/netty/channel/Channel;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=23, lineNumber=187, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getChannel to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=addResources, methodDesc=(Ljava/util/Set;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=42, lineNumber=329, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getVersion, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=31, lineNumber=259, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getVersion to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInClientChannels, methodDesc=(Ljava/util/concurrent/ConcurrentMap;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=10, lineNumber=102, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInIdentifiedChannels, methodDesc=(Ljava/util/concurrent/ConcurrentMap;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=13, lineNumber=116, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getClientRMHolderMap, methodDesc=()Ljava/util/concurrent/ConcurrentMap;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=20, lineNumber=159, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getClientRMHolderMap to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getClientRole, methodDesc=()Lio/seata/core/rpc/netty/NettyPoolKey$TransactionRole;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=29, lineNumber=241, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getClientRole to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInResourceManagerChannels, methodDesc=(Ljava/lang/String;Ljava/lang/Integer;)V], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=18, lineNumber=145, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=holdInResourceManagerChannels, methodDesc=(Ljava/lang/String;Ljava/util/concurrent/ConcurrentMap;)V], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=RpcContext.java, block=16, lineNumber=130, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getPortMap, methodDesc=(Ljava/lang/String;)Ljava/util/Map;], indexes=[8], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=21, lineNumber=169, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getPortMap to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.rpc.RpcContext, method=getApplicationId, methodDesc=()Ljava/lang/String;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=RpcContext.java, block=25, lineNumber=205, description=mutated return of Object value for io/seata/core/rpc/RpcContext::getApplicationId to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: SEATA-6
+	Class Under Test: io.seata.core.rpc.RpcContext
+	Run number: 9
+	Tool preparation time (ms): 7282
+	Tool test cases generation time (ms): 23241
+	Test cases execution time (ms): 2008
+	Test case number: 69
+	Uncompilable Test Classes: 0
+	Broken tests number: 3
+	Failing tests number: 0
+	Lines total: 85
+	Lines covered: 42
+	Lines coverage ratio (%): 49.411766
+	Conditions total: 32
+	Conditions covered: 11
+	Conditions coverage ratio (%): 34.375
+	Mutants total: 30
+	Mutants covered: 17
+	Mutants coverage ratio (%): 56.666668
+	Mutants killed: 17
+	Mutants killed ratio (%): 56.666668
+	Mutants alive: 13

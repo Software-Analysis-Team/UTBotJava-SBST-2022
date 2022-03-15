@@ -1,0 +1,21 @@
+N. of generated mutants 15
+N. of covered mutants 5
+N. of killed mutants 5
+N. of ignored mutants 0
+
+
+ --- Tests killing mutants --- 
+ Mutant: 0	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.compiler.jdt.JDTSnippetCompiler, method=build, methodDesc=(Lspoon/compiler/builder/JDTBuilder;)Z], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=JDTSnippetCompiler.java, block=2, lineNumber=52, description=negated conditional, testsInOrder=[]]
+Mutant: 1	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.compiler.jdt.JDTSnippetCompiler, method=<init>, methodDesc=(Lspoon/reflect/factory/Factory;Ljava/lang/String;)V], indexes=[31], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=JDTSnippetCompiler.java, block=0, lineNumber=42, description=removed call to spoon/support/compiler/jdt/JDTSnippetCompiler::addInputSource, testsInOrder=[]]
+Mutant: 2	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.compiler.jdt.JDTSnippetCompiler, method=report, methodDesc=(Lspoon/compiler/Environment;Lorg/eclipse/jdt/core/compiler/CategorizedProblem;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=JDTSnippetCompiler.java, block=14, lineNumber=83, description=negated conditional, testsInOrder=[]]
+Mutant: 3	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.compiler.jdt.JDTSnippetCompiler, method=build, methodDesc=(Lspoon/compiler/builder/JDTBuilder;)Z], indexes=[33], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=JDTSnippetCompiler.java, block=4, lineNumber=58, description=removed call to spoon/compiler/Environment::debugMessage, testsInOrder=[]]
+Mutant: 4	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.compiler.jdt.JDTSnippetCompiler, method=getSnippetCompilationUnit, methodDesc=()Lspoon/reflect/cu/CompilationUnit;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=JDTSnippetCompiler.java, block=17, lineNumber=92, description=mutated return of Object value for spoon/support/compiler/jdt/JDTSnippetCompiler::getSnippetCompilationUnit to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+
+
+ --- Mutants details--- 
+ Mutant: 0, killed by tests [(spoon.support.compiler.jdt.JDTSnippetCompilerTest),testGetSnippetCompilationUnit1)]
+Mutant: 1, killed by tests [(spoon.support.compiler.jdt.JDTSnippetCompilerTest),testGetSnippetCompilationUnit1)]
+Mutant: 2, killed by tests [(spoon.support.compiler.jdt.JDTSnippetCompilerTest),testGetSnippetCompilationUnit1)]
+Mutant: 3, killed by tests [(spoon.support.compiler.jdt.JDTSnippetCompilerTest),testGetSnippetCompilationUnit1)]
+Mutant: 4, killed by tests [(spoon.support.compiler.jdt.JDTSnippetCompilerTest),testGetSnippetCompilationUnit1)]
+

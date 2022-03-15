@@ -1,0 +1,52 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  SPOON-159
+
+>>> RUN NUMBER: 6
+
+>>> MODE: --only-compute-metrics
+
+
+### COMPUTING METRICS ###: spoon.reflect.visitor.ModelConsistencyChecker
+
+---Compilation---
+Compiled 'spoon/reflect/visitor/ModelConsistencyCheckerTest.java'
+
+---Timing Information---
+
+---The tests are re-executed other four times to find the flaky ones---
+
+=== Run Jacoco for Coverage ===
+
+=== Run PIT ===
+Executing Mutation Analysis using 16 mutants 
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.ModelConsistencyChecker, method=dumpStack, methodDesc=()V], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ModelConsistencyChecker.java, block=15, lineNumber=90, description=removed call to spoon/compiler/Environment::debugMessage, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.ModelConsistencyChecker, method=enter, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ModelConsistencyChecker.java, block=1, lineNumber=65, description=negated conditional, testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: SPOON-159
+	Class Under Test: spoon.reflect.visitor.ModelConsistencyChecker
+	Run number: 6
+	Tool preparation time (ms): 14552
+	Tool test cases generation time (ms): 21205
+	Test cases execution time (ms): 40820
+	Test case number: 16
+	Uncompilable Test Classes: 0
+	Broken tests number: 1
+	Failing tests number: 0
+	Lines total: 26
+	Lines covered: 12
+	Lines coverage ratio (%): 46.153847
+	Conditions total: 22
+	Conditions covered: 1
+	Conditions coverage ratio (%): 4.5454545
+	Mutants total: 16
+	Mutants covered: 2
+	Mutants coverage ratio (%): 12.5
+	Mutants killed: 2
+	Mutants killed ratio (%): 12.5
+	Mutants alive: 14

@@ -1,0 +1,157 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+18:20:07.824 | INFO  | Started: warmup: kotlin reflection :: init
+18:20:07.921 | INFO  | Finished (in 0.096 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.support.reflect.code.CtAssignmentImpl 120
+18:20:07.939 | DEBUG | -----------------------------------------------------------------------------
+18:20:07.940 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+18:20:07.943 | INFO  | ClassUnderTest[ FQN: spoon.support.reflect.code.CtAssignmentImpl
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: CtAssignmentImplTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/support/reflect/code/CtAssignmentImplTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+18:20:07.972 | INFO  | Started: class spoon.support.reflect.code.CtAssignmentImpl
+18:20:07.973 | INFO  | Started: preparation class class spoon.support.reflect.code.CtAssignmentImpl: kotlin reflection :: run
+18:20:08.598 | INFO  | Finished (in 0.625 sec): preparation class class spoon.support.reflect.code.CtAssignmentImpl: kotlin reflection :: run 
+18:20:08.599 | INFO  | Started: 2nd optional soot initialization
+18:20:08.601 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+18:20:08.611 | DEBUG |  ... 
+18:20:08.626 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.accept(CtVisitor)
+18:20:08.627 | INFO  |  -- Remaining time budget: 101328 ms, #remaining_methods: 13, budget for method: 7794 ms, solver timeout: 1000 ms, budget for symbolic execution: 6594 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:09.123 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.accept(CtVisitor)1
+18:20:10.102 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.accept(CtVisitor)2
+18:20:10.129 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.accept(CtVisitor)3
+18:20:10.130 | INFO  | Finished (in 1.504 sec): method spoon.support.reflect.code.CtAssignmentImpl.accept(CtVisitor) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:20:10.133 | DEBUG |  ... 
+18:20:10.133 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.clone()
+18:20:10.133 | INFO  |  -- Remaining time budget: 99808 ms, #remaining_methods: 12, budget for method: 8317 ms, solver timeout: 1000 ms, budget for symbolic execution: 7117 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:10.380 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.clone()1
+18:20:10.469 | INFO  | Finished (in 0.335 sec): method spoon.support.reflect.code.CtAssignmentImpl.clone() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+18:20:10.474 | DEBUG |  ... 
+18:20:10.475 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.setType(CtTypeReference)
+18:20:10.475 | INFO  |  -- Remaining time budget: 99466 ms, #remaining_methods: 11, budget for method: 9042 ms, solver timeout: 1000 ms, budget for symbolic execution: 7842 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:10.485 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setType(CtTypeReference)1
+18:20:11.414 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setType(CtTypeReference)2
+18:20:11.875 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setType(CtTypeReference)3
+18:20:13.070 | INFO  | Finished (in 2.595 sec): method spoon.support.reflect.code.CtAssignmentImpl.setType(CtTypeReference) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:20:13.145 | DEBUG |  ... 
+18:20:13.146 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.getType()
+18:20:13.146 | INFO  |  -- Remaining time budget: 96796 ms, #remaining_methods: 10, budget for method: 9679 ms, solver timeout: 1000 ms, budget for symbolic execution: 8479 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:13.154 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.getType()1
+18:20:13.186 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.getType()2
+18:20:13.186 | INFO  | Finished (in 0.040 sec): method spoon.support.reflect.code.CtAssignmentImpl.getType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:20:13.188 | DEBUG |  ... 
+18:20:13.189 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.S()
+18:20:13.189 | INFO  |  -- Remaining time budget: 96752 ms, #remaining_methods: 9, budget for method: 10750 ms, solver timeout: 1000 ms, budget for symbolic execution: 9550 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:13.197 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.S()1
+18:20:13.226 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.S()2
+18:20:13.226 | INFO  | Finished (in 0.037 sec): method spoon.support.reflect.code.CtAssignmentImpl.S() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:20:13.227 | DEBUG |  ... 
+18:20:13.227 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.getTypeCasts()
+18:20:13.228 | INFO  |  -- Remaining time budget: 96714 ms, #remaining_methods: 8, budget for method: 12089 ms, solver timeout: 1000 ms, budget for symbolic execution: 10889 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:13.234 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.getTypeCasts()1
+18:20:13.265 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.getTypeCasts()2
+18:20:13.265 | INFO  | Finished (in 0.038 sec): method spoon.support.reflect.code.CtAssignmentImpl.getTypeCasts() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:20:13.266 | DEBUG |  ... 
+18:20:13.267 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.setTypeCasts(List)
+18:20:13.267 | INFO  |  -- Remaining time budget: 96674 ms, #remaining_methods: 7, budget for method: 13810 ms, solver timeout: 1000 ms, budget for symbolic execution: 12610 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:13.273 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setTypeCasts(List)1
+18:20:13.401 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setTypeCasts(List)2
+18:20:16.487 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setTypeCasts(List)3
+18:20:16.747 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setTypeCasts(List)4
+18:20:17.677 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setTypeCasts(List)5
+18:20:19.918 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setTypeCasts(List)6
+18:20:21.990 | INFO  | Finished (in 8.722 sec): method spoon.support.reflect.code.CtAssignmentImpl.setTypeCasts(List) 
+<StatsForMethod> :
+	#generatedTC=6
+	WITH NO EXCEPTIONS
+18:20:22.171 | DEBUG |  ... 
+18:20:22.172 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.addTypeCast(CtTypeReference)
+18:20:22.172 | INFO  |  -- Remaining time budget: 87769 ms, #remaining_methods: 6, budget for method: 14628 ms, solver timeout: 1000 ms, budget for symbolic execution: 13428 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:22.179 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.addTypeCast(CtTypeReference)1
+18:20:22.334 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.addTypeCast(CtTypeReference)2
+18:20:22.424 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.addTypeCast(CtTypeReference)3
+18:20:22.522 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.addTypeCast(CtTypeReference)4
+18:20:22.860 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.addTypeCast(CtTypeReference)5
+18:20:23.062 | INFO  | Finished (in 0.889 sec): method spoon.support.reflect.code.CtAssignmentImpl.addTypeCast(CtTypeReference) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+18:20:23.102 | DEBUG |  ... 
+18:20:23.102 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.setAssignment(CtExpression)
+18:20:23.102 | INFO  |  -- Remaining time budget: 86839 ms, #remaining_methods: 5, budget for method: 17367 ms, solver timeout: 1000 ms, budget for symbolic execution: 16167 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:23.112 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setAssignment(CtExpression)1
+18:20:23.832 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setAssignment(CtExpression)2
+18:20:24.198 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setAssignment(CtExpression)3
+18:20:25.170 | INFO  | Finished (in 2.067 sec): method spoon.support.reflect.code.CtAssignmentImpl.setAssignment(CtExpression) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:20:25.239 | DEBUG |  ... 
+18:20:25.240 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.getAssignment()
+18:20:25.240 | INFO  |  -- Remaining time budget: 84702 ms, #remaining_methods: 4, budget for method: 21175 ms, solver timeout: 1000 ms, budget for symbolic execution: 19975 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:25.245 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.getAssignment()1
+18:20:25.271 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.getAssignment()2
+18:20:25.271 | INFO  | Finished (in 0.031 sec): method spoon.support.reflect.code.CtAssignmentImpl.getAssignment() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:20:25.272 | DEBUG |  ... 
+18:20:25.272 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.getAssigned()
+18:20:25.273 | INFO  |  -- Remaining time budget: 84669 ms, #remaining_methods: 3, budget for method: 28223 ms, solver timeout: 1000 ms, budget for symbolic execution: 27023 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:25.276 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.getAssigned()1
+18:20:25.302 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.getAssigned()2
+18:20:25.302 | INFO  | Finished (in 0.029 sec): method spoon.support.reflect.code.CtAssignmentImpl.getAssigned() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:20:25.303 | DEBUG |  ... 
+18:20:25.303 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.setAssigned(CtExpression)
+18:20:25.304 | INFO  |  -- Remaining time budget: 84638 ms, #remaining_methods: 2, budget for method: 42319 ms, solver timeout: 1000 ms, budget for symbolic execution: 41119 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:25.308 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setAssigned(CtExpression)1
+18:20:26.018 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setAssigned(CtExpression)2
+18:20:26.381 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.setAssigned(CtExpression)3
+18:20:27.352 | INFO  | Finished (in 2.048 sec): method spoon.support.reflect.code.CtAssignmentImpl.setAssigned(CtExpression) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:20:27.420 | DEBUG |  ... 
+18:20:27.420 | INFO  | Started: method spoon.support.reflect.code.CtAssignmentImpl.<init>()
+18:20:27.420 | INFO  |  -- Remaining time budget: 82521 ms, #remaining_methods: 1, budget for method: 82521 ms, solver timeout: 1000 ms, budget for symbolic execution: 81321 ms, budget for concrete execution: 1200 ms,  -- 
+18:20:27.425 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtAssignmentImpl.<init>()1
+18:20:27.501 | INFO  | Finished (in 0.080 sec): method spoon.support.reflect.code.CtAssignmentImpl.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+18:20:27.513 | INFO  | Started: Flushing tests for [CtAssignmentImpl] on disk
+18:20:27.947 | INFO  | File size for CtAssignmentImplTest: 28 KB
+18:20:27.949 | INFO  | Finished (in 0.436 sec): Flushing tests for [CtAssignmentImpl] on disk 
+18:20:27.950 | INFO  | Finished (in 19.977 sec): class spoon.support.reflect.code.CtAssignmentImpl 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 13, 
+	#methods started symbolic exploration = 13
+	#methods with at least one TC = 13
+	#methods with exceptions = 0
+	#generated TC = 35
+	#coverage = null
+[READY]

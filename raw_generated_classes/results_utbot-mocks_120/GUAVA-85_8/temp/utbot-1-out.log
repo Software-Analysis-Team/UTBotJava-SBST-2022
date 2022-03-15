@@ -1,0 +1,327 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+23:48:26.057 | INFO  | Started: warmup: kotlin reflection :: init
+23:48:26.131 | INFO  | Finished (in 0.073 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.base.CaseFormat 120
+23:48:26.142 | DEBUG | -----------------------------------------------------------------------------
+23:48:26.142 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+23:48:26.144 | INFO  | ClassUnderTest[ FQN: com.google.common.base.CaseFormat
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: CaseFormatTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/base/CaseFormatTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+23:48:26.167 | INFO  | Started: class com.google.common.base.CaseFormat
+23:48:26.169 | INFO  | Started: preparation class class com.google.common.base.CaseFormat: kotlin reflection :: run
+23:48:26.328 | INFO  | Finished (in 0.159 sec): preparation class class com.google.common.base.CaseFormat: kotlin reflection :: run 
+23:48:26.329 | INFO  | Started: 2nd optional soot initialization
+23:48:26.330 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+23:48:26.338 | DEBUG |  ... 
+23:48:26.356 | INFO  | Started: method com.google.common.base.CaseFormat.to(CaseFormat, String)
+23:48:26.357 | INFO  |  -- Remaining time budget: 101803 ms, #remaining_methods: 14, budget for method: 7271 ms, solver timeout: 1000 ms, budget for symbolic execution: 6071 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:26.670 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.InstantiationException: com.google.common.base.CaseFormat
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:48:27.315 | ERROR | Symbolic execution FAILED
+java.lang.IllegalArgumentException: No targets for Invocation(instance=ObjectValue(typeStorage=com.google.common.base.CaseFormat, addr=addr: (BVInt32 p_this)), method=<com.google.common.base.CaseFormat: java.lang.String convert(com.google.common.base.CaseFormat,java.lang.String)>, parameters=[ObjectValue(typeStorage=com.google.common.base.CaseFormat, addr=addr: (BVInt32 p0)), ObjectValue(typeStorage=java.lang.String, addr=addr: (BVInt32 p1), concrete=Concrete(value=com.huawei.utbot.engine.StringWrapper@20e141a8))], generator=() -> kotlin.collections.List<com.huawei.utbot.engine.InvocationTarget>)
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.commonInvokePart(UtBotSymbolicEngine.kt:2417) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.virtualAndInterfaceInvoke(UtBotSymbolicEngine.kt:2289) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.invokeResult(UtBotSymbolicEngine.kt:2153) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseAssignStmt(UtBotSymbolicEngine.kt:884) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine.traverseStmt(UtBotSymbolicEngine.kt:604) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invokeSuspend(UtBotSymbolicEngine.kt:464) [utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.engine.UtBotSymbolicEngine$traverse$1.invoke(UtBotSymbolicEngine.kt) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.SafeFlow.collectSafely(Builders.kt:61) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.AbstractFlow.collect(Flow.kt:212) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1$lambda$1.emit(Collect.kt:134) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1.collect(SafeCollector.common.kt:114) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.flow.FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1.invokeSuspend(Unknown Source) [utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:48:27.884 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.to(CaseFormat, String)1
+23:48:27.885 | INFO  | Finished (in 1.529 sec): method com.google.common.base.CaseFormat.to(CaseFormat, String) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 2 time(s) with 2 different exception(s)"
+23:48:27.887 | DEBUG |  ... 
+23:48:27.888 | INFO  | Started: method com.google.common.base.CaseFormat.convert(CaseFormat, String)
+23:48:27.888 | INFO  |  -- Remaining time budget: 100256 ms, #remaining_methods: 13, budget for method: 7712 ms, solver timeout: 1000 ms, budget for symbolic execution: 6512 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:27.895 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.InstantiationException: com.google.common.base.CaseFormat
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:48:27.997 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.convert(CaseFormat, String)1
+23:48:28.074 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.convert(CaseFormat, String)2
+23:48:28.861 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.convert(CaseFormat, String)3
+23:48:29.108 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.convert(CaseFormat, String)4
+23:48:29.306 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.convert(CaseFormat, String)5
+23:48:34.401 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.CaseFormat.convert(CaseFormat, String)
+23:48:35.602 | INFO  | (X) Cancelling concrete execution: com.google.common.base.CaseFormat.convert(CaseFormat, String)
+23:48:35.655 | INFO  | Finished (in 7.767 sec): method com.google.common.base.CaseFormat.convert(CaseFormat, String) 
+<StatsForMethod> :
+	#generatedTC=5
+	FAILED 1 time(s) with 1 different exception(s)"
+23:48:36.104 | DEBUG |  ... 
+23:48:36.105 | INFO  | Started: method com.google.common.base.CaseFormat.normalizeFirstWord(String)
+23:48:36.105 | INFO  |  -- Remaining time budget: 92038 ms, #remaining_methods: 12, budget for method: 7669 ms, solver timeout: 1000 ms, budget for symbolic execution: 6469 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:36.111 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.InstantiationException: com.google.common.base.CaseFormat
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:48:36.776 | INFO  | Finished (in 0.670 sec): method com.google.common.base.CaseFormat.normalizeFirstWord(String) 
+<StatsForMethod> :
+	#generatedTC=0
+	FAILED 1 time(s) with 1 different exception(s)"
+23:48:36.836 | DEBUG |  ... 
+23:48:36.837 | INFO  | Started: method com.google.common.base.CaseFormat.converterTo(CaseFormat)
+23:48:36.837 | INFO  |  -- Remaining time budget: 91306 ms, #remaining_methods: 11, budget for method: 8300 ms, solver timeout: 1000 ms, budget for symbolic execution: 7100 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:36.843 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.InstantiationException: com.google.common.base.CaseFormat
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:48:37.236 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.converterTo(CaseFormat)1
+23:48:37.237 | INFO  | Finished (in 0.399 sec): method com.google.common.base.CaseFormat.converterTo(CaseFormat) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+23:48:37.255 | DEBUG |  ... 
+23:48:37.256 | INFO  | Started: method com.google.common.base.CaseFormat.firstCharOnlyToUpper(String)
+23:48:37.256 | INFO  |  -- Remaining time budget: 90887 ms, #remaining_methods: 10, budget for method: 9088 ms, solver timeout: 1000 ms, budget for symbolic execution: 7888 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:37.268 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.firstCharOnlyToUpper(String)1
+23:48:37.305 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.firstCharOnlyToUpper(String)2
+23:48:37.431 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.firstCharOnlyToUpper(String)3
+23:48:38.897 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.firstCharOnlyToUpper(String)4
+23:48:39.374 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.firstCharOnlyToUpper(String)5
+23:48:39.378 | INFO  | Finished (in 2.122 sec): method com.google.common.base.CaseFormat.firstCharOnlyToUpper(String) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+23:48:39.543 | DEBUG |  ... 
+23:48:39.545 | INFO  | Started: method com.google.common.base.CaseFormat.valueOf(String)
+23:48:39.545 | INFO  |  -- Remaining time budget: 88599 ms, #remaining_methods: 9, budget for method: 9844 ms, solver timeout: 1000 ms, budget for symbolic execution: 8644 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:39.556 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.valueOf(String)1
+23:48:42.081 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.valueOf(String)2
+23:48:47.291 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.valueOf(String)3
+23:48:48.189 | INFO  | |> Starting concrete execution for remaining state: com.google.common.base.CaseFormat.valueOf(String)
+23:48:49.301 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.valueOf(String)4
+23:48:49.390 | INFO  | (X) Cancelling concrete execution: com.google.common.base.CaseFormat.valueOf(String)
+23:48:49.443 | INFO  | Finished (in 9.898 sec): method com.google.common.base.CaseFormat.valueOf(String) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+23:48:49.781 | DEBUG |  ... 
+23:48:49.781 | INFO  | Started: method com.google.common.base.CaseFormat.values()
+23:48:49.782 | INFO  |  -- Remaining time budget: 78362 ms, #remaining_methods: 8, budget for method: 9795 ms, solver timeout: 1000 ms, budget for symbolic execution: 8595 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:49.794 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.values()1
+23:48:50.438 | INFO  | Finished (in 0.657 sec): method com.google.common.base.CaseFormat.values() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+23:48:50.491 | DEBUG |  ... 
+23:48:50.492 | INFO  | Started: method com.google.common.base.CaseFormat.<init>(CharMatcher, String)
+23:48:50.492 | INFO  |  -- Remaining time budget: 77651 ms, #remaining_methods: 7, budget for method: 11093 ms, solver timeout: 1000 ms, budget for symbolic execution: 9893 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:50.502 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalArgumentException: Cannot reflectively create enum objects
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:417)
+	at com.huawei.utbot.instrumentation.instrumentation.InvokeInstrumentation$invoke$$inlined$run$lambda$2.invoke(InvokeInstrumentation.kt:70)
+	at com.huawei.utbot.common.ThreadBasedExecutor$invokeWithTimeout$1.invoke(ThreadUtil.kt:43)
+	at com.huawei.utbot.common.ThreadBasedExecutor$invokeWithTimeout$1.invoke(ThreadUtil.kt:22)
+	at kotlin.concurrent.ThreadsKt$thread$thread$1.run(Thread.kt:30)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:48:50.572 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.<init>(CharMatcher, String)1
+23:48:50.572 | INFO  | Finished (in 0.080 sec): method com.google.common.base.CaseFormat.<init>(CharMatcher, String) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+23:48:50.579 | DEBUG |  ... 
+23:48:50.580 | INFO  | Started: method com.google.common.base.CaseFormat.StringConverter.equals(Object)
+23:48:50.580 | INFO  |  -- Remaining time budget: 77564 ms, #remaining_methods: 6, budget for method: 12927 ms, solver timeout: 1000 ms, budget for symbolic execution: 11727 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:50.589 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.equals(Object)1
+23:48:50.782 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.equals(Object)2
+23:48:50.805 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.equals(Object)3
+23:48:50.885 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.equals(Object)4
+23:48:50.900 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.equals(Object)5
+23:48:50.901 | INFO  | Finished (in 0.321 sec): method com.google.common.base.CaseFormat.StringConverter.equals(Object) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+23:48:50.902 | DEBUG |  ... 
+23:48:50.903 | INFO  | Started: method com.google.common.base.CaseFormat.StringConverter.hashCode()
+23:48:50.903 | INFO  |  -- Remaining time budget: 77240 ms, #remaining_methods: 5, budget for method: 15448 ms, solver timeout: 1000 ms, budget for symbolic execution: 14248 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:50.910 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.hashCode()1
+23:48:50.937 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.hashCode()2
+23:48:50.937 | INFO  | Finished (in 0.034 sec): method com.google.common.base.CaseFormat.StringConverter.hashCode() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:48:50.938 | DEBUG |  ... 
+23:48:50.938 | INFO  | Started: method com.google.common.base.CaseFormat.StringConverter.toString()
+23:48:50.939 | INFO  |  -- Remaining time budget: 77205 ms, #remaining_methods: 4, budget for method: 19301 ms, solver timeout: 1000 ms, budget for symbolic execution: 18101 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:50.944 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.toString()1
+23:48:53.389 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.toString()2
+23:48:53.398 | INFO  | Finished (in 2.459 sec): method com.google.common.base.CaseFormat.StringConverter.toString() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:48:53.631 | DEBUG |  ... 
+23:48:53.631 | INFO  | Started: method com.google.common.base.CaseFormat.StringConverter.doBackward(String)
+23:48:53.632 | INFO  |  -- Remaining time budget: 74512 ms, #remaining_methods: 3, budget for method: 24837 ms, solver timeout: 1000 ms, budget for symbolic execution: 23637 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:53.637 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.doBackward(String)1
+23:48:53.666 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.doBackward(String)2
+23:48:53.667 | INFO  | Finished (in 0.035 sec): method com.google.common.base.CaseFormat.StringConverter.doBackward(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:48:53.668 | DEBUG |  ... 
+23:48:53.668 | INFO  | Started: method com.google.common.base.CaseFormat.StringConverter.doForward(String)
+23:48:53.668 | INFO  |  -- Remaining time budget: 74475 ms, #remaining_methods: 2, budget for method: 37237 ms, solver timeout: 1000 ms, budget for symbolic execution: 36037 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:53.673 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.doForward(String)1
+23:48:53.701 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.doForward(String)2
+23:48:53.701 | INFO  | Finished (in 0.033 sec): method com.google.common.base.CaseFormat.StringConverter.doForward(String) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:48:53.703 | DEBUG |  ... 
+23:48:53.703 | INFO  | Started: method com.google.common.base.CaseFormat.StringConverter.<init>(CaseFormat, CaseFormat)
+23:48:53.703 | INFO  |  -- Remaining time budget: 74440 ms, #remaining_methods: 1, budget for method: 74440 ms, solver timeout: 1000 ms, budget for symbolic execution: 73240 ms, budget for concrete execution: 1200 ms,  -- 
+23:48:53.707 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.InstantiationException: com.google.common.base.CaseFormat
+	at sun.misc.Unsafe.allocateInstance(Native Method)
+	at com.huawei.utbot.framework.util.EngineUtilsKt.getAnyInstance(EngineUtils.kt:61)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructObject(MockValueConstructor.kt:158)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:124)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+23:48:53.979 | DEBUG | --new testCase collected, to generate: testCom.google.common.base.CaseFormat.StringConverter.<init>(CaseFormat, CaseFormat)1
+23:48:53.980 | INFO  | Finished (in 0.276 sec): method com.google.common.base.CaseFormat.StringConverter.<init>(CaseFormat, CaseFormat) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+23:48:53.995 | INFO  | Started: Flushing tests for [CaseFormat] on disk
+23:48:54.242 | INFO  | File size for CaseFormatTest: 30 KB
+23:48:54.244 | INFO  | Finished (in 0.248 sec): Flushing tests for [CaseFormat] on disk 
+23:48:54.244 | INFO  | Finished (in 28.076 sec): class com.google.common.base.CaseFormat 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 14, 
+	#methods started symbolic exploration = 14
+	#methods with at least one TC = 13
+	#methods with exceptions = 6
+	#generated TC = 32
+	#coverage = null
+[READY]

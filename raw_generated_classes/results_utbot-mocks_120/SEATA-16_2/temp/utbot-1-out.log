@@ -1,0 +1,93 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/seata/core/target/classes, classpathString=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+17:48:42.367 | INFO  | Started: warmup: kotlin reflection :: init
+17:48:42.464 | INFO  | Finished (in 0.097 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] io.seata.core.store.StoreMode 120
+17:48:42.477 | DEBUG | -----------------------------------------------------------------------------
+17:48:42.478 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/seata/core/target/classes:/var/benchmarks/projects/seata/core/target/seata-core-0.5.0.jar:/var/benchmarks/projects/./seata/core/target/dependency/mockito-core-2.23.4.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-agent-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/assertj-core-2.6.0.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-common-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/byte-buddy-1.9.3.jar:/var/benchmarks/projects/seata/core/target/dependency/objenesis-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-discovery-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool2-2.4.2.jar:/var/benchmarks/projects/seata/core/target/dependency/junit-4.12.jar:/var/benchmarks/projects/seata/core/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/seata/core/target/dependency/slf4j-api-1.7.22.jar:/var/benchmarks/projects/seata/core/target/dependency/seata-config-core-0.5.0.jar:/var/benchmarks/projects/seata/core/target/dependency/netty-all-4.1.24.Final.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-lang-2.6.jar:/var/benchmarks/projects/seata/core/target/dependency/fastjson-1.2.48.jar:/var/benchmarks/projects/seata/core/target/dependency/config-1.2.1.jar:/var/benchmarks/projects/seata/core/target/dependency/commons-pool-1.6.jar, methodNameFilter=null
+17:48:42.480 | INFO  | ClassUnderTest[ FQN: io.seata.core.store.StoreMode
+    classfileDir: /var/benchmarks/projects/seata/core/target/classes
+    testClassSimpleName: StoreModeTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/io/seata/core/store/StoreModeTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+17:48:42.502 | INFO  | Started: class io.seata.core.store.StoreMode
+17:48:42.503 | INFO  | Started: preparation class class io.seata.core.store.StoreMode: kotlin reflection :: run
+17:48:42.601 | INFO  | Finished (in 0.098 sec): preparation class class io.seata.core.store.StoreMode: kotlin reflection :: run 
+17:48:42.602 | INFO  | Started: 2nd optional soot initialization
+17:48:42.603 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+17:48:42.611 | DEBUG |  ... 
+17:48:42.631 | INFO  | Started: method io.seata.core.store.StoreMode.valueof(String)
+17:48:42.632 | INFO  |  -- Remaining time budget: 101865 ms, #remaining_methods: 4, budget for method: 25466 ms, solver timeout: 1000 ms, budget for symbolic execution: 24266 ms, budget for concrete execution: 1200 ms,  -- 
+17:48:42.942 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.valueof(String)1
+17:48:46.049 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.valueof(String)2
+17:48:49.212 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.valueof(String)3
+17:48:49.240 | INFO  | Finished (in 6.608 sec): method io.seata.core.store.StoreMode.valueof(String) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+17:48:49.492 | DEBUG |  ... 
+17:48:49.492 | INFO  | Started: method io.seata.core.store.StoreMode.valueOf(String)
+17:48:49.493 | INFO  |  -- Remaining time budget: 94987 ms, #remaining_methods: 3, budget for method: 31662 ms, solver timeout: 1000 ms, budget for symbolic execution: 30462 ms, budget for concrete execution: 1200 ms,  -- 
+17:48:49.502 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.valueOf(String)1
+17:48:51.510 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.valueOf(String)2
+17:48:56.150 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.valueOf(String)3
+17:48:57.834 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.valueOf(String)4
+17:49:14.969 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.valueOf(String)5
+17:49:15.741 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.valueOf(String)6
+17:49:19.531 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.valueOf(String)7
+17:49:19.955 | INFO  | |> Starting concrete execution for remaining state: io.seata.core.store.StoreMode.valueOf(String)
+17:49:21.157 | INFO  | (X) Cancelling concrete execution: io.seata.core.store.StoreMode.valueOf(String)
+17:49:21.343 | INFO  | Finished (in 31.846 sec): method io.seata.core.store.StoreMode.valueOf(String) 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+17:49:21.357 | DEBUG |  ... 
+17:49:21.358 | INFO  | Started: method io.seata.core.store.StoreMode.values()
+17:49:21.358 | INFO  |  -- Remaining time budget: 63122 ms, #remaining_methods: 2, budget for method: 31561 ms, solver timeout: 1000 ms, budget for symbolic execution: 30361 ms, budget for concrete execution: 1200 ms,  -- 
+17:49:21.370 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.values()1
+17:49:21.564 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.values()2
+17:49:21.565 | INFO  | Finished (in 0.207 sec): method io.seata.core.store.StoreMode.values() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:49:21.586 | DEBUG |  ... 
+17:49:21.587 | INFO  | Started: method io.seata.core.store.StoreMode.<init>()
+17:49:21.588 | INFO  |  -- Remaining time budget: 62892 ms, #remaining_methods: 1, budget for method: 62892 ms, solver timeout: 1000 ms, budget for symbolic execution: 61692 ms, budget for concrete execution: 1200 ms,  -- 
+17:49:21.607 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalArgumentException: Cannot reflectively create enum objects
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:417)
+	at com.huawei.utbot.instrumentation.instrumentation.InvokeInstrumentation$invoke$$inlined$run$lambda$2.invoke(InvokeInstrumentation.kt:70)
+	at com.huawei.utbot.common.ThreadBasedExecutor$invokeWithTimeout$1.invoke(ThreadUtil.kt:43)
+	at com.huawei.utbot.common.ThreadBasedExecutor$invokeWithTimeout$1.invoke(ThreadUtil.kt:22)
+	at kotlin.concurrent.ThreadsKt$thread$thread$1.run(Thread.kt:30)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+17:49:21.678 | DEBUG | --new testCase collected, to generate: testIo.seata.core.store.StoreMode.<init>()1
+17:49:21.679 | INFO  | Finished (in 0.091 sec): method io.seata.core.store.StoreMode.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+17:49:21.687 | INFO  | Started: Flushing tests for [StoreMode] on disk
+17:49:21.822 | INFO  | File size for StoreModeTest: 9 KB
+17:49:21.824 | INFO  | Finished (in 0.136 sec): Flushing tests for [StoreMode] on disk 
+17:49:21.825 | INFO  | Finished (in 39.322 sec): class io.seata.core.store.StoreMode 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 4, 
+	#methods started symbolic exploration = 4
+	#methods with at least one TC = 4
+	#methods with exceptions = 1
+	#generated TC = 13
+	#coverage = null
+[READY]

@@ -1,0 +1,50 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  FASTJSON-25
+
+>>> RUN NUMBER: 7
+
+>>> MODE: --only-compute-metrics
+
+
+### COMPUTING METRICS ###: com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer
+
+---Compilation---
+Compiled 'com/alibaba/fastjson/parser/deserializer/ResolveFieldDeserializerTest.java'
+
+---Timing Information---
+
+---The tests are re-executed other four times to find the flaky ones---
+
+=== Run Jacoco for Coverage ===
+
+=== Run PIT ===
+Executing Mutation Analysis using 8 mutants 
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer, method=setValue, methodDesc=(Ljava/lang/Object;Ljava/lang/Object;)V], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ResolveFieldDeserializer.java, block=3, lineNumber=65, description=negated conditional, testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: FASTJSON-25
+	Class Under Test: com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer
+	Run number: 7
+	Tool preparation time (ms): 11674
+	Tool test cases generation time (ms): 29154
+	Test cases execution time (ms): 153
+	Test case number: 7
+	Uncompilable Test Classes: 0
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 43
+	Lines covered: 28
+	Lines coverage ratio (%): 65.11628
+	Conditions total: 12
+	Conditions covered: 1
+	Conditions coverage ratio (%): 8.333334
+	Mutants total: 8
+	Mutants covered: 1
+	Mutants coverage ratio (%): 12.5
+	Mutants killed: 1
+	Mutants killed ratio (%): 12.5
+	Mutants alive: 7

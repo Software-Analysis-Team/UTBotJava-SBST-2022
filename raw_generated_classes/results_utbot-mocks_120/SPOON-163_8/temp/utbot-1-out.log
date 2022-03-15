@@ -1,0 +1,161 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+23:38:46.648 | INFO  | Started: warmup: kotlin reflection :: init
+23:38:46.739 | INFO  | Finished (in 0.090 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.pattern.internal.node.MapEntryNode 120
+23:38:46.756 | DEBUG | -----------------------------------------------------------------------------
+23:38:46.757 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+23:38:46.759 | INFO  | ClassUnderTest[ FQN: spoon.pattern.internal.node.MapEntryNode
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: MapEntryNodeTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/pattern/internal/node/MapEntryNodeTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+23:38:46.789 | INFO  | Started: class spoon.pattern.internal.node.MapEntryNode
+23:38:46.790 | INFO  | Started: preparation class class spoon.pattern.internal.node.MapEntryNode: kotlin reflection :: run
+23:38:46.937 | INFO  | Finished (in 0.146 sec): preparation class class spoon.pattern.internal.node.MapEntryNode: kotlin reflection :: run 
+23:38:46.938 | INFO  | Started: 2nd optional soot initialization
+23:38:46.939 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+23:38:46.948 | DEBUG |  ... 
+23:38:46.963 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.replaceNode(RootNode, RootNode)
+23:38:46.964 | INFO  |  -- Remaining time budget: 101807 ms, #remaining_methods: 13, budget for method: 7831 ms, solver timeout: 1000 ms, budget for symbolic execution: 6631 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:47.299 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.replaceNode(RootNode, RootNode)1
+23:38:47.556 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.replaceNode(RootNode, RootNode)2
+23:38:47.592 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.replaceNode(RootNode, RootNode)3
+23:38:47.650 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.replaceNode(RootNode, RootNode)4
+23:38:47.663 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.replaceNode(RootNode, RootNode)5
+23:38:47.710 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.replaceNode(RootNode, RootNode)6
+23:38:47.738 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.replaceNode(RootNode, RootNode)7
+23:38:47.767 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.replaceNode(RootNode, RootNode)8
+23:38:47.769 | INFO  | Finished (in 0.805 sec): method spoon.pattern.internal.node.MapEntryNode.replaceNode(RootNode, RootNode) 
+<StatsForMethod> :
+	#generatedTC=8
+	WITH NO EXCEPTIONS
+23:38:47.773 | DEBUG |  ... 
+23:38:47.773 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.forEachParameterInfo(BiConsumer)
+23:38:47.774 | INFO  |  -- Remaining time budget: 100985 ms, #remaining_methods: 12, budget for method: 8415 ms, solver timeout: 1000 ms, budget for symbolic execution: 7215 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:47.789 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.forEachParameterInfo(BiConsumer)1
+23:38:47.839 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.forEachParameterInfo(BiConsumer)2
+23:38:47.871 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.forEachParameterInfo(BiConsumer)3
+23:38:47.898 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.forEachParameterInfo(BiConsumer)4
+23:38:47.898 | INFO  | Finished (in 0.124 sec): method spoon.pattern.internal.node.MapEntryNode.forEachParameterInfo(BiConsumer) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+23:38:47.899 | DEBUG |  ... 
+23:38:47.900 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.generateTargets(DefaultGenerator, ResultHolder, ImmutableMap)
+23:38:47.900 | INFO  |  -- Remaining time budget: 100859 ms, #remaining_methods: 11, budget for method: 9169 ms, solver timeout: 1000 ms, budget for symbolic execution: 7969 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:47.916 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.generateTargets(DefaultGenerator, ResultHolder, ImmutableMap)1
+23:38:48.213 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.generateTargets(DefaultGenerator, ResultHolder, ImmutableMap)2
+23:38:49.448 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.generateTargets(DefaultGenerator, ResultHolder, ImmutableMap)3
+23:38:49.919 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.generateTargets(DefaultGenerator, ResultHolder, ImmutableMap)4
+23:38:50.646 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.generateTargets(DefaultGenerator, ResultHolder, ImmutableMap)5
+23:38:50.956 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.generateTargets(DefaultGenerator, ResultHolder, ImmutableMap)6
+23:38:53.909 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.generateTargets(DefaultGenerator, ResultHolder, ImmutableMap)7
+23:38:53.932 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.generateTargets(DefaultGenerator, ResultHolder, ImmutableMap)8
+23:38:53.933 | INFO  | Finished (in 6.033 sec): method spoon.pattern.internal.node.MapEntryNode.generateTargets(DefaultGenerator, ResultHolder, ImmutableMap) 
+<StatsForMethod> :
+	#generatedTC=8
+	WITH NO EXCEPTIONS
+23:38:53.960 | DEBUG |  ... 
+23:38:53.961 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.isTryNextMatch(ImmutableMap)
+23:38:53.961 | INFO  |  -- Remaining time budget: 94797 ms, #remaining_methods: 10, budget for method: 9479 ms, solver timeout: 1000 ms, budget for symbolic execution: 8279 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:53.970 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.isTryNextMatch(ImmutableMap)1
+23:38:54.009 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.isTryNextMatch(ImmutableMap)2
+23:38:54.009 | INFO  | Finished (in 0.048 sec): method spoon.pattern.internal.node.MapEntryNode.isTryNextMatch(ImmutableMap) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:38:54.011 | DEBUG |  ... 
+23:38:54.011 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.getMatchingStrategy()
+23:38:54.012 | INFO  |  -- Remaining time budget: 94747 ms, #remaining_methods: 9, budget for method: 10527 ms, solver timeout: 1000 ms, budget for symbolic execution: 9327 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:54.026 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.getMatchingStrategy()1
+23:38:54.141 | INFO  | Finished (in 0.130 sec): method spoon.pattern.internal.node.MapEntryNode.getMatchingStrategy() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+23:38:54.150 | DEBUG |  ... 
+23:38:54.151 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.matchTarget(Object, ImmutableMap)
+23:38:54.151 | INFO  |  -- Remaining time budget: 94607 ms, #remaining_methods: 8, budget for method: 11825 ms, solver timeout: 1000 ms, budget for symbolic execution: 10625 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:54.160 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.matchTarget(Object, ImmutableMap)1
+23:38:54.739 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.matchTarget(Object, ImmutableMap)2
+23:38:55.412 | INFO  | Finished (in 1.260 sec): method spoon.pattern.internal.node.MapEntryNode.matchTarget(Object, ImmutableMap) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:38:55.446 | DEBUG |  ... 
+23:38:55.446 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.getValue()
+23:38:55.446 | INFO  |  -- Remaining time budget: 93312 ms, #remaining_methods: 7, budget for method: 13330 ms, solver timeout: 1000 ms, budget for symbolic execution: 12130 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:55.451 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.getValue()1
+23:38:55.484 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.getValue()2
+23:38:55.485 | INFO  | Finished (in 0.038 sec): method spoon.pattern.internal.node.MapEntryNode.getValue() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:38:55.485 | DEBUG |  ... 
+23:38:55.485 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.getKey()
+23:38:55.486 | INFO  |  -- Remaining time budget: 93273 ms, #remaining_methods: 6, budget for method: 15545 ms, solver timeout: 1000 ms, budget for symbolic execution: 14345 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:55.491 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.getKey()1
+23:38:55.519 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.getKey()2
+23:38:55.520 | INFO  | Finished (in 0.034 sec): method spoon.pattern.internal.node.MapEntryNode.getKey() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:38:55.521 | DEBUG |  ... 
+23:38:55.521 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.<init>(RootNode, RootNode)
+23:38:55.521 | INFO  |  -- Remaining time budget: 93237 ms, #remaining_methods: 5, budget for method: 18647 ms, solver timeout: 1000 ms, budget for symbolic execution: 17447 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:55.528 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.<init>(RootNode, RootNode)1
+23:38:55.585 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.<init>(RootNode, RootNode)2
+23:38:55.585 | INFO  | Finished (in 0.064 sec): method spoon.pattern.internal.node.MapEntryNode.<init>(RootNode, RootNode) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:38:55.589 | DEBUG |  ... 
+23:38:55.590 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.Entry.setValue(CtElement)
+23:38:55.590 | INFO  |  -- Remaining time budget: 93169 ms, #remaining_methods: 4, budget for method: 23292 ms, solver timeout: 1000 ms, budget for symbolic execution: 22092 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:55.596 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.Entry.setValue(CtElement)1
+23:38:55.627 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.Entry.setValue(CtElement)2
+23:38:55.627 | INFO  | Finished (in 0.037 sec): method spoon.pattern.internal.node.MapEntryNode.Entry.setValue(CtElement) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:38:55.628 | DEBUG |  ... 
+23:38:55.629 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.Entry.key()
+23:38:55.629 | INFO  |  -- Remaining time budget: 93130 ms, #remaining_methods: 3, budget for method: 31043 ms, solver timeout: 1000 ms, budget for symbolic execution: 29843 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:55.632 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.Entry.key()1
+23:38:55.663 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.Entry.key()2
+23:38:55.663 | INFO  | Finished (in 0.034 sec): method spoon.pattern.internal.node.MapEntryNode.Entry.key() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:38:55.664 | DEBUG |  ... 
+23:38:55.664 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.Entry.value()
+23:38:55.665 | INFO  |  -- Remaining time budget: 93094 ms, #remaining_methods: 2, budget for method: 46547 ms, solver timeout: 1000 ms, budget for symbolic execution: 45347 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:55.668 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.Entry.value()1
+23:38:55.696 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.Entry.value()2
+23:38:55.697 | INFO  | Finished (in 0.032 sec): method spoon.pattern.internal.node.MapEntryNode.Entry.value() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:38:55.697 | DEBUG |  ... 
+23:38:55.698 | INFO  | Started: method spoon.pattern.internal.node.MapEntryNode.Entry.<init>(String, CtElement)
+23:38:55.698 | INFO  |  -- Remaining time budget: 93060 ms, #remaining_methods: 1, budget for method: 93060 ms, solver timeout: 1000 ms, budget for symbolic execution: 91860 ms, budget for concrete execution: 1200 ms,  -- 
+23:38:55.713 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.Entry.<init>(String, CtElement)1
+23:38:55.762 | DEBUG | --new testCase collected, to generate: testSpoon.pattern.internal.node.MapEntryNode.Entry.<init>(String, CtElement)2
+23:38:55.762 | INFO  | Finished (in 0.064 sec): method spoon.pattern.internal.node.MapEntryNode.Entry.<init>(String, CtElement) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+23:38:55.770 | INFO  | Started: Flushing tests for [MapEntryNode] on disk
+23:38:56.151 | INFO  | File size for MapEntryNodeTest: 29 KB
+23:38:56.154 | INFO  | Finished (in 0.384 sec): Flushing tests for [MapEntryNode] on disk 
+23:38:56.154 | INFO  | Finished (in 9.364 sec): class spoon.pattern.internal.node.MapEntryNode 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 13, 
+	#methods started symbolic exploration = 13
+	#methods with at least one TC = 13
+	#methods with exceptions = 0
+	#generated TC = 39
+	#coverage = null
+[READY]

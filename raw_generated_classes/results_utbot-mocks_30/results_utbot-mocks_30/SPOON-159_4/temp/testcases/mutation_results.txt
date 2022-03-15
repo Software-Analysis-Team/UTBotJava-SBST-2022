@@ -1,0 +1,15 @@
+N. of generated mutants 16
+N. of covered mutants 2
+N. of killed mutants 2
+N. of ignored mutants 0
+
+
+ --- Tests killing mutants --- 
+ Mutant: 0	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.ModelConsistencyChecker, method=dumpStack, methodDesc=()V], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=ModelConsistencyChecker.java, block=15, lineNumber=90, description=removed call to spoon/compiler/Environment::debugMessage, testsInOrder=[]]
+Mutant: 1	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.ModelConsistencyChecker, method=enter, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=ModelConsistencyChecker.java, block=1, lineNumber=65, description=negated conditional, testsInOrder=[]]
+
+
+ --- Mutants details--- 
+ Mutant: 0, killed by tests [(spoon.reflect.visitor.ModelConsistencyCheckerTest),testExit4)]
+Mutant: 1, killed by tests [(spoon.reflect.visitor.ModelConsistencyCheckerTest),testExit4)]
+

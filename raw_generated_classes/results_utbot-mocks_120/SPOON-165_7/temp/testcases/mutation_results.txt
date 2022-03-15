@@ -1,0 +1,23 @@
+N. of generated mutants 6
+N. of covered mutants 6
+N. of killed mutants 6
+N. of ignored mutants 0
+
+
+ --- Tests killing mutants --- 
+ Mutant: 0	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=scan, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=AstParentConsistencyChecker.java, block=4, lineNumber=30, description=negated conditional, testsInOrder=[]]
+Mutant: 1	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=scan, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[70], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=AstParentConsistencyChecker.java, block=7, lineNumber=38, description=removed call to spoon/reflect/visitor/CtScanner::scan, testsInOrder=[]]
+Mutant: 2	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=toDebugString, methodDesc=(Lspoon/reflect/declaration/CtElement;)Ljava/lang/String;], indexes=[28], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=AstParentConsistencyChecker.java, block=8, lineNumber=43, description=mutated return of Object value for spoon/reflect/visitor/AstParentConsistencyChecker::toDebugString to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+Mutant: 3	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=scan, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[4], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=AstParentConsistencyChecker.java, block=1, lineNumber=26, description=negated conditional, testsInOrder=[]]
+Mutant: 4	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=scan, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[25], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=AstParentConsistencyChecker.java, block=5, lineNumber=31, description=negated conditional, testsInOrder=[]]
+Mutant: 5	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=scan, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[13], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=AstParentConsistencyChecker.java, block=3, lineNumber=29, description=negated conditional, testsInOrder=[]]
+
+
+ --- Mutants details--- 
+ Mutant: 0, killed by tests [(spoon.reflect.visitor.AstParentConsistencyCheckerTest),testScan1)]
+Mutant: 1, killed by tests [(spoon.reflect.visitor.AstParentConsistencyCheckerTest),testScan1)]
+Mutant: 2, killed by tests [(spoon.reflect.visitor.AstParentConsistencyCheckerTest),testScan1)]
+Mutant: 3, killed by tests [(spoon.reflect.visitor.AstParentConsistencyCheckerTest),testScan1)]
+Mutant: 4, killed by tests [(spoon.reflect.visitor.AstParentConsistencyCheckerTest),testScan1)]
+Mutant: 5, killed by tests [(spoon.reflect.visitor.AstParentConsistencyCheckerTest),testScan1)]
+

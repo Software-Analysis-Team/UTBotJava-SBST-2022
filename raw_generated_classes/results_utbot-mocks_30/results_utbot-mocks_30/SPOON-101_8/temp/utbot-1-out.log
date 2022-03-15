@@ -1,0 +1,273 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+18:26:12.017 | INFO  | Started: warmup: kotlin reflection :: init
+18:26:12.110 | INFO  | Finished (in 0.092 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.reflect.visitor.PrintingContext 30
+18:26:12.123 | DEBUG | -----------------------------------------------------------------------------
+18:26:12.123 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+18:26:12.129 | INFO  | ClassUnderTest[ FQN: spoon.reflect.visitor.PrintingContext
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: PrintingContextTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/reflect/visitor/PrintingContextTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+18:26:12.161 | INFO  | Started: class spoon.reflect.visitor.PrintingContext
+18:26:12.162 | INFO  | Started: preparation class class spoon.reflect.visitor.PrintingContext: kotlin reflection :: run
+18:26:12.218 | INFO  | Finished (in 0.055 sec): preparation class class spoon.reflect.visitor.PrintingContext: kotlin reflection :: run 
+18:26:12.218 | INFO  | Started: 2nd optional soot initialization
+18:26:12.219 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+18:26:12.228 | DEBUG |  ... 
+18:26:12.238 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.toString()
+18:26:12.240 | INFO  |  -- Remaining time budget: 25394 ms, #remaining_methods: 23, budget for method: 1104 ms, solver timeout: 552 ms, budget for symbolic execution: 552 ms, budget for concrete execution: 552 ms,  -- 
+18:26:12.578 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.toString()1
+18:26:12.789 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.PrintingContext.toString()
+18:26:13.342 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.PrintingContext.toString()
+18:26:13.345 | INFO  | Finished (in 1.106 sec): method spoon.reflect.visitor.PrintingContext.toString() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+18:26:13.369 | DEBUG |  ... 
+18:26:13.370 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.skipArray()
+18:26:13.370 | INFO  |  -- Remaining time budget: 24255 ms, #remaining_methods: 22, budget for method: 1102 ms, solver timeout: 551 ms, budget for symbolic execution: 551 ms, budget for concrete execution: 551 ms,  -- 
+18:26:13.380 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.skipArray()1
+18:26:13.443 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.skipArray()2
+18:26:13.449 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.skipArray()3
+18:26:13.449 | INFO  | Finished (in 0.079 sec): method spoon.reflect.visitor.PrintingContext.skipArray() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:13.450 | DEBUG |  ... 
+18:26:13.451 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.ignoreEnclosingClass()
+18:26:13.451 | INFO  |  -- Remaining time budget: 24173 ms, #remaining_methods: 21, budget for method: 1151 ms, solver timeout: 575 ms, budget for symbolic execution: 576 ms, budget for concrete execution: 575 ms,  -- 
+18:26:13.461 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreEnclosingClass()1
+18:26:13.520 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreEnclosingClass()2
+18:26:13.527 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreEnclosingClass()3
+18:26:13.528 | INFO  | Finished (in 0.077 sec): method spoon.reflect.visitor.PrintingContext.ignoreEnclosingClass() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:13.529 | DEBUG |  ... 
+18:26:13.530 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.ignoreStaticAccess()
+18:26:13.530 | INFO  |  -- Remaining time budget: 24095 ms, #remaining_methods: 20, budget for method: 1204 ms, solver timeout: 602 ms, budget for symbolic execution: 602 ms, budget for concrete execution: 602 ms,  -- 
+18:26:13.540 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreStaticAccess()1
+18:26:13.587 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreStaticAccess()2
+18:26:13.594 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreStaticAccess()3
+18:26:13.594 | INFO  | Finished (in 0.064 sec): method spoon.reflect.visitor.PrintingContext.ignoreStaticAccess() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:13.595 | DEBUG |  ... 
+18:26:13.596 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.getCurrentTypeContext()
+18:26:13.596 | INFO  |  -- Remaining time budget: 24029 ms, #remaining_methods: 19, budget for method: 1264 ms, solver timeout: 632 ms, budget for symbolic execution: 632 ms, budget for concrete execution: 632 ms,  -- 
+18:26:13.605 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()1
+18:26:13.640 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()2
+18:26:14.228 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.PrintingContext.getCurrentTypeContext()
+18:26:14.720 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()3
+18:26:14.778 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeContext()4
+18:26:14.861 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.PrintingContext.getCurrentTypeContext()
+18:26:14.887 | INFO  | Finished (in 1.291 sec): method spoon.reflect.visitor.PrintingContext.getCurrentTypeContext() 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:26:14.902 | DEBUG |  ... 
+18:26:14.903 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType)
+18:26:14.903 | INFO  |  -- Remaining time budget: 22722 ms, #remaining_methods: 18, budget for method: 1262 ms, solver timeout: 631 ms, budget for symbolic execution: 631 ms, budget for concrete execution: 631 ms,  -- 
+18:26:14.918 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType)1
+18:26:15.534 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType)
+18:26:16.166 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType)
+18:26:16.410 | INFO  | Finished (in 1.507 sec): method spoon.reflect.visitor.PrintingContext.pushCurrentThis(CtType) 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+18:26:16.430 | DEBUG |  ... 
+18:26:16.430 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.popCurrentThis()
+18:26:16.430 | INFO  |  -- Remaining time budget: 21194 ms, #remaining_methods: 17, budget for method: 1246 ms, solver timeout: 623 ms, budget for symbolic execution: 623 ms, budget for concrete execution: 623 ms,  -- 
+18:26:16.438 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.popCurrentThis()1
+18:26:16.475 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.popCurrentThis()2
+18:26:17.054 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.PrintingContext.popCurrentThis()
+18:26:17.055 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.popCurrentThis()3
+18:26:17.121 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.popCurrentThis()4
+18:26:17.678 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.PrintingContext.popCurrentThis()
+18:26:17.815 | INFO  | Finished (in 1.384 sec): method spoon.reflect.visitor.PrintingContext.popCurrentThis() 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+18:26:17.831 | DEBUG |  ... 
+18:26:17.832 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)
+18:26:17.832 | INFO  |  -- Remaining time budget: 19792 ms, #remaining_methods: 16, budget for method: 1237 ms, solver timeout: 618 ms, budget for symbolic execution: 619 ms, budget for concrete execution: 618 ms,  -- 
+18:26:17.839 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)1
+18:26:18.061 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)2
+18:26:18.129 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)3
+18:26:18.152 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)4
+18:26:18.451 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)
+18:26:18.543 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)5
+18:26:19.383 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference)
+18:26:19.411 | INFO  | Finished (in 1.579 sec): method spoon.reflect.visitor.PrintingContext.isInCurrentScope(CtTypeReference) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+18:26:19.433 | DEBUG |  ... 
+18:26:19.434 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.noTypeDecl()
+18:26:19.434 | INFO  |  -- Remaining time budget: 18190 ms, #remaining_methods: 15, budget for method: 1212 ms, solver timeout: 606 ms, budget for symbolic execution: 606 ms, budget for concrete execution: 606 ms,  -- 
+18:26:19.440 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.noTypeDecl()1
+18:26:19.486 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.noTypeDecl()2
+18:26:19.491 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.noTypeDecl()3
+18:26:19.492 | INFO  | Finished (in 0.057 sec): method spoon.reflect.visitor.PrintingContext.noTypeDecl() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:19.493 | DEBUG |  ... 
+18:26:19.493 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.ignoreGenerics()
+18:26:19.493 | INFO  |  -- Remaining time budget: 18131 ms, #remaining_methods: 14, budget for method: 1295 ms, solver timeout: 647 ms, budget for symbolic execution: 648 ms, budget for concrete execution: 647 ms,  -- 
+18:26:19.499 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreGenerics()1
+18:26:19.543 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreGenerics()2
+18:26:19.547 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.ignoreGenerics()3
+18:26:19.548 | INFO  | Finished (in 0.055 sec): method spoon.reflect.visitor.PrintingContext.ignoreGenerics() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:19.549 | DEBUG |  ... 
+18:26:19.549 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.forceWildcardGenerics()
+18:26:19.549 | INFO  |  -- Remaining time budget: 18075 ms, #remaining_methods: 13, budget for method: 1390 ms, solver timeout: 695 ms, budget for symbolic execution: 695 ms, budget for concrete execution: 695 ms,  -- 
+18:26:19.555 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.forceWildcardGenerics()1
+18:26:19.599 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.forceWildcardGenerics()2
+18:26:19.604 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.forceWildcardGenerics()3
+18:26:19.604 | INFO  | Finished (in 0.054 sec): method spoon.reflect.visitor.PrintingContext.forceWildcardGenerics() 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:19.605 | DEBUG |  ... 
+18:26:19.605 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.modify()
+18:26:19.605 | INFO  |  -- Remaining time budget: 18019 ms, #remaining_methods: 12, budget for method: 1501 ms, solver timeout: 750 ms, budget for symbolic execution: 751 ms, budget for concrete execution: 750 ms,  -- 
+18:26:19.610 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.modify()1
+18:26:19.643 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.modify()2
+18:26:19.643 | INFO  | Finished (in 0.038 sec): method spoon.reflect.visitor.PrintingContext.modify() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:26:19.647 | DEBUG |  ... 
+18:26:19.647 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.getCurrentTypeReference()
+18:26:19.648 | INFO  |  -- Remaining time budget: 17977 ms, #remaining_methods: 11, budget for method: 1634 ms, solver timeout: 817 ms, budget for symbolic execution: 817 ms, budget for concrete execution: 817 ms,  -- 
+18:26:19.652 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()1
+18:26:19.679 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()2
+18:26:19.779 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()3
+18:26:20.204 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()4
+18:26:20.234 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()5
+18:26:20.412 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()6
+18:26:20.465 | INFO  | |> Starting concrete execution for remaining state: spoon.reflect.visitor.PrintingContext.getCurrentTypeReference()
+18:26:20.726 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.getCurrentTypeReference()7
+18:26:21.282 | INFO  | (X) Cancelling concrete execution: spoon.reflect.visitor.PrintingContext.getCurrentTypeReference()
+18:26:21.350 | INFO  | Finished (in 1.702 sec): method spoon.reflect.visitor.PrintingContext.getCurrentTypeReference() 
+<StatsForMethod> :
+	#generatedTC=7
+	WITH NO EXCEPTIONS
+18:26:21.380 | DEBUG |  ... 
+18:26:21.381 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.<init>()
+18:26:21.381 | INFO  |  -- Remaining time budget: 16244 ms, #remaining_methods: 10, budget for method: 1624 ms, solver timeout: 812 ms, budget for symbolic execution: 812 ms, budget for concrete execution: 812 ms,  -- 
+18:26:21.387 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.<init>()1
+18:26:21.600 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.<init>()2
+18:26:21.600 | INFO  | Finished (in 0.219 sec): method spoon.reflect.visitor.PrintingContext.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:26:21.617 | DEBUG |  ... 
+18:26:21.618 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.close()
+18:26:21.618 | INFO  |  -- Remaining time budget: 16006 ms, #remaining_methods: 9, budget for method: 1778 ms, solver timeout: 889 ms, budget for symbolic execution: 889 ms, budget for concrete execution: 889 ms,  -- 
+18:26:21.622 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.close()1
+18:26:21.651 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.close()2
+18:26:21.652 | INFO  | Finished (in 0.034 sec): method spoon.reflect.visitor.PrintingContext.Writable.close() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:26:21.653 | DEBUG |  ... 
+18:26:21.653 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.setState(long, boolean)
+18:26:21.653 | INFO  |  -- Remaining time budget: 15971 ms, #remaining_methods: 8, budget for method: 1996 ms, solver timeout: 998 ms, budget for symbolic execution: 998 ms, budget for concrete execution: 998 ms,  -- 
+18:26:21.658 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.setState(long, boolean)1
+18:26:21.713 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.setState(long, boolean)2
+18:26:21.722 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.setState(long, boolean)3
+18:26:21.722 | INFO  | Finished (in 0.069 sec): method spoon.reflect.visitor.PrintingContext.Writable.setState(long, boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:21.724 | DEBUG |  ... 
+18:26:21.724 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.skipArray(boolean)
+18:26:21.724 | INFO  |  -- Remaining time budget: 15900 ms, #remaining_methods: 7, budget for method: 2271 ms, solver timeout: 1000 ms, budget for symbolic execution: 1136 ms, budget for concrete execution: 1135 ms,  -- 
+18:26:21.730 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.skipArray(boolean)1
+18:26:21.781 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.skipArray(boolean)2
+18:26:21.783 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.skipArray(boolean)3
+18:26:21.783 | INFO  | Finished (in 0.059 sec): method spoon.reflect.visitor.PrintingContext.Writable.skipArray(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:21.789 | DEBUG |  ... 
+18:26:21.789 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.ignoreEnclosingClass(boolean)
+18:26:21.790 | INFO  |  -- Remaining time budget: 15835 ms, #remaining_methods: 6, budget for method: 2639 ms, solver timeout: 1000 ms, budget for symbolic execution: 1439 ms, budget for concrete execution: 1200 ms,  -- 
+18:26:21.794 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreEnclosingClass(boolean)1
+18:26:21.844 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreEnclosingClass(boolean)2
+18:26:21.847 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreEnclosingClass(boolean)3
+18:26:21.847 | INFO  | Finished (in 0.058 sec): method spoon.reflect.visitor.PrintingContext.Writable.ignoreEnclosingClass(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:21.853 | DEBUG |  ... 
+18:26:21.853 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.ignoreStaticAccess(boolean)
+18:26:21.854 | INFO  |  -- Remaining time budget: 15771 ms, #remaining_methods: 5, budget for method: 3154 ms, solver timeout: 1000 ms, budget for symbolic execution: 1954 ms, budget for concrete execution: 1200 ms,  -- 
+18:26:21.858 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreStaticAccess(boolean)1
+18:26:21.907 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreStaticAccess(boolean)2
+18:26:21.909 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreStaticAccess(boolean)3
+18:26:21.909 | INFO  | Finished (in 0.056 sec): method spoon.reflect.visitor.PrintingContext.Writable.ignoreStaticAccess(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:21.915 | DEBUG |  ... 
+18:26:21.916 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.noTypeDecl(boolean)
+18:26:21.916 | INFO  |  -- Remaining time budget: 15709 ms, #remaining_methods: 4, budget for method: 3927 ms, solver timeout: 1000 ms, budget for symbolic execution: 2727 ms, budget for concrete execution: 1200 ms,  -- 
+18:26:21.920 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.noTypeDecl(boolean)1
+18:26:21.968 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.noTypeDecl(boolean)2
+18:26:21.971 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.noTypeDecl(boolean)3
+18:26:21.971 | INFO  | Finished (in 0.055 sec): method spoon.reflect.visitor.PrintingContext.Writable.noTypeDecl(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:21.977 | DEBUG |  ... 
+18:26:21.978 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.ignoreGenerics(boolean)
+18:26:21.978 | INFO  |  -- Remaining time budget: 15646 ms, #remaining_methods: 3, budget for method: 5215 ms, solver timeout: 1000 ms, budget for symbolic execution: 4015 ms, budget for concrete execution: 1200 ms,  -- 
+18:26:21.982 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreGenerics(boolean)1
+18:26:22.031 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreGenerics(boolean)2
+18:26:22.033 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.ignoreGenerics(boolean)3
+18:26:22.033 | INFO  | Finished (in 0.055 sec): method spoon.reflect.visitor.PrintingContext.Writable.ignoreGenerics(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:22.039 | DEBUG |  ... 
+18:26:22.040 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.forceWildcardGenerics(boolean)
+18:26:22.040 | INFO  |  -- Remaining time budget: 15585 ms, #remaining_methods: 2, budget for method: 7792 ms, solver timeout: 1000 ms, budget for symbolic execution: 6592 ms, budget for concrete execution: 1200 ms,  -- 
+18:26:22.044 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.forceWildcardGenerics(boolean)1
+18:26:22.094 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.forceWildcardGenerics(boolean)2
+18:26:22.096 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.forceWildcardGenerics(boolean)3
+18:26:22.097 | INFO  | Finished (in 0.057 sec): method spoon.reflect.visitor.PrintingContext.Writable.forceWildcardGenerics(boolean) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+18:26:22.102 | DEBUG |  ... 
+18:26:22.103 | INFO  | Started: method spoon.reflect.visitor.PrintingContext.Writable.<init>()
+18:26:22.103 | INFO  |  -- Remaining time budget: 15521 ms, #remaining_methods: 1, budget for method: 15521 ms, solver timeout: 1000 ms, budget for symbolic execution: 14321 ms, budget for concrete execution: 1200 ms,  -- 
+18:26:22.107 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.<init>()1
+18:26:22.155 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.PrintingContext.Writable.<init>()2
+18:26:22.156 | INFO  | Finished (in 0.053 sec): method spoon.reflect.visitor.PrintingContext.Writable.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+18:26:22.163 | INFO  | Started: Flushing tests for [PrintingContext] on disk
+18:26:22.444 | INFO  | File size for PrintingContextTest: 46 KB
+18:26:22.445 | INFO  | Finished (in 0.283 sec): Flushing tests for [PrintingContext] on disk 
+18:26:22.446 | INFO  | Finished (in 10.285 sec): class spoon.reflect.visitor.PrintingContext 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 23, 
+	#methods started symbolic exploration = 23
+	#methods with at least one TC = 23
+	#methods with exceptions = 0
+	#generated TC = 69
+	#coverage = null
+[READY]

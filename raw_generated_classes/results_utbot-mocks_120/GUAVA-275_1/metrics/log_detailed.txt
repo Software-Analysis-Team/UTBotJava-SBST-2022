@@ -1,0 +1,604 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  GUAVA-275
+
+>>> RUN NUMBER: 1
+
+>>> MODE: --only-compute-metrics
+Creating directory ./temp
+Creating directory ./temp/data
+Creating directory ./temp/testcases
+Executing /home/utbot_mocks/./runtool
+>> BENCHMARK
+>> /var/benchmarks/projects/guava/guava/src
+>> /var/benchmarks/projects/guava/guava/target/classes
+>> 6
+>> /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar
+>> /var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar
+>> /var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar
+>> 0
+expecting CLASSPATH or READY
+<< CLASSPATH
+expecting number
+<< 0
+<< READY
+>> 120
+
+
+### COMPUTING METRICS ###: com.google.common.math.PairedStatsAccumulator
+
+
+Starting class com.google.common.math.PairedStatsAccumulator
+
+
+Ending class com.google.common.math.PairedStatsAccumulator
+Creating directory results_utbot-mocks_120/GUAVA-275_1/temp/testcases/bin
+Creating dummy JUnit test file
+
+---Compilation---
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/GUAVA-275_1/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/SBSTDummyForCoverageAndMutationCalculation.java
+
+
+===
+javac command line:
+/usr/bin/javac -sourcepath /home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases -cp /var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar -d results_utbot-mocks_120/GUAVA-275_1/temp/testcases/bin /home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java
+
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:18: warning: Unsafe is internal proprietary API and may be removed in a future release
+import sun.misc.Unsafe;
+               ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:20: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyDouble;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:20: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyDouble;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:21: error: package org.mockito does not exist
+import static org.mockito.Mockito.mockStatic;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:21: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mockStatic;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:22: error: package org.mockito does not exist
+import static org.mockito.Mockito.mock;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:22: error: static import only from classes and interfaces
+import static org.mockito.Mockito.mock;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:24: error: package org.mockito does not exist
+import static org.mockito.Mockito.when;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:24: error: static import only from classes and interfaces
+import static org.mockito.Mockito.when;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:27: error: package org.mockito does not exist
+import static org.mockito.ArgumentMatchers.anyBoolean;
+                         ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:27: error: static import only from classes and interfaces
+import static org.mockito.ArgumentMatchers.anyBoolean;
+^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:44: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:46: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.primitives.Doubles.class);
+                           ^
+  symbol:   method mockStatic(Class<Doubles>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:48: error: cannot find symbol
+                com.google.common.primitives.Doubles.isFinite(anyDouble());
+                                                              ^
+  symbol:   method anyDouble()
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:52: error: cannot find symbol
+            StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                    ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:71: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:73: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.primitives.Doubles.class);
+                           ^
+  symbol:   method mockStatic(Class<Doubles>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:75: error: cannot find symbol
+                com.google.common.primitives.Doubles.isFinite(anyDouble());
+                                                              ^
+  symbol:   method anyDouble()
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:79: error: cannot find symbol
+            StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                    ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:98: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:100: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.primitives.Doubles.class);
+                           ^
+  symbol:   method mockStatic(Class<Doubles>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:102: error: cannot find symbol
+                com.google.common.primitives.Doubles.isFinite(anyDouble());
+                                                              ^
+  symbol:   method anyDouble()
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:105: error: cannot find symbol
+            StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                    ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:106: error: cannot find symbol
+            when(statsAccumulatorMock.count()).thenReturn(-9223372036854775806L);
+            ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:121: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:123: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.primitives.Doubles.class);
+                           ^
+  symbol:   method mockStatic(Class<Doubles>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:125: error: cannot find symbol
+                com.google.common.primitives.Doubles.isFinite(anyDouble());
+                                                              ^
+  symbol:   method anyDouble()
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:129: error: cannot find symbol
+            StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                    ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:130: error: cannot find symbol
+            when(statsAccumulatorMock.count()).thenReturn(2L);
+            ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:131: error: cannot find symbol
+            when(statsAccumulatorMock.mean()).thenReturn(java.lang.Double.NaN, java.lang.Double.NaN);
+            ^
+  symbol:   method when(double)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:163: error: cannot find symbol
+        StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:164: error: cannot find symbol
+        when(statsAccumulatorMock.count()).thenReturn(0L);
+        ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:199: error: cannot find symbol
+        PairedStats pairedStatsMock = mock(PairedStats.class);
+                                      ^
+  symbol:   method mock(Class<PairedStats>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:200: error: cannot find symbol
+        when(pairedStatsMock.count()).thenReturn(0L);
+        ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:212: error: cannot find symbol
+        StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:213: error: cannot find symbol
+        when(statsAccumulatorMock.count()).thenReturn(-9223372036854775807L);
+        ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:216: error: cannot find symbol
+        PairedStats pairedStatsMock = mock(PairedStats.class);
+                                      ^
+  symbol:   method mock(Class<PairedStats>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:217: error: cannot find symbol
+        when(pairedStatsMock.count()).thenReturn(-9223372036854775807L);
+        ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:218: error: cannot find symbol
+        when(pairedStatsMock.xStats()).thenReturn(((Stats) null), ((Stats) null));
+        ^
+  symbol:   method when(Stats)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:219: error: cannot find symbol
+        when(pairedStatsMock.sumOfProductsOfDeltas()).thenReturn(java.lang.Double.NaN);
+        ^
+  symbol:   method when(double)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:231: error: cannot find symbol
+        StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:232: error: cannot find symbol
+        when(statsAccumulatorMock.mean()).thenReturn(java.lang.Double.NaN);
+        ^
+  symbol:   method when(double)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:233: error: cannot find symbol
+        when(statsAccumulatorMock.count()).thenReturn(-9223372036854775807L);
+        ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:236: error: cannot find symbol
+        PairedStats pairedStatsMock = mock(PairedStats.class);
+                                      ^
+  symbol:   method mock(Class<PairedStats>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:237: error: cannot find symbol
+        when(pairedStatsMock.count()).thenReturn(-9223372036854775807L);
+        ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:238: error: cannot find symbol
+        Stats statsMock = mock(Stats.class);
+                          ^
+  symbol:   method mock(Class<Stats>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:239: error: cannot find symbol
+        when(statsMock.mean()).thenReturn(java.lang.Double.NaN);
+        ^
+  symbol:   method when(double)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:240: error: cannot find symbol
+        when(pairedStatsMock.xStats()).thenReturn(((Stats) null), statsMock);
+        ^
+  symbol:   method when(Stats)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:241: error: cannot find symbol
+        when(pairedStatsMock.sumOfProductsOfDeltas()).thenReturn(java.lang.Double.NaN);
+        ^
+  symbol:   method when(double)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:242: error: cannot find symbol
+        when(pairedStatsMock.yStats()).thenReturn(((Stats) null));
+        ^
+  symbol:   method when(Stats)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:254: error: cannot find symbol
+        StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:255: error: cannot find symbol
+        when(statsAccumulatorMock.count()).thenReturn(0L);
+        ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:258: error: cannot find symbol
+        PairedStats pairedStatsMock = mock(PairedStats.class);
+                                      ^
+  symbol:   method mock(Class<PairedStats>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:259: error: cannot find symbol
+        when(pairedStatsMock.count()).thenReturn(-9223372036854775807L);
+        ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:260: error: cannot find symbol
+        when(pairedStatsMock.xStats()).thenReturn(((Stats) null));
+        ^
+  symbol:   method when(Stats)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:261: error: cannot find symbol
+        when(pairedStatsMock.sumOfProductsOfDeltas()).thenReturn(java.lang.Double.NaN);
+        ^
+  symbol:   method when(double)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:262: error: cannot find symbol
+        when(pairedStatsMock.yStats()).thenReturn(((Stats) null));
+        ^
+  symbol:   method when(Stats)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:278: error: cannot find symbol
+        StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:279: error: cannot find symbol
+        when(statsAccumulatorMock.mean()).thenReturn(java.lang.Double.NaN, java.lang.Double.NaN);
+        ^
+  symbol:   method when(double)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:280: error: cannot find symbol
+        when(statsAccumulatorMock.count()).thenReturn(-9223372036854775807L);
+        ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:283: error: cannot find symbol
+        PairedStats pairedStatsMock = mock(PairedStats.class);
+                                      ^
+  symbol:   method mock(Class<PairedStats>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:284: error: cannot find symbol
+        when(pairedStatsMock.count()).thenReturn(-9223372036854775807L, 0L);
+        ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:285: error: cannot find symbol
+        Stats statsMock = mock(Stats.class);
+                          ^
+  symbol:   method mock(Class<Stats>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:286: error: cannot find symbol
+        when(statsMock.mean()).thenReturn(java.lang.Double.NaN, java.lang.Double.NaN);
+        ^
+  symbol:   method when(double)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:287: error: cannot find symbol
+        when(pairedStatsMock.xStats()).thenReturn(((Stats) null), statsMock);
+        ^
+  symbol:   method when(Stats)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:288: error: cannot find symbol
+        when(pairedStatsMock.sumOfProductsOfDeltas()).thenReturn(java.lang.Double.NaN);
+        ^
+  symbol:   method when(double)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:289: error: cannot find symbol
+        when(pairedStatsMock.yStats()).thenReturn(statsMock, ((Stats) null));
+        ^
+  symbol:   method when(Stats)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:335: error: cannot find symbol
+        StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:336: error: cannot find symbol
+        Stats statsMock = mock(Stats.class);
+                          ^
+  symbol:   method mock(Class<Stats>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:337: error: cannot find symbol
+        Stats statsMock1 = mock(Stats.class);
+                           ^
+  symbol:   method mock(Class<Stats>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:338: error: cannot find symbol
+        when(statsAccumulatorMock.snapshot()).thenReturn(statsMock, statsMock1);
+        ^
+  symbol:   method when(Stats)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:379: error: cannot find symbol
+        StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:380: error: cannot find symbol
+        when(statsAccumulatorMock.snapshot()).thenReturn(((Stats) null));
+        ^
+  symbol:   method when(Stats)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:403: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:405: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:408: error: cannot find symbol
+            StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                    ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:409: error: cannot find symbol
+            when(statsAccumulatorMock.count()).thenReturn(-9223372036854775807L, 0L);
+            ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:425: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:427: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:430: error: cannot find symbol
+            StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                    ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:431: error: cannot find symbol
+            when(statsAccumulatorMock.count()).thenReturn(0L, 0L);
+            ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:457: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:459: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:462: error: cannot find symbol
+            StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                    ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:463: error: cannot find symbol
+            when(statsAccumulatorMock.count()).thenReturn(-9223372036854775806L);
+            ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:479: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:481: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:484: error: cannot find symbol
+            StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                    ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:485: error: cannot find symbol
+            when(statsAccumulatorMock.count()).thenReturn(2L);
+            ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:565: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:567: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:570: error: cannot find symbol
+            StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                    ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:571: error: cannot find symbol
+            when(statsAccumulatorMock.count()).thenReturn(2L, 0L);
+            ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:587: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:589: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:592: error: cannot find symbol
+            StatsAccumulator statsAccumulatorMock = mock(StatsAccumulator.class);
+                                                    ^
+  symbol:   method mock(Class<StatsAccumulator>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:593: error: cannot find symbol
+            when(statsAccumulatorMock.count()).thenReturn(-9223372036854775806L, 0L);
+            ^
+  symbol:   method when(long)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:619: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:620: error: package org.mockito does not exist
+        org.mockito.MockedStatic mockedStatic1 = null;
+                   ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:622: error: cannot find symbol
+            mockedStatic = mockStatic(com.google.common.base.Preconditions.class);
+                           ^
+  symbol:   method mockStatic(Class<Preconditions>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:623: error: cannot find symbol
+            mockedStatic1 = mockStatic(LinearTransformation.class);
+                            ^
+  symbol:   method mockStatic(Class<LinearTransformation>)
+  location: class PairedStatsAccumulatorTest
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:1160: warning: Unsafe is internal proprietary API and may be removed in a future release
+    private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
+                           ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:1161: warning: Unsafe is internal proprietary API and may be removed in a future release
+        java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");
+                                            ^
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java:1163: warning: Unsafe is internal proprietary API and may be removed in a future release
+        return (sun.misc.Unsafe) f.get(null);
+                        ^
+Note: /home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/com/google/common/math/PairedStatsAccumulatorTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+100 errors
+4 warnings
+Failed to compile 'com/google/common/math/PairedStatsAccumulatorTest.java'!
+shaded.org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1)
+	at shaded.org.apache.commons.exec.DefaultExecutor.executeInternal(DefaultExecutor.java:377)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:160)
+	at shaded.org.apache.commons.exec.DefaultExecutor.execute(DefaultExecutor.java:147)
+	at sbst.benchmark.TestSuite.compile(TestSuite.java:250)
+	at sbst.benchmark.TestSuite.<init>(TestSuite.java:68)
+	at sbst.benchmark.TranscriptWriter.endClass(TranscriptWriter.java:136)
+	at sbst.benchmark.RunTool.execute(RunTool.java:141)
+	at sbst.benchmark.RunTool.run(RunTool.java:62)
+	at sbst.benchmark.Main.main(Main.java:160)
+
+---Timing Information---
+Running tests with the following classpath: 
+/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar:/usr/local/bin/lib/junit.jar:/usr/local/bin/lib/hamcrest-core.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+---The tests are re-executed other four times to find the flaky ones---
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+
+=== Run Jacoco for Coverage ===
+Number of instrumented file = 2323
+Running tests with the following classpath: 
+/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/guava-26.0-jre_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/checker-qual-2.5.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/error_prone_annotations-2.1.3_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/j2objc-annotations-1.1_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/jsr305-3.0.2_instrumented.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/animal-sniffer-annotations-1.14_instrumented.jar:/usr/local/bin/lib/hamcrest-core.jar:/usr/local/bin/lib/junit.jar:/home/utbot_mocks/results_utbot-mocks_120/GUAVA-275_1/temp/testcases/bin
+Running the tests: [SBSTDummyForCoverageAndMutationCalculation]
+Executions terminated
+Number of file with coverage information = 1951
+Extracted coverage data for the class com/google/common/math/PairedStatsAccumulator
+Number of file with coverage information = 302
+Number of file with coverage information = 22
+Number of file with coverage information = 12
+Number of file with coverage information = 35
+Number of file with coverage information = 1
+
+=== Run PIT ===
+Matching Jacoco with PIT: find covered mutations
+Executing Mutation Analysis using 75 mutants 
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: GUAVA-275
+	Class Under Test: com.google.common.math.PairedStatsAccumulator
+	Run number: 1
+	Tool preparation time (ms): 13178
+	Tool test cases generation time (ms): 18446
+	Test cases execution time (ms): 12
+	Test case number: 45
+	Uncompilable Test Classes: 1
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 60
+	Lines covered: 0
+	Lines coverage ratio (%): 0.0
+	Conditions total: 38
+	Conditions covered: 0
+	Conditions coverage ratio (%): 0.0
+	Mutants total: 75
+	Mutants covered: 0
+	Mutants coverage ratio (%): 0.0
+	Mutants killed: 0
+	Mutants killed ratio (%): 0.0
+	Mutants alive: 75
+
+
+Class com.google.common.math.PairedStatsAccumulator ended.
+Stopping process...
+Tool subprocess is an instance of java.lang.UNIXProcess
+Tool subprocess Id is 20270
+Killing master process 20270
+Executing command kill -9 20270
+Execution of command kill -9 20270 finished.
+Process was destroyed

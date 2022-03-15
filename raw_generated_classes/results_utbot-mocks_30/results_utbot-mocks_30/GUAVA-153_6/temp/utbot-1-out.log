@@ -1,0 +1,160 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/guava/guava/target/classes, classpathString=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+17:34:15.883 | INFO  | Started: warmup: kotlin reflection :: init
+17:34:15.957 | INFO  | Finished (in 0.074 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] com.google.common.collect.ReverseOrdering 30
+17:34:15.969 | DEBUG | -----------------------------------------------------------------------------
+17:34:15.970 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/guava/guava/target/classes:/var/benchmarks/projects/guava/guava/target/guava-26.0-jre.jar:/var/benchmarks/projects/./guava/guava/target/dependency/checker-qual-2.5.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/error_prone_annotations-2.1.3.jar:/var/benchmarks/projects/guava/guava/target/dependency/j2objc-annotations-1.1.jar:/var/benchmarks/projects/guava/guava/target/dependency/jsr305-3.0.2.jar:/var/benchmarks/projects/guava/guava/target/dependency/animal-sniffer-annotations-1.14.jar, methodNameFilter=null
+17:34:15.971 | INFO  | ClassUnderTest[ FQN: com.google.common.collect.ReverseOrdering
+    classfileDir: /var/benchmarks/projects/guava/guava/target/classes
+    testClassSimpleName: ReverseOrderingTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/com/google/common/collect/ReverseOrderingTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+17:34:15.998 | INFO  | Started: class com.google.common.collect.ReverseOrdering
+17:34:15.999 | INFO  | Started: preparation class class com.google.common.collect.ReverseOrdering: kotlin reflection :: run
+17:34:16.176 | INFO  | Finished (in 0.176 sec): preparation class class com.google.common.collect.ReverseOrdering: kotlin reflection :: run 
+17:34:16.177 | INFO  | Started: 2nd optional soot initialization
+17:34:16.178 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+17:34:16.186 | DEBUG |  ... 
+17:34:16.200 | INFO  | Started: method com.google.common.collect.ReverseOrdering.equals(Object)
+17:34:16.201 | INFO  |  -- Remaining time budget: 25282 ms, #remaining_methods: 14, budget for method: 1805 ms, solver timeout: 902 ms, budget for symbolic execution: 903 ms, budget for concrete execution: 902 ms,  -- 
+17:34:16.499 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.equals(Object)1
+17:34:16.949 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.equals(Object)2
+17:34:17.041 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.equals(Object)3
+17:34:17.078 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.equals(Object)4
+17:34:17.079 | INFO  | Finished (in 0.879 sec): method com.google.common.collect.ReverseOrdering.equals(Object) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+17:34:17.082 | DEBUG |  ... 
+17:34:17.083 | INFO  | Started: method com.google.common.collect.ReverseOrdering.hashCode()
+17:34:17.083 | INFO  |  -- Remaining time budget: 24388 ms, #remaining_methods: 13, budget for method: 1876 ms, solver timeout: 938 ms, budget for symbolic execution: 938 ms, budget for concrete execution: 938 ms,  -- 
+17:34:17.091 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.hashCode()1
+17:34:17.123 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.hashCode()2
+17:34:17.124 | INFO  | Finished (in 0.041 sec): method com.google.common.collect.ReverseOrdering.hashCode() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:17.125 | DEBUG |  ... 
+17:34:17.125 | INFO  | Started: method com.google.common.collect.ReverseOrdering.toString()
+17:34:17.125 | INFO  |  -- Remaining time budget: 24345 ms, #remaining_methods: 12, budget for method: 2028 ms, solver timeout: 1000 ms, budget for symbolic execution: 1014 ms, budget for concrete execution: 1014 ms,  -- 
+17:34:17.644 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.toString()1
+17:34:18.140 | INFO  | |> Starting concrete execution for remaining state: com.google.common.collect.ReverseOrdering.toString()
+17:34:18.855 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.toString()2
+17:34:18.858 | INFO  | Finished (in 1.733 sec): method com.google.common.collect.ReverseOrdering.toString() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:18.924 | DEBUG |  ... 
+17:34:18.924 | INFO  | Started: method com.google.common.collect.ReverseOrdering.compare(T, T)
+17:34:18.925 | INFO  |  -- Remaining time budget: 22546 ms, #remaining_methods: 11, budget for method: 2049 ms, solver timeout: 1000 ms, budget for symbolic execution: 1025 ms, budget for concrete execution: 1024 ms,  -- 
+17:34:18.932 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.compare(T, T)1
+17:34:19.196 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.compare(T, T)2
+17:34:19.196 | INFO  | Finished (in 0.272 sec): method com.google.common.collect.ReverseOrdering.compare(T, T) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:19.197 | DEBUG |  ... 
+17:34:19.198 | INFO  | Started: method com.google.common.collect.ReverseOrdering.min(Iterable)
+17:34:19.198 | INFO  |  -- Remaining time budget: 22272 ms, #remaining_methods: 10, budget for method: 2227 ms, solver timeout: 1000 ms, budget for symbolic execution: 1114 ms, budget for concrete execution: 1113 ms,  -- 
+17:34:19.204 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.min(Iterable)1
+17:34:19.443 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.min(Iterable)2
+17:34:19.443 | INFO  | Finished (in 0.245 sec): method com.google.common.collect.ReverseOrdering.min(Iterable) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:19.444 | DEBUG |  ... 
+17:34:19.445 | INFO  | Started: method com.google.common.collect.ReverseOrdering.min(Iterator)
+17:34:19.445 | INFO  |  -- Remaining time budget: 22025 ms, #remaining_methods: 9, budget for method: 2447 ms, solver timeout: 1000 ms, budget for symbolic execution: 1247 ms, budget for concrete execution: 1200 ms,  -- 
+17:34:19.451 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.min(Iterator)1
+17:34:19.693 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.min(Iterator)2
+17:34:19.693 | INFO  | Finished (in 0.249 sec): method com.google.common.collect.ReverseOrdering.min(Iterator) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:19.694 | DEBUG |  ... 
+17:34:19.695 | INFO  | Started: method com.google.common.collect.ReverseOrdering.min(E, E)
+17:34:19.695 | INFO  |  -- Remaining time budget: 21775 ms, #remaining_methods: 8, budget for method: 2721 ms, solver timeout: 1000 ms, budget for symbolic execution: 1521 ms, budget for concrete execution: 1200 ms,  -- 
+17:34:19.703 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.min(E, E)1
+17:34:20.042 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.min(E, E)2
+17:34:20.042 | INFO  | Finished (in 0.347 sec): method com.google.common.collect.ReverseOrdering.min(E, E) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:20.043 | DEBUG |  ... 
+17:34:20.044 | INFO  | Started: method com.google.common.collect.ReverseOrdering.min(E, E, E, E[])
+17:34:20.044 | INFO  |  -- Remaining time budget: 21427 ms, #remaining_methods: 7, budget for method: 3061 ms, solver timeout: 1000 ms, budget for symbolic execution: 1861 ms, budget for concrete execution: 1200 ms,  -- 
+17:34:20.051 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.min(E, E, E, E[])1
+17:34:20.667 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.min(E, E, E, E[])2
+17:34:20.668 | INFO  | Finished (in 0.624 sec): method com.google.common.collect.ReverseOrdering.min(E, E, E, E[]) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:20.669 | DEBUG |  ... 
+17:34:20.670 | INFO  | Started: method com.google.common.collect.ReverseOrdering.max(E, E)
+17:34:20.670 | INFO  |  -- Remaining time budget: 20800 ms, #remaining_methods: 6, budget for method: 3466 ms, solver timeout: 1000 ms, budget for symbolic execution: 2266 ms, budget for concrete execution: 1200 ms,  -- 
+17:34:20.676 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.max(E, E)1
+17:34:20.998 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.max(E, E)2
+17:34:20.999 | INFO  | Finished (in 0.328 sec): method com.google.common.collect.ReverseOrdering.max(E, E) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:21.000 | DEBUG |  ... 
+17:34:21.000 | INFO  | Started: method com.google.common.collect.ReverseOrdering.max(Iterable)
+17:34:21.001 | INFO  |  -- Remaining time budget: 20470 ms, #remaining_methods: 5, budget for method: 4094 ms, solver timeout: 1000 ms, budget for symbolic execution: 2894 ms, budget for concrete execution: 1200 ms,  -- 
+17:34:21.007 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.max(Iterable)1
+17:34:21.223 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.max(Iterable)2
+17:34:21.223 | INFO  | Finished (in 0.222 sec): method com.google.common.collect.ReverseOrdering.max(Iterable) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:21.224 | DEBUG |  ... 
+17:34:21.225 | INFO  | Started: method com.google.common.collect.ReverseOrdering.max(Iterator)
+17:34:21.225 | INFO  |  -- Remaining time budget: 20246 ms, #remaining_methods: 4, budget for method: 5061 ms, solver timeout: 1000 ms, budget for symbolic execution: 3861 ms, budget for concrete execution: 1200 ms,  -- 
+17:34:21.230 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.max(Iterator)1
+17:34:21.445 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.max(Iterator)2
+17:34:21.445 | INFO  | Finished (in 0.221 sec): method com.google.common.collect.ReverseOrdering.max(Iterator) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:21.446 | DEBUG |  ... 
+17:34:21.447 | INFO  | Started: method com.google.common.collect.ReverseOrdering.max(E, E, E, E[])
+17:34:21.447 | INFO  |  -- Remaining time budget: 20023 ms, #remaining_methods: 3, budget for method: 6674 ms, solver timeout: 1000 ms, budget for symbolic execution: 5474 ms, budget for concrete execution: 1200 ms,  -- 
+17:34:21.452 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.max(E, E, E, E[])1
+17:34:22.040 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.max(E, E, E, E[])2
+17:34:22.040 | INFO  | Finished (in 0.593 sec): method com.google.common.collect.ReverseOrdering.max(E, E, E, E[]) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:22.041 | DEBUG |  ... 
+17:34:22.042 | INFO  | Started: method com.google.common.collect.ReverseOrdering.reverse()
+17:34:22.042 | INFO  |  -- Remaining time budget: 19428 ms, #remaining_methods: 2, budget for method: 9714 ms, solver timeout: 1000 ms, budget for symbolic execution: 8514 ms, budget for concrete execution: 1200 ms,  -- 
+17:34:22.046 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.reverse()1
+17:34:22.071 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.reverse()2
+17:34:22.071 | INFO  | Finished (in 0.029 sec): method com.google.common.collect.ReverseOrdering.reverse() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:22.072 | DEBUG |  ... 
+17:34:22.072 | INFO  | Started: method com.google.common.collect.ReverseOrdering.<init>(Ordering)
+17:34:22.072 | INFO  |  -- Remaining time budget: 19398 ms, #remaining_methods: 1, budget for method: 19398 ms, solver timeout: 1000 ms, budget for symbolic execution: 18198 ms, budget for concrete execution: 1200 ms,  -- 
+17:34:22.083 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.<init>(Ordering)1
+17:34:22.277 | DEBUG | --new testCase collected, to generate: testCom.google.common.collect.ReverseOrdering.<init>(Ordering)2
+17:34:22.306 | INFO  | Finished (in 0.233 sec): method com.google.common.collect.ReverseOrdering.<init>(Ordering) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+17:34:22.315 | INFO  | Started: Flushing tests for [ReverseOrdering] on disk
+17:34:22.566 | INFO  | File size for ReverseOrderingTest: 23 KB
+17:34:22.568 | INFO  | Finished (in 0.253 sec): Flushing tests for [ReverseOrdering] on disk 
+17:34:22.569 | INFO  | Finished (in 6.570 sec): class com.google.common.collect.ReverseOrdering 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 14, 
+	#methods started symbolic exploration = 14
+	#methods with at least one TC = 14
+	#methods with exceptions = 0
+	#generated TC = 30
+	#coverage = null
+[READY]

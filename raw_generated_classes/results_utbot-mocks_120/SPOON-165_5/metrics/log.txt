@@ -1,0 +1,60 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  SPOON-165
+
+>>> RUN NUMBER: 5
+
+>>> MODE: --only-compute-metrics
+
+
+### COMPUTING METRICS ###: spoon.reflect.visitor.AstParentConsistencyChecker
+
+---Compilation---
+Compiled 'spoon/reflect/visitor/AstParentConsistencyCheckerTest.java'
+
+---Timing Information---
+
+---The tests are re-executed other four times to find the flaky ones---
+
+=== Run Jacoco for Coverage ===
+
+=== Run PIT ===
+Executing Mutation Analysis using 6 mutants 
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=scan, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[18], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=AstParentConsistencyChecker.java, block=4, lineNumber=30, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=scan, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[70], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=AstParentConsistencyChecker.java, block=7, lineNumber=38, description=removed call to spoon/reflect/visitor/CtScanner::scan, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=toDebugString, methodDesc=(Lspoon/reflect/declaration/CtElement;)Ljava/lang/String;], indexes=[28], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=AstParentConsistencyChecker.java, block=8, lineNumber=43, description=mutated return of Object value for spoon/reflect/visitor/AstParentConsistencyChecker::toDebugString to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=scan, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[4], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=AstParentConsistencyChecker.java, block=1, lineNumber=26, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=scan, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[25], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=AstParentConsistencyChecker.java, block=5, lineNumber=31, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.reflect.visitor.AstParentConsistencyChecker, method=scan, methodDesc=(Lspoon/reflect/declaration/CtElement;)V], indexes=[13], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=AstParentConsistencyChecker.java, block=3, lineNumber=29, description=negated conditional, testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: SPOON-165
+	Class Under Test: spoon.reflect.visitor.AstParentConsistencyChecker
+	Run number: 5
+	Tool preparation time (ms): 15286
+	Tool test cases generation time (ms): 22071
+	Test cases execution time (ms): 828
+	Test case number: 10
+	Uncompilable Test Classes: 0
+	Broken tests number: 0
+	Failing tests number: 0
+	Lines total: 15
+	Lines covered: 13
+	Lines coverage ratio (%): 86.666664
+	Conditions total: 8
+	Conditions covered: 8
+	Conditions coverage ratio (%): 100.0
+	Mutants total: 6
+	Mutants covered: 6
+	Mutants coverage ratio (%): 100.0
+	Mutants killed: 6
+	Mutants killed ratio (%): 100.0
+	Mutants alive: 0

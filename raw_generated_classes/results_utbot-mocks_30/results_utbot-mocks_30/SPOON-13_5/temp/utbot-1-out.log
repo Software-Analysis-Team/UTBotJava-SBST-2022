@@ -1,0 +1,167 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+16:52:20.400 | INFO  | Started: warmup: kotlin reflection :: init
+16:52:20.479 | INFO  | Finished (in 0.079 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.support.reflect.code.CtForImpl 30
+16:52:20.497 | DEBUG | -----------------------------------------------------------------------------
+16:52:20.498 | INFO  | Contest.runGeneration: Time budget: 30000 ms, Generation timeout=25500 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+16:52:20.500 | INFO  | ClassUnderTest[ FQN: spoon.support.reflect.code.CtForImpl
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: CtForImplTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/support/reflect/code/CtForImplTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+16:52:20.532 | INFO  | Started: class spoon.support.reflect.code.CtForImpl
+16:52:20.534 | INFO  | Started: preparation class class spoon.support.reflect.code.CtForImpl: kotlin reflection :: run
+16:52:21.122 | INFO  | Finished (in 0.588 sec): preparation class class spoon.support.reflect.code.CtForImpl: kotlin reflection :: run 
+16:52:21.123 | INFO  | Started: 2nd optional soot initialization
+16:52:21.124 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+16:52:21.134 | DEBUG |  ... 
+16:52:21.154 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.accept(CtVisitor)
+16:52:21.155 | INFO  |  -- Remaining time budget: 24857 ms, #remaining_methods: 13, budget for method: 1912 ms, solver timeout: 956 ms, budget for symbolic execution: 956 ms, budget for concrete execution: 956 ms,  -- 
+16:52:21.635 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.accept(CtVisitor)1
+16:52:22.584 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtForImpl.accept(CtVisitor)
+16:52:22.663 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.accept(CtVisitor)2
+16:52:22.688 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.accept(CtVisitor)3
+16:52:22.689 | INFO  | Finished (in 1.534 sec): method spoon.support.reflect.code.CtForImpl.accept(CtVisitor) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:52:22.691 | DEBUG |  ... 
+16:52:22.692 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.clone()
+16:52:22.692 | INFO  |  -- Remaining time budget: 23307 ms, #remaining_methods: 12, budget for method: 1942 ms, solver timeout: 971 ms, budget for symbolic execution: 971 ms, budget for concrete execution: 971 ms,  -- 
+16:52:22.945 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.clone()1
+16:52:23.048 | INFO  | Finished (in 0.356 sec): method spoon.support.reflect.code.CtForImpl.clone() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:52:23.053 | DEBUG |  ... 
+16:52:23.053 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.getExpression()
+16:52:23.053 | INFO  |  -- Remaining time budget: 22946 ms, #remaining_methods: 11, budget for method: 2086 ms, solver timeout: 1000 ms, budget for symbolic execution: 1043 ms, budget for concrete execution: 1043 ms,  -- 
+16:52:23.062 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.getExpression()1
+16:52:23.098 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.getExpression()2
+16:52:23.098 | INFO  | Finished (in 0.044 sec): method spoon.support.reflect.code.CtForImpl.getExpression() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:52:23.098 | DEBUG |  ... 
+16:52:23.098 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.setExpression(CtExpression)
+16:52:23.099 | INFO  |  -- Remaining time budget: 22901 ms, #remaining_methods: 10, budget for method: 2290 ms, solver timeout: 1000 ms, budget for symbolic execution: 1145 ms, budget for concrete execution: 1145 ms,  -- 
+16:52:23.107 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.setExpression(CtExpression)1
+16:52:23.887 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.setExpression(CtExpression)2
+16:52:24.244 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtForImpl.setExpression(CtExpression)
+16:52:24.353 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.setExpression(CtExpression)3
+16:52:25.390 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtForImpl.setExpression(CtExpression)
+16:52:25.407 | INFO  | Finished (in 2.308 sec): method spoon.support.reflect.code.CtForImpl.setExpression(CtExpression) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+16:52:25.466 | DEBUG |  ... 
+16:52:25.467 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.getForInit()
+16:52:25.467 | INFO  |  -- Remaining time budget: 20532 ms, #remaining_methods: 9, budget for method: 2281 ms, solver timeout: 1000 ms, budget for symbolic execution: 1141 ms, budget for concrete execution: 1140 ms,  -- 
+16:52:25.477 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.getForInit()1
+16:52:25.524 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.getForInit()2
+16:52:25.525 | INFO  | Finished (in 0.058 sec): method spoon.support.reflect.code.CtForImpl.getForInit() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:52:25.526 | DEBUG |  ... 
+16:52:25.527 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.addForInit(CtStatement)
+16:52:25.527 | INFO  |  -- Remaining time budget: 20473 ms, #remaining_methods: 8, budget for method: 2559 ms, solver timeout: 1000 ms, budget for symbolic execution: 1359 ms, budget for concrete execution: 1200 ms,  -- 
+16:52:25.532 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.addForInit(CtStatement)1
+16:52:25.662 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.addForInit(CtStatement)2
+16:52:25.778 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.addForInit(CtStatement)3
+16:52:25.915 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.addForInit(CtStatement)4
+16:52:26.344 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.addForInit(CtStatement)5
+16:52:26.573 | INFO  | Finished (in 1.046 sec): method spoon.support.reflect.code.CtForImpl.addForInit(CtStatement) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+16:52:26.611 | DEBUG |  ... 
+16:52:26.611 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.setForInit(List)
+16:52:26.612 | INFO  |  -- Remaining time budget: 19388 ms, #remaining_methods: 7, budget for method: 2769 ms, solver timeout: 1000 ms, budget for symbolic execution: 1569 ms, budget for concrete execution: 1200 ms,  -- 
+16:52:26.617 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.setForInit(List)1
+16:52:26.705 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.setForInit(List)2
+16:52:28.181 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtForImpl.setForInit(List)
+16:52:29.381 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtForImpl.setForInit(List)
+16:52:29.530 | INFO  | Finished (in 2.918 sec): method spoon.support.reflect.code.CtForImpl.setForInit(List) 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:52:29.583 | DEBUG |  ... 
+16:52:29.584 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.removeForInit(CtStatement)
+16:52:29.584 | INFO  |  -- Remaining time budget: 16415 ms, #remaining_methods: 6, budget for method: 2735 ms, solver timeout: 1000 ms, budget for symbolic execution: 1535 ms, budget for concrete execution: 1200 ms,  -- 
+16:52:29.594 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.removeForInit(CtStatement)1
+16:52:29.649 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.removeForInit(CtStatement)2
+16:52:29.704 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.removeForInit(CtStatement)3
+16:52:29.823 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.removeForInit(CtStatement)4
+16:52:30.019 | INFO  | Finished (in 0.434 sec): method spoon.support.reflect.code.CtForImpl.removeForInit(CtStatement) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:52:30.037 | DEBUG |  ... 
+16:52:30.037 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.getForUpdate()
+16:52:30.037 | INFO  |  -- Remaining time budget: 15962 ms, #remaining_methods: 5, budget for method: 3192 ms, solver timeout: 1000 ms, budget for symbolic execution: 1992 ms, budget for concrete execution: 1200 ms,  -- 
+16:52:30.043 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.getForUpdate()1
+16:52:30.070 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.getForUpdate()2
+16:52:30.070 | INFO  | Finished (in 0.033 sec): method spoon.support.reflect.code.CtForImpl.getForUpdate() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+16:52:30.071 | DEBUG |  ... 
+16:52:30.072 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.addForUpdate(CtStatement)
+16:52:30.072 | INFO  |  -- Remaining time budget: 15927 ms, #remaining_methods: 4, budget for method: 3981 ms, solver timeout: 1000 ms, budget for symbolic execution: 2781 ms, budget for concrete execution: 1200 ms,  -- 
+16:52:30.079 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.addForUpdate(CtStatement)1
+16:52:30.152 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.addForUpdate(CtStatement)2
+16:52:30.247 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.addForUpdate(CtStatement)3
+16:52:30.352 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.addForUpdate(CtStatement)4
+16:52:30.693 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.addForUpdate(CtStatement)5
+16:52:30.892 | INFO  | Finished (in 0.820 sec): method spoon.support.reflect.code.CtForImpl.addForUpdate(CtStatement) 
+<StatsForMethod> :
+	#generatedTC=5
+	WITH NO EXCEPTIONS
+16:52:30.930 | DEBUG |  ... 
+16:52:30.931 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.setForUpdate(List)
+16:52:30.931 | INFO  |  -- Remaining time budget: 15068 ms, #remaining_methods: 3, budget for method: 5022 ms, solver timeout: 1000 ms, budget for symbolic execution: 3822 ms, budget for concrete execution: 1200 ms,  -- 
+16:52:30.938 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.setForUpdate(List)1
+16:52:31.014 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.setForUpdate(List)2
+16:52:33.710 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.setForUpdate(List)3
+16:52:34.301 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.setForUpdate(List)4
+16:52:34.753 | INFO  | |> Starting concrete execution for remaining state: spoon.support.reflect.code.CtForImpl.setForUpdate(List)
+16:52:35.954 | INFO  | (X) Cancelling concrete execution: spoon.support.reflect.code.CtForImpl.setForUpdate(List)
+16:52:36.389 | INFO  | Finished (in 5.458 sec): method spoon.support.reflect.code.CtForImpl.setForUpdate(List) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:52:36.498 | DEBUG |  ... 
+16:52:36.498 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.removeForUpdate(CtStatement)
+16:52:36.499 | INFO  |  -- Remaining time budget: 9501 ms, #remaining_methods: 2, budget for method: 4750 ms, solver timeout: 1000 ms, budget for symbolic execution: 3550 ms, budget for concrete execution: 1200 ms,  -- 
+16:52:36.503 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.removeForUpdate(CtStatement)1
+16:52:36.553 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.removeForUpdate(CtStatement)2
+16:52:36.605 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.removeForUpdate(CtStatement)3
+16:52:36.697 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.removeForUpdate(CtStatement)4
+16:52:36.869 | INFO  | Finished (in 0.370 sec): method spoon.support.reflect.code.CtForImpl.removeForUpdate(CtStatement) 
+<StatsForMethod> :
+	#generatedTC=4
+	WITH NO EXCEPTIONS
+16:52:36.886 | DEBUG |  ... 
+16:52:36.886 | INFO  | Started: method spoon.support.reflect.code.CtForImpl.<init>()
+16:52:36.886 | INFO  |  -- Remaining time budget: 9113 ms, #remaining_methods: 1, budget for method: 9113 ms, solver timeout: 1000 ms, budget for symbolic execution: 7913 ms, budget for concrete execution: 1200 ms,  -- 
+16:52:36.892 | DEBUG | --new testCase collected, to generate: testSpoon.support.reflect.code.CtForImpl.<init>()1
+16:52:36.968 | INFO  | Finished (in 0.082 sec): method spoon.support.reflect.code.CtForImpl.<init>() 
+<StatsForMethod> :
+	#generatedTC=1
+	WITH NO EXCEPTIONS
+16:52:36.979 | INFO  | Started: Flushing tests for [CtForImpl] on disk
+16:52:37.495 | INFO  | File size for CtForImplTest: 31 KB
+16:52:37.496 | INFO  | Finished (in 0.516 sec): Flushing tests for [CtForImpl] on disk 
+16:52:37.497 | INFO  | Finished (in 16.964 sec): class spoon.support.reflect.code.CtForImpl 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 13, 
+	#methods started symbolic exploration = 13
+	#methods with at least one TC = 13
+	#methods with exceptions = 0
+	#generated TC = 38
+	#coverage = null
+[READY]

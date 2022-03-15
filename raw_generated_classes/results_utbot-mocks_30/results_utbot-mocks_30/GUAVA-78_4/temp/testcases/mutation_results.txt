@@ -1,0 +1,17 @@
+N. of generated mutants 56
+N. of covered mutants 3
+N. of killed mutants 3
+N. of ignored mutants 0
+
+
+ --- Tests killing mutants --- 
+ Mutant: 0	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.collect.Queues, method=newPriorityQueue, methodDesc=(Ljava/lang/Iterable;)Ljava/util/PriorityQueue;], indexes=[13], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=Queues.java, block=26, lineNumber=240, description=mutated return of Object value for com/google/common/collect/Queues::newPriorityQueue to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+Mutant: 1	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.collect.Queues, method=newPriorityQueue, methodDesc=()Ljava/util/PriorityQueue;], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=Queues.java, block=24, lineNumber=226, description=mutated return of Object value for com/google/common/collect/Queues::newPriorityQueue to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+Mutant: 2	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=com.google.common.collect.Queues, method=newPriorityQueue, methodDesc=(Ljava/lang/Iterable;)Ljava/util/PriorityQueue;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=Queues.java, block=25, lineNumber=239, description=negated conditional, testsInOrder=[]]
+
+
+ --- Mutants details--- 
+ Mutant: 0, killed by tests [(com.google.common.collect.QueuesTest),testNewPriorityQueue2)]
+Mutant: 1, killed by tests [(com.google.common.collect.QueuesTest),testNewPriorityQueue1)]
+Mutant: 2, killed by tests [(com.google.common.collect.QueuesTest),testNewPriorityQueue2)]
+

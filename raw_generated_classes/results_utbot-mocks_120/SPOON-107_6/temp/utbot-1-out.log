@@ -1,0 +1,122 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+21:29:27.870 | INFO  | Started: warmup: kotlin reflection :: init
+21:29:27.968 | INFO  | Finished (in 0.098 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.reflect.visitor.filter.CompositeFilter 120
+21:29:27.983 | DEBUG | -----------------------------------------------------------------------------
+21:29:27.984 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+21:29:27.987 | INFO  | ClassUnderTest[ FQN: spoon.reflect.visitor.filter.CompositeFilter
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: CompositeFilterTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/reflect/visitor/filter/CompositeFilterTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+21:29:28.022 | INFO  | Started: class spoon.reflect.visitor.filter.CompositeFilter
+21:29:28.024 | INFO  | Started: preparation class class spoon.reflect.visitor.filter.CompositeFilter: kotlin reflection :: run
+21:29:28.071 | INFO  | Finished (in 0.047 sec): preparation class class spoon.reflect.visitor.filter.CompositeFilter: kotlin reflection :: run 
+21:29:28.072 | INFO  | Started: 2nd optional soot initialization
+21:29:28.073 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+21:29:28.082 | DEBUG |  ... 
+21:29:28.094 | INFO  | Started: method spoon.reflect.visitor.filter.CompositeFilter.matches(T)
+21:29:28.095 | INFO  |  -- Remaining time budget: 101899 ms, #remaining_methods: 4, budget for method: 25474 ms, solver timeout: 1000 ms, budget for symbolic execution: 24274 ms, budget for concrete execution: 1200 ms,  -- 
+21:29:28.446 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)1
+21:29:29.040 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)2
+21:29:29.073 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)3
+21:29:29.106 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)4
+21:29:29.138 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)5
+21:29:29.168 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)6
+21:29:29.289 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)7
+21:29:29.354 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)8
+21:29:29.421 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)9
+21:29:29.436 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)10
+21:29:29.483 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)11
+21:29:29.522 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)12
+21:29:29.562 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)13
+21:29:29.612 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)14
+21:29:29.671 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)15
+21:29:29.704 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)16
+21:29:29.754 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)17
+21:29:29.772 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)18
+21:29:29.856 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)19
+21:29:29.880 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)20
+21:29:29.920 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)21
+21:29:29.962 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)22
+21:29:30.014 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)23
+21:29:30.126 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)24
+21:29:30.159 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)25
+21:29:30.201 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)26
+21:29:30.275 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)27
+21:29:30.298 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)28
+21:29:30.321 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.matches(T)29
+21:29:30.323 | INFO  | Finished (in 2.228 sec): method spoon.reflect.visitor.filter.CompositeFilter.matches(T) 
+<StatsForMethod> :
+	#generatedTC=29
+	WITH NO EXCEPTIONS
+21:29:30.385 | DEBUG |  ... 
+21:29:30.385 | INFO  | Started: method spoon.reflect.visitor.filter.CompositeFilter.hasMatch(Filter, T)
+21:29:30.385 | INFO  |  -- Remaining time budget: 99600 ms, #remaining_methods: 3, budget for method: 33200 ms, solver timeout: 1000 ms, budget for symbolic execution: 32000 ms, budget for concrete execution: 1200 ms,  -- 
+21:29:30.396 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.hasMatch(Filter, T)1
+21:29:30.468 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.hasMatch(Filter, T)2
+21:29:30.476 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.hasMatch(Filter, T)3
+21:29:30.477 | INFO  | Finished (in 0.091 sec): method spoon.reflect.visitor.filter.CompositeFilter.hasMatch(Filter, T) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+21:29:30.478 | DEBUG |  ... 
+21:29:30.478 | INFO  | Started: method spoon.reflect.visitor.filter.CompositeFilter.getType()
+21:29:30.478 | INFO  |  -- Remaining time budget: 99507 ms, #remaining_methods: 2, budget for method: 49753 ms, solver timeout: 1000 ms, budget for symbolic execution: 48553 ms, budget for concrete execution: 1200 ms,  -- 
+21:29:31.401 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.getType()1
+21:29:31.437 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.getType()2
+21:29:31.437 | INFO  | Finished (in 0.959 sec): method spoon.reflect.visitor.filter.CompositeFilter.getType() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+21:29:31.438 | DEBUG |  ... 
+21:29:31.438 | INFO  | Started: method spoon.reflect.visitor.filter.CompositeFilter.<init>(FilteringOperator, Filter)
+21:29:31.439 | INFO  |  -- Remaining time budget: 98547 ms, #remaining_methods: 1, budget for method: 98547 ms, solver timeout: 1000 ms, budget for symbolic execution: 97347 ms, budget for concrete execution: 1200 ms,  -- 
+21:29:31.453 | ERROR | Symbolic execution FAILED
+com.huawei.utbot.instrumentation.util.ChildProcessError: Error in the child process |> java.lang.IllegalAccessException: Class com.huawei.utbot.framework.concrete.MockValueConstructor can not access a member of class spoon.reflect.visitor.filter.FilteringOperator with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:102)
+	at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:296)
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:288)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:413)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)
+	at com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)
+	at com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)
+	at com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)
+
+	at com.huawei.utbot.instrumentation.ConcreteExecutor.executeAsync(ConcreteExecutor.kt:391) ~[utbot-junit-contest-1.0.jar:?]
+	at com.huawei.utbot.instrumentation.ConcreteExecutor$executeAsync$1.invokeSuspend(ConcreteExecutor.kt) ~[utbot-junit-contest-1.0.jar:?]
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33) [utbot-junit-contest-1.0.jar:?]
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:106) [utbot-junit-contest-1.0.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_312]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_312]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_312]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_312]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_312]
+21:29:31.521 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.CompositeFilter.<init>(FilteringOperator, Filter)1
+21:29:31.521 | INFO  | Finished (in 0.082 sec): method spoon.reflect.visitor.filter.CompositeFilter.<init>(FilteringOperator, Filter) 
+<StatsForMethod> :
+	#generatedTC=1
+	FAILED 1 time(s) with 1 different exception(s)"
+21:29:31.528 | INFO  | Started: Flushing tests for [CompositeFilter] on disk
+21:29:31.781 | INFO  | File size for CompositeFilterTest: 41 KB
+21:29:31.782 | INFO  | Finished (in 0.253 sec): Flushing tests for [CompositeFilter] on disk 
+21:29:31.783 | INFO  | Finished (in 3.760 sec): class spoon.reflect.visitor.filter.CompositeFilter 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 4, 
+	#methods started symbolic exploration = 4
+	#methods with at least one TC = 4
+	#methods with exceptions = 1
+	#generated TC = 35
+	#coverage = null
+[READY]

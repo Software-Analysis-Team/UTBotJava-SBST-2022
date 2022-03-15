@@ -1,0 +1,50 @@
+Started UtBot Contest, classfileDir = /var/benchmarks/projects/spoon/target/classes, classpathString=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, outputDir=/home/utbot_mocks/temp/testcases, mocks=Other classes: Mockito
+21:27:45.060 | INFO  | Started: warmup: kotlin reflection :: init
+21:27:45.170 | INFO  | Finished (in 0.109 sec): warmup: kotlin reflection :: init 
+[INIT]
+>> [RUN] spoon.reflect.visitor.filter.LineFilter 120
+21:27:45.185 | DEBUG | -----------------------------------------------------------------------------
+21:27:45.186 | INFO  | Contest.runGeneration: Time budget: 120000 ms, Generation timeout=102000 ms, classpath=/var/benchmarks/projects/spoon/target/classes:/var/benchmarks/projects/spoon/target/spoon-core-7.0.0.jar:/var/benchmarks/projects/./spoon/target/dependency/org.eclipse.text-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.app-1.6.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.contenttype-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/mockito-all-2.0.2-beta.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-databind-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/guava-18.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.expressions-3.8.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.commands-3.10.100.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-annotations-2.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.jdt.core-3.13.102.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.runtime-3.24.0.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.resources-3.16.0.jar:/var/benchmarks/projects/spoon/target/dependency/jackson-core-2.9.2.jar:/var/benchmarks/projects/spoon/target/dependency/junit-4.12.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.registry-3.11.100.jar:/var/benchmarks/projects/spoon/target/dependency/hamcrest-core-1.3.jar:/var/benchmarks/projects/spoon/target/dependency/maven-model-3.3.9.jar:/var/benchmarks/projects/spoon/target/dependency/plexus-utils-3.0.22.jar:/var/benchmarks/projects/spoon/target/dependency/jsap-2.1.jar:/var/benchmarks/projects/spoon/target/dependency/bridge-method-annotation-1.13.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.common-3.15.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.jobs-3.12.0.jar:/var/benchmarks/projects/spoon/target/dependency/commons-io-2.5.jar:/var/benchmarks/projects/spoon/target/dependency/commons-lang3-3.5.jar:/var/benchmarks/projects/spoon/target/dependency/system-rules-1.9.0.jar:/var/benchmarks/projects/spoon/target/dependency/querydsl-core-3.6.9.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.core.filesystem-1.9.200.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.equinox.preferences-3.9.100.jar:/var/benchmarks/projects/spoon/target/dependency/org.eclipse.osgi-3.17.100.jar:/var/benchmarks/projects/spoon/target/dependency/log4j-1.2.17.jar, methodNameFilter=null
+21:27:45.189 | INFO  | ClassUnderTest[ FQN: spoon.reflect.visitor.filter.LineFilter
+    classfileDir: /var/benchmarks/projects/spoon/target/classes
+    testClassSimpleName: LineFilterTest
+    generatedTestFile: /home/utbot_mocks/temp/testcases/spoon/reflect/visitor/filter/LineFilterTest.java
+    generatedTestsSourcesDir: /home/utbot_mocks/temp/testcases
+]
+21:27:45.223 | INFO  | Started: class spoon.reflect.visitor.filter.LineFilter
+21:27:45.224 | INFO  | Started: preparation class class spoon.reflect.visitor.filter.LineFilter: kotlin reflection :: run
+21:27:45.253 | INFO  | Finished (in 0.028 sec): preparation class class spoon.reflect.visitor.filter.LineFilter: kotlin reflection :: run 
+21:27:45.254 | INFO  | Started: 2nd optional soot initialization
+21:27:45.255 | INFO  | Finished (in 0.001 sec): 2nd optional soot initialization 
+21:27:45.263 | DEBUG |  ... 
+21:27:45.275 | INFO  | Started: method spoon.reflect.visitor.filter.LineFilter.matches(CtStatement)
+21:27:45.276 | INFO  |  -- Remaining time budget: 101921 ms, #remaining_methods: 2, budget for method: 50960 ms, solver timeout: 1000 ms, budget for symbolic execution: 49760 ms, budget for concrete execution: 1200 ms,  -- 
+21:27:45.621 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.LineFilter.matches(CtStatement)1
+21:27:45.943 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.LineFilter.matches(CtStatement)2
+21:27:45.977 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.LineFilter.matches(CtStatement)3
+21:27:45.979 | INFO  | Finished (in 0.703 sec): method spoon.reflect.visitor.filter.LineFilter.matches(CtStatement) 
+<StatsForMethod> :
+	#generatedTC=3
+	WITH NO EXCEPTIONS
+21:27:45.985 | DEBUG |  ... 
+21:27:45.986 | INFO  | Started: method spoon.reflect.visitor.filter.LineFilter.<init>()
+21:27:45.987 | INFO  |  -- Remaining time budget: 101201 ms, #remaining_methods: 1, budget for method: 101201 ms, solver timeout: 1000 ms, budget for symbolic execution: 100001 ms, budget for concrete execution: 1200 ms,  -- 
+21:27:45.998 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.LineFilter.<init>()1
+21:27:46.056 | DEBUG | --new testCase collected, to generate: testSpoon.reflect.visitor.filter.LineFilter.<init>()2
+21:27:46.057 | INFO  | Finished (in 0.070 sec): method spoon.reflect.visitor.filter.LineFilter.<init>() 
+<StatsForMethod> :
+	#generatedTC=2
+	WITH NO EXCEPTIONS
+21:27:46.063 | INFO  | Started: Flushing tests for [LineFilter] on disk
+21:27:47.136 | INFO  | File size for LineFilterTest: 3 KB
+21:27:47.137 | INFO  | Finished (in 1.074 sec): Flushing tests for [LineFilter] on disk 
+21:27:47.138 | INFO  | Finished (in 1.915 sec): class spoon.reflect.visitor.filter.LineFilter 
+<StatsForClass> :
+	canceled by timeout = false
+	#methods = 2, 
+	#methods started symbolic exploration = 2
+	#methods with at least one TC = 2
+	#methods with exceptions = 0
+	#generated TC = 5
+	#coverage = null
+[READY]

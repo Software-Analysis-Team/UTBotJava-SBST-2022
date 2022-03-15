@@ -1,0 +1,19 @@
+N. of generated mutants 5
+N. of covered mutants 4
+N. of killed mutants 4
+N. of ignored mutants 0
+
+
+ --- Tests killing mutants --- 
+ Mutant: 0	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.store.StoreMode, method=valueof, methodDesc=(Ljava/lang/String;)Lio/seata/core/store/StoreMode;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator], filename=StoreMode.java, block=1, lineNumber=43, description=changed conditional boundary, testsInOrder=[]]
+Mutant: 1	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.store.StoreMode, method=valueof, methodDesc=(Ljava/lang/String;)Lio/seata/core/store/StoreMode;], indexes=[33], mutator=org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator], filename=StoreMode.java, block=4, lineNumber=43, description=Changed increment from 1 to -1, testsInOrder=[]]
+Mutant: 2	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.store.StoreMode, method=valueof, methodDesc=(Ljava/lang/String;)Lio/seata/core/store/StoreMode;], indexes=[14], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=StoreMode.java, block=1, lineNumber=43, description=negated conditional, testsInOrder=[]]
+Mutant: 3	 ---> MutationDetails [id=MutationIdentifier [location=Location [clazz=io.seata.core.store.StoreMode, method=valueof, methodDesc=(Ljava/lang/String;)Lio/seata/core/store/StoreMode;], indexes=[25], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=StoreMode.java, block=2, lineNumber=44, description=negated conditional, testsInOrder=[]]
+
+
+ --- Mutants details--- 
+ Mutant: 0, killed by tests [(testClass,testMethod)]
+Mutant: 1, killed by tests [(testClass,testMethod)]
+Mutant: 2, killed by tests [(testClass,testMethod)]
+Mutant: 3, killed by tests [(io.seata.core.store.StoreModeTest),testValueof1)]
+

@@ -1,0 +1,78 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  FASTJSON-39
+
+>>> RUN NUMBER: 9
+
+>>> MODE: --only-compute-metrics
+
+
+### COMPUTING METRICS ###: com.alibaba.fastjson.serializer.StringCodec
+
+---Compilation---
+Compiled 'com/alibaba/fastjson/serializer/StringCodecTest.java'
+
+---Timing Information---
+
+---The tests are re-executed other four times to find the flaky ones---
+
+=== Run Jacoco for Coverage ===
+
+=== Run PIT ===
+Executing Mutation Analysis using 29 mutants 
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;)Ljava/lang/Object;], indexes=[41], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=StringCodec.java, block=21, lineNumber=101, description=removed call to com/alibaba/fastjson/parser/JSONLexer::nextToken, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;)Ljava/lang/Object;], indexes=[58], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=StringCodec.java, block=23, lineNumber=108, description=mutated return of Object value for com/alibaba/fastjson/serializer/StringCodec::deserialze to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=write, methodDesc=(Lcom/alibaba/fastjson/serializer/JSONSerializer;Ljava/lang/String;)V], indexes=[9], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=StringCodec.java, block=2, lineNumber=41, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;)Ljava/lang/Object;], indexes=[25], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=StringCodec.java, block=19, lineNumber=96, description=mutated return of Object value for com/alibaba/fastjson/serializer/StringCodec::deserialze to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;)Ljava/lang/Object;], indexes=[45], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=StringCodec.java, block=21, lineNumber=102, description=mutated return of Object value for com/alibaba/fastjson/serializer/StringCodec::deserialze to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=getFastMatchToken, methodDesc=()I], indexes=[4], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=StringCodec.java, block=25, lineNumber=115, description=replaced return of integer sized value with (x == 0 ? 1 : 0), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;)Ljava/lang/Object;], indexes=[11], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=StringCodec.java, block=18, lineNumber=93, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;Ljava/lang/reflect/Type;Ljava/lang/Object;)Ljava/lang/Object;], indexes=[59], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=StringCodec.java, block=11, lineNumber=69, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;Ljava/lang/reflect/Type;Ljava/lang/Object;)Ljava/lang/Object;], indexes=[5], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=StringCodec.java, block=5, lineNumber=51, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;)Ljava/lang/Object;], indexes=[21], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=StringCodec.java, block=19, lineNumber=95, description=removed call to com/alibaba/fastjson/parser/JSONLexer::nextToken, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;)Ljava/lang/Object;], indexes=[63], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=StringCodec.java, block=24, lineNumber=111, description=mutated return of Object value for com/alibaba/fastjson/serializer/StringCodec::deserialze to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;)Ljava/lang/Object;], indexes=[31], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=StringCodec.java, block=20, lineNumber=99, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;)Ljava/lang/Object;], indexes=[54], mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator], filename=StringCodec.java, block=22, lineNumber=107, description=negated conditional, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=write, methodDesc=(Lcom/alibaba/fastjson/serializer/JSONSerializer;Ljava/lang/String;)V], indexes=[22], mutator=org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator], filename=StringCodec.java, block=4, lineNumber=46, description=removed call to com/alibaba/fastjson/serializer/SerializeWriter::writeString, testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=com.alibaba.fastjson.serializer.StringCodec, method=deserialze, methodDesc=(Lcom/alibaba/fastjson/parser/DefaultJSONParser;Ljava/lang/reflect/Type;Ljava/lang/Object;)Ljava/lang/Object;], indexes=[113], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=StringCodec.java, block=17, lineNumber=87, description=mutated return of Object value for com/alibaba/fastjson/serializer/StringCodec::deserialze to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: FASTJSON-39
+	Class Under Test: com.alibaba.fastjson.serializer.StringCodec
+	Run number: 9
+	Tool preparation time (ms): 11612
+	Tool test cases generation time (ms): 68670
+	Test cases execution time (ms): 1804
+	Test case number: 31
+	Uncompilable Test Classes: 0
+	Broken tests number: 6
+	Failing tests number: 0
+	Lines total: 45
+	Lines covered: 23
+	Lines coverage ratio (%): 51.111115
+	Conditions total: 20
+	Conditions covered: 9
+	Conditions coverage ratio (%): 45.0
+	Mutants total: 29
+	Mutants covered: 15
+	Mutants coverage ratio (%): 51.724136
+	Mutants killed: 15
+	Mutants killed ratio (%): 51.724136
+	Mutants alive: 14

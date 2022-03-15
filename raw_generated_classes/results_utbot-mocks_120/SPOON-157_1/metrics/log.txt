@@ -1,0 +1,60 @@
+
+>>> TOOL NAME:  utbot-mocks
+
+>>> BENCHMARK:  SPOON-157
+
+>>> RUN NUMBER: 1
+
+>>> MODE: --only-compute-metrics
+
+
+### COMPUTING METRICS ###: spoon.support.DefaultCoreFactory
+
+---Compilation---
+Compiled 'spoon/support/DefaultCoreFactoryTest.java'
+
+---Timing Information---
+
+---The tests are re-executed other four times to find the flaky ones---
+
+=== Run Jacoco for Coverage ===
+
+=== Run PIT ===
+Executing Mutation Analysis using 167 mutants 
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createCompilationUnit, methodDesc=()Lspoon/reflect/cu/CompilationUnit;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=82, lineNumber=725, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createCompilationUnit to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createCompoundSourcePosition, methodDesc=(Lspoon/reflect/cu/CompilationUnit;IIII[I)Lspoon/reflect/cu/position/CompoundSourcePosition;], indexes=[12], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=79, lineNumber=704, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createCompoundSourcePosition to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createPackageReference, methodDesc=()Lspoon/reflect/reference/CtPackageReference;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=50, lineNumber=529, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createPackageReference to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createSourcePosition, methodDesc=(Lspoon/reflect/cu/CompilationUnit;II[I)Lspoon/reflect/cu/SourcePosition;], indexes=[10], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=77, lineNumber=694, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createSourcePosition to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=createTypeReference, methodDesc=()Lspoon/reflect/reference/CtTypeReference;], indexes=[16], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=63, lineNumber=610, description=mutated return of Object value for spoon/support/DefaultCoreFactory::createTypeReference to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+mutationResult.getState() KILLED
+* Killed mutant MutationDetails [id=MutationIdentifier [location=Location [clazz=spoon.support.DefaultCoreFactory, method=clone, methodDesc=(Lspoon/reflect/declaration/CtElement;)Lspoon/reflect/declaration/CtElement;], indexes=[6], mutator=org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator], filename=DefaultCoreFactory.java, block=1, lineNumber=217, description=mutated return of Object value for spoon/support/DefaultCoreFactory::clone to ( if (x != null) null else throw new RuntimeException ), testsInOrder=[]]
+
+>>> RESULTS:
+	Tool name: utbot-mocks
+	Benchmark: SPOON-157
+	Class Under Test: spoon.support.DefaultCoreFactory
+	Run number: 1
+	Tool preparation time (ms): 14416
+	Tool test cases generation time (ms): 8461
+	Test cases execution time (ms): 1825
+	Test case number: 104
+	Uncompilable Test Classes: 0
+	Broken tests number: 4
+	Failing tests number: 0
+	Lines total: 429
+	Lines covered: 96
+	Lines coverage ratio (%): 22.377623
+	Conditions total: 160
+	Conditions covered: 0
+	Conditions coverage ratio (%): 0.0
+	Mutants total: 167
+	Mutants covered: 6
+	Mutants coverage ratio (%): 3.5928144
+	Mutants killed: 6
+	Mutants killed ratio (%): 3.5928144
+	Mutants alive: 161
