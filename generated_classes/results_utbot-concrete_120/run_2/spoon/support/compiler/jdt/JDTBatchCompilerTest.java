@@ -141,29 +141,7 @@ public class JDTBatchCompilerTest {
         
         assertNull(finalJDTBatchCompilerLimitedModules);
         
-        assertEquals(1645024264218L, finalJDTBatchCompilerStartTime);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetCompilationUnits1() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[0];
-        
-        jDTBatchCompiler.setCompilationUnits(compilationUnitArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetCompilationUnits2() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        setField(jDTBatchCompiler, "compilationUnits", null);
-        
-        jDTBatchCompiler.setCompilationUnits(null);
+        assertEquals(1645063693441L, finalJDTBatchCompilerStartTime);
     }
     ///endregion
     
@@ -233,6 +211,28 @@ public class JDTBatchCompilerTest {
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(jDTSnippetCompiler, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetCompilationUnits1() throws Throwable  {
+        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
+        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[0];
+        
+        jDTBatchCompiler.setCompilationUnits(compilationUnitArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetCompilationUnits2() throws Throwable  {
+        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
+        setField(jDTBatchCompiler, "compilationUnits", null);
+        
+        jDTBatchCompiler.setCompilationUnits(null);
     }
     ///endregion
     

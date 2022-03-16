@@ -85,6 +85,32 @@ public class CaseFormatTest {
     ///endregion
     
     
+    ///region Errors report for convert
+    
+    public void testConvert_errors3()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for convert
+    
+    public void testConvert_errors4()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
     ///region Errors report for converterTo
     
     public void testConverterTo_errors()
@@ -158,27 +184,6 @@ public class CaseFormatTest {
     
     @Test(timeout = 10000)
     public void testFirstCharOnlyToUpper4() throws Throwable  {
-        String string = new String("c");
-        
-        Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
-        Class stringType = Class.forName("java.lang.String");
-        Method firstCharOnlyToUpperMethod = caseFormatClazz.getDeclaredMethod("firstCharOnlyToUpper", stringType);
-        firstCharOnlyToUpperMethod.setAccessible(true);
-        java.lang.Object[] firstCharOnlyToUpperMethodArguments = new java.lang.Object[1];
-        firstCharOnlyToUpperMethodArguments[0] = string;
-        String actual = ((String) firstCharOnlyToUpperMethod.invoke(null, firstCharOnlyToUpperMethodArguments));
-        
-        String expected = new String("C");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testFirstCharOnlyToUpper5() throws Throwable  {
         String string = new String("c\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
         
         Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
@@ -199,8 +204,8 @@ public class CaseFormatTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testFirstCharOnlyToUpper6() throws Throwable  {
-        String string = new String("{");
+    public void testFirstCharOnlyToUpper5() throws Throwable  {
+        String string = new String("{\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
         
         Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
         Class stringType = Class.forName("java.lang.String");
@@ -210,7 +215,7 @@ public class CaseFormatTest {
         firstCharOnlyToUpperMethodArguments[0] = string;
         String actual = ((String) firstCharOnlyToUpperMethod.invoke(null, firstCharOnlyToUpperMethodArguments));
         
-        String expected = new String("{");
+        String expected = new String("{\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -253,18 +258,18 @@ public class CaseFormatTest {
     @Test(timeout = 10000)
     public void testCaseFormat1() throws Throwable  {
         String string = new String("");
-        Object forPredicate = createInstance("com.google.common.base.CharMatcher$ForPredicate");
+        Object none = createInstance("com.google.common.base.CharMatcher$None");
         String string1 = new String("");
         Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
         Class stringType = Class.forName("java.lang.String");
         Class intType = int.class;
-        Class forPredicateType = Class.forName("com.google.common.base.CharMatcher");
-        Constructor caseFormatConstructor = caseFormatClazz.getDeclaredConstructor(stringType, intType, forPredicateType, stringType);
+        Class noneType = Class.forName("com.google.common.base.CharMatcher");
+        Constructor caseFormatConstructor = caseFormatClazz.getDeclaredConstructor(stringType, intType, noneType, stringType);
         caseFormatConstructor.setAccessible(true);
         java.lang.Object[] caseFormatConstructorArguments = new java.lang.Object[4];
         caseFormatConstructorArguments[0] = string;
         caseFormatConstructorArguments[1] = 0;
-        caseFormatConstructorArguments[2] = forPredicate;
+        caseFormatConstructorArguments[2] = none;
         caseFormatConstructorArguments[3] = string1;
         CaseFormat actual = ((CaseFormat) caseFormatConstructor.newInstance(caseFormatConstructorArguments));
     }

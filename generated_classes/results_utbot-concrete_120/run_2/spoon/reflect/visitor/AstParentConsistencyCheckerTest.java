@@ -10,15 +10,14 @@ import spoon.reflect.CtModelImpl;
 import spoon.support.reflect.declaration.CtEnumValueImpl;
 import spoon.support.reflect.declaration.CtParameterImpl;
 import spoon.support.reflect.declaration.CtMethodImpl;
-import spoon.support.reflect.declaration.CtTypeParameterImpl;
+import spoon.support.reflect.declaration.CtInterfaceImpl;
 import spoon.reflect.factory.ModuleFactory.CtUnnamedModule;
 import spoon.reflect.factory.ModuleFactory;
-import spoon.support.reflect.reference.CtFieldReferenceImpl;
 import java.lang.reflect.Method;
-import spoon.support.reflect.declaration.CtPackageImpl;
 import spoon.support.reflect.declaration.InvisibleArrayConstructorImpl;
 import spoon.support.reflect.reference.CtArrayTypeReferenceImpl;
 import spoon.support.StandardEnvironment;
+import spoon.support.reflect.declaration.CtPackageImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -106,13 +105,13 @@ public class AstParentConsistencyCheckerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testScan5() throws Throwable  {
         AstParentConsistencyChecker astParentConsistencyChecker = ((AstParentConsistencyChecker) createInstance("spoon.reflect.visitor.AstParentConsistencyChecker"));
-        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
-        setField(ctTypeParameterImpl, "parent", null);
-        setField(astParentConsistencyChecker, "parent", ctTypeParameterImpl);
+        CtInterfaceImpl ctInterfaceImpl = ((CtInterfaceImpl) createInstance("spoon.support.reflect.declaration.CtInterfaceImpl"));
+        setField(ctInterfaceImpl, "parent", null);
+        setField(astParentConsistencyChecker, "parent", ctInterfaceImpl);
         ModuleFactory.CtUnnamedModule ctUnnamedModule = ((ModuleFactory.CtUnnamedModule) createInstance("spoon.reflect.factory.ModuleFactory$CtUnnamedModule"));
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(ctFieldReferenceImpl, "parent", null);
-        setField(ctUnnamedModule, "parent", ctFieldReferenceImpl);
+        CtEnumValueImpl ctEnumValueImpl = ((CtEnumValueImpl) createInstance("spoon.support.reflect.declaration.CtEnumValueImpl"));
+        setField(ctEnumValueImpl, "parent", null);
+        setField(ctUnnamedModule, "parent", ctEnumValueImpl);
         
         Object initialAstParentConsistencyCheckerParent = getFieldValue(astParentConsistencyChecker, "parent");
         
@@ -142,23 +141,6 @@ public class AstParentConsistencyCheckerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testScan6() throws Throwable  {
-        AstParentConsistencyChecker astParentConsistencyChecker = ((AstParentConsistencyChecker) createInstance("spoon.reflect.visitor.AstParentConsistencyChecker"));
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
-        setField(ctEnumImpl, "parent", ctEnumImpl);
-        setField(ctFieldReferenceImpl, "parent", ctEnumImpl);
-        setField(astParentConsistencyChecker, "parent", ctFieldReferenceImpl);
-        CtFieldReferenceImpl ctFieldReferenceImpl1 = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(ctFieldReferenceImpl1, "parent", ctEnumImpl);
-        
-        astParentConsistencyChecker.scan(ctFieldReferenceImpl1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testToDebugString1() throws Throwable  {
         Class astParentConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.AstParentConsistencyChecker");
         Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
@@ -177,132 +159,6 @@ public class AstParentConsistencyCheckerTest {
     
     @Test(timeout = 10000)
     public void testToDebugString2() throws Throwable  {
-        CtPackageImpl ctPackageImpl = ((CtPackageImpl) createInstance("spoon.support.reflect.declaration.CtPackageImpl"));
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(ctFieldReferenceImpl, "parent", null);
-        setField(ctPackageImpl, "parent", ctFieldReferenceImpl);
-        
-        Class astParentConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.AstParentConsistencyChecker");
-        Class ctPackageImplType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method toDebugStringMethod = astParentConsistencyCheckerClazz.getDeclaredMethod("toDebugString", ctPackageImplType);
-        toDebugStringMethod.setAccessible(true);
-        java.lang.Object[] toDebugStringMethodArguments = new java.lang.Object[1];
-        toDebugStringMethodArguments[0] = ctPackageImpl;
-        String actual = ((String) toDebugStringMethod.invoke(null, toDebugStringMethodArguments));
-        
-        String expected = new String("Element: null\nSignature: spoon.support.reflect.declaration.CtPackageImpl@1\nClass: class spoon.support.reflect.declaration.CtPackageImpl\nposition: (unknown file)\n");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testToDebugString3() throws Throwable  {
-        CtPackageImpl ctPackageImpl = ((CtPackageImpl) createInstance("spoon.support.reflect.declaration.CtPackageImpl"));
-        CtModuleImpl ctModuleImpl = ((CtModuleImpl) createInstance("spoon.support.reflect.declaration.CtModuleImpl"));
-        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
-        setField(ctTypeParameterImpl, "parent", null);
-        setField(ctTypeParameterImpl, "factory", null);
-        setField(ctModuleImpl, "parent", ctTypeParameterImpl);
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        CtModelImpl ctModelImpl = ((CtModelImpl) createInstance("spoon.reflect.CtModelImpl"));
-        ModuleFactory.CtUnnamedModule ctUnnamedModule = ((ModuleFactory.CtUnnamedModule) createInstance("spoon.reflect.factory.ModuleFactory$CtUnnamedModule"));
-        setField(ctUnnamedModule, "parent", null);
-        setField(ctUnnamedModule, "factory", null);
-        setField(ctModelImpl, "unnamedModule", ctUnnamedModule);
-        setField(factoryImpl, "model", ctModelImpl);
-        setField(ctModuleImpl, "factory", factoryImpl);
-        setField(ctPackageImpl, "parent", ctModuleImpl);
-        setField(ctPackageImpl, "factory", null);
-        
-        Class astParentConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.AstParentConsistencyChecker");
-        Class ctPackageImplType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method toDebugStringMethod = astParentConsistencyCheckerClazz.getDeclaredMethod("toDebugString", ctPackageImplType);
-        toDebugStringMethod.setAccessible(true);
-        java.lang.Object[] toDebugStringMethodArguments = new java.lang.Object[1];
-        toDebugStringMethodArguments[0] = ctPackageImpl;
-        String actual = ((String) toDebugStringMethod.invoke(null, toDebugStringMethodArguments));
-        
-        String expected = new String("Element: null\nSignature: spoon.support.reflect.declaration.CtPackageImpl@1\nClass: class spoon.support.reflect.declaration.CtPackageImpl\nposition: (unknown file)\n");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testToDebugString4() throws Throwable  {
-        CtPackageImpl ctPackageImpl = ((CtPackageImpl) createInstance("spoon.support.reflect.declaration.CtPackageImpl"));
-        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
-        setField(ctEnumImpl, "parent", null);
-        setField(ctEnumImpl, "simpleName", null);
-        setField(ctPackageImpl, "parent", ctEnumImpl);
-        String string = new String("");
-        setField(ctPackageImpl, "simpleName", string);
-        
-        Class astParentConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.AstParentConsistencyChecker");
-        Class ctPackageImplType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method toDebugStringMethod = astParentConsistencyCheckerClazz.getDeclaredMethod("toDebugString", ctPackageImplType);
-        toDebugStringMethod.setAccessible(true);
-        java.lang.Object[] toDebugStringMethodArguments = new java.lang.Object[1];
-        toDebugStringMethodArguments[0] = ctPackageImpl;
-        String actual = ((String) toDebugStringMethod.invoke(null, toDebugStringMethodArguments));
-        
-        String expected = new String("Element: \nSignature: spoon.support.reflect.declaration.CtPackageImpl@1\nClass: class spoon.support.reflect.declaration.CtPackageImpl\nposition: (unknown file)\n");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testToDebugString5() throws Throwable  {
-        CtPackageImpl ctPackageImpl = ((CtPackageImpl) createInstance("spoon.support.reflect.declaration.CtPackageImpl"));
-        CtModuleImpl ctModuleImpl = ((CtModuleImpl) createInstance("spoon.support.reflect.declaration.CtModuleImpl"));
-        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
-        setField(ctEnumImpl, "parent", null);
-        setField(ctEnumImpl, "factory", null);
-        setField(ctModuleImpl, "parent", ctEnumImpl);
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        CtModelImpl ctModelImpl = ((CtModelImpl) createInstance("spoon.reflect.CtModelImpl"));
-        CtModuleImpl ctModuleImpl1 = ((CtModuleImpl) createInstance("spoon.support.reflect.declaration.CtModuleImpl"));
-        CtEnumValueImpl ctEnumValueImpl = ((CtEnumValueImpl) createInstance("spoon.support.reflect.declaration.CtEnumValueImpl"));
-        setField(ctEnumValueImpl, "parent", null);
-        setField(ctEnumValueImpl, "factory", null);
-        setField(ctModuleImpl1, "parent", ctEnumValueImpl);
-        setField(ctModuleImpl1, "factory", null);
-        setField(ctModelImpl, "unnamedModule", ctModuleImpl1);
-        setField(factoryImpl, "model", ctModelImpl);
-        setField(ctModuleImpl, "factory", factoryImpl);
-        setField(ctPackageImpl, "parent", ctModuleImpl);
-        setField(ctPackageImpl, "factory", null);
-        
-        Class astParentConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.AstParentConsistencyChecker");
-        Class ctPackageImplType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method toDebugStringMethod = astParentConsistencyCheckerClazz.getDeclaredMethod("toDebugString", ctPackageImplType);
-        toDebugStringMethod.setAccessible(true);
-        java.lang.Object[] toDebugStringMethodArguments = new java.lang.Object[1];
-        toDebugStringMethodArguments[0] = ctPackageImpl;
-        String actual = ((String) toDebugStringMethod.invoke(null, toDebugStringMethodArguments));
-        
-        String expected = new String("Element: null\nSignature: spoon.support.reflect.declaration.CtPackageImpl@1\nClass: class spoon.support.reflect.declaration.CtPackageImpl\nposition: (unknown file)\n");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testToDebugString6() throws Throwable  {
         InvisibleArrayConstructorImpl invisibleArrayConstructorImpl = ((InvisibleArrayConstructorImpl) createInstance("spoon.support.reflect.declaration.InvisibleArrayConstructorImpl"));
         setField(invisibleArrayConstructorImpl, "factory", null);
         CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
@@ -327,7 +183,7 @@ public class AstParentConsistencyCheckerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testToDebugString7() throws Throwable  {
+    public void testToDebugString3() throws Throwable  {
         InvisibleArrayConstructorImpl invisibleArrayConstructorImpl = ((InvisibleArrayConstructorImpl) createInstance("spoon.support.reflect.declaration.InvisibleArrayConstructorImpl"));
         setField(invisibleArrayConstructorImpl, "factory", null);
         CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
@@ -352,37 +208,45 @@ public class AstParentConsistencyCheckerTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testToDebugString8() throws Throwable  {
-        InvisibleArrayConstructorImpl invisibleArrayConstructorImpl = ((InvisibleArrayConstructorImpl) createInstance("spoon.support.reflect.declaration.InvisibleArrayConstructorImpl"));
-        setField(invisibleArrayConstructorImpl, "factory", null);
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "environment", null);
-        setField(ctArrayTypeReferenceImpl, "factory", factoryImpl);
-        setField(invisibleArrayConstructorImpl, "type", ctArrayTypeReferenceImpl);
-        
-        Object invisibleArrayConstructorImplType = getFieldValue(invisibleArrayConstructorImpl, "type");
-        Object invisibleArrayConstructorImplTypeTypeFactory = getFieldValue(invisibleArrayConstructorImplType, "factory");
-        Object initialInvisibleArrayConstructorImplTypeFactoryEnvironment = getFieldValue(invisibleArrayConstructorImplTypeTypeFactory, "environment");
+    @Test(timeout = 10000)
+    public void testToDebugString4() throws Throwable  {
+        CtPackageImpl ctPackageImpl = ((CtPackageImpl) createInstance("spoon.support.reflect.declaration.CtPackageImpl"));
+        setField(ctPackageImpl, "parent", null);
+        String string = new String("\u0000\u0000\u0000\u0000\u0000");
+        setField(ctPackageImpl, "simpleName", string);
         
         Class astParentConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.AstParentConsistencyChecker");
-        Class invisibleArrayConstructorImplType1 = Class.forName("spoon.reflect.declaration.CtElement");
-        Method toDebugStringMethod = astParentConsistencyCheckerClazz.getDeclaredMethod("toDebugString", invisibleArrayConstructorImplType1);
+        Class ctPackageImplType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method toDebugStringMethod = astParentConsistencyCheckerClazz.getDeclaredMethod("toDebugString", ctPackageImplType);
         toDebugStringMethod.setAccessible(true);
         java.lang.Object[] toDebugStringMethodArguments = new java.lang.Object[1];
-        toDebugStringMethodArguments[0] = invisibleArrayConstructorImpl;
+        toDebugStringMethodArguments[0] = ctPackageImpl;
+        String actual = ((String) toDebugStringMethod.invoke(null, toDebugStringMethodArguments));
+        
+        String expected = new String("Element: \u0000\u0000\u0000\u0000\u0000\nSignature: spoon.support.reflect.declaration.CtPackageImpl@1\nClass: class spoon.support.reflect.declaration.CtPackageImpl\nposition: (unknown file)\n");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testToDebugString5() throws Throwable  {
+        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
+        
+        Class astParentConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.AstParentConsistencyChecker");
+        Class ctEnumImplType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method toDebugStringMethod = astParentConsistencyCheckerClazz.getDeclaredMethod("toDebugString", ctEnumImplType);
+        toDebugStringMethod.setAccessible(true);
+        java.lang.Object[] toDebugStringMethodArguments = new java.lang.Object[1];
+        toDebugStringMethodArguments[0] = ctEnumImpl;
         try {
             toDebugStringMethod.invoke(null, toDebugStringMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }
-        Object invisibleArrayConstructorImplType2 = getFieldValue(invisibleArrayConstructorImpl, "type");
-        Object invisibleArrayConstructorImplType2TypeFactory = getFieldValue(invisibleArrayConstructorImplType2, "factory");
-        Object finalInvisibleArrayConstructorImplTypeFactoryEnvironment = getFieldValue(invisibleArrayConstructorImplType2TypeFactory, "environment");
-        
-        assertFalse(initialInvisibleArrayConstructorImplTypeFactoryEnvironment == finalInvisibleArrayConstructorImplTypeFactoryEnvironment);
-    }
+        }}
     ///endregion
     
     ///region

@@ -1,11 +1,11 @@
 package com.google.common.base;
 
 import org.junit.Test;
-import java.io.IOException;
+import javax.security.auth.DestroyFailedException;
 import java.util.List;
 import java.util.ArrayList;
-import javax.security.auth.callback.UnsupportedCallbackException;
 import java.net.UnknownHostException;
+import javax.security.auth.callback.UnsupportedCallbackException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Constructor;
 import java.util.Objects;
@@ -62,44 +62,6 @@ public class ThrowablesTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagate1() throws Throwable  {
-        Throwable throwable = new Throwable();
-        
-        Throwables.propagate(throwable);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagate2() throws Throwable  {
-        IOException iOException = ((IOException) createInstance("java.io.IOException"));
-        
-        Throwables.propagate(iOException);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagate3() throws Throwable  {
-        Throwables.propagate(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagate4() throws Throwable  {
-        AssertionError assertionError = ((AssertionError) createInstance("java.lang.AssertionError"));
-        
-        Throwables.propagate(assertionError);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
     public void testThrowIfUnchecked1() throws Throwable  {
         Throwable throwable = new Throwable();
@@ -133,6 +95,44 @@ public class ThrowablesTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testThrowIfUnchecked4() throws Throwable  {
         Throwables.throwIfUnchecked(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPropagate1() throws Throwable  {
+        Throwable throwable = new Throwable();
+        
+        Throwables.propagate(throwable);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPropagate2() throws Throwable  {
+        DestroyFailedException destroyFailedException = ((DestroyFailedException) createInstance("javax.security.auth.DestroyFailedException"));
+        
+        Throwables.propagate(destroyFailedException);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPropagate3() throws Throwable  {
+        Throwables.propagate(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPropagate4() throws Throwable  {
+        AssertionError assertionError = ((AssertionError) createInstance("java.lang.AssertionError"));
+        
+        Throwables.propagate(assertionError);
     }
     ///endregion
     
@@ -177,6 +177,41 @@ public class ThrowablesTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetCauseAs1() throws Throwable  {
+        Class class1 = Object.class;
+        
+        Throwables.getCauseAs(null, class1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetCauseAs2() throws Throwable  {
+        CloneNotSupportedException cloneNotSupportedException = ((CloneNotSupportedException) createInstance("java.lang.CloneNotSupportedException"));
+        setField(cloneNotSupportedException, "cause", cloneNotSupportedException);
+        
+        Throwables.getCauseAs(cloneNotSupportedException, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetCauseAs3() throws Throwable  {
+        UnknownHostException unknownHostException = ((UnknownHostException) createInstance("java.net.UnknownHostException"));
+        setField(unknownHostException, "cause", unknownHostException);
+        Class class1 = Object.class;
+        
+        Throwable actual = Throwables.getCauseAs(unknownHostException, class1);
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testThrowIfInstanceOf1() throws Throwable  {
         Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
         
@@ -207,7 +242,9 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000)
     public void testPropagateIfInstanceOf1() throws Throwable  {
-        Throwables.propagateIfInstanceOf(null, null);
+        Class class1 = Object.class;
+        
+        Throwables.propagateIfInstanceOf(null, class1);
     }
     ///endregion
     
@@ -226,25 +263,6 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000)
     public void testPropagateIfPossible1() throws Throwable  {
-        Throwables.propagateIfPossible(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagateIfPossible2() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        Class class1 = Object.class;
-        
-        Throwables.propagateIfPossible(throwable, class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfPossible3() throws Throwable  {
         Throwable throwable = new Throwable();
         
         Throwables.propagateIfPossible(throwable);
@@ -254,7 +272,7 @@ public class ThrowablesTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testPropagateIfPossible4() throws Throwable  {
+    public void testPropagateIfPossible2() throws Throwable  {
         Throwables.propagateIfPossible(null);
     }
     ///endregion
@@ -262,7 +280,7 @@ public class ThrowablesTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testPropagateIfPossible5() throws Throwable  {
+    public void testPropagateIfPossible3() throws Throwable  {
         UnsupportedCallbackException unsupportedCallbackException = ((UnsupportedCallbackException) createInstance("javax.security.auth.callback.UnsupportedCallbackException"));
         
         Throwables.propagateIfPossible(unsupportedCallbackException);
@@ -272,10 +290,29 @@ public class ThrowablesTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagateIfPossible6() throws Throwable  {
+    public void testPropagateIfPossible4() throws Throwable  {
         AssertionError assertionError = ((AssertionError) createInstance("java.lang.AssertionError"));
         
         Throwables.propagateIfPossible(assertionError);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPropagateIfPossible5() throws Throwable  {
+        Throwables.propagateIfPossible(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPropagateIfPossible6() throws Throwable  {
+        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
+        Class class1 = Object.class;
+        
+        Throwables.propagateIfPossible(throwable, class1);
     }
     ///endregion
     
@@ -310,39 +347,6 @@ public class ThrowablesTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCauseAs1() throws Throwable  {
-        Throwables.getCauseAs(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCauseAs2() throws Throwable  {
-        CloneNotSupportedException cloneNotSupportedException = ((CloneNotSupportedException) createInstance("java.lang.CloneNotSupportedException"));
-        setField(cloneNotSupportedException, "cause", cloneNotSupportedException);
-        
-        Throwables.getCauseAs(cloneNotSupportedException, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetCauseAs3() throws Throwable  {
-        UnknownHostException unknownHostException = ((UnknownHostException) createInstance("java.net.UnknownHostException"));
-        setField(unknownHostException, "cause", unknownHostException);
-        Class class1 = Object.class;
-        
-        Throwable actual = Throwables.getCauseAs(unknownHostException, class1);
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
     public void testGetStackTraceAsString1() throws Throwable  {
         Throwable throwable = new Throwable();
@@ -361,19 +365,6 @@ public class ThrowablesTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetStackTraceAsString2() throws Throwable  {
         Throwables.getStackTraceAsString(null);
-    }
-    ///endregion
-    
-    
-    ///region Errors report for lazyStackTrace
-    
-    public void testLazyStackTrace_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
     }
     ///endregion
     
@@ -408,23 +399,37 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testInvokeAccessibleNonThrowingMethod1() throws Throwable  {
-        java.lang.Object[] objectArray = new java.lang.Object[9];
+        java.lang.Object[] ofIntArray = createArray("java.util.stream.Nodes$SizedCollectorTask$OfInt", 0);
+        java.lang.Object[] objectArray = new java.lang.Object[12];
         
         Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
         Class methodType = Class.forName("java.lang.reflect.Method");
-        Class objectType = Class.forName("java.lang.Object");
+        Class ofIntArrayType = Class.forName("java.lang.Object");
         Class objectArrayType = Class.forName("[Ljava.lang.Object;");
-        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, objectType, objectArrayType);
+        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, ofIntArrayType, objectArrayType);
         invokeAccessibleNonThrowingMethodMethod.setAccessible(true);
         java.lang.Object[] invokeAccessibleNonThrowingMethodMethodArguments = new java.lang.Object[3];
         invokeAccessibleNonThrowingMethodMethodArguments[0] = null;
-        invokeAccessibleNonThrowingMethodMethodArguments[1] = null;
+        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) ofIntArray);
         invokeAccessibleNonThrowingMethodMethodArguments[2] = ((Object) objectArray);
         try {
             invokeAccessibleNonThrowingMethodMethod.invoke(null, invokeAccessibleNonThrowingMethodMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
+    ///endregion
+    
+    
+    ///region Errors report for getJLA
+    
+    public void testGetJLA_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
     ///endregion
     
     ///region
@@ -612,6 +617,19 @@ public class ThrowablesTest {
         Method actual = ((Method) getJlaMethodMethod.invoke(null, getJlaMethodMethodArguments));
         
         assertNull(actual);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for getJlaMethod
+    
+    public void testGetJlaMethod_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
@@ -830,6 +848,15 @@ public class ThrowablesTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

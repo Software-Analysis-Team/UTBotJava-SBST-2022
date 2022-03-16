@@ -2,20 +2,21 @@ package io.seata.core.rpc.netty;
 
 import org.junit.Test;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.timeout.IdleStateEvent;
 import java.lang.reflect.Method;
 import java.util.concurrent.ConcurrentHashMap;
 import io.netty.channel.Channel;
 import org.apache.commons.pool.impl.GenericKeyedObjectPool;
 import org.slf4j.Logger;
 import io.seata.core.protocol.RegisterRMResponse;
-import org.apache.commons.pool.impl.GenericKeyedObjectPool.Config;
 import io.seata.core.rpc.netty.NettyPoolKey.TransactionRole;
 import io.seata.core.rpc.netty.NettyPoolKey;
+import org.apache.commons.pool.impl.GenericKeyedObjectPool.Config;
 import io.seata.core.model.ResourceManager;
 import java.util.LinkedHashMap;
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Array;
 import java.util.Objects;
 import java.util.Map;
 import java.util.List;
@@ -63,9 +64,21 @@ public class RmRpcClientTest {
     @Test(timeout = 10000)
     public void testUserEventTriggered2() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        java.lang.Object[] fieldInfoArray = createArray("sun.misc.ProxyGenerator$FieldInfo", 0);
         
-        rmRpcClient.userEventTriggered(((ChannelHandlerContext) null), fieldInfoArray);
+        rmRpcClient.userEventTriggered(((ChannelHandlerContext) null), null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testUserEventTriggered3() throws Throwable  {
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        IdleStateEvent idleStateEvent = ((IdleStateEvent) createInstance("io.netty.handler.timeout.IdleStateEvent"));
+        setField(idleStateEvent, "first", false);
+        setField(idleStateEvent, "state", null);
+        
+        rmRpcClient.userEventTriggered(((ChannelHandlerContext) null), idleStateEvent);
     }
     ///endregion
     
@@ -192,6 +205,29 @@ public class RmRpcClientTest {
         } finally {
             setStaticField(Runtime.class, "currentRuntime", prevCurrentRuntime);
         }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInit1() throws Throwable  {
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        
+        rmRpcClient.init();
+    }
+    ///endregion
+    
+    
+    ///region Errors report for init
+    
+    public void testInit_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
@@ -332,64 +368,6 @@ public class RmRpcClientTest {
     public void testDestroyChannel4() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         GenericKeyedObjectPool genericKeyedObjectPool = ((GenericKeyedObjectPool) createInstance("org.apache.commons.pool.impl.GenericKeyedObjectPool"));
-        rmRpcClient.nettyClientKeyPool = genericKeyedObjectPool;
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(concurrentHashMap, "table", null);
-        setField(rmRpcClient, "channels", concurrentHashMap);
-        setField(rmRpcClient, "poolKeyMap", concurrentHashMap);
-        String string = new String("");
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        
-        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
-        Class stringType = Class.forName("java.lang.String");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method destroyChannelMethod = rmRpcClientClazz.getDeclaredMethod("destroyChannel", stringType, failedChannelType);
-        destroyChannelMethod.setAccessible(true);
-        java.lang.Object[] destroyChannelMethodArguments = new java.lang.Object[2];
-        destroyChannelMethodArguments[0] = string;
-        destroyChannelMethodArguments[1] = failedChannel;
-        destroyChannelMethod.invoke(rmRpcClient, destroyChannelMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDestroyChannel5() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        GenericKeyedObjectPool genericKeyedObjectPool = ((GenericKeyedObjectPool) createInstance("org.apache.commons.pool.impl.GenericKeyedObjectPool"));
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        setField(genericKeyedObjectPool, "_factory", nettyPoolableFactory);
-        setField(genericKeyedObjectPool, "_testOnReturn", true);
-        rmRpcClient.nettyClientKeyPool = genericKeyedObjectPool;
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(concurrentHashMap, "table", null);
-        setField(rmRpcClient, "channels", concurrentHashMap);
-        ConcurrentHashMap concurrentHashMap1 = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        java.lang.Object[] nodeArray = createArray("java.util.concurrent.ConcurrentHashMap$Node", 0);
-        setField(concurrentHashMap1, "table", nodeArray);
-        setField(rmRpcClient, "poolKeyMap", concurrentHashMap1);
-        String string = new String("");
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        
-        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
-        Class stringType = Class.forName("java.lang.String");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method destroyChannelMethod = rmRpcClientClazz.getDeclaredMethod("destroyChannel", stringType, failedChannelType);
-        destroyChannelMethod.setAccessible(true);
-        java.lang.Object[] destroyChannelMethodArguments = new java.lang.Object[2];
-        destroyChannelMethodArguments[0] = string;
-        destroyChannelMethodArguments[1] = failedChannel;
-        destroyChannelMethod.invoke(rmRpcClient, destroyChannelMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDestroyChannel6() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        GenericKeyedObjectPool genericKeyedObjectPool = ((GenericKeyedObjectPool) createInstance("org.apache.commons.pool.impl.GenericKeyedObjectPool"));
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
         setField(genericKeyedObjectPool, "_factory", nettyPoolableFactory);
         setField(genericKeyedObjectPool, "_testOnReturn", false);
@@ -418,24 +396,59 @@ public class RmRpcClientTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testInit1() throws Throwable  {
+    @Test(timeout = 10000)
+    public void testDestroyChannel5() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        GenericKeyedObjectPool genericKeyedObjectPool = ((GenericKeyedObjectPool) createInstance("org.apache.commons.pool.impl.GenericKeyedObjectPool"));
+        rmRpcClient.nettyClientKeyPool = genericKeyedObjectPool;
+        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+        setField(concurrentHashMap, "table", null);
+        setField(rmRpcClient, "channels", concurrentHashMap);
+        setField(rmRpcClient, "poolKeyMap", concurrentHashMap);
+        String string = new String("");
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
         
-        rmRpcClient.init();
+        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
+        Class stringType = Class.forName("java.lang.String");
+        Class failedChannelType = Class.forName("io.netty.channel.Channel");
+        Method destroyChannelMethod = rmRpcClientClazz.getDeclaredMethod("destroyChannel", stringType, failedChannelType);
+        destroyChannelMethod.setAccessible(true);
+        java.lang.Object[] destroyChannelMethodArguments = new java.lang.Object[2];
+        destroyChannelMethodArguments[0] = string;
+        destroyChannelMethodArguments[1] = failedChannel;
+        destroyChannelMethod.invoke(rmRpcClient, destroyChannelMethodArguments);
     }
     ///endregion
     
+    ///region
     
-    ///region Errors report for init
-    
-    public void testInit_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
+    @Test(timeout = 10000)
+    public void testDestroyChannel6() throws Throwable  {
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        GenericKeyedObjectPool genericKeyedObjectPool = ((GenericKeyedObjectPool) createInstance("org.apache.commons.pool.impl.GenericKeyedObjectPool"));
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        setField(genericKeyedObjectPool, "_factory", nettyPoolableFactory);
+        setField(genericKeyedObjectPool, "_testOnReturn", true);
+        rmRpcClient.nettyClientKeyPool = genericKeyedObjectPool;
+        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+        setField(concurrentHashMap, "table", null);
+        setField(rmRpcClient, "channels", concurrentHashMap);
+        ConcurrentHashMap concurrentHashMap1 = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+        java.lang.Object[] nodeArray = createArray("java.util.concurrent.ConcurrentHashMap$Node", 0);
+        setField(concurrentHashMap1, "table", nodeArray);
+        setField(rmRpcClient, "poolKeyMap", concurrentHashMap1);
+        String string = new String("");
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        
+        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
+        Class stringType = Class.forName("java.lang.String");
+        Class failedChannelType = Class.forName("io.netty.channel.Channel");
+        Method destroyChannelMethod = rmRpcClientClazz.getDeclaredMethod("destroyChannel", stringType, failedChannelType);
+        destroyChannelMethod.setAccessible(true);
+        java.lang.Object[] destroyChannelMethodArguments = new java.lang.Object[2];
+        destroyChannelMethodArguments[0] = string;
+        destroyChannelMethodArguments[1] = failedChannel;
+        destroyChannelMethod.invoke(rmRpcClient, destroyChannelMethodArguments);
     }
     ///endregion
     
@@ -516,25 +529,9 @@ public class RmRpcClientTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testOnRegisterMsgFail2() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
         
-        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
-        Class stringType = Class.forName("java.lang.String");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Class objectType = Class.forName("java.lang.Object");
-        Class abstractMessageType = Class.forName("io.seata.core.protocol.AbstractMessage");
-        Method onRegisterMsgFailMethod = rmRpcClientClazz.getDeclaredMethod("onRegisterMsgFail", stringType, failedChannelType, objectType, abstractMessageType);
-        onRegisterMsgFailMethod.setAccessible(true);
-        java.lang.Object[] onRegisterMsgFailMethodArguments = new java.lang.Object[4];
-        onRegisterMsgFailMethodArguments[0] = null;
-        onRegisterMsgFailMethodArguments[1] = failedChannel;
-        onRegisterMsgFailMethodArguments[2] = null;
-        onRegisterMsgFailMethodArguments[3] = null;
-        try {
-            onRegisterMsgFailMethod.invoke(rmRpcClient, onRegisterMsgFailMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+        rmRpcClient.onRegisterMsgFail(null, null, null, null);
+    }
     ///endregion
     
     ///region
@@ -604,17 +601,6 @@ public class RmRpcClientTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testSendMsgWithResponse1() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        Object object = new Object();
-        
-        rmRpcClient.sendMsgWithResponse(object);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendMsgWithResponse2() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         String string = new String();
         Object object = new Object();
         
@@ -625,7 +611,7 @@ public class RmRpcClientTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendMsgWithResponse3() throws Throwable  {
+    public void testSendMsgWithResponse2() throws Throwable  {
         Class runtimeClazz = Class.forName("java.lang.Runtime");
         Runtime prevCurrentRuntime = ((Runtime) getStaticFieldValue(runtimeClazz, "currentRuntime"));
         try {
@@ -722,6 +708,44 @@ public class RmRpcClientTest {
     
     ///region
     
+    @Test(timeout = 10000)
+    public void testGetTransactionRole1() throws Throwable  {
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        
+        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
+        Method getTransactionRoleMethod = rmRpcClientClazz.getDeclaredMethod("getTransactionRole");
+        getTransactionRoleMethod.setAccessible(true);
+        java.lang.Object[] getTransactionRoleMethodArguments = new java.lang.Object[0];
+        NettyPoolKey.TransactionRole actual = ((NettyPoolKey.TransactionRole) getTransactionRoleMethod.invoke(rmRpcClient, getTransactionRoleMethodArguments));
+        
+        NettyPoolKey.TransactionRole expected = NettyPoolKey.TransactionRole.RMROLE;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetTransactionRole2() throws Throwable  {
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        
+        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
+        Method getTransactionRoleMethod = rmRpcClientClazz.getDeclaredMethod("getTransactionRole");
+        getTransactionRoleMethod.setAccessible(true);
+        java.lang.Object[] getTransactionRoleMethodArguments = new java.lang.Object[0];
+        NettyPoolKey.TransactionRole actual = ((NettyPoolKey.TransactionRole) getTransactionRoleMethod.invoke(rmRpcClient, getTransactionRoleMethodArguments));
+        
+        NettyPoolKey.TransactionRole expected = NettyPoolKey.TransactionRole.RMROLE;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetNettyPoolConfig1() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
@@ -765,44 +789,6 @@ public class RmRpcClientTest {
         expected.maxTotal = -1;
         expected.maxActive = 1;
         expected.maxIdle = 8;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetTransactionRole1() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        
-        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
-        Method getTransactionRoleMethod = rmRpcClientClazz.getDeclaredMethod("getTransactionRole");
-        getTransactionRoleMethod.setAccessible(true);
-        java.lang.Object[] getTransactionRoleMethodArguments = new java.lang.Object[0];
-        NettyPoolKey.TransactionRole actual = ((NettyPoolKey.TransactionRole) getTransactionRoleMethod.invoke(rmRpcClient, getTransactionRoleMethodArguments));
-        
-        NettyPoolKey.TransactionRole expected = NettyPoolKey.TransactionRole.RMROLE;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetTransactionRole2() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        
-        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
-        Method getTransactionRoleMethod = rmRpcClientClazz.getDeclaredMethod("getTransactionRole");
-        getTransactionRoleMethod.setAccessible(true);
-        java.lang.Object[] getTransactionRoleMethodArguments = new java.lang.Object[0];
-        NettyPoolKey.TransactionRole actual = ((NettyPoolKey.TransactionRole) getTransactionRoleMethod.invoke(rmRpcClient, getTransactionRoleMethodArguments));
-        
-        NettyPoolKey.TransactionRole expected = NettyPoolKey.TransactionRole.RMROLE;
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -948,27 +934,6 @@ public class RmRpcClientTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetResourceManager1() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        
-        rmRpcClient.setResourceManager(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetResourceManager2() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        setField(rmRpcClient, "resourceManager", null);
-        
-        rmRpcClient.setResourceManager(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testSetTransactionServiceGroup1() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         String string = new String();
@@ -985,6 +950,27 @@ public class RmRpcClientTest {
         setField(rmRpcClient, "transactionServiceGroup", null);
         
         rmRpcClient.setTransactionServiceGroup(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetResourceManager1() throws Throwable  {
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        
+        rmRpcClient.setResourceManager(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetResourceManager2() throws Throwable  {
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        setField(rmRpcClient, "resourceManager", null);
+        
+        rmRpcClient.setResourceManager(null);
     }
     ///endregion
     
@@ -1253,8 +1239,9 @@ public class RmRpcClientTest {
             java.lang.Object[] nodeArray = createArray("java.util.concurrent.ConcurrentHashMap$Node", 0);
             setField(concurrentHashMap, "table", nodeArray);
             setField(rmRpcClient, "channels", concurrentHashMap);
+            String string = new String("");
             
-            rmRpcClient.registerResource(null, null);
+            rmRpcClient.registerResource(null, string);
         } finally {
             mockedStatic.close();
         }
@@ -1403,9 +1390,10 @@ public class RmRpcClientTest {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         ResourceManager resourceManagerMock = mock(ResourceManager.class);
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        Character character = '\u0000';
-        java.lang.Character[] characterArray = new java.lang.Character[9];
-        linkedHashMap.put(character, characterArray);
+        Integer integer = 0;
+        java.lang.Integer[] integerArray = new java.lang.Integer[0];
+        linkedHashMap.put(integer, integerArray);
+        linkedHashMap.put(integerArray, null);
         when(resourceManagerMock.getManagedResources()).thenReturn(((Map) linkedHashMap));
         
         rmRpcClient.getMergedResourceKeys(resourceManagerMock);
@@ -1502,14 +1490,25 @@ public class RmRpcClientTest {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
     }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
+        Class<?> clazz = object.getClass();
+        java.lang.reflect.Field field;
     
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+            } catch (Exception e) {
+                clazz = clazz.getSuperclass();
+                field = null;
+            }
+        } while (field == null);
         
-        return (Object[]) array;
+        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(object, fieldValue);
     }
     private static Object getStaticFieldValue(Class<?> clazz, String fieldName) throws Exception {
         java.lang.reflect.Field field;
@@ -1548,25 +1547,14 @@ public class RmRpcClientTest {
         field.setAccessible(true);
         field.set(null, fieldValue);
     }
-    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
-        Class<?> clazz = object.getClass();
-        java.lang.reflect.Field field;
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
     
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-            } catch (Exception e) {
-                clazz = clazz.getSuperclass();
-                field = null;
-            }
-        } while (field == null);
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
         
-        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-    
-        field.setAccessible(true);
-        field.set(object, fieldValue);
+        return (Object[]) array;
     }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();

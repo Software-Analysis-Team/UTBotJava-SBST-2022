@@ -57,16 +57,16 @@ public class PairedStatsAccumulatorTest {
         setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", java.lang.Double.NaN);
         StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
         setField(statsAccumulator, "max", java.lang.Double.NaN);
-        setField(statsAccumulator, "min", java.lang.Double.POSITIVE_INFINITY);
+        setField(statsAccumulator, "min", java.lang.Double.NaN);
         setField(statsAccumulator, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
         setField(statsAccumulator, "mean", java.lang.Double.NaN);
         setField(statsAccumulator, "count", 0L);
         setField(pairedStatsAccumulator, "yStats", statsAccumulator);
         StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator1, "max", 2.315841784746324E77);
-        setField(statsAccumulator1, "min", java.lang.Double.NaN);
-        setField(statsAccumulator1, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator1, "mean", 3.2379E-319);
+        setField(statsAccumulator1, "max", java.lang.Double.NaN);
+        setField(statsAccumulator1, "min", 2.0009765625);
+        setField(statsAccumulator1, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
+        setField(statsAccumulator1, "mean", java.lang.Double.NaN);
         setField(statsAccumulator1, "count", 0L);
         setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
         
@@ -75,22 +75,138 @@ public class PairedStatsAccumulatorTest {
         PairedStats expected = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
         Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
         setField(stats, "count", 0L);
-        setField(stats, "mean", 3.2379E-319);
-        setField(stats, "sumOfSquaresOfDeltas", 0.0);
-        setField(stats, "min", java.lang.Double.NaN);
-        setField(stats, "max", 2.315841784746324E77);
+        setField(stats, "mean", java.lang.Double.NaN);
+        setField(stats, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
+        setField(stats, "min", 2.0009765625);
+        setField(stats, "max", java.lang.Double.NaN);
         setField(expected, "xStats", stats);
         Stats stats1 = ((Stats) createInstance("com.google.common.math.Stats"));
         setField(stats1, "count", 0L);
         setField(stats1, "mean", java.lang.Double.NaN);
         setField(stats1, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
-        setField(stats1, "min", java.lang.Double.POSITIVE_INFINITY);
+        setField(stats1, "min", java.lang.Double.NaN);
         setField(stats1, "max", java.lang.Double.NaN);
         setField(expected, "yStats", stats1);
         setField(expected, "sumOfProductsOfDeltas", java.lang.Double.NaN);
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPopulationCovariance1() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
+        
+        pairedStatsAccumulator.populationCovariance();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPopulationCovariance2() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "count", 0L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
+        
+        pairedStatsAccumulator.populationCovariance();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPopulationCovariance3() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", java.lang.Double.NaN);
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "count", -9223372036854775807L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
+        
+        double actual = pairedStatsAccumulator.populationCovariance();
+        
+        assertEquals(java.lang.Double.NaN, actual, 1.0E-6);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPearsonsCorrelationCoefficient1() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
+        
+        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPearsonsCorrelationCoefficient2() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "count", -9223372036854775806L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
+        
+        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPearsonsCorrelationCoefficient3() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", java.lang.Double.NaN);
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "count", 2L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
+        
+        double actual = pairedStatsAccumulator.pearsonsCorrelationCoefficient();
+        
+        assertEquals(java.lang.Double.NaN, actual, 1.0E-6);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPearsonsCorrelationCoefficient4() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", -2.0);
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
+        setField(statsAccumulator, "count", 0L);
+        setField(pairedStatsAccumulator, "yStats", statsAccumulator);
+        StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator1, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
+        setField(statsAccumulator1, "count", 262144L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
+        
+        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPearsonsCorrelationCoefficient5() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", -2.2250738585072014E-308);
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
+        setField(statsAccumulator, "count", 0L);
+        setField(pairedStatsAccumulator, "yStats", statsAccumulator);
+        StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator1, "sumOfSquaresOfDeltas", 3.337610787760802E-308);
+        setField(statsAccumulator1, "count", 2L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
+        
+        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
     }
     ///endregion
     
@@ -465,122 +581,6 @@ public class PairedStatsAccumulatorTest {
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPopulationCovariance1() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
-        
-        pairedStatsAccumulator.populationCovariance();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPopulationCovariance2() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "count", 0L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        pairedStatsAccumulator.populationCovariance();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPopulationCovariance3() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", java.lang.Double.NaN);
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "count", -9223372036854775807L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        double actual = pairedStatsAccumulator.populationCovariance();
-        
-        assertEquals(java.lang.Double.NaN, actual, 1.0E-6);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPearsonsCorrelationCoefficient1() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
-        
-        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPearsonsCorrelationCoefficient2() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "count", -9223372036854775806L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPearsonsCorrelationCoefficient3() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", java.lang.Double.NaN);
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "count", 2L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        double actual = pairedStatsAccumulator.pearsonsCorrelationCoefficient();
-        
-        assertEquals(java.lang.Double.NaN, actual, 1.0E-6);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPearsonsCorrelationCoefficient4() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", -2.0);
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator, "count", 0L);
-        setField(pairedStatsAccumulator, "yStats", statsAccumulator);
-        StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator1, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
-        setField(statsAccumulator1, "count", 262144L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
-        
-        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPearsonsCorrelationCoefficient5() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", -2.2250738585072014E-308);
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
-        setField(statsAccumulator, "count", 0L);
-        setField(pairedStatsAccumulator, "yStats", statsAccumulator);
-        StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator1, "sumOfSquaresOfDeltas", 3.337610787760802E-308);
-        setField(statsAccumulator1, "count", 2L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
-        
-        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
     }
     ///endregion
     

@@ -1,25 +1,44 @@
-package io.seata.core.rpc;
+package spoon.reflect.visitor;
 
 import org.junit.Test;
-import java.net.InetSocketAddress;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import io.netty.channel.DefaultChannelId;
-import java.util.Map;
-import io.seata.core.rpc.netty.NettyPoolKey.TransactionRole;
-import io.seata.core.rpc.netty.NettyPoolKey;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.TreeMap;
-import java.util.LinkedHashSet;
-import io.netty.channel.Channel;
+import spoon.reflect.reference.CtTypeReference;
+import spoon.support.reflect.declaration.CtEnumImpl;
+import spoon.support.reflect.reference.CtTypeReferenceImpl;
+import spoon.support.util.EmptyClearableList;
+import spoon.reflect.factory.FactoryImpl;
+import spoon.support.DefaultCoreFactory;
+import spoon.support.StandardEnvironment;
+import org.apache.log4j.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.spi.RootLogger;
+import org.apache.log4j.Hierarchy;
+import java.util.Vector;
+import java.util.Hashtable;
+import org.apache.log4j.or.RendererMap;
+import org.apache.log4j.helpers.AppenderAttachableImpl;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.helpers.QuietWriter;
+import org.apache.log4j.helpers.OnlyOnceErrorHandler;
+import java.io.OutputStreamWriter;
+import sun.nio.cs.StreamEncoder;
+import sun.nio.cs.US_ASCII;
+import sun.nio.cs.StandardCharsets;
+import java.util.concurrent.atomic.AtomicInteger;
+import sun.nio.cs.Surrogate.Parser;
+import sun.nio.cs.Surrogate;
+import java.nio.charset.CoderResult;
 import java.lang.reflect.Method;
-import io.netty.channel.unix.DomainSocketAddress;
-import java.net.InetAddress;
-import java.net.Inet4Address;
+import java.util.ArrayDeque;
+import spoon.reflect.visitor.PrintingContext.Writable;
+import spoon.reflect.visitor.PrintingContext;
+import spoon.support.reflect.declaration.CtTypeParameterImpl;
+import java.util.Deque;
+import spoon.reflect.factory.InterfaceFactory;
 import java.util.Objects;
+import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.HashSet;
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -29,20 +48,20 @@ import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
 
-public class RpcContextTest {
+public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000)
     public void testToString1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
+        PrintingContext printingContext = new PrintingContext();
         
-        String actual = rpcContext.toString();
+        String actual = printingContext.toString();
         
-        String expected = new String("RpcContext{applicationId='null', transactionServiceGroup='null', clientId='null', channel=null, resourceSets=null}");
+        String expected = new String("context.ignoreGenerics: false\n");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -52,86 +71,170 @@ public class RpcContextTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetVersion1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        String string = new String();
+    public void testSkipArray1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
         
-        rpcContext.setVersion(string);
+        boolean actual = printingContext.skipArray();
+        
+        assertFalse(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testSetVersion2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "version", null);
+    public void testSkipArray2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "SKIP_ARRAY", 0L);
         
-        rpcContext.setVersion(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testRelease1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
+        boolean actual = printingContext.skipArray();
         
-        rpcContext.release();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testRelease2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "channel", null);
-        
-        rpcContext.release();
+        assertFalse(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testRelease3() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
-        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        setField(inetSocketAddressHolder, "addr", null);
-        setField(inetSocketAddressHolder, "hostname", null);
-        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", inetSocketAddress);
-        setField(rpcContext, "channel", failedChannel);
+    public void testSkipArray3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", -1L);
+        setField(printingContext, "SKIP_ARRAY", -1L);
         
-        rpcContext.release();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testRelease4() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(failedChannel, "remoteAddress", null);
-        Object failedChannelUnsafe = createInstance("io.netty.bootstrap.FailedChannel$FailedChannelUnsafe");
-        setField(failedChannel, "unsafe", failedChannelUnsafe);
-        setField(rpcContext, "channel", failedChannel);
+        boolean actual = printingContext.skipArray();
         
-        rpcContext.release();
+        assertTrue(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetVersion1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
+    public void testForceWildcardGenerics1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
         
-        String actual = rpcContext.getVersion();
+        boolean actual = printingContext.forceWildcardGenerics();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testForceWildcardGenerics2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
+        
+        boolean actual = printingContext.forceWildcardGenerics();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testForceWildcardGenerics3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", -1L);
+        setField(printingContext, "FORCE_WILDCARD_GENERICS", -1L);
+        
+        boolean actual = printingContext.forceWildcardGenerics();
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreStaticAccess1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        boolean actual = printingContext.ignoreStaticAccess();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreStaticAccess2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_STATIC_ACCESS", 0L);
+        
+        boolean actual = printingContext.ignoreStaticAccess();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreStaticAccess3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", -1L);
+        setField(printingContext, "IGNORE_STATIC_ACCESS", -1L);
+        
+        boolean actual = printingContext.ignoreStaticAccess();
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreEnclosingClass1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        boolean actual = printingContext.ignoreEnclosingClass();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreEnclosingClass2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_ENCLOSING_CLASS", 0L);
+        
+        boolean actual = printingContext.ignoreEnclosingClass();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreEnclosingClass3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", -1L);
+        setField(printingContext, "IGNORE_ENCLOSING_CLASS", -1L);
+        
+        boolean actual = printingContext.ignoreEnclosingClass();
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetCurrentTypeReference1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        CtTypeReference actual = printingContext.getCurrentTypeReference();
         
         assertNull(actual);
     }
@@ -140,96 +243,40 @@ public class RpcContextTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetVersion2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "version", null);
+    public void testGetCurrentTypeReference2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "currentTopLevel", null);
         
-        String actual = rpcContext.getVersion();
+        CtTypeReference actual = printingContext.getCurrentTypeReference();
         
         assertNull(actual);
     }
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInClientChannels1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        rpcContext.holdInClientChannels(null);
-    }
-    ///endregion
+    ///region Errors report for getCurrentTypeReference
     
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInClientChannels2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(rpcContext, "clientTMHolderMap", concurrentHashMap);
-        
-        rpcContext.holdInClientChannels(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInClientChannels3() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientTMHolderMap", null);
-        setField(rpcContext, "channel", null);
-        
-        rpcContext.holdInClientChannels(null);
+    public void testGetCurrentTypeReference_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
+        // 
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testHoldInClientChannels4() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientTMHolderMap", null);
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
-        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        setField(inetSocketAddressHolder, "addr", null);
-        setField(inetSocketAddressHolder, "hostname", null);
-        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", inetSocketAddress);
-        setField(rpcContext, "channel", failedChannel);
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+    public void testGetCurrentTypeContext1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
         
-        Object initialRpcContextClientTMHolderMap = getFieldValue(rpcContext, "clientTMHolderMap");
-        
-        rpcContext.holdInClientChannels(concurrentHashMap);
-        
-        Object finalRpcContextClientTMHolderMap = getFieldValue(rpcContext, "clientTMHolderMap");
-        
-        assertFalse(initialRpcContextClientTMHolderMap == finalRpcContextClientTMHolderMap);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInClientChannels5() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientTMHolderMap", null);
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(rpcContext, "channel", failedChannel);
-        
-        rpcContext.holdInClientChannels(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetClientRMHolderMap1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        ConcurrentMap actual = rpcContext.getClientRMHolderMap();
+        Class printingContextClazz = Class.forName("spoon.reflect.visitor.PrintingContext");
+        Method getCurrentTypeContextMethod = printingContextClazz.getDeclaredMethod("getCurrentTypeContext");
+        getCurrentTypeContextMethod.setAccessible(true);
+        java.lang.Object[] getCurrentTypeContextMethodArguments = new java.lang.Object[0];
+        TypeContext actual = ((TypeContext) getCurrentTypeContextMethod.invoke(printingContext, getCurrentTypeContextMethodArguments));
         
         assertNull(actual);
     }
@@ -238,11 +285,15 @@ public class RpcContextTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetClientRMHolderMap2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientRMHolderMap", null);
+    public void testGetCurrentTypeContext2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "currentThis", null);
         
-        ConcurrentMap actual = rpcContext.getClientRMHolderMap();
+        Class printingContextClazz = Class.forName("spoon.reflect.visitor.PrintingContext");
+        Method getCurrentTypeContextMethod = printingContextClazz.getDeclaredMethod("getCurrentTypeContext");
+        getCurrentTypeContextMethod.setAccessible(true);
+        java.lang.Object[] getCurrentTypeContextMethodArguments = new java.lang.Object[0];
+        TypeContext actual = ((TypeContext) getCurrentTypeContextMethod.invoke(printingContext, getCurrentTypeContextMethodArguments));
         
         assertNull(actual);
     }
@@ -250,618 +301,345 @@ public class RpcContextTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        String string = new String();
+    @Test(timeout = 10000)
+    public void testGetCurrentTypeContext3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
+        setField(arrayDeque, "tail", 0);
+        setField(arrayDeque, "head", 0);
+        java.lang.Object[] objectArray = new java.lang.Object[16];
+        setField(arrayDeque, "elements", objectArray);
+        setField(printingContext, "currentThis", arrayDeque);
         
-        rpcContext.holdInResourceManagerChannels(string, ((ConcurrentMap) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
-        setField(rpcContext, "channel", null);
+        Class printingContextClazz = Class.forName("spoon.reflect.visitor.PrintingContext");
+        Method getCurrentTypeContextMethod = printingContextClazz.getDeclaredMethod("getCurrentTypeContext");
+        getCurrentTypeContextMethod.setAccessible(true);
+        java.lang.Object[] getCurrentTypeContextMethodArguments = new java.lang.Object[0];
+        TypeContext actual = ((TypeContext) getCurrentTypeContextMethod.invoke(printingContext, getCurrentTypeContextMethodArguments));
         
-        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels3() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
-        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        setField(inetSocketAddressHolder, "addr", null);
-        String string = new String("");
-        setField(inetSocketAddressHolder, "hostname", string);
-        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", inetSocketAddress);
-        setField(rpcContext, "channel", failedChannel);
-        ConcurrentHashMap concurrentHashMap1 = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        
-        rpcContext.holdInResourceManagerChannels(((String) null), concurrentHashMap1);
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testHoldInResourceManagerChannels4() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
-        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        setField(inetSocketAddressHolder, "addr", null);
-        setField(inetSocketAddressHolder, "hostname", null);
-        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", inetSocketAddress);
-        setField(rpcContext, "channel", failedChannel);
-        String string = new String("");
-        ConcurrentHashMap concurrentHashMap1 = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+    public void testNoTypeDecl1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
         
-        rpcContext.holdInResourceManagerChannels(string, concurrentHashMap1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels5() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(failedChannel, "remoteAddress", null);
-        Object failedChannelUnsafe = createInstance("io.netty.bootstrap.FailedChannel$FailedChannelUnsafe");
-        Object failedChannel1 = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(failedChannel1, "remoteAddress", null);
-        setField(failedChannel1, "unsafe", null);
-        setField(failedChannelUnsafe, "this$0", failedChannel1);
-        setField(failedChannel, "unsafe", failedChannelUnsafe);
-        setField(rpcContext, "channel", failedChannel);
+        boolean actual = printingContext.noTypeDecl();
         
-        Object rpcContextChannel = getFieldValue(rpcContext, "channel");
-        Object rpcContextChannelChannelUnsafe = getFieldValue(rpcContextChannel, "unsafe");
-        Object initialRpcContextChannelUnsafeThis$0 = getFieldValue(rpcContextChannelChannelUnsafe, "this$0");
-        
-        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
-        
-        Object rpcContextChannel1 = getFieldValue(rpcContext, "channel");
-        Object rpcContextChannel1ChannelUnsafe = getFieldValue(rpcContextChannel1, "unsafe");
-        Object finalRpcContextChannelUnsafeThis$0 = getFieldValue(rpcContextChannel1ChannelUnsafe, "this$0");
-        
-        assertNull(finalRpcContextChannelUnsafeThis$0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels6() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientRMHolderMap", null);
-        setField(rpcContext, "channel", null);
-        
-        Object initialRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
-        
-        Object finalRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        assertFalse(initialRpcContextClientRMHolderMap == finalRpcContextClientRMHolderMap);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInIdentifiedChannels1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        rpcContext.holdInIdentifiedChannels(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInIdentifiedChannels2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(rpcContext, "clientIDHolderMap", concurrentHashMap);
-        
-        rpcContext.holdInIdentifiedChannels(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInIdentifiedChannels3() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientIDHolderMap", null);
-        setField(rpcContext, "channel", null);
-        
-        rpcContext.holdInIdentifiedChannels(null);
+        assertFalse(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testHoldInIdentifiedChannels4() throws Throwable  {
-        Class runtimeClazz = Class.forName("java.lang.Runtime");
-        Runtime prevCurrentRuntime = ((Runtime) getStaticFieldValue(runtimeClazz, "currentRuntime"));
+    public void testNoTypeDecl2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "NO_TYPE_DECL", 0L);
+        
+        boolean actual = printingContext.noTypeDecl();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testNoTypeDecl3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", -1L);
+        setField(printingContext, "NO_TYPE_DECL", -1L);
+        
+        boolean actual = printingContext.noTypeDecl();
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreGenerics1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        boolean actual = printingContext.ignoreGenerics();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreGenerics2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_GENERICS", 0L);
+        
+        boolean actual = printingContext.ignoreGenerics();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreGenerics3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", -1L);
+        setField(printingContext, "IGNORE_GENERICS", -1L);
+        
+        boolean actual = printingContext.ignoreGenerics();
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testModify1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        PrintingContext.Writable actual = printingContext.modify();
+        
+        PrintingContext.Writable expected = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        setField(expected, "oldState", 0L);
+        setField(expected, "this$0", printingContext);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testModify2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        
+        PrintingContext.Writable actual = printingContext.modify();
+        
+        PrintingContext.Writable expected = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        setField(expected, "oldState", 0L);
+        setField(expected, "this$0", printingContext);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPushCurrentThis1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        printingContext.pushCurrentThis(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPushCurrentThis2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "currentThis", null);
+        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
+        
+        printingContext.pushCurrentThis(ctTypeParameterImpl);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPopCurrentThis1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        printingContext.popCurrentThis();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPopCurrentThis2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "currentThis", null);
+        
+        printingContext.popCurrentThis();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPopCurrentThis3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        Object keepAliveStreamCleaner = createInstance("sun.net.www.http.KeepAliveStreamCleaner");
+        setField(keepAliveStreamCleaner, "modCount", 0);
+        setField(keepAliveStreamCleaner, "last", null);
+        Object node = createInstance("java.util.LinkedList$Node");
+        setField(node, "next", null);
+        setField(node, "item", null);
+        setField(keepAliveStreamCleaner, "first", node);
+        setField(keepAliveStreamCleaner, "size", 0);
+        setField(printingContext, "currentThis", keepAliveStreamCleaner);
+        
+        Deque deque = printingContext.currentThis;
+        Object initialPrintingContextCurrentThisFirst = getFieldValue(deque, "first");
+        
+        printingContext.popCurrentThis();
+        
+        Deque deque1 = printingContext.currentThis;
+        Object finalPrintingContextCurrentThisModCount = getFieldValue(deque1, "modCount");
+        Deque deque2 = printingContext.currentThis;
+        Object finalPrintingContextCurrentThisFirst = getFieldValue(deque2, "first");
+        Deque deque3 = printingContext.currentThis;
+        Object finalPrintingContextCurrentThisSize = getFieldValue(deque3, "size");
+        
+        assertNull(finalPrintingContextCurrentThisFirst);
+        
+        assertEquals(1, finalPrintingContextCurrentThisModCount);
+        
+        assertEquals(-1, finalPrintingContextCurrentThisSize);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsInCurrentScope1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        boolean actual = printingContext.isInCurrentScope(null);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIsInCurrentScope2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "type", null);
+        setField(ctTypeParameterImpl, "factory", factoryImpl);
+        setField(printingContext, "currentTopLevel", ctTypeParameterImpl);
+        setField(printingContext, "currentThis", null);
+        
+        printingContext.isInCurrentScope(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIsInCurrentScope3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        InterfaceFactory interfaceFactory = ((InterfaceFactory) createInstance("spoon.reflect.factory.InterfaceFactory"));
+        setField(factoryImpl, "type", interfaceFactory);
+        setField(ctTypeParameterImpl, "factory", factoryImpl);
+        setField(printingContext, "currentTopLevel", ctTypeParameterImpl);
+        setField(printingContext, "currentThis", null);
+        
+        printingContext.isInCurrentScope(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsInCurrentScope4() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        
+        boolean actual = printingContext.isInCurrentScope(null);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIsInCurrentScope5() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
+        setField(printingContext, "currentTopLevel", ctEnumImpl);
+        CtTypeReferenceImpl ctTypeReferenceImpl = ((CtTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtTypeReferenceImpl"));
+        
+        printingContext.isInCurrentScope(ctTypeReferenceImpl);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPrintingContext1() {
+        PrintingContext actual = new PrintingContext();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPrintingContext2() {
+        PrintingContext actual = new PrintingContext();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testClose1() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        
+        writable.close();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testClose2() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(writable, "this$0", printingContext);
+        setField(writable, "oldState", 0L);
+        
+        writable.close();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSetState1() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        
+        Class writableClazz = Class.forName("spoon.reflect.visitor.PrintingContext$Writable");
+        Class longType = long.class;
+        Class booleanType = boolean.class;
+        Method setStateMethod = writableClazz.getDeclaredMethod("setState", longType, booleanType);
+        setStateMethod.setAccessible(true);
+        java.lang.Object[] setStateMethodArguments = new java.lang.Object[2];
+        setStateMethodArguments[0] = 0L;
+        setStateMethodArguments[1] = false;
         try {
-            Runtime currentRuntime = ((Runtime) createInstance("java.lang.Runtime"));
-            setStaticField(runtimeClazz, "currentRuntime", currentRuntime);
-            RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-            setField(rpcContext, "clientIDHolderMap", null);
-            Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-            DefaultChannelId defaultChannelId = ((DefaultChannelId) createInstance("io.netty.channel.DefaultChannelId"));
-            setField(defaultChannelId, "hashCode", 0);
-            setField(failedChannel, "id", defaultChannelId);
-            setField(rpcContext, "channel", failedChannel);
-            ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-            setField(concurrentHashMap, "sizeCtl", 0);
-            java.lang.Object[] nodeArray = createArray("java.util.concurrent.ConcurrentHashMap$Node", 0);
-            setField(concurrentHashMap, "table", nodeArray);
-            
-            Object initialRpcContextClientIDHolderMap = getFieldValue(rpcContext, "clientIDHolderMap");
-            
-            rpcContext.holdInIdentifiedChannels(concurrentHashMap);
-            
-            Object finalRpcContextClientIDHolderMap = getFieldValue(rpcContext, "clientIDHolderMap");
-            
-            Object finalConcurrentHashMapSizeCtl = getFieldValue(concurrentHashMap, "sizeCtl");
-            Object finalConcurrentHashMapTable = getFieldValue(concurrentHashMap, "table");
-            
-            assertFalse(initialRpcContextClientIDHolderMap == finalRpcContextClientIDHolderMap);
-            
-            assertEquals(12, finalConcurrentHashMapSizeCtl);
-            
-        } finally {
-            setStaticField(Runtime.class, "currentRuntime", prevCurrentRuntime);
-        }
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetPortMap1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        String string = new String();
-        
-        rpcContext.getPortMap(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetPortMap2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientRMHolderMap", null);
-        
-        rpcContext.getPortMap(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetPortMap3() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        java.lang.Object[] nodeArray = createArray("java.util.concurrent.ConcurrentHashMap$Node", 0);
-        setField(concurrentHashMap, "table", nodeArray);
-        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
-        String string = new String("");
-        
-        Map actual = rpcContext.getPortMap(string);
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetClientId1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        String actual = rpcContext.getClientId();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetClientId2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientId", null);
-        
-        String actual = rpcContext.getClientId();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetChannel1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        rpcContext.setChannel(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetChannel2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "channel", null);
-        
-        rpcContext.setChannel(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetApplicationId1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        String actual = rpcContext.getApplicationId();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetApplicationId2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "applicationId", null);
-        
-        String actual = rpcContext.getApplicationId();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetApplicationId1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        String string = new String();
-        
-        rpcContext.setApplicationId(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetApplicationId2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "applicationId", null);
-        
-        rpcContext.setApplicationId(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetTransactionServiceGroup1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        String actual = rpcContext.getTransactionServiceGroup();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetTransactionServiceGroup2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "transactionServiceGroup", null);
-        
-        String actual = rpcContext.getTransactionServiceGroup();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetTransactionServiceGroup1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        String string = new String();
-        
-        rpcContext.setTransactionServiceGroup(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetTransactionServiceGroup2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "transactionServiceGroup", null);
-        
-        rpcContext.setTransactionServiceGroup(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetClientRole1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        NettyPoolKey.TransactionRole actual = rpcContext.getClientRole();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetClientRole2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientRole", null);
-        
-        NettyPoolKey.TransactionRole actual = rpcContext.getClientRole();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetClientRole1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        NettyPoolKey.TransactionRole transactionRole = ((NettyPoolKey.TransactionRole) createInstance("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole"));
-        
-        rpcContext.setClientRole(transactionRole);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetClientRole2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientRole", null);
-        
-        rpcContext.setClientRole(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetResourceSets1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        Set actual = rpcContext.getResourceSets();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetResourceSets2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "resourceSets", null);
-        
-        Object initialRpcContextResourceSets = getFieldValue(rpcContext, "resourceSets");
-        
-        Set actual = rpcContext.getResourceSets();
-        
-        assertNull(actual);
-        
-        Object finalRpcContextResourceSets = getFieldValue(rpcContext, "resourceSets");
-        
-        assertNull(finalRpcContextResourceSets);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetResourceSets1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        TreeSet treeSet = ((TreeSet) createInstance("java.util.TreeSet"));
-        TreeMap treeMap = new TreeMap();
-        setField(treeSet, "m", treeMap);
-        
-        rpcContext.setResourceSets(treeSet);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetResourceSets2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "resourceSets", null);
-        
-        Object initialRpcContextResourceSets = getFieldValue(rpcContext, "resourceSets");
-        
-        rpcContext.setResourceSets(null);
-        
-        Object finalRpcContextResourceSets = getFieldValue(rpcContext, "resourceSets");
-        
-        assertNull(finalRpcContextResourceSets);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddResource1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        String string = new String();
-        
-        rpcContext.addResource(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddResource2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "resourceSets", null);
-        String string = new String("");
-        
-        Object initialRpcContextResourceSets = getFieldValue(rpcContext, "resourceSets");
-        
-        rpcContext.addResource(string);
-        
-        Object finalRpcContextResourceSets = getFieldValue(rpcContext, "resourceSets");
-        
-        assertNull(finalRpcContextResourceSets);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAddResource3() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        setField(rpcContext, "resourceSets", linkedHashSet);
-        String string = new String("");
-        
-        rpcContext.addResource(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAddResources1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        TreeSet treeSet = ((TreeSet) createInstance("java.util.TreeSet"));
-        TreeMap treeMap = new TreeMap();
-        setField(treeSet, "m", treeMap);
-        
-        rpcContext.addResources(treeSet);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAddResources2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        
-        rpcContext.addResources(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAddResources3() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "resourceSets", null);
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        
-        rpcContext.addResources(linkedHashSet);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetClientId1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        String string = new String();
-        
-        rpcContext.setClientId(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetClientId2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientId", null);
-        
-        rpcContext.setClientId(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetChannel1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        Channel actual = rpcContext.getChannel();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetChannel2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "channel", null);
-        
-        Channel actual = rpcContext.getChannel();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetAddressFromChannel1() throws Throwable  {
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class channelType = Class.forName("io.netty.channel.Channel");
-        Method getAddressFromChannelMethod = rpcContextClazz.getDeclaredMethod("getAddressFromChannel", channelType);
-        getAddressFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getAddressFromChannelMethodArguments = new java.lang.Object[1];
-        getAddressFromChannelMethodArguments[0] = null;
-        try {
-            getAddressFromChannelMethod.invoke(null, getAddressFromChannelMethodArguments);
+            setStateMethod.invoke(writable, setStateMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -869,274 +647,345 @@ public class RpcContextTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetAddressFromChannel2() throws Throwable  {
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class channelType = Class.forName("io.netty.channel.Channel");
-        Method getAddressFromChannelMethod = rpcContextClazz.getDeclaredMethod("getAddressFromChannel", channelType);
-        getAddressFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getAddressFromChannelMethodArguments = new java.lang.Object[1];
-        getAddressFromChannelMethodArguments[0] = null;
-        try {
-            getAddressFromChannelMethod.invoke(null, getAddressFromChannelMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetAddressFromChannel3() throws Throwable  {
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(failedChannel, "remoteAddress", null);
-        Object failedChannelUnsafe = createInstance("io.netty.bootstrap.FailedChannel$FailedChannelUnsafe");
-        Object failedChannel1 = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(failedChannel1, "remoteAddress", null);
-        setField(failedChannel1, "unsafe", null);
-        setField(failedChannelUnsafe, "this$0", failedChannel1);
-        setField(failedChannel, "unsafe", failedChannelUnsafe);
+    @Test(timeout = 10000)
+    public void testSetState2() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(writable, "this$0", printingContext);
         
-        Object failedChannelUnsafe1 = getFieldValue(failedChannel, "unsafe");
-        Object initialFailedChannelUnsafeThis$0 = getFieldValue(failedChannelUnsafe1, "this$0");
-        
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method getAddressFromChannelMethod = rpcContextClazz.getDeclaredMethod("getAddressFromChannel", failedChannelType);
-        getAddressFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getAddressFromChannelMethodArguments = new java.lang.Object[1];
-        getAddressFromChannelMethodArguments[0] = failedChannel;
-        try {
-            getAddressFromChannelMethod.invoke(null, getAddressFromChannelMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object failedChannelUnsafe2 = getFieldValue(failedChannel, "unsafe");
-        Object finalFailedChannelUnsafeThis$0 = getFieldValue(failedChannelUnsafe2, "this$0");
-        
-        assertNull(finalFailedChannelUnsafeThis$0);
+        Class writableClazz = Class.forName("spoon.reflect.visitor.PrintingContext$Writable");
+        Class longType = long.class;
+        Class booleanType = boolean.class;
+        Method setStateMethod = writableClazz.getDeclaredMethod("setState", longType, booleanType);
+        setStateMethod.setAccessible(true);
+        java.lang.Object[] setStateMethodArguments = new java.lang.Object[2];
+        setStateMethodArguments[0] = 0L;
+        setStateMethodArguments[1] = true;
+        setStateMethod.invoke(writable, setStateMethodArguments);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetAddressFromChannel4() throws Throwable  {
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        DomainSocketAddress domainSocketAddress = ((DomainSocketAddress) createInstance("io.netty.channel.unix.DomainSocketAddress"));
-        String string = new String("\u0000");
-        setField(domainSocketAddress, "socketPath", string);
-        setField(failedChannel, "remoteAddress", domainSocketAddress);
+    public void testSetState3() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(writable, "this$0", printingContext);
         
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method getAddressFromChannelMethod = rpcContextClazz.getDeclaredMethod("getAddressFromChannel", failedChannelType);
-        getAddressFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getAddressFromChannelMethodArguments = new java.lang.Object[1];
-        getAddressFromChannelMethodArguments[0] = failedChannel;
-        String actual = ((String) getAddressFromChannelMethod.invoke(null, getAddressFromChannelMethodArguments));
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(string, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetAddressFromChannel5() throws Throwable  {
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
-        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        InetAddress inetAddress = ((InetAddress) createInstance("java.net.InetAddress"));
-        Object inetAddressHolder = createInstance("java.net.InetAddress$InetAddressHolder");
-        setField(inetAddressHolder, "hostName", null);
-        setField(inetAddress, "holder", inetAddressHolder);
-        setField(inetSocketAddressHolder, "addr", inetAddress);
-        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", inetSocketAddress);
-        
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method getAddressFromChannelMethod = rpcContextClazz.getDeclaredMethod("getAddressFromChannel", failedChannelType);
-        getAddressFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getAddressFromChannelMethodArguments = new java.lang.Object[1];
-        getAddressFromChannelMethodArguments[0] = failedChannel;
-        String actual = ((String) getAddressFromChannelMethod.invoke(null, getAddressFromChannelMethodArguments));
-        
-        String expected = new String("null:0");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        Class writableClazz = Class.forName("spoon.reflect.visitor.PrintingContext$Writable");
+        Class longType = long.class;
+        Class booleanType = boolean.class;
+        Method setStateMethod = writableClazz.getDeclaredMethod("setState", longType, booleanType);
+        setStateMethod.setAccessible(true);
+        java.lang.Object[] setStateMethodArguments = new java.lang.Object[2];
+        setStateMethodArguments[0] = 0L;
+        setStateMethodArguments[1] = false;
+        setStateMethod.invoke(writable, setStateMethodArguments);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetClientPortFromChannel1() throws Throwable  {
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class channelType = Class.forName("io.netty.channel.Channel");
-        Method getClientPortFromChannelMethod = rpcContextClazz.getDeclaredMethod("getClientPortFromChannel", channelType);
-        getClientPortFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getClientPortFromChannelMethodArguments = new java.lang.Object[1];
-        getClientPortFromChannelMethodArguments[0] = null;
-        try {
-            getClientPortFromChannelMethod.invoke(null, getClientPortFromChannelMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+    public void testSkipArray4() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        
+        writable.skipArray(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSkipArray5() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "SKIP_ARRAY", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.skipArray(true);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSkipArray6() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "SKIP_ARRAY", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.skipArray(false);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetClientPortFromChannel2() throws Throwable  {
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class channelType = Class.forName("io.netty.channel.Channel");
-        Method getClientPortFromChannelMethod = rpcContextClazz.getDeclaredMethod("getClientPortFromChannel", channelType);
-        getClientPortFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getClientPortFromChannelMethodArguments = new java.lang.Object[1];
-        getClientPortFromChannelMethodArguments[0] = null;
-        try {
-            getClientPortFromChannelMethod.invoke(null, getClientPortFromChannelMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+    public void testForceWildcardGenerics4() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        
+        writable.forceWildcardGenerics(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testForceWildcardGenerics5() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.forceWildcardGenerics(true);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testForceWildcardGenerics6() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.forceWildcardGenerics(false);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetClientPortFromChannel3() throws Throwable  {
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(failedChannel, "remoteAddress", null);
-        Object failedChannelUnsafe = createInstance("io.netty.bootstrap.FailedChannel$FailedChannelUnsafe");
-        Object failedChannel1 = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(failedChannel1, "remoteAddress", null);
-        setField(failedChannel1, "unsafe", null);
-        setField(failedChannelUnsafe, "this$0", failedChannel1);
-        setField(failedChannel, "unsafe", failedChannelUnsafe);
+    public void testIgnoreStaticAccess4() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
         
-        Object failedChannelUnsafe1 = getFieldValue(failedChannel, "unsafe");
-        Object initialFailedChannelUnsafeThis$0 = getFieldValue(failedChannelUnsafe1, "this$0");
-        
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method getClientPortFromChannelMethod = rpcContextClazz.getDeclaredMethod("getClientPortFromChannel", failedChannelType);
-        getClientPortFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getClientPortFromChannelMethodArguments = new java.lang.Object[1];
-        getClientPortFromChannelMethodArguments[0] = failedChannel;
-        try {
-            getClientPortFromChannelMethod.invoke(null, getClientPortFromChannelMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object failedChannelUnsafe2 = getFieldValue(failedChannel, "unsafe");
-        Object finalFailedChannelUnsafeThis$0 = getFieldValue(failedChannelUnsafe2, "this$0");
-        
-        assertNull(finalFailedChannelUnsafeThis$0);
+        writable.ignoreStaticAccess(false);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetClientPortFromChannel4() throws Throwable  {
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
-        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        setField(inetSocketAddressHolder, "port", 0);
-        setField(inetSocketAddressHolder, "addr", null);
-        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
-        setField(inetSocketAddressHolder, "hostname", string);
-        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", inetSocketAddress);
+    public void testIgnoreStaticAccess5() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_STATIC_ACCESS", 0L);
+        setField(writable, "this$0", printingContext);
         
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method getClientPortFromChannelMethod = rpcContextClazz.getDeclaredMethod("getClientPortFromChannel", failedChannelType);
-        getClientPortFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getClientPortFromChannelMethodArguments = new java.lang.Object[1];
-        getClientPortFromChannelMethodArguments[0] = failedChannel;
-        Integer actual = ((Integer) getClientPortFromChannelMethod.invoke(null, getClientPortFromChannelMethodArguments));
+        PrintingContext.Writable actual = writable.ignoreStaticAccess(true);
         
-        Integer expected = 0;
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        assertTrue(deepEquals(writable, actual));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetClientPortFromChannel5() throws Throwable  {
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        DomainSocketAddress domainSocketAddress = ((DomainSocketAddress) createInstance("io.netty.channel.unix.DomainSocketAddress"));
-        String string = new String("\u0000\u0000\u0000");
-        setField(domainSocketAddress, "socketPath", string);
-        setField(failedChannel, "remoteAddress", domainSocketAddress);
+    public void testIgnoreStaticAccess6() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_STATIC_ACCESS", 0L);
+        setField(writable, "this$0", printingContext);
         
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method getClientPortFromChannelMethod = rpcContextClazz.getDeclaredMethod("getClientPortFromChannel", failedChannelType);
-        getClientPortFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getClientPortFromChannelMethodArguments = new java.lang.Object[1];
-        getClientPortFromChannelMethodArguments[0] = failedChannel;
-        Integer actual = ((Integer) getClientPortFromChannelMethod.invoke(null, getClientPortFromChannelMethodArguments));
+        PrintingContext.Writable actual = writable.ignoreStaticAccess(false);
         
-        Integer expected = 0;
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIgnoreEnclosingClass4() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        
+        writable.ignoreEnclosingClass(false);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetClientPortFromChannel6() throws Throwable  {
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
-        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        Inet4Address inet4Address = ((Inet4Address) createInstance("java.net.Inet4Address"));
-        Object inetAddressHolder = createInstance("java.net.InetAddress$InetAddressHolder");
-        setField(inetAddressHolder, "hostName", null);
-        setField(inet4Address, "holder", inetAddressHolder);
-        setField(inetSocketAddressHolder, "addr", inet4Address);
-        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", inetSocketAddress);
+    public void testIgnoreEnclosingClass5() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_ENCLOSING_CLASS", 0L);
+        setField(writable, "this$0", printingContext);
         
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method getClientPortFromChannelMethod = rpcContextClazz.getDeclaredMethod("getClientPortFromChannel", failedChannelType);
-        getClientPortFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getClientPortFromChannelMethodArguments = new java.lang.Object[1];
-        getClientPortFromChannelMethodArguments[0] = failedChannel;
-        Integer actual = ((Integer) getClientPortFromChannelMethod.invoke(null, getClientPortFromChannelMethodArguments));
+        PrintingContext.Writable actual = writable.ignoreEnclosingClass(true);
         
-        Integer expected = 0;
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        assertTrue(deepEquals(writable, actual));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testRpcContext1() {
-        RpcContext actual = new RpcContext();
+    public void testIgnoreEnclosingClass6() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_ENCLOSING_CLASS", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.ignoreEnclosingClass(false);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testNoTypeDecl4() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        
+        writable.noTypeDecl(false);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testRpcContext2() {
-        RpcContext actual = new RpcContext();
+    public void testNoTypeDecl5() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "NO_TYPE_DECL", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.noTypeDecl(true);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testNoTypeDecl6() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "NO_TYPE_DECL", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.noTypeDecl(false);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIgnoreGenerics4() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        
+        writable.ignoreGenerics(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreGenerics5() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_GENERICS", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.ignoreGenerics(true);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreGenerics6() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_GENERICS", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.ignoreGenerics(false);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    
+    ///region Errors report for <init>
+    
+    public void testWritable_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Inner class spoon.reflect.visitor.PrintingContext$Writable constructor testing is not supported yet
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for <init>
+    
+    public void testWritable_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Inner class spoon.reflect.visitor.PrintingContext$Writable constructor testing is not supported yet
+        // 
     }
     ///endregion
     
@@ -1332,6 +1181,15 @@ public class RpcContextTest {
         field.setAccessible(true);
         field.set(object, fieldValue);
     }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
+    }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();
         java.lang.reflect.Field field;
@@ -1350,52 +1208,6 @@ public class RpcContextTest {
         } while (clazz != null);
     
         throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
-    }
-    private static Object getStaticFieldValue(Class<?> clazz, String fieldName) throws Exception {
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-                
-                return field.get(null);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + clazz);
-    }
-    private static void setStaticField(Class<?> clazz, String fieldName, Object fieldValue) throws Exception {
-        java.lang.reflect.Field field;
-    
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-            } catch (Exception e) {
-                clazz = clazz.getSuperclass();
-                field = null;
-            }
-        } while (field == null);
-        
-        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-    
-        field.setAccessible(true);
-        field.set(null, fieldValue);
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

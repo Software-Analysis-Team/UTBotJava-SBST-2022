@@ -141,7 +141,7 @@ public class JDTBatchCompilerTest {
         
         assertNull(finalJDTBatchCompilerLimitedModules);
         
-        assertEquals(1645048812274L, finalJDTBatchCompilerStartTime);
+        assertEquals(1645043877343L, finalJDTBatchCompilerStartTime);
     }
     ///endregion
     
@@ -162,49 +162,8 @@ public class JDTBatchCompilerTest {
     public void testSetCompilationUnits2() throws Throwable  {
         JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
         setField(jDTBatchCompiler, "compilationUnits", null);
-        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[9];
         
-        CompilationUnit initialCompilationUnitArray0 = compilationUnitArray[0];
-        CompilationUnit initialCompilationUnitArray1 = compilationUnitArray[1];
-        CompilationUnit initialCompilationUnitArray2 = compilationUnitArray[2];
-        CompilationUnit initialCompilationUnitArray3 = compilationUnitArray[3];
-        CompilationUnit initialCompilationUnitArray4 = compilationUnitArray[4];
-        CompilationUnit initialCompilationUnitArray5 = compilationUnitArray[5];
-        CompilationUnit initialCompilationUnitArray6 = compilationUnitArray[6];
-        CompilationUnit initialCompilationUnitArray7 = compilationUnitArray[7];
-        CompilationUnit initialCompilationUnitArray8 = compilationUnitArray[8];
-        
-        jDTBatchCompiler.setCompilationUnits(compilationUnitArray);
-        
-        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] finalJDTBatchCompilerCompilationUnits = jDTBatchCompiler.compilationUnits;
-        
-        CompilationUnit finalCompilationUnitArray0 = compilationUnitArray[0];
-        CompilationUnit finalCompilationUnitArray1 = compilationUnitArray[1];
-        CompilationUnit finalCompilationUnitArray2 = compilationUnitArray[2];
-        CompilationUnit finalCompilationUnitArray3 = compilationUnitArray[3];
-        CompilationUnit finalCompilationUnitArray4 = compilationUnitArray[4];
-        CompilationUnit finalCompilationUnitArray5 = compilationUnitArray[5];
-        CompilationUnit finalCompilationUnitArray6 = compilationUnitArray[6];
-        CompilationUnit finalCompilationUnitArray7 = compilationUnitArray[7];
-        CompilationUnit finalCompilationUnitArray8 = compilationUnitArray[8];
-        
-        assertNull(finalCompilationUnitArray0);
-        
-        assertNull(finalCompilationUnitArray1);
-        
-        assertNull(finalCompilationUnitArray2);
-        
-        assertNull(finalCompilationUnitArray3);
-        
-        assertNull(finalCompilationUnitArray4);
-        
-        assertNull(finalCompilationUnitArray5);
-        
-        assertNull(finalCompilationUnitArray6);
-        
-        assertNull(finalCompilationUnitArray7);
-        
-        assertNull(finalCompilationUnitArray8);
+        jDTBatchCompiler.setCompilationUnits(null);
     }
     ///endregion
     
@@ -291,6 +250,15 @@ public class JDTBatchCompilerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testJDTBatchCompiler2() {
         new JDTBatchCompiler(null, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testJDTBatchCompiler3() throws Throwable  {
+        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
+        new JDTBatchCompiler(jDTBasedSpoonCompiler);
     }
     ///endregion
     

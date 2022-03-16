@@ -56,35 +56,6 @@ public class GlobalBeginResponseTest {
         setField(heapByteBuffer, "position", 0);
         setField(heapByteBuffer, "offset", 0);
         byte[] byteArray = new byte[9];
-        setField(heapByteBuffer, "hb", byteArray);
-        
-        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
-        Class heapByteBufferType = Class.forName("java.nio.ByteBuffer");
-        Method decodeMethod = globalBeginResponseClazz.getDeclaredMethod("decode", heapByteBufferType);
-        decodeMethod.setAccessible(true);
-        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
-        decodeMethodArguments[0] = heapByteBuffer;
-        try {
-            decodeMethod.invoke(globalBeginResponse, decodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalHeapByteBufferPosition = getFieldValue(heapByteBuffer, "position");
-        
-        assertEquals(1, finalHeapByteBufferPosition);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecode4() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
-        setField(heapByteBuffer, "limit", 1);
-        setField(heapByteBuffer, "position", 0);
-        setField(heapByteBuffer, "offset", 0);
-        byte[] byteArray = new byte[9];
         byteArray[0] = java.lang.Byte.MIN_VALUE;
         setField(heapByteBuffer, "hb", byteArray);
         
@@ -196,6 +167,40 @@ public class GlobalBeginResponseTest {
         Object finalGlobalBeginResponseByteBufferPosition = getFieldValue(byteBuffer, "position");
         
         assertEquals(1, finalGlobalBeginResponseByteBufferPosition);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoEncode4() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        setField(globalBeginResponse, "msg", null);
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "limit", 536870912);
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "bigEndian", true);
+        setField(heapByteBuffer, "offset", 1);
+        byte[] byteArray = new byte[11];
+        setField(heapByteBuffer, "hb", byteArray);
+        setField(globalBeginResponse, "byteBuffer", heapByteBuffer);
+        ResultCode resultCode = ResultCode.Failed;
+        setField(globalBeginResponse, "resultCode", resultCode);
+        setField(globalBeginResponse, "transactionExceptionCode", null);
+        
+        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
+        Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
+        doEncodeMethod.setAccessible(true);
+        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
+        try {
+            doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        ByteBuffer byteBuffer = globalBeginResponse.byteBuffer;
+        Object finalGlobalBeginResponseByteBufferPosition = getFieldValue(byteBuffer, "position");
+        
+        assertEquals(3, finalGlobalBeginResponseByteBufferPosition);
     }
     ///endregion
     

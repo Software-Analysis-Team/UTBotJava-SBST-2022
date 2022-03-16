@@ -19,9 +19,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 public class FinalizerTest {
@@ -50,19 +50,19 @@ public class FinalizerTest {
             Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
             Object null = createInstance("java.lang.ref.ReferenceQueue$Null");
             setField(null, "queueLength", 0L);
+            Object weakValueReference = createInstance("com.google.common.cache.LocalCache$WeakValueReference");
             Object weakKeyDummyValueEntry = createInstance("com.google.common.collect.MapMakerInternalMap$WeakKeyDummyValueEntry");
-            Object weakKeyDummyValueEntry1 = createInstance("com.google.common.collect.MapMakerInternalMap$WeakKeyDummyValueEntry");
-            setField(weakKeyDummyValueEntry1, "next", null);
-            setField(weakKeyDummyValueEntry1, "queue", null);
-            setField(weakKeyDummyValueEntry1, "referent", null);
-            setField(weakKeyDummyValueEntry, "next", weakKeyDummyValueEntry1);
+            setField(weakKeyDummyValueEntry, "next", null);
+            setField(weakKeyDummyValueEntry, "queue", null);
+            setField(weakKeyDummyValueEntry, "referent", null);
+            setField(weakValueReference, "next", weakKeyDummyValueEntry);
             ReferenceQueue referenceQueue = ((ReferenceQueue) createInstance("java.lang.ref.ReferenceQueue"));
             setField(referenceQueue, "queueLength", 0L);
             setField(referenceQueue, "head", null);
             setField(referenceQueue, "lock", null);
-            setField(weakKeyDummyValueEntry, "queue", referenceQueue);
-            setField(weakKeyDummyValueEntry, "referent", null);
-            setField(null, "head", weakKeyDummyValueEntry);
+            setField(weakValueReference, "queue", referenceQueue);
+            setField(weakValueReference, "referent", null);
+            setField(null, "head", weakValueReference);
             Object lock = createInstance("java.lang.ref.ReferenceQueue$Lock");
             setField(null, "lock", lock);
             setField(finalizer, "queue", null);
@@ -82,7 +82,7 @@ public class FinalizerTest {
             Object finalizerQueue2 = getFieldValue(finalizer, "queue");
             Object finalFinalizerQueueHead = getFieldValue(finalizerQueue2, "head");
             
-            assertNull(finalFinalizerQueueHead);
+            assertFalse(initialFinalizerQueueHead == finalFinalizerQueueHead);
             
             assertEquals(-1L, finalFinalizerQueueQueueLength);
         } finally {
@@ -132,15 +132,15 @@ public class FinalizerTest {
         java.lang.Object[] eSSCertIdArray = createArray("sun.security.pkcs.ESSCertId", 0);
         setField(entry, "referent", eSSCertIdArray);
         setField(finalizer, "finalizableReferenceClassReference", entry);
-        Object loggerWeakRef = createInstance("java.util.logging.LogManager$LoggerWeakRef");
-        setField(loggerWeakRef, "referent", null);
+        Object loaderReference = createInstance("java.util.ResourceBundle$LoaderReference");
+        setField(loaderReference, "referent", null);
         
         Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
-        Class loggerWeakRefType = Class.forName("java.lang.ref.Reference");
-        Method cleanUpMethod = finalizerClazz.getDeclaredMethod("cleanUp", loggerWeakRefType);
+        Class loaderReferenceType = Class.forName("java.lang.ref.Reference");
+        Method cleanUpMethod = finalizerClazz.getDeclaredMethod("cleanUp", loaderReferenceType);
         cleanUpMethod.setAccessible(true);
         java.lang.Object[] cleanUpMethodArguments = new java.lang.Object[1];
-        cleanUpMethodArguments[0] = loggerWeakRef;
+        cleanUpMethodArguments[0] = loaderReference;
         try {
             cleanUpMethod.invoke(finalizer, cleanUpMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -256,14 +256,6 @@ public class FinalizerTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartFinalizer1() throws Throwable  {
-        Finalizer.startFinalizer(null, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
     public void testGetInheritableThreadLocalsField1() throws Throwable  {
         Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
@@ -348,6 +340,14 @@ public class FinalizerTest {
         // 1 occurrences of:
         // Field security is not found in class java.lang.System
         // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testStartFinalizer1() throws Throwable  {
+        Finalizer.startFinalizer(null, null, null);
     }
     ///endregion
     

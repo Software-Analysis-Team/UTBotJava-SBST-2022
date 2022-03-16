@@ -4,7 +4,6 @@ import org.junit.Test;
 import java.nio.ByteBuffer;
 import java.lang.reflect.Method;
 import io.seata.core.protocol.ResultCode;
-import io.seata.core.exception.TransactionExceptionCode;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
@@ -57,7 +56,6 @@ public class GlobalBeginResponseTest {
         setField(heapByteBuffer, "position", 0);
         setField(heapByteBuffer, "offset", 0);
         byte[] byteArray = new byte[9];
-        byteArray[0] = java.lang.Byte.MIN_VALUE;
         setField(heapByteBuffer, "hb", byteArray);
         
         Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
@@ -77,16 +75,33 @@ public class GlobalBeginResponseTest {
     }
     ///endregion
     
+    ///region
     
-    ///region Errors report for decode
-    
-    public void testDecode_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // lateinit property resultModel has not been initialized
-        // 
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode4() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "limit", 1);
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "offset", 0);
+        byte[] byteArray = new byte[9];
+        byteArray[0] = java.lang.Byte.MIN_VALUE;
+        setField(heapByteBuffer, "hb", byteArray);
+        
+        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
+        Class heapByteBufferType = Class.forName("java.nio.ByteBuffer");
+        Method decodeMethod = globalBeginResponseClazz.getDeclaredMethod("decode", heapByteBufferType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
+        decodeMethodArguments[0] = heapByteBuffer;
+        try {
+            decodeMethod.invoke(globalBeginResponse, decodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object finalHeapByteBufferPosition = getFieldValue(heapByteBuffer, "position");
+        
+        assertEquals(1, finalHeapByteBufferPosition);
     }
     ///endregion
     
@@ -159,9 +174,9 @@ public class GlobalBeginResponseTest {
         GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
         setField(globalBeginResponse, "msg", null);
         Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
-        setField(heapByteBuffer, "limit", 2130706433);
-        setField(heapByteBuffer, "position", -16777217);
-        setField(heapByteBuffer, "offset", 16777217);
+        setField(heapByteBuffer, "limit", 2);
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "offset", 0);
         byte[] byteArray = new byte[9];
         setField(heapByteBuffer, "hb", byteArray);
         setField(globalBeginResponse, "byteBuffer", heapByteBuffer);
@@ -180,39 +195,29 @@ public class GlobalBeginResponseTest {
         ByteBuffer byteBuffer = globalBeginResponse.byteBuffer;
         Object finalGlobalBeginResponseByteBufferPosition = getFieldValue(byteBuffer, "position");
         
-        assertEquals(-16777216, finalGlobalBeginResponseByteBufferPosition);
+        assertEquals(1, finalGlobalBeginResponseByteBufferPosition);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testDoEncode4() throws Throwable  {
+    public void testSetExtraData1() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
+        String string = new String();
+        
+        globalBeginResponse.setExtraData(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetExtraData2() throws Throwable  {
         GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        setField(globalBeginResponse, "msg", null);
-        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
-        setField(heapByteBuffer, "limit", 2044198913);
-        setField(heapByteBuffer, "position", 1073741824);
-        setField(heapByteBuffer, "bigEndian", true);
-        setField(heapByteBuffer, "offset", -1073741824);
-        byte[] byteArray = new byte[11];
-        setField(heapByteBuffer, "hb", byteArray);
-        setField(globalBeginResponse, "byteBuffer", heapByteBuffer);
-        ResultCode resultCode = ResultCode.Failed;
-        setField(globalBeginResponse, "resultCode", resultCode);
-        TransactionExceptionCode transactionExceptionCode = TransactionExceptionCode.Unknown;
-        setField(globalBeginResponse, "transactionExceptionCode", transactionExceptionCode);
+        setField(globalBeginResponse, "extraData", null);
         
-        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
-        Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
-        doEncodeMethod.setAccessible(true);
-        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
-        doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
-        
-        ByteBuffer byteBuffer = globalBeginResponse.byteBuffer;
-        Object finalGlobalBeginResponseByteBufferPosition = getFieldValue(byteBuffer, "position");
-        
-        assertEquals(1073741832, finalGlobalBeginResponseByteBufferPosition);
+        globalBeginResponse.setExtraData(null);
     }
     ///endregion
     
@@ -285,28 +290,6 @@ public class GlobalBeginResponseTest {
         String actual = globalBeginResponse.getXid();
         
         assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetExtraData1() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
-        String string = new String();
-        
-        globalBeginResponse.setExtraData(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetExtraData2() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        setField(globalBeginResponse, "extraData", null);
-        
-        globalBeginResponse.setExtraData(null);
     }
     ///endregion
     

@@ -1,312 +1,613 @@
-package spoon.reflect.visitor;
+package spoon.support.reflect.code;
 
 import org.junit.Test;
-import java.lang.reflect.Method;
-import java.util.LinkedList;
-import java.util.Deque;
-import spoon.reflect.declaration.CtElement;
-import java.util.ArrayDeque;
-import spoon.support.reflect.declaration.CtModuleImpl;
-import spoon.support.reflect.declaration.CtPackageImpl;
-import spoon.support.reflect.reference.CtFieldReferenceImpl;
-import spoon.support.reflect.code.CtCommentImpl;
-import spoon.support.reflect.code.CtLambdaImpl;
+import spoon.reflect.code.CtStatementList;
+import spoon.support.util.EmptyClearableList;
+import spoon.reflect.factory.FactoryImpl;
+import spoon.support.DefaultCoreFactory;
 import spoon.support.StandardEnvironment;
+import org.apache.log4j.Logger;
+import org.apache.log4j.Level;
 import org.apache.log4j.spi.RootLogger;
 import org.apache.log4j.Hierarchy;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.locks.ReentrantLock;
-import org.apache.log4j.spi.NOPLoggerRepository;
+import java.util.Vector;
+import java.util.Hashtable;
+import org.apache.log4j.or.RendererMap;
+import org.apache.log4j.helpers.AppenderAttachableImpl;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.helpers.QuietWriter;
+import org.apache.log4j.helpers.OnlyOnceErrorHandler;
+import java.io.OutputStreamWriter;
+import sun.nio.cs.StreamEncoder;
+import sun.nio.cs.US_ASCII;
+import sun.nio.cs.StandardCharsets;
+import java.util.concurrent.atomic.AtomicInteger;
+import sun.nio.cs.Surrogate.Parser;
+import sun.nio.cs.Surrogate;
+import java.nio.charset.CoderResult;
+import spoon.reflect.cu.SourcePosition;
+import spoon.reflect.declaration.CtElement;
+import java.util.ArrayList;
+import java.util.Iterator;
+import spoon.support.util.EmptyIterator;
+import spoon.reflect.visitor.Filter;
+import spoon.reflect.code.CtStatement;
+import spoon.reflect.factory.QueryFactory;
+import java.util.List;
+import java.lang.reflect.Method;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Array;
+import java.util.Objects;
+import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
-public class ModelConsistencyCheckerTest {
+public class CtStatementListImplTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testExit1() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
+    public void testAccept1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
         
-        Class modelConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.ModelConsistencyChecker");
-        Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method exitMethod = modelConsistencyCheckerClazz.getDeclaredMethod("exit", ctElementType);
-        exitMethod.setAccessible(true);
-        java.lang.Object[] exitMethodArguments = new java.lang.Object[1];
-        exitMethodArguments[0] = null;
-        try {
-            exitMethod.invoke(modelConsistencyChecker, exitMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+        ctStatementListImpl.accept(null);
+    }
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testExit2() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        setField(modelConsistencyChecker, "stack", null);
-        
-        Class modelConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.ModelConsistencyChecker");
-        Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method exitMethod = modelConsistencyCheckerClazz.getDeclaredMethod("exit", ctElementType);
-        exitMethod.setAccessible(true);
-        java.lang.Object[] exitMethodArguments = new java.lang.Object[1];
-        exitMethodArguments[0] = null;
-        try {
-            exitMethod.invoke(modelConsistencyChecker, exitMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
+    ///region Errors report for clone
     
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testExit3() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        LinkedList linkedList = ((LinkedList) createInstance("java.util.LinkedList"));
-        setField(linkedList, "modCount", 0);
-        setField(linkedList, "last", null);
-        Object node = createInstance("java.util.LinkedList$Node");
-        setField(node, "next", null);
-        setField(node, "item", null);
-        setField(linkedList, "first", node);
-        setField(linkedList, "size", 0);
-        setField(modelConsistencyChecker, "stack", linkedList);
-        
-        Deque deque = modelConsistencyChecker.stack;
-        Object initialModelConsistencyCheckerStackFirst = getFieldValue(deque, "first");
-        
-        Class modelConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.ModelConsistencyChecker");
-        Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method exitMethod = modelConsistencyCheckerClazz.getDeclaredMethod("exit", ctElementType);
-        exitMethod.setAccessible(true);
-        java.lang.Object[] exitMethodArguments = new java.lang.Object[1];
-        exitMethodArguments[0] = null;
-        exitMethod.invoke(modelConsistencyChecker, exitMethodArguments);
-        
-        Deque deque1 = modelConsistencyChecker.stack;
-        Object finalModelConsistencyCheckerStackModCount = getFieldValue(deque1, "modCount");
-        Deque deque2 = modelConsistencyChecker.stack;
-        Object finalModelConsistencyCheckerStackFirst = getFieldValue(deque2, "first");
-        Deque deque3 = modelConsistencyChecker.stack;
-        Object finalModelConsistencyCheckerStackSize = getFieldValue(deque3, "size");
-        
-        assertNull(finalModelConsistencyCheckerStackFirst);
-        
-        assertEquals(1, finalModelConsistencyCheckerStackModCount);
-        
-        assertEquals(-1, finalModelConsistencyCheckerStackSize);
+    public void testClone_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
+        // 
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter1() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
+    public void testClone2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
         
-        modelConsistencyChecker.enter(((CtElement) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter2() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        setField(modelConsistencyChecker, "stack", null);
-        
-        modelConsistencyChecker.enter(((CtElement) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter3() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
-        setField(arrayDeque, "tail", 134217728);
-        setField(arrayDeque, "head", 0);
-        setField(modelConsistencyChecker, "stack", arrayDeque);
-        
-        modelConsistencyChecker.enter(((CtElement) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter4() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
-        setField(arrayDeque, "tail", 0);
-        setField(arrayDeque, "head", 512);
-        setField(modelConsistencyChecker, "stack", arrayDeque);
-        CtModuleImpl ctModuleImpl = ((CtModuleImpl) createInstance("spoon.support.reflect.declaration.CtModuleImpl"));
-        CtPackageImpl ctPackageImpl = ((CtPackageImpl) createInstance("spoon.support.reflect.declaration.CtPackageImpl"));
-        setField(ctPackageImpl, "parent", null);
-        setField(ctPackageImpl, "factory", null);
-        setField(ctModuleImpl, "parent", ctPackageImpl);
-        setField(ctModuleImpl, "factory", null);
-        
-        modelConsistencyChecker.enter(ctModuleImpl);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter5() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
-        setField(arrayDeque, "tail", 0);
-        setField(arrayDeque, "head", 1);
-        setField(modelConsistencyChecker, "stack", arrayDeque);
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(ctFieldReferenceImpl, "parent", null);
-        
-        modelConsistencyChecker.enter(ctFieldReferenceImpl);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter6() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
-        setField(arrayDeque, "tail", 0);
-        setField(arrayDeque, "head", 0);
-        setField(modelConsistencyChecker, "stack", arrayDeque);
-        
-        modelConsistencyChecker.enter(((CtElement) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter7() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
-        setField(arrayDeque, "tail", 0);
-        setField(arrayDeque, "head", 1);
-        setField(modelConsistencyChecker, "stack", arrayDeque);
-        CtCommentImpl ctCommentImpl = ((CtCommentImpl) createInstance("spoon.support.reflect.code.CtCommentImpl"));
-        CtLambdaImpl ctLambdaImpl = ((CtLambdaImpl) createInstance("spoon.support.reflect.code.CtLambdaImpl"));
-        setField(ctLambdaImpl, "parent", null);
-        setField(ctCommentImpl, "parent", ctLambdaImpl);
-        
-        modelConsistencyChecker.enter(ctCommentImpl);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDumpStack1() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        
-        Class modelConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.ModelConsistencyChecker");
-        Method dumpStackMethod = modelConsistencyCheckerClazz.getDeclaredMethod("dumpStack");
-        dumpStackMethod.setAccessible(true);
-        java.lang.Object[] dumpStackMethodArguments = new java.lang.Object[0];
-        try {
-            dumpStackMethod.invoke(modelConsistencyChecker, dumpStackMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDumpStack2() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        setField(modelConsistencyChecker, "environment", null);
-        
-        Class modelConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.ModelConsistencyChecker");
-        Method dumpStackMethod = modelConsistencyCheckerClazz.getDeclaredMethod("dumpStack");
-        dumpStackMethod.setAccessible(true);
-        java.lang.Object[] dumpStackMethodArguments = new java.lang.Object[0];
-        try {
-            dumpStackMethod.invoke(modelConsistencyChecker, dumpStackMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDumpStack3() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        setField(modelConsistencyChecker, "stack", null);
-        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
-        RootLogger rootLogger = ((RootLogger) createInstance("org.apache.log4j.spi.RootLogger"));
-        Hierarchy hierarchy = ((Hierarchy) createInstance("org.apache.log4j.Hierarchy"));
-        setField(hierarchy, "thresholdInt", 10001);
-        setField(rootLogger, "repository", hierarchy);
-        setField(standardEnvironment, "logger", rootLogger);
-        setField(modelConsistencyChecker, "environment", standardEnvironment);
-        
-        Class modelConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.ModelConsistencyChecker");
-        Method dumpStackMethod = modelConsistencyCheckerClazz.getDeclaredMethod("dumpStack");
-        dumpStackMethod.setAccessible(true);
-        java.lang.Object[] dumpStackMethodArguments = new java.lang.Object[0];
-        try {
-            dumpStackMethod.invoke(modelConsistencyChecker, dumpStackMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDumpStack4() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        LinkedBlockingDeque linkedBlockingDeque = ((LinkedBlockingDeque) createInstance("java.util.concurrent.LinkedBlockingDeque"));
-        ReentrantLock reentrantLock = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object fairSync = createInstance("java.util.concurrent.locks.ReentrantLock$FairSync");
-        setField(reentrantLock, "sync", fairSync);
-        setField(linkedBlockingDeque, "lock", reentrantLock);
-        setField(modelConsistencyChecker, "stack", linkedBlockingDeque);
-        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
-        RootLogger rootLogger = ((RootLogger) createInstance("org.apache.log4j.spi.RootLogger"));
-        NOPLoggerRepository nOPLoggerRepository = ((NOPLoggerRepository) createInstance("org.apache.log4j.spi.NOPLoggerRepository"));
-        setField(rootLogger, "repository", nOPLoggerRepository);
-        setField(standardEnvironment, "logger", rootLogger);
-        setField(modelConsistencyChecker, "environment", standardEnvironment);
-        
-        Class modelConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.ModelConsistencyChecker");
-        Method dumpStackMethod = modelConsistencyCheckerClazz.getDeclaredMethod("dumpStack");
-        dumpStackMethod.setAccessible(true);
-        java.lang.Object[] dumpStackMethodArguments = new java.lang.Object[0];
-        dumpStackMethod.invoke(modelConsistencyChecker, dumpStackMethodArguments);
+        ctStatementListImpl.clone();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testModelConsistencyChecker1() {
-        ModelConsistencyChecker actual = new ModelConsistencyChecker(null, false, false);
+    public void testSetPosition1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        CtElement actual = ctStatementListImpl.setPosition(((SourcePosition) null));
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testModelConsistencyChecker2() {
-        ModelConsistencyChecker actual = new ModelConsistencyChecker(null, false, false);
+    public void testSetPosition2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        CtElement actual = ctStatementListImpl.setPosition(((SourcePosition) null));
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIterator1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        Iterator actual = ctStatementListImpl.iterator();
+        
+        EmptyIterator expected = ((EmptyIterator) createInstance("spoon.support.util.EmptyIterator"));
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIterator2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        Iterator actual = ctStatementListImpl.iterator();
+        
+        Object expected = createInstance("java.util.ArrayList$Itr");
+        setField(expected, "cursor", 0);
+        setField(expected, "lastRet", -1);
+        setField(expected, "expectedModCount", 0);
+        setField(expected, "this$0", arrayList);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertBefore1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        ctStatementListImpl.insertBefore(((Filter) null), ((CtStatement) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertBefore2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "query", null);
+        setField(ctStatementListImpl, "factory", factoryImpl);
+        
+        Object ctStatementListImplFactory = getFieldValue(ctStatementListImpl, "factory");
+        Object initialCtStatementListImplFactoryQuery = getFieldValue(ctStatementListImplFactory, "query");
+        
+        ctStatementListImpl.insertBefore(((Filter) null), ((CtStatement) null));
+        
+        Object ctStatementListImplFactory1 = getFieldValue(ctStatementListImpl, "factory");
+        Object finalCtStatementListImplFactoryQuery = getFieldValue(ctStatementListImplFactory1, "query");
+        
+        assertFalse(initialCtStatementListImplFactoryQuery == finalCtStatementListImplFactoryQuery);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertBefore3() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        ctStatementListImpl.insertBefore(((Filter) null), ((CtStatementList) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertBefore4() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "query", null);
+        setField(ctStatementListImpl, "factory", factoryImpl);
+        
+        Object ctStatementListImplFactory = getFieldValue(ctStatementListImpl, "factory");
+        Object initialCtStatementListImplFactoryQuery = getFieldValue(ctStatementListImplFactory, "query");
+        
+        ctStatementListImpl.insertBefore(((Filter) null), ((CtStatementList) null));
+        
+        Object ctStatementListImplFactory1 = getFieldValue(ctStatementListImpl, "factory");
+        Object finalCtStatementListImplFactoryQuery = getFieldValue(ctStatementListImplFactory1, "query");
+        
+        assertFalse(initialCtStatementListImplFactoryQuery == finalCtStatementListImplFactoryQuery);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertAfter1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        ctStatementListImpl.insertAfter(((Filter) null), ((CtStatement) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertAfter2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        ctStatementListImpl.insertAfter(((Filter) null), ((CtStatementList) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertAfter3() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        QueryFactory queryFactory = ((QueryFactory) createInstance("spoon.reflect.factory.QueryFactory"));
+        setField(factoryImpl, "query", queryFactory);
+        setField(ctStatementListImpl, "factory", factoryImpl);
+        
+        ctStatementListImpl.insertAfter(((Filter) null), ((CtStatementList) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetStatement1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        ctStatementListImpl.getStatement(0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetStatement2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        ctStatementListImpl.getStatement(0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetLastStatement1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        ctStatementListImpl.getLastStatement();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetLastStatement2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        ctStatementListImpl.getLastStatement();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testRemoveStatement1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        ctStatementListImpl.removeStatement(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testInsertEnd1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        CtStatementList actual = ctStatementListImpl.insertEnd(((CtStatement) null));
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertEnd2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        ctStatementListImpl.insertEnd(((CtStatementList) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertEnd3() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        
+        ctStatementListImpl.insertEnd(((CtStatementList) null));
+    }
+    ///endregion
+    
+    
+    ///region Errors report for insertEnd
+    
+    public void testInsertEnd_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId spoon.support.reflect.code.CtJavaDocImpl$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddStatement1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        CtStatementList actual = ctStatementListImpl.addStatement(0, null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddStatement2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        
+        CtStatementList actual = ctStatementListImpl.addStatement(0, null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddStatement3() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        CtStatementList actual = ctStatementListImpl.addStatement(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddStatement4() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        CtStatementList actual = ctStatementListImpl.addStatement(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetStatements1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        List actual = ctStatementListImpl.getStatements();
+        
+        EmptyClearableList expected = ((EmptyClearableList) createInstance("spoon.support.util.EmptyClearableList"));
+        setField(expected, "modCount", 0);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetStatements2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        List actual = ctStatementListImpl.getStatements();
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(arrayList, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetStatements1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        ArrayList arrayList = new ArrayList();
+        
+        CtStatementList actual = ctStatementListImpl.setStatements(arrayList);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetStatements2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        
+        CtStatementList actual = ctStatementListImpl.setStatements(arrayList);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertBegin1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        ctStatementListImpl.insertBegin(((CtStatement) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testInsertBegin2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        CtThrowImpl ctThrowImpl = ((CtThrowImpl) createInstance("spoon.support.reflect.code.CtThrowImpl"));
+        
+        CtStatementList actual = ctStatementListImpl.insertBegin(ctThrowImpl);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertBegin3() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        ctStatementListImpl.insertBegin(((CtStatementList) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertBegin4() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        ctStatementListImpl.insertBegin(((CtStatementList) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEnsureModifiableStatementsList1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        Class ctStatementListImplClazz = Class.forName("spoon.support.reflect.code.CtStatementListImpl");
+        Method ensureModifiableStatementsListMethod = ctStatementListImplClazz.getDeclaredMethod("ensureModifiableStatementsList");
+        ensureModifiableStatementsListMethod.setAccessible(true);
+        java.lang.Object[] ensureModifiableStatementsListMethodArguments = new java.lang.Object[0];
+        ensureModifiableStatementsListMethod.invoke(ctStatementListImpl, ensureModifiableStatementsListMethodArguments);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEnsureModifiableStatementsList2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        Class ctStatementListImplClazz = Class.forName("spoon.support.reflect.code.CtStatementListImpl");
+        Method ensureModifiableStatementsListMethod = ctStatementListImplClazz.getDeclaredMethod("ensureModifiableStatementsList");
+        ensureModifiableStatementsListMethod.setAccessible(true);
+        java.lang.Object[] ensureModifiableStatementsListMethodArguments = new java.lang.Object[0];
+        ensureModifiableStatementsListMethod.invoke(ctStatementListImpl, ensureModifiableStatementsListMethodArguments);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for getSubstitution
+    
+    public void testGetSubstitution_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetSubstitution2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        setField(ctStatementListImpl, "factory", null);
+        
+        ctStatementListImpl.getSubstitution(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetSubstitution3() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
+        setField(factoryImpl, "core", defaultCoreFactory);
+        setField(ctStatementListImpl, "factory", factoryImpl);
+        
+        ctStatementListImpl.getSubstitution(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetSubstitution4() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "core", null);
+        setField(ctStatementListImpl, "factory", factoryImpl);
+        
+        Object ctStatementListImplFactory = getFieldValue(ctStatementListImpl, "factory");
+        Object initialCtStatementListImplFactoryCore = getFieldValue(ctStatementListImplFactory, "core");
+        
+        ctStatementListImpl.getSubstitution(null);
+        
+        Object ctStatementListImplFactory1 = getFieldValue(ctStatementListImpl, "factory");
+        Object finalCtStatementListImplFactoryCore = getFieldValue(ctStatementListImplFactory1, "core");
+        
+        assertFalse(initialCtStatementListImplFactoryCore == finalCtStatementListImplFactoryCore);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCtStatementListImpl1() {
+        CtStatementListImpl actual = new CtStatementListImpl();
     }
     ///endregion
     
@@ -333,6 +634,183 @@ public class ModelConsistencyCheckerTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
+    }
+    static class FieldsPair {
+        final Object o1;
+        final Object o2;
+    
+        public FieldsPair(Object o1, Object o2) {
+            this.o1 = o1;
+            this.o2 = o2;
+        }
+    
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            FieldsPair that = (FieldsPair) o;
+            return Objects.equals(o1, that.o1) && Objects.equals(o2, that.o2);
+        }
+    
+        @Override
+        public int hashCode() {
+            return Objects.hash(o1, o2);
+        }
+    }
+    
+    private boolean deepEquals(Object o1, Object o2) {
+        try {
+            return deepEquals(o1, o2, new HashSet<>());
+        } catch (Throwable t) {
+            return true;
+        }
+    }
+    
+    private boolean deepEquals(Object o1, Object o2, Set<FieldsPair> visited) {
+        visited.add(new FieldsPair(o1, o2));
+    
+        if (o1 == o2) {
+            return true;
+        }
+    
+        if (o1 == null || o2 == null) {
+            return false;
+        }
+    
+        if (o1 instanceof Iterable) {
+            if (!(o2 instanceof Iterable)) {
+                return false;
+            }
+    
+            return iterablesDeepEquals((Iterable<?>) o1, (Iterable<?>) o2, visited);
+        }
+        
+        if (o2 instanceof Iterable) {
+            return false;
+        }
+    
+        if (o1 instanceof Map) {
+            if (!(o2 instanceof Map)) {
+                return false;
+            }
+    
+            return mapsDeepEquals((Map<?, ?>) o1, (Map<?, ?>) o2, visited);
+        }
+        
+        if (o2 instanceof Map) {
+            return false;
+        }
+    
+        Class<?> firstClass = o1.getClass();
+        if (firstClass.isArray()) {
+            if (!o2.getClass().isArray()) {
+                return false;
+            }
+    
+            // Primitive arrays should not appear here
+            return arraysDeepEquals(o1, o2, visited);
+        }
+    
+        // common classes
+    
+        // common classes without custom equals, use comparison by fields
+        final List<java.lang.reflect.Field> fields = new ArrayList<>();
+        while (firstClass != Object.class) {
+            fields.addAll(Arrays.asList(firstClass.getDeclaredFields()));
+            // Interface should not appear here
+            firstClass = firstClass.getSuperclass();
+        }
+    
+        for (java.lang.reflect.Field field : fields) {
+            field.setAccessible(true);
+            try {
+                final Object field1 = field.get(o1);
+                final Object field2 = field.get(o2);
+                if (!visited.contains(new FieldsPair(field1, field2)) && !deepEquals(field1, field2, visited)) {
+                    return false;
+                }
+            } catch (IllegalArgumentException e) {
+                return false;
+            } catch (IllegalAccessException e) {
+                // should never occur because field was set accessible
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    private boolean arraysDeepEquals(Object arr1, Object arr2, Set<FieldsPair> visited) {
+        final int length = Array.getLength(arr1);
+        if (length != Array.getLength(arr2)) {
+            return false;
+        }
+    
+        for (int i = 0; i < length; i++) {
+            if (!deepEquals(Array.get(arr1, i), Array.get(arr2, i), visited)) {
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    private boolean iterablesDeepEquals(Iterable<?> i1, Iterable<?> i2, Set<FieldsPair> visited) {
+        final Iterator<?> firstIterator = i1.iterator();
+        final Iterator<?> secondIterator = i2.iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    private boolean mapsDeepEquals(Map<?, ?> m1, Map<?, ?> m2, Set<FieldsPair> visited) {
+        final Iterator<? extends Map.Entry<?, ?>> firstIterator = m1.entrySet().iterator();
+        final Iterator<? extends Map.Entry<?, ?>> secondIterator = m2.entrySet().iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            final Map.Entry<?, ?> firstEntry = firstIterator.next();
+            final Map.Entry<?, ?> secondEntry = secondIterator.next();
+    
+            if (!deepEquals(firstEntry.getKey(), secondEntry.getKey(), visited)) {
+                return false;
+            }
+    
+            if (!deepEquals(firstEntry.getValue(), secondEntry.getValue(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    private boolean hasCustomEquals(Class<?> clazz) {
+        while (!Object.class.equals(clazz)) {
+            try {
+                clazz.getDeclaredMethod("equals", Object.class);
+                return true;
+            } catch (Exception e) { 
+                // Interface should not appear here
+                clazz = clazz.getSuperclass();
+            }
+        }
+    
+        return false;
     }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();

@@ -5,9 +5,10 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.concurrent.DefaultEventExecutor;
 import io.netty.channel.DefaultChannelPipeline;
 import java.lang.reflect.Method;
+import java.nio.channels.AlreadyBoundException;
 import io.netty.util.concurrent.GlobalEventExecutor;
-import io.netty.channel.ChannelOutboundHandlerAdapter;
 import io.netty.channel.nio.NioEventLoop;
+import io.netty.channel.ChannelOutboundHandlerAdapter;
 import org.slf4j.Logger;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -72,56 +73,6 @@ public class RpcServerHandlerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testExceptionCaught4() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext, "handlerState", 0);
-        GlobalEventExecutor globalEventExecutor = ((GlobalEventExecutor) createInstance("io.netty.util.concurrent.GlobalEventExecutor"));
-        Thread thread = ((Thread) createInstance("java.lang.Thread"));
-        setField(globalEventExecutor, "thread", thread);
-        setField(tailContext, "executor", globalEventExecutor);
-        setField(tailContext, "ordered", false);
-        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(defaultChannelPipeline, "channel", failedChannel);
-        setField(tailContext, "pipeline", defaultChannelPipeline);
-        setField(tailContext, "outbound", false);
-        Object tailContext1 = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext1, "handlerState", 0);
-        setField(tailContext1, "executor", null);
-        setField(tailContext1, "ordered", false);
-        setField(tailContext1, "pipeline", null);
-        setField(tailContext1, "outbound", false);
-        Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
-        setField(defaultChannelHandlerContext, "handlerState", 1);
-        setField(defaultChannelHandlerContext, "executor", globalEventExecutor);
-        setField(defaultChannelHandlerContext, "ordered", false);
-        setField(defaultChannelHandlerContext, "pipeline", null);
-        setField(defaultChannelHandlerContext, "outbound", true);
-        setField(defaultChannelHandlerContext, "prev", null);
-        RpcClientHandler rpcClientHandler = ((RpcClientHandler) createInstance("io.seata.core.rpc.netty.RpcClientHandler"));
-        setField(defaultChannelHandlerContext, "handler", rpcClientHandler);
-        setField(tailContext1, "prev", defaultChannelHandlerContext);
-        setField(tailContext, "prev", tailContext1);
-        
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Class throwableType = Class.forName("java.lang.Throwable");
-        Method exceptionCaughtMethod = rpcServerHandlerClazz.getDeclaredMethod("exceptionCaught", tailContextType, throwableType);
-        exceptionCaughtMethod.setAccessible(true);
-        java.lang.Object[] exceptionCaughtMethodArguments = new java.lang.Object[2];
-        exceptionCaughtMethodArguments[0] = tailContext;
-        exceptionCaughtMethodArguments[1] = null;
-        try {
-            exceptionCaughtMethod.invoke(rpcServerHandler, exceptionCaughtMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testUserEventTriggered1() throws Throwable  {
         RpcServerHandler rpcServerHandler = new RpcServerHandler();
         Object object = new Object();
@@ -135,9 +86,9 @@ public class RpcServerHandlerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testUserEventTriggered2() throws Throwable  {
         RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        java.lang.Object[] heapByteBufferRArray = createArray("java.nio.HeapByteBufferR", 0);
+        java.nio.channels.AlreadyBoundException[] alreadyBoundExceptionArray = new java.nio.channels.AlreadyBoundException[0];
         
-        rpcServerHandler.userEventTriggered(((ChannelHandlerContext) null), heapByteBufferRArray);
+        rpcServerHandler.userEventTriggered(((ChannelHandlerContext) null), alreadyBoundExceptionArray);
     }
     ///endregion
     
@@ -230,45 +181,6 @@ public class RpcServerHandlerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testUserEventTriggered6() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext, "handlerState", 0);
-        setField(tailContext, "executor", null);
-        setField(tailContext, "ordered", false);
-        setField(tailContext, "inbound", false);
-        Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
-        setField(defaultChannelHandlerContext, "handlerState", 1);
-        GlobalEventExecutor globalEventExecutor = ((GlobalEventExecutor) createInstance("io.netty.util.concurrent.GlobalEventExecutor"));
-        Thread thread = ((Thread) createInstance("java.lang.Thread"));
-        setField(globalEventExecutor, "thread", thread);
-        setField(defaultChannelHandlerContext, "executor", globalEventExecutor);
-        setField(defaultChannelHandlerContext, "ordered", false);
-        setField(defaultChannelHandlerContext, "inbound", true);
-        setField(defaultChannelHandlerContext, "next", null);
-        ChannelOutboundHandlerAdapter channelOutboundHandlerAdapter = ((ChannelOutboundHandlerAdapter) createInstance("io.netty.channel.ChannelOutboundHandlerAdapter"));
-        setField(defaultChannelHandlerContext, "handler", channelOutboundHandlerAdapter);
-        setField(tailContext, "next", defaultChannelHandlerContext);
-        java.lang.Object[] byteBufferAsShortBufferBArray = createArray("java.nio.ByteBufferAsShortBufferB", 0);
-        
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Class byteBufferAsShortBufferBArrayType = Class.forName("java.lang.Object");
-        Method userEventTriggeredMethod = rpcServerHandlerClazz.getDeclaredMethod("userEventTriggered", tailContextType, byteBufferAsShortBufferBArrayType);
-        userEventTriggeredMethod.setAccessible(true);
-        java.lang.Object[] userEventTriggeredMethodArguments = new java.lang.Object[2];
-        userEventTriggeredMethodArguments[0] = tailContext;
-        userEventTriggeredMethodArguments[1] = ((Object) byteBufferAsShortBufferBArray);
-        try {
-            userEventTriggeredMethod.invoke(rpcServerHandler, userEventTriggeredMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testChannelInactive1() throws Throwable  {
         RpcServerHandler rpcServerHandler = new RpcServerHandler();
         
@@ -342,16 +254,16 @@ public class RpcServerHandlerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testChannelInactive4() throws Throwable  {
         RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext, "handlerState", 0);
-        setField(tailContext, "executor", null);
-        setField(tailContext, "ordered", false);
-        setField(tailContext, "inbound", false);
         Object headContext = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
         setField(headContext, "handlerState", 0);
         setField(headContext, "executor", null);
         setField(headContext, "ordered", false);
         setField(headContext, "inbound", false);
+        Object headContext1 = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
+        setField(headContext1, "handlerState", 0);
+        setField(headContext1, "executor", null);
+        setField(headContext1, "ordered", false);
+        setField(headContext1, "inbound", false);
         Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
         setField(defaultChannelHandlerContext, "handlerState", 1);
         NioEventLoop nioEventLoop = ((NioEventLoop) createInstance("io.netty.channel.nio.NioEventLoop"));
@@ -361,17 +273,17 @@ public class RpcServerHandlerTest {
         setField(defaultChannelHandlerContext, "ordered", false);
         setField(defaultChannelHandlerContext, "inbound", true);
         setField(defaultChannelHandlerContext, "next", null);
-        Object encoder = createInstance("io.netty.handler.codec.ByteToMessageCodec$Encoder");
-        setField(defaultChannelHandlerContext, "handler", encoder);
-        setField(headContext, "next", defaultChannelHandlerContext);
-        setField(tailContext, "next", headContext);
+        ChannelOutboundHandlerAdapter channelOutboundHandlerAdapter = ((ChannelOutboundHandlerAdapter) createInstance("io.netty.channel.ChannelOutboundHandlerAdapter"));
+        setField(defaultChannelHandlerContext, "handler", channelOutboundHandlerAdapter);
+        setField(headContext1, "next", defaultChannelHandlerContext);
+        setField(headContext, "next", headContext1);
         
         Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Method channelInactiveMethod = rpcServerHandlerClazz.getDeclaredMethod("channelInactive", tailContextType);
+        Class headContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Method channelInactiveMethod = rpcServerHandlerClazz.getDeclaredMethod("channelInactive", headContextType);
         channelInactiveMethod.setAccessible(true);
         java.lang.Object[] channelInactiveMethodArguments = new java.lang.Object[1];
-        channelInactiveMethodArguments[0] = tailContext;
+        channelInactiveMethodArguments[0] = headContext;
         try {
             channelInactiveMethod.invoke(rpcServerHandler, channelInactiveMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -455,33 +367,36 @@ public class RpcServerHandlerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testChannelActive4() throws Throwable  {
         RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
+        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
+        setField(tailContext, "handlerState", 0);
+        setField(tailContext, "executor", null);
+        setField(tailContext, "ordered", false);
+        setField(tailContext, "inbound", false);
         Object headContext = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
         setField(headContext, "handlerState", 0);
         setField(headContext, "executor", null);
+        setField(headContext, "ordered", false);
         setField(headContext, "inbound", false);
-        Object headContext1 = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
-        setField(headContext1, "handlerState", 0);
-        setField(headContext1, "executor", null);
-        setField(headContext1, "inbound", false);
         Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
-        setField(defaultChannelHandlerContext, "handlerState", 2);
+        setField(defaultChannelHandlerContext, "handlerState", 1);
         NioEventLoop nioEventLoop = ((NioEventLoop) createInstance("io.netty.channel.nio.NioEventLoop"));
         Thread thread = ((Thread) createInstance("java.lang.Thread"));
         setField(nioEventLoop, "thread", thread);
         setField(defaultChannelHandlerContext, "executor", nioEventLoop);
+        setField(defaultChannelHandlerContext, "ordered", false);
         setField(defaultChannelHandlerContext, "inbound", true);
         setField(defaultChannelHandlerContext, "next", null);
         Object encoder = createInstance("io.netty.handler.codec.ByteToMessageCodec$Encoder");
         setField(defaultChannelHandlerContext, "handler", encoder);
-        setField(headContext1, "next", defaultChannelHandlerContext);
-        setField(headContext, "next", headContext1);
+        setField(headContext, "next", defaultChannelHandlerContext);
+        setField(tailContext, "next", headContext);
         
         Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class headContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Method channelActiveMethod = rpcServerHandlerClazz.getDeclaredMethod("channelActive", headContextType);
+        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Method channelActiveMethod = rpcServerHandlerClazz.getDeclaredMethod("channelActive", tailContextType);
         channelActiveMethod.setAccessible(true);
         java.lang.Object[] channelActiveMethodArguments = new java.lang.Object[1];
-        channelActiveMethodArguments[0] = headContext;
+        channelActiveMethodArguments[0] = tailContext;
         try {
             channelActiveMethod.invoke(rpcServerHandler, channelActiveMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {

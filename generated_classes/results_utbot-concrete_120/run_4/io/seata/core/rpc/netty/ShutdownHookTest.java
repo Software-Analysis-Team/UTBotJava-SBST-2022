@@ -2,54 +2,12 @@ package io.seata.core.rpc.netty;
 
 import org.junit.Test;
 import java.util.LinkedHashSet;
-import java.util.TreeSet;
-import java.util.TreeMap;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.security.AccessControlContext;
-import sun.misc.URLClassPath;
-import java.util.ArrayList;
-import java.net.URL;
-import sun.net.www.protocol.file.Handler;
-import java.util.Hashtable;
-import java.util.Stack;
-import java.util.jar.JarFile;
-import java.lang.ref.SoftReference;
-import java.util.jar.Manifest;
-import java.util.jar.Attributes;
-import java.util.HashMap;
-import java.util.jar.Attributes.Name;
-import sun.nio.cs.StandardCharsets;
-import java.util.concurrent.atomic.AtomicInteger;
-import sun.nio.cs.US_ASCII;
-import java.nio.charset.CodingErrorAction;
-import java.util.WeakHashMap;
-import java.util.zip.Inflater;
-import java.lang.ref.ReferenceQueue;
-import java.util.ArrayDeque;
-import sun.misc.JarIndex;
-import java.util.LinkedList;
-import sun.net.www.protocol.jar.URLJarFile;
-import java.security.CodeSource;
-import java.security.ProtectionDomain;
-import java.security.Principal;
-import java.security.Permissions;
-import java.io.FilePermission;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.Vector;
-import java.security.cert.Certificate;
-import com.huawei.utbot.framework.plugin.api.util.UtContext;
-import com.huawei.utbot.instrumentation.process.HandlerClassesLoader;
-import java.io.File;
-import sun.nio.cs.Surrogate.Parser;
-import sun.nio.cs.Surrogate;
-import java.nio.charset.CoderResult;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertNull;
@@ -157,19 +115,6 @@ public class ShutdownHookTest {
     }
     ///endregion
     
-    
-    ///region Errors report for getInstance
-    
-    public void testGetInstance_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
     ///region
     
     @Test(timeout = 10000)
@@ -192,6 +137,14 @@ public class ShutdownHookTest {
         } finally {
             setStaticField(Runtime.class, "currentRuntime", prevCurrentRuntime);
         }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetInstance1() throws Throwable  {
+        ShutdownHook.getInstance();
     }
     ///endregion
     
@@ -397,15 +350,6 @@ public class ShutdownHookTest {
         } while (clazz != null);
     
         throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static Object getStaticFieldValue(Class<?> clazz, String fieldName) throws Exception {
         java.lang.reflect.Field field;

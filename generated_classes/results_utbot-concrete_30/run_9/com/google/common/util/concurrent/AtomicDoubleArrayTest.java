@@ -1,491 +1,139 @@
-package com.alibaba.fastjson.asm;
+package com.google.common.util.concurrent;
 
 import org.junit.Test;
+import java.util.concurrent.atomic.AtomicLongArray;
 import java.lang.reflect.Method;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Objects;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.lang.reflect.Array;
 import java.util.Iterator;
-import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
-public class ByteVectorTest {
+public class AtomicDoubleArrayTest {
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testToString1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        
+        atomicDoubleArray.toString();
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000)
-    public void testPutByteArray1() throws Throwable  {
-        ByteVector byteVector = new ByteVector();
-        byte[] byteArray = new byte[0];
+    public void testToString2() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        AtomicLongArray atomicLongArray = ((AtomicLongArray) createInstance("java.util.concurrent.atomic.AtomicLongArray"));
+        long[] longArray = new long[0];
+        setField(atomicLongArray, "array", longArray);
+        setField(atomicDoubleArray, "longs", atomicLongArray);
         
-        ByteVector actual = byteVector.putByteArray(byteArray, 0, 0);
+        String actual = atomicDoubleArray.toString();
         
+        String expected = new String("[]");
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
+        assertTrue(deepEquals(expected, actual));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutByteArray2() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 0;
-        setField(byteVector, "data", null);
-        byte[] byteArray = new byte[9];
+    public void testGet1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
         
-        byteVector.putByteArray(byteArray, 0, 0);
+        atomicDoubleArray.get(0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGet2() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        setField(atomicDoubleArray, "longs", null);
+        
+        atomicDoubleArray.get(0);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for get
+    
+    public void testGet_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testLength1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        
+        atomicDoubleArray.length();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testLength2() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        setField(atomicDoubleArray, "longs", null);
+        
+        atomicDoubleArray.length();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testPutByteArray3() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = -1073741864;
-        byte[] byteArray = new byte[0];
-        byteVector.data = byteArray;
+    public void testLength3() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        AtomicLongArray atomicLongArray = ((AtomicLongArray) createInstance("java.util.concurrent.atomic.AtomicLongArray"));
+        long[] longArray = new long[9];
+        setField(atomicLongArray, "array", longArray);
+        setField(atomicDoubleArray, "longs", atomicLongArray);
         
-        ByteVector actual = byteVector.putByteArray(null, 0, 1073741817);
+        int actual = atomicDoubleArray.length();
         
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        
-        assertEquals(-47, finalByteVectorLength);
+        assertEquals(9, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutByteArray4() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 2147483582;
-        byte[] byteArray = new byte[0];
-        byteVector.data = byteArray;
-        byte[] byteArray1 = new byte[16];
-        
-        byteVector.putByteArray(byteArray1, 0, Integer.MAX_VALUE);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPutUTF81() throws Throwable  {
-        ByteVector byteVector = new ByteVector();
-        String string = new String();
-        
-        ByteVector actual = byteVector.putUTF8(string);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutUTF82() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        
-        byteVector.putUTF8(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutUTF83() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 0;
-        setField(byteVector, "data", null);
-        String string = new String("");
-        
-        byteVector.putUTF8(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutUTF84() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 2147483620;
-        byte[] byteArray = new byte[1];
-        byteVector.data = byteArray;
-        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
-        
-        byteVector.putUTF8(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPutUTF85() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 1;
-        byte[] byteArray = new byte[3];
-        byteVector.data = byteArray;
-        String string = new String("");
-        
-        ByteVector actual = byteVector.putUTF8(string);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        
-        assertEquals(3, finalByteVectorLength);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutUTF86() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = -7;
-        byte[] byteArray = new byte[7];
-        byteVector.data = byteArray;
-        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
-        
-        byteVector.putUTF8(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPutUTF87() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 3;
-        byte[] byteArray = new byte[3];
-        byteVector.data = byteArray;
-        String string = new String("");
-        
-        ByteVector actual = byteVector.putUTF8(string);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        byte[] finalByteVectorData = byteVector.data;
-        
-        assertEquals(5, finalByteVectorLength);
-        
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutUTF88() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 1;
-        byte[] byteArray = new byte[35];
-        byteVector.data = byteArray;
-        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
-        
-        byteVector.putUTF8(string);
-        
-        byte finalByteVectorData2 = byteVector.data[2];
-        
-        assertEquals((byte) 28, finalByteVectorData2);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutUTF89() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 1;
-        byte[] byteArray = new byte[35];
-        byteVector.data = byteArray;
-        String string = new String("\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
-        
-        byteVector.putUTF8(string);
-        
-        byte finalByteVectorData2 = byteVector.data[2];
-        byte finalByteVectorData3 = byteVector.data[3];
-        
-        assertEquals((byte) 28, finalByteVectorData2);
-        
-        assertEquals((byte) 1, finalByteVectorData3);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutUTF810() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 1;
-        byte[] byteArray = new byte[16];
-        byteVector.data = byteArray;
-        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
-        
-        byteVector.putUTF8(string);
-        
-        byte[] finalByteVectorData = byteVector.data;
-        
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPut121() throws Throwable  {
-        ByteVector byteVector = new ByteVector();
-        
-        ByteVector actual = byteVector.put12(0, 0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPut122() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 0;
-        setField(byteVector, "data", null);
-        
-        byteVector.put12(0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPut123() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = -4;
-        byte[] byteArray = new byte[10];
-        byteVector.data = byteArray;
-        
-        byteVector.put12(0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPut124() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 0;
-        byte[] byteArray = new byte[3];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.put12(0, 0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        
-        assertEquals(3, finalByteVectorLength);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPut125() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = -2;
-        byte[] byteArray = new byte[0];
-        byteVector.data = byteArray;
-        
-        byteVector.put12(0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPut126() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 7;
-        byte[] byteArray = new byte[6];
-        byteVector.data = byteArray;
-        
-        byteVector.put12(0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPut127() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 2;
-        byte[] byteArray = new byte[3];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.put12(0, 0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        byte[] finalByteVectorData = byteVector.data;
-        
-        assertEquals(5, finalByteVectorLength);
-        
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPut111() throws Throwable  {
-        ByteVector byteVector = new ByteVector();
-        
-        ByteVector actual = byteVector.put11(0, 0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPut112() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 0;
-        setField(byteVector, "data", null);
-        
-        byteVector.put11(0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPut113() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = -251;
-        byte[] byteArray = new byte[2];
-        byteVector.data = byteArray;
-        
-        byteVector.put11(0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPut114() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 1;
-        byte[] byteArray = new byte[3];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.put11(0, 0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        
-        assertEquals(3, finalByteVectorLength);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPut115() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 1;
-        byte[] byteArray = new byte[1];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.put11(0, 0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        byte[] finalByteVectorData = byteVector.data;
-        
-        assertEquals(3, finalByteVectorLength);
-        
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPut116() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 6;
-        byte[] byteArray = new byte[5];
-        byteVector.data = byteArray;
-        
-        byteVector.put11(0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testEnlarge1() throws Throwable  {
-        ByteVector byteVector = new ByteVector();
-        
-        Class byteVectorClazz = Class.forName("com.alibaba.fastjson.asm.ByteVector");
-        Class intType = int.class;
-        Method enlargeMethod = byteVectorClazz.getDeclaredMethod("enlarge", intType);
-        enlargeMethod.setAccessible(true);
-        java.lang.Object[] enlargeMethodArguments = new java.lang.Object[1];
-        enlargeMethodArguments[0] = 0;
-        enlargeMethod.invoke(byteVector, enlargeMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnlarge2() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "data", null);
-        
-        Class byteVectorClazz = Class.forName("com.alibaba.fastjson.asm.ByteVector");
-        Class intType = int.class;
-        Method enlargeMethod = byteVectorClazz.getDeclaredMethod("enlarge", intType);
-        enlargeMethod.setAccessible(true);
-        java.lang.Object[] enlargeMethodArguments = new java.lang.Object[1];
-        enlargeMethodArguments[0] = 0;
+    public void testReadObject1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        
+        Class atomicDoubleArrayClazz = Class.forName("com.google.common.util.concurrent.AtomicDoubleArray");
+        Class objectInputStreamType = Class.forName("java.io.ObjectInputStream");
+        Method readObjectMethod = atomicDoubleArrayClazz.getDeclaredMethod("readObject", objectInputStreamType);
+        readObjectMethod.setAccessible(true);
+        java.lang.Object[] readObjectMethodArguments = new java.lang.Object[1];
+        readObjectMethodArguments[0] = null;
         try {
-            enlargeMethod.invoke(byteVector, enlargeMethodArguments);
+            readObjectMethod.invoke(atomicDoubleArray, readObjectMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -493,43 +141,18 @@ public class ByteVectorTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testEnlarge3() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 11;
-        byte[] byteArray = new byte[18];
-        byteVector.data = byteArray;
-        
-        Class byteVectorClazz = Class.forName("com.alibaba.fastjson.asm.ByteVector");
-        Class intType = int.class;
-        Method enlargeMethod = byteVectorClazz.getDeclaredMethod("enlarge", intType);
-        enlargeMethod.setAccessible(true);
-        java.lang.Object[] enlargeMethodArguments = new java.lang.Object[1];
-        enlargeMethodArguments[0] = 2147483637;
-        enlargeMethod.invoke(byteVector, enlargeMethodArguments);
-        
-        byte[] finalByteVectorData = byteVector.data;
-        
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnlarge4() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = -2147483639;
-        byte[] byteArray = new byte[1];
-        byteVector.data = byteArray;
+    public void testWriteObject1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
         
-        Class byteVectorClazz = Class.forName("com.alibaba.fastjson.asm.ByteVector");
-        Class intType = int.class;
-        Method enlargeMethod = byteVectorClazz.getDeclaredMethod("enlarge", intType);
-        enlargeMethod.setAccessible(true);
-        java.lang.Object[] enlargeMethodArguments = new java.lang.Object[1];
-        enlargeMethodArguments[0] = Integer.MIN_VALUE;
+        Class atomicDoubleArrayClazz = Class.forName("com.google.common.util.concurrent.AtomicDoubleArray");
+        Class objectOutputStreamType = Class.forName("java.io.ObjectOutputStream");
+        Method writeObjectMethod = atomicDoubleArrayClazz.getDeclaredMethod("writeObject", objectOutputStreamType);
+        writeObjectMethod.setAccessible(true);
+        java.lang.Object[] writeObjectMethodArguments = new java.lang.Object[1];
+        writeObjectMethodArguments[0] = null;
         try {
-            enlargeMethod.invoke(byteVector, enlargeMethodArguments);
+            writeObjectMethod.invoke(atomicDoubleArray, writeObjectMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -537,357 +160,286 @@ public class ByteVectorTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testPutByte1() throws Throwable  {
-        ByteVector byteVector = new ByteVector();
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSet1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
         
-        ByteVector actual = byteVector.putByte(0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
+        atomicDoubleArray.set(0, 0.0);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutByte2() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 0;
-        setField(byteVector, "data", null);
+    public void testSet2() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        setField(atomicDoubleArray, "longs", null);
         
-        byteVector.putByte(0);
+        atomicDoubleArray.set(0, java.lang.Double.NaN);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutByte3() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = Integer.MAX_VALUE;
-        byte[] byteArray = new byte[30];
-        byteVector.data = byteArray;
+    public void testLazySet1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
         
-        byteVector.putByte(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPutByte4() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 0;
-        byte[] byteArray = new byte[33];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.putByte(0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        
-        assertEquals(1, finalByteVectorLength);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPutByte5() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 0;
-        byte[] byteArray = new byte[0];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.putByte(0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        byte[] finalByteVectorData = byteVector.data;
-        
-        assertEquals(1, finalByteVectorLength);
-        
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPutByte6() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 2;
-        byte[] byteArray = new byte[2];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.putByte(0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        byte[] finalByteVectorData = byteVector.data;
-        
-        assertEquals(3, finalByteVectorLength);
-        
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPutShort1() throws Throwable  {
-        ByteVector byteVector = new ByteVector();
-        
-        ByteVector actual = byteVector.putShort(0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
+        atomicDoubleArray.lazySet(0, 0.0);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutShort2() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 0;
-        setField(byteVector, "data", null);
+    public void testLazySet2() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        setField(atomicDoubleArray, "longs", null);
         
-        byteVector.putShort(0);
+        atomicDoubleArray.lazySet(0, java.lang.Double.NaN);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutShort3() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = -3;
-        byte[] byteArray = new byte[10];
-        byteVector.data = byteArray;
+    public void testGetAndAdd1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
         
-        byteVector.putShort(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPutShort4() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 1;
-        byte[] byteArray = new byte[3];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.putShort(0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        
-        assertEquals(3, finalByteVectorLength);
+        atomicDoubleArray.getAndAdd(0, 0.0);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutShort5() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 9;
-        byte[] byteArray = new byte[0];
-        byteVector.data = byteArray;
+    public void testGetAndAdd2() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        setField(atomicDoubleArray, "longs", null);
         
-        byteVector.putShort(0);
+        atomicDoubleArray.getAndAdd(0, java.lang.Double.NaN);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for getAndAdd
+    
+    public void testGetAndAdd_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutShort6() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 6;
-        byte[] byteArray = new byte[5];
-        byteVector.data = byteArray;
+    public void testGetAndSet1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
         
-        byteVector.putShort(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPutShort7() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 3;
-        byte[] byteArray = new byte[3];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.putShort(0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        byte[] finalByteVectorData = byteVector.data;
-        
-        assertEquals(5, finalByteVectorLength);
-        
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPutInt1() throws Throwable  {
-        ByteVector byteVector = new ByteVector();
-        
-        ByteVector actual = byteVector.putInt(0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
+        atomicDoubleArray.getAndSet(0, 0.0);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutInt2() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 0;
-        setField(byteVector, "data", null);
+    public void testGetAndSet2() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        setField(atomicDoubleArray, "longs", null);
         
-        byteVector.putInt(0);
+        atomicDoubleArray.getAndSet(0, java.lang.Double.NaN);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutInt3() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = -7;
-        byte[] byteArray = new byte[12];
-        byteVector.data = byteArray;
+    public void testCompareAndSet1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
         
-        byteVector.putInt(0);
+        atomicDoubleArray.compareAndSet(0, 0.0, 0.0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCompareAndSet2() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        setField(atomicDoubleArray, "longs", null);
+        
+        atomicDoubleArray.compareAndSet(0, java.lang.Double.NaN, java.lang.Double.NaN);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for compareAndSet
+    
+    public void testCompareAndSet_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWeakCompareAndSet1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        
+        atomicDoubleArray.weakCompareAndSet(0, 0.0, 0.0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWeakCompareAndSet2() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        setField(atomicDoubleArray, "longs", null);
+        
+        atomicDoubleArray.weakCompareAndSet(0, java.lang.Double.NaN, java.lang.Double.NaN);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for weakCompareAndSet
+    
+    public void testWeakCompareAndSet_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testAddAndGet1() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        
+        atomicDoubleArray.addAndGet(0, 0.0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testAddAndGet2() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        setField(atomicDoubleArray, "longs", null);
+        
+        atomicDoubleArray.addAndGet(0, java.lang.Double.NaN);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for addAndGet
+    
+    public void testAddAndGet_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testPutInt4() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 1;
-        byte[] byteArray = new byte[7];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.putInt(0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        
-        assertEquals(5, finalByteVectorLength);
+    public void testAtomicDoubleArray1() {
+        AtomicDoubleArray actual = new AtomicDoubleArray(0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testAtomicDoubleArray2() {
+        new AtomicDoubleArray(Integer.MIN_VALUE);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testPutInt5() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 1;
-        byte[] byteArray = new byte[2];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.putInt(0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        byte[] finalByteVectorData = byteVector.data;
-        
-        assertEquals(5, finalByteVectorLength);
-        
+    public void testAtomicDoubleArray3() {
+        AtomicDoubleArray actual = new AtomicDoubleArray(9);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testPutInt6() throws Throwable  {
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 6;
-        byte[] byteArray = new byte[7];
-        byteVector.data = byteArray;
-        
-        ByteVector actual = byteVector.putInt(0);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(byteVector, actual));
-        
-        int finalByteVectorLength = byteVector.length;
-        byte[] finalByteVectorData = byteVector.data;
-        
-        assertEquals(10, finalByteVectorLength);
-        
+    public void testAtomicDoubleArray4() {
+        double[] doubleArray = new double[0];
+        AtomicDoubleArray actual = new AtomicDoubleArray(doubleArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testAtomicDoubleArray5() {
+        new AtomicDoubleArray(((double[]) null));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testByteVector1() {
-        ByteVector actual = new ByteVector();
+    public void testAtomicDoubleArray6() {
+        double[] doubleArray = new double[0];
+        AtomicDoubleArray actual = new AtomicDoubleArray(doubleArray);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testByteVector2() {
-        ByteVector actual = new ByteVector();
+    public void testAtomicDoubleArray7() {
+        double[] doubleArray = new double[1];
+        AtomicDoubleArray actual = new AtomicDoubleArray(doubleArray);
     }
     ///endregion
     
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testByteVector3() {
-        ByteVector actual = new ByteVector(0);
+    private static Object createInstance(String className) throws Exception {
+        Class<?> clazz = Class.forName(className);
+        return getUnsafeInstance().allocateInstance(clazz);
     }
-    ///endregion
+    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
+        Class<?> clazz = object.getClass();
+        java.lang.reflect.Field field;
     
-    ///region
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+            } catch (Exception e) {
+                clazz = clazz.getSuperclass();
+                field = null;
+            }
+        } while (field == null);
+        
+        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
     
-    @Test(timeout = 10000)
-    public void testByteVector4() {
-        ByteVector actual = new ByteVector(9);
+        field.setAccessible(true);
+        field.set(object, fieldValue);
     }
-    ///endregion
-    
     static class FieldsPair {
         final Object o1;
         final Object o2;
@@ -1055,30 +607,6 @@ public class ByteVectorTest {
         }
     
         return false;
-    }
-    private static Object createInstance(String className) throws Exception {
-        Class<?> clazz = Class.forName(className);
-        return getUnsafeInstance().allocateInstance(clazz);
-    }
-    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
-        Class<?> clazz = object.getClass();
-        java.lang.reflect.Field field;
-    
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-            } catch (Exception e) {
-                clazz = clazz.getSuperclass();
-                field = null;
-            }
-        } while (field == null);
-        
-        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-    
-        field.setAccessible(true);
-        field.set(object, fieldValue);
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

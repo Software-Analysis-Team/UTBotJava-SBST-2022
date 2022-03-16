@@ -98,10 +98,10 @@ public class RegisterRMRequestTest {
         Object unsafeHeapSwappedByteBuf = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
         SwappedByteBuf swappedByteBuf = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
         Object unsafeHeapSwappedByteBuf1 = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
-        Object unreleasableByteBuf = createInstance("io.netty.buffer.UnreleasableByteBuf");
+        Object simpleLeakAwareByteBuf = createInstance("io.netty.buffer.SimpleLeakAwareByteBuf");
         EmptyByteBuf emptyByteBuf = ((EmptyByteBuf) createInstance("io.netty.buffer.EmptyByteBuf"));
-        setField(unreleasableByteBuf, "buf", emptyByteBuf);
-        setField(unsafeHeapSwappedByteBuf1, "buf", unreleasableByteBuf);
+        setField(simpleLeakAwareByteBuf, "buf", emptyByteBuf);
+        setField(unsafeHeapSwappedByteBuf1, "buf", simpleLeakAwareByteBuf);
         setField(swappedByteBuf, "buf", unsafeHeapSwappedByteBuf1);
         setField(unsafeHeapSwappedByteBuf, "buf", swappedByteBuf);
         
@@ -444,8 +444,9 @@ public class RegisterRMRequestTest {
     public void testSetResourceIds1() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
         setField(registerRMRequest, "resourceIds", null);
+        String string = new String("");
         
-        registerRMRequest.setResourceIds(null);
+        registerRMRequest.setResourceIds(string);
     }
     ///endregion
     
@@ -453,12 +454,42 @@ public class RegisterRMRequestTest {
     
     @Test(timeout = 10000)
     public void testGetResourceIds1() throws Throwable  {
+        RegisterRMRequest registerRMRequest = new RegisterRMRequest();
+        
+        String actual = registerRMRequest.getResourceIds();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetResourceIds2() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
         setField(registerRMRequest, "resourceIds", null);
         
         String actual = registerRMRequest.getResourceIds();
         
         assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testRegisterRMRequest1() {
+        RegisterRMRequest actual = new RegisterRMRequest();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testRegisterRMRequest2() {
+        String string = new String();
+        String string1 = new String();
+        RegisterRMRequest actual = new RegisterRMRequest(string, string1);
     }
     ///endregion
     

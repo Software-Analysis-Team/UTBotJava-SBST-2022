@@ -404,13 +404,13 @@ public class MergedWarpMessageTest {
     public void testDoDecode7() throws Throwable  {
         MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
         Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(heapByteBufferR, "limit", -1111908600);
-        setField(heapByteBufferR, "position", -1111908639);
+        setField(heapByteBufferR, "limit", -1039645696);
+        setField(heapByteBufferR, "position", -1088639767);
         setField(heapByteBufferR, "bigEndian", true);
-        setField(heapByteBufferR, "offset", 1111908640);
+        setField(heapByteBufferR, "offset", 1088639776);
         byte[] byteArray = new byte[15];
-        byteArray[1] = (byte) 1;
-        byteArray[4] = (byte) 8;
+        byteArray[9] = (byte) 1;
+        byteArray[12] = (byte) 8;
         setField(heapByteBufferR, "hb", byteArray);
         
         Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
@@ -426,7 +426,7 @@ public class MergedWarpMessageTest {
         }
         Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
         
-        assertEquals(-1111908635, finalHeapByteBufferRPosition);
+        assertEquals(-1088639763, finalHeapByteBufferRPosition);
     }
     ///endregion
     

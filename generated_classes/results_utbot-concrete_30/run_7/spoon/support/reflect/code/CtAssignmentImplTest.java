@@ -28,14 +28,14 @@ import java.nio.charset.CoderResult;
 import spoon.reflect.declaration.CtTypedElement;
 import spoon.support.reflect.reference.CtTypeReferenceImpl;
 import spoon.reflect.reference.CtTypeReference;
-import spoon.support.reflect.reference.CtWildcardStaticTypeMemberReferenceImpl;
 import java.util.List;
 import java.util.ArrayList;
 import spoon.reflect.code.CtExpression;
+import spoon.support.reflect.reference.CtWildcardStaticTypeMemberReferenceImpl;
 import java.lang.reflect.Method;
 import spoon.support.reflect.reference.CtWildcardReferenceImpl;
-import spoon.reflect.code.CtRHSReceiver;
 import spoon.support.reflect.declaration.CtAnnotationImpl;
+import spoon.reflect.code.CtRHSReceiver;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Array;
@@ -47,8 +47,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
 
 public class CtAssignmentImplTest {
@@ -80,8 +80,44 @@ public class CtAssignmentImplTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testClone2() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
+        setField(factoryImpl, "core", defaultCoreFactory);
+        setField(ctAssignmentImpl, "factory", factoryImpl);
         
         ctAssignmentImpl.clone();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testClone3() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        setField(ctAssignmentImpl, "factory", null);
+        
+        ctAssignmentImpl.clone();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testClone4() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "core", null);
+        setField(ctAssignmentImpl, "factory", factoryImpl);
+        
+        Object ctAssignmentImplFactory = getFieldValue(ctAssignmentImpl, "factory");
+        Object initialCtAssignmentImplFactoryCore = getFieldValue(ctAssignmentImplFactory, "core");
+        
+        ctAssignmentImpl.clone();
+        
+        Object ctAssignmentImplFactory1 = getFieldValue(ctAssignmentImpl, "factory");
+        Object finalCtAssignmentImplFactoryCore = getFieldValue(ctAssignmentImplFactory1, "core");
+        
+        assertFalse(initialCtAssignmentImplFactoryCore == finalCtAssignmentImplFactoryCore);
     }
     ///endregion
     
@@ -166,14 +202,14 @@ public class CtAssignmentImplTest {
     @Test(timeout = 10000)
     public void testGetType2() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
-        CtWildcardStaticTypeMemberReferenceImpl ctWildcardStaticTypeMemberReferenceImpl = ((CtWildcardStaticTypeMemberReferenceImpl) createInstance("spoon.support.reflect.reference.CtWildcardStaticTypeMemberReferenceImpl"));
-        setField(ctAssignmentImpl, "type", ctWildcardStaticTypeMemberReferenceImpl);
+        CtTypeReferenceImpl ctTypeReferenceImpl = ((CtTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtTypeReferenceImpl"));
+        setField(ctAssignmentImpl, "type", ctTypeReferenceImpl);
         
         CtTypeReference actual = ctAssignmentImpl.getType();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctWildcardStaticTypeMemberReferenceImpl, actual));
+        assertTrue(deepEquals(ctTypeReferenceImpl, actual));
     }
     ///endregion
     
@@ -250,8 +286,23 @@ public class CtAssignmentImplTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testSetTypeCasts2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        ArrayList arrayList = new ArrayList();
+        
+        CtExpression actual = ctAssignmentImpl.setTypeCasts(arrayList);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSetTypeCasts3() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
         ArrayList arrayList = new ArrayList();
         arrayList.add(null);
@@ -268,20 +319,6 @@ public class CtAssignmentImplTest {
         arrayList.add(null);
         
         ctAssignmentImpl.setTypeCasts(arrayList);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetTypeCasts3() throws Throwable  {
-        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
-        
-        CtExpression actual = ctAssignmentImpl.setTypeCasts(null);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctAssignmentImpl, actual));
     }
     ///endregion
     
@@ -381,15 +418,14 @@ public class CtAssignmentImplTest {
     @Test(timeout = 10000)
     public void testGetAssignment2() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
-        CtOperatorAssignmentImpl ctOperatorAssignmentImpl = ((CtOperatorAssignmentImpl) createInstance("spoon.support.reflect.code.CtOperatorAssignmentImpl"));
-        setField(ctOperatorAssignmentImpl, "assignment", null);
-        setField(ctAssignmentImpl, "assignment", ctOperatorAssignmentImpl);
+        CtAnnotationImpl ctAnnotationImpl = ((CtAnnotationImpl) createInstance("spoon.support.reflect.declaration.CtAnnotationImpl"));
+        setField(ctAssignmentImpl, "assignment", ctAnnotationImpl);
         
         CtExpression actual = ctAssignmentImpl.getAssignment();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctOperatorAssignmentImpl, actual));
+        assertTrue(deepEquals(ctAnnotationImpl, actual));
     }
     ///endregion
     
@@ -449,15 +485,26 @@ public class CtAssignmentImplTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testSetAssignment4() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
-        setField(factoryImpl, "environment", standardEnvironment);
+        setField(factoryImpl, "environment", null);
         setField(ctAssignmentImpl, "factory", factoryImpl);
         
-        ctAssignmentImpl.setAssignment(null);
+        Object ctAssignmentImplFactory = getFieldValue(ctAssignmentImpl, "factory");
+        Object initialCtAssignmentImplFactoryEnvironment = getFieldValue(ctAssignmentImplFactory, "environment");
+        
+        CtRHSReceiver actual = ctAssignmentImpl.setAssignment(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+        
+        Object ctAssignmentImplFactory1 = getFieldValue(ctAssignmentImpl, "factory");
+        Object finalCtAssignmentImplFactoryEnvironment = getFieldValue(ctAssignmentImplFactory1, "environment");
+        
+        assertFalse(initialCtAssignmentImplFactoryEnvironment == finalCtAssignmentImplFactoryEnvironment);
     }
     ///endregion
     
@@ -478,15 +525,14 @@ public class CtAssignmentImplTest {
     @Test(timeout = 10000)
     public void testGetAssigned2() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
-        CtOperatorAssignmentImpl ctOperatorAssignmentImpl = ((CtOperatorAssignmentImpl) createInstance("spoon.support.reflect.code.CtOperatorAssignmentImpl"));
-        setField(ctOperatorAssignmentImpl, "assigned", null);
-        setField(ctAssignmentImpl, "assigned", ctOperatorAssignmentImpl);
+        CtAnnotationImpl ctAnnotationImpl = ((CtAnnotationImpl) createInstance("spoon.support.reflect.declaration.CtAnnotationImpl"));
+        setField(ctAssignmentImpl, "assigned", ctAnnotationImpl);
         
         CtExpression actual = ctAssignmentImpl.getAssigned();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctOperatorAssignmentImpl, actual));
+        assertTrue(deepEquals(ctAnnotationImpl, actual));
     }
     ///endregion
     
@@ -612,6 +658,25 @@ public class CtAssignmentImplTest {
         }
         
         return (Object[]) array;
+    }
+    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
+        Class<?> clazz = obj.getClass();
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                
+                return field.get(obj);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
+    
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     static class FieldsPair {
         final Object o1;
@@ -780,25 +845,6 @@ public class CtAssignmentImplTest {
         }
     
         return false;
-    }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

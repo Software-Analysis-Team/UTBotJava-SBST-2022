@@ -2,6 +2,7 @@ package com.google.common.collect;
 
 import org.junit.Test;
 import java.util.Comparator;
+import jdk.internal.org.xml.sax.InputSource;
 import sun.misc.ASCIICaseInsensitiveComparator;
 import sun.security.util.ByteArrayLexOrder;
 import java.util.ArrayList;
@@ -9,10 +10,11 @@ import java.util.LinkedHashSet;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.lang.reflect.Method;
-import java.util.Formatter.BigDecimalLayoutForm;
-import java.util.Formatter;
-import java.lang.reflect.Array;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import sun.net.www.protocol.http.HttpURLConnection.TunnelState;
+import sun.net.www.protocol.http.HttpURLConnection;
+import com.google.common.base.StandardSystemProperty;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -21,6 +23,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
+import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertFalse;
@@ -60,9 +63,8 @@ public class ReverseOrderingTest {
     @Test(timeout = 10000)
     public void testEquals3() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        java.lang.Object[] operatorArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraint$Operator", 0);
         
-        boolean actual = reverseOrdering.equals(operatorArray);
+        boolean actual = reverseOrdering.equals(null);
         
         assertFalse(actual);
     }
@@ -404,9 +406,9 @@ public class ReverseOrderingTest {
         setField(nullsFirstOrdering, "ordering", nullsFirstOrdering1);
         setField(reverseOrdering, "forwardOrder", nullsFirstOrdering);
         java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
-        java.lang.Object[] ofIntArray = createArray("java.util.stream.StreamSpliterators$SliceSpliterator$OfInt", 0);
+        jdk.internal.org.xml.sax.InputSource[] inputSourceArray = new jdk.internal.org.xml.sax.InputSource[0];
         
-        int actual = reverseOrdering.compare(fifoWaitQueueArray, ofIntArray);
+        int actual = reverseOrdering.compare(fifoWaitQueueArray, inputSourceArray);
         
         assertEquals(0, actual);
     }
@@ -427,10 +429,10 @@ public class ReverseOrderingTest {
         setField(nullsFirstOrdering1, "ordering", compoundOrdering);
         setField(nullsFirstOrdering, "ordering", nullsFirstOrdering1);
         setField(reverseOrdering, "forwardOrder", nullsFirstOrdering);
-        java.lang.Object[] ofRefArray = createArray("java.util.stream.FindOps$FindSink$OfRef", 0);
+        java.lang.Object[] ofDoubleArray = createArray("java.util.stream.ForEachOps$ForEachOp$OfDouble", 0);
         String string = ((String) createInstance("java.lang.String"));
         
-        reverseOrdering.compare(ofRefArray, string);
+        reverseOrdering.compare(ofDoubleArray, string);
     }
     ///endregion
     
@@ -620,29 +622,8 @@ public class ReverseOrderingTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin3() throws Throwable  {
-        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering3 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering3, "forwardOrder", reverseNaturalOrdering);
-        setField(reverseOrdering2, "forwardOrder", reverseOrdering3);
-        setField(reverseOrdering1, "forwardOrder", reverseOrdering2);
-        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
-        LinkedHashSet linkedHashSet = ((LinkedHashSet) createInstance("java.util.LinkedHashSet"));
-        HashMap hashMap = new HashMap();
-        setField(linkedHashSet, "map", hashMap);
-        
-        reverseOrdering.min(linkedHashSet);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
-    public void testMin4() throws Throwable  {
+    public void testMin3() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
@@ -666,7 +647,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin5() throws Throwable  {
+    public void testMin4() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         
         reverseOrdering.min(((Iterator) null));
@@ -676,7 +657,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin6() throws Throwable  {
+    public void testMin5() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
@@ -692,33 +673,57 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin7() throws Throwable  {
+    public void testMin6() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering3 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering4 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
-        Object listItr = createInstance("java.util.ArrayList$ListItr");
-        ArrayList arrayList = new ArrayList();
-        setField(listItr, "this$0", arrayList);
-        setField(listItr, "expectedModCount", 0);
-        setField(listItr, "cursor", 0);
+        setField(reverseOrdering4, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering3, "forwardOrder", reverseOrdering4);
+        setField(reverseOrdering2, "forwardOrder", reverseOrdering3);
+        setField(reverseOrdering1, "forwardOrder", reverseOrdering2);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        Scanner scanner = ((Scanner) createInstance("java.util.Scanner"));
+        setField(scanner, "closed", false);
+        setField(scanner, "matchValid", false);
+        java.lang.Object[] fileLockReferenceArray = createArray("sun.nio.ch.SharedFileLockTable$FileLockReference", 0);
+        setField(scanner, "typeCache", fileLockReferenceArray);
+        Pattern pattern = ((Pattern) createInstance("java.util.regex.Pattern"));
+        setField(pattern, "capturingGroupCount", 0);
+        setField(scanner, "hasNextPattern", pattern);
+        Pattern pattern1 = ((Pattern) createInstance("java.util.regex.Pattern"));
+        setField(pattern1, "capturingGroupCount", 0);
+        setField(scanner, "delimPattern", pattern1);
+        Matcher matcher = ((Matcher) createInstance("java.util.regex.Matcher"));
+        setField(matcher, "parentPattern", null);
+        setField(scanner, "matcher", matcher);
         
-        Class reverseOrderingClazz = Class.forName("com.google.common.collect.ReverseOrdering");
-        Class listItrType = Class.forName("java.util.Iterator");
-        Method minMethod = reverseOrderingClazz.getDeclaredMethod("min", listItrType);
-        minMethod.setAccessible(true);
-        java.lang.Object[] minMethodArguments = new java.lang.Object[1];
-        minMethodArguments[0] = listItr;
-        try {
-            minMethod.invoke(reverseOrdering, minMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+        Object initialScannerTypeCache = getFieldValue(scanner, "typeCache");
+        Object initialScannerHasNextPattern = getFieldValue(scanner, "hasNextPattern");
+        Object scannerMatcher = getFieldValue(scanner, "matcher");
+        Object initialScannerMatcherParentPattern = getFieldValue(scannerMatcher, "parentPattern");
+        
+        reverseOrdering.min(scanner);
+        
+        Object finalScannerTypeCache = getFieldValue(scanner, "typeCache");
+        Object finalScannerHasNextPattern = getFieldValue(scanner, "hasNextPattern");
+        Object scannerMatcher1 = getFieldValue(scanner, "matcher");
+        Object finalScannerMatcherParentPattern = getFieldValue(scannerMatcher1, "parentPattern");
+        
+        assertNull(finalScannerTypeCache);
+        
+        assertNull(finalScannerHasNextPattern);
+        
+        assertFalse(initialScannerMatcherParentPattern == finalScannerMatcherParentPattern);
+    }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin8() throws Throwable  {
+    public void testMin7() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         Object object = new Object();
         Object object1 = new Object();
@@ -730,7 +735,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin9() throws Throwable  {
+    public void testMin8() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
@@ -743,13 +748,28 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin10() throws Throwable  {
+    public void testMin9() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
         java.lang.Object[] descendingImmutableSortedSetArray = createArray("com.google.common.collect.DescendingImmutableSortedSet", 0);
         
         reverseOrdering.min(null, descendingImmutableSortedSetArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin10() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        java.lang.Object[] charArrayAsListArray = createArray("com.google.common.primitives.Chars$CharArrayAsList", 0);
+        
+        reverseOrdering.min(charArrayAsListArray, null);
     }
     ///endregion
     
@@ -762,21 +782,6 @@ public class ReverseOrderingTest {
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
-        java.lang.Object[] charArrayAsListArray = createArray("com.google.common.primitives.Chars$CharArrayAsList", 0);
-        
-        reverseOrdering.min(charArrayAsListArray, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin12() throws Throwable  {
-        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
-        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
         java.lang.Object[] descendingImmutableSortedSetArray = createArray("com.google.common.collect.DescendingImmutableSortedSet", 0);
         
         reverseOrdering.min(null, descendingImmutableSortedSetArray);
@@ -786,25 +791,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin13() throws Throwable  {
-        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering3 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering3, "forwardOrder", reverseNaturalOrdering);
-        setField(reverseOrdering2, "forwardOrder", reverseOrdering3);
-        setField(reverseOrdering1, "forwardOrder", reverseOrdering2);
-        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
-        
-        reverseOrdering.min(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin14() throws Throwable  {
+    public void testMin12() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
@@ -816,7 +803,23 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin15() throws Throwable  {
+    public void testMin13() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        Integer integer = 0;
+        HttpURLConnection.TunnelState tunnelState = HttpURLConnection.TunnelState.NONE;
+        
+        reverseOrdering.min(integer, tunnelState);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin14() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         Object object = new Object();
         Object object1 = new Object();
@@ -830,14 +833,28 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin15() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        java.lang.Object[] functionCompositionArray = createArray("com.google.common.base.Functions$FunctionComposition", 0);
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        
+        reverseOrdering.min(null, null, functionCompositionArray, objectArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testMin16() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
-        java.lang.Object[] weakAccessEntryArray = createArray("com.google.common.cache.LocalCache$WeakAccessEntry", 0);
+        StandardSystemProperty standardSystemProperty = StandardSystemProperty.JAVA_VERSION;
         java.lang.Object[] objectArray = new java.lang.Object[9];
         
-        reverseOrdering.min(null, null, weakAccessEntryArray, objectArray);
+        reverseOrdering.min(null, standardSystemProperty, null, objectArray);
     }
     ///endregion
     
@@ -845,19 +862,6 @@ public class ReverseOrderingTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testMin17() throws Throwable  {
-        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        
-        reverseOrdering.min(null, null, null, objectArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin18() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
@@ -910,12 +914,13 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin19() throws Throwable  {
+    public void testMin18() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
-        Object belowAll = createInstance("com.google.common.collect.Cut$BelowAll");
-        Formatter.BigDecimalLayoutForm bigDecimalLayoutForm = Formatter.BigDecimalLayoutForm.SCIENTIFIC;
+        Class operatorClazz = Class.forName("sun.security.util.DisabledAlgorithmConstraints$Constraint$Operator");
+        Object operator = getEnumConstantByName(operatorClazz, "EQ");
+        Integer integer = 0;
         java.lang.Comparable[] comparableArray = new java.lang.Comparable[9];
         
         Comparable initialComparableArray0 = comparableArray[0];
@@ -928,7 +933,7 @@ public class ReverseOrderingTest {
         Comparable initialComparableArray7 = comparableArray[7];
         Comparable initialComparableArray8 = comparableArray[8];
         
-        reverseOrdering.min(belowAll, null, bigDecimalLayoutForm, comparableArray);
+        reverseOrdering.min(operator, null, integer, comparableArray);
         
         Comparable finalComparableArray0 = comparableArray[0];
         Comparable finalComparableArray1 = comparableArray[1];
@@ -1030,8 +1035,22 @@ public class ReverseOrderingTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testMax6() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        Integer integer = 0;
+        Object byteBufferAsLongBufferL = createInstance("java.nio.ByteBufferAsLongBufferL");
+        
+        reverseOrdering.max(integer, byteBufferAsLongBufferL);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testMax7() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
@@ -1050,10 +1069,16 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMax7() throws Throwable  {
+    public void testMax8() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering3 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering3, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering2, "forwardOrder", reverseOrdering3);
+        setField(reverseOrdering1, "forwardOrder", reverseOrdering2);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
         
         reverseOrdering.max(null, null);
     }
@@ -1062,7 +1087,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMax8() throws Throwable  {
+    public void testMax9() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ArrayList arrayList = new ArrayList();
         
@@ -1073,7 +1098,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testMax9() throws Throwable  {
+    public void testMax10() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
@@ -1097,7 +1122,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMax10() throws Throwable  {
+    public void testMax11() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
@@ -1115,7 +1140,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMax11() throws Throwable  {
+    public void testMax12() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         
         reverseOrdering.max(((Iterator) null));
@@ -1125,7 +1150,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMax12() throws Throwable  {
+    public void testMax13() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
@@ -1141,23 +1166,51 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMax13() throws Throwable  {
+    public void testMax14() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering2, "forwardOrder", reverseNaturalOrdering);
-        setField(reverseOrdering1, "forwardOrder", reverseOrdering2);
-        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        Scanner scanner = ((Scanner) createInstance("java.util.Scanner"));
+        setField(scanner, "closed", false);
+        setField(scanner, "matchValid", false);
+        java.lang.Object[] ofLongArray = createArray("java.util.stream.Nodes$EmptyNode$OfLong", 0);
+        setField(scanner, "typeCache", ofLongArray);
+        setField(scanner, "hasNextPattern", null);
+        Pattern pattern = ((Pattern) createInstance("java.util.regex.Pattern"));
+        setField(pattern, "localCount", 9);
+        setField(pattern, "capturingGroupCount", 0);
+        setField(scanner, "delimPattern", pattern);
+        Matcher matcher = ((Matcher) createInstance("java.util.regex.Matcher"));
+        setField(matcher, "locals", null);
+        setField(matcher, "groups", null);
+        setField(matcher, "parentPattern", null);
+        setField(scanner, "matcher", matcher);
         
-        reverseOrdering.max(((Iterator) null));
+        Object initialScannerTypeCache = getFieldValue(scanner, "typeCache");
+        Object scannerMatcher = getFieldValue(scanner, "matcher");
+        Object initialScannerMatcherParentPattern = getFieldValue(scannerMatcher, "parentPattern");
+        
+        reverseOrdering.max(scanner);
+        
+        Object finalScannerTypeCache = getFieldValue(scanner, "typeCache");
+        Object scannerMatcher1 = getFieldValue(scanner, "matcher");
+        Object finalScannerMatcherLocals = getFieldValue(scannerMatcher1, "locals");
+        Object scannerMatcher2 = getFieldValue(scanner, "matcher");
+        Object finalScannerMatcherGroups = getFieldValue(scannerMatcher2, "groups");
+        Object scannerMatcher3 = getFieldValue(scanner, "matcher");
+        Object finalScannerMatcherParentPattern = getFieldValue(scannerMatcher3, "parentPattern");
+        
+        assertNull(finalScannerTypeCache);
+        
+        assertFalse(initialScannerMatcherParentPattern == finalScannerMatcherParentPattern);
+        
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMax14() throws Throwable  {
+    public void testMax15() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         Object object = new Object();
         Object object1 = new Object();
@@ -1171,27 +1224,14 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMax15() throws Throwable  {
-        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
-        java.lang.Object[] weakAccessEntryArray = createArray("com.google.common.cache.LocalCache$WeakAccessEntry", 0);
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        
-        reverseOrdering.max(null, null, weakAccessEntryArray, objectArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testMax16() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        java.lang.Object[] functionCompositionArray = createArray("com.google.common.base.Functions$FunctionComposition", 0);
         java.lang.Object[] objectArray = new java.lang.Object[9];
         
-        reverseOrdering.max(null, null, null, objectArray);
+        reverseOrdering.max(null, null, functionCompositionArray, objectArray);
     }
     ///endregion
     
@@ -1199,6 +1239,20 @@ public class ReverseOrderingTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testMax17() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        StandardSystemProperty standardSystemProperty = StandardSystemProperty.JAVA_VERSION;
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        
+        reverseOrdering.max(null, standardSystemProperty, null, objectArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax18() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
@@ -1304,15 +1358,6 @@ public class ReverseOrderingTest {
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();
@@ -1520,6 +1565,28 @@ public class ReverseOrderingTest {
         }
     
         return false;
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
+    }
+    private static Object getEnumConstantByName(Class<?> enumClass, String name) throws IllegalAccessException {
+        java.lang.reflect.Field[] fields = enumClass.getDeclaredFields();
+        for (java.lang.reflect.Field field : fields) {
+            String fieldName = field.getName();
+            if (field.isEnumConstant() && fieldName.equals(name)) {
+                field.setAccessible(true);
+                
+                return field.get(null);
+            }
+        }
+        
+        return null;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

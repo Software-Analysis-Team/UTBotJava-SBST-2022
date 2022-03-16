@@ -7,11 +7,13 @@ import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 import java.lang.reflect.Type;
 import com.alibaba.fastjson.parser.JSONScanner;
 import com.alibaba.fastjson.parser.JSONLexer;
-import com.alibaba.fastjson.parser.JSONReaderScanner;
 import com.alibaba.fastjson.parser.DefaultExtJSONParser;
+import com.alibaba.fastjson.parser.JSONReaderScanner;
 import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
+import java.util.LinkedHashMap;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.fastjson.util.IdentityHashMap;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -21,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
-import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
@@ -76,18 +77,20 @@ public class MapDeserializerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDeserialze2() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        Object wildcardTypeImpl = createInstance("com.sun.beans.WildcardTypeImpl");
+        java.lang.Object[] ofRefArray = createArray("java.util.stream.Nodes$ToArrayTask$OfRef", 0);
         
         Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
         Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class typeType = Class.forName("java.lang.reflect.Type");
-        Class objectType = Class.forName("java.lang.Object");
+        Class wildcardTypeImplType = Class.forName("java.lang.reflect.Type");
+        Class ofRefArrayType = Class.forName("java.lang.Object");
         Class mapType = Class.forName("java.util.Map");
-        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, typeType, objectType, mapType);
+        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, wildcardTypeImplType, ofRefArrayType, mapType);
         deserialzeMethod.setAccessible(true);
         java.lang.Object[] deserialzeMethodArguments = new java.lang.Object[4];
         deserialzeMethodArguments[0] = null;
-        deserialzeMethodArguments[1] = null;
-        deserialzeMethodArguments[2] = null;
+        deserialzeMethodArguments[1] = wildcardTypeImpl;
+        deserialzeMethodArguments[2] = ((Object) ofRefArray);
         deserialzeMethodArguments[3] = null;
         try {
             deserialzeMethod.invoke(mapDeserializer, deserialzeMethodArguments);
@@ -196,9 +199,9 @@ public class MapDeserializerTest {
     public void testDeserialze6() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "token", 0);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "token", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
         Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
@@ -250,8 +253,9 @@ public class MapDeserializerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDeserialze8() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        java.lang.Object[] ofLongArray = createArray("java.util.stream.Nodes$EmptyNode$OfLong", 0);
         
-        mapDeserializer.deserialze(null, null, null);
+        mapDeserializer.deserialze(null, null, ofLongArray);
     }
     ///endregion
     
@@ -261,8 +265,9 @@ public class MapDeserializerTest {
     public void testDeserialze9() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
         Class class1 = Object.class;
+        java.lang.Object[] ofLongArray = createArray("java.util.stream.Nodes$EmptyNode$OfLong", 0);
         
-        mapDeserializer.deserialze(null, class1, null);
+        mapDeserializer.deserialze(null, class1, ofLongArray);
         
         Class finalClass1 = class1;
         
@@ -379,30 +384,28 @@ public class MapDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testDeserialze14() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", ']');
+        setField(jSONScanner, "ch", '\f');
         setField(jSONScanner, "token", 8);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
-        mapDeserializer.deserialze(defaultJSONParser, null, null);
+        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        assertNull(actual);
         
         JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer, "ch");
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer1, "token");
         
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
         
-        assertEquals(15, finalDefaultJSONParserLexerToken);
+        assertEquals(20, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
@@ -412,22 +415,217 @@ public class MapDeserializerTest {
     public void testDeserialze15() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "sp", 0);
-        setField(jSONReaderScanner, "bp", 0);
-        setField(jSONReaderScanner, "ch", '\t');
-        setField(jSONReaderScanner, "token", 8);
-        setField(jSONReaderScanner, "bufLength", 0);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
+        FieldTypeResolver fieldTypeResolverMock = mock(FieldTypeResolver.class);
+        setField(defaultJSONParser, "fieldTypeResolver", fieldTypeResolverMock);
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", '\t');
+        setField(jSONScanner, "token", 8);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        Class class1 = Object.class;
         
-        mapDeserializer.deserialze(defaultJSONParser, null, null);
+        Object initialDefaultJSONParserFieldTypeResolver = getFieldValue(defaultJSONParser, "fieldTypeResolver");
+        
+        mapDeserializer.deserialze(defaultJSONParser, class1, null);
+        
+        Object finalDefaultJSONParserFieldTypeResolver = getFieldValue(defaultJSONParser, "fieldTypeResolver");
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        
+        assertFalse(initialDefaultJSONParserFieldTypeResolver == finalDefaultJSONParserFieldTypeResolver);
+        
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDeserialze16() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '(');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        assertNull(actual);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(10, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDeserialze17() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '{');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        assertNull(actual);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(12, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze16() throws Throwable  {
+    public void testDeserialze18() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", 't');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDeserialze19() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '[');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        assertNull(actual);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(14, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDeserialze20() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '+');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        assertNull(actual);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(2, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDeserialze21() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        assertNull(actual);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
+        
+        assertEquals(20, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeserialze22() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -457,33 +655,26 @@ public class MapDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testDeserialze17() throws Throwable  {
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeserialze23() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '@');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
+        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
+        setField(jSONReaderScanner, "sp", 0);
+        setField(jSONReaderScanner, "bp", 0);
+        setField(jSONReaderScanner, "ch", '\t');
+        setField(jSONReaderScanner, "token", 8);
+        setField(jSONReaderScanner, "bufLength", 0);
+        setField(defaultJSONParser, "lexer", jSONReaderScanner);
         
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
+        mapDeserializer.deserialze(defaultJSONParser, null, null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze18() throws Throwable  {
+    public void testDeserialze24() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -521,181 +712,7 @@ public class MapDeserializerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze19() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '{');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(12, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze20() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ':');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(17, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze21() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ')');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(11, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze22() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        FieldTypeResolver fieldTypeResolverMock = mock(FieldTypeResolver.class);
-        setField(defaultJSONParser, "fieldTypeResolver", fieldTypeResolverMock);
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ' ');
-        setField(jSONScanner, "token", 8);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        Class class1 = Object.class;
-        
-        Object initialDefaultJSONParserFieldTypeResolver = getFieldValue(defaultJSONParser, "fieldTypeResolver");
-        
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, class1, null);
-        
-        assertNull(actual);
-        
-        Object finalDefaultJSONParserFieldTypeResolver = getFieldValue(defaultJSONParser, "fieldTypeResolver");
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
-        
-        assertFalse(initialDefaultJSONParserFieldTypeResolver == finalDefaultJSONParserFieldTypeResolver);
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze23() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '[');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(14, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze24() throws Throwable  {
+    public void testDeserialze25() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -727,263 +744,8 @@ public class MapDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze25() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", false);
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\"');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testDeserialze26() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 't');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze27() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '(');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(10, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze28() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '+');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(2, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze29() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\'');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        mapDeserializer.deserialze(defaultJSONParser, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze30() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(jSONScanner, "len", 2);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze31() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 'n');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze32() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 'f');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze33() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        FieldTypeResolver fieldTypeResolverMock = mock(FieldTypeResolver.class);
-        setField(defaultJSONParser, "fieldTypeResolver", fieldTypeResolverMock);
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "ch", ']');
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        Class class1 = Object.class;
-        
-        Object initialDefaultJSONParserFieldTypeResolver = getFieldValue(defaultJSONParser, "fieldTypeResolver");
-        
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, class1, null);
-        
-        assertNull(actual);
-        
-        Object finalDefaultJSONParserFieldTypeResolver = getFieldValue(defaultJSONParser, "fieldTypeResolver");
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer, "ch");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer1, "token");
-        
-        assertFalse(initialDefaultJSONParserFieldTypeResolver == finalDefaultJSONParserFieldTypeResolver);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(15, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze34() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -1016,7 +778,113 @@ public class MapDeserializerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze35() throws Throwable  {
+    public void testDeserialze27() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", ')');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        assertNull(actual);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(11, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeserialze28() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", 'f');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeserialze29() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '\'');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        mapDeserializer.deserialze(defaultJSONParser, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeserialze30() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", 'n');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDeserialze31() throws Throwable  {
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -1048,6 +916,129 @@ public class MapDeserializerTest {
         assertEquals('\u001A', finalDefaultJSONParserLexerCh);
         
         assertEquals(2, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeserialze32() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "hasSpecial", false);
+        setField(jSONScanner, "np", 0);
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '\"');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDeserialze33() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", ':');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        assertNull(actual);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(17, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeserialze34() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '/');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(jSONScanner, "len", 2);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        mapDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDeserialze35() throws Throwable  {
+        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        FieldTypeResolver fieldTypeResolverMock = mock(FieldTypeResolver.class);
+        setField(defaultJSONParser, "fieldTypeResolver", fieldTypeResolverMock);
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "ch", ']');
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        Class class1 = Object.class;
+        
+        Object initialDefaultJSONParserFieldTypeResolver = getFieldValue(defaultJSONParser, "fieldTypeResolver");
+        
+        Object actual = mapDeserializer.deserialze(defaultJSONParser, class1, null);
+        
+        assertNull(actual);
+        
+        Object finalDefaultJSONParserFieldTypeResolver = getFieldValue(defaultJSONParser, "fieldTypeResolver");
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer, "ch");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer1, "token");
+        
+        assertFalse(initialDefaultJSONParserFieldTypeResolver == finalDefaultJSONParserFieldTypeResolver);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(15, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
@@ -1129,7 +1120,10 @@ public class MapDeserializerTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testParseMap1() throws Throwable  {
-        MapDeserializer.parseMap(null, null, null, null);
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
+        
+        MapDeserializer.parseMap(null, linkedHashMap, parameterizedTypeImpl, null);
     }
     ///endregion
     
@@ -1166,6 +1160,20 @@ public class MapDeserializerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testParseMap3() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "token", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        java.lang.Object[] ofLongArray = createArray("java.util.stream.StreamSpliterators$SliceSpliterator$OfLong", 0);
+        
+        MapDeserializer.parseMap(defaultJSONParser, null, null, ofLongArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseMap4() throws Throwable  {
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         setField(defaultJSONParser, "context", null);
         JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
         setField(jSONReaderScanner, "bp", 7);
@@ -1192,7 +1200,7 @@ public class MapDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap4() throws Throwable  {
+    public void testParseMap5() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         setField(defaultJSONParser, "context", null);
         JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
@@ -1209,16 +1217,16 @@ public class MapDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap5() throws Throwable  {
+    public void testParseMap6() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         setField(defaultJSONParser, "context", null);
         JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
         setField(jSONReaderScanner, "np", 0);
         setField(jSONReaderScanner, "sp", 0);
-        setField(jSONReaderScanner, "bp", 1);
+        setField(jSONReaderScanner, "bp", Integer.MAX_VALUE);
         setField(jSONReaderScanner, "ch", ' ');
         setField(jSONReaderScanner, "token", 12);
-        setField(jSONReaderScanner, "bufLength", -2147483645);
+        setField(jSONReaderScanner, "bufLength", Integer.MIN_VALUE);
         char[] charArray = new char[0];
         setField(jSONReaderScanner, "buf", charArray);
         setField(defaultJSONParser, "lexer", jSONReaderScanner);
@@ -1242,7 +1250,7 @@ public class MapDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap6() throws Throwable  {
+    public void testParseMap7() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         setField(defaultJSONParser, "context", null);
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -1268,7 +1276,7 @@ public class MapDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap7() throws Throwable  {
+    public void testParseMap8() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         setField(defaultJSONParser, "context", null);
         JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
@@ -1290,15 +1298,15 @@ public class MapDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap8() throws Throwable  {
+    public void testParseMap9() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         setField(defaultJSONParser, "context", null);
         JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "sp", 16728064);
-        setField(jSONReaderScanner, "bp", 0);
+        setField(jSONReaderScanner, "sp", 2146435072);
+        setField(jSONReaderScanner, "bp", 1073741824);
         setField(jSONReaderScanner, "ch", ' ');
         setField(jSONReaderScanner, "token", 12);
-        setField(jSONReaderScanner, "bufLength", -2130754488);
+        setField(jSONReaderScanner, "bufLength", 142606338);
         char[] charArray = new char[9];
         setField(jSONReaderScanner, "buf", charArray);
         setField(defaultJSONParser, "lexer", jSONReaderScanner);
@@ -1308,14 +1316,38 @@ public class MapDeserializerTest {
         JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
         
-        assertEquals(1, finalDefaultJSONParserLexerBp);
+        assertEquals(1073741825, finalDefaultJSONParserLexerBp);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap9() throws Throwable  {
+    public void testParseMap10() throws Throwable  {
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        setField(defaultJSONParser, "context", null);
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", '/');
+        setField(jSONScanner, "token", 12);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        MapDeserializer.parseMap(defaultJSONParser, null, null, null);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseMap11() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         setField(defaultJSONParser, "context", null);
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -1343,7 +1375,7 @@ public class MapDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap10() throws Throwable  {
+    public void testParseMap12() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         setField(defaultJSONParser, "context", null);
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -1371,29 +1403,19 @@ public class MapDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap11() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        java.lang.Object[] ofLongArray = createArray("java.util.stream.StreamSpliterators$SliceSpliterator$OfLong", 0);
-        
-        MapDeserializer.parseMap(defaultJSONParser, null, null, ofLongArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap12() throws Throwable  {
-        MapDeserializer.parseMap(null, null, null, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testParseMap13() throws Throwable  {
+        com.alibaba.fastjson.util.ParameterizedTypeImpl parameterizedTypeImpl = ((com.alibaba.fastjson.util.ParameterizedTypeImpl) createInstance("com.alibaba.fastjson.util.ParameterizedTypeImpl"));
+        com.alibaba.fastjson.util.ParameterizedTypeImpl parameterizedTypeImpl1 = ((com.alibaba.fastjson.util.ParameterizedTypeImpl) createInstance("com.alibaba.fastjson.util.ParameterizedTypeImpl"));
+        java.lang.Object[] enumMXBeanTypeArray = createArray("sun.management.MappedMXBeanType$EnumMXBeanType", 0);
+        
+        MapDeserializer.parseMap(null, null, parameterizedTypeImpl, parameterizedTypeImpl1, enumMXBeanTypeArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseMap14() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "token", 12);
@@ -1407,7 +1429,7 @@ public class MapDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap14() throws Throwable  {
+    public void testParseMap15() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "token", 12);
@@ -1443,6 +1465,15 @@ public class MapDeserializerTest {
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();
@@ -1650,15 +1681,6 @@ public class MapDeserializerTest {
         }
     
         return false;
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

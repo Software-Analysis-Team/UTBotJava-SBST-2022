@@ -103,19 +103,6 @@ public class NettyPoolableFactoryTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMakeObject4() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        String string = new String(":\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
-        setField(nettyPoolKey, "address", string);
-        
-        nettyPoolableFactory.makeObject(nettyPoolKey);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
     public void testDestroyObject1() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));

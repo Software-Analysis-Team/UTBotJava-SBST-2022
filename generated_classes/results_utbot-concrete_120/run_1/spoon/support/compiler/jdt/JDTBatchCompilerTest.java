@@ -2,6 +2,8 @@ package spoon.support.compiler.jdt;
 
 import org.junit.Test;
 import org.eclipse.jdt.internal.compiler.batch.CompilationUnit;
+import org.eclipse.jdt.internal.compiler.batch.FileSystem.Classpath;
+import org.eclipse.jdt.internal.compiler.batch.FileSystem;
 import java.util.Set;
 import java.util.LinkedHashSet;
 import java.lang.reflect.Field;
@@ -18,6 +20,7 @@ import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static java.lang.reflect.Array.get;
 import static org.junit.Assert.assertEquals;
 
 public class JDTBatchCompilerTest {
@@ -127,21 +130,98 @@ public class JDTBatchCompilerTest {
         setField(jDTBatchCompiler, "filenames", null);
         setField(jDTBatchCompiler, "limitedModules", null);
         setField(jDTBatchCompiler, "annotationsFromClasspath", false);
-        setField(jDTBatchCompiler, "checkedClasspaths", null);
+        org.eclipse.jdt.internal.compiler.batch.FileSystem.Classpath[] classpathArray = new org.eclipse.jdt.internal.compiler.batch.FileSystem.Classpath[9];
+        setField(jDTBatchCompiler, "checkedClasspaths", classpathArray);
         JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
         setField(jDTBasedSpoonCompiler, "environment", null);
         setField(jDTBatchCompiler, "jdtCompiler", jDTBasedSpoonCompiler);
         
         Set initialJDTBatchCompilerLimitedModules = jDTBatchCompiler.limitedModules;
+        Object jDTBatchCompilerCheckedClasspaths = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object initialJDTBatchCompilerCheckedClasspaths0 = get(jDTBatchCompilerCheckedClasspaths, 0);
+        Object jDTBatchCompilerCheckedClasspaths1 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object initialJDTBatchCompilerCheckedClasspaths1 = get(jDTBatchCompilerCheckedClasspaths1, 1);
+        Object jDTBatchCompilerCheckedClasspaths2 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object initialJDTBatchCompilerCheckedClasspaths2 = get(jDTBatchCompilerCheckedClasspaths2, 2);
+        Object jDTBatchCompilerCheckedClasspaths3 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object initialJDTBatchCompilerCheckedClasspaths3 = get(jDTBatchCompilerCheckedClasspaths3, 3);
+        Object jDTBatchCompilerCheckedClasspaths4 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object initialJDTBatchCompilerCheckedClasspaths4 = get(jDTBatchCompilerCheckedClasspaths4, 4);
+        Object jDTBatchCompilerCheckedClasspaths5 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object initialJDTBatchCompilerCheckedClasspaths5 = get(jDTBatchCompilerCheckedClasspaths5, 5);
+        Object jDTBatchCompilerCheckedClasspaths6 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object initialJDTBatchCompilerCheckedClasspaths6 = get(jDTBatchCompilerCheckedClasspaths6, 6);
+        Object jDTBatchCompilerCheckedClasspaths7 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object initialJDTBatchCompilerCheckedClasspaths7 = get(jDTBatchCompilerCheckedClasspaths7, 7);
+        Object jDTBatchCompilerCheckedClasspaths8 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object initialJDTBatchCompilerCheckedClasspaths8 = get(jDTBatchCompilerCheckedClasspaths8, 8);
         
         jDTBatchCompiler.getUnits();
         
         long finalJDTBatchCompilerStartTime = jDTBatchCompiler.startTime;
         Set finalJDTBatchCompilerLimitedModules = jDTBatchCompiler.limitedModules;
+        Object jDTBatchCompilerCheckedClasspaths9 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object finalJDTBatchCompilerCheckedClasspaths0 = get(jDTBatchCompilerCheckedClasspaths9, 0);
+        Object jDTBatchCompilerCheckedClasspaths10 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object finalJDTBatchCompilerCheckedClasspaths1 = get(jDTBatchCompilerCheckedClasspaths10, 1);
+        Object jDTBatchCompilerCheckedClasspaths11 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object finalJDTBatchCompilerCheckedClasspaths2 = get(jDTBatchCompilerCheckedClasspaths11, 2);
+        Object jDTBatchCompilerCheckedClasspaths12 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object finalJDTBatchCompilerCheckedClasspaths3 = get(jDTBatchCompilerCheckedClasspaths12, 3);
+        Object jDTBatchCompilerCheckedClasspaths13 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object finalJDTBatchCompilerCheckedClasspaths4 = get(jDTBatchCompilerCheckedClasspaths13, 4);
+        Object jDTBatchCompilerCheckedClasspaths14 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object finalJDTBatchCompilerCheckedClasspaths5 = get(jDTBatchCompilerCheckedClasspaths14, 5);
+        Object jDTBatchCompilerCheckedClasspaths15 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object finalJDTBatchCompilerCheckedClasspaths6 = get(jDTBatchCompilerCheckedClasspaths15, 6);
+        Object jDTBatchCompilerCheckedClasspaths16 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object finalJDTBatchCompilerCheckedClasspaths7 = get(jDTBatchCompilerCheckedClasspaths16, 7);
+        Object jDTBatchCompilerCheckedClasspaths17 = getFieldValue(jDTBatchCompiler, "checkedClasspaths");
+        Object finalJDTBatchCompilerCheckedClasspaths8 = get(jDTBatchCompilerCheckedClasspaths17, 8);
         
         assertNull(finalJDTBatchCompilerLimitedModules);
         
-        assertEquals(1645063693441L, finalJDTBatchCompilerStartTime);
+        assertNull(finalJDTBatchCompilerCheckedClasspaths0);
+        
+        assertNull(finalJDTBatchCompilerCheckedClasspaths1);
+        
+        assertNull(finalJDTBatchCompilerCheckedClasspaths2);
+        
+        assertNull(finalJDTBatchCompilerCheckedClasspaths3);
+        
+        assertNull(finalJDTBatchCompilerCheckedClasspaths4);
+        
+        assertNull(finalJDTBatchCompilerCheckedClasspaths5);
+        
+        assertNull(finalJDTBatchCompilerCheckedClasspaths6);
+        
+        assertNull(finalJDTBatchCompilerCheckedClasspaths7);
+        
+        assertNull(finalJDTBatchCompilerCheckedClasspaths8);
+        
+        assertEquals(1645019345848L, finalJDTBatchCompilerStartTime);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetCompilationUnits1() throws Throwable  {
+        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
+        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[0];
+        
+        jDTBatchCompiler.setCompilationUnits(compilationUnitArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetCompilationUnits2() throws Throwable  {
+        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
+        setField(jDTBatchCompiler, "compilationUnits", null);
+        
+        jDTBatchCompiler.setCompilationUnits(null);
     }
     ///endregion
     
@@ -203,36 +283,14 @@ public class JDTBatchCompilerTest {
     @Test(timeout = 10000)
     public void testGetJdtCompiler2() throws Throwable  {
         JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
-        setField(jDTBatchCompiler, "jdtCompiler", jDTSnippetCompiler);
+        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
+        setField(jDTBatchCompiler, "jdtCompiler", jDTBasedSpoonCompiler);
         
         JDTBasedSpoonCompiler actual = jDTBatchCompiler.getJdtCompiler();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(jDTSnippetCompiler, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetCompilationUnits1() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[0];
-        
-        jDTBatchCompiler.setCompilationUnits(compilationUnitArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetCompilationUnits2() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        setField(jDTBatchCompiler, "compilationUnits", null);
-        
-        jDTBatchCompiler.setCompilationUnits(null);
+        assertTrue(deepEquals(jDTBasedSpoonCompiler, actual));
     }
     ///endregion
     
@@ -250,15 +308,6 @@ public class JDTBatchCompilerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testJDTBatchCompiler2() {
         new JDTBatchCompiler(null, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testJDTBatchCompiler3() throws Throwable  {
-        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
-        new JDTBatchCompiler(jDTBasedSpoonCompiler);
     }
     ///endregion
     
@@ -453,6 +502,25 @@ public class JDTBatchCompilerTest {
         }
     
         return false;
+    }
+    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
+        Class<?> clazz = obj.getClass();
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                
+                return field.get(obj);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
+    
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

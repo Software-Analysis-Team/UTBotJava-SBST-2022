@@ -2,9 +2,9 @@ package com.google.common.collect;
 
 import org.junit.Test;
 import java.util.TreeMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
-import sun.misc.ASCIICaseInsensitiveComparator;
+import java.util.LinkedHashMap;
+import sun.security.util.ByteArrayLexOrder;
 import java.lang.reflect.Method;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -36,22 +36,8 @@ public class TreeRangeMapTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHashCode1() throws Throwable  {
-        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
-        CartesianList cartesianList = ((CartesianList) createInstance("com.google.common.collect.CartesianList"));
-        setField(treeMap, "values", cartesianList);
-        setField(treeRangeMap, "entriesByLowerBound", treeMap);
-        
-        treeRangeMap.hashCode();
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
-    public void testHashCode2() throws Throwable  {
+    public void testHashCode1() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
         setField(treeMap, "values", null);
@@ -65,52 +51,35 @@ public class TreeRangeMapTest {
     
     ///region
     
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHashCode2() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
+        CartesianList cartesianList = ((CartesianList) createInstance("com.google.common.collect.CartesianList"));
+        setField(treeMap, "values", cartesianList);
+        setField(treeRangeMap, "entriesByLowerBound", treeMap);
+        
+        treeRangeMap.hashCode();
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000)
     public void testToString1() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
         setField(treeMap, "values", null);
         setField(treeMap, "modCount", 0);
-        Object entry = createInstance("java.util.TreeMap$Entry");
-        setField(entry, "left", null);
-        setField(treeMap, "root", entry);
+        setField(treeMap, "root", null);
         setField(treeRangeMap, "entriesByLowerBound", treeMap);
         
         String actual = treeRangeMap.toString();
         
-        String expected = new String("[null]");
+        String expected = new String("[]");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutCoalescing1() throws Throwable  {
-        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        Object unmodifiableNavigableMap = createInstance("java.util.Collections$UnmodifiableNavigableMap");
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        setField(unmodifiableNavigableMap, "m", linkedHashMap);
-        setField(treeRangeMap, "entriesByLowerBound", unmodifiableNavigableMap);
-        
-        treeRangeMap.putCoalescing(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutCoalescing2() throws Throwable  {
-        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        Object unmodifiableNavigableMap = createInstance("java.util.Collections$UnmodifiableNavigableMap");
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        setField(unmodifiableNavigableMap, "m", linkedHashMap);
-        setField(treeRangeMap, "entriesByLowerBound", unmodifiableNavigableMap);
-        Range range = ((Range) createInstance("com.google.common.collect.Range"));
-        
-        treeRangeMap.putCoalescing(range, null);
     }
     ///endregion
     
@@ -191,28 +160,18 @@ public class TreeRangeMapTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testAsDescendingMapOfRanges1() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
-        setField(treeMap, "values", null);
-        TreeMap treeMap1 = ((TreeMap) createInstance("java.util.TreeMap"));
-        Object jumboEnumSet = createInstance("java.util.JumboEnumSet");
-        setField(treeMap1, "values", jumboEnumSet);
-        setField(treeMap1, "descendingMap", null);
-        setField(treeMap, "descendingMap", treeMap1);
-        setField(treeRangeMap, "entriesByLowerBound", treeMap);
+        ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
+        setField(immutableSortedMap, "descendingMap", null);
+        RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
+        java.lang.Object[] objectArray = new java.lang.Object[0];
+        setField(regularImmutableList, "array", objectArray);
+        setField(immutableSortedMap, "valueList", regularImmutableList);
+        setField(treeRangeMap, "entriesByLowerBound", immutableSortedMap);
         
-        Map actual = treeRangeMap.asDescendingMapOfRanges();
-        
-        Object expected = createInstance("com.google.common.collect.TreeRangeMap$AsMapOfRanges");
-        setField(expected, "entryIterable", jumboEnumSet);
-        setField(expected, "this$0", treeRangeMap);
-        setField(expected, "keySet", null);
-        setField(expected, "values", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        treeRangeMap.asDescendingMapOfRanges();
     }
     ///endregion
     
@@ -235,6 +194,20 @@ public class TreeRangeMapTest {
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPutCoalescing1() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        Object unmodifiableNavigableMap = createInstance("java.util.Collections$UnmodifiableNavigableMap");
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        setField(unmodifiableNavigableMap, "m", linkedHashMap);
+        setField(treeRangeMap, "entriesByLowerBound", unmodifiableNavigableMap);
+        
+        treeRangeMap.putCoalescing(null, null);
     }
     ///endregion
     
@@ -271,8 +244,8 @@ public class TreeRangeMapTest {
         Object entry = createInstance("java.util.TreeMap$Entry");
         setField(entry, "key", null);
         setField(treeMap, "root", entry);
-        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
-        setField(treeMap, "comparator", aSCIICaseInsensitiveComparator);
+        ByteArrayLexOrder byteArrayLexOrder = ((ByteArrayLexOrder) createInstance("sun.security.util.ByteArrayLexOrder"));
+        setField(treeMap, "comparator", byteArrayLexOrder);
         setField(treeRangeMap, "entriesByLowerBound", treeMap);
         Range range = ((Range) createInstance("com.google.common.collect.Range"));
         Object belowAll = createInstance("com.google.common.collect.Cut$BelowAll");
@@ -290,13 +263,27 @@ public class TreeRangeMapTest {
     public void testRemove4() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
-        setField(treeMap, "root", null);
         setField(treeRangeMap, "entriesByLowerBound", treeMap);
         Range range = ((Range) createInstance("com.google.common.collect.Range"));
         Object belowAll = createInstance("com.google.common.collect.Cut$BelowAll");
         setField(range, "upperBound", belowAll);
         Object belowAll1 = createInstance("com.google.common.collect.Cut$BelowAll");
         setField(range, "lowerBound", belowAll1);
+        
+        treeRangeMap.remove(range);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testRemove5() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        Range range = ((Range) createInstance("com.google.common.collect.Range"));
+        Object aboveAll = createInstance("com.google.common.collect.Cut$AboveAll");
+        setField(range, "upperBound", aboveAll);
+        Object belowValue = createInstance("com.google.common.collect.Cut$BelowValue");
+        setField(range, "lowerBound", belowValue);
         
         treeRangeMap.remove(range);
     }
@@ -316,36 +303,8 @@ public class TreeRangeMapTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGet2() throws Throwable  {
-        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
-        Object entry = createInstance("java.util.TreeMap$Entry");
-        Short short1 = (short) 0;
-        setField(entry, "key", short1);
-        setField(treeMap, "root", entry);
-        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
-        setField(treeMap, "comparator", aSCIICaseInsensitiveComparator);
-        setField(treeRangeMap, "entriesByLowerBound", treeMap);
-        Object directByteBufferR = createInstance("java.nio.DirectByteBufferR");
-        
-        Class treeRangeMapClazz = Class.forName("com.google.common.collect.TreeRangeMap");
-        Class directByteBufferRType = Class.forName("java.lang.Comparable");
-        Method getMethod = treeRangeMapClazz.getDeclaredMethod("get", directByteBufferRType);
-        getMethod.setAccessible(true);
-        java.lang.Object[] getMethodArguments = new java.lang.Object[1];
-        getMethodArguments[0] = directByteBufferR;
-        try {
-            getMethod.invoke(treeRangeMap, getMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
-    public void testGet3() throws Throwable  {
+    public void testGet2() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
         setField(treeMap, "root", null);
@@ -448,21 +407,6 @@ public class TreeRangeMapTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testPutAll2() throws Throwable  {
-        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        ImmutableRangeMap immutableRangeMap = ((ImmutableRangeMap) createInstance("com.google.common.collect.ImmutableRangeMap"));
-        RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        setField(regularImmutableList, "array", objectArray);
-        setField(immutableRangeMap, "ranges", regularImmutableList);
-        
-        treeRangeMap.putAll(immutableRangeMap);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutAll3() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         ImmutableRangeMap immutableRangeMap = ((ImmutableRangeMap) createInstance("com.google.common.collect.ImmutableRangeMap"));
         Object values = createInstance("com.google.common.collect.RegularImmutableMap$Values");

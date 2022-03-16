@@ -1,24 +1,83 @@
-package io.seata.core.protocol.transaction;
+package io.seata.core.protocol;
 
 import org.junit.Test;
-import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.ArrayList;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.EmptyByteBuf;
+import io.netty.buffer.SwappedByteBuf;
 import java.lang.reflect.Method;
-import io.seata.core.protocol.ResultCode;
+import java.util.Objects;
+import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.lang.reflect.Array;
+import java.util.Iterator;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 
-public class GlobalBeginResponseTest {
+public class MergedWarpMessageTest {
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testToString1() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = new MergedWarpMessage();
+        
+        String actual = mergedWarpMessage.toString();
+        
+        String expected = new String("SeataMergeMessage ");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testToString2() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        setField(mergedWarpMessage, "msgs", null);
+        
+        List initialMergedWarpMessageMsgs = mergedWarpMessage.msgs;
+        
+        mergedWarpMessage.toString();
+        
+        List finalMergedWarpMessageMsgs = mergedWarpMessage.msgs;
+        
+        assertNull(finalMergedWarpMessageMsgs);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testToString3() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        setField(mergedWarpMessage, "msgs", arrayList);
+        
+        mergedWarpMessage.toString();
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDecode1() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
+        MergedWarpMessage mergedWarpMessage = new MergedWarpMessage();
         
-        globalBeginResponse.decode(((ByteBuffer) null));
+        mergedWarpMessage.decode(((ByteBuf) null));
     }
     ///endregion
     
@@ -26,82 +85,89 @@ public class GlobalBeginResponseTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDecode2() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
-        setField(heapByteBuffer, "limit", -2147483647);
-        setField(heapByteBuffer, "position", 0);
-        byte[] byteArray = new byte[9];
-        setField(heapByteBuffer, "hb", byteArray);
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
         
-        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
-        Class heapByteBufferType = Class.forName("java.nio.ByteBuffer");
-        Method decodeMethod = globalBeginResponseClazz.getDeclaredMethod("decode", heapByteBufferType);
-        decodeMethod.setAccessible(true);
-        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
-        decodeMethodArguments[0] = heapByteBuffer;
-        try {
-            decodeMethod.invoke(globalBeginResponse, decodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+        mergedWarpMessage.decode(((ByteBuf) null));
+    }
     ///endregion
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testDecode3() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
-        setField(heapByteBuffer, "limit", 1);
-        setField(heapByteBuffer, "position", 0);
-        setField(heapByteBuffer, "offset", 0);
-        byte[] byteArray = new byte[9];
-        setField(heapByteBuffer, "hb", byteArray);
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        EmptyByteBuf emptyByteBuf = ((EmptyByteBuf) createInstance("io.netty.buffer.EmptyByteBuf"));
         
-        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
-        Class heapByteBufferType = Class.forName("java.nio.ByteBuffer");
-        Method decodeMethod = globalBeginResponseClazz.getDeclaredMethod("decode", heapByteBufferType);
+        boolean actual = mergedWarpMessage.decode(emptyByteBuf);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecode4() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        Object unsafeHeapSwappedByteBuf = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
+        SwappedByteBuf swappedByteBuf = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
+        Object unsafeHeapSwappedByteBuf1 = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
+        Object simpleLeakAwareByteBuf = createInstance("io.netty.buffer.SimpleLeakAwareByteBuf");
+        EmptyByteBuf emptyByteBuf = ((EmptyByteBuf) createInstance("io.netty.buffer.EmptyByteBuf"));
+        setField(simpleLeakAwareByteBuf, "buf", emptyByteBuf);
+        setField(unsafeHeapSwappedByteBuf1, "buf", simpleLeakAwareByteBuf);
+        setField(swappedByteBuf, "buf", unsafeHeapSwappedByteBuf1);
+        setField(unsafeHeapSwappedByteBuf, "buf", swappedByteBuf);
+        
+        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
+        Class unsafeHeapSwappedByteBufType = Class.forName("io.netty.buffer.ByteBuf");
+        Method decodeMethod = mergedWarpMessageClazz.getDeclaredMethod("decode", unsafeHeapSwappedByteBufType);
         decodeMethod.setAccessible(true);
         java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
-        decodeMethodArguments[0] = heapByteBuffer;
-        try {
-            decodeMethod.invoke(globalBeginResponse, decodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalHeapByteBufferPosition = getFieldValue(heapByteBuffer, "position");
+        decodeMethodArguments[0] = unsafeHeapSwappedByteBuf;
+        boolean actual = ((boolean) decodeMethod.invoke(mergedWarpMessage, decodeMethodArguments));
         
-        assertEquals(1, finalHeapByteBufferPosition);
+        assertFalse(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecode4() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
-        setField(heapByteBuffer, "limit", 1);
-        setField(heapByteBuffer, "position", 0);
-        setField(heapByteBuffer, "offset", 0);
-        byte[] byteArray = new byte[9];
-        byteArray[0] = java.lang.Byte.MIN_VALUE;
-        setField(heapByteBuffer, "hb", byteArray);
+    public void testEncode1() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = new MergedWarpMessage();
         
-        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
-        Class heapByteBufferType = Class.forName("java.nio.ByteBuffer");
-        Method decodeMethod = globalBeginResponseClazz.getDeclaredMethod("decode", heapByteBufferType);
-        decodeMethod.setAccessible(true);
-        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
-        decodeMethodArguments[0] = heapByteBuffer;
-        try {
-            decodeMethod.invoke(globalBeginResponse, decodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalHeapByteBufferPosition = getFieldValue(heapByteBuffer, "position");
+        mergedWarpMessage.encode();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEncode2() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        setField(mergedWarpMessage, "msgs", null);
         
-        assertEquals(1, finalHeapByteBufferPosition);
+        List initialMergedWarpMessageMsgs = mergedWarpMessage.msgs;
+        
+        mergedWarpMessage.encode();
+        
+        List finalMergedWarpMessageMsgs = mergedWarpMessage.msgs;
+        
+        assertNull(finalMergedWarpMessageMsgs);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for encode
+    
+    public void testEncode_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
@@ -109,11 +175,11 @@ public class GlobalBeginResponseTest {
     
     @Test(timeout = 10000)
     public void testGetTypeCode1() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
+        MergedWarpMessage mergedWarpMessage = new MergedWarpMessage();
         
-        short actual = globalBeginResponse.getTypeCode();
+        short actual = mergedWarpMessage.getTypeCode();
         
-        assertEquals((short) 2, actual);
+        assertEquals((short) 59, actual);
     }
     ///endregion
     
@@ -121,26 +187,28 @@ public class GlobalBeginResponseTest {
     
     @Test(timeout = 10000)
     public void testGetTypeCode2() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
         
-        short actual = globalBeginResponse.getTypeCode();
+        short actual = mergedWarpMessage.getTypeCode();
         
-        assertEquals((short) 2, actual);
+        assertEquals((short) 59, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoEncode1() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
+    public void testDoDecode1() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = new MergedWarpMessage();
         
-        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
-        Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
-        doEncodeMethod.setAccessible(true);
-        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
+        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
+        Class byteBufferType = Class.forName("java.nio.ByteBuffer");
+        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", byteBufferType);
+        doDecodeMethod.setAccessible(true);
+        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
+        doDecodeMethodArguments[0] = null;
         try {
-            doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
+            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -149,191 +217,415 @@ public class GlobalBeginResponseTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoEncode2() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+    public void testDoDecode2() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        
+        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
+        Class byteBufferType = Class.forName("java.nio.ByteBuffer");
+        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", byteBufferType);
+        doDecodeMethod.setAccessible(true);
+        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
+        doDecodeMethodArguments[0] = null;
+        try {
+            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDoDecode3() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
         Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(globalBeginResponse, "byteBuffer", heapByteBufferR);
-        ResultCode resultCode = ResultCode.Failed;
-        setField(globalBeginResponse, "resultCode", resultCode);
-        
-        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
-        Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
-        doEncodeMethod.setAccessible(true);
-        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
-        try {
-            doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoEncode3() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        setField(globalBeginResponse, "msg", null);
-        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
-        setField(heapByteBuffer, "limit", 2);
-        setField(heapByteBuffer, "position", 0);
-        setField(heapByteBuffer, "offset", 0);
-        byte[] byteArray = new byte[9];
-        setField(heapByteBuffer, "hb", byteArray);
-        setField(globalBeginResponse, "byteBuffer", heapByteBuffer);
-        ResultCode resultCode = ResultCode.Failed;
-        setField(globalBeginResponse, "resultCode", resultCode);
-        
-        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
-        Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
-        doEncodeMethod.setAccessible(true);
-        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
-        try {
-            doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        ByteBuffer byteBuffer = globalBeginResponse.byteBuffer;
-        Object finalGlobalBeginResponseByteBufferPosition = getFieldValue(byteBuffer, "position");
-        
-        assertEquals(1, finalGlobalBeginResponseByteBufferPosition);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoEncode4() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        setField(globalBeginResponse, "msg", null);
-        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
-        setField(heapByteBuffer, "limit", 536870912);
-        setField(heapByteBuffer, "position", 0);
-        setField(heapByteBuffer, "bigEndian", false);
-        setField(heapByteBuffer, "offset", 1);
+        setField(heapByteBufferR, "limit", 2);
+        setField(heapByteBufferR, "position", 0);
+        setField(heapByteBufferR, "bigEndian", true);
+        setField(heapByteBufferR, "offset", 1);
         byte[] byteArray = new byte[11];
-        setField(heapByteBuffer, "hb", byteArray);
-        setField(globalBeginResponse, "byteBuffer", heapByteBuffer);
-        ResultCode resultCode = ResultCode.Failed;
-        setField(globalBeginResponse, "resultCode", resultCode);
+        byteArray[1] = java.lang.Byte.MIN_VALUE;
+        setField(heapByteBufferR, "hb", byteArray);
         
-        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
-        Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
-        doEncodeMethod.setAccessible(true);
-        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
+        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
+        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
+        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", heapByteBufferRType);
+        doDecodeMethod.setAccessible(true);
+        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
+        doDecodeMethodArguments[0] = heapByteBufferR;
+        doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
+        
+        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
+        
+        assertEquals(2, finalHeapByteBufferRPosition);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoDecode4() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
+        setField(heapByteBufferR, "limit", 5);
+        setField(heapByteBufferR, "position", 3);
+        setField(heapByteBufferR, "bigEndian", true);
+        setField(heapByteBufferR, "offset", 2);
+        byte[] byteArray = new byte[15];
+        byteArray[5] = (byte) 1;
+        setField(heapByteBufferR, "hb", byteArray);
+        
+        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
+        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
+        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", heapByteBufferRType);
+        doDecodeMethod.setAccessible(true);
+        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
+        doDecodeMethodArguments[0] = heapByteBufferR;
         try {
-            doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
+            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }
-        ByteBuffer byteBuffer = globalBeginResponse.byteBuffer;
-        Object finalGlobalBeginResponseByteBufferPosition = getFieldValue(byteBuffer, "position");
+        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
         
-        assertEquals(3, finalGlobalBeginResponseByteBufferPosition);
+        assertEquals(5, finalHeapByteBufferRPosition);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoDecode5() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        Object directByteBuffer = createInstance("java.nio.DirectByteBuffer");
+        setField(directByteBuffer, "address", 0L);
+        setField(directByteBuffer, "limit", 136331520);
+        setField(directByteBuffer, "position", -198672384);
+        
+        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
+        Class directByteBufferType = Class.forName("java.nio.ByteBuffer");
+        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", directByteBufferType);
+        doDecodeMethod.setAccessible(true);
+        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
+        doDecodeMethodArguments[0] = directByteBuffer;
+        try {
+            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object finalDirectByteBufferPosition = getFieldValue(directByteBuffer, "position");
+        
+        assertEquals(-198672382, finalDirectByteBufferPosition);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoDecode6() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        Object directByteBuffer = createInstance("java.nio.DirectByteBuffer");
+        setField(directByteBuffer, "address", 0L);
+        setField(directByteBuffer, "limit", 151552);
+        setField(directByteBuffer, "position", -116254527);
+        
+        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
+        Class directByteBufferType = Class.forName("java.nio.ByteBuffer");
+        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", directByteBufferType);
+        doDecodeMethod.setAccessible(true);
+        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
+        doDecodeMethodArguments[0] = directByteBuffer;
+        try {
+            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object finalDirectByteBufferPosition = getFieldValue(directByteBuffer, "position");
+        
+        assertEquals(-116254525, finalDirectByteBufferPosition);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoDecode7() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
+        setField(heapByteBufferR, "limit", 555851568);
+        setField(heapByteBufferR, "position", 34);
+        setField(heapByteBufferR, "bigEndian", true);
+        setField(heapByteBufferR, "offset", 0);
+        byte[] byteArray = new byte[40];
+        byteArray[34] = (byte) 1;
+        byteArray[37] = (byte) 8;
+        setField(heapByteBufferR, "hb", byteArray);
+        
+        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
+        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
+        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", heapByteBufferRType);
+        doDecodeMethod.setAccessible(true);
+        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
+        doDecodeMethodArguments[0] = heapByteBufferR;
+        try {
+            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
+        
+        assertEquals(38, finalHeapByteBufferRPosition);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoDecode8() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
+        setField(heapByteBufferR, "limit", -2147483647);
+        setField(heapByteBufferR, "position", 1073741825);
+        setField(heapByteBufferR, "bigEndian", true);
+        setField(heapByteBufferR, "offset", -1073741824);
+        byte[] byteArray = new byte[15];
+        byteArray[1] = (byte) 1;
+        byteArray[4] = (byte) 15;
+        setField(heapByteBufferR, "hb", byteArray);
+        
+        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
+        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
+        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", heapByteBufferRType);
+        doDecodeMethod.setAccessible(true);
+        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
+        doDecodeMethodArguments[0] = heapByteBufferR;
+        try {
+            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
+        
+        assertEquals(1073741833, finalHeapByteBufferRPosition);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoDecode9() throws Throwable  {
+        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
+        setField(heapByteBufferR, "limit", -2147483647);
+        setField(heapByteBufferR, "position", 1073741825);
+        setField(heapByteBufferR, "bigEndian", true);
+        setField(heapByteBufferR, "offset", -1073741824);
+        byte[] byteArray = new byte[15];
+        byteArray[1] = (byte) 1;
+        byteArray[4] = (byte) 21;
+        setField(heapByteBufferR, "hb", byteArray);
+        
+        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
+        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
+        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", heapByteBufferRType);
+        doDecodeMethod.setAccessible(true);
+        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
+        doDecodeMethodArguments[0] = heapByteBufferR;
+        try {
+            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
+        
+        assertEquals(1073741831, finalHeapByteBufferRPosition);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testSetExtraData1() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
-        String string = new String();
-        
-        globalBeginResponse.setExtraData(string);
+    public void testMergedWarpMessage1() {
+        MergedWarpMessage actual = new MergedWarpMessage();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testSetExtraData2() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        setField(globalBeginResponse, "extraData", null);
-        
-        globalBeginResponse.setExtraData(null);
+    public void testMergedWarpMessage2() {
+        MergedWarpMessage actual = new MergedWarpMessage();
     }
     ///endregion
     
-    ///region
+    static class FieldsPair {
+        final Object o1;
+        final Object o2;
     
-    @Test(timeout = 10000)
-    public void testGetExtraData1() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
-        
-        String actual = globalBeginResponse.getExtraData();
-        
-        assertNull(actual);
+        public FieldsPair(Object o1, Object o2) {
+            this.o1 = o1;
+            this.o2 = o2;
+        }
+    
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            FieldsPair that = (FieldsPair) o;
+            return Objects.equals(o1, that.o1) && Objects.equals(o2, that.o2);
+        }
+    
+        @Override
+        public int hashCode() {
+            return Objects.hash(o1, o2);
+        }
     }
-    ///endregion
     
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetExtraData2() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        setField(globalBeginResponse, "extraData", null);
-        
-        String actual = globalBeginResponse.getExtraData();
-        
-        assertNull(actual);
+    private boolean deepEquals(Object o1, Object o2) {
+        try {
+            return deepEquals(o1, o2, new HashSet<>());
+        } catch (Throwable t) {
+            return true;
+        }
     }
-    ///endregion
     
-    ///region
+    private boolean deepEquals(Object o1, Object o2, Set<FieldsPair> visited) {
+        visited.add(new FieldsPair(o1, o2));
     
-    @Test(timeout = 10000)
-    public void testSetXid1() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
-        String string = new String();
+        if (o1 == o2) {
+            return true;
+        }
+    
+        if (o1 == null || o2 == null) {
+            return false;
+        }
+    
+        if (o1 instanceof Iterable) {
+            if (!(o2 instanceof Iterable)) {
+                return false;
+            }
+    
+            return iterablesDeepEquals((Iterable<?>) o1, (Iterable<?>) o2, visited);
+        }
         
-        globalBeginResponse.setXid(string);
+        if (o2 instanceof Iterable) {
+            return false;
+        }
+    
+        if (o1 instanceof Map) {
+            if (!(o2 instanceof Map)) {
+                return false;
+            }
+    
+            return mapsDeepEquals((Map<?, ?>) o1, (Map<?, ?>) o2, visited);
+        }
+        
+        if (o2 instanceof Map) {
+            return false;
+        }
+    
+        Class<?> firstClass = o1.getClass();
+        if (firstClass.isArray()) {
+            if (!o2.getClass().isArray()) {
+                return false;
+            }
+    
+            // Primitive arrays should not appear here
+            return arraysDeepEquals(o1, o2, visited);
+        }
+    
+        // common classes
+    
+        // common classes without custom equals, use comparison by fields
+        final List<java.lang.reflect.Field> fields = new ArrayList<>();
+        while (firstClass != Object.class) {
+            fields.addAll(Arrays.asList(firstClass.getDeclaredFields()));
+            // Interface should not appear here
+            firstClass = firstClass.getSuperclass();
+        }
+    
+        for (java.lang.reflect.Field field : fields) {
+            field.setAccessible(true);
+            try {
+                final Object field1 = field.get(o1);
+                final Object field2 = field.get(o2);
+                if (!visited.contains(new FieldsPair(field1, field2)) && !deepEquals(field1, field2, visited)) {
+                    return false;
+                }
+            } catch (IllegalArgumentException e) {
+                return false;
+            } catch (IllegalAccessException e) {
+                // should never occur because field was set accessible
+                return false;
+            }
+        }
+    
+        return true;
     }
-    ///endregion
+    private boolean arraysDeepEquals(Object arr1, Object arr2, Set<FieldsPair> visited) {
+        final int length = Array.getLength(arr1);
+        if (length != Array.getLength(arr2)) {
+            return false;
+        }
     
-    ///region
+        for (int i = 0; i < length; i++) {
+            if (!deepEquals(Array.get(arr1, i), Array.get(arr2, i), visited)) {
+                return false;
+            }
+        }
     
-    @Test(timeout = 10000)
-    public void testSetXid2() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        setField(globalBeginResponse, "xid", null);
-        
-        globalBeginResponse.setXid(null);
+        return true;
     }
-    ///endregion
+    private boolean iterablesDeepEquals(Iterable<?> i1, Iterable<?> i2, Set<FieldsPair> visited) {
+        final Iterator<?> firstIterator = i1.iterator();
+        final Iterator<?> secondIterator = i2.iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
+                return false;
+            }
+        }
     
-    ///region
+        if (firstIterator.hasNext()) {
+            return false;
+        }
     
-    @Test(timeout = 10000)
-    public void testGetXid1() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
-        
-        String actual = globalBeginResponse.getXid();
-        
-        assertNull(actual);
+        return !secondIterator.hasNext();
     }
-    ///endregion
+    private boolean mapsDeepEquals(Map<?, ?> m1, Map<?, ?> m2, Set<FieldsPair> visited) {
+        final Iterator<? extends Map.Entry<?, ?>> firstIterator = m1.entrySet().iterator();
+        final Iterator<? extends Map.Entry<?, ?>> secondIterator = m2.entrySet().iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            final Map.Entry<?, ?> firstEntry = firstIterator.next();
+            final Map.Entry<?, ?> secondEntry = secondIterator.next();
     
-    ///region
+            if (!deepEquals(firstEntry.getKey(), secondEntry.getKey(), visited)) {
+                return false;
+            }
     
-    @Test(timeout = 10000)
-    public void testGetXid2() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        setField(globalBeginResponse, "xid", null);
-        
-        String actual = globalBeginResponse.getXid();
-        
-        assertNull(actual);
+            if (!deepEquals(firstEntry.getValue(), secondEntry.getValue(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
     }
-    ///endregion
+    private boolean hasCustomEquals(Class<?> clazz) {
+        while (!Object.class.equals(clazz)) {
+            try {
+                clazz.getDeclaredMethod("equals", Object.class);
+                return true;
+            } catch (Exception e) { 
+                // Interface should not appear here
+                clazz = clazz.getSuperclass();
+            }
+        }
     
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGlobalBeginResponse1() {
-        GlobalBeginResponse actual = new GlobalBeginResponse();
+        return false;
     }
-    ///endregion
-    
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);

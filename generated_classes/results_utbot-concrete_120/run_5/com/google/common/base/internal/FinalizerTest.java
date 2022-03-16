@@ -259,11 +259,24 @@ public class FinalizerTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testStartFinalizer1() throws Throwable  {
-        ReferenceQueue referenceQueue = ((ReferenceQueue) createInstance("java.lang.ref.ReferenceQueue"));
+        Object null = createInstance("java.lang.ref.ReferenceQueue$Null");
         Cleaner cleaner = ((Cleaner) createInstance("sun.misc.Cleaner"));
         
-        Finalizer.startFinalizer(null, referenceQueue, cleaner);
-    }
+        Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
+        Class classType = Class.forName("java.lang.Class");
+        Class nullType = Class.forName("java.lang.ref.ReferenceQueue");
+        Class cleanerType = Class.forName("java.lang.ref.PhantomReference");
+        Method startFinalizerMethod = finalizerClazz.getDeclaredMethod("startFinalizer", classType, nullType, cleanerType);
+        startFinalizerMethod.setAccessible(true);
+        java.lang.Object[] startFinalizerMethodArguments = new java.lang.Object[3];
+        startFinalizerMethodArguments[0] = null;
+        startFinalizerMethodArguments[1] = null;
+        startFinalizerMethodArguments[2] = cleaner;
+        try {
+            startFinalizerMethod.invoke(null, startFinalizerMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     ///region

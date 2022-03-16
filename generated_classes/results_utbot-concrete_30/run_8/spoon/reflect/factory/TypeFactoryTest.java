@@ -32,10 +32,9 @@ import spoon.reflect.declaration.CtTypeParameter;
 import spoon.reflect.declaration.CtType;
 import spoon.support.reflect.reference.CtArrayTypeReferenceImpl;
 import java.lang.reflect.Method;
+import spoon.reflect.reference.CtArrayTypeReference;
 import spoon.reflect.reference.CtTypeParameterReference;
 import spoon.support.reflect.reference.CtTypeParameterReferenceImpl;
-import spoon.reflect.reference.CtArrayTypeReference;
-import spoon.reflect.cu.position.NoSourcePosition;
 import java.util.Objects;
 import java.util.Map;
 import java.util.Set;
@@ -59,7 +58,7 @@ public class TypeFactoryTest {
     public void testGetAll1() throws Throwable  {
         TypeFactory typeFactory = new TypeFactory();
         
-        List actual = typeFactory.getAll(false);
+        List actual = typeFactory.getAll();
         
         ArrayList expected = new ArrayList();
         
@@ -74,12 +73,22 @@ public class TypeFactoryTest {
     public void testGetAll2() throws Throwable  {
         TypeFactory typeFactory = new TypeFactory();
         
-        List actual = typeFactory.getAll();
+        List actual = typeFactory.getAll(false);
         
         ArrayList expected = new ArrayList();
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetAll3() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        
+        typeFactory.getAll(true);
     }
     ///endregion
     
@@ -100,16 +109,6 @@ public class TypeFactoryTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testCreateReference2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        
-        typeFactory.createReference(((String) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateReference3() throws Throwable  {
         TypeFactory typeFactory = new TypeFactory();
         
         typeFactory.createReference(((CtTypeParameter) null));
@@ -119,7 +118,7 @@ public class TypeFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateReference4() throws Throwable  {
+    public void testCreateReference3() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
         setField(typeFactory, "factory", null);
         
@@ -130,11 +129,11 @@ public class TypeFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateReference5() throws Throwable  {
+    public void testCreateReference4() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
-        setField(defaultCoreFactory, "factory", factoryImpl);
+        setField(defaultCoreFactory, "factory", null);
         setField(factoryImpl, "core", defaultCoreFactory);
         setField(typeFactory, "factory", factoryImpl);
         
@@ -145,7 +144,7 @@ public class TypeFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateReference6() throws Throwable  {
+    public void testCreateReference5() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         setField(factoryImpl, "core", null);
@@ -166,7 +165,7 @@ public class TypeFactoryTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testCreateReference7() throws Throwable  {
+    public void testCreateReference6() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
         
         CtTypeReference actual = typeFactory.createReference(((Class) null), false);
@@ -178,8 +177,9 @@ public class TypeFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateReference8() throws Throwable  {
+    public void testCreateReference7() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        setField(typeFactory, "factory", null);
         Class class1 = Object.class;
         
         typeFactory.createReference(class1, false);
@@ -189,10 +189,34 @@ public class TypeFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateReference9() throws Throwable  {
-        TypeFactory typeFactory = new TypeFactory();
+    public void testCreateReference8() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "core", null);
+        setField(typeFactory, "factory", factoryImpl);
+        Class class1 = Object.class;
         
-        typeFactory.createReference(((CtType) null));
+        Factory factory = typeFactory.factory;
+        Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
+        
+        typeFactory.createReference(class1, false);
+        
+        Factory factory1 = typeFactory.factory;
+        Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
+        
+        assertFalse(initialTypeFactoryFactoryCore == finalTypeFactoryFactoryCore);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCreateReference9() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        
+        CtTypeReference actual = typeFactory.createReference(((Class) null));
+        
+        assertNull(actual);
     }
     ///endregion
     
@@ -201,13 +225,9 @@ public class TypeFactoryTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testCreateReference10() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
-        setField(defaultCoreFactory, "factory", factoryImpl);
-        setField(factoryImpl, "core", defaultCoreFactory);
-        setField(typeFactory, "factory", factoryImpl);
+        Class class1 = Object.class;
         
-        typeFactory.createReference(((CtType) null));
+        typeFactory.createReference(class1);
     }
     ///endregion
     
@@ -219,11 +239,12 @@ public class TypeFactoryTest {
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         setField(factoryImpl, "core", null);
         setField(typeFactory, "factory", factoryImpl);
+        Class class1 = Object.class;
         
         Factory factory = typeFactory.factory;
         Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
         
-        typeFactory.createReference(((CtType) null));
+        typeFactory.createReference(class1);
         
         Factory factory1 = typeFactory.factory;
         Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
@@ -257,65 +278,9 @@ public class TypeFactoryTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testCreateReference14() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "core", null);
-        setField(typeFactory, "factory", factoryImpl);
+        TypeFactory typeFactory = new TypeFactory();
         
-        Factory factory = typeFactory.factory;
-        Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
-        
-        typeFactory.createReference(((CtType) null), false);
-        
-        Factory factory1 = typeFactory.factory;
-        Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
-        
-        assertFalse(initialTypeFactoryFactoryCore == finalTypeFactoryFactoryCore);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCreateReference15() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        
-        CtTypeReference actual = typeFactory.createReference(((Class) null));
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateReference16() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        Class class1 = Object.class;
-        
-        typeFactory.createReference(class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateReference17() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "core", null);
-        setField(typeFactory, "factory", factoryImpl);
-        Class class1 = Object.class;
-        
-        Factory factory = typeFactory.factory;
-        Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
-        
-        typeFactory.createReference(class1);
-        
-        Factory factory1 = typeFactory.factory;
-        Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
-        
-        assertFalse(initialTypeFactoryFactoryCore == finalTypeFactoryFactoryCore);
+        typeFactory.createReference(((CtType) null));
     }
     ///endregion
     
@@ -338,6 +303,7 @@ public class TypeFactoryTest {
     public void testBooleanType2() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
         CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
+        setField(ctArrayTypeReferenceImpl, "factory", null);
         setField(typeFactory, "BOOLEAN", ctArrayTypeReferenceImpl);
         
         typeFactory.booleanType();
@@ -370,18 +336,6 @@ public class TypeFactoryTest {
     }
     ///endregion
     
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoubleType2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(typeFactory, "DOUBLE", ctArrayTypeReferenceImpl);
-        
-        typeFactory.doubleType();
-    }
-    ///endregion
-    
     
     ///region Errors report for nullType
     
@@ -392,18 +346,6 @@ public class TypeFactoryTest {
         // 1 occurrences of:
         // ClassId java.nio.charset.CoderResult$1 does not have canonical name
         // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testNullType2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(typeFactory, "NULL_TYPE", ctArrayTypeReferenceImpl);
-        
-        typeFactory.nullType();
     }
     ///endregion
     
@@ -433,18 +375,6 @@ public class TypeFactoryTest {
     }
     ///endregion
     
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testByteType2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(typeFactory, "BYTE", ctArrayTypeReferenceImpl);
-        
-        typeFactory.byteType();
-    }
-    ///endregion
-    
     
     ///region Errors report for longType
     
@@ -455,18 +385,6 @@ public class TypeFactoryTest {
         // 1 occurrences of:
         // ClassId java.nio.charset.CoderResult$1 does not have canonical name
         // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testLongType2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(typeFactory, "LONG", ctArrayTypeReferenceImpl);
-        
-        typeFactory.longType();
     }
     ///endregion
     
@@ -508,6 +426,25 @@ public class TypeFactoryTest {
         }}
     ///endregion
     
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testHasPackage3() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        String string = new String("");
+        
+        Class typeFactoryClazz = Class.forName("spoon.reflect.factory.TypeFactory");
+        Class stringType = Class.forName("java.lang.String");
+        Method hasPackageMethod = typeFactoryClazz.getDeclaredMethod("hasPackage", stringType);
+        hasPackageMethod.setAccessible(true);
+        java.lang.Object[] hasPackageMethodArguments = new java.lang.Object[1];
+        hasPackageMethodArguments[0] = string;
+        int actual = ((int) hasPackageMethod.invoke(typeFactory, hasPackageMethodArguments));
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
     
     ///region Errors report for booleanPrimitiveType
     
@@ -518,18 +455,6 @@ public class TypeFactoryTest {
         // 1 occurrences of:
         // ClassId java.nio.charset.CoderResult$1 does not have canonical name
         // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testBooleanPrimitiveType2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(typeFactory, "BOOLEAN_PRIMITIVE", ctArrayTypeReferenceImpl);
-        
-        typeFactory.booleanPrimitiveType();
     }
     ///endregion
     
@@ -546,15 +471,93 @@ public class TypeFactoryTest {
     }
     ///endregion
     
+    
+    ///region Errors report for bytePrimitiveType
+    
+    public void testBytePrimitiveType_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testVoidPrimitiveType2() throws Throwable  {
+    public void testBytePrimitiveType2() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
         CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(typeFactory, "VOID_PRIMITIVE", ctArrayTypeReferenceImpl);
+        setField(typeFactory, "BYTE_PRIMITIVE", ctArrayTypeReferenceImpl);
         
-        typeFactory.voidPrimitiveType();
+        typeFactory.bytePrimitiveType();
+    }
+    ///endregion
+    
+    
+    ///region Errors report for voidType
+    
+    public void testVoidType_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for stringType
+    
+    public void testStringType_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for characterType
+    
+    public void testCharacterType_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for characterPrimitiveType
+    
+    public void testCharacterPrimitiveType_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for integerType
+    
+    public void testIntegerType_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
+        // 
     }
     ///endregion
     
@@ -593,136 +596,6 @@ public class TypeFactoryTest {
         // 1 occurrences of:
         // ClassId java.nio.charset.CoderResult$1 does not have canonical name
         // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testLongPrimitiveType2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(typeFactory, "LONG_PRIMITIVE", ctArrayTypeReferenceImpl);
-        
-        typeFactory.longPrimitiveType();
-    }
-    ///endregion
-    
-    
-    ///region Errors report for characterPrimitiveType
-    
-    public void testCharacterPrimitiveType_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCharacterPrimitiveType2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(typeFactory, "CHARACTER_PRIMITIVE", ctArrayTypeReferenceImpl);
-        
-        typeFactory.characterPrimitiveType();
-    }
-    ///endregion
-    
-    
-    ///region Errors report for voidType
-    
-    public void testVoidType_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testVoidType2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(ctArrayTypeReferenceImpl, "factory", factoryImpl);
-        setField(typeFactory, "VOID", ctArrayTypeReferenceImpl);
-        
-        typeFactory.voidType();
-    }
-    ///endregion
-    
-    
-    ///region Errors report for stringType
-    
-    public void testStringType_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    
-    ///region Errors report for characterType
-    
-    public void testCharacterType_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    
-    ///region Errors report for integerType
-    
-    public void testIntegerType_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testIntegerType2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(ctArrayTypeReferenceImpl, "factory", null);
-        setField(typeFactory, "INTEGER", ctArrayTypeReferenceImpl);
-        
-        typeFactory.integerType();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testIntegerType3() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(ctArrayTypeReferenceImpl, "factory", factoryImpl);
-        setField(typeFactory, "INTEGER", ctArrayTypeReferenceImpl);
-        
-        typeFactory.integerType();
     }
     ///endregion
     
@@ -779,9 +652,9 @@ public class TypeFactoryTest {
     ///endregion
     
     
-    ///region Errors report for bytePrimitiveType
+    ///region Errors report for createArrayReference
     
-    public void testBytePrimitiveType_errors()
+    public void testCreateArrayReference_errors()
      {
         // Couldn't generate some tests. List of errors:
         // 
@@ -794,14 +667,150 @@ public class TypeFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testBytePrimitiveType2() throws Throwable  {
+    public void testCreateArrayReference2() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(ctArrayTypeReferenceImpl, "factory", factoryImpl);
-        setField(typeFactory, "BYTE_PRIMITIVE", ctArrayTypeReferenceImpl);
+        setField(typeFactory, "factory", null);
         
-        typeFactory.bytePrimitiveType();
+        typeFactory.createArrayReference(((CtTypeReference) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateArrayReference3() throws Throwable  {
+        TypeFactory typeFactory = new TypeFactory();
+        
+        typeFactory.createArrayReference(((CtType) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateArrayReference4() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        setField(typeFactory, "factory", null);
+        
+        typeFactory.createArrayReference(((CtType) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateArrayReference5() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "core", null);
+        setField(typeFactory, "factory", factoryImpl);
+        
+        Factory factory = typeFactory.factory;
+        Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
+        
+        typeFactory.createArrayReference(((CtType) null));
+        
+        Factory factory1 = typeFactory.factory;
+        Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
+        
+        assertFalse(initialTypeFactoryFactoryCore == finalTypeFactoryFactoryCore);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for createArrayReference
+    
+    public void testCreateArrayReference_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateArrayReference7() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        setField(typeFactory, "factory", null);
+        
+        typeFactory.createArrayReference(((String) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateArrayReference8() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "core", null);
+        setField(typeFactory, "factory", factoryImpl);
+        
+        Factory factory = typeFactory.factory;
+        Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
+        
+        typeFactory.createArrayReference(((String) null));
+        
+        Factory factory1 = typeFactory.factory;
+        Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
+        
+        assertFalse(initialTypeFactoryFactoryCore == finalTypeFactoryFactoryCore);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateArrayReference9() throws Throwable  {
+        TypeFactory typeFactory = new TypeFactory();
+        
+        typeFactory.createArrayReference(null, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateWildcardStaticTypeMemberReference1() throws Throwable  {
+        TypeFactory typeFactory = new TypeFactory();
+        
+        typeFactory.createWildcardStaticTypeMemberReference(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateWildcardStaticTypeMemberReference2() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        setField(typeFactory, "factory", null);
+        
+        typeFactory.createWildcardStaticTypeMemberReference(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateWildcardStaticTypeMemberReference3() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "core", null);
+        setField(typeFactory, "factory", factoryImpl);
+        
+        Factory factory = typeFactory.factory;
+        Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
+        
+        typeFactory.createWildcardStaticTypeMemberReference(null);
+        
+        Factory factory1 = typeFactory.factory;
+        Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
+        
+        assertFalse(initialTypeFactoryFactoryCore == finalTypeFactoryFactoryCore);
     }
     ///endregion
     
@@ -851,9 +860,51 @@ public class TypeFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testAddNestedType3() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        ArrayList arrayList = new ArrayList();
+        
+        Class typeFactoryClazz = Class.forName("spoon.reflect.factory.TypeFactory");
+        Class arrayListType = Class.forName("java.util.List");
+        Class ctTypeType = Class.forName("spoon.reflect.declaration.CtType");
+        Method addNestedTypeMethod = typeFactoryClazz.getDeclaredMethod("addNestedType", arrayListType, ctTypeType);
+        addNestedTypeMethod.setAccessible(true);
+        java.lang.Object[] addNestedTypeMethodArguments = new java.lang.Object[2];
+        addNestedTypeMethodArguments[0] = arrayList;
+        addNestedTypeMethodArguments[1] = null;
+        try {
+            addNestedTypeMethod.invoke(typeFactory, addNestedTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testGetDeclaringTypeName1() throws Throwable  {
         TypeFactory typeFactory = new TypeFactory();
         String string = new String();
+        
+        Class typeFactoryClazz = Class.forName("spoon.reflect.factory.TypeFactory");
+        Class stringType = Class.forName("java.lang.String");
+        Method getDeclaringTypeNameMethod = typeFactoryClazz.getDeclaredMethod("getDeclaringTypeName", stringType);
+        getDeclaringTypeNameMethod.setAccessible(true);
+        java.lang.Object[] getDeclaringTypeNameMethodArguments = new java.lang.Object[1];
+        getDeclaringTypeNameMethodArguments[0] = string;
+        try {
+            getDeclaringTypeNameMethod.invoke(typeFactory, getDeclaringTypeNameMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetDeclaringTypeName2() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
         
         Class typeFactoryClazz = Class.forName("spoon.reflect.factory.TypeFactory");
         Class stringType = Class.forName("java.lang.String");
@@ -953,7 +1004,7 @@ public class TypeFactoryTest {
     @Test(timeout = 10000)
     public void testHasInnerType3() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        String string = new String("");
+        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
         
         Class typeFactoryClazz = Class.forName("spoon.reflect.factory.TypeFactory");
         Class stringType = Class.forName("java.lang.String");
@@ -1093,14 +1144,14 @@ public class TypeFactoryTest {
     @Test(timeout = 10000)
     public void testGetDefaultBoundingType2() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        CtTypeReferenceImpl ctTypeReferenceImpl = ((CtTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtTypeReferenceImpl"));
-        setField(typeFactory, "OBJECT", ctTypeReferenceImpl);
+        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
+        setField(typeFactory, "OBJECT", ctArrayTypeReferenceImpl);
         
         CtTypeReference actual = typeFactory.getDefaultBoundingType();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctTypeReferenceImpl, actual));
+        assertTrue(deepEquals(ctArrayTypeReferenceImpl, actual));
     }
     ///endregion
     
@@ -1146,255 +1197,6 @@ public class TypeFactoryTest {
     }
     ///endregion
     
-    
-    ///region Errors report for createArrayReference
-    
-    public void testCreateArrayReference_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayReference2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        setField(typeFactory, "factory", null);
-        
-        typeFactory.createArrayReference(((CtTypeReference) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCreateArrayReference3() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "core", null);
-        setField(typeFactory, "factory", factoryImpl);
-        
-        Factory factory = typeFactory.factory;
-        Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
-        
-        CtArrayTypeReference actual = typeFactory.createArrayReference(((CtTypeReference) null));
-        
-        CtArrayTypeReferenceImpl expected = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(expected, "componentType", null);
-        EmptyClearableList emptyClearableList = ((EmptyClearableList) createInstance("spoon.support.util.EmptyClearableList"));
-        setField(emptyClearableList, "modCount", 0);
-        setField(expected, "actualTypeArguments", emptyClearableList);
-        setField(expected, "declaringType", null);
-        setField(expected, "pack", null);
-        setField(expected, "isShadow", false);
-        String string = new String("");
-        setField(expected, "simplename", string);
-        setField(expected, "factory", factoryImpl);
-        setField(expected, "parent", null);
-        setField(expected, "annotations", emptyClearableList);
-        setField(expected, "comments", emptyClearableList);
-        NoSourcePosition noSourcePosition = ((NoSourcePosition) createInstance("spoon.reflect.cu.position.NoSourcePosition"));
-        setField(expected, "position", noSourcePosition);
-        setField(expected, "metadata", null);
-        setField(expected, "implicit", false);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        Factory factory1 = typeFactory.factory;
-        Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
-        
-        assertFalse(initialTypeFactoryFactoryCore == finalTypeFactoryFactoryCore);
-    }
-    ///endregion
-    
-    
-    ///region Errors report for createArrayReference
-    
-    public void testCreateArrayReference_errors1()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayReference5() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        setField(typeFactory, "factory", null);
-        
-        typeFactory.createArrayReference(((String) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayReference6() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "core", null);
-        setField(typeFactory, "factory", factoryImpl);
-        
-        Factory factory = typeFactory.factory;
-        Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
-        
-        typeFactory.createArrayReference(((String) null));
-        
-        Factory factory1 = typeFactory.factory;
-        Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
-        
-        assertFalse(initialTypeFactoryFactoryCore == finalTypeFactoryFactoryCore);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayReference7() throws Throwable  {
-        TypeFactory typeFactory = new TypeFactory();
-        
-        typeFactory.createArrayReference(((CtType) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayReference8() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        setField(typeFactory, "factory", null);
-        
-        typeFactory.createArrayReference(((CtType) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayReference9() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "core", null);
-        setField(typeFactory, "factory", factoryImpl);
-        
-        Factory factory = typeFactory.factory;
-        Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
-        
-        typeFactory.createArrayReference(((CtType) null));
-        
-        Factory factory1 = typeFactory.factory;
-        Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
-        
-        assertFalse(initialTypeFactoryFactoryCore == finalTypeFactoryFactoryCore);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayReference10() throws Throwable  {
-        TypeFactory typeFactory = new TypeFactory();
-        
-        typeFactory.createArrayReference(null, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCreateArrayReference11() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "core", null);
-        setField(typeFactory, "factory", factoryImpl);
-        
-        Factory factory = typeFactory.factory;
-        Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
-        
-        CtArrayTypeReference actual = typeFactory.createArrayReference(null, 1);
-        
-        CtArrayTypeReferenceImpl expected = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(expected, "componentType", null);
-        EmptyClearableList emptyClearableList = ((EmptyClearableList) createInstance("spoon.support.util.EmptyClearableList"));
-        setField(emptyClearableList, "modCount", 0);
-        setField(expected, "actualTypeArguments", emptyClearableList);
-        setField(expected, "declaringType", null);
-        setField(expected, "pack", null);
-        setField(expected, "isShadow", false);
-        String string = new String("");
-        setField(expected, "simplename", string);
-        setField(expected, "factory", factoryImpl);
-        setField(expected, "parent", null);
-        setField(expected, "annotations", emptyClearableList);
-        setField(expected, "comments", emptyClearableList);
-        NoSourcePosition noSourcePosition = ((NoSourcePosition) createInstance("spoon.reflect.cu.position.NoSourcePosition"));
-        setField(expected, "position", noSourcePosition);
-        setField(expected, "metadata", null);
-        setField(expected, "implicit", false);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        Factory factory1 = typeFactory.factory;
-        Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
-        
-        assertFalse(initialTypeFactoryFactoryCore == finalTypeFactoryFactoryCore);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateWildcardStaticTypeMemberReference1() throws Throwable  {
-        TypeFactory typeFactory = new TypeFactory();
-        
-        typeFactory.createWildcardStaticTypeMemberReference(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateWildcardStaticTypeMemberReference2() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        setField(typeFactory, "factory", null);
-        
-        typeFactory.createWildcardStaticTypeMemberReference(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateWildcardStaticTypeMemberReference3() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "core", null);
-        setField(typeFactory, "factory", factoryImpl);
-        
-        Factory factory = typeFactory.factory;
-        Object initialTypeFactoryFactoryCore = getFieldValue(factory, "core");
-        
-        typeFactory.createWildcardStaticTypeMemberReference(null);
-        
-        Factory factory1 = typeFactory.factory;
-        Object finalTypeFactoryFactoryCore = getFieldValue(factory1, "core");
-        
-        assertFalse(initialTypeFactoryFactoryCore == finalTypeFactoryFactoryCore);
-    }
-    ///endregion
-    
     ///region
     
     @Test(timeout = 10000)
@@ -1423,7 +1225,7 @@ public class TypeFactoryTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGet3() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
+        String string = new String("");
         
         typeFactory.get(string);
     }
@@ -1476,27 +1278,6 @@ public class TypeFactoryTest {
     @Test(timeout = 10000)
     public void testGetSimpleName2() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        String string = new String("\u0000");
-        
-        Class typeFactoryClazz = Class.forName("spoon.reflect.factory.TypeFactory");
-        Class stringType = Class.forName("java.lang.String");
-        Method getSimpleNameMethod = typeFactoryClazz.getDeclaredMethod("getSimpleName", stringType);
-        getSimpleNameMethod.setAccessible(true);
-        java.lang.Object[] getSimpleNameMethodArguments = new java.lang.Object[1];
-        getSimpleNameMethodArguments[0] = string;
-        String actual = ((String) getSimpleNameMethod.invoke(typeFactory, getSimpleNameMethodArguments));
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(string, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetSimpleName3() throws Throwable  {
-        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
         String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000$");
         
         Class typeFactoryClazz = Class.forName("spoon.reflect.factory.TypeFactory");
@@ -1511,6 +1292,27 @@ public class TypeFactoryTest {
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetSimpleName3() throws Throwable  {
+        TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
+        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
+        
+        Class typeFactoryClazz = Class.forName("spoon.reflect.factory.TypeFactory");
+        Class stringType = Class.forName("java.lang.String");
+        Method getSimpleNameMethod = typeFactoryClazz.getDeclaredMethod("getSimpleName", stringType);
+        getSimpleNameMethod.setAccessible(true);
+        java.lang.Object[] getSimpleNameMethodArguments = new java.lang.Object[1];
+        getSimpleNameMethodArguments[0] = string;
+        String actual = ((String) getSimpleNameMethod.invoke(typeFactory, getSimpleNameMethodArguments));
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(string, actual));
     }
     ///endregion
     
@@ -1563,7 +1365,7 @@ public class TypeFactoryTest {
     @Test(timeout = 10000)
     public void testGetPackageName3() throws Throwable  {
         TypeFactory typeFactory = ((TypeFactory) createInstance("spoon.reflect.factory.TypeFactory"));
-        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000.");
+        String string = new String("\u0000\u0000\u0000.\u0000");
         
         Class typeFactoryClazz = Class.forName("spoon.reflect.factory.TypeFactory");
         Class stringType = Class.forName("java.lang.String");
@@ -1573,7 +1375,7 @@ public class TypeFactoryTest {
         getPackageNameMethodArguments[0] = string;
         String actual = ((String) getPackageNameMethod.invoke(typeFactory, getPackageNameMethodArguments));
         
-        String expected = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
+        String expected = new String("\u0000\u0000\u0000");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -1582,16 +1384,8 @@ public class TypeFactoryTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testTypeFactory1() {
-        TypeFactory actual = new TypeFactory();
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testTypeFactory2() {
+    public void testTypeFactory1() {
         new TypeFactory(null);
     }
     ///endregion
@@ -1599,7 +1393,7 @@ public class TypeFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testTypeFactory3() throws Throwable  {
+    public void testTypeFactory2() throws Throwable  {
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         setField(factoryImpl, "core", null);
         
@@ -1609,6 +1403,22 @@ public class TypeFactoryTest {
         Object finalFactoryImplCore = getFieldValue(factoryImpl, "core");
         
         assertFalse(initialFactoryImplCore == finalFactoryImplCore);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testTypeFactory3() {
+        TypeFactory actual = new TypeFactory();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testTypeFactory4() {
+        TypeFactory actual = new TypeFactory();
     }
     ///endregion
     

@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.lang.ref.ReferenceQueue;
 import java.lang.reflect.Method;
 import java.nio.file.attribute.PosixFilePermission;
+import sun.misc.Cleaner;
 import java.lang.reflect.Field;
 import java.lang.reflect.Constructor;
 import java.lang.ref.PhantomReference;
@@ -19,9 +20,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class FinalizerTest {
@@ -37,7 +38,7 @@ public class FinalizerTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testRun2() throws Throwable  {
         Class referenceQueueClazz = Class.forName("java.lang.ref.ReferenceQueue");
         ReferenceQueue prevNULL = ((ReferenceQueue) getStaticFieldValue(referenceQueueClazz, "NULL"));
@@ -50,27 +51,56 @@ public class FinalizerTest {
             Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
             Object null = createInstance("java.lang.ref.ReferenceQueue$Null");
             setField(null, "queueLength", 0L);
-            Object weakValueReference = createInstance("com.google.common.cache.LocalCache$WeakValueReference");
-            Object weakKeyDummyValueEntry = createInstance("com.google.common.collect.MapMakerInternalMap$WeakKeyDummyValueEntry");
-            setField(weakKeyDummyValueEntry, "next", null);
-            setField(weakKeyDummyValueEntry, "queue", null);
-            setField(weakKeyDummyValueEntry, "referent", null);
-            setField(weakValueReference, "next", weakKeyDummyValueEntry);
+            Object softCacheEntry = createInstance("sun.security.util.MemoryCache$SoftCacheEntry");
+            Object cacheKey = createInstance("java.lang.reflect.WeakCache$CacheKey");
+            setField(cacheKey, "next", null);
+            setField(cacheKey, "queue", null);
+            setField(cacheKey, "referent", null);
+            setField(softCacheEntry, "next", cacheKey);
             ReferenceQueue referenceQueue = ((ReferenceQueue) createInstance("java.lang.ref.ReferenceQueue"));
             setField(referenceQueue, "queueLength", 0L);
             setField(referenceQueue, "head", null);
             setField(referenceQueue, "lock", null);
-            setField(weakValueReference, "queue", referenceQueue);
-            setField(weakValueReference, "referent", null);
-            setField(null, "head", weakValueReference);
-            Object lock = createInstance("java.lang.ref.ReferenceQueue$Lock");
-            setField(null, "lock", lock);
+            setField(softCacheEntry, "queue", referenceQueue);
+            setField(softCacheEntry, "referent", null);
+            setField(null, "head", softCacheEntry);
+            setField(null, "lock", null);
             setField(finalizer, "queue", null);
             Object weakClassKey = createInstance("java.io.ObjectStreamClass$WeakClassKey");
             setField(weakClassKey, "next", null);
             setField(weakClassKey, "queue", null);
             setField(weakClassKey, "referent", null);
             setField(finalizer, "finalizableReferenceClassReference", weakClassKey);
+            
+            finalizer.run();
+        } finally {
+            setStaticField(ReferenceQueue.class, "NULL", prevNULL);
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testRun3() throws Throwable  {
+        Class referenceQueueClazz = Class.forName("java.lang.ref.ReferenceQueue");
+        ReferenceQueue prevNULL = ((ReferenceQueue) getStaticFieldValue(referenceQueueClazz, "NULL"));
+        try {
+            Object nULL = createInstance("java.lang.ref.ReferenceQueue$Null");
+            setField(nULL, "queueLength", 0L);
+            Object arrayReference = createInstance("com.google.common.util.concurrent.Striped$SmallLazyStriped$ArrayReference");
+            setField(arrayReference, "next", arrayReference);
+            setField(arrayReference, "queue", null);
+            setField(nULL, "head", arrayReference);
+            Object lock = createInstance("java.lang.ref.ReferenceQueue$Lock");
+            setField(nULL, "lock", lock);
+            setStaticField(referenceQueueClazz, "NULL", nULL);
+            Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
+            ReferenceQueue referenceQueue = ((ReferenceQueue) createInstance("java.lang.ref.ReferenceQueue"));
+            setField(referenceQueue, "queueLength", 0L);
+            setField(referenceQueue, "head", arrayReference);
+            setField(referenceQueue, "lock", lock);
+            setField(finalizer, "queue", referenceQueue);
             
             Object finalizerQueue = getFieldValue(finalizer, "queue");
             Object initialFinalizerQueueHead = getFieldValue(finalizerQueue, "head");
@@ -82,7 +112,7 @@ public class FinalizerTest {
             Object finalizerQueue2 = getFieldValue(finalizer, "queue");
             Object finalFinalizerQueueHead = getFieldValue(finalizerQueue2, "head");
             
-            assertFalse(initialFinalizerQueueHead == finalFinalizerQueueHead);
+            assertNull(finalFinalizerQueueHead);
             
             assertEquals(-1L, finalFinalizerQueueQueueLength);
         } finally {
@@ -158,6 +188,19 @@ public class FinalizerTest {
     }
     ///endregion
     
+    
+    ///region Errors report for cleanUp
+    
+    public void testCleanUp_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
@@ -201,9 +244,9 @@ public class FinalizerTest {
     @Test(timeout = 10000)
     public void testGetFinalizeReferentMethod3() throws Throwable  {
         Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
-        Object weakClassKey = createInstance("java.io.ObjectStreamClass$WeakClassKey");
-        setField(weakClassKey, "referent", null);
-        setField(finalizer, "finalizableReferenceClassReference", weakClassKey);
+        Object arrayReference = createInstance("com.google.common.util.concurrent.Striped$SmallLazyStriped$ArrayReference");
+        setField(arrayReference, "referent", null);
+        setField(finalizer, "finalizableReferenceClassReference", arrayReference);
         
         Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
         Method getFinalizeReferentMethodMethod = finalizerClazz.getDeclaredMethod("getFinalizeReferentMethod");
@@ -232,7 +275,10 @@ public class FinalizerTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testStartFinalizer1() throws Throwable  {
-        Finalizer.startFinalizer(null, null, null);
+        ReferenceQueue referenceQueue = ((ReferenceQueue) createInstance("java.lang.ref.ReferenceQueue"));
+        Cleaner cleaner = ((Cleaner) createInstance("sun.misc.Cleaner"));
+        
+        Finalizer.startFinalizer(null, referenceQueue, cleaner);
     }
     ///endregion
     

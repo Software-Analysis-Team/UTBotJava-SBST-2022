@@ -3,8 +3,8 @@ package io.seata.core.protocol;
 import org.junit.Test;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.EmptyByteBuf;
-import io.netty.buffer.SwappedByteBuf;
 import java.lang.reflect.Method;
+import io.netty.buffer.SwappedByteBuf;
 import java.nio.ByteBuffer;
 import java.util.Objects;
 import java.util.Map;
@@ -78,13 +78,19 @@ public class RegisterRMRequestTest {
     @Test(timeout = 10000)
     public void testDecode4() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
-        SwappedByteBuf swappedByteBuf = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
-        SwappedByteBuf swappedByteBuf1 = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
+        Object unsafeHeapSwappedByteBuf = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
+        Object unsafeHeapSwappedByteBuf1 = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
         EmptyByteBuf emptyByteBuf = ((EmptyByteBuf) createInstance("io.netty.buffer.EmptyByteBuf"));
-        setField(swappedByteBuf1, "buf", emptyByteBuf);
-        setField(swappedByteBuf, "buf", swappedByteBuf1);
+        setField(unsafeHeapSwappedByteBuf1, "buf", emptyByteBuf);
+        setField(unsafeHeapSwappedByteBuf, "buf", unsafeHeapSwappedByteBuf1);
         
-        boolean actual = registerRMRequest.decode(swappedByteBuf);
+        Class registerRMRequestClazz = Class.forName("io.seata.core.protocol.RegisterRMRequest");
+        Class unsafeHeapSwappedByteBufType = Class.forName("io.netty.buffer.ByteBuf");
+        Method decodeMethod = registerRMRequestClazz.getDeclaredMethod("decode", unsafeHeapSwappedByteBufType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
+        decodeMethodArguments[0] = unsafeHeapSwappedByteBuf;
+        boolean actual = ((boolean) decodeMethod.invoke(registerRMRequest, decodeMethodArguments));
         
         assertFalse(actual);
     }
@@ -96,14 +102,14 @@ public class RegisterRMRequestTest {
     public void testDecode5() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
         SwappedByteBuf swappedByteBuf = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
-        SwappedByteBuf swappedByteBuf1 = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
         Object unsafeHeapSwappedByteBuf = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
+        Object unsafeHeapSwappedByteBuf1 = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
         Object simpleLeakAwareByteBuf = createInstance("io.netty.buffer.SimpleLeakAwareByteBuf");
         EmptyByteBuf emptyByteBuf = ((EmptyByteBuf) createInstance("io.netty.buffer.EmptyByteBuf"));
         setField(simpleLeakAwareByteBuf, "buf", emptyByteBuf);
-        setField(unsafeHeapSwappedByteBuf, "buf", simpleLeakAwareByteBuf);
-        setField(swappedByteBuf1, "buf", unsafeHeapSwappedByteBuf);
-        setField(swappedByteBuf, "buf", swappedByteBuf1);
+        setField(unsafeHeapSwappedByteBuf1, "buf", simpleLeakAwareByteBuf);
+        setField(unsafeHeapSwappedByteBuf, "buf", unsafeHeapSwappedByteBuf1);
+        setField(swappedByteBuf, "buf", unsafeHeapSwappedByteBuf);
         
         boolean actual = registerRMRequest.decode(swappedByteBuf);
         
@@ -273,11 +279,12 @@ public class RegisterRMRequestTest {
         setField(heapByteBuffer, "limit", 0);
         setField(heapByteBuffer, "position", 0);
         setField(heapByteBuffer, "mark", 0);
-        setField(heapByteBuffer, "bigEndian", false);
+        setField(heapByteBuffer, "bigEndian", true);
         setField(heapByteBuffer, "offset", 1);
         byte[] byteArray = new byte[7];
         setField(heapByteBuffer, "hb", byteArray);
         setField(registerRMRequest, "byteBuffer", heapByteBuffer);
+        setField(registerRMRequest, "extraData", null);
         setField(registerRMRequest, "transactionServiceGroup", null);
         setField(registerRMRequest, "applicationId", null);
         setField(registerRMRequest, "version", null);

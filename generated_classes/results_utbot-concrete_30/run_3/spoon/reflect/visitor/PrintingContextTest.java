@@ -1,11 +1,38 @@
 package spoon.reflect.visitor;
 
 import org.junit.Test;
+import java.lang.reflect.Method;
+import java.util.ArrayDeque;
+import spoon.reflect.reference.CtTypeReference;
+import spoon.support.reflect.declaration.CtTypeParameterImpl;
+import spoon.support.reflect.declaration.CtEnumImpl;
+import spoon.support.reflect.reference.CtTypeReferenceImpl;
+import spoon.support.util.EmptyClearableList;
+import spoon.reflect.factory.FactoryImpl;
+import spoon.support.DefaultCoreFactory;
+import spoon.support.StandardEnvironment;
+import org.apache.log4j.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.spi.RootLogger;
+import org.apache.log4j.Hierarchy;
+import java.util.Vector;
+import java.util.Hashtable;
+import org.apache.log4j.or.RendererMap;
+import org.apache.log4j.helpers.AppenderAttachableImpl;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.helpers.QuietWriter;
+import org.apache.log4j.helpers.OnlyOnceErrorHandler;
+import java.io.OutputStreamWriter;
+import sun.nio.cs.StreamEncoder;
+import sun.nio.cs.US_ASCII;
+import sun.nio.cs.StandardCharsets;
+import java.util.concurrent.atomic.AtomicInteger;
+import sun.nio.cs.Surrogate.Parser;
+import sun.nio.cs.Surrogate;
+import java.nio.charset.CoderResult;
 import java.util.Deque;
 import spoon.reflect.visitor.PrintingContext.Writable;
 import spoon.reflect.visitor.PrintingContext;
-import java.lang.reflect.Method;
-import spoon.reflect.reference.CtTypeReference;
 import java.util.Objects;
 import java.util.Map;
 import java.util.List;
@@ -21,7 +48,6 @@ import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class PrintingContextTest {
@@ -75,86 +101,6 @@ public class PrintingContextTest {
         setField(printingContext, "SKIP_ARRAY", -1L);
         
         boolean actual = printingContext.skipArray();
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIgnoreStaticAccess1() throws Throwable  {
-        PrintingContext printingContext = new PrintingContext();
-        
-        boolean actual = printingContext.ignoreStaticAccess();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIgnoreStaticAccess2() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", 0L);
-        setField(printingContext, "IGNORE_STATIC_ACCESS", 0L);
-        
-        boolean actual = printingContext.ignoreStaticAccess();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIgnoreStaticAccess3() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", -1L);
-        setField(printingContext, "IGNORE_STATIC_ACCESS", -1L);
-        
-        boolean actual = printingContext.ignoreStaticAccess();
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testNoTypeDecl1() throws Throwable  {
-        PrintingContext printingContext = new PrintingContext();
-        
-        boolean actual = printingContext.noTypeDecl();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testNoTypeDecl2() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", 0L);
-        setField(printingContext, "NO_TYPE_DECL", 0L);
-        
-        boolean actual = printingContext.noTypeDecl();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testNoTypeDecl3() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", -1L);
-        setField(printingContext, "NO_TYPE_DECL", -1L);
-        
-        boolean actual = printingContext.noTypeDecl();
         
         assertTrue(actual);
     }
@@ -242,112 +188,41 @@ public class PrintingContextTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPopCurrentThis1() throws Throwable  {
+    @Test(timeout = 10000)
+    public void testIgnoreStaticAccess1() throws Throwable  {
         PrintingContext printingContext = new PrintingContext();
         
-        printingContext.popCurrentThis();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPopCurrentThis2() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "currentThis", null);
+        boolean actual = printingContext.ignoreStaticAccess();
         
-        printingContext.popCurrentThis();
+        assertFalse(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testPopCurrentThis3() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        Object keepAliveStreamCleaner = createInstance("sun.net.www.http.KeepAliveStreamCleaner");
-        Object node = createInstance("java.util.LinkedList$Node");
-        setField(node, "prev", null);
-        Object node1 = createInstance("java.util.LinkedList$Node");
-        setField(node1, "prev", null);
-        setField(node1, "next", node1);
-        setField(node1, "item", null);
-        setField(node, "next", node1);
-        setField(node, "item", null);
-        setField(keepAliveStreamCleaner, "first", node);
-        setField(keepAliveStreamCleaner, "size", 0);
-        setField(printingContext, "currentThis", keepAliveStreamCleaner);
-        
-        Deque deque = printingContext.currentThis;
-        Object initialPrintingContextCurrentThisFirst = getFieldValue(deque, "first");
-        
-        printingContext.popCurrentThis();
-        
-        Deque deque1 = printingContext.currentThis;
-        Object finalPrintingContextCurrentThisFirst = getFieldValue(deque1, "first");
-        Deque deque2 = printingContext.currentThis;
-        Object finalPrintingContextCurrentThisSize = getFieldValue(deque2, "size");
-        
-        assertFalse(initialPrintingContextCurrentThisFirst == finalPrintingContextCurrentThisFirst);
-        
-        assertEquals(-1, finalPrintingContextCurrentThisSize);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPushCurrentThis1() throws Throwable  {
-        PrintingContext printingContext = new PrintingContext();
-        
-        printingContext.pushCurrentThis(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPushCurrentThis2() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "currentThis", null);
-        
-        printingContext.pushCurrentThis(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testModify1() throws Throwable  {
-        PrintingContext printingContext = new PrintingContext();
-        
-        PrintingContext.Writable actual = printingContext.modify();
-        
-        PrintingContext.Writable expected = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        setField(expected, "oldState", 0L);
-        setField(expected, "this$0", printingContext);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testModify2() throws Throwable  {
+    public void testIgnoreStaticAccess2() throws Throwable  {
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_STATIC_ACCESS", 0L);
         
-        PrintingContext.Writable actual = printingContext.modify();
+        boolean actual = printingContext.ignoreStaticAccess();
         
-        PrintingContext.Writable expected = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        setField(expected, "oldState", 0L);
-        setField(expected, "this$0", printingContext);
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreStaticAccess3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", -1L);
+        setField(printingContext, "IGNORE_STATIC_ACCESS", -1L);
         
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        boolean actual = printingContext.ignoreStaticAccess();
+        
+        assertTrue(actual);
     }
     ///endregion
     
@@ -387,6 +262,122 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testGetCurrentTypeContext3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
+        setField(arrayDeque, "tail", 0);
+        setField(arrayDeque, "head", 0);
+        java.lang.Object[] objectArray = new java.lang.Object[16];
+        setField(arrayDeque, "elements", objectArray);
+        setField(printingContext, "currentThis", arrayDeque);
+        
+        Class printingContextClazz = Class.forName("spoon.reflect.visitor.PrintingContext");
+        Method getCurrentTypeContextMethod = printingContextClazz.getDeclaredMethod("getCurrentTypeContext");
+        getCurrentTypeContextMethod.setAccessible(true);
+        java.lang.Object[] getCurrentTypeContextMethodArguments = new java.lang.Object[0];
+        TypeContext actual = ((TypeContext) getCurrentTypeContextMethod.invoke(printingContext, getCurrentTypeContextMethodArguments));
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetCurrentTypeReference1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        CtTypeReference actual = printingContext.getCurrentTypeReference();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetCurrentTypeReference2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "currentTopLevel", null);
+        
+        CtTypeReference actual = printingContext.getCurrentTypeReference();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetCurrentTypeReference3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
+        setField(printingContext, "currentTopLevel", ctTypeParameterImpl);
+        setField(printingContext, "currentThis", null);
+        
+        printingContext.getCurrentTypeReference();
+    }
+    ///endregion
+    
+    
+    ///region Errors report for getCurrentTypeReference
+    
+    public void testGetCurrentTypeReference_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPopCurrentThis1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        printingContext.popCurrentThis();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPopCurrentThis2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "currentThis", null);
+        
+        printingContext.popCurrentThis();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPopCurrentThis3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        Object keepAliveStreamCleaner = createInstance("sun.net.www.http.KeepAliveStreamCleaner");
+        Object node = createInstance("java.util.LinkedList$Node");
+        setField(keepAliveStreamCleaner, "first", node);
+        setField(printingContext, "currentThis", keepAliveStreamCleaner);
+        
+        Deque deque = printingContext.currentThis;
+        Object initialPrintingContextCurrentThisFirst = getFieldValue(deque, "first");
+        
+        printingContext.popCurrentThis();
+        
+        Deque deque1 = printingContext.currentThis;
+        Object finalPrintingContextCurrentThisFirst = getFieldValue(deque1, "first");
+        
+        assertNull(finalPrintingContextCurrentThisFirst);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testIsInCurrentScope1() throws Throwable  {
         PrintingContext printingContext = new PrintingContext();
         
@@ -398,13 +389,81 @@ public class PrintingContextTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testIsInCurrentScope2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
+        setField(printingContext, "currentTopLevel", ctTypeParameterImpl);
+        setField(printingContext, "currentThis", null);
+        
+        printingContext.isInCurrentScope(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsInCurrentScope3() throws Throwable  {
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         
         boolean actual = printingContext.isInCurrentScope(null);
         
         assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIsInCurrentScope4() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
+        setField(printingContext, "currentTopLevel", ctEnumImpl);
+        Object keepAliveStreamCleaner = createInstance("sun.net.www.http.KeepAliveStreamCleaner");
+        setField(printingContext, "currentThis", keepAliveStreamCleaner);
+        CtTypeReferenceImpl ctTypeReferenceImpl = ((CtTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtTypeReferenceImpl"));
+        
+        printingContext.isInCurrentScope(ctTypeReferenceImpl);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testNoTypeDecl1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        boolean actual = printingContext.noTypeDecl();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testNoTypeDecl2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "NO_TYPE_DECL", 0L);
+        
+        boolean actual = printingContext.noTypeDecl();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testNoTypeDecl3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", -1L);
+        setField(printingContext, "NO_TYPE_DECL", -1L);
+        
+        boolean actual = printingContext.noTypeDecl();
+        
+        assertTrue(actual);
     }
     ///endregion
     
@@ -451,25 +510,72 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetCurrentTypeReference1() throws Throwable  {
+    public void testModify1() throws Throwable  {
         PrintingContext printingContext = new PrintingContext();
         
-        CtTypeReference actual = printingContext.getCurrentTypeReference();
+        PrintingContext.Writable actual = printingContext.modify();
         
-        assertNull(actual);
+        PrintingContext.Writable expected = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        setField(expected, "oldState", 0L);
+        setField(expected, "this$0", printingContext);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetCurrentTypeReference2() throws Throwable  {
+    public void testModify2() throws Throwable  {
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "currentTopLevel", null);
+        setField(printingContext, "state", 0L);
         
-        CtTypeReference actual = printingContext.getCurrentTypeReference();
+        PrintingContext.Writable actual = printingContext.modify();
         
-        assertNull(actual);
+        PrintingContext.Writable expected = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        setField(expected, "oldState", 0L);
+        setField(expected, "this$0", printingContext);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPushCurrentThis1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        printingContext.pushCurrentThis(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPushCurrentThis2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "currentThis", null);
+        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
+        setField(ctTypeParameterImpl, "factory", null);
+        
+        printingContext.pushCurrentThis(ctTypeParameterImpl);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPushCurrentThis3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "currentThis", null);
+        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(ctTypeParameterImpl, "factory", factoryImpl);
+        
+        printingContext.pushCurrentThis(ctTypeParameterImpl);
     }
     ///endregion
     
@@ -510,6 +616,52 @@ public class PrintingContextTest {
         setField(writable, "oldState", 0L);
         
         writable.close();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSkipArray4() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        
+        writable.skipArray(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSkipArray5() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "SKIP_ARRAY", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.skipArray(true);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSkipArray6() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "SKIP_ARRAY", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.skipArray(false);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
     }
     ///endregion
     
@@ -579,24 +731,24 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSkipArray4() throws Throwable  {
+    public void testForceWildcardGenerics4() throws Throwable  {
         PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
         
-        writable.skipArray(false);
+        writable.forceWildcardGenerics(false);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testSkipArray5() throws Throwable  {
+    public void testForceWildcardGenerics5() throws Throwable  {
         PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         setField(printingContext, "state", 0L);
-        setField(printingContext, "SKIP_ARRAY", 0L);
+        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
         setField(writable, "this$0", printingContext);
         
-        PrintingContext.Writable actual = writable.skipArray(true);
+        PrintingContext.Writable actual = writable.forceWildcardGenerics(true);
         
         
         // Current deep equals depth exceeds max depth 0
@@ -607,14 +759,60 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSkipArray6() throws Throwable  {
+    public void testForceWildcardGenerics6() throws Throwable  {
         PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         setField(printingContext, "state", 0L);
-        setField(printingContext, "SKIP_ARRAY", 0L);
+        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
         setField(writable, "this$0", printingContext);
         
-        PrintingContext.Writable actual = writable.skipArray(false);
+        PrintingContext.Writable actual = writable.forceWildcardGenerics(false);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIgnoreEnclosingClass4() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        
+        writable.ignoreEnclosingClass(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreEnclosingClass5() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_ENCLOSING_CLASS", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.ignoreEnclosingClass(true);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreEnclosingClass6() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_ENCLOSING_CLASS", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.ignoreEnclosingClass(false);
         
         
         // Current deep equals depth exceeds max depth 0
@@ -707,98 +905,6 @@ public class PrintingContextTest {
         setField(writable, "this$0", printingContext);
         
         PrintingContext.Writable actual = writable.noTypeDecl(false);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(writable, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testForceWildcardGenerics4() throws Throwable  {
-        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        
-        writable.forceWildcardGenerics(false);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testForceWildcardGenerics5() throws Throwable  {
-        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", 0L);
-        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
-        setField(writable, "this$0", printingContext);
-        
-        PrintingContext.Writable actual = writable.forceWildcardGenerics(true);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(writable, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testForceWildcardGenerics6() throws Throwable  {
-        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", 0L);
-        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
-        setField(writable, "this$0", printingContext);
-        
-        PrintingContext.Writable actual = writable.forceWildcardGenerics(false);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(writable, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testIgnoreEnclosingClass4() throws Throwable  {
-        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        
-        writable.ignoreEnclosingClass(false);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIgnoreEnclosingClass5() throws Throwable  {
-        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", 0L);
-        setField(printingContext, "IGNORE_ENCLOSING_CLASS", 0L);
-        setField(writable, "this$0", printingContext);
-        
-        PrintingContext.Writable actual = writable.ignoreEnclosingClass(true);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(writable, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIgnoreEnclosingClass6() throws Throwable  {
-        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", 0L);
-        setField(printingContext, "IGNORE_ENCLOSING_CLASS", 0L);
-        setField(writable, "this$0", printingContext);
-        
-        PrintingContext.Writable actual = writable.ignoreEnclosingClass(false);
         
         
         // Current deep equals depth exceeds max depth 0
@@ -1069,6 +1175,15 @@ public class PrintingContextTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();

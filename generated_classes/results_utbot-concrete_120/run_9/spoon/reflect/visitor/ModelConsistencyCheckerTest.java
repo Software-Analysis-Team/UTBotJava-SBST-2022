@@ -17,6 +17,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.Deque;
 import org.eclipse.osgi.internal.container.EquinoxReentrantLock;
+import org.apache.log4j.spi.NOPLogger;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
@@ -224,16 +225,27 @@ public class ModelConsistencyCheckerTest {
         }}
     ///endregion
     
+    ///region
     
-    ///region Errors report for dumpStack
-    
-    public void testDumpStack_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
+    @Test(timeout = 10000)
+    public void testDumpStack6() throws Throwable  {
+        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
+        LinkedBlockingDeque linkedBlockingDeque = ((LinkedBlockingDeque) createInstance("java.util.concurrent.LinkedBlockingDeque"));
+        EquinoxReentrantLock equinoxReentrantLock = ((EquinoxReentrantLock) createInstance("org.eclipse.osgi.internal.container.EquinoxReentrantLock"));
+        Object nonfairSync = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
+        setField(equinoxReentrantLock, "sync", nonfairSync);
+        setField(linkedBlockingDeque, "lock", equinoxReentrantLock);
+        setField(modelConsistencyChecker, "stack", linkedBlockingDeque);
+        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
+        NOPLogger nOPLogger = ((NOPLogger) createInstance("org.apache.log4j.spi.NOPLogger"));
+        setField(standardEnvironment, "logger", nOPLogger);
+        setField(modelConsistencyChecker, "environment", standardEnvironment);
+        
+        Class modelConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.ModelConsistencyChecker");
+        Method dumpStackMethod = modelConsistencyCheckerClazz.getDeclaredMethod("dumpStack");
+        dumpStackMethod.setAccessible(true);
+        java.lang.Object[] dumpStackMethodArguments = new java.lang.Object[0];
+        dumpStackMethod.invoke(modelConsistencyChecker, dumpStackMethodArguments);
     }
     ///endregion
     

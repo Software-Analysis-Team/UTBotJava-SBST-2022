@@ -269,16 +269,15 @@ public class RegisterRMRequestTest {
     public void testDoEncode5() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
         Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
-        setField(heapByteBuffer, "capacity", 6);
+        setField(heapByteBuffer, "capacity", 1073741824);
         setField(heapByteBuffer, "limit", 0);
         setField(heapByteBuffer, "position", 0);
         setField(heapByteBuffer, "mark", 0);
-        setField(heapByteBuffer, "bigEndian", true);
+        setField(heapByteBuffer, "bigEndian", false);
         setField(heapByteBuffer, "offset", 1);
         byte[] byteArray = new byte[7];
         setField(heapByteBuffer, "hb", byteArray);
         setField(registerRMRequest, "byteBuffer", heapByteBuffer);
-        setField(registerRMRequest, "extraData", null);
         setField(registerRMRequest, "transactionServiceGroup", null);
         setField(registerRMRequest, "applicationId", null);
         setField(registerRMRequest, "version", null);
@@ -299,11 +298,33 @@ public class RegisterRMRequestTest {
         ByteBuffer byteBuffer2 = registerRMRequest.byteBuffer;
         Object finalRegisterRMRequestByteBufferMark = getFieldValue(byteBuffer2, "mark");
         
-        assertEquals(6, finalRegisterRMRequestByteBufferLimit);
+        assertEquals(1073741824, finalRegisterRMRequestByteBufferLimit);
         
-        assertEquals(6, finalRegisterRMRequestByteBufferPosition);
+        assertEquals(8, finalRegisterRMRequestByteBufferPosition);
         
         assertEquals(-1, finalRegisterRMRequestByteBufferMark);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetResourceIds1() throws Throwable  {
+        RegisterRMRequest registerRMRequest = new RegisterRMRequest();
+        String string = new String();
+        
+        registerRMRequest.setResourceIds(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetResourceIds2() throws Throwable  {
+        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
+        setField(registerRMRequest, "resourceIds", null);
+        
+        registerRMRequest.setResourceIds(null);
     }
     ///endregion
     
@@ -335,30 +356,10 @@ public class RegisterRMRequestTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetResourceIds1() throws Throwable  {
-        RegisterRMRequest registerRMRequest = new RegisterRMRequest();
-        String string = new String();
-        
-        registerRMRequest.setResourceIds(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetResourceIds2() throws Throwable  {
-        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
-        setField(registerRMRequest, "resourceIds", null);
-        
-        registerRMRequest.setResourceIds(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testRegisterRMRequest1() {
-        RegisterRMRequest actual = new RegisterRMRequest();
+        String string = new String();
+        String string1 = new String();
+        RegisterRMRequest actual = new RegisterRMRequest(string, string1);
     }
     ///endregion
     
@@ -366,9 +367,7 @@ public class RegisterRMRequestTest {
     
     @Test(timeout = 10000)
     public void testRegisterRMRequest2() {
-        String string = new String();
-        String string1 = new String();
-        RegisterRMRequest actual = new RegisterRMRequest(string, string1);
+        RegisterRMRequest actual = new RegisterRMRequest();
     }
     ///endregion
     

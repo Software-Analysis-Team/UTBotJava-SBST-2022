@@ -117,6 +117,14 @@ public class ShutdownHookTest {
     
     ///region
     
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetInstance1() throws Throwable  {
+        ShutdownHook.getInstance();
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000)
     public void testRemoveRuntimeShutdownHook1() throws Throwable  {
         ShutdownHook.removeRuntimeShutdownHook();
@@ -137,14 +145,6 @@ public class ShutdownHookTest {
         } finally {
             setStaticField(Runtime.class, "currentRuntime", prevCurrentRuntime);
         }
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetInstance1() throws Throwable  {
-        ShutdownHook.getInstance();
     }
     ///endregion
     

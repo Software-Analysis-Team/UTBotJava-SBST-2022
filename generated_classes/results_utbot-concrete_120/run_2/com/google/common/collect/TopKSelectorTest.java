@@ -3,7 +3,6 @@ package com.google.common.collect;
 import org.junit.Test;
 import sun.misc.ASCIICaseInsensitiveComparator;
 import java.lang.reflect.Method;
-import sun.security.util.ByteArrayTagOrder;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -233,8 +232,8 @@ public class TopKSelectorTest {
         objectArray[9] = objectArray;
         objectArray[10] = objectArray;
         setField(topKSelector, "buffer", objectArray);
-        ByteArrayTagOrder byteArrayTagOrder = ((ByteArrayTagOrder) createInstance("sun.security.util.ByteArrayTagOrder"));
-        setField(topKSelector, "comparator", byteArrayTagOrder);
+        Object reverseComparator2 = createInstance("java.util.Collections$ReverseComparator2");
+        setField(topKSelector, "comparator", reverseComparator2);
         
         Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
         Class intType = int.class;
@@ -308,33 +307,6 @@ public class TopKSelectorTest {
         
         assertEquals(38, actual);
     }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPartition6() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        java.lang.Object[] objectArray = new java.lang.Object[3];
-        java.lang.Object[] byteBufferAsFloatBufferBArray = createArray("java.nio.ByteBufferAsFloatBufferB", 0);
-        objectArray[0] = byteBufferAsFloatBufferBArray;
-        setField(topKSelector, "buffer", objectArray);
-        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
-        setField(topKSelector, "comparator", aSCIICaseInsensitiveComparator);
-        
-        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
-        Class intType = int.class;
-        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
-        partitionMethod.setAccessible(true);
-        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
-        partitionMethodArguments[0] = 0;
-        partitionMethodArguments[1] = 1;
-        partitionMethodArguments[2] = 2;
-        try {
-            partitionMethod.invoke(topKSelector, partitionMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
     ///endregion
     
     ///region
@@ -535,6 +507,36 @@ public class TopKSelectorTest {
         objectArray[32] = mathPreconditions;
         setField(topKSelector, "buffer", objectArray);
         setField(topKSelector, "k", 33);
+        
+        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
+        Method trimMethod = topKSelectorClazz.getDeclaredMethod("trim");
+        trimMethod.setAccessible(true);
+        java.lang.Object[] trimMethodArguments = new java.lang.Object[0];
+        try {
+            trimMethod.invoke(topKSelector, trimMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testTrim5() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        Object mathPreconditions = createInstance("com.google.common.math.MathPreconditions");
+        objectArray[2] = mathPreconditions;
+        objectArray[3] = mathPreconditions;
+        objectArray[4] = mathPreconditions;
+        objectArray[5] = mathPreconditions;
+        objectArray[6] = mathPreconditions;
+        objectArray[7] = mathPreconditions;
+        objectArray[8] = mathPreconditions;
+        setField(topKSelector, "buffer", objectArray);
+        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
+        setField(topKSelector, "comparator", aSCIICaseInsensitiveComparator);
+        setField(topKSelector, "k", 1);
         
         Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
         Method trimMethod = topKSelectorClazz.getDeclaredMethod("trim");
@@ -1104,7 +1106,7 @@ public class TopKSelectorTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testTopKSelector3() throws Throwable  {
-        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Floats$LexicographicalComparator");
+        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.SignedBytes$LexicographicalComparator");
         Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
         Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
         Class lexicographicalComparatorType = Class.forName("java.util.Comparator");
@@ -1140,7 +1142,7 @@ public class TopKSelectorTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testTopKSelector5() throws Throwable  {
-        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Floats$LexicographicalComparator");
+        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.SignedBytes$LexicographicalComparator");
         Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
         Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
         Class lexicographicalComparatorType = Class.forName("java.util.Comparator");

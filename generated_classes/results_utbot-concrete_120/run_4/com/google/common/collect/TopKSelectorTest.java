@@ -3,6 +3,7 @@ package com.google.common.collect;
 import org.junit.Test;
 import sun.misc.ASCIICaseInsensitiveComparator;
 import java.lang.reflect.Method;
+import sun.security.util.ByteArrayLexOrder;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -235,8 +236,8 @@ public class TopKSelectorTest {
         objectArray[9] = objectArray;
         objectArray[10] = objectArray;
         setField(topKSelector, "buffer", objectArray);
-        Object reverseComparator = createInstance("java.util.Collections$ReverseComparator");
-        setField(topKSelector, "comparator", reverseComparator);
+        ByteArrayLexOrder byteArrayLexOrder = ((ByteArrayLexOrder) createInstance("sun.security.util.ByteArrayLexOrder"));
+        setField(topKSelector, "comparator", byteArrayLexOrder);
         
         Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
         Class intType = int.class;
@@ -1249,7 +1250,7 @@ public class TopKSelectorTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testTopKSelector3() throws Throwable  {
-        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Floats$LexicographicalComparator");
+        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.SignedBytes$LexicographicalComparator");
         Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
         Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
         Class lexicographicalComparatorType = Class.forName("java.util.Comparator");
@@ -1285,7 +1286,7 @@ public class TopKSelectorTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testTopKSelector5() throws Throwable  {
-        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Floats$LexicographicalComparator");
+        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.SignedBytes$LexicographicalComparator");
         Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
         Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
         Class lexicographicalComparatorType = Class.forName("java.util.Comparator");

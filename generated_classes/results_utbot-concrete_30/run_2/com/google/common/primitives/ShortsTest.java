@@ -1,967 +1,45 @@
 package com.google.common.primitives;
 
 import org.junit.Test;
+import com.google.common.base.Converter;
+import java.util.Comparator;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import com.google.common.base.Converter;
-import java.util.Comparator;
 import java.lang.reflect.Constructor;
 import com.google.common.primitives.Shorts;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Objects;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.lang.reflect.Array;
 import java.util.Iterator;
-import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testHashCode1() throws Throwable  {
-        int actual = Shorts.hashCode((short) 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin1() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Shorts.min(shortArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin2() throws Throwable  {
-        Shorts.min(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin3() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Shorts.min(shortArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMax1() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Shorts.max(shortArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMax2() throws Throwable  {
-        Shorts.max(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testMax3() throws Throwable  {
-        short[] shortArray = new short[1];
-        
-        short actual = Shorts.max(shortArray);
-        
-        assertEquals((short) 0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testMax4() throws Throwable  {
-        short[] shortArray = new short[2];
-        shortArray[1] = (short) 1;
-        
-        short actual = Shorts.max(shortArray);
-        
-        assertEquals((short) 1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMax5() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Shorts.max(shortArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIndexOf1() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        int actual = Shorts.indexOf(shortArray, (short) 0);
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testIndexOf2() throws Throwable  {
-        Shorts.indexOf(((short[]) null), (short) 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIndexOf3() throws Throwable  {
-        short[] shortArray = new short[9];
-        
-        int actual = Shorts.indexOf(shortArray, (short) 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIndexOf4() throws Throwable  {
-        short[] shortArray = new short[1];
-        shortArray[0] = java.lang.Short.MIN_VALUE;
-        
-        int actual = Shorts.indexOf(shortArray, (short) 0);
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIndexOf5() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayType = Class.forName("[S");
-        Class shortType = short.class;
-        Class intType = int.class;
-        Method indexOfMethod = shortsClazz.getDeclaredMethod("indexOf", shortArrayType, shortType, intType, intType);
-        indexOfMethod.setAccessible(true);
-        java.lang.Object[] indexOfMethodArguments = new java.lang.Object[4];
-        indexOfMethodArguments[0] = ((Object) shortArray);
-        indexOfMethodArguments[1] = (short) 0;
-        indexOfMethodArguments[2] = 0;
-        indexOfMethodArguments[3] = 0;
-        int actual = ((int) indexOfMethod.invoke(null, indexOfMethodArguments));
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIndexOf6() throws Throwable  {
-        short[] shortArray = new short[9];
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayType = Class.forName("[S");
-        Class shortType = short.class;
-        Class intType = int.class;
-        Method indexOfMethod = shortsClazz.getDeclaredMethod("indexOf", shortArrayType, shortType, intType, intType);
-        indexOfMethod.setAccessible(true);
-        java.lang.Object[] indexOfMethodArguments = new java.lang.Object[4];
-        indexOfMethodArguments[0] = ((Object) shortArray);
-        indexOfMethodArguments[1] = (short) 0;
-        indexOfMethodArguments[2] = 0;
-        indexOfMethodArguments[3] = -2147483647;
-        int actual = ((int) indexOfMethod.invoke(null, indexOfMethodArguments));
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testIndexOf7() throws Throwable  {
-        short[] shortArray = new short[9];
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayType = Class.forName("[S");
-        Class shortType = short.class;
-        Class intType = int.class;
-        Method indexOfMethod = shortsClazz.getDeclaredMethod("indexOf", shortArrayType, shortType, intType, intType);
-        indexOfMethod.setAccessible(true);
-        java.lang.Object[] indexOfMethodArguments = new java.lang.Object[4];
-        indexOfMethodArguments[0] = ((Object) shortArray);
-        indexOfMethodArguments[1] = (short) 0;
-        indexOfMethodArguments[2] = Integer.MIN_VALUE;
-        indexOfMethodArguments[3] = 1;
-        try {
-            indexOfMethod.invoke(null, indexOfMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIndexOf8() throws Throwable  {
-        short[] shortArray = new short[9];
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayType = Class.forName("[S");
-        Class shortType = short.class;
-        Class intType = int.class;
-        Method indexOfMethod = shortsClazz.getDeclaredMethod("indexOf", shortArrayType, shortType, intType, intType);
-        indexOfMethod.setAccessible(true);
-        java.lang.Object[] indexOfMethodArguments = new java.lang.Object[4];
-        indexOfMethodArguments[0] = ((Object) shortArray);
-        indexOfMethodArguments[1] = (short) 0;
-        indexOfMethodArguments[2] = 0;
-        indexOfMethodArguments[3] = 1;
-        int actual = ((int) indexOfMethod.invoke(null, indexOfMethodArguments));
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIndexOf9() throws Throwable  {
-        short[] shortArray = new short[9];
-        shortArray[0] = java.lang.Short.MIN_VALUE;
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayType = Class.forName("[S");
-        Class shortType = short.class;
-        Class intType = int.class;
-        Method indexOfMethod = shortsClazz.getDeclaredMethod("indexOf", shortArrayType, shortType, intType, intType);
-        indexOfMethod.setAccessible(true);
-        java.lang.Object[] indexOfMethodArguments = new java.lang.Object[4];
-        indexOfMethodArguments[0] = ((Object) shortArray);
-        indexOfMethodArguments[1] = (short) 0;
-        indexOfMethodArguments[2] = 0;
-        indexOfMethodArguments[3] = 1;
-        int actual = ((int) indexOfMethod.invoke(null, indexOfMethodArguments));
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIndexOf10() throws Throwable  {
-        short[] shortArray = new short[0];
-        short[] shortArray1 = new short[0];
-        
-        int actual = Shorts.indexOf(shortArray, shortArray1);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testIndexOf11() throws Throwable  {
-        short[] shortArray = new short[17];
-        
-        Shorts.indexOf(((short[]) null), shortArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIndexOf12() throws Throwable  {
-        short[] shortArray = new short[9];
-        short[] shortArray1 = new short[0];
-        
-        int actual = Shorts.indexOf(shortArray, shortArray1);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIndexOf13() throws Throwable  {
-        short[] shortArray = new short[18];
-        short[] shortArray1 = new short[32];
-        
-        int actual = Shorts.indexOf(shortArray, shortArray1);
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIndexOf14() throws Throwable  {
-        short[] shortArray = new short[9];
-        short[] shortArray1 = new short[9];
-        
-        int actual = Shorts.indexOf(shortArray, shortArray1);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLastIndexOf1() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayType = Class.forName("[S");
-        Class shortType = short.class;
-        Class intType = int.class;
-        Method lastIndexOfMethod = shortsClazz.getDeclaredMethod("lastIndexOf", shortArrayType, shortType, intType, intType);
-        lastIndexOfMethod.setAccessible(true);
-        java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[4];
-        lastIndexOfMethodArguments[0] = ((Object) shortArray);
-        lastIndexOfMethodArguments[1] = (short) 0;
-        lastIndexOfMethodArguments[2] = 0;
-        lastIndexOfMethodArguments[3] = 0;
-        int actual = ((int) lastIndexOfMethod.invoke(null, lastIndexOfMethodArguments));
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLastIndexOf2() throws Throwable  {
-        short[] shortArray = new short[9];
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayType = Class.forName("[S");
-        Class shortType = short.class;
-        Class intType = int.class;
-        Method lastIndexOfMethod = shortsClazz.getDeclaredMethod("lastIndexOf", shortArrayType, shortType, intType, intType);
-        lastIndexOfMethod.setAccessible(true);
-        java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[4];
-        lastIndexOfMethodArguments[0] = ((Object) shortArray);
-        lastIndexOfMethodArguments[1] = (short) 0;
-        lastIndexOfMethodArguments[2] = 1;
-        lastIndexOfMethodArguments[3] = -2147483647;
-        int actual = ((int) lastIndexOfMethod.invoke(null, lastIndexOfMethodArguments));
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testLastIndexOf3() throws Throwable  {
-        short[] shortArray = new short[9];
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayType = Class.forName("[S");
-        Class shortType = short.class;
-        Class intType = int.class;
-        Method lastIndexOfMethod = shortsClazz.getDeclaredMethod("lastIndexOf", shortArrayType, shortType, intType, intType);
-        lastIndexOfMethod.setAccessible(true);
-        java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[4];
-        lastIndexOfMethodArguments[0] = ((Object) shortArray);
-        lastIndexOfMethodArguments[1] = (short) 0;
-        lastIndexOfMethodArguments[2] = -2147483647;
-        lastIndexOfMethodArguments[3] = -1073741823;
-        try {
-            lastIndexOfMethod.invoke(null, lastIndexOfMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLastIndexOf4() throws Throwable  {
-        short[] shortArray = new short[9];
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayType = Class.forName("[S");
-        Class shortType = short.class;
-        Class intType = int.class;
-        Method lastIndexOfMethod = shortsClazz.getDeclaredMethod("lastIndexOf", shortArrayType, shortType, intType, intType);
-        lastIndexOfMethod.setAccessible(true);
-        java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[4];
-        lastIndexOfMethodArguments[0] = ((Object) shortArray);
-        lastIndexOfMethodArguments[1] = (short) 0;
-        lastIndexOfMethodArguments[2] = -2147483647;
-        lastIndexOfMethodArguments[3] = 1;
-        int actual = ((int) lastIndexOfMethod.invoke(null, lastIndexOfMethodArguments));
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLastIndexOf5() throws Throwable  {
-        short[] shortArray = new short[40];
-        shortArray[31] = java.lang.Short.MIN_VALUE;
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayType = Class.forName("[S");
-        Class shortType = short.class;
-        Class intType = int.class;
-        Method lastIndexOfMethod = shortsClazz.getDeclaredMethod("lastIndexOf", shortArrayType, shortType, intType, intType);
-        lastIndexOfMethod.setAccessible(true);
-        java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[4];
-        lastIndexOfMethodArguments[0] = ((Object) shortArray);
-        lastIndexOfMethodArguments[1] = (short) 0;
-        lastIndexOfMethodArguments[2] = 31;
-        lastIndexOfMethodArguments[3] = 32;
-        int actual = ((int) lastIndexOfMethod.invoke(null, lastIndexOfMethodArguments));
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLastIndexOf6() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        int actual = Shorts.lastIndexOf(shortArray, (short) 0);
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testLastIndexOf7() throws Throwable  {
-        Shorts.lastIndexOf(null, (short) 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLastIndexOf8() throws Throwable  {
-        short[] shortArray = new short[2];
-        
-        int actual = Shorts.lastIndexOf(shortArray, (short) 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLastIndexOf9() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        int actual = Shorts.lastIndexOf(shortArray, (short) 0);
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLastIndexOf10() throws Throwable  {
-        short[] shortArray = new short[1];
-        shortArray[0] = java.lang.Short.MIN_VALUE;
-        
-        int actual = Shorts.lastIndexOf(shortArray, (short) 0);
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testConcat1() throws Throwable  {
-        short[][] shortArray = new short[0][];
-        
-        short[] actual = Shorts.concat(shortArray);
-        
-        short[] expected = new short[0];
-        assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testConcat2() throws Throwable  {
-        Shorts.concat(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testConcat3() throws Throwable  {
-        short[][] shortArray = new short[9][];
-        shortArray[0] = ((short[]) null);
-        short[] shortArray1 = new short[0];
-        shortArray[1] = shortArray1;
-        shortArray[2] = shortArray1;
-        shortArray[3] = shortArray1;
-        shortArray[4] = shortArray1;
-        shortArray[5] = shortArray1;
-        shortArray[6] = shortArray1;
-        shortArray[7] = shortArray1;
-        shortArray[8] = shortArray1;
-        
-        Shorts.concat(shortArray);
-        
-        short[] finalShortArray0 = shortArray[0];
-        
-        assertNull(finalShortArray0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testConcat4() throws Throwable  {
-        short[][] shortArray = new short[0][];
-        
-        short[] actual = Shorts.concat(shortArray);
-        
-        short[] expected = new short[0];
-        assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testConcat5() throws Throwable  {
-        short[][] shortArray = new short[9][];
-        short[] shortArray1 = new short[9];
-        shortArray[0] = shortArray1;
-        shortArray[1] = shortArray1;
-        shortArray[2] = shortArray1;
-        shortArray[3] = shortArray1;
-        shortArray[4] = shortArray1;
-        shortArray[5] = shortArray1;
-        shortArray[6] = shortArray1;
-        shortArray[7] = shortArray1;
-        shortArray[8] = shortArray1;
-        
-        short[] actual = Shorts.concat(shortArray);
-        
-        short[] expected = new short[81];
-        assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testContains1() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        boolean actual = Shorts.contains(shortArray, (short) 0);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testContains2() throws Throwable  {
-        Shorts.contains(null, (short) 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testContains3() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        boolean actual = Shorts.contains(shortArray, (short) 0);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testContains4() throws Throwable  {
-        short[] shortArray = new short[9];
-        
-        boolean actual = Shorts.contains(shortArray, (short) 0);
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testContains5() throws Throwable  {
-        short[] shortArray = new short[1];
-        shortArray[0] = java.lang.Short.MIN_VALUE;
-        
-        boolean actual = Shorts.contains(shortArray, (short) 0);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testJoin1() throws Throwable  {
-        String string = new String();
-        short[] shortArray = new short[0];
-        
-        String actual = Shorts.join(string, shortArray);
-        
-        String expected = new String("");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testJoin2() throws Throwable  {
-        String string = new String("");
-        
-        Shorts.join(string, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testJoin3() throws Throwable  {
-        String string = new String("");
-        short[] shortArray = new short[0];
-        
-        String actual = Shorts.join(string, shortArray);
-        
-        String expected = new String("");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testJoin4() throws Throwable  {
-        short[] shortArray = new short[17];
-        
-        Shorts.join(null, shortArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCompare1() throws Throwable  {
-        int actual = Shorts.compare((short) 0, (short) 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCompare2() throws Throwable  {
-        int actual = Shorts.compare((short) 0, (short) 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testToArray1() throws Throwable  {
-        ArrayList arrayList = new ArrayList();
-        
-        short[] actual = Shorts.toArray(arrayList);
-        
-        short[] expected = new short[0];
-        assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testToArray2() throws Throwable  {
-        Shorts.toArray(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testToArray3() throws Throwable  {
-        Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayAsListType = Class.forName("java.util.Collection");
-        Method toArrayMethod = shortsClazz.getDeclaredMethod("toArray", shortArrayAsListType);
-        toArrayMethod.setAccessible(true);
-        java.lang.Object[] toArrayMethodArguments = new java.lang.Object[1];
-        toArrayMethodArguments[0] = shortArrayAsList;
-        try {
-            toArrayMethod.invoke(null, toArrayMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAsList1() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        List actual = Shorts.asList(shortArray);
-        
-        Object expected = createInstance("java.util.Collections$EmptyList");
-        setField(expected, "modCount", 0);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAsList2() throws Throwable  {
-        Shorts.asList(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAsList3() throws Throwable  {
-        short[] shortArray = new short[1];
-        
-        List actual = Shorts.asList(shortArray);
-        
-        Object expected = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
-        setField(expected, "array", shortArray);
-        setField(expected, "start", 0);
-        setField(expected, "end", 1);
-        setField(expected, "modCount", 0);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testEnsureCapacity1() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        short[] actual = Shorts.ensureCapacity(shortArray, 0, 0);
-        
-        assertArrayEquals(shortArray, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnsureCapacity2() throws Throwable  {
-        short[] shortArray = new short[17];
-        
-        Shorts.ensureCapacity(shortArray, Integer.MIN_VALUE, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnsureCapacity3() throws Throwable  {
-        short[] shortArray = new short[17];
-        
-        Shorts.ensureCapacity(shortArray, 0, Integer.MIN_VALUE);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReverse1() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Shorts.reverse(shortArray, 0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReverse2() throws Throwable  {
-        Shorts.reverse(null, 0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReverse3() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Shorts.reverse(shortArray, 2, 1073741825);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReverse4() throws Throwable  {
-        short[] shortArray = new short[1];
-        
-        Shorts.reverse(shortArray, 0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReverse5() throws Throwable  {
-        short[] shortArray = new short[9];
-        
-        Shorts.reverse(shortArray, 1, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReverse6() throws Throwable  {
-        short[] shortArray = new short[33];
-        
-        Shorts.reverse(shortArray, 2, 32);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReverse7() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Shorts.reverse(shortArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReverse8() throws Throwable  {
-        Shorts.reverse(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReverse9() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Shorts.reverse(shortArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReverse10() throws Throwable  {
-        short[] shortArray = new short[2];
-        
-        Shorts.reverse(shortArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testToByteArray1() throws Throwable  {
-        byte[] actual = Shorts.toByteArray((short) 0);
-        
-        byte[] expected = new byte[2];
-        org.junit.Assert.assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testToByteArray2() throws Throwable  {
-        byte[] actual = Shorts.toByteArray((short) 0);
-        
-        byte[] expected = new byte[2];
-        org.junit.Assert.assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testSortDescending1() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        Shorts.sortDescending(shortArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSortDescending2() throws Throwable  {
         short[] shortArray = new short[0];
         
         Shorts.sortDescending(shortArray, 0, 0);
@@ -970,77 +48,11 @@ public class ShortsTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSortDescending2() throws Throwable  {
-        Shorts.sortDescending(null, 0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testSortDescending3() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Shorts.sortDescending(shortArray, 2, 1073741825);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSortDescending4() throws Throwable  {
         short[] shortArray = new short[9];
         
-        Shorts.sortDescending(shortArray, Integer.MIN_VALUE, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSortDescending5() throws Throwable  {
-        short[] shortArray = new short[9];
-        
-        Shorts.sortDescending(shortArray, 1, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSortDescending6() throws Throwable  {
-        short[] shortArray = new short[32];
-        
-        Shorts.sortDescending(shortArray, 4, 32);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSortDescending7() throws Throwable  {
-        short[] shortArray = new short[0];
-        
-        Shorts.sortDescending(shortArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSortDescending8() throws Throwable  {
-        Shorts.sortDescending(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSortDescending9() throws Throwable  {
-        short[] shortArray = new short[16];
-        
-        Shorts.sortDescending(shortArray);
+        Shorts.sortDescending(shortArray, 0, 0);
     }
     ///endregion
     
@@ -1261,6 +273,998 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testHashCode1() throws Throwable  {
+        int actual = Shorts.hashCode((short) 0);
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testHashCode2() throws Throwable  {
+        int actual = Shorts.hashCode((short) 0);
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin1() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        Shorts.min(shortArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin2() throws Throwable  {
+        Shorts.min(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testMin3() throws Throwable  {
+        short[] shortArray = new short[1];
+        
+        short actual = Shorts.min(shortArray);
+        
+        assertEquals((short) 0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testMin4() throws Throwable  {
+        short[] shortArray = new short[2];
+        shortArray[0] = (short) 1;
+        
+        short actual = Shorts.min(shortArray);
+        
+        assertEquals((short) 0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin5() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        Shorts.min(shortArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax1() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        Shorts.max(shortArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax2() throws Throwable  {
+        Shorts.max(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testMax3() throws Throwable  {
+        short[] shortArray = new short[1];
+        
+        short actual = Shorts.max(shortArray);
+        
+        assertEquals((short) 0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testMax4() throws Throwable  {
+        short[] shortArray = new short[2];
+        shortArray[1] = (short) 1;
+        
+        short actual = Shorts.max(shortArray);
+        
+        assertEquals((short) 1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax5() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        Shorts.max(shortArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIndexOf1() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        int actual = Shorts.indexOf(shortArray, (short) 0);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIndexOf2() throws Throwable  {
+        Shorts.indexOf(((short[]) null), (short) 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIndexOf3() throws Throwable  {
+        short[] shortArray = new short[9];
+        
+        int actual = Shorts.indexOf(shortArray, (short) 0);
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIndexOf4() throws Throwable  {
+        short[] shortArray = new short[1];
+        shortArray[0] = java.lang.Short.MIN_VALUE;
+        
+        int actual = Shorts.indexOf(shortArray, (short) 0);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIndexOf5() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
+        Class shortArrayType = Class.forName("[S");
+        Class shortType = short.class;
+        Class intType = int.class;
+        Method indexOfMethod = shortsClazz.getDeclaredMethod("indexOf", shortArrayType, shortType, intType, intType);
+        indexOfMethod.setAccessible(true);
+        java.lang.Object[] indexOfMethodArguments = new java.lang.Object[4];
+        indexOfMethodArguments[0] = ((Object) shortArray);
+        indexOfMethodArguments[1] = (short) 0;
+        indexOfMethodArguments[2] = 0;
+        indexOfMethodArguments[3] = 0;
+        int actual = ((int) indexOfMethod.invoke(null, indexOfMethodArguments));
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIndexOf6() throws Throwable  {
+        short[] shortArray = new short[17];
+        
+        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
+        Class shortArrayType = Class.forName("[S");
+        Class shortType = short.class;
+        Class intType = int.class;
+        Method indexOfMethod = shortsClazz.getDeclaredMethod("indexOf", shortArrayType, shortType, intType, intType);
+        indexOfMethod.setAccessible(true);
+        java.lang.Object[] indexOfMethodArguments = new java.lang.Object[4];
+        indexOfMethodArguments[0] = ((Object) shortArray);
+        indexOfMethodArguments[1] = (short) 0;
+        indexOfMethodArguments[2] = 0;
+        indexOfMethodArguments[3] = -2147483647;
+        int actual = ((int) indexOfMethod.invoke(null, indexOfMethodArguments));
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIndexOf7() throws Throwable  {
+        short[] shortArray = new short[9];
+        
+        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
+        Class shortArrayType = Class.forName("[S");
+        Class shortType = short.class;
+        Class intType = int.class;
+        Method indexOfMethod = shortsClazz.getDeclaredMethod("indexOf", shortArrayType, shortType, intType, intType);
+        indexOfMethod.setAccessible(true);
+        java.lang.Object[] indexOfMethodArguments = new java.lang.Object[4];
+        indexOfMethodArguments[0] = ((Object) shortArray);
+        indexOfMethodArguments[1] = (short) 0;
+        indexOfMethodArguments[2] = Integer.MIN_VALUE;
+        indexOfMethodArguments[3] = 1;
+        try {
+            indexOfMethod.invoke(null, indexOfMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIndexOf8() throws Throwable  {
+        short[] shortArray = new short[9];
+        
+        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
+        Class shortArrayType = Class.forName("[S");
+        Class shortType = short.class;
+        Class intType = int.class;
+        Method indexOfMethod = shortsClazz.getDeclaredMethod("indexOf", shortArrayType, shortType, intType, intType);
+        indexOfMethod.setAccessible(true);
+        java.lang.Object[] indexOfMethodArguments = new java.lang.Object[4];
+        indexOfMethodArguments[0] = ((Object) shortArray);
+        indexOfMethodArguments[1] = (short) 0;
+        indexOfMethodArguments[2] = 0;
+        indexOfMethodArguments[3] = 1;
+        int actual = ((int) indexOfMethod.invoke(null, indexOfMethodArguments));
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIndexOf9() throws Throwable  {
+        short[] shortArray = new short[9];
+        shortArray[0] = java.lang.Short.MIN_VALUE;
+        
+        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
+        Class shortArrayType = Class.forName("[S");
+        Class shortType = short.class;
+        Class intType = int.class;
+        Method indexOfMethod = shortsClazz.getDeclaredMethod("indexOf", shortArrayType, shortType, intType, intType);
+        indexOfMethod.setAccessible(true);
+        java.lang.Object[] indexOfMethodArguments = new java.lang.Object[4];
+        indexOfMethodArguments[0] = ((Object) shortArray);
+        indexOfMethodArguments[1] = (short) 0;
+        indexOfMethodArguments[2] = 0;
+        indexOfMethodArguments[3] = 1;
+        int actual = ((int) indexOfMethod.invoke(null, indexOfMethodArguments));
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIndexOf10() throws Throwable  {
+        short[] shortArray = new short[0];
+        short[] shortArray1 = new short[0];
+        
+        int actual = Shorts.indexOf(shortArray, shortArray1);
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIndexOf11() throws Throwable  {
+        short[] shortArray = new short[17];
+        
+        Shorts.indexOf(((short[]) null), shortArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIndexOf12() throws Throwable  {
+        short[] shortArray = new short[9];
+        short[] shortArray1 = new short[0];
+        
+        int actual = Shorts.indexOf(shortArray, shortArray1);
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIndexOf13() throws Throwable  {
+        short[] shortArray = new short[18];
+        short[] shortArray1 = new short[32];
+        
+        int actual = Shorts.indexOf(shortArray, shortArray1);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIndexOf14() throws Throwable  {
+        short[] shortArray = new short[33];
+        shortArray[0] = java.lang.Short.MIN_VALUE;
+        short[] shortArray1 = new short[32];
+        
+        int actual = Shorts.indexOf(shortArray, shortArray1);
+        
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLastIndexOf1() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        int actual = Shorts.lastIndexOf(shortArray, (short) 0);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testLastIndexOf2() throws Throwable  {
+        Shorts.lastIndexOf(null, (short) 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLastIndexOf3() throws Throwable  {
+        short[] shortArray = new short[2];
+        
+        int actual = Shorts.lastIndexOf(shortArray, (short) 0);
+        
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLastIndexOf4() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        int actual = Shorts.lastIndexOf(shortArray, (short) 0);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLastIndexOf5() throws Throwable  {
+        short[] shortArray = new short[1];
+        shortArray[0] = java.lang.Short.MIN_VALUE;
+        
+        int actual = Shorts.lastIndexOf(shortArray, (short) 0);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLastIndexOf6() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
+        Class shortArrayType = Class.forName("[S");
+        Class shortType = short.class;
+        Class intType = int.class;
+        Method lastIndexOfMethod = shortsClazz.getDeclaredMethod("lastIndexOf", shortArrayType, shortType, intType, intType);
+        lastIndexOfMethod.setAccessible(true);
+        java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[4];
+        lastIndexOfMethodArguments[0] = ((Object) shortArray);
+        lastIndexOfMethodArguments[1] = (short) 0;
+        lastIndexOfMethodArguments[2] = 0;
+        lastIndexOfMethodArguments[3] = 0;
+        int actual = ((int) lastIndexOfMethod.invoke(null, lastIndexOfMethodArguments));
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLastIndexOf7() throws Throwable  {
+        short[] shortArray = new short[9];
+        
+        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
+        Class shortArrayType = Class.forName("[S");
+        Class shortType = short.class;
+        Class intType = int.class;
+        Method lastIndexOfMethod = shortsClazz.getDeclaredMethod("lastIndexOf", shortArrayType, shortType, intType, intType);
+        lastIndexOfMethod.setAccessible(true);
+        java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[4];
+        lastIndexOfMethodArguments[0] = ((Object) shortArray);
+        lastIndexOfMethodArguments[1] = (short) 0;
+        lastIndexOfMethodArguments[2] = 1;
+        lastIndexOfMethodArguments[3] = -2147483647;
+        int actual = ((int) lastIndexOfMethod.invoke(null, lastIndexOfMethodArguments));
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testLastIndexOf8() throws Throwable  {
+        short[] shortArray = new short[9];
+        
+        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
+        Class shortArrayType = Class.forName("[S");
+        Class shortType = short.class;
+        Class intType = int.class;
+        Method lastIndexOfMethod = shortsClazz.getDeclaredMethod("lastIndexOf", shortArrayType, shortType, intType, intType);
+        lastIndexOfMethod.setAccessible(true);
+        java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[4];
+        lastIndexOfMethodArguments[0] = ((Object) shortArray);
+        lastIndexOfMethodArguments[1] = (short) 0;
+        lastIndexOfMethodArguments[2] = -2147483647;
+        lastIndexOfMethodArguments[3] = -1073741823;
+        try {
+            lastIndexOfMethod.invoke(null, lastIndexOfMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLastIndexOf9() throws Throwable  {
+        short[] shortArray = new short[9];
+        
+        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
+        Class shortArrayType = Class.forName("[S");
+        Class shortType = short.class;
+        Class intType = int.class;
+        Method lastIndexOfMethod = shortsClazz.getDeclaredMethod("lastIndexOf", shortArrayType, shortType, intType, intType);
+        lastIndexOfMethod.setAccessible(true);
+        java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[4];
+        lastIndexOfMethodArguments[0] = ((Object) shortArray);
+        lastIndexOfMethodArguments[1] = (short) 0;
+        lastIndexOfMethodArguments[2] = -2147483647;
+        lastIndexOfMethodArguments[3] = 1;
+        int actual = ((int) lastIndexOfMethod.invoke(null, lastIndexOfMethodArguments));
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLastIndexOf10() throws Throwable  {
+        short[] shortArray = new short[40];
+        shortArray[31] = java.lang.Short.MIN_VALUE;
+        
+        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
+        Class shortArrayType = Class.forName("[S");
+        Class shortType = short.class;
+        Class intType = int.class;
+        Method lastIndexOfMethod = shortsClazz.getDeclaredMethod("lastIndexOf", shortArrayType, shortType, intType, intType);
+        lastIndexOfMethod.setAccessible(true);
+        java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[4];
+        lastIndexOfMethodArguments[0] = ((Object) shortArray);
+        lastIndexOfMethodArguments[1] = (short) 0;
+        lastIndexOfMethodArguments[2] = 31;
+        lastIndexOfMethodArguments[3] = 32;
+        int actual = ((int) lastIndexOfMethod.invoke(null, lastIndexOfMethodArguments));
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testConcat1() throws Throwable  {
+        short[][] shortArray = new short[0][];
+        
+        short[] actual = Shorts.concat(shortArray);
+        
+        short[] expected = new short[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testConcat2() throws Throwable  {
+        Shorts.concat(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testConcat3() throws Throwable  {
+        short[][] shortArray = new short[9][];
+        shortArray[0] = ((short[]) null);
+        short[] shortArray1 = new short[0];
+        shortArray[1] = shortArray1;
+        shortArray[2] = shortArray1;
+        shortArray[3] = shortArray1;
+        shortArray[4] = shortArray1;
+        shortArray[5] = shortArray1;
+        shortArray[6] = shortArray1;
+        shortArray[7] = shortArray1;
+        shortArray[8] = shortArray1;
+        
+        Shorts.concat(shortArray);
+        
+        short[] finalShortArray0 = shortArray[0];
+        
+        assertNull(finalShortArray0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testConcat4() throws Throwable  {
+        short[][] shortArray = new short[0][];
+        
+        short[] actual = Shorts.concat(shortArray);
+        
+        short[] expected = new short[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testConcat5() throws Throwable  {
+        short[][] shortArray = new short[9][];
+        short[] shortArray1 = new short[9];
+        shortArray[0] = shortArray1;
+        shortArray[1] = ((short[]) null);
+        short[] shortArray2 = new short[0];
+        shortArray[2] = shortArray2;
+        shortArray[3] = shortArray2;
+        shortArray[4] = shortArray2;
+        shortArray[5] = shortArray2;
+        shortArray[6] = shortArray2;
+        shortArray[7] = shortArray2;
+        shortArray[8] = shortArray2;
+        
+        Shorts.concat(shortArray);
+        
+        short[] finalShortArray1 = shortArray[1];
+        
+        assertNull(finalShortArray1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testConcat6() throws Throwable  {
+        short[][] shortArray = new short[1][];
+        short[] shortArray1 = new short[0];
+        shortArray[0] = shortArray1;
+        
+        short[] actual = Shorts.concat(shortArray);
+        
+        short[] expected = new short[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testContains1() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        boolean actual = Shorts.contains(shortArray, (short) 0);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testContains2() throws Throwable  {
+        Shorts.contains(null, (short) 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testContains3() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        boolean actual = Shorts.contains(shortArray, (short) 0);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testContains4() throws Throwable  {
+        short[] shortArray = new short[9];
+        
+        boolean actual = Shorts.contains(shortArray, (short) 0);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testContains5() throws Throwable  {
+        short[] shortArray = new short[1];
+        shortArray[0] = java.lang.Short.MIN_VALUE;
+        
+        boolean actual = Shorts.contains(shortArray, (short) 0);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testJoin1() throws Throwable  {
+        String string = new String();
+        short[] shortArray = new short[0];
+        
+        String actual = Shorts.join(string, shortArray);
+        
+        String expected = new String("");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testJoin2() throws Throwable  {
+        String string = new String("");
+        
+        Shorts.join(string, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testJoin3() throws Throwable  {
+        String string = new String("");
+        short[] shortArray = new short[0];
+        
+        String actual = Shorts.join(string, shortArray);
+        
+        String expected = new String("");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testJoin4() throws Throwable  {
+        short[] shortArray = new short[17];
+        
+        Shorts.join(null, shortArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCompare1() throws Throwable  {
+        int actual = Shorts.compare((short) 0, (short) 0);
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCompare2() throws Throwable  {
+        int actual = Shorts.compare((short) 0, (short) 0);
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testToArray1() throws Throwable  {
+        ArrayList arrayList = new ArrayList();
+        
+        short[] actual = Shorts.toArray(arrayList);
+        
+        short[] expected = new short[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testToArray2() throws Throwable  {
+        Shorts.toArray(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAsList1() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        List actual = Shorts.asList(shortArray);
+        
+        Object expected = createInstance("java.util.Collections$EmptyList");
+        setField(expected, "modCount", 0);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testAsList2() throws Throwable  {
+        Shorts.asList(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAsList3() throws Throwable  {
+        short[] shortArray = new short[1];
+        
+        List actual = Shorts.asList(shortArray);
+        
+        Object expected = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
+        setField(expected, "array", shortArray);
+        setField(expected, "start", 0);
+        setField(expected, "end", 1);
+        setField(expected, "modCount", 0);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAsList4() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        List actual = Shorts.asList(shortArray);
+        
+        Object expected = createInstance("java.util.Collections$EmptyList");
+        setField(expected, "modCount", 0);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEnsureCapacity1() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        short[] actual = Shorts.ensureCapacity(shortArray, 0, 0);
+        
+        assertArrayEquals(shortArray, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEnsureCapacity2() throws Throwable  {
+        short[] shortArray = new short[17];
+        
+        Shorts.ensureCapacity(shortArray, Integer.MIN_VALUE, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEnsureCapacity3() throws Throwable  {
+        short[] shortArray = new short[17];
+        
+        Shorts.ensureCapacity(shortArray, 0, Integer.MIN_VALUE);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReverse1() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        Shorts.reverse(shortArray, 0, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReverse2() throws Throwable  {
+        Shorts.reverse(null, 0, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReverse3() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        Shorts.reverse(shortArray, 2, 1073741825);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReverse4() throws Throwable  {
+        short[] shortArray = new short[1];
+        
+        Shorts.reverse(shortArray, 0, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReverse5() throws Throwable  {
+        short[] shortArray = new short[9];
+        
+        Shorts.reverse(shortArray, 1, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReverse6() throws Throwable  {
+        short[] shortArray = new short[40];
+        
+        Shorts.reverse(shortArray, 30, 32);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReverse7() throws Throwable  {
+        short[] shortArray = new short[9];
+        
+        Shorts.reverse(shortArray, Integer.MIN_VALUE, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReverse8() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        Shorts.reverse(shortArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReverse9() throws Throwable  {
+        Shorts.reverse(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReverse10() throws Throwable  {
+        short[] shortArray = new short[0];
+        
+        Shorts.reverse(shortArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReverse11() throws Throwable  {
+        short[] shortArray = new short[2];
+        
+        Shorts.reverse(shortArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testToByteArray1() throws Throwable  {
+        byte[] actual = Shorts.toByteArray((short) 0);
+        
+        byte[] expected = new byte[2];
+        org.junit.Assert.assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testToByteArray2() throws Throwable  {
+        byte[] actual = Shorts.toByteArray((short) 0);
+        
+        byte[] expected = new byte[2];
+        org.junit.Assert.assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testShorts1() throws Throwable  {
         Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
         Constructor shortsConstructor = shortsClazz.getDeclaredConstructor();
@@ -1306,13 +1310,14 @@ public class ShortsTest {
     @Test(timeout = 10000)
     public void testContains7() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
+        java.lang.Object[] holderArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraints$Holder", 0);
         
         Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
-        Class objectType = Class.forName("java.lang.Object");
-        Method containsMethod = shortArrayAsListClazz.getDeclaredMethod("contains", objectType);
+        Class holderArrayType = Class.forName("java.lang.Object");
+        Method containsMethod = shortArrayAsListClazz.getDeclaredMethod("contains", holderArrayType);
         containsMethod.setAccessible(true);
         java.lang.Object[] containsMethodArguments = new java.lang.Object[1];
-        containsMethodArguments[0] = null;
+        containsMethodArguments[0] = ((Object) holderArray);
         boolean actual = ((boolean) containsMethod.invoke(shortArrayAsList, containsMethodArguments));
         
         assertFalse(actual);
@@ -1460,21 +1465,22 @@ public class ShortsTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testEquals3() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
-        Object intArrayAsList = createInstance("com.google.common.primitives.Ints$IntArrayAsList");
+        Object inverseEntries = createInstance("com.google.common.collect.JdkBackedImmutableBiMap$InverseEntries");
         
         Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
-        Class intArrayAsListType = Class.forName("java.lang.Object");
-        Method equalsMethod = shortArrayAsListClazz.getDeclaredMethod("equals", intArrayAsListType);
+        Class inverseEntriesType = Class.forName("java.lang.Object");
+        Method equalsMethod = shortArrayAsListClazz.getDeclaredMethod("equals", inverseEntriesType);
         equalsMethod.setAccessible(true);
         java.lang.Object[] equalsMethodArguments = new java.lang.Object[1];
-        equalsMethodArguments[0] = intArrayAsList;
-        boolean actual = ((boolean) equalsMethod.invoke(shortArrayAsList, equalsMethodArguments));
-        
-        assertTrue(actual);
-    }
+        equalsMethodArguments[0] = inverseEntries;
+        try {
+            equalsMethod.invoke(shortArrayAsList, equalsMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     ///region
@@ -1503,7 +1509,26 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testHashCode2() throws Throwable  {
+    public void testEquals5() throws Throwable  {
+        Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
+        java.lang.Object[] collectorTaskArray = createArray("[[[Ljava.util.stream.Nodes$CollectorTask;", 0);
+        
+        Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
+        Class collectorTaskArrayType = Class.forName("java.lang.Object");
+        Method equalsMethod = shortArrayAsListClazz.getDeclaredMethod("equals", collectorTaskArrayType);
+        equalsMethod.setAccessible(true);
+        java.lang.Object[] equalsMethodArguments = new java.lang.Object[1];
+        equalsMethodArguments[0] = ((Object) collectorTaskArray);
+        boolean actual = ((boolean) equalsMethod.invoke(shortArrayAsList, equalsMethodArguments));
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testHashCode3() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
         
         Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
@@ -1519,7 +1544,7 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testHashCode3() throws Throwable  {
+    public void testHashCode4() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
         setField(shortArrayAsList, "end", -2147483647);
         setField(shortArrayAsList, "start", 0);
@@ -1537,7 +1562,7 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testHashCode4() throws Throwable  {
+    public void testHashCode5() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
         setField(shortArrayAsList, "end", 1);
         setField(shortArrayAsList, "start", Integer.MIN_VALUE);
@@ -1558,7 +1583,7 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testHashCode5() throws Throwable  {
+    public void testHashCode6() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
         setField(shortArrayAsList, "end", 1);
         setField(shortArrayAsList, "start", 0);
@@ -1642,19 +1667,20 @@ public class ShortsTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testSet1() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
-        setField(shortArrayAsList, "end", -1780656387);
+        setField(shortArrayAsList, "end", -1753385739);
         setField(shortArrayAsList, "start", 1073741828);
         short[] shortArray = new short[13];
         setField(shortArrayAsList, "array", shortArray);
+        Short short1 = (short) 0;
         
         Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
         Class intType = int.class;
-        Class shortType = Class.forName("java.lang.Short");
-        Method setMethod = shortArrayAsListClazz.getDeclaredMethod("set", intType, shortType);
+        Class short1Type = Class.forName("java.lang.Short");
+        Method setMethod = shortArrayAsListClazz.getDeclaredMethod("set", intType, short1Type);
         setMethod.setAccessible(true);
         java.lang.Object[] setMethodArguments = new java.lang.Object[2];
         setMethodArguments[0] = 0;
-        setMethodArguments[1] = null;
+        setMethodArguments[1] = short1;
         try {
             setMethod.invoke(shortArrayAsList, setMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -2040,13 +2066,14 @@ public class ShortsTest {
     @Test(timeout = 10000)
     public void testIndexOf16() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
+        java.lang.Object[] holderArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraints$Holder", 0);
         
         Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
-        Class objectType = Class.forName("java.lang.Object");
-        Method indexOfMethod = shortArrayAsListClazz.getDeclaredMethod("indexOf", objectType);
+        Class holderArrayType = Class.forName("java.lang.Object");
+        Method indexOfMethod = shortArrayAsListClazz.getDeclaredMethod("indexOf", holderArrayType);
         indexOfMethod.setAccessible(true);
         java.lang.Object[] indexOfMethodArguments = new java.lang.Object[1];
-        indexOfMethodArguments[0] = null;
+        indexOfMethodArguments[0] = ((Object) holderArray);
         int actual = ((int) indexOfMethod.invoke(shortArrayAsList, indexOfMethodArguments));
         
         assertEquals(-1, actual);
@@ -2147,13 +2174,14 @@ public class ShortsTest {
     @Test(timeout = 10000)
     public void testLastIndexOf12() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
+        java.lang.Object[] holderArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraints$Holder", 0);
         
         Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
-        Class objectType = Class.forName("java.lang.Object");
-        Method lastIndexOfMethod = shortArrayAsListClazz.getDeclaredMethod("lastIndexOf", objectType);
+        Class holderArrayType = Class.forName("java.lang.Object");
+        Method lastIndexOfMethod = shortArrayAsListClazz.getDeclaredMethod("lastIndexOf", holderArrayType);
         lastIndexOfMethod.setAccessible(true);
         java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[1];
-        lastIndexOfMethodArguments[0] = null;
+        lastIndexOfMethodArguments[0] = ((Object) holderArray);
         int actual = ((int) lastIndexOfMethod.invoke(shortArrayAsList, lastIndexOfMethodArguments));
         
         assertEquals(-1, actual);
@@ -2253,7 +2281,7 @@ public class ShortsTest {
     public void testToShortArray2() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
         setField(shortArrayAsList, "end", 1073741824);
-        setField(shortArrayAsList, "start", -1342177280);
+        setField(shortArrayAsList, "start", -1073741824);
         short[] shortArray = new short[9];
         setField(shortArrayAsList, "array", shortArray);
         
@@ -2680,28 +2708,6 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testDoBackward2() throws Throwable  {
-        Object shortConverter = createInstance("com.google.common.primitives.Shorts$ShortConverter");
-        Short short1 = (short) 4;
-        
-        Class shortConverterClazz = Class.forName("com.google.common.primitives.Shorts$ShortConverter");
-        Class short1Type = Class.forName("java.lang.Short");
-        Method doBackwardMethod = shortConverterClazz.getDeclaredMethod("doBackward", short1Type);
-        doBackwardMethod.setAccessible(true);
-        java.lang.Object[] doBackwardMethodArguments = new java.lang.Object[1];
-        doBackwardMethodArguments[0] = short1;
-        String actual = ((String) doBackwardMethod.invoke(shortConverter, doBackwardMethodArguments));
-        
-        String expected = new String("4");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testReadResolve1() throws Throwable  {
         Object shortConverter = createInstance("com.google.common.primitives.Shorts$ShortConverter");
         setField(shortConverter, "handleNullAutomatically", false);
@@ -2745,6 +2751,30 @@ public class ShortsTest {
     }
     ///endregion
     
+    private static Object createInstance(String className) throws Exception {
+        Class<?> clazz = Class.forName(className);
+        return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
+        Class<?> clazz = object.getClass();
+        java.lang.reflect.Field field;
+    
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+            } catch (Exception e) {
+                clazz = clazz.getSuperclass();
+                field = null;
+            }
+        } while (field == null);
+        
+        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(object, fieldValue);
+    }
     static class FieldsPair {
         final Object o1;
         final Object o2;
@@ -2912,30 +2942,6 @@ public class ShortsTest {
         }
     
         return false;
-    }
-    private static Object createInstance(String className) throws Exception {
-        Class<?> clazz = Class.forName(className);
-        return getUnsafeInstance().allocateInstance(clazz);
-    }
-    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
-        Class<?> clazz = object.getClass();
-        java.lang.reflect.Field field;
-    
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-            } catch (Exception e) {
-                clazz = clazz.getSuperclass();
-                field = null;
-            }
-        } while (field == null);
-        
-        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-    
-        field.setAccessible(true);
-        field.set(object, fieldValue);
     }
     private static Object getEnumConstantByName(Class<?> enumClass, String name) throws IllegalAccessException {
         java.lang.reflect.Field[] fields = enumClass.getDeclaredFields();

@@ -30,10 +30,11 @@ public class ResolveFieldDeserializerTest {
     @Test(timeout = 10000)
     public void testParseField2() throws Throwable  {
         ResolveFieldDeserializer resolveFieldDeserializer = ((ResolveFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer"));
-        java.lang.Object[] ofIntArray = createArray("java.util.stream.ForEachOps$ForEachOp$OfInt", 0);
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        java.lang.Object[] jPEGWriterDisposerRecordArray = createArray("com.sun.imageio.plugins.jpeg.JPEGImageWriter$JPEGWriterDisposerRecord", 0);
         WildcardTypeImpl wildcardTypeImpl = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
         
-        resolveFieldDeserializer.parseField(((DefaultJSONParser) null), ofIntArray, wildcardTypeImpl, ((Map) null));
+        resolveFieldDeserializer.parseField(defaultJSONParser, jPEGWriterDisposerRecordArray, wildcardTypeImpl, ((Map) null));
     }
     ///endregion
     

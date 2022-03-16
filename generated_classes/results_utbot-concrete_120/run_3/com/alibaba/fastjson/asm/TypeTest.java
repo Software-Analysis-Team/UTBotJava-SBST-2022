@@ -16,10 +16,39 @@ import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class TypeTest {
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetInternalName1() throws Throwable  {
+        Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
+        
+        type.getInternalName();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetInternalName2() throws Throwable  {
+        Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
+        setField(type, "len", 0);
+        setField(type, "off", 1);
+        char[] charArray = new char[32];
+        setField(type, "buf", charArray);
+        
+        String actual = type.getInternalName();
+        
+        String expected = new String("");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
@@ -418,11 +447,35 @@ public class TypeTest {
     @Test(timeout = 10000)
     public void testGetClassName15() throws Throwable  {
         Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
-        setField(type, "off", 2);
-        char[] charArray = new char[15];
-        charArray[3] = '[';
-        charArray[4] = 'U';
-        charArray[6] = ';';
+        setField(type, "len", 0);
+        setField(type, "off", 40);
+        char[] charArray = new char[40];
+        setField(type, "buf", charArray);
+        setField(type, "sort", 10);
+        
+        Class typeClazz = Class.forName("com.alibaba.fastjson.asm.Type");
+        Method getClassNameMethod = typeClazz.getDeclaredMethod("getClassName");
+        getClassNameMethod.setAccessible(true);
+        java.lang.Object[] getClassNameMethodArguments = new java.lang.Object[0];
+        String actual = ((String) getClassNameMethod.invoke(type, getClassNameMethodArguments));
+        
+        String expected = new String("");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetClassName16() throws Throwable  {
+        Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
+        setField(type, "len", 0);
+        setField(type, "off", 0);
+        char[] charArray = new char[11];
+        charArray[1] = 'O';
+        charArray[2] = ';';
         setField(type, "buf", charArray);
         setField(type, "sort", 9);
         
@@ -432,36 +485,7 @@ public class TypeTest {
         java.lang.Object[] getClassNameMethodArguments = new java.lang.Object[0];
         String actual = ((String) getClassNameMethod.invoke(type, getClassNameMethodArguments));
         
-        String expected = new String("\u0000[][]");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetInternalName1() throws Throwable  {
-        Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
-        
-        type.getInternalName();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetInternalName2() throws Throwable  {
-        Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
-        setField(type, "len", 0);
-        setField(type, "off", 1);
-        char[] charArray = new char[32];
-        setField(type, "buf", charArray);
-        
-        String actual = type.getInternalName();
-        
-        String expected = new String("");
+        String expected = new String("[]");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -719,7 +743,7 @@ public class TypeTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetArgumentTypes15() throws Throwable  {
-        String string = new String("\u0000H);C");
+        String string = new String("\u0000Y);I");
         
         Type.getArgumentTypes(string);
     }
@@ -727,33 +751,11 @@ public class TypeTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testGetArgumentTypes16() throws Throwable  {
-        String string = new String("\u0000BL;)");
+        String string = new String("\u0000M);B");
         
-        com.alibaba.fastjson.asm.Type[] actual = Type.getArgumentTypes(string);
-        
-        com.alibaba.fastjson.asm.Type[] expected = new com.alibaba.fastjson.asm.Type[2];
-        Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
-        setField(type, "sort", 3);
-        setField(type, "buf", null);
-        setField(type, "off", 1107297537);
-        setField(type, "len", 1);
-        expected[0] = type;
-        Type type1 = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
-        setField(type1, "sort", 10);
-        char[] charArray = new char[5];
-        charArray[1] = 'B';
-        charArray[2] = 'L';
-        charArray[3] = ';';
-        charArray[4] = ')';
-        setField(type1, "buf", charArray);
-        setField(type1, "off", 3);
-        setField(type1, "len", 0);
-        expected[1] = type1;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        Type.getArgumentTypes(string);
     }
     ///endregion
     
@@ -761,7 +763,7 @@ public class TypeTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetArgumentTypes17() throws Throwable  {
-        String string = new String("\u0000Y);D");
+        String string = new String("\u0000Y);F");
         
         Type.getArgumentTypes(string);
     }
@@ -771,7 +773,7 @@ public class TypeTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetArgumentTypes18() throws Throwable  {
-        String string = new String("\u0000F\u0000)");
+        String string = new String("\u0000H);V");
         
         Type.getArgumentTypes(string);
     }
@@ -781,7 +783,41 @@ public class TypeTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetArgumentTypes19() throws Throwable  {
-        String string = new String("\u0000Y);Z");
+        String string = new String("\u0000T);D");
+        
+        Type.getArgumentTypes(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetArgumentTypes20() throws Throwable  {
+        String string = new String("\u0000[\u0000)");
+        
+        com.alibaba.fastjson.asm.Type[] actual = Type.getArgumentTypes(string);
+        
+        com.alibaba.fastjson.asm.Type[] expected = new com.alibaba.fastjson.asm.Type[1];
+        Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
+        setField(type, "sort", 9);
+        char[] charArray = new char[4];
+        charArray[1] = '[';
+        charArray[3] = ')';
+        setField(type, "buf", charArray);
+        setField(type, "off", 1);
+        setField(type, "len", 2);
+        expected[0] = type;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetArgumentTypes21() throws Throwable  {
+        String string = new String("\u0000T);S");
         
         Type.getArgumentTypes(string);
     }
@@ -790,7 +826,27 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetArgumentTypes20() throws Throwable  {
+    public void testGetArgumentTypes22() throws Throwable  {
+        String string = new String("\u0000H);C");
+        
+        Type.getArgumentTypes(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetArgumentTypes23() throws Throwable  {
+        String string = new String("\u0000M);Z");
+        
+        Type.getArgumentTypes(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetArgumentTypes24() throws Throwable  {
         String string = new String("\u0000U);J");
         
         Type.getArgumentTypes(string);
@@ -800,203 +856,7 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetArgumentTypes21() throws Throwable  {
-        String string = new String("\u0000X);S");
-        
-        Type.getArgumentTypes(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetArgumentTypes22() throws Throwable  {
-        String string = new String("\u0000VL;)");
-        
-        com.alibaba.fastjson.asm.Type[] actual = Type.getArgumentTypes(string);
-        
-        com.alibaba.fastjson.asm.Type[] expected = new com.alibaba.fastjson.asm.Type[2];
-        Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
-        setField(type, "sort", 0);
-        setField(type, "buf", null);
-        setField(type, "off", 1443168256);
-        setField(type, "len", 1);
-        expected[0] = type;
-        Type type1 = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
-        setField(type1, "sort", 10);
-        char[] charArray = new char[5];
-        charArray[1] = 'V';
-        charArray[2] = 'L';
-        charArray[3] = ';';
-        charArray[4] = ')';
-        setField(type1, "buf", charArray);
-        setField(type1, "off", 3);
-        setField(type1, "len", 0);
-        expected[1] = type1;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetArgumentTypes23() throws Throwable  {
-        String string = new String("\u0000T);I");
-        
-        Type.getArgumentTypes(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testGetType1() throws Throwable  {
-        String string = new String();
-        
-        Type.getType(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType2() throws Throwable  {
-        Type.getType(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType3() throws Throwable  {
-        String string = new String("[");
-        
-        Type.getType(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType4() throws Throwable  {
-        String string = new String("X");
-        
-        Type.getType(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType5() throws Throwable  {
-        String string = new String("N\u0000");
-        
-        Type.getType(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetType6() throws Throwable  {
-        String string = new String("[\u0000");
-        
-        Type actual = Type.getType(string);
-        
-        Type expected = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
-        setField(expected, "sort", 9);
-        char[] charArray = new char[2];
-        charArray[0] = '[';
-        setField(expected, "buf", charArray);
-        setField(expected, "off", 0);
-        setField(expected, "len", 2);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetType7() throws Throwable  {
-        String string = new String("P;");
-        
-        Type actual = Type.getType(string);
-        
-        Type expected = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
-        setField(expected, "sort", 10);
-        char[] charArray = new char[2];
-        charArray[0] = 'P';
-        charArray[1] = ';';
-        setField(expected, "buf", charArray);
-        setField(expected, "off", 1);
-        setField(expected, "len", 0);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType8() throws Throwable  {
-        String string = new String("[L");
-        
-        Type.getType(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetType9() throws Throwable  {
-        String string = new String("[L;");
-        
-        Type actual = Type.getType(string);
-        
-        Type expected = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
-        setField(expected, "sort", 9);
-        char[] charArray = new char[3];
-        charArray[0] = '[';
-        charArray[1] = 'L';
-        charArray[2] = ';';
-        setField(expected, "buf", charArray);
-        setField(expected, "off", 0);
-        setField(expected, "len", 3);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType10() throws Throwable  {
-        String string = new String("[[L");
-        
-        Type.getType(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType11() throws Throwable  {
-        String string = new String("[[L\u0000");
-        
-        Type.getType(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType12() throws Throwable  {
         char[] charArray = new char[0];
         
         Class typeClazz = Class.forName("com.alibaba.fastjson.asm.Type");
@@ -1017,7 +877,7 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType13() throws Throwable  {
+    public void testGetType2() throws Throwable  {
         Class typeClazz = Class.forName("com.alibaba.fastjson.asm.Type");
         Class charArrayType = Class.forName("[C");
         Class intType = int.class;
@@ -1036,7 +896,7 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType14() throws Throwable  {
+    public void testGetType3() throws Throwable  {
         char[] charArray = new char[9];
         charArray[8] = 'M';
         
@@ -1058,7 +918,7 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType15() throws Throwable  {
+    public void testGetType4() throws Throwable  {
         char[] charArray = new char[9];
         charArray[8] = '[';
         
@@ -1080,10 +940,10 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType16() throws Throwable  {
-        char[] charArray = new char[10];
-        charArray[8] = '[';
-        charArray[9] = 'L';
+    public void testGetType5() throws Throwable  {
+        char[] charArray = new char[9];
+        charArray[7] = '[';
+        charArray[8] = 'L';
         
         Class typeClazz = Class.forName("com.alibaba.fastjson.asm.Type");
         Class charArrayType = Class.forName("[C");
@@ -1092,7 +952,7 @@ public class TypeTest {
         getTypeMethod.setAccessible(true);
         java.lang.Object[] getTypeMethodArguments = new java.lang.Object[2];
         getTypeMethodArguments[0] = ((Object) charArray);
-        getTypeMethodArguments[1] = 8;
+        getTypeMethodArguments[1] = 7;
         try {
             getTypeMethod.invoke(null, getTypeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -1103,9 +963,9 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType17() throws Throwable  {
-        char[] charArray = new char[10];
-        charArray[8] = 'H';
+    public void testGetType6() throws Throwable  {
+        char[] charArray = new char[9];
+        charArray[7] = 'H';
         
         Class typeClazz = Class.forName("com.alibaba.fastjson.asm.Type");
         Class charArrayType = Class.forName("[C");
@@ -1114,7 +974,7 @@ public class TypeTest {
         getTypeMethod.setAccessible(true);
         java.lang.Object[] getTypeMethodArguments = new java.lang.Object[2];
         getTypeMethodArguments[0] = ((Object) charArray);
-        getTypeMethodArguments[1] = 8;
+        getTypeMethodArguments[1] = 7;
         try {
             getTypeMethod.invoke(null, getTypeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -1125,7 +985,7 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetType18() throws Throwable  {
+    public void testGetType7() throws Throwable  {
         char[] charArray = new char[11];
         charArray[1] = 'P';
         charArray[2] = ';';
@@ -1154,7 +1014,7 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetType19() throws Throwable  {
+    public void testGetType8() throws Throwable  {
         char[] charArray = new char[11];
         charArray[0] = '[';
         charArray[1] = 'L';
@@ -1184,7 +1044,7 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType20() throws Throwable  {
+    public void testGetType9() throws Throwable  {
         char[] charArray = new char[9];
         charArray[6] = '[';
         charArray[7] = 'L';
@@ -1207,7 +1067,7 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetType21() throws Throwable  {
+    public void testGetType10() throws Throwable  {
         char[] charArray = new char[9];
         charArray[6] = '[';
         charArray[7] = '[';
@@ -1226,6 +1086,150 @@ public class TypeTest {
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetType11() throws Throwable  {
+        String string = new String();
+        
+        Type.getType(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetType12() throws Throwable  {
+        Type.getType(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetType13() throws Throwable  {
+        String string = new String("[");
+        
+        Type.getType(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetType14() throws Throwable  {
+        String string = new String("X");
+        
+        Type.getType(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetType15() throws Throwable  {
+        String string = new String("N\u0000");
+        
+        Type.getType(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType16() throws Throwable  {
+        String string = new String("[\u0000");
+        
+        Type actual = Type.getType(string);
+        
+        Type expected = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
+        setField(expected, "sort", 9);
+        char[] charArray = new char[2];
+        charArray[0] = '[';
+        setField(expected, "buf", charArray);
+        setField(expected, "off", 0);
+        setField(expected, "len", 2);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType17() throws Throwable  {
+        String string = new String("P;");
+        
+        Type actual = Type.getType(string);
+        
+        Type expected = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
+        setField(expected, "sort", 10);
+        char[] charArray = new char[2];
+        charArray[0] = 'P';
+        charArray[1] = ';';
+        setField(expected, "buf", charArray);
+        setField(expected, "off", 1);
+        setField(expected, "len", 0);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetType18() throws Throwable  {
+        String string = new String("[L");
+        
+        Type.getType(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType19() throws Throwable  {
+        String string = new String("[L;");
+        
+        Type actual = Type.getType(string);
+        
+        Type expected = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
+        setField(expected, "sort", 9);
+        char[] charArray = new char[3];
+        charArray[0] = '[';
+        charArray[1] = 'L';
+        charArray[2] = ';';
+        setField(expected, "buf", charArray);
+        setField(expected, "off", 0);
+        setField(expected, "len", 3);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetType20() throws Throwable  {
+        String string = new String("[[L");
+        
+        Type.getType(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetType21() throws Throwable  {
+        String string = new String("[[L\u0000");
+        
+        Type.getType(string);
+    }
     ///endregion
     
     ///region

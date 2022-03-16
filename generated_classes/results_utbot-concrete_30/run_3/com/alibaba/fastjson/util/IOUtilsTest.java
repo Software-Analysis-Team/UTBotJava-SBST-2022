@@ -10,64 +10,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
 public class IOUtilsTest {
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetStringProperty1() throws Throwable  {
-        String string = new String();
-        
-        IOUtils.getStringProperty(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadAll1() throws Throwable  {
-        IOUtils.readAll(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsValidJsonpQueryParam1() throws Throwable  {
-        String string = new String();
-        
-        boolean actual = IOUtils.isValidJsonpQueryParam(string);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsValidJsonpQueryParam2() throws Throwable  {
-        boolean actual = IOUtils.isValidJsonpQueryParam(null);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsValidJsonpQueryParam3() throws Throwable  {
-        String string = new String("");
-        
-        boolean actual = IOUtils.isValidJsonpQueryParam(string);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
     ///region
     
     @Test(timeout = 10000)
@@ -84,160 +32,18 @@ public class IOUtilsTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncodeUTF82() throws Throwable  {
-        char[] charArray = new char[9];
+    public void testGetStringProperty1() throws Throwable  {
+        String string = new String();
         
-        IOUtils.encodeUTF8(charArray, 0, 0, null);
+        IOUtils.getStringProperty(string);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncodeUTF83() throws Throwable  {
-        char[] charArray = new char[9];
-        byte[] byteArray = new byte[40];
-        
-        IOUtils.encodeUTF8(charArray, 1073741824, 33, byteArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testEncodeUTF84() throws Throwable  {
-        byte[] byteArray = new byte[0];
-        
-        int actual = IOUtils.encodeUTF8(null, 510, -2147467263, byteArray);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncodeUTF85() throws Throwable  {
-        char[] charArray = new char[4];
-        byte[] byteArray = new byte[0];
-        
-        IOUtils.encodeUTF8(charArray, -2147298650, -2147448815, byteArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncodeUTF86() throws Throwable  {
-        char[] charArray = new char[9];
-        charArray[0] = '\uE000';
-        byte[] byteArray = new byte[1];
-        
-        IOUtils.encodeUTF8(charArray, 0, 1, byteArray);
-        
-        byte finalByteArray0 = byteArray[0];
-        
-        assertEquals((byte) -18, finalByteArray0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncodeUTF87() throws Throwable  {
-        char[] charArray = new char[9];
-        charArray[8] = '\uD800';
-        byte[] byteArray = new byte[15];
-        
-        IOUtils.encodeUTF8(charArray, 8, 15, byteArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncodeUTF88() throws Throwable  {
-        char[] charArray = new char[37];
-        charArray[36] = '\u0800';
-        byte[] byteArray = new byte[30];
-        
-        IOUtils.encodeUTF8(charArray, 36, 29, byteArray);
-        
-        byte finalByteArray0 = byteArray[0];
-        byte finalByteArray1 = byteArray[1];
-        byte finalByteArray2 = byteArray[2];
-        
-        assertEquals((byte) -32, finalByteArray0);
-        
-        assertEquals((byte) -96, finalByteArray1);
-        
-        assertEquals(java.lang.Byte.MIN_VALUE, finalByteArray2);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncodeUTF89() throws Throwable  {
-        char[] charArray = new char[9];
-        charArray[0] = '\u0080';
-        byte[] byteArray = new byte[40];
-        
-        IOUtils.encodeUTF8(charArray, 0, 33, byteArray);
-        
-        byte finalByteArray0 = byteArray[0];
-        byte finalByteArray1 = byteArray[1];
-        
-        assertEquals((byte) -62, finalByteArray0);
-        
-        assertEquals(java.lang.Byte.MIN_VALUE, finalByteArray1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testEncodeUTF810() throws Throwable  {
-        char[] charArray = new char[9];
-        byte[] byteArray = new byte[9];
-        
-        int actual = IOUtils.encodeUTF8(charArray, 0, 1, byteArray);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testEncodeUTF811() throws Throwable  {
-        char[] charArray = new char[9];
-        charArray[0] = '\uD800';
-        byte[] byteArray = new byte[8];
-        
-        int actual = IOUtils.encodeUTF8(charArray, 0, 1, byteArray);
-        
-        assertEquals(1, actual);
-        
-        byte finalByteArray0 = byteArray[0];
-        
-        assertEquals((byte) 63, finalByteArray0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncodeUTF812() throws Throwable  {
-        char[] charArray = new char[37];
-        charArray[36] = '\uDC00';
-        byte[] byteArray = new byte[28];
-        
-        IOUtils.encodeUTF8(charArray, 36, 28, byteArray);
-        
-        byte finalByteArray0 = byteArray[0];
-        
-        assertEquals((byte) 63, finalByteArray0);
+    public void testGetStringProperty2() throws Throwable  {
+        IOUtils.getStringProperty(null);
     }
     ///endregion
     
@@ -281,186 +87,6 @@ public class IOUtilsTest {
     
     @Test(timeout = 10000)
     public void testDecodeBase641() throws Throwable  {
-        char[] charArray = new char[0];
-        
-        byte[] actual = IOUtils.decodeBase64(charArray, 0, 0);
-        
-        byte[] expected = new byte[0];
-        assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDecodeBase642() throws Throwable  {
-        char[] charArray = new char[17];
-        
-        byte[] actual = IOUtils.decodeBase64(charArray, 0, 0);
-        
-        byte[] expected = new byte[0];
-        assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeBase643() throws Throwable  {
-        char[] charArray = new char[0];
-        
-        IOUtils.decodeBase64(charArray, 0, 1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeBase644() throws Throwable  {
-        char[] charArray = new char[9];
-        charArray[0] = '=';
-        
-        IOUtils.decodeBase64(charArray, 0, 1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeBase645() throws Throwable  {
-        char[] charArray = new char[9];
-        
-        IOUtils.decodeBase64(charArray, 1728053249, -1728053248);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeBase646() throws Throwable  {
-        IOUtils.decodeBase64(((char[]) null), 1476661504, -243322879);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeBase647() throws Throwable  {
-        IOUtils.decodeBase64(((char[]) null), 234732992, 1073209936);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDecodeBase648() throws Throwable  {
-        char[] charArray = new char[9];
-        
-        byte[] actual = IOUtils.decodeBase64(charArray, Integer.MAX_VALUE, -2147483646);
-        
-        byte[] expected = new byte[1];
-        assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDecodeBase649() throws Throwable  {
-        String string = new String();
-        
-        byte[] actual = IOUtils.decodeBase64(string, 0, 0);
-        
-        byte[] expected = new byte[0];
-        assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDecodeBase6410() throws Throwable  {
-        byte[] actual = IOUtils.decodeBase64(((String) null), 0, 0);
-        
-        byte[] expected = new byte[0];
-        assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeBase6411() throws Throwable  {
-        IOUtils.decodeBase64(((String) null), 67272784, -1979182296);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeBase6412() throws Throwable  {
-        String string = new String("\u0000");
-        
-        IOUtils.decodeBase64(string, 976568320, -976568319);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDecodeBase6413() throws Throwable  {
-        String string = new String("\u0000");
-        
-        byte[] actual = IOUtils.decodeBase64(string, 0, 1);
-        
-        byte[] expected = new byte[0];
-        assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDecodeBase6414() throws Throwable  {
-        String string = new String("\u0000");
-        
-        byte[] actual = IOUtils.decodeBase64(string, 715827882, -715827881);
-        
-        byte[] expected = new byte[1];
-        assertArrayEquals(expected, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeBase6415() throws Throwable  {
-        IOUtils.decodeBase64(((String) null), 1073741952, -1072136104);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeBase6416() throws Throwable  {
-        IOUtils.decodeBase64(((String) null), -2147483376, 7963720);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeBase6417() throws Throwable  {
-        String string = new String("=");
-        
-        IOUtils.decodeBase64(string, 0, 1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDecodeBase6418() throws Throwable  {
         String string = new String();
         
         byte[] actual = IOUtils.decodeBase64(string);
@@ -473,7 +99,7 @@ public class IOUtilsTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeBase6419() throws Throwable  {
+    public void testDecodeBase642() throws Throwable  {
         IOUtils.decodeBase64(null);
     }
     ///endregion
@@ -481,7 +107,7 @@ public class IOUtilsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testDecodeBase6420() throws Throwable  {
+    public void testDecodeBase643() throws Throwable  {
         String string = new String("");
         
         byte[] actual = IOUtils.decodeBase64(string);
@@ -494,7 +120,7 @@ public class IOUtilsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testDecodeBase6421() throws Throwable  {
+    public void testDecodeBase644() throws Throwable  {
         String string = new String("\u0000");
         
         byte[] actual = IOUtils.decodeBase64(string);
@@ -506,11 +132,203 @@ public class IOUtilsTest {
     
     ///region
     
+    @Test(timeout = 10000)
+    public void testDecodeBase645() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase646() throws Throwable  {
+        char[] charArray = new char[17];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase647() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        IOUtils.decodeBase64(charArray, 0, 1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase648() throws Throwable  {
+        char[] charArray = new char[9];
+        charArray[0] = '=';
+        
+        IOUtils.decodeBase64(charArray, 0, 1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase649() throws Throwable  {
+        char[] charArray = new char[9];
+        
+        IOUtils.decodeBase64(charArray, 1677721600, -1677721599);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6410() throws Throwable  {
+        char[] charArray = new char[9];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, 0, 1);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6411() throws Throwable  {
+        char[] charArray = new char[9];
+        
+        IOUtils.decodeBase64(charArray, 715827849, -715827848);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6412() throws Throwable  {
+        char[] charArray = new char[9];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, Integer.MAX_VALUE, -2147483646);
+        
+        byte[] expected = new byte[1];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6413() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        IOUtils.decodeBase64(charArray, 496682592, 536870426);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6414() throws Throwable  {
+        IOUtils.decodeBase64(((char[]) null), 1572553224, -536886021);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6415() throws Throwable  {
+        String string = new String();
+        
+        byte[] actual = IOUtils.decodeBase64(string, 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6416() throws Throwable  {
+        byte[] actual = IOUtils.decodeBase64(((String) null), 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6417() throws Throwable  {
+        IOUtils.decodeBase64(((String) null), 715827880, -2147483640);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6418() throws Throwable  {
+        String string = new String("\u0000");
+        
+        IOUtils.decodeBase64(string, 53433344, -53433343);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6419() throws Throwable  {
+        String string = new String("\u0000");
+        
+        byte[] actual = IOUtils.decodeBase64(string, 0, 1);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6420() throws Throwable  {
+        IOUtils.decodeBase64(((String) null), -2147483376, 7963720);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6421() throws Throwable  {
+        String string = new String("\u0000");
+        
+        IOUtils.decodeBase64(string, 1431655752, -1431655751);
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDecodeBase6422() throws Throwable  {
         String string = new String("=");
         
-        IOUtils.decodeBase64(string);
+        IOUtils.decodeBase64(string, 0, 1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6423() throws Throwable  {
+        IOUtils.decodeBase64(((String) null), 1073741952, -1072136104);
     }
     ///endregion
     
@@ -531,7 +349,7 @@ public class IOUtilsTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDecodeUTF82() throws Throwable  {
-        byte[] byteArray = new byte[17];
+        byte[] byteArray = new byte[9];
         
         IOUtils.decodeUTF8(byteArray, 0, 0, null);
     }
@@ -542,9 +360,9 @@ public class IOUtilsTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDecodeUTF83() throws Throwable  {
         byte[] byteArray = new byte[9];
-        char[] charArray = new char[40];
+        char[] charArray = new char[32];
         
-        IOUtils.decodeUTF8(byteArray, 1073741824, 33, charArray);
+        IOUtils.decodeUTF8(byteArray, 1073741824, 1, charArray);
     }
     ///endregion
     
@@ -552,9 +370,9 @@ public class IOUtilsTest {
     
     @Test(timeout = 10000)
     public void testDecodeUTF84() throws Throwable  {
-        char[] charArray = new char[0];
+        char[] charArray = new char[10];
         
-        int actual = IOUtils.decodeUTF8(null, 536883200, -2147483453, charArray);
+        int actual = IOUtils.decodeUTF8(null, 12288, -2147482613, charArray);
         
         assertEquals(0, actual);
     }
@@ -565,9 +383,9 @@ public class IOUtilsTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDecodeUTF85() throws Throwable  {
         byte[] byteArray = new byte[9];
-        char[] charArray = new char[4];
+        char[] charArray = new char[0];
         
-        IOUtils.decodeUTF8(byteArray, -1342145316, -1073766451, charArray);
+        IOUtils.decodeUTF8(byteArray, -1341828864, -1073987583, charArray);
     }
     ///endregion
     
@@ -617,9 +435,9 @@ public class IOUtilsTest {
     public void testDecodeUTF89() throws Throwable  {
         byte[] byteArray = new byte[34];
         byteArray[32] = (byte) -32;
-        char[] charArray = new char[17];
+        char[] charArray = new char[15];
         
-        int actual = IOUtils.decodeUTF8(byteArray, 32, 2, charArray);
+        int actual = IOUtils.decodeUTF8(byteArray, 32, 1, charArray);
         
         assertEquals(-1, actual);
     }
@@ -645,7 +463,7 @@ public class IOUtilsTest {
     public void testDecodeUTF811() throws Throwable  {
         byte[] byteArray = new byte[34];
         byteArray[32] = (byte) -62;
-        char[] charArray = new char[16];
+        char[] charArray = new char[15];
         
         int actual = IOUtils.decodeUTF8(byteArray, 32, 1, charArray);
         
@@ -684,7 +502,7 @@ public class IOUtilsTest {
         byte[] byteArray = new byte[15];
         byteArray[3] = (byte) -31;
         byteArray[4] = java.lang.Byte.MIN_VALUE;
-        char[] charArray = new char[11];
+        char[] charArray = new char[12];
         
         int actual = IOUtils.decodeUTF8(byteArray, 3, 11, charArray);
         
@@ -711,7 +529,7 @@ public class IOUtilsTest {
         byte[] byteArray = new byte[15];
         byteArray[3] = (byte) -32;
         byteArray[4] = java.lang.Byte.MIN_VALUE;
-        char[] charArray = new char[11];
+        char[] charArray = new char[12];
         
         int actual = IOUtils.decodeUTF8(byteArray, 3, 11, charArray);
         
@@ -723,37 +541,11 @@ public class IOUtilsTest {
     
     @Test(timeout = 10000)
     public void testDecodeUTF817() throws Throwable  {
-        byte[] byteArray = new byte[11];
-        byteArray[1] = (byte) -62;
-        char[] charArray = new char[40];
-        
-        int actual = IOUtils.decodeUTF8(byteArray, 1, 38, charArray);
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeUTF818() throws Throwable  {
-        byte[] byteArray = new byte[11];
-        byteArray[8] = (byte) -16;
-        char[] charArray = new char[40];
-        
-        IOUtils.decodeUTF8(byteArray, 8, 37, charArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDecodeUTF819() throws Throwable  {
         byte[] byteArray = new byte[15];
         byteArray[3] = (byte) -31;
         byteArray[4] = java.lang.Byte.MIN_VALUE;
         byteArray[5] = java.lang.Byte.MIN_VALUE;
-        char[] charArray = new char[11];
+        char[] charArray = new char[12];
         
         int actual = IOUtils.decodeUTF8(byteArray, 3, 11, charArray);
         
@@ -767,29 +559,80 @@ public class IOUtilsTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeUTF820() throws Throwable  {
-        byte[] byteArray = new byte[11];
-        byteArray[1] = (byte) -62;
-        byteArray[2] = java.lang.Byte.MIN_VALUE;
-        char[] charArray = new char[40];
+    @Test(timeout = 10000)
+    public void testDecodeUTF818() throws Throwable  {
+        byte[] byteArray = new byte[17];
+        char[] charArray = new char[32];
         
-        IOUtils.decodeUTF8(byteArray, 1, 38, charArray);
+        int actual = IOUtils.decodeUTF8(byteArray, 0, 1, charArray);
         
-        char finalCharArray0 = charArray[0];
-        
-        assertEquals('\u0080', finalCharArray0);
+        assertEquals(1, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecodeUTF821() throws Throwable  {
-        byte[] byteArray = new byte[17];
-        char[] charArray = new char[40];
+    public void testReadAll1() throws Throwable  {
+        IOUtils.readAll(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam1() throws Throwable  {
+        String string = new String();
         
-        IOUtils.decodeUTF8(byteArray, 0, 33, charArray);
+        boolean actual = IOUtils.isValidJsonpQueryParam(string);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam2() throws Throwable  {
+        boolean actual = IOUtils.isValidJsonpQueryParam(null);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam3() throws Throwable  {
+        String string = new String("");
+        
+        boolean actual = IOUtils.isValidJsonpQueryParam(string);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam4() throws Throwable  {
+        String string = new String(".");
+        
+        boolean actual = IOUtils.isValidJsonpQueryParam(string);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam5() throws Throwable  {
+        String string = new String(".\u0000");
+        
+        boolean actual = IOUtils.isValidJsonpQueryParam(string);
+        
+        assertFalse(actual);
     }
     ///endregion
     
@@ -809,7 +652,7 @@ public class IOUtilsTest {
     public void testGetChars2() throws Throwable  {
         char[] charArray = new char[17];
         
-        IOUtils.getChars(-65537, 0, charArray);
+        IOUtils.getChars(0, 0, charArray);
     }
     ///endregion
     
@@ -819,7 +662,7 @@ public class IOUtilsTest {
     public void testGetChars3() throws Throwable  {
         char[] charArray = new char[17];
         
-        IOUtils.getChars(0, 0, charArray);
+        IOUtils.getChars(65536, 0, charArray);
     }
     ///endregion
     
@@ -827,9 +670,9 @@ public class IOUtilsTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetChars4() throws Throwable  {
-        char[] charArray = new char[0];
+        char[] charArray = new char[18];
         
-        IOUtils.getChars((byte) 0, 0, charArray);
+        IOUtils.getChars(Integer.MIN_VALUE, 0, charArray);
     }
     ///endregion
     
@@ -839,7 +682,7 @@ public class IOUtilsTest {
     public void testGetChars5() throws Throwable  {
         char[] charArray = new char[0];
         
-        IOUtils.getChars(0L, 0, charArray);
+        IOUtils.getChars((byte) 0, 0, charArray);
     }
     ///endregion
     
@@ -847,9 +690,9 @@ public class IOUtilsTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetChars6() throws Throwable  {
-        char[] charArray = new char[17];
+        char[] charArray = new char[0];
         
-        IOUtils.getChars(-1073774592L, 0, charArray);
+        IOUtils.getChars(0L, 0, charArray);
     }
     ///endregion
     
@@ -857,9 +700,9 @@ public class IOUtilsTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetChars7() throws Throwable  {
-        char[] charArray = new char[17];
+        char[] charArray = new char[9];
         
-        IOUtils.getChars(4611686018427387904L, 0, charArray);
+        IOUtils.getChars(-9223372034707415040L, 0, charArray);
     }
     ///endregion
     
@@ -867,7 +710,15 @@ public class IOUtilsTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetChars8() throws Throwable  {
-        IOUtils.getChars(java.lang.Long.MIN_VALUE, 0, ((char[]) null));
+        IOUtils.getChars(1L, 0, ((char[]) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars9() throws Throwable  {
+        IOUtils.getChars(65536L, 0, ((char[]) null));
     }
     ///endregion
     
@@ -883,24 +734,8 @@ public class IOUtilsTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDecode2() throws Throwable  {
-        Object directByteBufferR = createInstance("java.nio.DirectByteBufferR");
-        Object heapCharBufferR = createInstance("java.nio.HeapCharBufferR");
-        
-        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
-        Class charsetDecoderType = Class.forName("java.nio.charset.CharsetDecoder");
-        Class directByteBufferRType = Class.forName("java.nio.ByteBuffer");
-        Class heapCharBufferRType = Class.forName("java.nio.CharBuffer");
-        Method decodeMethod = iOUtilsClazz.getDeclaredMethod("decode", charsetDecoderType, directByteBufferRType, heapCharBufferRType);
-        decodeMethod.setAccessible(true);
-        java.lang.Object[] decodeMethodArguments = new java.lang.Object[3];
-        decodeMethodArguments[0] = null;
-        decodeMethodArguments[1] = directByteBufferR;
-        decodeMethodArguments[2] = heapCharBufferR;
-        try {
-            decodeMethod.invoke(null, decodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+        IOUtils.decode(null, null, null);
+    }
     ///endregion
     
     ///region
@@ -918,6 +753,72 @@ public class IOUtilsTest {
     
     @Test(timeout = 10000)
     public void testDecode4() throws Throwable  {
+        Object decoder = createInstance("sun.nio.cs.US_ASCII$Decoder");
+        setField(decoder, "state", 0);
+        Object directByteBuffer = createInstance("java.nio.DirectByteBuffer");
+        setField(directByteBuffer, "limit", 0);
+        setField(directByteBuffer, "position", 0);
+        setField(directByteBuffer, "isReadOnly", true);
+        byte[] byteArray = new byte[9];
+        setField(directByteBuffer, "hb", byteArray);
+        
+        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
+        Class decoderType = Class.forName("java.nio.charset.CharsetDecoder");
+        Class directByteBufferType = Class.forName("java.nio.ByteBuffer");
+        Class charBufferType = Class.forName("java.nio.CharBuffer");
+        Method decodeMethod = iOUtilsClazz.getDeclaredMethod("decode", decoderType, directByteBufferType, charBufferType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[3];
+        decodeMethodArguments[0] = decoder;
+        decodeMethodArguments[1] = directByteBuffer;
+        decodeMethodArguments[2] = null;
+        decodeMethod.invoke(null, decodeMethodArguments);
+        
+        Object finalDecoderState = getFieldValue(decoder, "state");
+        
+        assertEquals(3, finalDecoderState);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode5() throws Throwable  {
+        UTF8Decoder uTF8Decoder = ((UTF8Decoder) createInstance("com.alibaba.fastjson.util.UTF8Decoder"));
+        setField(uTF8Decoder, "state", 0);
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "limit", 0);
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "isReadOnly", false);
+        setField(heapByteBuffer, "offset", 0);
+        byte[] byteArray = new byte[0];
+        setField(heapByteBuffer, "hb", byteArray);
+        
+        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
+        Class uTF8DecoderType = Class.forName("java.nio.charset.CharsetDecoder");
+        Class heapByteBufferType = Class.forName("java.nio.ByteBuffer");
+        Class charBufferType = Class.forName("java.nio.CharBuffer");
+        Method decodeMethod = iOUtilsClazz.getDeclaredMethod("decode", uTF8DecoderType, heapByteBufferType, charBufferType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[3];
+        decodeMethodArguments[0] = uTF8Decoder;
+        decodeMethodArguments[1] = heapByteBuffer;
+        decodeMethodArguments[2] = null;
+        try {
+            decodeMethod.invoke(null, decodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object finalUTF8DecoderState = getFieldValue(uTF8Decoder, "state");
+        
+        assertEquals(2, finalUTF8DecoderState);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecode6() throws Throwable  {
         UTF8Decoder uTF8Decoder = ((UTF8Decoder) createInstance("com.alibaba.fastjson.util.UTF8Decoder"));
         setField(uTF8Decoder, "state", 0);
         Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
@@ -932,7 +833,7 @@ public class IOUtilsTest {
         setField(heapCharBufferR, "position", 0);
         setField(heapCharBufferR, "isReadOnly", false);
         setField(heapCharBufferR, "offset", 0);
-        char[] charArray = new char[12];
+        char[] charArray = new char[9];
         setField(heapCharBufferR, "hb", charArray);
         
         Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
@@ -956,7 +857,7 @@ public class IOUtilsTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecode5() throws Throwable  {
+    public void testDecode7() throws Throwable  {
         Object decoder = createInstance("sun.nio.cs.US_ASCII$Decoder");
         setField(decoder, "state", 1);
         Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");

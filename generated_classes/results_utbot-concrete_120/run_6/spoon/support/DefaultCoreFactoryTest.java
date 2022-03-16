@@ -2,7 +2,6 @@ package spoon.support;
 
 import org.junit.Test;
 import spoon.reflect.factory.Factory;
-import spoon.reflect.factory.FactoryImpl;
 import spoon.reflect.cu.SourcePosition;
 import spoon.support.reflect.cu.position.SourcePositionImpl;
 import spoon.support.reflect.cu.CompilationUnitImpl;
@@ -29,27 +28,47 @@ import java.util.Iterator;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateClass1() throws Throwable  {
+    public void testCreateAnonymousExecutable1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createClass();
+        defaultCoreFactory.createAnonymousExecutable();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateClass2() throws Throwable  {
+    public void testCreateAnonymousExecutable2() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
         
-        defaultCoreFactory.createClass();
+        defaultCoreFactory.createAnonymousExecutable();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateCase1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createCase();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateBlock1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createBlock();
     }
     ///endregion
     
@@ -66,16 +85,6 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayWrite1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createArrayWrite();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testCreateAssignment1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
@@ -86,10 +95,10 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayRead1() throws Throwable  {
+    public void testCreateAnnotation1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createArrayRead();
+        defaultCoreFactory.createAnnotation();
     }
     ///endregion
     
@@ -106,10 +115,20 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateAnnotation1() throws Throwable  {
+    public void testCreateArrayWrite1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createAnnotation();
+        defaultCoreFactory.createArrayWrite();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateArrayRead1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createArrayRead();
     }
     ///endregion
     
@@ -226,6 +245,46 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateClass1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createClass();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateArrayTypeReference1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createArrayTypeReference();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateBinaryOperator1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createBinaryOperator();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateBreak1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createBreak();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testCreateFieldRead1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
@@ -320,66 +379,6 @@ public class DefaultCoreFactoryTest {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
         defaultCoreFactory.createInvocation();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateBinaryOperator1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createBinaryOperator();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateBreak1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createBreak();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateCase1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createCase();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateAnonymousExecutable1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createAnonymousExecutable();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateBlock1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createBlock();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayTypeReference1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createArrayTypeReference();
     }
     ///endregion
     
@@ -804,15 +803,8 @@ public class DefaultCoreFactoryTest {
     public void testSetMainFactory2() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
         setField(defaultCoreFactory, "factory", null);
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         
-        Object initialDefaultCoreFactoryFactory = getFieldValue(defaultCoreFactory, "factory");
-        
-        defaultCoreFactory.setMainFactory(factoryImpl);
-        
-        Object finalDefaultCoreFactoryFactory = getFieldValue(defaultCoreFactory, "factory");
-        
-        assertFalse(initialDefaultCoreFactoryFactory == finalDefaultCoreFactoryFactory);
+        defaultCoreFactory.setMainFactory(null);
     }
     ///endregion
     
@@ -1472,25 +1464,6 @@ public class DefaultCoreFactoryTest {
         field.setAccessible(true);
         field.set(object, fieldValue);
     }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
-    }
     static class FieldsPair {
         final Object o1;
         final Object o2;
@@ -1658,6 +1631,25 @@ public class DefaultCoreFactoryTest {
         }
     
         return false;
+    }
+    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
+        Class<?> clazz = obj.getClass();
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                
+                return field.get(obj);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
+    
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

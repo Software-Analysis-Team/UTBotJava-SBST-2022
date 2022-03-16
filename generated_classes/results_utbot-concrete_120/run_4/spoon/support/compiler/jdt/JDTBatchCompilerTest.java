@@ -141,29 +141,7 @@ public class JDTBatchCompilerTest {
         
         assertNull(finalJDTBatchCompilerLimitedModules);
         
-        assertEquals(1645034053540L, finalJDTBatchCompilerStartTime);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetCompilationUnits1() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[0];
-        
-        jDTBatchCompiler.setCompilationUnits(compilationUnitArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetCompilationUnits2() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        setField(jDTBatchCompiler, "compilationUnits", null);
-        
-        jDTBatchCompiler.setCompilationUnits(null);
+        assertEquals(1645029140324L, finalJDTBatchCompilerStartTime);
     }
     ///endregion
     
@@ -211,6 +189,28 @@ public class JDTBatchCompilerTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testSetCompilationUnits1() throws Throwable  {
+        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
+        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[0];
+        
+        jDTBatchCompiler.setCompilationUnits(compilationUnitArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetCompilationUnits2() throws Throwable  {
+        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
+        setField(jDTBatchCompiler, "compilationUnits", null);
+        
+        jDTBatchCompiler.setCompilationUnits(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testGetJdtCompiler1() throws Throwable  {
         JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
         
@@ -241,15 +241,6 @@ public class JDTBatchCompilerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testJDTBatchCompiler1() throws Throwable  {
         JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
-        new JDTBatchCompiler(jDTBasedSpoonCompiler);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testJDTBatchCompiler2() throws Throwable  {
-        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
         new JDTBatchCompiler(jDTBasedSpoonCompiler, null, null);
     }
     ///endregion
@@ -257,8 +248,17 @@ public class JDTBatchCompilerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testJDTBatchCompiler3() {
+    public void testJDTBatchCompiler2() {
         new JDTBatchCompiler(null, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testJDTBatchCompiler3() throws Throwable  {
+        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
+        new JDTBatchCompiler(jDTBasedSpoonCompiler);
     }
     ///endregion
     

@@ -2,15 +2,14 @@ package com.alibaba.fastjson.parser.deserializer;
 
 import org.junit.Test;
 import com.alibaba.fastjson.parser.DefaultJSONParser;
-import com.alibaba.fastjson.parser.JSONScanner;
-import com.alibaba.fastjson.parser.JSONLexer;
 import com.alibaba.fastjson.parser.DefaultExtJSONParser;
 import sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl;
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
+import com.alibaba.fastjson.parser.JSONScanner;
+import com.alibaba.fastjson.parser.JSONLexer;
+import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 import com.alibaba.fastjson.parser.JSONReaderScanner;
 import java.lang.reflect.Type;
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -20,14 +19,15 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
+import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
 import static java.lang.reflect.Array.get;
+import static org.junit.Assert.assertTrue;
 
 public class JavaObjectDeserializerTest {
     ///region
@@ -48,9 +48,8 @@ public class JavaObjectDeserializerTest {
     public void testDeserialze2() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         Class class1 = Object.class;
-        java.lang.Object[] ofRefArray = createArray("java.util.stream.Nodes$ToArrayTask$OfRef", 0);
         
-        javaObjectDeserializer.deserialze(null, class1, ofRefArray);
+        javaObjectDeserializer.deserialze(null, class1, null);
     }
     ///endregion
     
@@ -59,29 +58,11 @@ public class JavaObjectDeserializerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDeserialze3() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 9);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze4() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
         GenericArrayTypeImpl genericArrayTypeImpl = ((GenericArrayTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl"));
-        ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
-        setField(genericArrayTypeImpl, "genericComponentType", parameterizedTypeImpl);
+        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
+        setField(typeVariableImpl, "bounds", null);
+        setField(genericArrayTypeImpl, "genericComponentType", typeVariableImpl);
         
         javaObjectDeserializer.deserialze(defaultExtJSONParser, genericArrayTypeImpl, null);
     }
@@ -90,28 +71,7 @@ public class JavaObjectDeserializerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze5() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze6() throws Throwable  {
+    public void testDeserialze4() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -133,15 +93,49 @@ public class JavaObjectDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze7() throws Throwable  {
+    public void testDeserialze5() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
         GenericArrayTypeImpl genericArrayTypeImpl = ((GenericArrayTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        setField(typeVariableImpl, "bounds", null);
-        setField(genericArrayTypeImpl, "genericComponentType", typeVariableImpl);
+        ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
+        setField(genericArrayTypeImpl, "genericComponentType", parameterizedTypeImpl);
         
         javaObjectDeserializer.deserialze(defaultExtJSONParser, genericArrayTypeImpl, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeserialze6() throws Throwable  {
+        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
+        setField(jSONReaderScanner, "token", 20);
+        setField(defaultJSONParser, "lexer", jSONReaderScanner);
+        
+        javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDeserialze7() throws Throwable  {
+        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        assertNull(actual);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
+        
+        assertEquals(20, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
@@ -161,20 +155,15 @@ public class JavaObjectDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testDeserialze9() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 7);
+        setField(jSONScanner, "token", 9);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
-        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        Boolean expected = false;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
         
         JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
@@ -189,9 +178,9 @@ public class JavaObjectDeserializerTest {
     public void testDeserialze10() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "token", 20);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "token", 18);
+        setField(defaultJSONParser, "lexer", jSONScanner);
         
         javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
     }
@@ -199,33 +188,8 @@ public class JavaObjectDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testDeserialze11() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "token", 6);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        Boolean expected = true;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze12() throws Throwable  {
+    public void testDeserialze11() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
         GenericArrayTypeImpl genericArrayTypeImpl = ((GenericArrayTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl"));
@@ -314,26 +278,37 @@ public class JavaObjectDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze13() throws Throwable  {
+    @Test(timeout = 10000)
+    public void testDeserialze12() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 18);
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "token", 6);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
-        javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
+        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
+        
+        Boolean expected = true;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
+        
+        assertEquals(20, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze14() throws Throwable  {
+    public void testDeserialze13() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(defaultJSONParser, "lexer", jSONScanner);
         Class class1 = Object.class;
         
         javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);
@@ -342,48 +317,8 @@ public class JavaObjectDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze15() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 22);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
-    public void testDeserialze16() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 23);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze17() throws Throwable  {
+    public void testDeserialze14() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -439,15 +374,6 @@ public class JavaObjectDeserializerTest {
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();

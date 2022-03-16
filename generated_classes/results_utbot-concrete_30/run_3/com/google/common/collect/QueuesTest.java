@@ -3,9 +3,9 @@ package com.google.common.collect;
 import org.junit.Test;
 import java.util.PriorityQueue;
 import java.util.ArrayList;
+import java.lang.reflect.Method;
 import com.google.common.collect.FilteredKeyMultimap.Entries;
 import com.google.common.collect.FilteredKeyMultimap;
-import java.lang.reflect.Method;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -63,6 +63,25 @@ public class QueuesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testNewPriorityQueue3() throws Throwable  {
+        Object synchronizedNavigableSet = createInstance("java.util.Collections$SynchronizedNavigableSet");
+        
+        Class queuesClazz = Class.forName("com.google.common.collect.Queues");
+        Class synchronizedNavigableSetType = Class.forName("java.lang.Iterable");
+        Method newPriorityQueueMethod = queuesClazz.getDeclaredMethod("newPriorityQueue", synchronizedNavigableSetType);
+        newPriorityQueueMethod.setAccessible(true);
+        java.lang.Object[] newPriorityQueueMethodArguments = new java.lang.Object[1];
+        newPriorityQueueMethodArguments[0] = synchronizedNavigableSet;
+        try {
+            newPriorityQueueMethod.invoke(null, newPriorityQueueMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testNewPriorityQueue4() throws Throwable  {
         FilteredKeyMultimap.Entries entries = ((FilteredKeyMultimap.Entries) createInstance("com.google.common.collect.FilteredKeyMultimap$Entries"));
         
         Class queuesClazz = Class.forName("com.google.common.collect.Queues");

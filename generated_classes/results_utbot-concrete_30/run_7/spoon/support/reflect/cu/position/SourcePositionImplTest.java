@@ -68,6 +68,35 @@ public class SourcePositionImplTest {
     @Test(timeout = 10000)
     public void testHashCode2() throws Throwable  {
         SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
+        setField(sourcePositionImpl, "sourceStartline", 0);
+        
+        int actual = sourcePositionImpl.hashCode();
+        
+        assertEquals(29761, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testHashCode3() throws Throwable  {
+        SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
+        int[] intArray = new int[9];
+        setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
+        setField(sourcePositionImpl, "sourceStartline", 0);
+        setField(sourcePositionImpl, "sourceStart", 0);
+        
+        int actual = sourcePositionImpl.hashCode();
+        
+        assertEquals(29792, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testHashCode4() throws Throwable  {
+        SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
         int[] intArray = new int[1];
         intArray[0] = 1;
         setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
@@ -87,29 +116,7 @@ public class SourcePositionImplTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testHashCode3() throws Throwable  {
-        SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
-        int[] intArray = new int[2];
-        intArray[0] = 1;
-        intArray[1] = -2147483646;
-        setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
-        setField(sourcePositionImpl, "sourceStartline", -1);
-        setField(sourcePositionImpl, "sourceStart", 0);
-        
-        int actual = sourcePositionImpl.hashCode();
-        
-        assertEquals(-2147452957, actual);
-        
-        Object finalSourcePositionImplSourceStartline = getFieldValue(sourcePositionImpl, "sourceStartline");
-        
-        assertEquals(1, finalSourcePositionImplSourceStartline);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHashCode4() throws Throwable  {
+    public void testHashCode5() throws Throwable  {
         SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
         int[] intArray = new int[1];
         intArray[0] = Integer.MIN_VALUE;
@@ -130,10 +137,31 @@ public class SourcePositionImplTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testHashCode5() throws Throwable  {
+    public void testHashCode6() throws Throwable  {
+        SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
+        int[] intArray = new int[9];
+        setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
+        setField(sourcePositionImpl, "sourceStartline", -1);
+        setField(sourcePositionImpl, "sourceStart", 0);
+        
+        int actual = sourcePositionImpl.hashCode();
+        
+        assertEquals(34597, actual);
+        
+        Object finalSourcePositionImplSourceStartline = getFieldValue(sourcePositionImpl, "sourceStartline");
+        
+        assertEquals(5, finalSourcePositionImplSourceStartline);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testHashCode7() throws Throwable  {
         SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
         int[] intArray = new int[32];
-        intArray[1] = 2;
+        intArray[0] = Integer.MIN_VALUE;
+        intArray[1] = -2147483647;
         intArray[2] = 2;
         intArray[3] = 2;
         intArray[4] = 2;
@@ -166,38 +194,18 @@ public class SourcePositionImplTest {
         intArray[31] = 2;
         setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
         setField(sourcePositionImpl, "sourceStartline", 0);
-        setField(sourcePositionImpl, "sourceStart", 1);
-        
-        int actual = sourcePositionImpl.hashCode();
-        
-        assertEquals(29823, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHashCode6() throws Throwable  {
-        SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
-        int[] intArray = new int[9];
-        setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
-        setField(sourcePositionImpl, "sourceStartline", -1);
         setField(sourcePositionImpl, "sourceStart", 0);
         
         int actual = sourcePositionImpl.hashCode();
         
-        assertEquals(34597, actual);
-        
-        Object finalSourcePositionImplSourceStartline = getFieldValue(sourcePositionImpl, "sourceStartline");
-        
-        assertEquals(5, finalSourcePositionImplSourceStartline);
+        assertEquals(-2147453887, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testHashCode7() throws Throwable  {
+    public void testHashCode8() throws Throwable  {
         SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
         int[] intArray = new int[0];
         setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
@@ -213,7 +221,7 @@ public class SourcePositionImplTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testHashCode8() throws Throwable  {
+    public void testHashCode9() throws Throwable  {
         SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
         CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
         setField(sourcePositionImpl, "compilationUnit", compilationUnitImpl);
@@ -256,21 +264,6 @@ public class SourcePositionImplTest {
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testToString3() throws Throwable  {
-        SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
-        CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
-        Object fileSystemRoot = createInstance("javax.swing.filechooser.FileSystemView$FileSystemRoot");
-        setField(compilationUnitImpl, "file", fileSystemRoot);
-        setField(sourcePositionImpl, "compilationUnit", compilationUnitImpl);
-        setField(sourcePositionImpl, "sourceStartline", 0);
-        
-        sourcePositionImpl.toString();
     }
     ///endregion
     
@@ -580,15 +573,60 @@ public class SourcePositionImplTest {
     public void testGetColumn6() throws Throwable  {
         SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
         CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
+        setField(compilationUnitImpl, "originalSourceCode", null);
+        setField(compilationUnitImpl, "file", null);
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
+        setField(standardEnvironment, "tabulationSize", 0);
+        setField(factoryImpl, "environment", standardEnvironment);
+        setField(compilationUnitImpl, "factory", factoryImpl);
+        setField(sourcePositionImpl, "compilationUnit", compilationUnitImpl);
+        int[] intArray = new int[2];
+        intArray[1] = 4;
+        setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
+        setField(sourcePositionImpl, "sourceStart", -2147483647);
+        
+        sourcePositionImpl.getColumn();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetColumn7() throws Throwable  {
+        SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
+        CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
+        String string = new String("");
+        setField(compilationUnitImpl, "originalSourceCode", string);
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
+        setField(standardEnvironment, "tabulationSize", 0);
+        setField(factoryImpl, "environment", standardEnvironment);
+        setField(compilationUnitImpl, "factory", factoryImpl);
+        setField(sourcePositionImpl, "compilationUnit", compilationUnitImpl);
+        int[] intArray = new int[2];
+        intArray[0] = 1073741824;
+        setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
+        setField(sourcePositionImpl, "sourceStart", 1);
+        
+        sourcePositionImpl.getColumn();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetColumn8() throws Throwable  {
+        SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
+        CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         setField(factoryImpl, "environment", null);
         setField(compilationUnitImpl, "factory", factoryImpl);
         setField(sourcePositionImpl, "compilationUnit", compilationUnitImpl);
         int[] intArray = new int[2];
-        intArray[0] = Integer.MIN_VALUE;
-        intArray[1] = -2147483647;
+        intArray[1] = 4;
         setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
-        setField(sourcePositionImpl, "sourceStart", 0);
+        setField(sourcePositionImpl, "sourceStart", -2147483647);
         
         Object sourcePositionImplCompilationUnit = getFieldValue(sourcePositionImpl, "compilationUnit");
         Object sourcePositionImplCompilationUnitCompilationUnitFactory = getFieldValue(sourcePositionImplCompilationUnit, "factory");
@@ -725,28 +763,8 @@ public class SourcePositionImplTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testGetEndColumn5() throws Throwable  {
-        SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
-        CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
-        setField(standardEnvironment, "tabulationSize", 0);
-        setField(factoryImpl, "environment", standardEnvironment);
-        setField(compilationUnitImpl, "factory", factoryImpl);
-        setField(sourcePositionImpl, "compilationUnit", compilationUnitImpl);
-        int[] intArray = new int[1];
-        setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
-        setField(sourcePositionImpl, "sourceEnd", 0);
-        
-        sourcePositionImpl.getEndColumn();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetEndColumn6() throws Throwable  {
         SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
         CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
         String string = new String("");
@@ -758,18 +776,19 @@ public class SourcePositionImplTest {
         setField(compilationUnitImpl, "factory", factoryImpl);
         setField(sourcePositionImpl, "compilationUnit", compilationUnitImpl);
         int[] intArray = new int[2];
-        intArray[0] = 1073741824;
         setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
-        setField(sourcePositionImpl, "sourceEnd", 1);
+        setField(sourcePositionImpl, "sourceEnd", -2147483647);
         
-        sourcePositionImpl.getEndColumn();
+        int actual = sourcePositionImpl.getEndColumn();
+        
+        assertEquals(-2147483647, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetEndColumn7() throws Throwable  {
+    public void testGetEndColumn6() throws Throwable  {
         SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
         CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
@@ -797,46 +816,24 @@ public class SourcePositionImplTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testGetEndColumn8() throws Throwable  {
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetEndColumn7() throws Throwable  {
         SourcePositionImpl sourcePositionImpl = ((SourcePositionImpl) createInstance("spoon.support.reflect.cu.position.SourcePositionImpl"));
-        int[] intArray = new int[31];
-        intArray[1] = Integer.MIN_VALUE;
-        intArray[2] = -2147483647;
-        intArray[3] = -2147483647;
-        intArray[4] = -2147483647;
-        intArray[5] = -2147483647;
-        intArray[6] = -2147483647;
-        intArray[7] = -2147483647;
-        intArray[8] = -2147483647;
-        intArray[9] = -2147483647;
-        intArray[10] = -2147483647;
-        intArray[11] = -2147483647;
-        intArray[12] = -2147483647;
-        intArray[13] = -2147483647;
-        intArray[14] = -2147483647;
-        intArray[15] = -2147483647;
-        intArray[16] = -2147483647;
-        intArray[17] = -2147483647;
-        intArray[18] = -2147483647;
-        intArray[19] = -2147483647;
-        intArray[20] = -2147483647;
-        intArray[21] = -2147483647;
-        intArray[22] = -2147483647;
-        intArray[23] = -2147483647;
-        intArray[24] = -2147483647;
-        intArray[25] = -2147483647;
-        intArray[26] = -2147483647;
-        intArray[27] = -2147483647;
-        intArray[28] = -2147483647;
-        intArray[29] = -2147483647;
-        intArray[30] = -2147483647;
+        CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
+        String string = new String("");
+        setField(compilationUnitImpl, "originalSourceCode", string);
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
+        setField(standardEnvironment, "tabulationSize", 0);
+        setField(factoryImpl, "environment", standardEnvironment);
+        setField(compilationUnitImpl, "factory", factoryImpl);
+        setField(sourcePositionImpl, "compilationUnit", compilationUnitImpl);
+        int[] intArray = new int[2];
+        intArray[0] = 1073741824;
         setField(sourcePositionImpl, "lineSeparatorPositions", intArray);
-        setField(sourcePositionImpl, "sourceEnd", 0);
+        setField(sourcePositionImpl, "sourceEnd", 1);
         
-        int actual = sourcePositionImpl.getEndColumn();
-        
-        assertEquals(Integer.MAX_VALUE, actual);
+        sourcePositionImpl.getEndColumn();
     }
     ///endregion
     

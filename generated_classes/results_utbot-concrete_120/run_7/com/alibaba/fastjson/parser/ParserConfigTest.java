@@ -26,14 +26,15 @@ import com.alibaba.fastjson.serializer.DateCodec;
 import com.alibaba.fastjson.parser.deserializer.StackTraceElementDeserializer;
 import com.alibaba.fastjson.serializer.CalendarCodec;
 import com.alibaba.fastjson.parser.deserializer.TimeDeserializer;
-import com.alibaba.fastjson.util.FieldInfo;
+import java.lang.reflect.Type;
 import com.alibaba.fastjson.parser.deserializer.ObjectDeserializer;
+import sun.reflect.generics.reflectiveObjects.WildcardTypeImpl;
 import com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer;
 import com.alibaba.fastjson.parser.deserializer.FieldDeserializer;
 import com.alibaba.fastjson.util.JavaBeanInfo;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Type;
-import sun.reflect.generics.reflectiveObjects.WildcardTypeImpl;
+import com.alibaba.fastjson.util.FieldInfo;
+import com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer;
 import com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer;
 import com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory;
 import com.alibaba.fastjson.util.ASMClassLoader;
@@ -1435,176 +1436,8 @@ public class ParserConfigTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testGetDeserializer1() throws Throwable  {
-        ParserConfig parserConfig = new ParserConfig();
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        
-        parserConfig.getDeserializer(fieldInfo);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetDeserializer2() throws Throwable  {
-        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        
-        parserConfig.getDeserializer(((FieldInfo) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetDeserializer3() throws Throwable  {
-        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
-        setField(identityHashMap, "indexMask", 38);
-        java.lang.Object[] entryArray = createArray("com.alibaba.fastjson.util.IdentityHashMap$Entry", 39);
-        Object entry = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry, "value", null);
-        Class class1 = Object.class;
-        setField(entry, "key", class1);
-        entryArray[0] = entry;
-        entryArray[1] = entry;
-        entryArray[2] = entry;
-        entryArray[3] = entry;
-        entryArray[4] = entry;
-        entryArray[5] = entry;
-        entryArray[6] = entry;
-        entryArray[7] = entry;
-        entryArray[8] = entry;
-        entryArray[9] = entry;
-        entryArray[10] = entry;
-        entryArray[11] = entry;
-        entryArray[12] = entry;
-        entryArray[13] = entry;
-        entryArray[14] = entry;
-        entryArray[15] = entry;
-        entryArray[16] = entry;
-        entryArray[17] = entry;
-        entryArray[18] = entry;
-        entryArray[19] = entry;
-        entryArray[20] = entry;
-        entryArray[21] = entry;
-        entryArray[22] = entry;
-        entryArray[23] = entry;
-        entryArray[24] = entry;
-        entryArray[25] = entry;
-        entryArray[26] = entry;
-        entryArray[27] = entry;
-        entryArray[28] = entry;
-        entryArray[29] = entry;
-        entryArray[30] = entry;
-        entryArray[31] = entry;
-        entryArray[32] = entry;
-        entryArray[33] = entry;
-        entryArray[34] = entry;
-        entryArray[35] = entry;
-        entryArray[36] = entry;
-        entryArray[37] = entry;
-        entryArray[38] = entry;
-        setField(identityHashMap, "buckets", entryArray);
-        setField(parserConfig, "deserializers", identityHashMap);
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        setField(fieldInfo, "fieldType", class1);
-        setField(fieldInfo, "fieldClass", class1);
-        
-        Object parserConfigDeserializers = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializersDeserializersBuckets = getFieldValue(parserConfigDeserializers, "buckets");
-        Object parserConfigDeserializersDeserializersBucketsDeserializersBuckets0 = get(parserConfigDeserializersDeserializersBuckets, 0);
-        Object initialParserConfigDeserializersBuckets0Value = getFieldValue(parserConfigDeserializersDeserializersBucketsDeserializersBuckets0, "value");
-        
-        ObjectDeserializer actual = parserConfig.getDeserializer(fieldInfo);
-        
-        JavaBeanDeserializer expected = ((JavaBeanDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer"));
-        com.alibaba.fastjson.parser.deserializer.FieldDeserializer[] fieldDeserializerArray = new com.alibaba.fastjson.parser.deserializer.FieldDeserializer[0];
-        setField(expected, "fieldDeserializers", fieldDeserializerArray);
-        com.alibaba.fastjson.parser.deserializer.FieldDeserializer[] fieldDeserializerArray1 = new com.alibaba.fastjson.parser.deserializer.FieldDeserializer[0];
-        setField(expected, "sortedFieldDeserializers", fieldDeserializerArray1);
-        setField(expected, "clazz", class1);
-        JavaBeanInfo javaBeanInfo = ((JavaBeanInfo) createInstance("com.alibaba.fastjson.util.JavaBeanInfo"));
-        setField(javaBeanInfo, "clazz", class1);
-        setField(javaBeanInfo, "builderClass", null);
-        Constructor constructor = ((Constructor) createInstance("java.lang.reflect.Constructor"));
-        setField(constructor, "clazz", class1);
-        setField(constructor, "slot", 0);
-        java.lang.Class[] classArray = new java.lang.Class[0];
-        setField(constructor, "parameterTypes", classArray);
-        java.lang.Class[] classArray1 = new java.lang.Class[0];
-        setField(constructor, "exceptionTypes", classArray1);
-        setField(constructor, "modifiers", 1);
-        setField(constructor, "signature", null);
-        setField(constructor, "genericInfo", null);
-        setField(constructor, "annotations", null);
-        setField(constructor, "parameterAnnotations", null);
-        setField(constructor, "constructorAccessor", null);
-        Constructor constructor1 = ((Constructor) createInstance("java.lang.reflect.Constructor"));
-        setField(constructor1, "clazz", class1);
-        setField(constructor1, "slot", 0);
-        setField(constructor1, "parameterTypes", classArray);
-        setField(constructor1, "exceptionTypes", classArray1);
-        setField(constructor1, "modifiers", 1);
-        setField(constructor1, "signature", null);
-        setField(constructor1, "genericInfo", null);
-        setField(constructor1, "annotations", null);
-        setField(constructor1, "parameterAnnotations", null);
-        setField(constructor1, "constructorAccessor", null);
-        setField(constructor1, "root", null);
-        setField(constructor1, "hasRealParameterData", false);
-        setField(constructor1, "parameters", null);
-        setField(constructor1, "declaredAnnotations", null);
-        setField(constructor1, "override", false);
-        setField(constructor1, "securityCheckCache", null);
-        setField(constructor, "root", constructor1);
-        setField(constructor, "hasRealParameterData", false);
-        setField(constructor, "parameters", null);
-        setField(constructor, "declaredAnnotations", null);
-        setField(constructor, "override", true);
-        setField(constructor, "securityCheckCache", null);
-        setField(javaBeanInfo, "defaultConstructor", constructor);
-        setField(javaBeanInfo, "creatorConstructor", null);
-        setField(javaBeanInfo, "factoryMethod", null);
-        setField(javaBeanInfo, "buildMethod", null);
-        setField(javaBeanInfo, "defaultConstructorParameterSize", 0);
-        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[0];
-        setField(javaBeanInfo, "fields", fieldInfoArray);
-        setField(javaBeanInfo, "sortedFields", fieldInfoArray);
-        setField(javaBeanInfo, "parserFeatures", 0);
-        setField(javaBeanInfo, "jsonType", null);
-        String string = new String("java.lang.Object");
-        setField(javaBeanInfo, "typeName", string);
-        setField(javaBeanInfo, "typeKey", null);
-        setField(javaBeanInfo, "orders", null);
-        setField(javaBeanInfo, "creatorConstructorParameterTypes", null);
-        setField(javaBeanInfo, "creatorConstructorParameters", null);
-        javaBeanInfo.kotlin = false;
-        setField(javaBeanInfo, "kotlinDefaultConstructor", null);
-        setField(expected, "beanInfo", javaBeanInfo);
-        setField(expected, "extraFieldDeserializers", null);
-        setField(expected, "alterNameFieldDeserializers", null);
-        setField(expected, "smartMatchHashArray", null);
-        setField(expected, "smartMatchHashArrayMapping", null);
-        setField(expected, "hashArray", null);
-        setField(expected, "hashArrayMapping", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        Object parserConfigDeserializers1 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers1DeserializersBuckets = getFieldValue(parserConfigDeserializers1, "buckets");
-        Object parserConfigDeserializers1DeserializersBucketsDeserializersBuckets0 = get(parserConfigDeserializers1DeserializersBuckets, 0);
-        Object finalParserConfigDeserializersBuckets0Value = getFieldValue(parserConfigDeserializers1DeserializersBucketsDeserializersBuckets0, "value");
-        
-        assertFalse(initialParserConfigDeserializersBuckets0Value == finalParserConfigDeserializersBuckets0Value);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetDeserializer4() throws Throwable  {
         ParserConfig parserConfig = new ParserConfig();
         
         ObjectDeserializer actual = parserConfig.getDeserializer(((Type) null));
@@ -1619,7 +1452,7 @@ public class ParserConfigTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetDeserializer5() throws Throwable  {
+    public void testGetDeserializer2() throws Throwable  {
         ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
         IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
         setField(identityHashMap, "indexMask", 38);
@@ -1956,7 +1789,345 @@ public class ParserConfigTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetDeserializer6() throws Throwable  {
+    public void testGetDeserializer3() throws Throwable  {
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
+        setField(identityHashMap, "indexMask", 38);
+        java.lang.Object[] entryArray = createArray("com.alibaba.fastjson.util.IdentityHashMap$Entry", 39);
+        Object entry = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
+        java.lang.Object[] ofRefArray = createArray("java.util.stream.Nodes$ToArrayTask$OfRef", 0);
+        setField(entry, "value", ofRefArray);
+        Object syntheticParameterizedType = createInstance("org.springframework.core.ResolvableType$SyntheticParameterizedType");
+        setField(entry, "key", syntheticParameterizedType);
+        entryArray[38] = entry;
+        setField(identityHashMap, "buckets", entryArray);
+        setField(parserConfig, "deserializers", identityHashMap);
+        
+        Object parserConfigDeserializers = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializersDeserializersBuckets = getFieldValue(parserConfigDeserializers, "buckets");
+        Object initialParserConfigDeserializersBuckets0 = get(parserConfigDeserializersDeserializersBuckets, 0);
+        Object parserConfigDeserializers1 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers1DeserializersBuckets = getFieldValue(parserConfigDeserializers1, "buckets");
+        Object initialParserConfigDeserializersBuckets1 = get(parserConfigDeserializers1DeserializersBuckets, 1);
+        Object parserConfigDeserializers2 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers2DeserializersBuckets = getFieldValue(parserConfigDeserializers2, "buckets");
+        Object initialParserConfigDeserializersBuckets2 = get(parserConfigDeserializers2DeserializersBuckets, 2);
+        Object parserConfigDeserializers3 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers3DeserializersBuckets = getFieldValue(parserConfigDeserializers3, "buckets");
+        Object initialParserConfigDeserializersBuckets3 = get(parserConfigDeserializers3DeserializersBuckets, 3);
+        Object parserConfigDeserializers4 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers4DeserializersBuckets = getFieldValue(parserConfigDeserializers4, "buckets");
+        Object initialParserConfigDeserializersBuckets4 = get(parserConfigDeserializers4DeserializersBuckets, 4);
+        Object parserConfigDeserializers5 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers5DeserializersBuckets = getFieldValue(parserConfigDeserializers5, "buckets");
+        Object initialParserConfigDeserializersBuckets5 = get(parserConfigDeserializers5DeserializersBuckets, 5);
+        Object parserConfigDeserializers6 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers6DeserializersBuckets = getFieldValue(parserConfigDeserializers6, "buckets");
+        Object initialParserConfigDeserializersBuckets6 = get(parserConfigDeserializers6DeserializersBuckets, 6);
+        Object parserConfigDeserializers7 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers7DeserializersBuckets = getFieldValue(parserConfigDeserializers7, "buckets");
+        Object initialParserConfigDeserializersBuckets7 = get(parserConfigDeserializers7DeserializersBuckets, 7);
+        Object parserConfigDeserializers8 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers8DeserializersBuckets = getFieldValue(parserConfigDeserializers8, "buckets");
+        Object initialParserConfigDeserializersBuckets8 = get(parserConfigDeserializers8DeserializersBuckets, 8);
+        Object parserConfigDeserializers9 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers9DeserializersBuckets = getFieldValue(parserConfigDeserializers9, "buckets");
+        Object initialParserConfigDeserializersBuckets9 = get(parserConfigDeserializers9DeserializersBuckets, 9);
+        Object parserConfigDeserializers10 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers10DeserializersBuckets = getFieldValue(parserConfigDeserializers10, "buckets");
+        Object initialParserConfigDeserializersBuckets10 = get(parserConfigDeserializers10DeserializersBuckets, 10);
+        Object parserConfigDeserializers11 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers11DeserializersBuckets = getFieldValue(parserConfigDeserializers11, "buckets");
+        Object initialParserConfigDeserializersBuckets11 = get(parserConfigDeserializers11DeserializersBuckets, 11);
+        Object parserConfigDeserializers12 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers12DeserializersBuckets = getFieldValue(parserConfigDeserializers12, "buckets");
+        Object initialParserConfigDeserializersBuckets12 = get(parserConfigDeserializers12DeserializersBuckets, 12);
+        Object parserConfigDeserializers13 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers13DeserializersBuckets = getFieldValue(parserConfigDeserializers13, "buckets");
+        Object initialParserConfigDeserializersBuckets13 = get(parserConfigDeserializers13DeserializersBuckets, 13);
+        Object parserConfigDeserializers14 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers14DeserializersBuckets = getFieldValue(parserConfigDeserializers14, "buckets");
+        Object initialParserConfigDeserializersBuckets14 = get(parserConfigDeserializers14DeserializersBuckets, 14);
+        Object parserConfigDeserializers15 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers15DeserializersBuckets = getFieldValue(parserConfigDeserializers15, "buckets");
+        Object initialParserConfigDeserializersBuckets15 = get(parserConfigDeserializers15DeserializersBuckets, 15);
+        Object parserConfigDeserializers16 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers16DeserializersBuckets = getFieldValue(parserConfigDeserializers16, "buckets");
+        Object initialParserConfigDeserializersBuckets16 = get(parserConfigDeserializers16DeserializersBuckets, 16);
+        Object parserConfigDeserializers17 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers17DeserializersBuckets = getFieldValue(parserConfigDeserializers17, "buckets");
+        Object initialParserConfigDeserializersBuckets17 = get(parserConfigDeserializers17DeserializersBuckets, 17);
+        Object parserConfigDeserializers18 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers18DeserializersBuckets = getFieldValue(parserConfigDeserializers18, "buckets");
+        Object initialParserConfigDeserializersBuckets18 = get(parserConfigDeserializers18DeserializersBuckets, 18);
+        Object parserConfigDeserializers19 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers19DeserializersBuckets = getFieldValue(parserConfigDeserializers19, "buckets");
+        Object initialParserConfigDeserializersBuckets19 = get(parserConfigDeserializers19DeserializersBuckets, 19);
+        Object parserConfigDeserializers20 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers20DeserializersBuckets = getFieldValue(parserConfigDeserializers20, "buckets");
+        Object initialParserConfigDeserializersBuckets20 = get(parserConfigDeserializers20DeserializersBuckets, 20);
+        Object parserConfigDeserializers21 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers21DeserializersBuckets = getFieldValue(parserConfigDeserializers21, "buckets");
+        Object initialParserConfigDeserializersBuckets21 = get(parserConfigDeserializers21DeserializersBuckets, 21);
+        Object parserConfigDeserializers22 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers22DeserializersBuckets = getFieldValue(parserConfigDeserializers22, "buckets");
+        Object initialParserConfigDeserializersBuckets22 = get(parserConfigDeserializers22DeserializersBuckets, 22);
+        Object parserConfigDeserializers23 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers23DeserializersBuckets = getFieldValue(parserConfigDeserializers23, "buckets");
+        Object initialParserConfigDeserializersBuckets23 = get(parserConfigDeserializers23DeserializersBuckets, 23);
+        Object parserConfigDeserializers24 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers24DeserializersBuckets = getFieldValue(parserConfigDeserializers24, "buckets");
+        Object initialParserConfigDeserializersBuckets24 = get(parserConfigDeserializers24DeserializersBuckets, 24);
+        Object parserConfigDeserializers25 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers25DeserializersBuckets = getFieldValue(parserConfigDeserializers25, "buckets");
+        Object initialParserConfigDeserializersBuckets25 = get(parserConfigDeserializers25DeserializersBuckets, 25);
+        Object parserConfigDeserializers26 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers26DeserializersBuckets = getFieldValue(parserConfigDeserializers26, "buckets");
+        Object initialParserConfigDeserializersBuckets26 = get(parserConfigDeserializers26DeserializersBuckets, 26);
+        Object parserConfigDeserializers27 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers27DeserializersBuckets = getFieldValue(parserConfigDeserializers27, "buckets");
+        Object initialParserConfigDeserializersBuckets27 = get(parserConfigDeserializers27DeserializersBuckets, 27);
+        Object parserConfigDeserializers28 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers28DeserializersBuckets = getFieldValue(parserConfigDeserializers28, "buckets");
+        Object initialParserConfigDeserializersBuckets28 = get(parserConfigDeserializers28DeserializersBuckets, 28);
+        Object parserConfigDeserializers29 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers29DeserializersBuckets = getFieldValue(parserConfigDeserializers29, "buckets");
+        Object initialParserConfigDeserializersBuckets29 = get(parserConfigDeserializers29DeserializersBuckets, 29);
+        Object parserConfigDeserializers30 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers30DeserializersBuckets = getFieldValue(parserConfigDeserializers30, "buckets");
+        Object initialParserConfigDeserializersBuckets30 = get(parserConfigDeserializers30DeserializersBuckets, 30);
+        Object parserConfigDeserializers31 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers31DeserializersBuckets = getFieldValue(parserConfigDeserializers31, "buckets");
+        Object initialParserConfigDeserializersBuckets31 = get(parserConfigDeserializers31DeserializersBuckets, 31);
+        Object parserConfigDeserializers32 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers32DeserializersBuckets = getFieldValue(parserConfigDeserializers32, "buckets");
+        Object initialParserConfigDeserializersBuckets32 = get(parserConfigDeserializers32DeserializersBuckets, 32);
+        Object parserConfigDeserializers33 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers33DeserializersBuckets = getFieldValue(parserConfigDeserializers33, "buckets");
+        Object initialParserConfigDeserializersBuckets33 = get(parserConfigDeserializers33DeserializersBuckets, 33);
+        Object parserConfigDeserializers34 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers34DeserializersBuckets = getFieldValue(parserConfigDeserializers34, "buckets");
+        Object initialParserConfigDeserializersBuckets34 = get(parserConfigDeserializers34DeserializersBuckets, 34);
+        Object parserConfigDeserializers35 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers35DeserializersBuckets = getFieldValue(parserConfigDeserializers35, "buckets");
+        Object initialParserConfigDeserializersBuckets35 = get(parserConfigDeserializers35DeserializersBuckets, 35);
+        Object parserConfigDeserializers36 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers36DeserializersBuckets = getFieldValue(parserConfigDeserializers36, "buckets");
+        Object initialParserConfigDeserializersBuckets36 = get(parserConfigDeserializers36DeserializersBuckets, 36);
+        Object parserConfigDeserializers37 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers37DeserializersBuckets = getFieldValue(parserConfigDeserializers37, "buckets");
+        Object initialParserConfigDeserializersBuckets37 = get(parserConfigDeserializers37DeserializersBuckets, 37);
+        
+        Class parserConfigClazz = Class.forName("com.alibaba.fastjson.parser.ParserConfig");
+        Class syntheticParameterizedTypeType = Class.forName("java.lang.reflect.Type");
+        Method getDeserializerMethod = parserConfigClazz.getDeclaredMethod("getDeserializer", syntheticParameterizedTypeType);
+        getDeserializerMethod.setAccessible(true);
+        java.lang.Object[] getDeserializerMethodArguments = new java.lang.Object[1];
+        getDeserializerMethodArguments[0] = syntheticParameterizedType;
+        ObjectDeserializer actual = ((ObjectDeserializer) getDeserializerMethod.invoke(parserConfig, getDeserializerMethodArguments));
+        
+        JavaObjectDeserializer expected = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        Object parserConfigDeserializers38 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers38DeserializersBuckets = getFieldValue(parserConfigDeserializers38, "buckets");
+        Object finalParserConfigDeserializersBuckets0 = get(parserConfigDeserializers38DeserializersBuckets, 0);
+        Object parserConfigDeserializers39 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers39DeserializersBuckets = getFieldValue(parserConfigDeserializers39, "buckets");
+        Object finalParserConfigDeserializersBuckets1 = get(parserConfigDeserializers39DeserializersBuckets, 1);
+        Object parserConfigDeserializers40 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers40DeserializersBuckets = getFieldValue(parserConfigDeserializers40, "buckets");
+        Object finalParserConfigDeserializersBuckets2 = get(parserConfigDeserializers40DeserializersBuckets, 2);
+        Object parserConfigDeserializers41 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers41DeserializersBuckets = getFieldValue(parserConfigDeserializers41, "buckets");
+        Object finalParserConfigDeserializersBuckets3 = get(parserConfigDeserializers41DeserializersBuckets, 3);
+        Object parserConfigDeserializers42 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers42DeserializersBuckets = getFieldValue(parserConfigDeserializers42, "buckets");
+        Object finalParserConfigDeserializersBuckets4 = get(parserConfigDeserializers42DeserializersBuckets, 4);
+        Object parserConfigDeserializers43 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers43DeserializersBuckets = getFieldValue(parserConfigDeserializers43, "buckets");
+        Object finalParserConfigDeserializersBuckets5 = get(parserConfigDeserializers43DeserializersBuckets, 5);
+        Object parserConfigDeserializers44 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers44DeserializersBuckets = getFieldValue(parserConfigDeserializers44, "buckets");
+        Object finalParserConfigDeserializersBuckets6 = get(parserConfigDeserializers44DeserializersBuckets, 6);
+        Object parserConfigDeserializers45 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers45DeserializersBuckets = getFieldValue(parserConfigDeserializers45, "buckets");
+        Object finalParserConfigDeserializersBuckets7 = get(parserConfigDeserializers45DeserializersBuckets, 7);
+        Object parserConfigDeserializers46 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers46DeserializersBuckets = getFieldValue(parserConfigDeserializers46, "buckets");
+        Object finalParserConfigDeserializersBuckets8 = get(parserConfigDeserializers46DeserializersBuckets, 8);
+        Object parserConfigDeserializers47 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers47DeserializersBuckets = getFieldValue(parserConfigDeserializers47, "buckets");
+        Object finalParserConfigDeserializersBuckets9 = get(parserConfigDeserializers47DeserializersBuckets, 9);
+        Object parserConfigDeserializers48 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers48DeserializersBuckets = getFieldValue(parserConfigDeserializers48, "buckets");
+        Object finalParserConfigDeserializersBuckets10 = get(parserConfigDeserializers48DeserializersBuckets, 10);
+        Object parserConfigDeserializers49 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers49DeserializersBuckets = getFieldValue(parserConfigDeserializers49, "buckets");
+        Object finalParserConfigDeserializersBuckets11 = get(parserConfigDeserializers49DeserializersBuckets, 11);
+        Object parserConfigDeserializers50 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers50DeserializersBuckets = getFieldValue(parserConfigDeserializers50, "buckets");
+        Object finalParserConfigDeserializersBuckets12 = get(parserConfigDeserializers50DeserializersBuckets, 12);
+        Object parserConfigDeserializers51 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers51DeserializersBuckets = getFieldValue(parserConfigDeserializers51, "buckets");
+        Object finalParserConfigDeserializersBuckets13 = get(parserConfigDeserializers51DeserializersBuckets, 13);
+        Object parserConfigDeserializers52 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers52DeserializersBuckets = getFieldValue(parserConfigDeserializers52, "buckets");
+        Object finalParserConfigDeserializersBuckets14 = get(parserConfigDeserializers52DeserializersBuckets, 14);
+        Object parserConfigDeserializers53 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers53DeserializersBuckets = getFieldValue(parserConfigDeserializers53, "buckets");
+        Object finalParserConfigDeserializersBuckets15 = get(parserConfigDeserializers53DeserializersBuckets, 15);
+        Object parserConfigDeserializers54 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers54DeserializersBuckets = getFieldValue(parserConfigDeserializers54, "buckets");
+        Object finalParserConfigDeserializersBuckets16 = get(parserConfigDeserializers54DeserializersBuckets, 16);
+        Object parserConfigDeserializers55 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers55DeserializersBuckets = getFieldValue(parserConfigDeserializers55, "buckets");
+        Object finalParserConfigDeserializersBuckets17 = get(parserConfigDeserializers55DeserializersBuckets, 17);
+        Object parserConfigDeserializers56 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers56DeserializersBuckets = getFieldValue(parserConfigDeserializers56, "buckets");
+        Object finalParserConfigDeserializersBuckets18 = get(parserConfigDeserializers56DeserializersBuckets, 18);
+        Object parserConfigDeserializers57 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers57DeserializersBuckets = getFieldValue(parserConfigDeserializers57, "buckets");
+        Object finalParserConfigDeserializersBuckets19 = get(parserConfigDeserializers57DeserializersBuckets, 19);
+        Object parserConfigDeserializers58 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers58DeserializersBuckets = getFieldValue(parserConfigDeserializers58, "buckets");
+        Object finalParserConfigDeserializersBuckets20 = get(parserConfigDeserializers58DeserializersBuckets, 20);
+        Object parserConfigDeserializers59 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers59DeserializersBuckets = getFieldValue(parserConfigDeserializers59, "buckets");
+        Object finalParserConfigDeserializersBuckets21 = get(parserConfigDeserializers59DeserializersBuckets, 21);
+        Object parserConfigDeserializers60 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers60DeserializersBuckets = getFieldValue(parserConfigDeserializers60, "buckets");
+        Object finalParserConfigDeserializersBuckets22 = get(parserConfigDeserializers60DeserializersBuckets, 22);
+        Object parserConfigDeserializers61 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers61DeserializersBuckets = getFieldValue(parserConfigDeserializers61, "buckets");
+        Object finalParserConfigDeserializersBuckets23 = get(parserConfigDeserializers61DeserializersBuckets, 23);
+        Object parserConfigDeserializers62 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers62DeserializersBuckets = getFieldValue(parserConfigDeserializers62, "buckets");
+        Object finalParserConfigDeserializersBuckets24 = get(parserConfigDeserializers62DeserializersBuckets, 24);
+        Object parserConfigDeserializers63 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers63DeserializersBuckets = getFieldValue(parserConfigDeserializers63, "buckets");
+        Object finalParserConfigDeserializersBuckets25 = get(parserConfigDeserializers63DeserializersBuckets, 25);
+        Object parserConfigDeserializers64 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers64DeserializersBuckets = getFieldValue(parserConfigDeserializers64, "buckets");
+        Object finalParserConfigDeserializersBuckets26 = get(parserConfigDeserializers64DeserializersBuckets, 26);
+        Object parserConfigDeserializers65 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers65DeserializersBuckets = getFieldValue(parserConfigDeserializers65, "buckets");
+        Object finalParserConfigDeserializersBuckets27 = get(parserConfigDeserializers65DeserializersBuckets, 27);
+        Object parserConfigDeserializers66 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers66DeserializersBuckets = getFieldValue(parserConfigDeserializers66, "buckets");
+        Object finalParserConfigDeserializersBuckets28 = get(parserConfigDeserializers66DeserializersBuckets, 28);
+        Object parserConfigDeserializers67 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers67DeserializersBuckets = getFieldValue(parserConfigDeserializers67, "buckets");
+        Object finalParserConfigDeserializersBuckets29 = get(parserConfigDeserializers67DeserializersBuckets, 29);
+        Object parserConfigDeserializers68 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers68DeserializersBuckets = getFieldValue(parserConfigDeserializers68, "buckets");
+        Object finalParserConfigDeserializersBuckets30 = get(parserConfigDeserializers68DeserializersBuckets, 30);
+        Object parserConfigDeserializers69 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers69DeserializersBuckets = getFieldValue(parserConfigDeserializers69, "buckets");
+        Object finalParserConfigDeserializersBuckets31 = get(parserConfigDeserializers69DeserializersBuckets, 31);
+        Object parserConfigDeserializers70 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers70DeserializersBuckets = getFieldValue(parserConfigDeserializers70, "buckets");
+        Object finalParserConfigDeserializersBuckets32 = get(parserConfigDeserializers70DeserializersBuckets, 32);
+        Object parserConfigDeserializers71 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers71DeserializersBuckets = getFieldValue(parserConfigDeserializers71, "buckets");
+        Object finalParserConfigDeserializersBuckets33 = get(parserConfigDeserializers71DeserializersBuckets, 33);
+        Object parserConfigDeserializers72 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers72DeserializersBuckets = getFieldValue(parserConfigDeserializers72, "buckets");
+        Object finalParserConfigDeserializersBuckets34 = get(parserConfigDeserializers72DeserializersBuckets, 34);
+        Object parserConfigDeserializers73 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers73DeserializersBuckets = getFieldValue(parserConfigDeserializers73, "buckets");
+        Object finalParserConfigDeserializersBuckets35 = get(parserConfigDeserializers73DeserializersBuckets, 35);
+        Object parserConfigDeserializers74 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers74DeserializersBuckets = getFieldValue(parserConfigDeserializers74, "buckets");
+        Object finalParserConfigDeserializersBuckets36 = get(parserConfigDeserializers74DeserializersBuckets, 36);
+        Object parserConfigDeserializers75 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers75DeserializersBuckets = getFieldValue(parserConfigDeserializers75, "buckets");
+        Object finalParserConfigDeserializersBuckets37 = get(parserConfigDeserializers75DeserializersBuckets, 37);
+        
+        assertNull(finalParserConfigDeserializersBuckets0);
+        
+        assertNull(finalParserConfigDeserializersBuckets1);
+        
+        assertNull(finalParserConfigDeserializersBuckets2);
+        
+        assertNull(finalParserConfigDeserializersBuckets3);
+        
+        assertNull(finalParserConfigDeserializersBuckets4);
+        
+        assertNull(finalParserConfigDeserializersBuckets5);
+        
+        assertNull(finalParserConfigDeserializersBuckets6);
+        
+        assertNull(finalParserConfigDeserializersBuckets7);
+        
+        assertNull(finalParserConfigDeserializersBuckets8);
+        
+        assertNull(finalParserConfigDeserializersBuckets9);
+        
+        assertNull(finalParserConfigDeserializersBuckets10);
+        
+        assertNull(finalParserConfigDeserializersBuckets11);
+        
+        assertNull(finalParserConfigDeserializersBuckets12);
+        
+        assertNull(finalParserConfigDeserializersBuckets13);
+        
+        assertNull(finalParserConfigDeserializersBuckets14);
+        
+        assertNull(finalParserConfigDeserializersBuckets15);
+        
+        assertNull(finalParserConfigDeserializersBuckets16);
+        
+        assertNull(finalParserConfigDeserializersBuckets17);
+        
+        assertNull(finalParserConfigDeserializersBuckets18);
+        
+        assertNull(finalParserConfigDeserializersBuckets19);
+        
+        assertNull(finalParserConfigDeserializersBuckets20);
+        
+        assertNull(finalParserConfigDeserializersBuckets21);
+        
+        assertNull(finalParserConfigDeserializersBuckets22);
+        
+        assertNull(finalParserConfigDeserializersBuckets23);
+        
+        assertNull(finalParserConfigDeserializersBuckets24);
+        
+        assertNull(finalParserConfigDeserializersBuckets25);
+        
+        assertNull(finalParserConfigDeserializersBuckets26);
+        
+        assertNull(finalParserConfigDeserializersBuckets27);
+        
+        assertNull(finalParserConfigDeserializersBuckets28);
+        
+        assertNull(finalParserConfigDeserializersBuckets29);
+        
+        assertNull(finalParserConfigDeserializersBuckets30);
+        
+        assertNull(finalParserConfigDeserializersBuckets31);
+        
+        assertNull(finalParserConfigDeserializersBuckets32);
+        
+        assertNull(finalParserConfigDeserializersBuckets33);
+        
+        assertNull(finalParserConfigDeserializersBuckets34);
+        
+        assertNull(finalParserConfigDeserializersBuckets35);
+        
+        assertNull(finalParserConfigDeserializersBuckets36);
+        
+        assertNull(finalParserConfigDeserializersBuckets37);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetDeserializer4() throws Throwable  {
         ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
         IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
         setField(identityHashMap, "indexMask", 38);
@@ -2360,7 +2531,175 @@ public class ParserConfigTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetDeserializer5() throws Throwable  {
+        ParserConfig parserConfig = new ParserConfig();
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        
+        parserConfig.getDeserializer(fieldInfo);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetDeserializer6() throws Throwable  {
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        
+        parserConfig.getDeserializer(((FieldInfo) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testGetDeserializer7() throws Throwable  {
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
+        setField(identityHashMap, "indexMask", 38);
+        java.lang.Object[] entryArray = createArray("com.alibaba.fastjson.util.IdentityHashMap$Entry", 39);
+        Object entry = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
+        setField(entry, "value", null);
+        Class class1 = Object.class;
+        setField(entry, "key", class1);
+        entryArray[0] = entry;
+        entryArray[1] = entry;
+        entryArray[2] = entry;
+        entryArray[3] = entry;
+        entryArray[4] = entry;
+        entryArray[5] = entry;
+        entryArray[6] = entry;
+        entryArray[7] = entry;
+        entryArray[8] = entry;
+        entryArray[9] = entry;
+        entryArray[10] = entry;
+        entryArray[11] = entry;
+        entryArray[12] = entry;
+        entryArray[13] = entry;
+        entryArray[14] = entry;
+        entryArray[15] = entry;
+        entryArray[16] = entry;
+        entryArray[17] = entry;
+        entryArray[18] = entry;
+        entryArray[19] = entry;
+        entryArray[20] = entry;
+        entryArray[21] = entry;
+        entryArray[22] = entry;
+        entryArray[23] = entry;
+        entryArray[24] = entry;
+        entryArray[25] = entry;
+        entryArray[26] = entry;
+        entryArray[27] = entry;
+        entryArray[28] = entry;
+        entryArray[29] = entry;
+        entryArray[30] = entry;
+        entryArray[31] = entry;
+        entryArray[32] = entry;
+        entryArray[33] = entry;
+        entryArray[34] = entry;
+        entryArray[35] = entry;
+        entryArray[36] = entry;
+        entryArray[37] = entry;
+        entryArray[38] = entry;
+        setField(identityHashMap, "buckets", entryArray);
+        setField(parserConfig, "deserializers", identityHashMap);
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        setField(fieldInfo, "fieldType", class1);
+        setField(fieldInfo, "fieldClass", class1);
+        
+        Object parserConfigDeserializers = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializersDeserializersBuckets = getFieldValue(parserConfigDeserializers, "buckets");
+        Object parserConfigDeserializersDeserializersBucketsDeserializersBuckets0 = get(parserConfigDeserializersDeserializersBuckets, 0);
+        Object initialParserConfigDeserializersBuckets0Value = getFieldValue(parserConfigDeserializersDeserializersBucketsDeserializersBuckets0, "value");
+        
+        ObjectDeserializer actual = parserConfig.getDeserializer(fieldInfo);
+        
+        JavaBeanDeserializer expected = ((JavaBeanDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer"));
+        com.alibaba.fastjson.parser.deserializer.FieldDeserializer[] fieldDeserializerArray = new com.alibaba.fastjson.parser.deserializer.FieldDeserializer[0];
+        setField(expected, "fieldDeserializers", fieldDeserializerArray);
+        com.alibaba.fastjson.parser.deserializer.FieldDeserializer[] fieldDeserializerArray1 = new com.alibaba.fastjson.parser.deserializer.FieldDeserializer[0];
+        setField(expected, "sortedFieldDeserializers", fieldDeserializerArray1);
+        setField(expected, "clazz", class1);
+        JavaBeanInfo javaBeanInfo = ((JavaBeanInfo) createInstance("com.alibaba.fastjson.util.JavaBeanInfo"));
+        setField(javaBeanInfo, "clazz", class1);
+        setField(javaBeanInfo, "builderClass", null);
+        Constructor constructor = ((Constructor) createInstance("java.lang.reflect.Constructor"));
+        setField(constructor, "clazz", class1);
+        setField(constructor, "slot", 0);
+        java.lang.Class[] classArray = new java.lang.Class[0];
+        setField(constructor, "parameterTypes", classArray);
+        java.lang.Class[] classArray1 = new java.lang.Class[0];
+        setField(constructor, "exceptionTypes", classArray1);
+        setField(constructor, "modifiers", 1);
+        setField(constructor, "signature", null);
+        setField(constructor, "genericInfo", null);
+        setField(constructor, "annotations", null);
+        setField(constructor, "parameterAnnotations", null);
+        setField(constructor, "constructorAccessor", null);
+        Constructor constructor1 = ((Constructor) createInstance("java.lang.reflect.Constructor"));
+        setField(constructor1, "clazz", class1);
+        setField(constructor1, "slot", 0);
+        setField(constructor1, "parameterTypes", classArray);
+        setField(constructor1, "exceptionTypes", classArray1);
+        setField(constructor1, "modifiers", 1);
+        setField(constructor1, "signature", null);
+        setField(constructor1, "genericInfo", null);
+        setField(constructor1, "annotations", null);
+        setField(constructor1, "parameterAnnotations", null);
+        setField(constructor1, "constructorAccessor", null);
+        setField(constructor1, "root", null);
+        setField(constructor1, "hasRealParameterData", false);
+        setField(constructor1, "parameters", null);
+        setField(constructor1, "declaredAnnotations", null);
+        setField(constructor1, "override", false);
+        setField(constructor1, "securityCheckCache", null);
+        setField(constructor, "root", constructor1);
+        setField(constructor, "hasRealParameterData", false);
+        setField(constructor, "parameters", null);
+        setField(constructor, "declaredAnnotations", null);
+        setField(constructor, "override", true);
+        setField(constructor, "securityCheckCache", null);
+        setField(javaBeanInfo, "defaultConstructor", constructor);
+        setField(javaBeanInfo, "creatorConstructor", null);
+        setField(javaBeanInfo, "factoryMethod", null);
+        setField(javaBeanInfo, "buildMethod", null);
+        setField(javaBeanInfo, "defaultConstructorParameterSize", 0);
+        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[0];
+        setField(javaBeanInfo, "fields", fieldInfoArray);
+        setField(javaBeanInfo, "sortedFields", fieldInfoArray);
+        setField(javaBeanInfo, "parserFeatures", 0);
+        setField(javaBeanInfo, "jsonType", null);
+        String string = new String("java.lang.Object");
+        setField(javaBeanInfo, "typeName", string);
+        setField(javaBeanInfo, "typeKey", null);
+        setField(javaBeanInfo, "orders", null);
+        setField(javaBeanInfo, "creatorConstructorParameterTypes", null);
+        setField(javaBeanInfo, "creatorConstructorParameters", null);
+        javaBeanInfo.kotlin = false;
+        setField(javaBeanInfo, "kotlinDefaultConstructor", null);
+        setField(expected, "beanInfo", javaBeanInfo);
+        setField(expected, "extraFieldDeserializers", null);
+        setField(expected, "alterNameFieldDeserializers", null);
+        setField(expected, "smartMatchHashArray", null);
+        setField(expected, "smartMatchHashArrayMapping", null);
+        setField(expected, "hashArray", null);
+        setField(expected, "hashArrayMapping", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        Object parserConfigDeserializers1 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers1DeserializersBuckets = getFieldValue(parserConfigDeserializers1, "buckets");
+        Object parserConfigDeserializers1DeserializersBucketsDeserializersBuckets0 = get(parserConfigDeserializers1DeserializersBuckets, 0);
+        Object finalParserConfigDeserializersBuckets0Value = getFieldValue(parserConfigDeserializers1DeserializersBucketsDeserializersBuckets0, "value");
+        
+        assertFalse(initialParserConfigDeserializersBuckets0Value == finalParserConfigDeserializersBuckets0Value);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetDeserializer8() throws Throwable  {
         ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
         IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
         setField(identityHashMap, "indexMask", -1);
@@ -2449,7 +2788,7 @@ public class ParserConfigTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetDeserializer8() throws Throwable  {
+    public void testGetDeserializer9() throws Throwable  {
         ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
         IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
         setField(identityHashMap, "indexMask", 38);
@@ -2776,6 +3115,337 @@ public class ParserConfigTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testGetDeserializer10() throws Throwable  {
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
+        setField(identityHashMap, "indexMask", 38);
+        java.lang.Object[] entryArray = createArray("com.alibaba.fastjson.util.IdentityHashMap$Entry", 39);
+        Object entry = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
+        ThrowableDeserializer throwableDeserializer = ((ThrowableDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer"));
+        setField(entry, "value", throwableDeserializer);
+        Class class1 = Object.class;
+        setField(entry, "key", class1);
+        entryArray[38] = entry;
+        setField(identityHashMap, "buckets", entryArray);
+        setField(parserConfig, "deserializers", identityHashMap);
+        
+        Object parserConfigDeserializers = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializersDeserializersBuckets = getFieldValue(parserConfigDeserializers, "buckets");
+        Object initialParserConfigDeserializersBuckets0 = get(parserConfigDeserializersDeserializersBuckets, 0);
+        Object parserConfigDeserializers1 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers1DeserializersBuckets = getFieldValue(parserConfigDeserializers1, "buckets");
+        Object initialParserConfigDeserializersBuckets1 = get(parserConfigDeserializers1DeserializersBuckets, 1);
+        Object parserConfigDeserializers2 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers2DeserializersBuckets = getFieldValue(parserConfigDeserializers2, "buckets");
+        Object initialParserConfigDeserializersBuckets2 = get(parserConfigDeserializers2DeserializersBuckets, 2);
+        Object parserConfigDeserializers3 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers3DeserializersBuckets = getFieldValue(parserConfigDeserializers3, "buckets");
+        Object initialParserConfigDeserializersBuckets3 = get(parserConfigDeserializers3DeserializersBuckets, 3);
+        Object parserConfigDeserializers4 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers4DeserializersBuckets = getFieldValue(parserConfigDeserializers4, "buckets");
+        Object initialParserConfigDeserializersBuckets4 = get(parserConfigDeserializers4DeserializersBuckets, 4);
+        Object parserConfigDeserializers5 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers5DeserializersBuckets = getFieldValue(parserConfigDeserializers5, "buckets");
+        Object initialParserConfigDeserializersBuckets5 = get(parserConfigDeserializers5DeserializersBuckets, 5);
+        Object parserConfigDeserializers6 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers6DeserializersBuckets = getFieldValue(parserConfigDeserializers6, "buckets");
+        Object initialParserConfigDeserializersBuckets6 = get(parserConfigDeserializers6DeserializersBuckets, 6);
+        Object parserConfigDeserializers7 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers7DeserializersBuckets = getFieldValue(parserConfigDeserializers7, "buckets");
+        Object initialParserConfigDeserializersBuckets7 = get(parserConfigDeserializers7DeserializersBuckets, 7);
+        Object parserConfigDeserializers8 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers8DeserializersBuckets = getFieldValue(parserConfigDeserializers8, "buckets");
+        Object initialParserConfigDeserializersBuckets8 = get(parserConfigDeserializers8DeserializersBuckets, 8);
+        Object parserConfigDeserializers9 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers9DeserializersBuckets = getFieldValue(parserConfigDeserializers9, "buckets");
+        Object initialParserConfigDeserializersBuckets9 = get(parserConfigDeserializers9DeserializersBuckets, 9);
+        Object parserConfigDeserializers10 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers10DeserializersBuckets = getFieldValue(parserConfigDeserializers10, "buckets");
+        Object initialParserConfigDeserializersBuckets10 = get(parserConfigDeserializers10DeserializersBuckets, 10);
+        Object parserConfigDeserializers11 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers11DeserializersBuckets = getFieldValue(parserConfigDeserializers11, "buckets");
+        Object initialParserConfigDeserializersBuckets11 = get(parserConfigDeserializers11DeserializersBuckets, 11);
+        Object parserConfigDeserializers12 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers12DeserializersBuckets = getFieldValue(parserConfigDeserializers12, "buckets");
+        Object initialParserConfigDeserializersBuckets12 = get(parserConfigDeserializers12DeserializersBuckets, 12);
+        Object parserConfigDeserializers13 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers13DeserializersBuckets = getFieldValue(parserConfigDeserializers13, "buckets");
+        Object initialParserConfigDeserializersBuckets13 = get(parserConfigDeserializers13DeserializersBuckets, 13);
+        Object parserConfigDeserializers14 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers14DeserializersBuckets = getFieldValue(parserConfigDeserializers14, "buckets");
+        Object initialParserConfigDeserializersBuckets14 = get(parserConfigDeserializers14DeserializersBuckets, 14);
+        Object parserConfigDeserializers15 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers15DeserializersBuckets = getFieldValue(parserConfigDeserializers15, "buckets");
+        Object initialParserConfigDeserializersBuckets15 = get(parserConfigDeserializers15DeserializersBuckets, 15);
+        Object parserConfigDeserializers16 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers16DeserializersBuckets = getFieldValue(parserConfigDeserializers16, "buckets");
+        Object initialParserConfigDeserializersBuckets16 = get(parserConfigDeserializers16DeserializersBuckets, 16);
+        Object parserConfigDeserializers17 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers17DeserializersBuckets = getFieldValue(parserConfigDeserializers17, "buckets");
+        Object initialParserConfigDeserializersBuckets17 = get(parserConfigDeserializers17DeserializersBuckets, 17);
+        Object parserConfigDeserializers18 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers18DeserializersBuckets = getFieldValue(parserConfigDeserializers18, "buckets");
+        Object initialParserConfigDeserializersBuckets18 = get(parserConfigDeserializers18DeserializersBuckets, 18);
+        Object parserConfigDeserializers19 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers19DeserializersBuckets = getFieldValue(parserConfigDeserializers19, "buckets");
+        Object initialParserConfigDeserializersBuckets19 = get(parserConfigDeserializers19DeserializersBuckets, 19);
+        Object parserConfigDeserializers20 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers20DeserializersBuckets = getFieldValue(parserConfigDeserializers20, "buckets");
+        Object initialParserConfigDeserializersBuckets20 = get(parserConfigDeserializers20DeserializersBuckets, 20);
+        Object parserConfigDeserializers21 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers21DeserializersBuckets = getFieldValue(parserConfigDeserializers21, "buckets");
+        Object initialParserConfigDeserializersBuckets21 = get(parserConfigDeserializers21DeserializersBuckets, 21);
+        Object parserConfigDeserializers22 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers22DeserializersBuckets = getFieldValue(parserConfigDeserializers22, "buckets");
+        Object initialParserConfigDeserializersBuckets22 = get(parserConfigDeserializers22DeserializersBuckets, 22);
+        Object parserConfigDeserializers23 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers23DeserializersBuckets = getFieldValue(parserConfigDeserializers23, "buckets");
+        Object initialParserConfigDeserializersBuckets23 = get(parserConfigDeserializers23DeserializersBuckets, 23);
+        Object parserConfigDeserializers24 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers24DeserializersBuckets = getFieldValue(parserConfigDeserializers24, "buckets");
+        Object initialParserConfigDeserializersBuckets24 = get(parserConfigDeserializers24DeserializersBuckets, 24);
+        Object parserConfigDeserializers25 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers25DeserializersBuckets = getFieldValue(parserConfigDeserializers25, "buckets");
+        Object initialParserConfigDeserializersBuckets25 = get(parserConfigDeserializers25DeserializersBuckets, 25);
+        Object parserConfigDeserializers26 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers26DeserializersBuckets = getFieldValue(parserConfigDeserializers26, "buckets");
+        Object initialParserConfigDeserializersBuckets26 = get(parserConfigDeserializers26DeserializersBuckets, 26);
+        Object parserConfigDeserializers27 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers27DeserializersBuckets = getFieldValue(parserConfigDeserializers27, "buckets");
+        Object initialParserConfigDeserializersBuckets27 = get(parserConfigDeserializers27DeserializersBuckets, 27);
+        Object parserConfigDeserializers28 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers28DeserializersBuckets = getFieldValue(parserConfigDeserializers28, "buckets");
+        Object initialParserConfigDeserializersBuckets28 = get(parserConfigDeserializers28DeserializersBuckets, 28);
+        Object parserConfigDeserializers29 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers29DeserializersBuckets = getFieldValue(parserConfigDeserializers29, "buckets");
+        Object initialParserConfigDeserializersBuckets29 = get(parserConfigDeserializers29DeserializersBuckets, 29);
+        Object parserConfigDeserializers30 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers30DeserializersBuckets = getFieldValue(parserConfigDeserializers30, "buckets");
+        Object initialParserConfigDeserializersBuckets30 = get(parserConfigDeserializers30DeserializersBuckets, 30);
+        Object parserConfigDeserializers31 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers31DeserializersBuckets = getFieldValue(parserConfigDeserializers31, "buckets");
+        Object initialParserConfigDeserializersBuckets31 = get(parserConfigDeserializers31DeserializersBuckets, 31);
+        Object parserConfigDeserializers32 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers32DeserializersBuckets = getFieldValue(parserConfigDeserializers32, "buckets");
+        Object initialParserConfigDeserializersBuckets32 = get(parserConfigDeserializers32DeserializersBuckets, 32);
+        Object parserConfigDeserializers33 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers33DeserializersBuckets = getFieldValue(parserConfigDeserializers33, "buckets");
+        Object initialParserConfigDeserializersBuckets33 = get(parserConfigDeserializers33DeserializersBuckets, 33);
+        Object parserConfigDeserializers34 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers34DeserializersBuckets = getFieldValue(parserConfigDeserializers34, "buckets");
+        Object initialParserConfigDeserializersBuckets34 = get(parserConfigDeserializers34DeserializersBuckets, 34);
+        Object parserConfigDeserializers35 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers35DeserializersBuckets = getFieldValue(parserConfigDeserializers35, "buckets");
+        Object initialParserConfigDeserializersBuckets35 = get(parserConfigDeserializers35DeserializersBuckets, 35);
+        Object parserConfigDeserializers36 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers36DeserializersBuckets = getFieldValue(parserConfigDeserializers36, "buckets");
+        Object initialParserConfigDeserializersBuckets36 = get(parserConfigDeserializers36DeserializersBuckets, 36);
+        Object parserConfigDeserializers37 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers37DeserializersBuckets = getFieldValue(parserConfigDeserializers37, "buckets");
+        Object initialParserConfigDeserializersBuckets37 = get(parserConfigDeserializers37DeserializersBuckets, 37);
+        
+        ObjectDeserializer actual = parserConfig.getDeserializer(null, class1);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(throwableDeserializer, actual));
+        
+        Object parserConfigDeserializers38 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers38DeserializersBuckets = getFieldValue(parserConfigDeserializers38, "buckets");
+        Object finalParserConfigDeserializersBuckets0 = get(parserConfigDeserializers38DeserializersBuckets, 0);
+        Object parserConfigDeserializers39 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers39DeserializersBuckets = getFieldValue(parserConfigDeserializers39, "buckets");
+        Object finalParserConfigDeserializersBuckets1 = get(parserConfigDeserializers39DeserializersBuckets, 1);
+        Object parserConfigDeserializers40 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers40DeserializersBuckets = getFieldValue(parserConfigDeserializers40, "buckets");
+        Object finalParserConfigDeserializersBuckets2 = get(parserConfigDeserializers40DeserializersBuckets, 2);
+        Object parserConfigDeserializers41 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers41DeserializersBuckets = getFieldValue(parserConfigDeserializers41, "buckets");
+        Object finalParserConfigDeserializersBuckets3 = get(parserConfigDeserializers41DeserializersBuckets, 3);
+        Object parserConfigDeserializers42 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers42DeserializersBuckets = getFieldValue(parserConfigDeserializers42, "buckets");
+        Object finalParserConfigDeserializersBuckets4 = get(parserConfigDeserializers42DeserializersBuckets, 4);
+        Object parserConfigDeserializers43 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers43DeserializersBuckets = getFieldValue(parserConfigDeserializers43, "buckets");
+        Object finalParserConfigDeserializersBuckets5 = get(parserConfigDeserializers43DeserializersBuckets, 5);
+        Object parserConfigDeserializers44 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers44DeserializersBuckets = getFieldValue(parserConfigDeserializers44, "buckets");
+        Object finalParserConfigDeserializersBuckets6 = get(parserConfigDeserializers44DeserializersBuckets, 6);
+        Object parserConfigDeserializers45 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers45DeserializersBuckets = getFieldValue(parserConfigDeserializers45, "buckets");
+        Object finalParserConfigDeserializersBuckets7 = get(parserConfigDeserializers45DeserializersBuckets, 7);
+        Object parserConfigDeserializers46 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers46DeserializersBuckets = getFieldValue(parserConfigDeserializers46, "buckets");
+        Object finalParserConfigDeserializersBuckets8 = get(parserConfigDeserializers46DeserializersBuckets, 8);
+        Object parserConfigDeserializers47 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers47DeserializersBuckets = getFieldValue(parserConfigDeserializers47, "buckets");
+        Object finalParserConfigDeserializersBuckets9 = get(parserConfigDeserializers47DeserializersBuckets, 9);
+        Object parserConfigDeserializers48 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers48DeserializersBuckets = getFieldValue(parserConfigDeserializers48, "buckets");
+        Object finalParserConfigDeserializersBuckets10 = get(parserConfigDeserializers48DeserializersBuckets, 10);
+        Object parserConfigDeserializers49 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers49DeserializersBuckets = getFieldValue(parserConfigDeserializers49, "buckets");
+        Object finalParserConfigDeserializersBuckets11 = get(parserConfigDeserializers49DeserializersBuckets, 11);
+        Object parserConfigDeserializers50 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers50DeserializersBuckets = getFieldValue(parserConfigDeserializers50, "buckets");
+        Object finalParserConfigDeserializersBuckets12 = get(parserConfigDeserializers50DeserializersBuckets, 12);
+        Object parserConfigDeserializers51 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers51DeserializersBuckets = getFieldValue(parserConfigDeserializers51, "buckets");
+        Object finalParserConfigDeserializersBuckets13 = get(parserConfigDeserializers51DeserializersBuckets, 13);
+        Object parserConfigDeserializers52 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers52DeserializersBuckets = getFieldValue(parserConfigDeserializers52, "buckets");
+        Object finalParserConfigDeserializersBuckets14 = get(parserConfigDeserializers52DeserializersBuckets, 14);
+        Object parserConfigDeserializers53 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers53DeserializersBuckets = getFieldValue(parserConfigDeserializers53, "buckets");
+        Object finalParserConfigDeserializersBuckets15 = get(parserConfigDeserializers53DeserializersBuckets, 15);
+        Object parserConfigDeserializers54 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers54DeserializersBuckets = getFieldValue(parserConfigDeserializers54, "buckets");
+        Object finalParserConfigDeserializersBuckets16 = get(parserConfigDeserializers54DeserializersBuckets, 16);
+        Object parserConfigDeserializers55 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers55DeserializersBuckets = getFieldValue(parserConfigDeserializers55, "buckets");
+        Object finalParserConfigDeserializersBuckets17 = get(parserConfigDeserializers55DeserializersBuckets, 17);
+        Object parserConfigDeserializers56 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers56DeserializersBuckets = getFieldValue(parserConfigDeserializers56, "buckets");
+        Object finalParserConfigDeserializersBuckets18 = get(parserConfigDeserializers56DeserializersBuckets, 18);
+        Object parserConfigDeserializers57 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers57DeserializersBuckets = getFieldValue(parserConfigDeserializers57, "buckets");
+        Object finalParserConfigDeserializersBuckets19 = get(parserConfigDeserializers57DeserializersBuckets, 19);
+        Object parserConfigDeserializers58 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers58DeserializersBuckets = getFieldValue(parserConfigDeserializers58, "buckets");
+        Object finalParserConfigDeserializersBuckets20 = get(parserConfigDeserializers58DeserializersBuckets, 20);
+        Object parserConfigDeserializers59 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers59DeserializersBuckets = getFieldValue(parserConfigDeserializers59, "buckets");
+        Object finalParserConfigDeserializersBuckets21 = get(parserConfigDeserializers59DeserializersBuckets, 21);
+        Object parserConfigDeserializers60 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers60DeserializersBuckets = getFieldValue(parserConfigDeserializers60, "buckets");
+        Object finalParserConfigDeserializersBuckets22 = get(parserConfigDeserializers60DeserializersBuckets, 22);
+        Object parserConfigDeserializers61 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers61DeserializersBuckets = getFieldValue(parserConfigDeserializers61, "buckets");
+        Object finalParserConfigDeserializersBuckets23 = get(parserConfigDeserializers61DeserializersBuckets, 23);
+        Object parserConfigDeserializers62 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers62DeserializersBuckets = getFieldValue(parserConfigDeserializers62, "buckets");
+        Object finalParserConfigDeserializersBuckets24 = get(parserConfigDeserializers62DeserializersBuckets, 24);
+        Object parserConfigDeserializers63 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers63DeserializersBuckets = getFieldValue(parserConfigDeserializers63, "buckets");
+        Object finalParserConfigDeserializersBuckets25 = get(parserConfigDeserializers63DeserializersBuckets, 25);
+        Object parserConfigDeserializers64 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers64DeserializersBuckets = getFieldValue(parserConfigDeserializers64, "buckets");
+        Object finalParserConfigDeserializersBuckets26 = get(parserConfigDeserializers64DeserializersBuckets, 26);
+        Object parserConfigDeserializers65 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers65DeserializersBuckets = getFieldValue(parserConfigDeserializers65, "buckets");
+        Object finalParserConfigDeserializersBuckets27 = get(parserConfigDeserializers65DeserializersBuckets, 27);
+        Object parserConfigDeserializers66 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers66DeserializersBuckets = getFieldValue(parserConfigDeserializers66, "buckets");
+        Object finalParserConfigDeserializersBuckets28 = get(parserConfigDeserializers66DeserializersBuckets, 28);
+        Object parserConfigDeserializers67 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers67DeserializersBuckets = getFieldValue(parserConfigDeserializers67, "buckets");
+        Object finalParserConfigDeserializersBuckets29 = get(parserConfigDeserializers67DeserializersBuckets, 29);
+        Object parserConfigDeserializers68 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers68DeserializersBuckets = getFieldValue(parserConfigDeserializers68, "buckets");
+        Object finalParserConfigDeserializersBuckets30 = get(parserConfigDeserializers68DeserializersBuckets, 30);
+        Object parserConfigDeserializers69 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers69DeserializersBuckets = getFieldValue(parserConfigDeserializers69, "buckets");
+        Object finalParserConfigDeserializersBuckets31 = get(parserConfigDeserializers69DeserializersBuckets, 31);
+        Object parserConfigDeserializers70 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers70DeserializersBuckets = getFieldValue(parserConfigDeserializers70, "buckets");
+        Object finalParserConfigDeserializersBuckets32 = get(parserConfigDeserializers70DeserializersBuckets, 32);
+        Object parserConfigDeserializers71 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers71DeserializersBuckets = getFieldValue(parserConfigDeserializers71, "buckets");
+        Object finalParserConfigDeserializersBuckets33 = get(parserConfigDeserializers71DeserializersBuckets, 33);
+        Object parserConfigDeserializers72 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers72DeserializersBuckets = getFieldValue(parserConfigDeserializers72, "buckets");
+        Object finalParserConfigDeserializersBuckets34 = get(parserConfigDeserializers72DeserializersBuckets, 34);
+        Object parserConfigDeserializers73 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers73DeserializersBuckets = getFieldValue(parserConfigDeserializers73, "buckets");
+        Object finalParserConfigDeserializersBuckets35 = get(parserConfigDeserializers73DeserializersBuckets, 35);
+        Object parserConfigDeserializers74 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers74DeserializersBuckets = getFieldValue(parserConfigDeserializers74, "buckets");
+        Object finalParserConfigDeserializersBuckets36 = get(parserConfigDeserializers74DeserializersBuckets, 36);
+        Object parserConfigDeserializers75 = getFieldValue(parserConfig, "deserializers");
+        Object parserConfigDeserializers75DeserializersBuckets = getFieldValue(parserConfigDeserializers75, "buckets");
+        Object finalParserConfigDeserializersBuckets37 = get(parserConfigDeserializers75DeserializersBuckets, 37);
+        
+        assertNull(finalParserConfigDeserializersBuckets0);
+        
+        assertNull(finalParserConfigDeserializersBuckets1);
+        
+        assertNull(finalParserConfigDeserializersBuckets2);
+        
+        assertNull(finalParserConfigDeserializersBuckets3);
+        
+        assertNull(finalParserConfigDeserializersBuckets4);
+        
+        assertNull(finalParserConfigDeserializersBuckets5);
+        
+        assertNull(finalParserConfigDeserializersBuckets6);
+        
+        assertNull(finalParserConfigDeserializersBuckets7);
+        
+        assertNull(finalParserConfigDeserializersBuckets8);
+        
+        assertNull(finalParserConfigDeserializersBuckets9);
+        
+        assertNull(finalParserConfigDeserializersBuckets10);
+        
+        assertNull(finalParserConfigDeserializersBuckets11);
+        
+        assertNull(finalParserConfigDeserializersBuckets12);
+        
+        assertNull(finalParserConfigDeserializersBuckets13);
+        
+        assertNull(finalParserConfigDeserializersBuckets14);
+        
+        assertNull(finalParserConfigDeserializersBuckets15);
+        
+        assertNull(finalParserConfigDeserializersBuckets16);
+        
+        assertNull(finalParserConfigDeserializersBuckets17);
+        
+        assertNull(finalParserConfigDeserializersBuckets18);
+        
+        assertNull(finalParserConfigDeserializersBuckets19);
+        
+        assertNull(finalParserConfigDeserializersBuckets20);
+        
+        assertNull(finalParserConfigDeserializersBuckets21);
+        
+        assertNull(finalParserConfigDeserializersBuckets22);
+        
+        assertNull(finalParserConfigDeserializersBuckets23);
+        
+        assertNull(finalParserConfigDeserializersBuckets24);
+        
+        assertNull(finalParserConfigDeserializersBuckets25);
+        
+        assertNull(finalParserConfigDeserializersBuckets26);
+        
+        assertNull(finalParserConfigDeserializersBuckets27);
+        
+        assertNull(finalParserConfigDeserializersBuckets28);
+        
+        assertNull(finalParserConfigDeserializersBuckets29);
+        
+        assertNull(finalParserConfigDeserializersBuckets30);
+        
+        assertNull(finalParserConfigDeserializersBuckets31);
+        
+        assertNull(finalParserConfigDeserializersBuckets32);
+        
+        assertNull(finalParserConfigDeserializersBuckets33);
+        
+        assertNull(finalParserConfigDeserializersBuckets34);
+        
+        assertNull(finalParserConfigDeserializersBuckets35);
+        
+        assertNull(finalParserConfigDeserializersBuckets36);
+        
+        assertNull(finalParserConfigDeserializersBuckets37);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testInitJavaBeanDeserializers1() throws Throwable  {
         ParserConfig parserConfig = new ParserConfig();
         java.lang.Class[] classArray = new java.lang.Class[0];
@@ -2827,22 +3497,7 @@ public class ParserConfigTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testInitJavaBeanDeserializers5() throws Throwable  {
         ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        setField(parserConfig, "fieldBased", false);
-        setField(parserConfig, "asmEnable", true);
-        java.lang.Class[] classArray = new java.lang.Class[1];
-        Class class1 = Object.class;
-        classArray[0] = class1;
-        
-        parserConfig.initJavaBeanDeserializers(classArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testInitJavaBeanDeserializers6() throws Throwable  {
-        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        setField(parserConfig, "fieldBased", false);
+        setField(parserConfig, "fieldBased", true);
         setField(parserConfig, "asmEnable", false);
         java.lang.Class[] classArray = new java.lang.Class[9];
         Class class1 = Object.class;
@@ -2883,6 +3538,21 @@ public class ParserConfigTest {
         assertNull(finalClassArray7);
         
         assertNull(finalClassArray8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInitJavaBeanDeserializers6() throws Throwable  {
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        setField(parserConfig, "fieldBased", false);
+        setField(parserConfig, "asmEnable", true);
+        java.lang.Class[] classArray = new java.lang.Class[1];
+        Class class1 = Object.class;
+        classArray[0] = class1;
+        
+        parserConfig.initJavaBeanDeserializers(classArray);
     }
     ///endregion
     
@@ -3071,19 +3741,6 @@ public class ParserConfigTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetDefaultClassLoader2() throws Throwable  {
-        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        setField(parserConfig, "defaultClassLoader", null);
-        
-        ClassLoader actual = parserConfig.getDefaultClassLoader();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testSetDefaultClassLoader1() throws Throwable  {
         ParserConfig parserConfig = new ParserConfig();
         
@@ -3097,8 +3754,21 @@ public class ParserConfigTest {
     public void testSetDefaultClassLoader2() throws Throwable  {
         ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
         setField(parserConfig, "defaultClassLoader", null);
+        Object delegatingClassLoader = createInstance("sun.reflect.DelegatingClassLoader");
         
-        parserConfig.setDefaultClassLoader(null);
+        ClassLoader initialParserConfigDefaultClassLoader = parserConfig.defaultClassLoader;
+        
+        Class parserConfigClazz = Class.forName("com.alibaba.fastjson.parser.ParserConfig");
+        Class delegatingClassLoaderType = Class.forName("java.lang.ClassLoader");
+        Method setDefaultClassLoaderMethod = parserConfigClazz.getDeclaredMethod("setDefaultClassLoader", delegatingClassLoaderType);
+        setDefaultClassLoaderMethod.setAccessible(true);
+        java.lang.Object[] setDefaultClassLoaderMethodArguments = new java.lang.Object[1];
+        setDefaultClassLoaderMethodArguments[0] = delegatingClassLoader;
+        setDefaultClassLoaderMethod.invoke(parserConfig, setDefaultClassLoaderMethodArguments);
+        
+        ClassLoader finalParserConfigDefaultClassLoader = parserConfig.defaultClassLoader;
+        
+        assertFalse(initialParserConfigDefaultClassLoader == finalParserConfigDefaultClassLoader);
     }
     ///endregion
     
@@ -3216,7 +3886,7 @@ public class ParserConfigTest {
     @Test(timeout = 10000)
     public void testAddAccept5() throws Throwable  {
         ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        long[] longArray = new long[9];
+        long[] longArray = new long[0];
         setField(parserConfig, "acceptHashCodes", longArray);
         String string = new String("\u0000");
         
@@ -3255,7 +3925,7 @@ public class ParserConfigTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testCheckAutoType3() throws Throwable  {
         ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        String string = new String("$\u0000\u0000\u0000");
+        String string = new String("$\u0001\u0000");
         Class class1 = Object.class;
         
         parserConfig.checkAutoType(string, class1, 0);
@@ -3440,7 +4110,9 @@ public class ParserConfigTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetFieldFromCache2() throws Throwable  {
-        ParserConfig.getFieldFromCache(null, null);
+        String string = new String("");
+        
+        ParserConfig.getFieldFromCache(string, null);
     }
     ///endregion
     

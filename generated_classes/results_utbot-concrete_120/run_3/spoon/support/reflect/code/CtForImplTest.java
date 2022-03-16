@@ -31,6 +31,7 @@ import sun.nio.cs.Surrogate.Parser;
 import sun.nio.cs.Surrogate;
 import java.nio.charset.CoderResult;
 import spoon.reflect.code.CtExpression;
+import spoon.support.reflect.declaration.CtAnnotationImpl;
 import java.util.List;
 import java.util.ArrayList;
 import spoon.support.reflect.declaration.CtEnumImpl;
@@ -178,14 +179,14 @@ public class CtForImplTest {
     @Test(timeout = 10000)
     public void testGetExpression2() throws Throwable  {
         CtForImpl ctForImpl = ((CtForImpl) createInstance("spoon.support.reflect.code.CtForImpl"));
-        CtOperatorAssignmentImpl ctOperatorAssignmentImpl = ((CtOperatorAssignmentImpl) createInstance("spoon.support.reflect.code.CtOperatorAssignmentImpl"));
-        setField(ctForImpl, "expression", ctOperatorAssignmentImpl);
+        CtAnnotationImpl ctAnnotationImpl = ((CtAnnotationImpl) createInstance("spoon.support.reflect.declaration.CtAnnotationImpl"));
+        setField(ctForImpl, "expression", ctAnnotationImpl);
         
         CtExpression actual = ctForImpl.getExpression();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctOperatorAssignmentImpl, actual));
+        assertTrue(deepEquals(ctAnnotationImpl, actual));
     }
     ///endregion
     
@@ -208,21 +209,6 @@ public class CtForImplTest {
     @Test(timeout = 10000)
     public void testSetExpression2() throws Throwable  {
         CtForImpl ctForImpl = ((CtForImpl) createInstance("spoon.support.reflect.code.CtForImpl"));
-        setField(ctForImpl, "factory", null);
-        
-        CtFor actual = ctForImpl.setExpression(null);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctForImpl, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetExpression3() throws Throwable  {
-        CtForImpl ctForImpl = ((CtForImpl) createInstance("spoon.support.reflect.code.CtForImpl"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         setField(factoryImpl, "environment", null);
         setField(ctForImpl, "factory", factoryImpl);
@@ -240,6 +226,21 @@ public class CtForImplTest {
         Object finalCtForImplFactoryEnvironment = getFieldValue(ctForImplFactory1, "environment");
         
         assertFalse(initialCtForImplFactoryEnvironment == finalCtForImplFactoryEnvironment);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetExpression3() throws Throwable  {
+        CtForImpl ctForImpl = ((CtForImpl) createInstance("spoon.support.reflect.code.CtForImpl"));
+        setField(ctForImpl, "factory", null);
+        
+        CtFor actual = ctForImpl.setExpression(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctForImpl, actual));
     }
     ///endregion
     
@@ -462,20 +463,27 @@ public class CtForImplTest {
         setField(ctForImpl, "factory", factoryImpl);
         ArrayList arrayList = new ArrayList();
         setField(ctForImpl, "forInit", arrayList);
-        CtBreakImpl ctBreakImpl = ((CtBreakImpl) createInstance("spoon.support.reflect.code.CtBreakImpl"));
-        setField(ctBreakImpl, "factory", null);
+        CtForImpl ctForImpl1 = ((CtForImpl) createInstance("spoon.support.reflect.code.CtForImpl"));
+        setField(ctForImpl1, "factory", null);
+        setField(ctForImpl1, "forInit", null);
         
         Object ctForImplFactory = getFieldValue(ctForImpl, "factory");
         Object initialCtForImplFactoryEnvironment = getFieldValue(ctForImplFactory, "environment");
         
-        boolean actual = ctForImpl.removeForInit(ctBreakImpl);
+        List initialCtForImpl1ForInit = ctForImpl1.forInit;
+        
+        boolean actual = ctForImpl.removeForInit(ctForImpl1);
         
         assertFalse(actual);
         
         Object ctForImplFactory1 = getFieldValue(ctForImpl, "factory");
         Object finalCtForImplFactoryEnvironment = getFieldValue(ctForImplFactory1, "environment");
         
+        List finalCtForImpl1ForInit = ctForImpl1.forInit;
+        
         assertFalse(initialCtForImplFactoryEnvironment == finalCtForImplFactoryEnvironment);
+        
+        assertNull(finalCtForImpl1ForInit);
     }
     ///endregion
     
@@ -656,21 +664,6 @@ public class CtForImplTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testSetForUpdate4() throws Throwable  {
         CtForImpl ctForImpl = ((CtForImpl) createInstance("spoon.support.reflect.code.CtForImpl"));
-        setField(ctForImpl, "factory", null);
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(null);
-        arrayList.add(null);
-        arrayList.add(null);
-        
-        ctForImpl.setForUpdate(arrayList);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSetForUpdate5() throws Throwable  {
-        CtForImpl ctForImpl = ((CtForImpl) createInstance("spoon.support.reflect.code.CtForImpl"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         setField(factoryImpl, "environment", null);
         setField(ctForImpl, "factory", factoryImpl);
@@ -688,6 +681,21 @@ public class CtForImplTest {
         Object finalCtForImplFactoryEnvironment = getFieldValue(ctForImplFactory1, "environment");
         
         assertFalse(initialCtForImplFactoryEnvironment == finalCtForImplFactoryEnvironment);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSetForUpdate5() throws Throwable  {
+        CtForImpl ctForImpl = ((CtForImpl) createInstance("spoon.support.reflect.code.CtForImpl"));
+        setField(ctForImpl, "factory", null);
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        
+        ctForImpl.setForUpdate(arrayList);
     }
     ///endregion
     
@@ -714,6 +722,33 @@ public class CtForImplTest {
         boolean actual = ctForImpl.removeForUpdate(null);
         
         assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testRemoveForUpdate3() throws Throwable  {
+        CtForImpl ctForImpl = ((CtForImpl) createInstance("spoon.support.reflect.code.CtForImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "environment", null);
+        setField(ctForImpl, "factory", factoryImpl);
+        ArrayList arrayList = new ArrayList();
+        setField(ctForImpl, "forUpdate", arrayList);
+        CtLocalVariableImpl ctLocalVariableImpl = ((CtLocalVariableImpl) createInstance("spoon.support.reflect.code.CtLocalVariableImpl"));
+        setField(ctLocalVariableImpl, "factory", null);
+        
+        Object ctForImplFactory = getFieldValue(ctForImpl, "factory");
+        Object initialCtForImplFactoryEnvironment = getFieldValue(ctForImplFactory, "environment");
+        
+        boolean actual = ctForImpl.removeForUpdate(ctLocalVariableImpl);
+        
+        assertFalse(actual);
+        
+        Object ctForImplFactory1 = getFieldValue(ctForImpl, "factory");
+        Object finalCtForImplFactoryEnvironment = getFieldValue(ctForImplFactory1, "environment");
+        
+        assertFalse(initialCtForImplFactoryEnvironment == finalCtForImplFactoryEnvironment);
     }
     ///endregion
     

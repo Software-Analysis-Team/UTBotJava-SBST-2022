@@ -1,13 +1,16 @@
 package com.alibaba.fastjson.serializer;
 
 import org.junit.Test;
-import sun.security.provider.NativePRNG.Blocking;
-import sun.security.provider.NativePRNG;
+import sun.awt.image.PNGImageDecoder.PNGException;
+import sun.awt.image.PNGImageDecoder;
+import sun.reflect.generics.reflectiveObjects.WildcardTypeImpl;
 import java.util.IdentityHashMap;
 import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
+import java.io.FileWriter;
+import sun.nio.cs.StreamEncoder;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertFalse;
@@ -21,9 +24,11 @@ public class ArraySerializerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testWrite1() throws Throwable  {
         ArraySerializer arraySerializer = ((ArraySerializer) createInstance("com.alibaba.fastjson.serializer.ArraySerializer"));
-        sun.security.provider.NativePRNG.Blocking[] blockingArray = new sun.security.provider.NativePRNG.Blocking[0];
+        java.lang.Object[] arrayMappingArray = createArray("com.sun.jmx.mbeanserver.DefaultMXBeanMappingFactory$ArrayMapping", 0);
+        sun.awt.image.PNGImageDecoder.PNGException[] pNGExceptionArray = new sun.awt.image.PNGImageDecoder.PNGException[0];
+        WildcardTypeImpl wildcardTypeImpl = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
         
-        arraySerializer.write(null, null, blockingArray, null, 0);
+        arraySerializer.write(null, arrayMappingArray, pNGExceptionArray, wildcardTypeImpl, 0);
     }
     ///endregion
     
@@ -51,7 +56,7 @@ public class ArraySerializerTest {
         SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
         serializeWriter.disableCircularReferenceDetect = true;
         serializeWriter.count = Integer.MAX_VALUE;
-        char[] charArray = new char[16];
+        char[] charArray = new char[24];
         serializeWriter.buf = charArray;
         setField(jSONSerializer, "out", serializeWriter);
         java.lang.Object[] objectArray = new java.lang.Object[9];
@@ -160,20 +165,18 @@ public class ArraySerializerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testWrite6() throws Throwable  {
         ArraySerializer arraySerializer = ((ArraySerializer) createInstance("com.alibaba.fastjson.serializer.ArraySerializer"));
+        CharacterCodec characterCodec = ((CharacterCodec) createInstance("com.alibaba.fastjson.serializer.CharacterCodec"));
+        setField(arraySerializer, "compObjectSerializer", characterCodec);
         Class class1 = Object.class;
         setField(arraySerializer, "componentType", class1);
         JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
         setField(jSONSerializer, "context", null);
         SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
         serializeWriter.disableCircularReferenceDetect = true;
-        serializeWriter.count = 38;
-        char[] charArray = new char[39];
+        serializeWriter.count = 0;
+        char[] charArray = new char[33];
         serializeWriter.buf = charArray;
         setField(jSONSerializer, "out", serializeWriter);
-        SerializeConfig serializeConfig = ((SerializeConfig) createInstance("com.alibaba.fastjson.serializer.SerializeConfig"));
-        com.alibaba.fastjson.util.IdentityHashMap identityHashMap = ((com.alibaba.fastjson.util.IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
-        setField(serializeConfig, "serializers", identityHashMap);
-        setField(jSONSerializer, "config", serializeConfig);
         java.lang.Object[] objectArray = new java.lang.Object[9];
         java.lang.Object[] forEachTaskArray = createArray("java.util.stream.ForEachOps$ForEachTask", 0);
         objectArray[0] = forEachTaskArray;
@@ -181,17 +184,79 @@ public class ArraySerializerTest {
         arraySerializer.write(jSONSerializer, objectArray, null, null, 0);
         
         int finalJSONSerializerOutCount = jSONSerializer.out.count;
-        char finalJSONSerializerOutBuf38 = jSONSerializer.out.buf[38];
+        char finalJSONSerializerOutBuf0 = jSONSerializer.out.buf[0];
         
-        assertEquals(39, finalJSONSerializerOutCount);
+        assertEquals(1, finalJSONSerializerOutCount);
         
-        assertEquals('[', finalJSONSerializerOutBuf38);
+        assertEquals('[', finalJSONSerializerOutBuf0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite7() throws Throwable  {
+        ArraySerializer arraySerializer = ((ArraySerializer) createInstance("com.alibaba.fastjson.serializer.ArraySerializer"));
+        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+        setField(jSONSerializer, "context", null);
+        SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
+        setField(serializeWriter, "lock", null);
+        serializeWriter.disableCircularReferenceDetect = true;
+        FileWriter fileWriter = ((FileWriter) createInstance("java.io.FileWriter"));
+        setField(fileWriter, "lock", null);
+        StreamEncoder streamEncoder = ((StreamEncoder) createInstance("sun.nio.cs.StreamEncoder"));
+        setField(streamEncoder, "lock", null);
+        setField(streamEncoder, "isOpen", true);
+        setField(fileWriter, "se", streamEncoder);
+        setField(serializeWriter, "writer", fileWriter);
+        serializeWriter.count = 8;
+        char[] charArray = new char[8];
+        serializeWriter.buf = charArray;
+        setField(jSONSerializer, "out", serializeWriter);
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        
+        SerializeWriter serializeWriter1 = jSONSerializer.out;
+        Object initialJSONSerializerOutLock = getFieldValue(serializeWriter1, "lock");
+        SerializeWriter serializeWriter2 = jSONSerializer.out;
+        Object serializeWriter2OutWriter = getFieldValue(serializeWriter2, "writer");
+        Object initialJSONSerializerOutWriterLock = getFieldValue(serializeWriter2OutWriter, "lock");
+        SerializeWriter serializeWriter3 = jSONSerializer.out;
+        Object serializeWriter3OutWriter = getFieldValue(serializeWriter3, "writer");
+        Object serializeWriter3OutWriterOutWriterSe = getFieldValue(serializeWriter3OutWriter, "se");
+        Object initialJSONSerializerOutWriterSeLock = getFieldValue(serializeWriter3OutWriterOutWriterSe, "lock");
+        
+        arraySerializer.write(jSONSerializer, objectArray, null, null, 0);
+        
+        SerializeWriter serializeWriter4 = jSONSerializer.out;
+        Object finalJSONSerializerOutLock = getFieldValue(serializeWriter4, "lock");
+        SerializeWriter serializeWriter5 = jSONSerializer.out;
+        Object serializeWriter5OutWriter = getFieldValue(serializeWriter5, "writer");
+        Object finalJSONSerializerOutWriterLock = getFieldValue(serializeWriter5OutWriter, "lock");
+        SerializeWriter serializeWriter6 = jSONSerializer.out;
+        Object serializeWriter6OutWriter = getFieldValue(serializeWriter6, "writer");
+        Object serializeWriter6OutWriterOutWriterSe = getFieldValue(serializeWriter6OutWriter, "se");
+        Object finalJSONSerializerOutWriterSeLock = getFieldValue(serializeWriter6OutWriterOutWriterSe, "lock");
+        
+        assertNull(finalJSONSerializerOutLock);
+        
+        assertNull(finalJSONSerializerOutWriterLock);
+        
+        assertNull(finalJSONSerializerOutWriterSeLock);
     }
     ///endregion
     
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();
@@ -212,15 +277,6 @@ public class ArraySerializerTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();

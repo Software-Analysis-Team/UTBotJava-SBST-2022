@@ -16,19 +16,6 @@ public class HSFJSONUtilsTest {
     }
     ///endregion
     
-    
-    ///region Errors report for parseInvocationArguments
-    
-    public void testParseInvocationArguments_errors1()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
-    }
-    ///endregion
-    
     ///region
     
     @Test(timeout = 10000)

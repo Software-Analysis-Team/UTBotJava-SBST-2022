@@ -1,11 +1,11 @@
 package spoon.support.reflect;
 
 import org.junit.Test;
-import sun.awt.image.PixelConverter.Ushort555Rgbx;
-import sun.awt.image.PixelConverter;
+import com.fasterxml.jackson.databind.deser.AbstractDeserializer;
 import spoon.reflect.declaration.ModifierKind;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.cu.position.NoSourcePosition;
+import spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -55,9 +55,9 @@ public class CtExtendedModifierTest {
     @Test(timeout = 10000)
     public void testEquals3() throws Throwable  {
         CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        sun.awt.image.PixelConverter.Ushort555Rgbx[] ushort555RgbxArray = new sun.awt.image.PixelConverter.Ushort555Rgbx[0];
+        com.fasterxml.jackson.databind.deser.AbstractDeserializer[] abstractDeserializerArray = new com.fasterxml.jackson.databind.deser.AbstractDeserializer[0];
         
-        boolean actual = ctExtendedModifier.equals(ushort555RgbxArray);
+        boolean actual = ctExtendedModifier.equals(abstractDeserializerArray);
         
         assertFalse(actual);
     }
@@ -114,32 +114,7 @@ public class CtExtendedModifierTest {
         
         int actual = ctExtendedModifier.hashCode();
         
-        assertEquals(895499205, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsImplicit1() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        
-        boolean actual = ctExtendedModifier.isImplicit();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsImplicit2() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        setField(ctExtendedModifier, "implicit", false);
-        
-        boolean actual = ctExtendedModifier.isImplicit();
-        
-        assertFalse(actual);
+        assertEquals(505662502, actual);
     }
     ///endregion
     
@@ -163,14 +138,14 @@ public class CtExtendedModifierTest {
     @Test(timeout = 10000)
     public void testGetPosition2() throws Throwable  {
         CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        NoSourcePosition noSourcePosition = ((NoSourcePosition) createInstance("spoon.reflect.cu.position.NoSourcePosition"));
-        setField(ctExtendedModifier, "position", noSourcePosition);
+        BodyHolderSourcePositionImpl bodyHolderSourcePositionImpl = ((BodyHolderSourcePositionImpl) createInstance("spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl"));
+        setField(ctExtendedModifier, "position", bodyHolderSourcePositionImpl);
         
         SourcePosition actual = ctExtendedModifier.getPosition();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(noSourcePosition, actual));
+        assertTrue(deepEquals(bodyHolderSourcePositionImpl, actual));
     }
     ///endregion
     
@@ -265,6 +240,31 @@ public class CtExtendedModifierTest {
         setField(ctExtendedModifier, "implicit", false);
         
         ctExtendedModifier.setImplicit(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsImplicit1() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        
+        boolean actual = ctExtendedModifier.isImplicit();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsImplicit2() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        setField(ctExtendedModifier, "implicit", false);
+        
+        boolean actual = ctExtendedModifier.isImplicit();
+        
+        assertFalse(actual);
     }
     ///endregion
     

@@ -3,12 +3,15 @@ package com.google.common.collect;
 import org.junit.Test;
 import java.util.Comparator;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.time.chrono.ThaiBuddhistDate;
+import sun.text.CompactByteArray;
+import java.util.LinkedHashSet;
 import java.util.HashMap;
-import java.lang.reflect.Constructor;
+import java.time.chrono.HijrahDate;
+import sun.util.locale.provider.LocaleProviderAdapter.Type;
+import sun.util.locale.provider.LocaleProviderAdapter;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -56,9 +59,9 @@ public class ReverseOrderingTest {
     @Test(timeout = 10000)
     public void testEquals3() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        java.lang.Object[] operatorArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraint$Operator", 0);
+        java.lang.Object[] sizedDoubleSortingSinkArray = createArray("java.util.stream.SortedOps$SizedDoubleSortingSink", 0);
         
-        boolean actual = reverseOrdering.equals(operatorArray);
+        boolean actual = reverseOrdering.equals(sizedDoubleSortingSinkArray);
         
         assertFalse(actual);
     }
@@ -139,7 +142,7 @@ public class ReverseOrderingTest {
         
         String actual = reverseOrdering.toString();
         
-        String expected = new String("com.google.common.collect.Range$RangeLexOrdering@22cbb037.reverse()");
+        String expected = new String("com.google.common.collect.Range$RangeLexOrdering@35603ba6.reverse()");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -218,24 +221,13 @@ public class ReverseOrderingTest {
     public void testMin2() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
-        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
-        LinkedHashSet linkedHashSet = ((LinkedHashSet) createInstance("java.util.LinkedHashSet"));
-        
-        reverseOrdering.min(linkedHashSet);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin3() throws Throwable  {
-        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering3 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering4 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering2, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering4, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering3, "forwardOrder", reverseOrdering4);
+        setField(reverseOrdering2, "forwardOrder", reverseOrdering3);
         setField(reverseOrdering1, "forwardOrder", reverseOrdering2);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
         
@@ -246,7 +238,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin4() throws Throwable  {
+    public void testMin3() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         
         reverseOrdering.min(((Iterator) null));
@@ -256,7 +248,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin5() throws Throwable  {
+    public void testMin4() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
@@ -271,7 +263,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin6() throws Throwable  {
+    public void testMin5() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         Object object = new Object();
         Object object1 = new Object();
@@ -283,20 +275,20 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin7() throws Throwable  {
+    public void testMin6() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
-        java.lang.Object[] charArrayAsListArray = createArray("com.google.common.primitives.Chars$CharArrayAsList", 0);
+        java.lang.Object[] asListArray = createArray("com.google.common.primitives.ImmutableLongArray$AsList", 0);
         
-        reverseOrdering.min(charArrayAsListArray, null);
+        reverseOrdering.min(asListArray, null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin8() throws Throwable  {
+    public void testMin7() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
@@ -309,22 +301,22 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin9() throws Throwable  {
+    public void testMin8() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
-        java.time.chrono.ThaiBuddhistDate[] thaiBuddhistDateArray = new java.time.chrono.ThaiBuddhistDate[0];
-        java.lang.Object[] ofIntArray = createArray("java.util.stream.Nodes$InternalNodeSpliterator$OfInt", 0);
+        java.lang.Object[] fileBuilderArray = createArray("java.security.KeyStore$Builder$FileBuilder", 0);
+        java.lang.Object[] operatorArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraint$Operator", 0);
         
-        reverseOrdering.min(thaiBuddhistDateArray, ofIntArray);
+        reverseOrdering.min(fileBuilderArray, operatorArray);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin10() throws Throwable  {
+    public void testMin9() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
@@ -336,7 +328,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin11() throws Throwable  {
+    public void testMin10() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         Object object = new Object();
         Object object1 = new Object();
@@ -350,12 +342,12 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin12() throws Throwable  {
+    public void testMin11() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
         java.lang.Object[] findOpArray = createArray("java.util.stream.FindOps$FindOp", 9);
-        java.lang.StackTraceElement[] stackTraceElementArray = new java.lang.StackTraceElement[9];
+        java.lang.Object[] handlerArray = createArray("jdk.internal.org.objectweb.asm.Handler", 9);
         java.lang.Object[] objectArray = new java.lang.Object[9];
         
         Object initialFindOpArray0 = findOpArray[0];
@@ -368,17 +360,17 @@ public class ReverseOrderingTest {
         Object initialFindOpArray7 = findOpArray[7];
         Object initialFindOpArray8 = findOpArray[8];
         
-        StackTraceElement initialStackTraceElementArray0 = stackTraceElementArray[0];
-        StackTraceElement initialStackTraceElementArray1 = stackTraceElementArray[1];
-        StackTraceElement initialStackTraceElementArray2 = stackTraceElementArray[2];
-        StackTraceElement initialStackTraceElementArray3 = stackTraceElementArray[3];
-        StackTraceElement initialStackTraceElementArray4 = stackTraceElementArray[4];
-        StackTraceElement initialStackTraceElementArray5 = stackTraceElementArray[5];
-        StackTraceElement initialStackTraceElementArray6 = stackTraceElementArray[6];
-        StackTraceElement initialStackTraceElementArray7 = stackTraceElementArray[7];
-        StackTraceElement initialStackTraceElementArray8 = stackTraceElementArray[8];
+        Object initialHandlerArray0 = handlerArray[0];
+        Object initialHandlerArray1 = handlerArray[1];
+        Object initialHandlerArray2 = handlerArray[2];
+        Object initialHandlerArray3 = handlerArray[3];
+        Object initialHandlerArray4 = handlerArray[4];
+        Object initialHandlerArray5 = handlerArray[5];
+        Object initialHandlerArray6 = handlerArray[6];
+        Object initialHandlerArray7 = handlerArray[7];
+        Object initialHandlerArray8 = handlerArray[8];
         
-        reverseOrdering.min(findOpArray, stackTraceElementArray, null, objectArray);
+        reverseOrdering.min(findOpArray, handlerArray, null, objectArray);
         
         Object finalFindOpArray0 = findOpArray[0];
         Object finalFindOpArray1 = findOpArray[1];
@@ -390,15 +382,15 @@ public class ReverseOrderingTest {
         Object finalFindOpArray7 = findOpArray[7];
         Object finalFindOpArray8 = findOpArray[8];
         
-        StackTraceElement finalStackTraceElementArray0 = stackTraceElementArray[0];
-        StackTraceElement finalStackTraceElementArray1 = stackTraceElementArray[1];
-        StackTraceElement finalStackTraceElementArray2 = stackTraceElementArray[2];
-        StackTraceElement finalStackTraceElementArray3 = stackTraceElementArray[3];
-        StackTraceElement finalStackTraceElementArray4 = stackTraceElementArray[4];
-        StackTraceElement finalStackTraceElementArray5 = stackTraceElementArray[5];
-        StackTraceElement finalStackTraceElementArray6 = stackTraceElementArray[6];
-        StackTraceElement finalStackTraceElementArray7 = stackTraceElementArray[7];
-        StackTraceElement finalStackTraceElementArray8 = stackTraceElementArray[8];
+        Object finalHandlerArray0 = handlerArray[0];
+        Object finalHandlerArray1 = handlerArray[1];
+        Object finalHandlerArray2 = handlerArray[2];
+        Object finalHandlerArray3 = handlerArray[3];
+        Object finalHandlerArray4 = handlerArray[4];
+        Object finalHandlerArray5 = handlerArray[5];
+        Object finalHandlerArray6 = handlerArray[6];
+        Object finalHandlerArray7 = handlerArray[7];
+        Object finalHandlerArray8 = handlerArray[8];
         
         assertNull(finalFindOpArray0);
         
@@ -418,36 +410,237 @@ public class ReverseOrderingTest {
         
         assertNull(finalFindOpArray8);
         
-        assertNull(finalStackTraceElementArray0);
+        assertNull(finalHandlerArray0);
         
-        assertNull(finalStackTraceElementArray1);
+        assertNull(finalHandlerArray1);
         
-        assertNull(finalStackTraceElementArray2);
+        assertNull(finalHandlerArray2);
         
-        assertNull(finalStackTraceElementArray3);
+        assertNull(finalHandlerArray3);
         
-        assertNull(finalStackTraceElementArray4);
+        assertNull(finalHandlerArray4);
         
-        assertNull(finalStackTraceElementArray5);
+        assertNull(finalHandlerArray5);
         
-        assertNull(finalStackTraceElementArray6);
+        assertNull(finalHandlerArray6);
         
-        assertNull(finalStackTraceElementArray7);
+        assertNull(finalHandlerArray7);
         
-        assertNull(finalStackTraceElementArray8);
+        assertNull(finalHandlerArray8);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin13() throws Throwable  {
+    public void testMin12() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        java.lang.Object[] handlerArray = createArray("[Ljdk.internal.org.objectweb.asm.Handler;", 16);
+        handlerArray[0] = null;
+        handlerArray[1] = null;
+        handlerArray[2] = null;
+        handlerArray[3] = null;
+        handlerArray[4] = null;
+        handlerArray[5] = null;
+        handlerArray[6] = null;
+        handlerArray[7] = null;
+        handlerArray[8] = null;
+        handlerArray[9] = null;
+        handlerArray[10] = null;
+        handlerArray[11] = null;
+        handlerArray[12] = null;
+        handlerArray[13] = null;
+        handlerArray[14] = null;
+        handlerArray[15] = null;
+        java.lang.Object[] operatorArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraint$Operator", 16);
+        java.time.chrono.ThaiBuddhistDate[] thaiBuddhistDateArray = new java.time.chrono.ThaiBuddhistDate[16];
+        java.lang.Object[] objectArray = new java.lang.Object[16];
         
-        reverseOrdering.min(null, null, null, ((java.lang.Object[]) null));
+        Object initialOperatorArray0 = operatorArray[0];
+        Object initialOperatorArray1 = operatorArray[1];
+        Object initialOperatorArray2 = operatorArray[2];
+        Object initialOperatorArray3 = operatorArray[3];
+        Object initialOperatorArray4 = operatorArray[4];
+        Object initialOperatorArray5 = operatorArray[5];
+        Object initialOperatorArray6 = operatorArray[6];
+        Object initialOperatorArray7 = operatorArray[7];
+        Object initialOperatorArray8 = operatorArray[8];
+        Object initialOperatorArray9 = operatorArray[9];
+        Object initialOperatorArray10 = operatorArray[10];
+        Object initialOperatorArray11 = operatorArray[11];
+        Object initialOperatorArray12 = operatorArray[12];
+        Object initialOperatorArray13 = operatorArray[13];
+        Object initialOperatorArray14 = operatorArray[14];
+        Object initialOperatorArray15 = operatorArray[15];
+        
+        ThaiBuddhistDate initialThaiBuddhistDateArray0 = thaiBuddhistDateArray[0];
+        ThaiBuddhistDate initialThaiBuddhistDateArray1 = thaiBuddhistDateArray[1];
+        ThaiBuddhistDate initialThaiBuddhistDateArray2 = thaiBuddhistDateArray[2];
+        ThaiBuddhistDate initialThaiBuddhistDateArray3 = thaiBuddhistDateArray[3];
+        ThaiBuddhistDate initialThaiBuddhistDateArray4 = thaiBuddhistDateArray[4];
+        ThaiBuddhistDate initialThaiBuddhistDateArray5 = thaiBuddhistDateArray[5];
+        ThaiBuddhistDate initialThaiBuddhistDateArray6 = thaiBuddhistDateArray[6];
+        ThaiBuddhistDate initialThaiBuddhistDateArray7 = thaiBuddhistDateArray[7];
+        ThaiBuddhistDate initialThaiBuddhistDateArray8 = thaiBuddhistDateArray[8];
+        ThaiBuddhistDate initialThaiBuddhistDateArray9 = thaiBuddhistDateArray[9];
+        ThaiBuddhistDate initialThaiBuddhistDateArray10 = thaiBuddhistDateArray[10];
+        ThaiBuddhistDate initialThaiBuddhistDateArray11 = thaiBuddhistDateArray[11];
+        ThaiBuddhistDate initialThaiBuddhistDateArray12 = thaiBuddhistDateArray[12];
+        ThaiBuddhistDate initialThaiBuddhistDateArray13 = thaiBuddhistDateArray[13];
+        ThaiBuddhistDate initialThaiBuddhistDateArray14 = thaiBuddhistDateArray[14];
+        ThaiBuddhistDate initialThaiBuddhistDateArray15 = thaiBuddhistDateArray[15];
+        
+        reverseOrdering.min(handlerArray, operatorArray, thaiBuddhistDateArray, objectArray);
+        
+        Object finalHandlerArray0 = handlerArray[0];
+        Object finalHandlerArray1 = handlerArray[1];
+        Object finalHandlerArray2 = handlerArray[2];
+        Object finalHandlerArray3 = handlerArray[3];
+        Object finalHandlerArray4 = handlerArray[4];
+        Object finalHandlerArray5 = handlerArray[5];
+        Object finalHandlerArray6 = handlerArray[6];
+        Object finalHandlerArray7 = handlerArray[7];
+        Object finalHandlerArray8 = handlerArray[8];
+        Object finalHandlerArray9 = handlerArray[9];
+        Object finalHandlerArray10 = handlerArray[10];
+        Object finalHandlerArray11 = handlerArray[11];
+        Object finalHandlerArray12 = handlerArray[12];
+        Object finalHandlerArray13 = handlerArray[13];
+        Object finalHandlerArray14 = handlerArray[14];
+        Object finalHandlerArray15 = handlerArray[15];
+        
+        Object finalOperatorArray0 = operatorArray[0];
+        Object finalOperatorArray1 = operatorArray[1];
+        Object finalOperatorArray2 = operatorArray[2];
+        Object finalOperatorArray3 = operatorArray[3];
+        Object finalOperatorArray4 = operatorArray[4];
+        Object finalOperatorArray5 = operatorArray[5];
+        Object finalOperatorArray6 = operatorArray[6];
+        Object finalOperatorArray7 = operatorArray[7];
+        Object finalOperatorArray8 = operatorArray[8];
+        Object finalOperatorArray9 = operatorArray[9];
+        Object finalOperatorArray10 = operatorArray[10];
+        Object finalOperatorArray11 = operatorArray[11];
+        Object finalOperatorArray12 = operatorArray[12];
+        Object finalOperatorArray13 = operatorArray[13];
+        Object finalOperatorArray14 = operatorArray[14];
+        Object finalOperatorArray15 = operatorArray[15];
+        
+        ThaiBuddhistDate finalThaiBuddhistDateArray0 = thaiBuddhistDateArray[0];
+        ThaiBuddhistDate finalThaiBuddhistDateArray1 = thaiBuddhistDateArray[1];
+        ThaiBuddhistDate finalThaiBuddhistDateArray2 = thaiBuddhistDateArray[2];
+        ThaiBuddhistDate finalThaiBuddhistDateArray3 = thaiBuddhistDateArray[3];
+        ThaiBuddhistDate finalThaiBuddhistDateArray4 = thaiBuddhistDateArray[4];
+        ThaiBuddhistDate finalThaiBuddhistDateArray5 = thaiBuddhistDateArray[5];
+        ThaiBuddhistDate finalThaiBuddhistDateArray6 = thaiBuddhistDateArray[6];
+        ThaiBuddhistDate finalThaiBuddhistDateArray7 = thaiBuddhistDateArray[7];
+        ThaiBuddhistDate finalThaiBuddhistDateArray8 = thaiBuddhistDateArray[8];
+        ThaiBuddhistDate finalThaiBuddhistDateArray9 = thaiBuddhistDateArray[9];
+        ThaiBuddhistDate finalThaiBuddhistDateArray10 = thaiBuddhistDateArray[10];
+        ThaiBuddhistDate finalThaiBuddhistDateArray11 = thaiBuddhistDateArray[11];
+        ThaiBuddhistDate finalThaiBuddhistDateArray12 = thaiBuddhistDateArray[12];
+        ThaiBuddhistDate finalThaiBuddhistDateArray13 = thaiBuddhistDateArray[13];
+        ThaiBuddhistDate finalThaiBuddhistDateArray14 = thaiBuddhistDateArray[14];
+        ThaiBuddhistDate finalThaiBuddhistDateArray15 = thaiBuddhistDateArray[15];
+        
+        assertNull(finalHandlerArray0);
+        
+        assertNull(finalHandlerArray1);
+        
+        assertNull(finalHandlerArray2);
+        
+        assertNull(finalHandlerArray3);
+        
+        assertNull(finalHandlerArray4);
+        
+        assertNull(finalHandlerArray5);
+        
+        assertNull(finalHandlerArray6);
+        
+        assertNull(finalHandlerArray7);
+        
+        assertNull(finalHandlerArray8);
+        
+        assertNull(finalHandlerArray9);
+        
+        assertNull(finalHandlerArray10);
+        
+        assertNull(finalHandlerArray11);
+        
+        assertNull(finalHandlerArray12);
+        
+        assertNull(finalHandlerArray13);
+        
+        assertNull(finalHandlerArray14);
+        
+        assertNull(finalHandlerArray15);
+        
+        assertNull(finalOperatorArray0);
+        
+        assertNull(finalOperatorArray1);
+        
+        assertNull(finalOperatorArray2);
+        
+        assertNull(finalOperatorArray3);
+        
+        assertNull(finalOperatorArray4);
+        
+        assertNull(finalOperatorArray5);
+        
+        assertNull(finalOperatorArray6);
+        
+        assertNull(finalOperatorArray7);
+        
+        assertNull(finalOperatorArray8);
+        
+        assertNull(finalOperatorArray9);
+        
+        assertNull(finalOperatorArray10);
+        
+        assertNull(finalOperatorArray11);
+        
+        assertNull(finalOperatorArray12);
+        
+        assertNull(finalOperatorArray13);
+        
+        assertNull(finalOperatorArray14);
+        
+        assertNull(finalOperatorArray15);
+        
+        assertNull(finalThaiBuddhistDateArray0);
+        
+        assertNull(finalThaiBuddhistDateArray1);
+        
+        assertNull(finalThaiBuddhistDateArray2);
+        
+        assertNull(finalThaiBuddhistDateArray3);
+        
+        assertNull(finalThaiBuddhistDateArray4);
+        
+        assertNull(finalThaiBuddhistDateArray5);
+        
+        assertNull(finalThaiBuddhistDateArray6);
+        
+        assertNull(finalThaiBuddhistDateArray7);
+        
+        assertNull(finalThaiBuddhistDateArray8);
+        
+        assertNull(finalThaiBuddhistDateArray9);
+        
+        assertNull(finalThaiBuddhistDateArray10);
+        
+        assertNull(finalThaiBuddhistDateArray11);
+        
+        assertNull(finalThaiBuddhistDateArray12);
+        
+        assertNull(finalThaiBuddhistDateArray13);
+        
+        assertNull(finalThaiBuddhistDateArray14);
+        
+        assertNull(finalThaiBuddhistDateArray15);
     }
     ///endregion
     
@@ -470,9 +663,9 @@ public class ReverseOrderingTest {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
-        java.lang.Object[] charArrayAsListArray = createArray("com.google.common.primitives.Chars$CharArrayAsList", 0);
+        java.lang.Object[] asListArray = createArray("com.google.common.primitives.ImmutableLongArray$AsList", 0);
         
-        reverseOrdering.max(charArrayAsListArray, null);
+        reverseOrdering.max(asListArray, null);
     }
     ///endregion
     
@@ -498,9 +691,9 @@ public class ReverseOrderingTest {
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
-        java.lang.Object[] ofDoubleArray = createArray("java.util.stream.Nodes$InternalNodeSpliterator$OfDouble", 0);
+        sun.text.CompactByteArray[] compactByteArrayArray = new sun.text.CompactByteArray[0];
         
-        reverseOrdering.max(ofDoubleArray, null);
+        reverseOrdering.max(compactByteArrayArray, null);
     }
     ///endregion
     
@@ -606,8 +799,49 @@ public class ReverseOrderingTest {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        HijrahDate hijrahDate = ((HijrahDate) createInstance("java.time.chrono.HijrahDate"));
+        LocaleProviderAdapter.Type type = LocaleProviderAdapter.Type.JRE;
+        java.lang.Comparable[] comparableArray = new java.lang.Comparable[9];
         
-        reverseOrdering.max(null, null, null, ((java.lang.Object[]) null));
+        Comparable initialComparableArray0 = comparableArray[0];
+        Comparable initialComparableArray1 = comparableArray[1];
+        Comparable initialComparableArray2 = comparableArray[2];
+        Comparable initialComparableArray3 = comparableArray[3];
+        Comparable initialComparableArray4 = comparableArray[4];
+        Comparable initialComparableArray5 = comparableArray[5];
+        Comparable initialComparableArray6 = comparableArray[6];
+        Comparable initialComparableArray7 = comparableArray[7];
+        Comparable initialComparableArray8 = comparableArray[8];
+        
+        reverseOrdering.max(hijrahDate, null, type, comparableArray);
+        
+        Comparable finalComparableArray0 = comparableArray[0];
+        Comparable finalComparableArray1 = comparableArray[1];
+        Comparable finalComparableArray2 = comparableArray[2];
+        Comparable finalComparableArray3 = comparableArray[3];
+        Comparable finalComparableArray4 = comparableArray[4];
+        Comparable finalComparableArray5 = comparableArray[5];
+        Comparable finalComparableArray6 = comparableArray[6];
+        Comparable finalComparableArray7 = comparableArray[7];
+        Comparable finalComparableArray8 = comparableArray[8];
+        
+        assertNull(finalComparableArray0);
+        
+        assertNull(finalComparableArray1);
+        
+        assertNull(finalComparableArray2);
+        
+        assertNull(finalComparableArray3);
+        
+        assertNull(finalComparableArray4);
+        
+        assertNull(finalComparableArray5);
+        
+        assertNull(finalComparableArray6);
+        
+        assertNull(finalComparableArray7);
+        
+        assertNull(finalComparableArray8);
     }
     ///endregion
     
@@ -619,8 +853,209 @@ public class ReverseOrderingTest {
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        java.lang.Object[] handlerArray = createArray("[Ljdk.internal.org.objectweb.asm.Handler;", 16);
+        handlerArray[0] = null;
+        handlerArray[1] = null;
+        handlerArray[2] = null;
+        handlerArray[3] = null;
+        handlerArray[4] = null;
+        handlerArray[5] = null;
+        handlerArray[6] = null;
+        handlerArray[7] = null;
+        handlerArray[8] = null;
+        handlerArray[9] = null;
+        handlerArray[10] = null;
+        handlerArray[11] = null;
+        handlerArray[12] = null;
+        handlerArray[13] = null;
+        handlerArray[14] = null;
+        handlerArray[15] = null;
+        java.lang.Object[] operatorArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraint$Operator", 16);
+        java.time.chrono.ThaiBuddhistDate[] thaiBuddhistDateArray = new java.time.chrono.ThaiBuddhistDate[16];
+        java.lang.Object[] objectArray = new java.lang.Object[16];
         
-        reverseOrdering.max(null, null, null, ((java.lang.Object[]) null));
+        Object initialOperatorArray0 = operatorArray[0];
+        Object initialOperatorArray1 = operatorArray[1];
+        Object initialOperatorArray2 = operatorArray[2];
+        Object initialOperatorArray3 = operatorArray[3];
+        Object initialOperatorArray4 = operatorArray[4];
+        Object initialOperatorArray5 = operatorArray[5];
+        Object initialOperatorArray6 = operatorArray[6];
+        Object initialOperatorArray7 = operatorArray[7];
+        Object initialOperatorArray8 = operatorArray[8];
+        Object initialOperatorArray9 = operatorArray[9];
+        Object initialOperatorArray10 = operatorArray[10];
+        Object initialOperatorArray11 = operatorArray[11];
+        Object initialOperatorArray12 = operatorArray[12];
+        Object initialOperatorArray13 = operatorArray[13];
+        Object initialOperatorArray14 = operatorArray[14];
+        Object initialOperatorArray15 = operatorArray[15];
+        
+        ThaiBuddhistDate initialThaiBuddhistDateArray0 = thaiBuddhistDateArray[0];
+        ThaiBuddhistDate initialThaiBuddhistDateArray1 = thaiBuddhistDateArray[1];
+        ThaiBuddhistDate initialThaiBuddhistDateArray2 = thaiBuddhistDateArray[2];
+        ThaiBuddhistDate initialThaiBuddhistDateArray3 = thaiBuddhistDateArray[3];
+        ThaiBuddhistDate initialThaiBuddhistDateArray4 = thaiBuddhistDateArray[4];
+        ThaiBuddhistDate initialThaiBuddhistDateArray5 = thaiBuddhistDateArray[5];
+        ThaiBuddhistDate initialThaiBuddhistDateArray6 = thaiBuddhistDateArray[6];
+        ThaiBuddhistDate initialThaiBuddhistDateArray7 = thaiBuddhistDateArray[7];
+        ThaiBuddhistDate initialThaiBuddhistDateArray8 = thaiBuddhistDateArray[8];
+        ThaiBuddhistDate initialThaiBuddhistDateArray9 = thaiBuddhistDateArray[9];
+        ThaiBuddhistDate initialThaiBuddhistDateArray10 = thaiBuddhistDateArray[10];
+        ThaiBuddhistDate initialThaiBuddhistDateArray11 = thaiBuddhistDateArray[11];
+        ThaiBuddhistDate initialThaiBuddhistDateArray12 = thaiBuddhistDateArray[12];
+        ThaiBuddhistDate initialThaiBuddhistDateArray13 = thaiBuddhistDateArray[13];
+        ThaiBuddhistDate initialThaiBuddhistDateArray14 = thaiBuddhistDateArray[14];
+        ThaiBuddhistDate initialThaiBuddhistDateArray15 = thaiBuddhistDateArray[15];
+        
+        reverseOrdering.max(handlerArray, operatorArray, thaiBuddhistDateArray, objectArray);
+        
+        Object finalHandlerArray0 = handlerArray[0];
+        Object finalHandlerArray1 = handlerArray[1];
+        Object finalHandlerArray2 = handlerArray[2];
+        Object finalHandlerArray3 = handlerArray[3];
+        Object finalHandlerArray4 = handlerArray[4];
+        Object finalHandlerArray5 = handlerArray[5];
+        Object finalHandlerArray6 = handlerArray[6];
+        Object finalHandlerArray7 = handlerArray[7];
+        Object finalHandlerArray8 = handlerArray[8];
+        Object finalHandlerArray9 = handlerArray[9];
+        Object finalHandlerArray10 = handlerArray[10];
+        Object finalHandlerArray11 = handlerArray[11];
+        Object finalHandlerArray12 = handlerArray[12];
+        Object finalHandlerArray13 = handlerArray[13];
+        Object finalHandlerArray14 = handlerArray[14];
+        Object finalHandlerArray15 = handlerArray[15];
+        
+        Object finalOperatorArray0 = operatorArray[0];
+        Object finalOperatorArray1 = operatorArray[1];
+        Object finalOperatorArray2 = operatorArray[2];
+        Object finalOperatorArray3 = operatorArray[3];
+        Object finalOperatorArray4 = operatorArray[4];
+        Object finalOperatorArray5 = operatorArray[5];
+        Object finalOperatorArray6 = operatorArray[6];
+        Object finalOperatorArray7 = operatorArray[7];
+        Object finalOperatorArray8 = operatorArray[8];
+        Object finalOperatorArray9 = operatorArray[9];
+        Object finalOperatorArray10 = operatorArray[10];
+        Object finalOperatorArray11 = operatorArray[11];
+        Object finalOperatorArray12 = operatorArray[12];
+        Object finalOperatorArray13 = operatorArray[13];
+        Object finalOperatorArray14 = operatorArray[14];
+        Object finalOperatorArray15 = operatorArray[15];
+        
+        ThaiBuddhistDate finalThaiBuddhistDateArray0 = thaiBuddhistDateArray[0];
+        ThaiBuddhistDate finalThaiBuddhistDateArray1 = thaiBuddhistDateArray[1];
+        ThaiBuddhistDate finalThaiBuddhistDateArray2 = thaiBuddhistDateArray[2];
+        ThaiBuddhistDate finalThaiBuddhistDateArray3 = thaiBuddhistDateArray[3];
+        ThaiBuddhistDate finalThaiBuddhistDateArray4 = thaiBuddhistDateArray[4];
+        ThaiBuddhistDate finalThaiBuddhistDateArray5 = thaiBuddhistDateArray[5];
+        ThaiBuddhistDate finalThaiBuddhistDateArray6 = thaiBuddhistDateArray[6];
+        ThaiBuddhistDate finalThaiBuddhistDateArray7 = thaiBuddhistDateArray[7];
+        ThaiBuddhistDate finalThaiBuddhistDateArray8 = thaiBuddhistDateArray[8];
+        ThaiBuddhistDate finalThaiBuddhistDateArray9 = thaiBuddhistDateArray[9];
+        ThaiBuddhistDate finalThaiBuddhistDateArray10 = thaiBuddhistDateArray[10];
+        ThaiBuddhistDate finalThaiBuddhistDateArray11 = thaiBuddhistDateArray[11];
+        ThaiBuddhistDate finalThaiBuddhistDateArray12 = thaiBuddhistDateArray[12];
+        ThaiBuddhistDate finalThaiBuddhistDateArray13 = thaiBuddhistDateArray[13];
+        ThaiBuddhistDate finalThaiBuddhistDateArray14 = thaiBuddhistDateArray[14];
+        ThaiBuddhistDate finalThaiBuddhistDateArray15 = thaiBuddhistDateArray[15];
+        
+        assertNull(finalHandlerArray0);
+        
+        assertNull(finalHandlerArray1);
+        
+        assertNull(finalHandlerArray2);
+        
+        assertNull(finalHandlerArray3);
+        
+        assertNull(finalHandlerArray4);
+        
+        assertNull(finalHandlerArray5);
+        
+        assertNull(finalHandlerArray6);
+        
+        assertNull(finalHandlerArray7);
+        
+        assertNull(finalHandlerArray8);
+        
+        assertNull(finalHandlerArray9);
+        
+        assertNull(finalHandlerArray10);
+        
+        assertNull(finalHandlerArray11);
+        
+        assertNull(finalHandlerArray12);
+        
+        assertNull(finalHandlerArray13);
+        
+        assertNull(finalHandlerArray14);
+        
+        assertNull(finalHandlerArray15);
+        
+        assertNull(finalOperatorArray0);
+        
+        assertNull(finalOperatorArray1);
+        
+        assertNull(finalOperatorArray2);
+        
+        assertNull(finalOperatorArray3);
+        
+        assertNull(finalOperatorArray4);
+        
+        assertNull(finalOperatorArray5);
+        
+        assertNull(finalOperatorArray6);
+        
+        assertNull(finalOperatorArray7);
+        
+        assertNull(finalOperatorArray8);
+        
+        assertNull(finalOperatorArray9);
+        
+        assertNull(finalOperatorArray10);
+        
+        assertNull(finalOperatorArray11);
+        
+        assertNull(finalOperatorArray12);
+        
+        assertNull(finalOperatorArray13);
+        
+        assertNull(finalOperatorArray14);
+        
+        assertNull(finalOperatorArray15);
+        
+        assertNull(finalThaiBuddhistDateArray0);
+        
+        assertNull(finalThaiBuddhistDateArray1);
+        
+        assertNull(finalThaiBuddhistDateArray2);
+        
+        assertNull(finalThaiBuddhistDateArray3);
+        
+        assertNull(finalThaiBuddhistDateArray4);
+        
+        assertNull(finalThaiBuddhistDateArray5);
+        
+        assertNull(finalThaiBuddhistDateArray6);
+        
+        assertNull(finalThaiBuddhistDateArray7);
+        
+        assertNull(finalThaiBuddhistDateArray8);
+        
+        assertNull(finalThaiBuddhistDateArray9);
+        
+        assertNull(finalThaiBuddhistDateArray10);
+        
+        assertNull(finalThaiBuddhistDateArray11);
+        
+        assertNull(finalThaiBuddhistDateArray12);
+        
+        assertNull(finalThaiBuddhistDateArray13);
+        
+        assertNull(finalThaiBuddhistDateArray14);
+        
+        assertNull(finalThaiBuddhistDateArray15);
     }
     ///endregion
     
@@ -664,14 +1099,8 @@ public class ReverseOrderingTest {
     
     @Test(timeout = 10000)
     public void testReverseOrdering2() throws Throwable  {
-        Object rangeLexOrdering = createInstance("com.google.common.collect.Range$RangeLexOrdering");
-        Class reverseOrderingClazz = Class.forName("com.google.common.collect.ReverseOrdering");
-        Class rangeLexOrderingType = Class.forName("com.google.common.collect.Ordering");
-        Constructor reverseOrderingConstructor = reverseOrderingClazz.getDeclaredConstructor(rangeLexOrderingType);
-        reverseOrderingConstructor.setAccessible(true);
-        java.lang.Object[] reverseOrderingConstructorArguments = new java.lang.Object[1];
-        reverseOrderingConstructorArguments[0] = rangeLexOrdering;
-        ReverseOrdering actual = ((ReverseOrdering) reverseOrderingConstructor.newInstance(reverseOrderingConstructorArguments));
+        NaturalOrdering naturalOrdering = ((NaturalOrdering) createInstance("com.google.common.collect.NaturalOrdering"));
+        ReverseOrdering actual = new ReverseOrdering(naturalOrdering);
     }
     ///endregion
     

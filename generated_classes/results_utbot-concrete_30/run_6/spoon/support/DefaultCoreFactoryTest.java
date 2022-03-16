@@ -1,6 +1,7 @@
 package spoon.support;
 
 import org.junit.Test;
+import spoon.reflect.declaration.CtElement;
 import spoon.reflect.factory.Factory;
 import spoon.reflect.cu.SourcePosition;
 import spoon.support.reflect.cu.position.SourcePositionImpl;
@@ -11,7 +12,6 @@ import spoon.support.reflect.cu.position.CompoundSourcePositionImpl;
 import spoon.reflect.cu.CompilationUnit;
 import java.util.ArrayList;
 import java.util.HashSet;
-import spoon.reflect.declaration.CtElement;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -30,9 +30,31 @@ import static org.junit.Assert.assertFalse;
 public class DefaultCoreFactoryTest {
     ///region
     
+    @Test(timeout = 10000)
+    public void testClone1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        CtElement actual = defaultCoreFactory.clone(null);
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testCreateClass1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createClass();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateClass2() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
         
         defaultCoreFactory.createClass();
     }
@@ -45,36 +67,6 @@ public class DefaultCoreFactoryTest {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
         defaultCoreFactory.createArrayTypeReference();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateBinaryOperator1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createBinaryOperator();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateCase1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createCase();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateAnonymousExecutable1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createAnonymousExecutable();
     }
     ///endregion
     
@@ -101,10 +93,40 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateAnnotation1() throws Throwable  {
+    public void testCreateBlock1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createAnnotation();
+        defaultCoreFactory.createBlock();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateAnonymousExecutable1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createAnonymousExecutable();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateBinaryOperator1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createBinaryOperator();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateCase1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createCase();
     }
     ///endregion
     
@@ -121,10 +143,10 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayWrite1() throws Throwable  {
+    public void testCreateAnnotation1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createArrayWrite();
+        defaultCoreFactory.createAnnotation();
     }
     ///endregion
     
@@ -141,20 +163,20 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayRead1() throws Throwable  {
+    public void testCreateArrayWrite1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createArrayRead();
+        defaultCoreFactory.createArrayWrite();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateBlock1() throws Throwable  {
+    public void testCreateArrayRead1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createBlock();
+        defaultCoreFactory.createArrayRead();
     }
     ///endregion
     
@@ -201,20 +223,20 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateContinue1() throws Throwable  {
+    public void testCreateInvisibleArrayConstructor1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createContinue();
+        defaultCoreFactory.createInvisibleArrayConstructor();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateInvisibleArrayConstructor1() throws Throwable  {
+    public void testCreateContinue1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createInvisibleArrayConstructor();
+        defaultCoreFactory.createContinue();
     }
     ///endregion
     
@@ -721,6 +743,16 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateJavaDoc2() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
+        
+        defaultCoreFactory.createJavaDoc();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testCreateJavaDocTag1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
@@ -947,20 +979,8 @@ public class DefaultCoreFactoryTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateCompoundSourcePosition3() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
-        CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
-        int[] intArray = new int[9];
-        
-        defaultCoreFactory.createCompoundSourcePosition(compilationUnitImpl, 0, Integer.MAX_VALUE, 0, 0, intArray);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
-    public void testCreateCompoundSourcePosition4() throws Throwable  {
+    public void testCreateCompoundSourcePosition3() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
         CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
         int[] intArray = new int[9];
@@ -1000,7 +1020,7 @@ public class DefaultCoreFactoryTest {
         CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
         int[] intArray = new int[9];
         
-        defaultCoreFactory.createDeclarationSourcePosition(compilationUnitImpl, Integer.MIN_VALUE, 0, 0, 0, 0, 0, intArray);
+        defaultCoreFactory.createDeclarationSourcePosition(compilationUnitImpl, 0, 0, 0, 0, 0, 0, intArray);
     }
     ///endregion
     
@@ -1012,19 +1032,7 @@ public class DefaultCoreFactoryTest {
         CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
         int[] intArray = new int[9];
         
-        defaultCoreFactory.createDeclarationSourcePosition(compilationUnitImpl, 0, Integer.MAX_VALUE, 0, 0, 0, 0, intArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateDeclarationSourcePosition4() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
-        CompilationUnitImpl compilationUnitImpl = ((CompilationUnitImpl) createInstance("spoon.support.reflect.cu.CompilationUnitImpl"));
-        int[] intArray = new int[9];
-        
-        defaultCoreFactory.createDeclarationSourcePosition(compilationUnitImpl, 3, 1, 0, 0, 0, 0, intArray);
+        defaultCoreFactory.createDeclarationSourcePosition(compilationUnitImpl, Integer.MIN_VALUE, 0, 0, 0, 0, 0, intArray);
     }
     ///endregion
     
@@ -1057,7 +1065,7 @@ public class DefaultCoreFactoryTest {
         DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
         int[] intArray = new int[9];
         
-        defaultCoreFactory.createBodyHolderSourcePosition(null, 3, 1, 0, 0, 0, 0, 0, 0, intArray);
+        defaultCoreFactory.createBodyHolderSourcePosition(null, 0, 0, 0, 0, 0, 0, 0, 0, intArray);
     }
     ///endregion
     
@@ -1157,28 +1165,8 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateModule2() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
-        
-        defaultCoreFactory.createModule();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testCreateModuleReference1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createModuleReference();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateModuleReference2() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
         
         defaultCoreFactory.createModuleReference();
     }
@@ -1221,39 +1209,6 @@ public class DefaultCoreFactoryTest {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
         defaultCoreFactory.createUsedService();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testClone1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        CtElement actual = defaultCoreFactory.clone(null);
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreate1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
-        
-        defaultCoreFactory.create(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreate2() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
-        Class class1 = Object.class;
-        
-        defaultCoreFactory.create(class1);
     }
     ///endregion
     

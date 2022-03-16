@@ -21,70 +21,6 @@ public class SparseImmutableTableTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testRowMap1() throws Throwable  {
-        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
-        RegularImmutableMap regularImmutableMap = ((RegularImmutableMap) createInstance("com.google.common.collect.RegularImmutableMap"));
-        setField(sparseImmutableTable, "rowMap", regularImmutableMap);
-        
-        ImmutableMap actual = sparseImmutableTable.rowMap();
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(regularImmutableMap, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testRowMap2() throws Throwable  {
-        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
-        ImmutableEnumMap immutableEnumMap = ((ImmutableEnumMap) createInstance("com.google.common.collect.ImmutableEnumMap"));
-        setField(sparseImmutableTable, "rowMap", immutableEnumMap);
-        
-        ImmutableMap actual = sparseImmutableTable.rowMap();
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(immutableEnumMap, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testRowMap3() throws Throwable  {
-        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
-        JdkBackedImmutableMap jdkBackedImmutableMap = ((JdkBackedImmutableMap) createInstance("com.google.common.collect.JdkBackedImmutableMap"));
-        setField(sparseImmutableTable, "rowMap", jdkBackedImmutableMap);
-        
-        ImmutableMap actual = sparseImmutableTable.rowMap();
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(jdkBackedImmutableMap, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testRowMap4() throws Throwable  {
-        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
-        SingletonImmutableBiMap singletonImmutableBiMap = ((SingletonImmutableBiMap) createInstance("com.google.common.collect.SingletonImmutableBiMap"));
-        setField(sparseImmutableTable, "rowMap", singletonImmutableBiMap);
-        
-        ImmutableMap actual = sparseImmutableTable.rowMap();
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(singletonImmutableBiMap, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testColumnMap1() throws Throwable  {
         SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
         RegularImmutableMap regularImmutableMap = ((RegularImmutableMap) createInstance("com.google.common.collect.RegularImmutableMap"));
@@ -139,6 +75,70 @@ public class SparseImmutableTableTest {
         setField(sparseImmutableTable, "columnMap", singletonImmutableBiMap);
         
         ImmutableMap actual = sparseImmutableTable.columnMap();
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(singletonImmutableBiMap, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testRowMap1() throws Throwable  {
+        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
+        RegularImmutableMap regularImmutableMap = ((RegularImmutableMap) createInstance("com.google.common.collect.RegularImmutableMap"));
+        setField(sparseImmutableTable, "rowMap", regularImmutableMap);
+        
+        ImmutableMap actual = sparseImmutableTable.rowMap();
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(regularImmutableMap, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testRowMap2() throws Throwable  {
+        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
+        ImmutableEnumMap immutableEnumMap = ((ImmutableEnumMap) createInstance("com.google.common.collect.ImmutableEnumMap"));
+        setField(sparseImmutableTable, "rowMap", immutableEnumMap);
+        
+        ImmutableMap actual = sparseImmutableTable.rowMap();
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(immutableEnumMap, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testRowMap3() throws Throwable  {
+        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
+        JdkBackedImmutableMap jdkBackedImmutableMap = ((JdkBackedImmutableMap) createInstance("com.google.common.collect.JdkBackedImmutableMap"));
+        setField(sparseImmutableTable, "rowMap", jdkBackedImmutableMap);
+        
+        ImmutableMap actual = sparseImmutableTable.rowMap();
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(jdkBackedImmutableMap, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testRowMap4() throws Throwable  {
+        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
+        SingletonImmutableBiMap singletonImmutableBiMap = ((SingletonImmutableBiMap) createInstance("com.google.common.collect.SingletonImmutableBiMap"));
+        setField(sparseImmutableTable, "rowMap", singletonImmutableBiMap);
+        
+        ImmutableMap actual = sparseImmutableTable.rowMap();
         
         
         // Current deep equals depth exceeds max depth 0
@@ -218,7 +218,7 @@ public class SparseImmutableTableTest {
         int[] intArray = new int[9];
         setField(sparseImmutableTable, "cellRowIndices", intArray);
         
-        sparseImmutableTable.getCell(1073741824);
+        sparseImmutableTable.getCell(67108864);
     }
     ///endregion
     
@@ -274,7 +274,7 @@ public class SparseImmutableTableTest {
         int[] intArray = new int[9];
         setField(sparseImmutableTable, "cellRowIndices", intArray);
         
-        sparseImmutableTable.getValue(1073741824);
+        sparseImmutableTable.getValue(67108864);
     }
     ///endregion
     
@@ -320,6 +320,33 @@ public class SparseImmutableTableTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetValue4() throws Throwable  {
+        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
+        int[] intArray = new int[9];
+        setField(sparseImmutableTable, "cellColumnInRowIndices", intArray);
+        int[] intArray1 = new int[4];
+        intArray1[1] = 19;
+        intArray1[2] = 19;
+        intArray1[3] = 19;
+        setField(sparseImmutableTable, "cellRowIndices", intArray1);
+        ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
+        RegularImmutableAsList regularImmutableAsList = ((RegularImmutableAsList) createInstance("com.google.common.collect.RegularImmutableAsList"));
+        RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        RegularImmutableMap regularImmutableMap = ((RegularImmutableMap) createInstance("com.google.common.collect.RegularImmutableMap"));
+        objectArray[0] = ((Object) regularImmutableMap);
+        setField(regularImmutableList, "array", objectArray);
+        setField(regularImmutableAsList, "delegateList", regularImmutableList);
+        setField(immutableSortedMap, "valueList", regularImmutableAsList);
+        setField(sparseImmutableTable, "rowMap", immutableSortedMap);
+        
+        sparseImmutableTable.getValue(0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetValue5() throws Throwable  {
         SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
         int[] intArray = new int[9];
         setField(sparseImmutableTable, "cellRowIndices", intArray);
@@ -372,7 +399,7 @@ public class SparseImmutableTableTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testSparseImmutableTable4() throws Throwable  {
         RegularImmutableSet regularImmutableSet = ((RegularImmutableSet) createInstance("com.google.common.collect.RegularImmutableSet"));
-        java.lang.Object[] objectArray = new java.lang.Object[1];
+        java.lang.Object[] objectArray = new java.lang.Object[9];
         setField(regularImmutableSet, "elements", objectArray);
         new SparseImmutableTable(null, regularImmutableSet, null);
     }

@@ -193,7 +193,7 @@ public class MessageFutureTest {
     @Test(timeout = 10000)
     public void testIsTimeout3() throws Throwable  {
         MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
-        setField(messageFuture, "start", 4611691468764312193L);
+        setField(messageFuture, "start", 4611772820661764929L);
         setField(messageFuture, "timeout", 0L);
         
         boolean actual = messageFuture.isTimeout();

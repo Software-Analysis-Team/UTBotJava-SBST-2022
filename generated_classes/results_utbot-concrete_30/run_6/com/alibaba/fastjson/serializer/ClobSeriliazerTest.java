@@ -1,155 +1,171 @@
-package com.alibaba.fastjson.parser.deserializer;
+package com.alibaba.fastjson.serializer;
 
 import org.junit.Test;
-import com.alibaba.fastjson.parser.DefaultJSONParser;
-import java.lang.reflect.Type;
-import java.util.Map;
-import java.util.LinkedHashMap;
-import java.util.ArrayList;
+import java.io.StringWriter;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import sun.nio.cs.StreamEncoder;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
-import static java.lang.reflect.Array.get;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertEquals;
 
-public class ResolveFieldDeserializerTest {
+public class ClobSeriliazerTest {
     ///region
     
-    @Test(timeout = 10000)
-    public void testParseField1() throws Throwable  {
-        ResolveFieldDeserializer resolveFieldDeserializer = ((ResolveFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        Object object = new Object();
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite1() throws Throwable  {
+        ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
         
-        resolveFieldDeserializer.parseField(defaultJSONParser, object, ((Type) null), ((Map) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testParseField2() throws Throwable  {
-        ResolveFieldDeserializer resolveFieldDeserializer = ((ResolveFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer"));
-        
-        resolveFieldDeserializer.parseField(((DefaultJSONParser) null), null, ((Type) null), ((Map) null));
+        clobSeriliazer.write(null, null, null, null, 0);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSetValue1() throws Throwable  {
-        ResolveFieldDeserializer resolveFieldDeserializer = ((ResolveFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer"));
-        Object object = new Object();
-        Object object1 = new Object();
+    public void testWrite2() throws Throwable  {
+        ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
+        java.lang.Object[] compositeBuilderViaFromArray = createArray("com.sun.jmx.mbeanserver.DefaultMXBeanMappingFactory$CompositeBuilderViaFrom", 0);
         
-        resolveFieldDeserializer.setValue(object, object1);
+        clobSeriliazer.write(null, compositeBuilderViaFromArray, null, null, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite3() throws Throwable  {
+        ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
+        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+        SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
+        serializeWriter.count = -1073741827;
+        char[] charArray = new char[0];
+        serializeWriter.buf = charArray;
+        setField(jSONSerializer, "out", serializeWriter);
+        
+        clobSeriliazer.write(jSONSerializer, null, null, null, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite4() throws Throwable  {
+        ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
+        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+        SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
+        StringWriter stringWriter = ((StringWriter) createInstance("java.io.StringWriter"));
+        setField(serializeWriter, "writer", stringWriter);
+        serializeWriter.count = 2147483642;
+        char[] charArray = new char[0];
+        serializeWriter.buf = charArray;
+        setField(jSONSerializer, "out", serializeWriter);
+        
+        clobSeriliazer.write(jSONSerializer, null, null, null, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite5() throws Throwable  {
+        ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
+        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+        SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
+        setField(serializeWriter, "lock", null);
+        PrintWriter printWriter = ((PrintWriter) createInstance("java.io.PrintWriter"));
+        setField(printWriter, "lock", null);
+        FileWriter fileWriter = ((FileWriter) createInstance("java.io.FileWriter"));
+        setField(fileWriter, "lock", null);
+        StreamEncoder streamEncoder = ((StreamEncoder) createInstance("sun.nio.cs.StreamEncoder"));
+        setField(streamEncoder, "lock", null);
+        setField(streamEncoder, "isOpen", true);
+        setField(fileWriter, "se", streamEncoder);
+        setField(printWriter, "out", fileWriter);
+        setField(serializeWriter, "writer", printWriter);
+        serializeWriter.count = 0;
+        char[] charArray = new char[3];
+        serializeWriter.buf = charArray;
+        setField(jSONSerializer, "out", serializeWriter);
+        
+        SerializeWriter serializeWriter1 = jSONSerializer.out;
+        Object initialJSONSerializerOutLock = getFieldValue(serializeWriter1, "lock");
+        SerializeWriter serializeWriter2 = jSONSerializer.out;
+        Object serializeWriter2OutWriter = getFieldValue(serializeWriter2, "writer");
+        Object initialJSONSerializerOutWriterLock = getFieldValue(serializeWriter2OutWriter, "lock");
+        SerializeWriter serializeWriter3 = jSONSerializer.out;
+        Object serializeWriter3OutWriter = getFieldValue(serializeWriter3, "writer");
+        Object serializeWriter3OutWriterOutWriterOut = getFieldValue(serializeWriter3OutWriter, "out");
+        Object initialJSONSerializerOutWriterOutLock = getFieldValue(serializeWriter3OutWriterOutWriterOut, "lock");
+        SerializeWriter serializeWriter4 = jSONSerializer.out;
+        Object serializeWriter4OutWriter = getFieldValue(serializeWriter4, "writer");
+        Object serializeWriter4OutWriterOutWriterOut = getFieldValue(serializeWriter4OutWriter, "out");
+        Object serializeWriter4OutWriterOutWriterOutOutWriterOutSe = getFieldValue(serializeWriter4OutWriterOutWriterOut, "se");
+        Object initialJSONSerializerOutWriterOutSeLock = getFieldValue(serializeWriter4OutWriterOutWriterOutOutWriterOutSe, "lock");
+        
+        clobSeriliazer.write(jSONSerializer, null, null, null, 0);
+        
+        SerializeWriter serializeWriter5 = jSONSerializer.out;
+        Object finalJSONSerializerOutLock = getFieldValue(serializeWriter5, "lock");
+        SerializeWriter serializeWriter6 = jSONSerializer.out;
+        Object serializeWriter6OutWriter = getFieldValue(serializeWriter6, "writer");
+        Object finalJSONSerializerOutWriterLock = getFieldValue(serializeWriter6OutWriter, "lock");
+        SerializeWriter serializeWriter7 = jSONSerializer.out;
+        Object serializeWriter7OutWriter = getFieldValue(serializeWriter7, "writer");
+        Object serializeWriter7OutWriterOutWriterOut = getFieldValue(serializeWriter7OutWriter, "out");
+        Object finalJSONSerializerOutWriterOutLock = getFieldValue(serializeWriter7OutWriterOutWriterOut, "lock");
+        SerializeWriter serializeWriter8 = jSONSerializer.out;
+        Object serializeWriter8OutWriter = getFieldValue(serializeWriter8, "writer");
+        Object serializeWriter8OutWriterOutWriterOut = getFieldValue(serializeWriter8OutWriter, "out");
+        Object serializeWriter8OutWriterOutWriterOutOutWriterOutSe = getFieldValue(serializeWriter8OutWriterOutWriterOut, "se");
+        Object finalJSONSerializerOutWriterOutSeLock = getFieldValue(serializeWriter8OutWriterOutWriterOutOutWriterOutSe, "lock");
+        int finalJSONSerializerOutCount = jSONSerializer.out.count;
+        char finalJSONSerializerOutBuf0 = jSONSerializer.out.buf[0];
+        char finalJSONSerializerOutBuf1 = jSONSerializer.out.buf[1];
+        char finalJSONSerializerOutBuf2 = jSONSerializer.out.buf[2];
+        
+        assertNull(finalJSONSerializerOutLock);
+        
+        assertNull(finalJSONSerializerOutWriterLock);
+        
+        assertNull(finalJSONSerializerOutWriterOutLock);
+        
+        assertNull(finalJSONSerializerOutWriterOutSeLock);
+        
+        assertEquals(3, finalJSONSerializerOutCount);
+        
+        assertEquals('n', finalJSONSerializerOutBuf0);
+        
+        assertEquals('u', finalJSONSerializerOutBuf1);
+        
+        assertEquals('l', finalJSONSerializerOutBuf2);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testSetValue2() throws Throwable  {
-        ResolveFieldDeserializer resolveFieldDeserializer = ((ResolveFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer"));
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        setField(resolveFieldDeserializer, "map", linkedHashMap);
-        java.lang.Object[] permitStatusArray = createArray("java.util.stream.StreamSpliterators$UnorderedSliceSpliterator$PermitStatus", 9);
-        setField(resolveFieldDeserializer, "key", permitStatusArray);
-        
-        Object resolveFieldDeserializerKey = getFieldValue(resolveFieldDeserializer, "key");
-        Object initialResolveFieldDeserializerKey0 = get(resolveFieldDeserializerKey, 0);
-        Object resolveFieldDeserializerKey1 = getFieldValue(resolveFieldDeserializer, "key");
-        Object initialResolveFieldDeserializerKey1 = get(resolveFieldDeserializerKey1, 1);
-        Object resolveFieldDeserializerKey2 = getFieldValue(resolveFieldDeserializer, "key");
-        Object initialResolveFieldDeserializerKey2 = get(resolveFieldDeserializerKey2, 2);
-        Object resolveFieldDeserializerKey3 = getFieldValue(resolveFieldDeserializer, "key");
-        Object initialResolveFieldDeserializerKey3 = get(resolveFieldDeserializerKey3, 3);
-        Object resolveFieldDeserializerKey4 = getFieldValue(resolveFieldDeserializer, "key");
-        Object initialResolveFieldDeserializerKey4 = get(resolveFieldDeserializerKey4, 4);
-        Object resolveFieldDeserializerKey5 = getFieldValue(resolveFieldDeserializer, "key");
-        Object initialResolveFieldDeserializerKey5 = get(resolveFieldDeserializerKey5, 5);
-        Object resolveFieldDeserializerKey6 = getFieldValue(resolveFieldDeserializer, "key");
-        Object initialResolveFieldDeserializerKey6 = get(resolveFieldDeserializerKey6, 6);
-        Object resolveFieldDeserializerKey7 = getFieldValue(resolveFieldDeserializer, "key");
-        Object initialResolveFieldDeserializerKey7 = get(resolveFieldDeserializerKey7, 7);
-        Object resolveFieldDeserializerKey8 = getFieldValue(resolveFieldDeserializer, "key");
-        Object initialResolveFieldDeserializerKey8 = get(resolveFieldDeserializerKey8, 8);
-        
-        resolveFieldDeserializer.setValue(null, null);
-        
-        Object resolveFieldDeserializerKey9 = getFieldValue(resolveFieldDeserializer, "key");
-        Object finalResolveFieldDeserializerKey0 = get(resolveFieldDeserializerKey9, 0);
-        Object resolveFieldDeserializerKey10 = getFieldValue(resolveFieldDeserializer, "key");
-        Object finalResolveFieldDeserializerKey1 = get(resolveFieldDeserializerKey10, 1);
-        Object resolveFieldDeserializerKey11 = getFieldValue(resolveFieldDeserializer, "key");
-        Object finalResolveFieldDeserializerKey2 = get(resolveFieldDeserializerKey11, 2);
-        Object resolveFieldDeserializerKey12 = getFieldValue(resolveFieldDeserializer, "key");
-        Object finalResolveFieldDeserializerKey3 = get(resolveFieldDeserializerKey12, 3);
-        Object resolveFieldDeserializerKey13 = getFieldValue(resolveFieldDeserializer, "key");
-        Object finalResolveFieldDeserializerKey4 = get(resolveFieldDeserializerKey13, 4);
-        Object resolveFieldDeserializerKey14 = getFieldValue(resolveFieldDeserializer, "key");
-        Object finalResolveFieldDeserializerKey5 = get(resolveFieldDeserializerKey14, 5);
-        Object resolveFieldDeserializerKey15 = getFieldValue(resolveFieldDeserializer, "key");
-        Object finalResolveFieldDeserializerKey6 = get(resolveFieldDeserializerKey15, 6);
-        Object resolveFieldDeserializerKey16 = getFieldValue(resolveFieldDeserializer, "key");
-        Object finalResolveFieldDeserializerKey7 = get(resolveFieldDeserializerKey16, 7);
-        Object resolveFieldDeserializerKey17 = getFieldValue(resolveFieldDeserializer, "key");
-        Object finalResolveFieldDeserializerKey8 = get(resolveFieldDeserializerKey17, 8);
-        
-        assertNull(finalResolveFieldDeserializerKey0);
-        
-        assertNull(finalResolveFieldDeserializerKey1);
-        
-        assertNull(finalResolveFieldDeserializerKey2);
-        
-        assertNull(finalResolveFieldDeserializerKey3);
-        
-        assertNull(finalResolveFieldDeserializerKey4);
-        
-        assertNull(finalResolveFieldDeserializerKey5);
-        
-        assertNull(finalResolveFieldDeserializerKey6);
-        
-        assertNull(finalResolveFieldDeserializerKey7);
-        
-        assertNull(finalResolveFieldDeserializerKey8);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testResolveFieldDeserializer1() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        ArrayList arrayList = new ArrayList();
-        ResolveFieldDeserializer actual = new ResolveFieldDeserializer(defaultJSONParser, arrayList, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testResolveFieldDeserializer2() {
-        ArrayList arrayList = new ArrayList();
-        ResolveFieldDeserializer actual = new ResolveFieldDeserializer(arrayList);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testResolveFieldDeserializer3() {
-        Object object = new Object();
-        ResolveFieldDeserializer actual = new ResolveFieldDeserializer(null, object);
+    public void testClobSeriliazer1() {
+        ClobSeriliazer actual = new ClobSeriliazer();
     }
     ///endregion
     
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();
@@ -170,15 +186,6 @@ public class ResolveFieldDeserializerTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import java.lang.reflect.Method;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ReflectiveChannelFactory;
+import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.bootstrap.BootstrapConfig;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.DefaultChannelPipeline;
@@ -248,8 +249,8 @@ public class NettyPoolableFactoryTest {
             setField(bootstrap, "handler", null);
             ReflectiveChannelFactory reflectiveChannelFactory = ((ReflectiveChannelFactory) createInstance("io.netty.channel.ReflectiveChannelFactory"));
             setField(bootstrap, "channelFactory", reflectiveChannelFactory);
-            Object epollEventLoop = createInstance("io.netty.channel.epoll.EpollEventLoop");
-            setField(bootstrap, "group", epollEventLoop);
+            NioEventLoopGroup nioEventLoopGroup = ((NioEventLoopGroup) createInstance("io.netty.channel.nio.NioEventLoopGroup"));
+            setField(bootstrap, "group", nioEventLoopGroup);
             BootstrapConfig bootstrapConfig = ((BootstrapConfig) createInstance("io.netty.bootstrap.BootstrapConfig"));
             ServerBootstrap serverBootstrap = ((ServerBootstrap) createInstance("io.netty.bootstrap.ServerBootstrap"));
             setField(serverBootstrap, "handler", null);

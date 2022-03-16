@@ -8,11 +8,33 @@ import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class MessageFutureTest {
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetRequestMessage1() throws Throwable  {
+        MessageFuture messageFuture = new MessageFuture();
+        RpcMessage rpcMessage = new RpcMessage();
+        
+        messageFuture.setRequestMessage(rpcMessage);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetRequestMessage2() throws Throwable  {
+        MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
+        setField(messageFuture, "requestMessage", null);
+        
+        messageFuture.setRequestMessage(null);
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000)
@@ -35,35 +57,6 @@ public class MessageFutureTest {
         long actual = messageFuture.getTimeout();
         
         assertEquals(0L, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetRequestMessage1() throws Throwable  {
-        MessageFuture messageFuture = new MessageFuture();
-        RpcMessage rpcMessage = new RpcMessage();
-        
-        messageFuture.setRequestMessage(rpcMessage);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetRequestMessage2() throws Throwable  {
-        MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
-        setField(messageFuture, "requestMessage", null);
-        RpcMessage rpcMessage = ((RpcMessage) createInstance("io.seata.core.protocol.RpcMessage"));
-        
-        Object initialMessageFutureRequestMessage = getFieldValue(messageFuture, "requestMessage");
-        
-        messageFuture.setRequestMessage(rpcMessage);
-        
-        Object finalMessageFutureRequestMessage = getFieldValue(messageFuture, "requestMessage");
-        
-        assertFalse(initialMessageFutureRequestMessage == finalMessageFutureRequestMessage);
     }
     ///endregion
     
@@ -177,7 +170,7 @@ public class MessageFutureTest {
         
         boolean actual = messageFuture.isTimeout();
         
-        assertFalse(actual);
+        assertTrue(actual);
     }
     ///endregion
     
@@ -192,6 +185,20 @@ public class MessageFutureTest {
         boolean actual = messageFuture.isTimeout();
         
         assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsTimeout3() throws Throwable  {
+        MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
+        setField(messageFuture, "start", 5262400783682233345L);
+        setField(messageFuture, "timeout", 0L);
+        
+        boolean actual = messageFuture.isTimeout();
+        
+        assertFalse(actual);
     }
     ///endregion
     
@@ -235,6 +242,15 @@ public class MessageFutureTest {
         field.setAccessible(true);
         field.set(object, fieldValue);
     }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
+    }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();
         java.lang.reflect.Field field;
@@ -253,15 +269,6 @@ public class MessageFutureTest {
         } while (clazz != null);
     
         throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

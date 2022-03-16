@@ -1,6 +1,8 @@
 package spoon.reflect.visitor;
 
 import org.junit.Test;
+import spoon.reflect.visitor.PrintingContext.Writable;
+import spoon.reflect.visitor.PrintingContext;
 import spoon.reflect.reference.CtTypeReference;
 import spoon.support.reflect.declaration.CtEnumImpl;
 import spoon.support.reflect.reference.CtTypeReferenceImpl;
@@ -27,13 +29,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import sun.nio.cs.Surrogate.Parser;
 import sun.nio.cs.Surrogate;
 import java.nio.charset.CoderResult;
+import spoon.support.reflect.declaration.CtTypeParameterImpl;
 import java.lang.reflect.Method;
 import java.util.ArrayDeque;
-import spoon.reflect.visitor.PrintingContext.Writable;
-import spoon.reflect.visitor.PrintingContext;
-import spoon.support.reflect.declaration.CtTypeParameterImpl;
 import java.util.Deque;
-import spoon.reflect.factory.InterfaceFactory;
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Map;
 import java.util.List;
@@ -111,10 +111,10 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testForceWildcardGenerics1() throws Throwable  {
+    public void testNoTypeDecl1() throws Throwable  {
         PrintingContext printingContext = new PrintingContext();
         
-        boolean actual = printingContext.forceWildcardGenerics();
+        boolean actual = printingContext.noTypeDecl();
         
         assertFalse(actual);
     }
@@ -123,12 +123,12 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testForceWildcardGenerics2() throws Throwable  {
+    public void testNoTypeDecl2() throws Throwable  {
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         setField(printingContext, "state", 0L);
-        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
+        setField(printingContext, "NO_TYPE_DECL", 0L);
         
-        boolean actual = printingContext.forceWildcardGenerics();
+        boolean actual = printingContext.noTypeDecl();
         
         assertFalse(actual);
     }
@@ -137,12 +137,52 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testForceWildcardGenerics3() throws Throwable  {
+    public void testNoTypeDecl3() throws Throwable  {
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         setField(printingContext, "state", -1L);
-        setField(printingContext, "FORCE_WILDCARD_GENERICS", -1L);
+        setField(printingContext, "NO_TYPE_DECL", -1L);
         
-        boolean actual = printingContext.forceWildcardGenerics();
+        boolean actual = printingContext.noTypeDecl();
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreGenerics1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        boolean actual = printingContext.ignoreGenerics();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreGenerics2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_GENERICS", 0L);
+        
+        boolean actual = printingContext.ignoreGenerics();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreGenerics3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", -1L);
+        setField(printingContext, "IGNORE_GENERICS", -1L);
+        
+        boolean actual = printingContext.ignoreGenerics();
         
         assertTrue(actual);
     }
@@ -231,6 +271,81 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testForceWildcardGenerics1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        boolean actual = printingContext.forceWildcardGenerics();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testForceWildcardGenerics2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
+        
+        boolean actual = printingContext.forceWildcardGenerics();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testForceWildcardGenerics3() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", -1L);
+        setField(printingContext, "FORCE_WILDCARD_GENERICS", -1L);
+        
+        boolean actual = printingContext.forceWildcardGenerics();
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testModify1() throws Throwable  {
+        PrintingContext printingContext = new PrintingContext();
+        
+        PrintingContext.Writable actual = printingContext.modify();
+        
+        PrintingContext.Writable expected = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        setField(expected, "oldState", 0L);
+        setField(expected, "this$0", printingContext);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testModify2() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        
+        PrintingContext.Writable actual = printingContext.modify();
+        
+        PrintingContext.Writable expected = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        setField(expected, "oldState", 0L);
+        setField(expected, "this$0", printingContext);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testGetCurrentTypeReference1() throws Throwable  {
         PrintingContext printingContext = new PrintingContext();
         
@@ -263,6 +378,20 @@ public class PrintingContextTest {
         // 1 occurrences of:
         // ClassId java.nio.charset.CoderResult$1 does not have canonical name
         // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetCurrentTypeReference4() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
+        setField(ctTypeParameterImpl, "factory", null);
+        setField(printingContext, "currentTopLevel", ctTypeParameterImpl);
+        setField(printingContext, "currentThis", null);
+        
+        printingContext.getCurrentTypeReference();
     }
     ///endregion
     
@@ -318,121 +447,6 @@ public class PrintingContextTest {
         TypeContext actual = ((TypeContext) getCurrentTypeContextMethod.invoke(printingContext, getCurrentTypeContextMethodArguments));
         
         assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testNoTypeDecl1() throws Throwable  {
-        PrintingContext printingContext = new PrintingContext();
-        
-        boolean actual = printingContext.noTypeDecl();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testNoTypeDecl2() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", 0L);
-        setField(printingContext, "NO_TYPE_DECL", 0L);
-        
-        boolean actual = printingContext.noTypeDecl();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testNoTypeDecl3() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", -1L);
-        setField(printingContext, "NO_TYPE_DECL", -1L);
-        
-        boolean actual = printingContext.noTypeDecl();
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIgnoreGenerics1() throws Throwable  {
-        PrintingContext printingContext = new PrintingContext();
-        
-        boolean actual = printingContext.ignoreGenerics();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIgnoreGenerics2() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", 0L);
-        setField(printingContext, "IGNORE_GENERICS", 0L);
-        
-        boolean actual = printingContext.ignoreGenerics();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIgnoreGenerics3() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", -1L);
-        setField(printingContext, "IGNORE_GENERICS", -1L);
-        
-        boolean actual = printingContext.ignoreGenerics();
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testModify1() throws Throwable  {
-        PrintingContext printingContext = new PrintingContext();
-        
-        PrintingContext.Writable actual = printingContext.modify();
-        
-        PrintingContext.Writable expected = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        setField(expected, "oldState", 0L);
-        setField(expected, "this$0", printingContext);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testModify2() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", 0L);
-        
-        PrintingContext.Writable actual = printingContext.modify();
-        
-        PrintingContext.Writable expected = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        setField(expected, "oldState", 0L);
-        setField(expected, "this$0", printingContext);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
     }
     ///endregion
     
@@ -531,12 +545,11 @@ public class PrintingContextTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testIsInCurrentScope2() throws Throwable  {
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "type", null);
-        setField(ctTypeParameterImpl, "factory", factoryImpl);
-        setField(printingContext, "currentTopLevel", ctTypeParameterImpl);
-        setField(printingContext, "currentThis", null);
+        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
+        setField(printingContext, "currentTopLevel", ctEnumImpl);
+        LinkedList linkedList = ((LinkedList) createInstance("java.util.LinkedList"));
+        setField(linkedList, "size", 1);
+        setField(printingContext, "currentThis", linkedList);
         
         printingContext.isInCurrentScope(null);
     }
@@ -549,8 +562,6 @@ public class PrintingContextTest {
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        InterfaceFactory interfaceFactory = ((InterfaceFactory) createInstance("spoon.reflect.factory.InterfaceFactory"));
-        setField(factoryImpl, "type", interfaceFactory);
         setField(ctTypeParameterImpl, "factory", factoryImpl);
         setField(printingContext, "currentTopLevel", ctTypeParameterImpl);
         setField(printingContext, "currentThis", null);
@@ -561,26 +572,26 @@ public class PrintingContextTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testIsInCurrentScope4() throws Throwable  {
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        
-        boolean actual = printingContext.isInCurrentScope(null);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testIsInCurrentScope5() throws Throwable  {
+    public void testIsInCurrentScope4() throws Throwable  {
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
         setField(printingContext, "currentTopLevel", ctEnumImpl);
         CtTypeReferenceImpl ctTypeReferenceImpl = ((CtTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtTypeReferenceImpl"));
         
         printingContext.isInCurrentScope(ctTypeReferenceImpl);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsInCurrentScope5() throws Throwable  {
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        
+        boolean actual = printingContext.isInCurrentScope(null);
+        
+        assertFalse(actual);
     }
     ///endregion
     
@@ -736,24 +747,24 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testForceWildcardGenerics4() throws Throwable  {
+    public void testNoTypeDecl4() throws Throwable  {
         PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
         
-        writable.forceWildcardGenerics(false);
+        writable.noTypeDecl(false);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testForceWildcardGenerics5() throws Throwable  {
+    public void testNoTypeDecl5() throws Throwable  {
         PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         setField(printingContext, "state", 0L);
-        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
+        setField(printingContext, "NO_TYPE_DECL", 0L);
         setField(writable, "this$0", printingContext);
         
-        PrintingContext.Writable actual = writable.forceWildcardGenerics(true);
+        PrintingContext.Writable actual = writable.noTypeDecl(true);
         
         
         // Current deep equals depth exceeds max depth 0
@@ -764,14 +775,60 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testForceWildcardGenerics6() throws Throwable  {
+    public void testNoTypeDecl6() throws Throwable  {
         PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         setField(printingContext, "state", 0L);
-        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
+        setField(printingContext, "NO_TYPE_DECL", 0L);
         setField(writable, "this$0", printingContext);
         
-        PrintingContext.Writable actual = writable.forceWildcardGenerics(false);
+        PrintingContext.Writable actual = writable.noTypeDecl(false);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIgnoreGenerics4() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        
+        writable.ignoreGenerics(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreGenerics5() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_GENERICS", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.ignoreGenerics(true);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(writable, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIgnoreGenerics6() throws Throwable  {
+        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
+        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
+        setField(printingContext, "state", 0L);
+        setField(printingContext, "IGNORE_GENERICS", 0L);
+        setField(writable, "this$0", printingContext);
+        
+        PrintingContext.Writable actual = writable.ignoreGenerics(false);
         
         
         // Current deep equals depth exceeds max depth 0
@@ -874,24 +931,24 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testNoTypeDecl4() throws Throwable  {
+    public void testForceWildcardGenerics4() throws Throwable  {
         PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
         
-        writable.noTypeDecl(false);
+        writable.forceWildcardGenerics(false);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testNoTypeDecl5() throws Throwable  {
+    public void testForceWildcardGenerics5() throws Throwable  {
         PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         setField(printingContext, "state", 0L);
-        setField(printingContext, "NO_TYPE_DECL", 0L);
+        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
         setField(writable, "this$0", printingContext);
         
-        PrintingContext.Writable actual = writable.noTypeDecl(true);
+        PrintingContext.Writable actual = writable.forceWildcardGenerics(true);
         
         
         // Current deep equals depth exceeds max depth 0
@@ -902,60 +959,14 @@ public class PrintingContextTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testNoTypeDecl6() throws Throwable  {
+    public void testForceWildcardGenerics6() throws Throwable  {
         PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
         PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
         setField(printingContext, "state", 0L);
-        setField(printingContext, "NO_TYPE_DECL", 0L);
+        setField(printingContext, "FORCE_WILDCARD_GENERICS", 0L);
         setField(writable, "this$0", printingContext);
         
-        PrintingContext.Writable actual = writable.noTypeDecl(false);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(writable, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testIgnoreGenerics4() throws Throwable  {
-        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        
-        writable.ignoreGenerics(false);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIgnoreGenerics5() throws Throwable  {
-        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", 0L);
-        setField(printingContext, "IGNORE_GENERICS", 0L);
-        setField(writable, "this$0", printingContext);
-        
-        PrintingContext.Writable actual = writable.ignoreGenerics(true);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(writable, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIgnoreGenerics6() throws Throwable  {
-        PrintingContext.Writable writable = ((PrintingContext.Writable) createInstance("spoon.reflect.visitor.PrintingContext$Writable"));
-        PrintingContext printingContext = ((PrintingContext) createInstance("spoon.reflect.visitor.PrintingContext"));
-        setField(printingContext, "state", 0L);
-        setField(printingContext, "IGNORE_GENERICS", 0L);
-        setField(writable, "this$0", printingContext);
-        
-        PrintingContext.Writable actual = writable.ignoreGenerics(false);
+        PrintingContext.Writable actual = writable.forceWildcardGenerics(false);
         
         
         // Current deep equals depth exceeds max depth 0

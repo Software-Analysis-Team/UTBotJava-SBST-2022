@@ -1,2873 +1,125 @@
-package com.alibaba.fastjson;
+package com.alibaba.fastjson.support.spring;
 
 import org.junit.Test;
-import java.util.Locale;
-import com.alibaba.fastjson.parser.DefaultJSONParser;
-import com.alibaba.fastjson.parser.JSONScanner;
-import com.alibaba.fastjson.parser.JSONReaderScanner;
-import com.alibaba.fastjson.parser.DefaultExtJSONParser;
-import com.alibaba.fastjson.parser.Feature;
-import java.util.TimeZone;
-import sun.util.calendar.ZoneInfo;
+import org.springframework.http.server.ServletServerHttpRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import java.lang.reflect.Method;
-import java.util.Map;
+import com.alibaba.fastjson.serializer.SerializeFilter;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import sun.nio.cs.StandardCharsets;
+import sun.nio.cs.US_ASCII;
+import java.util.concurrent.atomic.AtomicInteger;
+import com.alibaba.fastjson.serializer.SerializeConfig;
+import com.alibaba.fastjson.serializer.ASMSerializerFactory;
+import com.alibaba.fastjson.util.ASMClassLoader;
+import java.security.ProtectionDomain;
+import java.security.CodeSource;
+import java.net.URL;
+import sun.net.www.protocol.file.Handler;
+import java.util.Hashtable;
+import com.huawei.utbot.instrumentation.process.HandlerClassesLoader;
+import sun.misc.URLClassPath;
+import java.util.ArrayList;
+import java.util.Stack;
+import java.io.File;
+import java.util.jar.JarFile;
+import java.nio.charset.CodingErrorAction;
+import java.util.WeakHashMap;
+import java.lang.ref.ReferenceQueue;
+import java.util.ArrayDeque;
+import java.util.zip.Inflater;
+import java.util.HashMap;
+import java.security.AccessControlContext;
+import java.lang.ref.SoftReference;
+import java.util.jar.Manifest;
+import java.util.jar.Attributes;
+import java.util.jar.Attributes.Name;
+import sun.misc.JarIndex;
+import java.util.LinkedList;
+import sun.net.www.protocol.jar.URLJarFile;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.Vector;
+import java.security.Principal;
+import java.security.cert.Certificate;
+import java.security.Permissions;
+import java.io.FilePermission;
+import java.security.CodeSigner;
+import sun.security.provider.certpath.X509CertPath;
+import sun.security.x509.X509CertImpl;
+import sun.security.x509.X509CertInfo;
+import sun.security.x509.CertificateVersion;
+import sun.security.x509.CertificateSerialNumber;
+import sun.security.x509.SerialNumber;
+import java.math.BigInteger;
+import sun.security.x509.CertificateAlgorithmId;
+import sun.security.x509.AlgorithmId;
+import sun.security.util.ObjectIdentifier;
+import sun.security.x509.X500Name;
+import sun.security.x509.RDN;
+import sun.security.x509.AVA;
+import sun.security.util.DerValue;
+import sun.security.util.DerInputStream;
+import sun.security.x509.CertificateValidity;
+import java.util.Date;
+import sun.security.x509.CertificateX509Key;
+import sun.security.rsa.RSAPublicKeyImpl;
+import sun.security.util.BitArray;
+import sun.security.x509.CertificateExtensions;
+import java.util.TreeMap;
+import sun.security.x509.Extension;
+import sun.security.x509.AuthorityInfoAccessExtension;
+import sun.security.x509.AccessDescription;
+import sun.security.x509.GeneralName;
+import sun.security.x509.URIName;
+import java.net.URI;
+import sun.security.x509.DNSName;
+import sun.security.x509.AuthorityKeyIdentifierExtension;
+import sun.security.x509.KeyIdentifier;
+import sun.security.x509.BasicConstraintsExtension;
+import sun.security.x509.CRLDistributionPointsExtension;
+import sun.security.x509.DistributionPoint;
+import sun.security.x509.GeneralNames;
+import sun.security.x509.CertificatePoliciesExtension;
+import sun.security.x509.PolicyInformation;
+import sun.security.x509.CertificatePolicyId;
+import java.util.LinkedHashSet;
+import java.security.cert.PolicyQualifierInfo;
+import sun.security.x509.ExtendedKeyUsageExtension;
+import sun.security.x509.KeyUsageExtension;
+import sun.security.x509.NetscapeCertTypeExtension;
+import sun.security.x509.SubjectAlternativeNameExtension;
+import sun.security.x509.SubjectKeyIdentifierExtension;
+import java.security.Timestamp;
+import com.alibaba.fastjson.serializer.PascalNameFilter;
 import java.lang.reflect.Type;
-import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
-import java.io.Reader;
-import com.alibaba.fastjson.parser.JSONLexer;
+import org.springframework.core.ResolvableType;
+import java.lang.reflect.Constructor;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Objects;
+import java.util.Map;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
+import java.lang.reflect.Array;
+import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
-public class JSONReaderTest {
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testClose1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.close();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSetLocale1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        Locale locale = ((Locale) createInstance("java.util.Locale"));
-        
-        jSONReader.setLocale(locale);
-    }
-    ///endregion
-    
+public class FastJsonHttpMessageConverterTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetLocale2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "locale", null);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
+    public void testCanWrite1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
         
-        jSONReader.setLocale(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadLong1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.readLong();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadLong2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        jSONReader.readLong();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadString1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.readString();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadString2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "token", 0);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readString();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadString3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(defaultExtJSONParser, "lexer", jSONReaderScanner);
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        jSONReader.readString();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadString4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        jSONReader.readString();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadString5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(defaultExtJSONParser, "lexer", jSONReaderScanner);
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        jSONReader.readString();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadString6() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(defaultExtJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        jSONReader.readString();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testConfig1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "features", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        Feature feature = Feature.AutoCloseSource;
-        
-        jSONReader.config(feature, true);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerFeatures = getFieldValue(jSONReaderParserParserLexer, "features");
-        
-        assertEquals(1, finalJSONReaderParserLexerFeatures);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetLocal1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.getLocal();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetLocal2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "locale", null);
-        setField(defaultExtJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        Locale actual = jSONReader.getLocal();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndArray1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.endArray();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndArray2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 15);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endArray();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndArray3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", false);
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\"');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 15);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endArray();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndArray4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '@');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 15);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endArray();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndArray5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '{');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 15);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endArray();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(12, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartArray1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.startArray();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartArray2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\"');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.startArray();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartArray3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Object initialJSONReaderContext = getFieldValue(jSONReader, "context");
-        
-        jSONReader.startArray();
-        
-        Object finalJSONReaderContext = getFieldValue(jSONReader, "context");
-        
-        assertFalse(initialJSONReaderContext == finalJSONReaderContext);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartArray4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Object initialJSONReaderContext = getFieldValue(jSONReader, "context");
-        
-        jSONReader.startArray();
-        
-        Object finalJSONReaderContext = getFieldValue(jSONReader, "context");
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertFalse(initialJSONReaderContext == finalJSONReaderContext);
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartArray5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        jSONReader.startArray();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartArray6() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.startArray();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartArray7() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ',');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Object initialJSONReaderContext = getFieldValue(jSONReader, "context");
-        
-        jSONReader.startArray();
-        
-        Object finalJSONReaderContext = getFieldValue(jSONReader, "context");
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertFalse(initialJSONReaderContext == finalJSONReaderContext);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartArray8() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(defaultExtJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        jSONReader.startArray();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndObject1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.endObject();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndObject2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '{');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(12, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndObject3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\r');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerPos = getFieldValue(jSONReaderParser2ParserLexer, "pos");
-        
-        assertEquals(14170, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(14169, finalJSONReaderParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndObject4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 'T');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerSp = getFieldValue(jSONReaderParserParserLexer, "sp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParser1ParserLexer, "bp");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser2ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerSp);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndObject5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 'x');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndObject6() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", false);
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\"');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndObject7() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '-');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerSp = getFieldValue(jSONReaderParserParserLexer, "sp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParser1ParserLexer, "bp");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser2ParserLexer, "ch");
-        Object jSONReaderParser3 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser3ParserLexer = getFieldValue(jSONReaderParser3, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser3ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerSp);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndObject8() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndObject9() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndObject10() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ']');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.endObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(15, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetTimzeZone1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.getTimzeZone();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetTimzeZone2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "timeZone", null);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        TimeZone actual = jSONReader.getTimzeZone();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartObject1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.startObject();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartObject2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ',');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Object initialJSONReaderContext = getFieldValue(jSONReader, "context");
-        
-        jSONReader.startObject();
-        
-        Object finalJSONReaderContext = getFieldValue(jSONReader, "context");
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertFalse(initialJSONReaderContext == finalJSONReaderContext);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartObject3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Object initialJSONReaderContext = getFieldValue(jSONReader, "context");
-        
-        jSONReader.startObject();
-        
-        Object finalJSONReaderContext = getFieldValue(jSONReader, "context");
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertFalse(initialJSONReaderContext == finalJSONReaderContext);
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartObject4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.startObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartObject5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\r');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.startObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerPos = getFieldValue(jSONReaderParser2ParserLexer, "pos");
-        
-        assertEquals(14170, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(14169, finalJSONReaderParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartObject6() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\'');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.startObject();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartObject7() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '(');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Object initialJSONReaderContext = getFieldValue(jSONReader, "context");
-        
-        jSONReader.startObject();
-        
-        Object finalJSONReaderContext = getFieldValue(jSONReader, "context");
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertFalse(initialJSONReaderContext == finalJSONReaderContext);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(10, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartObject8() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '+');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Object initialJSONReaderContext = getFieldValue(jSONReader, "context");
-        
-        jSONReader.startObject();
-        
-        Object finalJSONReaderContext = getFieldValue(jSONReader, "context");
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertFalse(initialJSONReaderContext == finalJSONReaderContext);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartObject9() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(defaultExtJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        jSONReader.startObject();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSetTimzeZone1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.setTimzeZone(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetTimzeZone2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "timeZone", null);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        ZoneInfo zoneInfo = ((ZoneInfo) createInstance("sun.util.calendar.ZoneInfo"));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object initialJSONReaderParserLexerTimeZone = getFieldValue(jSONReaderParserParserLexer, "timeZone");
-        
-        jSONReader.setTimzeZone(zoneInfo);
-        
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerTimeZone = getFieldValue(jSONReaderParser1ParserLexer, "timeZone");
-        
-        assertFalse(initialJSONReaderParserLexerTimeZone == finalJSONReaderParserLexerTimeZone);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartStructure1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        try {
-            startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartStructure2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        try {
-            startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testStartStructure3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1004;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartStructure4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1006;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        try {
-            startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testStartStructure5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '-');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerSp = getFieldValue(jSONReaderParserParserLexer, "sp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParser1ParserLexer, "bp");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser2ParserLexer, "ch");
-        Object jSONReaderParser3 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser3ParserLexer = getFieldValue(jSONReaderParser3, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser3ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerSp);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testStartStructure6() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testStartStructure7() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ')');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(11, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartStructure8() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", false);
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\"');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        try {
-            startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testStartStructure9() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '.');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(25, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testStartStructure10() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '2');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerSp = getFieldValue(jSONReaderParserParserLexer, "sp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParser1ParserLexer, "bp");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser2ParserLexer, "ch");
-        Object jSONReaderParser3 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser3ParserLexer = getFieldValue(jSONReaderParser3, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser3ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerSp);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testStartStructure11() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ',');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testStartStructure12() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '(');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(10, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartStructure13() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        try {
-            startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartStructure14() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ' ');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        try {
-            startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerPos = getFieldValue(jSONReaderParser2ParserLexer, "pos");
-        
-        assertEquals(14170, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(14169, finalJSONReaderParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartStructure15() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(defaultExtJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method startStructureMethod = jSONReaderClazz.getDeclaredMethod("startStructure");
-        startStructureMethod.setAccessible(true);
-        java.lang.Object[] startStructureMethodArguments = new java.lang.Object[0];
-        try {
-            startStructureMethod.invoke(jSONReader, startStructureMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndStructure1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method endStructureMethod = jSONReaderClazz.getDeclaredMethod("endStructure");
-        endStructureMethod.setAccessible(true);
-        java.lang.Object[] endStructureMethodArguments = new java.lang.Object[0];
-        try {
-            endStructureMethod.invoke(jSONReader, endStructureMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEndStructure2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method endStructureMethod = jSONReaderClazz.getDeclaredMethod("endStructure");
-        endStructureMethod.setAccessible(true);
-        java.lang.Object[] endStructureMethodArguments = new java.lang.Object[0];
-        try {
-            endStructureMethod.invoke(jSONReader, endStructureMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testEndStructure3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1004;
-        setField(jSONStreamContext, "parent", jSONStreamContext);
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method endStructureMethod = jSONReaderClazz.getDeclaredMethod("endStructure");
-        endStructureMethod.setAccessible(true);
-        java.lang.Object[] endStructureMethodArguments = new java.lang.Object[0];
-        endStructureMethod.invoke(jSONReader, endStructureMethodArguments);
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        
-        assertEquals(1005, finalJSONReaderContextState);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testEndStructure4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONStreamContext, "parent", jSONStreamContext);
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method endStructureMethod = jSONReaderClazz.getDeclaredMethod("endStructure");
-        endStructureMethod.setAccessible(true);
-        java.lang.Object[] endStructureMethodArguments = new java.lang.Object[0];
-        endStructureMethod.invoke(jSONReader, endStructureMethodArguments);
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        
-        assertEquals(1003, finalJSONReaderContextState);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testEndStructure5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONStreamContext, "parent", jSONStreamContext);
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method endStructureMethod = jSONReaderClazz.getDeclaredMethod("endStructure");
-        endStructureMethod.setAccessible(true);
-        java.lang.Object[] endStructureMethodArguments = new java.lang.Object[0];
-        endStructureMethod.invoke(jSONReader, endStructureMethodArguments);
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        
-        assertEquals(1002, finalJSONReaderContextState);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadInteger1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.readInteger();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadInteger2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1006;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        jSONReader.readInteger();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadInteger3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "token", 22);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readInteger();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadInteger4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "token", 23);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Integer actual = jSONReader.readInteger();
-        
-        assertNull(actual);
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(1002, finalJSONReaderContextState);
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadInteger5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "token", 20);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readInteger();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadInteger6() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 21);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readInteger();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadInteger7() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(defaultExtJSONParser, "lexer", jSONReaderScanner);
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        jSONReader.readInteger();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadInteger8() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(defaultExtJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        jSONReader.readInteger();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadInteger9() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 9);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readInteger();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadInteger10() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 2);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readInteger();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadInteger11() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 26);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readInteger();
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(1002, finalJSONReaderContextState);
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadInteger12() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(defaultExtJSONParser, "lexer", jSONReaderScanner);
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        jSONReader.readInteger();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadInteger13() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 20);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Integer actual = jSONReader.readInteger();
-        
-        assertNull(actual);
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        
-        assertEquals(1002, finalJSONReaderContextState);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadBefore1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        try {
-            readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadBefore2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        try {
-            readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadBefore3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1004;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadBefore4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadBefore5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1006;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        try {
-            readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadBefore6() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\"');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        try {
-            readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadBefore7() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ',');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(16, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadBefore8() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ',');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadBefore9() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '-');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerSp = getFieldValue(jSONReaderParserParserLexer, "sp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParser1ParserLexer, "bp");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser2ParserLexer, "ch");
-        Object jSONReaderParser3 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser3ParserLexer = getFieldValue(jSONReaderParser3, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser3ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerSp);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadBefore10() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadBefore11() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\'');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        try {
-            readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadBefore12() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadBefore13() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        try {
-            readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadBefore14() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '+');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadBefore15() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '@');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadBefore16() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '2');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerSp = getFieldValue(jSONReaderParserParserLexer, "sp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParser1ParserLexer, "bp");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser2ParserLexer, "ch");
-        Object jSONReaderParser3 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser3ParserLexer = getFieldValue(jSONReaderParser3, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser3ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerSp);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadBefore17() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ')');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(11, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadBefore18() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\t');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readBeforeMethod = jSONReaderClazz.getDeclaredMethod("readBefore");
-        readBeforeMethod.setAccessible(true);
-        java.lang.Object[] readBeforeMethodArguments = new java.lang.Object[0];
-        try {
-            readBeforeMethod.invoke(jSONReader, readBeforeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerPos = getFieldValue(jSONReaderParser2ParserLexer, "pos");
-        
-        assertEquals(14170, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(14169, finalJSONReaderParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadAfter1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readAfterMethod = jSONReaderClazz.getDeclaredMethod("readAfter");
-        readAfterMethod.setAccessible(true);
-        java.lang.Object[] readAfterMethodArguments = new java.lang.Object[0];
-        try {
-            readAfterMethod.invoke(jSONReader, readAfterMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadAfter2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readAfterMethod = jSONReaderClazz.getDeclaredMethod("readAfter");
-        readAfterMethod.setAccessible(true);
-        java.lang.Object[] readAfterMethodArguments = new java.lang.Object[0];
-        try {
-            readAfterMethod.invoke(jSONReader, readAfterMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadAfter3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readAfterMethod = jSONReaderClazz.getDeclaredMethod("readAfter");
-        readAfterMethod.setAccessible(true);
-        java.lang.Object[] readAfterMethodArguments = new java.lang.Object[0];
-        readAfterMethod.invoke(jSONReader, readAfterMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadAfter4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1006;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readAfterMethod = jSONReaderClazz.getDeclaredMethod("readAfter");
-        readAfterMethod.setAccessible(true);
-        java.lang.Object[] readAfterMethodArguments = new java.lang.Object[0];
-        try {
-            readAfterMethod.invoke(jSONReader, readAfterMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadAfter5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readAfterMethod = jSONReaderClazz.getDeclaredMethod("readAfter");
-        readAfterMethod.setAccessible(true);
-        java.lang.Object[] readAfterMethodArguments = new java.lang.Object[0];
-        readAfterMethod.invoke(jSONReader, readAfterMethodArguments);
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        
-        assertEquals(1003, finalJSONReaderContextState);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadAfter6() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readAfterMethod = jSONReaderClazz.getDeclaredMethod("readAfter");
-        readAfterMethod.setAccessible(true);
-        java.lang.Object[] readAfterMethodArguments = new java.lang.Object[0];
-        readAfterMethod.invoke(jSONReader, readAfterMethodArguments);
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        
-        assertEquals(1002, finalJSONReaderContextState);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadAfter7() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readAfterMethod = jSONReaderClazz.getDeclaredMethod("readAfter");
-        readAfterMethod.setAccessible(true);
-        java.lang.Object[] readAfterMethodArguments = new java.lang.Object[0];
-        readAfterMethod.invoke(jSONReader, readAfterMethodArguments);
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        
-        assertEquals(1002, finalJSONReaderContextState);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadAfter8() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1004;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        Class jSONReaderClazz = Class.forName("com.alibaba.fastjson.JSONReader");
-        Method readAfterMethod = jSONReaderClazz.getDeclaredMethod("readAfter");
-        readAfterMethod.setAccessible(true);
-        java.lang.Object[] readAfterMethodArguments = new java.lang.Object[0];
-        readAfterMethod.invoke(jSONReader, readAfterMethodArguments);
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        
-        assertEquals(1005, finalJSONReaderContextState);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasNext1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.hasNext();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasNext2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        
-        jSONReader.hasNext();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHasNext3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1004;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        boolean actual = jSONReader.hasNext();
+        boolean actual = fastJsonHttpMessageConverter.canWrite(null, null, null);
         
         assertTrue(actual);
     }
@@ -2876,1545 +128,631 @@ public class JSONReaderTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasNext4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.hasNext();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHasNext5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1004;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 15);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        boolean actual = jSONReader.hasNext();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHasNext6() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        boolean actual = jSONReader.hasNext();
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHasNext7() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        boolean actual = jSONReader.hasNext();
-        
-        assertFalse(actual);
+    public void testReadInternal1() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        boolean prevHasClazzResolvableType = ((boolean) getStaticFieldValue(spring4TypeResolvableHelperClazz, "hasClazzResolvableType"));
+        try {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", false);
+            FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+            ServletServerHttpRequest servletServerHttpRequest = ((ServletServerHttpRequest) createInstance("org.springframework.http.server.ServletServerHttpRequest"));
+            HttpServletRequestWrapper httpServletRequestWrapper = ((HttpServletRequestWrapper) createInstance("javax.servlet.http.HttpServletRequestWrapper"));
+            setField(servletServerHttpRequest, "servletRequest", httpServletRequestWrapper);
+            
+            Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+            Class classType = Class.forName("java.lang.Class");
+            Class servletServerHttpRequestType = Class.forName("org.springframework.http.HttpInputMessage");
+            Method readInternalMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("readInternal", classType, servletServerHttpRequestType);
+            readInternalMethod.setAccessible(true);
+            java.lang.Object[] readInternalMethodArguments = new java.lang.Object[2];
+            readInternalMethodArguments[0] = null;
+            readInternalMethodArguments[1] = servletServerHttpRequest;
+            try {
+                readInternalMethod.invoke(fastJsonHttpMessageConverter, readInternalMethodArguments);
+            } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+                throw invocationTargetException.getTargetException();
+            }} finally {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", prevHasClazzResolvableType);
+        }
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
+    public void testReadInternal2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        ServletServerHttpRequest servletServerHttpRequest = ((ServletServerHttpRequest) createInstance("org.springframework.http.server.ServletServerHttpRequest"));
+        
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class classType = Class.forName("java.lang.Class");
+        Class servletServerHttpRequestType = Class.forName("org.springframework.http.HttpInputMessage");
+        Method readInternalMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("readInternal", classType, servletServerHttpRequestType);
+        readInternalMethod.setAccessible(true);
+        java.lang.Object[] readInternalMethodArguments = new java.lang.Object[2];
+        readInternalMethodArguments[0] = null;
+        readInternalMethodArguments[1] = servletServerHttpRequest;
+        try {
+            readInternalMethod.invoke(fastJsonHttpMessageConverter, readInternalMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWriteInternal1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
         Object object = new Object();
         
-        jSONReader.readObject(object);
-    }
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class objectType = Class.forName("java.lang.Object");
+        Class httpOutputMessageType = Class.forName("org.springframework.http.HttpOutputMessage");
+        Method writeInternalMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("writeInternal", objectType, httpOutputMessageType);
+        writeInternalMethod.setAccessible(true);
+        java.lang.Object[] writeInternalMethodArguments = new java.lang.Object[2];
+        writeInternalMethodArguments[0] = object;
+        writeInternalMethodArguments[1] = null;
+        try {
+            writeInternalMethod.invoke(fastJsonHttpMessageConverter, writeInternalMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1004;
-        setField(jSONReader, "context", jSONStreamContext);
+    @Test(timeout = 10000)
+    public void testSupports1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
         
-        jSONReader.readObject(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject3() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 0;
-        setField(jSONReader, "context", jSONStreamContext);
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class classType = Class.forName("java.lang.Class");
+        Method supportsMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("supports", classType);
+        supportsMethod.setAccessible(true);
+        java.lang.Object[] supportsMethodArguments = new java.lang.Object[1];
+        supportsMethodArguments[0] = null;
+        boolean actual = ((boolean) supportsMethod.invoke(fastJsonHttpMessageConverter, supportsMethodArguments));
         
-        jSONReader.readObject(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject4() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.readObject();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject5() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1006;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        jSONReader.readObject();
+        assertTrue(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testReadObject6() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
+    public void testGetFilters1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
         
-        Object actual = jSONReader.readObject();
+        com.alibaba.fastjson.serializer.SerializeFilter[] actual = fastJsonHttpMessageConverter.getFilters();
+        
+        com.alibaba.fastjson.serializer.SerializeFilter[] expected = new com.alibaba.fastjson.serializer.SerializeFilter[0];
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetFilters1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        com.alibaba.fastjson.serializer.SerializeFilter[] serializeFilterArray = new com.alibaba.fastjson.serializer.SerializeFilter[0];
+        
+        fastJsonHttpMessageConverter.setFilters(serializeFilterArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetDateFormat1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        String string = new String();
+        
+        fastJsonHttpMessageConverter.setDateFormat(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetDateFormat1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        
+        String actual = fastJsonHttpMessageConverter.getDateFormat();
         
         assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetDateFormat2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
         
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
+        fastJsonHttpMessageConverter.getDateFormat();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testReadObject7() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 23);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
+    public void testGetDateFormat3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        FastJsonConfig fastJsonConfig = ((FastJsonConfig) createInstance("com.alibaba.fastjson.support.config.FastJsonConfig"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", fastJsonConfig);
         
-        Object actual = jSONReader.readObject();
+        String actual = fastJsonHttpMessageConverter.getDateFormat();
         
         assertNull(actual);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject8() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\f');
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(14169, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testReadObject9() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "ch", '\u0081');
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
+    public void testStrangeCodeForJackson1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        Object object = new Object();
         
-        Object actual = jSONReader.readObject();
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class objectType = Class.forName("java.lang.Object");
+        Method strangeCodeForJacksonMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("strangeCodeForJackson", objectType);
+        strangeCodeForJacksonMethod.setAccessible(true);
+        java.lang.Object[] strangeCodeForJacksonMethodArguments = new java.lang.Object[1];
+        strangeCodeForJacksonMethodArguments[0] = object;
+        Object actual = strangeCodeForJacksonMethod.invoke(fastJsonHttpMessageConverter, strangeCodeForJacksonMethodArguments);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(object, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetFeatures1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        
+        com.alibaba.fastjson.serializer.SerializerFeature[] actual = fastJsonHttpMessageConverter.getFeatures();
+        
+        com.alibaba.fastjson.serializer.SerializerFeature[] expected = new com.alibaba.fastjson.serializer.SerializerFeature[1];
+        SerializerFeature serializerFeature = SerializerFeature.BrowserSecure;
+        expected[0] = serializerFeature;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetFeatures2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        
+        fastJsonHttpMessageConverter.getFeatures();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetFeatures3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        FastJsonConfig fastJsonConfig = ((FastJsonConfig) createInstance("com.alibaba.fastjson.support.config.FastJsonConfig"));
+        setField(fastJsonConfig, "serializerFeatures", null);
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", fastJsonConfig);
+        
+        com.alibaba.fastjson.serializer.SerializerFeature[] actual = fastJsonHttpMessageConverter.getFeatures();
         
         assertNull(actual);
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(1002, finalJSONReaderContextState);
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject10() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", false);
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "token", 18);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testReadObject11() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
+    public void testSetCharset1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
         
-        Object actual = jSONReader.readObject();
-        
-        assertNull(actual);
-        
-        Object jSONReaderContext = getFieldValue(jSONReader, "context");
-        Object finalJSONReaderContextState = getFieldValue(jSONReaderContext, "state");
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(1003, finalJSONReaderContextState);
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
+        fastJsonHttpMessageConverter.setCharset(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject12() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 9);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
+    public void testSetCharset2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
         
-        jSONReader.readObject();
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject13() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.readObject(((Map) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject14() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1004;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        jSONReader.readObject(((Map) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject15() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        jSONReader.readObject(((Map) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject16() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 0;
-        setField(jSONReader, "context", jSONStreamContext);
-        
-        jSONReader.readObject(((Map) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject17() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.readObject(((Type) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject18() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Type) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject19() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '-');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Type) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerSp = getFieldValue(jSONReaderParserParserLexer, "sp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParser1ParserLexer, "bp");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser2ParserLexer, "ch");
-        Object jSONReaderParser3 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser3ParserLexer = getFieldValue(jSONReaderParser3, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser3ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerSp);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject20() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '2');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Type) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerSp = getFieldValue(jSONReaderParserParserLexer, "sp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParser1ParserLexer, "bp");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser2ParserLexer, "ch");
-        Object jSONReaderParser3 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser3ParserLexer = getFieldValue(jSONReaderParser3, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser3ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerSp);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject21() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '+');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Type) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject22() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ')');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Type) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(11, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject23() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Type) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject24() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Type) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject25() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\"');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Type) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
+        fastJsonHttpMessageConverter.setCharset(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testReadObject26() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        Object actual = jSONReader.readObject(((Type) null));
-        
-        assertNull(actual);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject27() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ',');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Type) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(16, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject28() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", false);
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "token", 4);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        Class class1 = Object.class;
-        
-        jSONReader.readObject(class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject29() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\r');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Type) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerPos = getFieldValue(jSONReaderParser2ParserLexer, "pos");
-        
-        assertEquals(14170, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(14169, finalJSONReaderParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject30() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.readObject(((TypeReference) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject31() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 4);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        TypeReference typeReference = ((TypeReference) createInstance("com.alibaba.fastjson.TypeReference"));
-        Class class1 = Object.class;
-        setField(typeReference, "type", class1);
-        
-        jSONReader.readObject(typeReference);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject32() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "sp", 0);
-        setField(jSONReaderScanner, "bp", 0);
-        setField(jSONReaderScanner, "ch", '\u0000');
-        setField(jSONReaderScanner, "pos", 0);
-        setField(jSONReaderScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        TypeReference typeReference = ((TypeReference) createInstance("com.alibaba.fastjson.TypeReference"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        setField(typeReference, "type", typeVariableImpl);
-        
-        jSONReader.readObject(typeReference);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject33() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        TypeReference typeReference = ((TypeReference) createInstance("com.alibaba.fastjson.TypeReference"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        setField(typeReference, "type", typeVariableImpl);
-        
-        jSONReader.readObject(typeReference);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject34() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "sp", 0);
-        setField(jSONReaderScanner, "bp", 0);
-        setField(jSONReaderScanner, "ch", '/');
-        setField(jSONReaderScanner, "pos", 0);
-        setField(jSONReaderScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        TypeReference typeReference = ((TypeReference) createInstance("com.alibaba.fastjson.TypeReference"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        setField(typeReference, "type", typeVariableImpl);
-        
-        jSONReader.readObject(typeReference);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject35() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "sp", 0);
-        setField(jSONReaderScanner, "bp", 0);
-        setField(jSONReaderScanner, "ch", '\"');
-        setField(jSONReaderScanner, "pos", 0);
-        setField(jSONReaderScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        TypeReference typeReference = ((TypeReference) createInstance("com.alibaba.fastjson.TypeReference"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        setField(typeReference, "type", typeVariableImpl);
-        
-        jSONReader.readObject(typeReference);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadObject36() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        TypeReference typeReference = ((TypeReference) createInstance("com.alibaba.fastjson.TypeReference"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        setField(typeReference, "type", typeVariableImpl);
-        
-        Object actual = jSONReader.readObject(typeReference);
-        
-        assertNull(actual);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject37() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1006;
-        setField(jSONReader, "context", jSONStreamContext);
-        TypeReference typeReference = ((TypeReference) createInstance("com.alibaba.fastjson.TypeReference"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        setField(typeReference, "type", typeVariableImpl);
-        
-        jSONReader.readObject(typeReference);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject38() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        TypeReference typeReference = ((TypeReference) createInstance("com.alibaba.fastjson.TypeReference"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        setField(typeReference, "type", typeVariableImpl);
-        
-        jSONReader.readObject(typeReference);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject39() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1001;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        TypeReference typeReference = ((TypeReference) createInstance("com.alibaba.fastjson.TypeReference"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        setField(typeReference, "type", typeVariableImpl);
-        
-        jSONReader.readObject(typeReference);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject40() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '2');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Class) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerSp = getFieldValue(jSONReaderParserParserLexer, "sp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParser1ParserLexer, "bp");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser2ParserLexer, "ch");
-        Object jSONReaderParser3 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser3ParserLexer = getFieldValue(jSONReaderParser3, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser3ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerSp);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject41() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ' ');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Class) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerPos = getFieldValue(jSONReaderParser2ParserLexer, "pos");
-        
-        assertEquals(14170, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(14169, finalJSONReaderParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject42() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ')');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Class) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(11, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject43() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", false);
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "token", 4);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        Class class1 = Object.class;
-        
-        jSONReader.readObject(class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject44() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Class) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject45() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\"');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Class) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject46() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ',');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Class) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(16, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject47() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1005;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Class) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject48() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Class) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject49() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '-');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Class) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerSp = getFieldValue(jSONReaderParserParserLexer, "sp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParser1ParserLexer, "bp");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser2ParserLexer, "ch");
-        Object jSONReaderParser3 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser3ParserLexer = getFieldValue(jSONReaderParser3, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser3ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerSp);
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(2, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReadObject50() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        setField(jSONReader, "context", null);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        Class class1 = Object.class;
-        
-        Object actual = jSONReader.readObject(class1);
-        
-        assertNull(actual);
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject51() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1003;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "token", 16);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Class) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParserParserLexer, "token");
-        
-        assertEquals(20, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReadObject52() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        JSONStreamContext jSONStreamContext = ((JSONStreamContext) createInstance("com.alibaba.fastjson.JSONStreamContext"));
-        jSONStreamContext.state = 1002;
-        setField(jSONReader, "context", jSONStreamContext);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '(');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 17);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultJSONParser);
-        
-        jSONReader.readObject(((Class) null));
-        
-        Object jSONReaderParser = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParserParserLexer = getFieldValue(jSONReaderParser, "lexer");
-        Object finalJSONReaderParserLexerBp = getFieldValue(jSONReaderParserParserLexer, "bp");
-        Object jSONReaderParser1 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser1ParserLexer = getFieldValue(jSONReaderParser1, "lexer");
-        Object finalJSONReaderParserLexerCh = getFieldValue(jSONReaderParser1ParserLexer, "ch");
-        Object jSONReaderParser2 = getFieldValue(jSONReader, "parser");
-        Object jSONReaderParser2ParserLexer = getFieldValue(jSONReaderParser2, "lexer");
-        Object finalJSONReaderParserLexerToken = getFieldValue(jSONReaderParser2ParserLexer, "token");
-        
-        assertEquals(1, finalJSONReaderParserLexerBp);
-        
-        assertEquals('\u001A', finalJSONReaderParserLexerCh);
-        
-        assertEquals(10, finalJSONReaderParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPeek1() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        
-        jSONReader.peek();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPeek2() throws Throwable  {
-        JSONReader jSONReader = ((JSONReader) createInstance("com.alibaba.fastjson.JSONReader"));
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 0);
-        setField(defaultExtJSONParser, "lexer", jSONScanner);
-        setField(jSONReader, "parser", defaultExtJSONParser);
-        
-        int actual = jSONReader.peek();
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testJSONReader1() {
-        new JSONReader(((Reader) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testJSONReader2() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReader actual = new JSONReader(defaultJSONParser);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testJSONReader3() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReader actual = new JSONReader(defaultJSONParser);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testJSONReader4() {
-        new JSONReader(((JSONLexer) null));
+    public void testSetCharset3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        FastJsonConfig fastJsonConfig = ((FastJsonConfig) createInstance("com.alibaba.fastjson.support.config.FastJsonConfig"));
+        setField(fastJsonConfig, "charset", null);
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", fastJsonConfig);
+        
+        fastJsonHttpMessageConverter.setCharset(null);
     }
     ///endregion
     
     
-    ///region Errors report for <init>
+    ///region Errors report for getFastJsonConfig
     
-    public void testJSONReader_errors()
+    public void testGetFastJsonConfig_errors()
      {
         // Couldn't generate some tests. List of errors:
         // 
         // 1 occurrences of:
-        // Field security is not found in class java.lang.System
+        // ClassId java.util.jar.JarVerifier$3 does not have canonical name
         // 
     }
     ///endregion
     
     ///region
     
+    @Test(timeout = 10000)
+    public void testGetFastJsonConfig2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        
+        FastJsonConfig actual = fastJsonHttpMessageConverter.getFastJsonConfig();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testJSONReader6() {
-        com.alibaba.fastjson.parser.Feature[] featureArray = new com.alibaba.fastjson.parser.Feature[0];
-        new JSONReader(null, featureArray);
+    public void testReadType1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class typeType = Class.forName("java.lang.reflect.Type");
+        Class httpInputMessageType = Class.forName("org.springframework.http.HttpInputMessage");
+        Method readTypeMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("readType", typeType, httpInputMessageType);
+        readTypeMethod.setAccessible(true);
+        java.lang.Object[] readTypeMethodArguments = new java.lang.Object[2];
+        readTypeMethodArguments[0] = null;
+        readTypeMethodArguments[1] = null;
+        try {
+            readTypeMethod.invoke(fastJsonHttpMessageConverter, readTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetFastJsonConfig1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        
+        fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetFastJsonConfig2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        
+        fastJsonHttpMessageConverter.setFastJsonConfig(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddSerializeFilter1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        
+        fastJsonHttpMessageConverter.addSerializeFilter(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddSerializeFilter2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        
+        fastJsonHttpMessageConverter.addSerializeFilter(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testAddSerializeFilter3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        Object defaultLabelFilter = createInstance("com.alibaba.fastjson.serializer.Labels$DefaultLabelFilter");
+        
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class defaultLabelFilterType = Class.forName("com.alibaba.fastjson.serializer.SerializeFilter");
+        Method addSerializeFilterMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("addSerializeFilter", defaultLabelFilterType);
+        addSerializeFilterMethod.setAccessible(true);
+        java.lang.Object[] addSerializeFilterMethodArguments = new java.lang.Object[1];
+        addSerializeFilterMethodArguments[0] = defaultLabelFilter;
+        try {
+            addSerializeFilterMethod.invoke(fastJsonHttpMessageConverter, addSerializeFilterMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testAddSerializeFilter4() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        FastJsonConfig fastJsonConfig = ((FastJsonConfig) createInstance("com.alibaba.fastjson.support.config.FastJsonConfig"));
+        setField(fastJsonConfig, "serializeFilters", null);
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", fastJsonConfig);
+        PascalNameFilter pascalNameFilter = ((PascalNameFilter) createInstance("com.alibaba.fastjson.serializer.PascalNameFilter"));
+        
+        fastJsonHttpMessageConverter.addSerializeFilter(pascalNameFilter);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType1() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        boolean prevHasClazzResolvableType = ((boolean) getStaticFieldValue(spring4TypeResolvableHelperClazz, "hasClazzResolvableType"));
+        try {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", false);
+            FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+            
+            Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+            Class typeType = Class.forName("java.lang.reflect.Type");
+            Class classType = Class.forName("java.lang.Class");
+            Method getTypeMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("getType", typeType, classType);
+            getTypeMethod.setAccessible(true);
+            java.lang.Object[] getTypeMethodArguments = new java.lang.Object[2];
+            getTypeMethodArguments[0] = null;
+            getTypeMethodArguments[1] = null;
+            Type actual = ((Type) getTypeMethod.invoke(fastJsonHttpMessageConverter, getTypeMethodArguments));
+            
+            assertNull(actual);
+        } finally {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", prevHasClazzResolvableType);
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType2() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        boolean prevHasClazzResolvableType = ((boolean) getStaticFieldValue(spring4TypeResolvableHelperClazz, "hasClazzResolvableType"));
+        try {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", true);
+            FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+            
+            Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+            Class typeType = Class.forName("java.lang.reflect.Type");
+            Class classType = Class.forName("java.lang.Class");
+            Method getTypeMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("getType", typeType, classType);
+            getTypeMethod.setAccessible(true);
+            java.lang.Object[] getTypeMethodArguments = new java.lang.Object[2];
+            getTypeMethodArguments[0] = null;
+            getTypeMethodArguments[1] = null;
+            Type actual = ((Type) getTypeMethod.invoke(fastJsonHttpMessageConverter, getTypeMethodArguments));
+            
+            assertNull(actual);
+        } finally {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", prevHasClazzResolvableType);
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testFastJsonHttpMessageConverter1() {
+        FastJsonHttpMessageConverter actual = new FastJsonHttpMessageConverter();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testFastJsonHttpMessageConverter2() {
+        FastJsonHttpMessageConverter actual = new FastJsonHttpMessageConverter();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testResolveVariable1() throws Throwable  {
+        ResolvableType resolvableType = ((ResolvableType) createInstance("org.springframework.core.ResolvableType"));
+        
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Class typeVariableType = Class.forName("java.lang.reflect.TypeVariable");
+        Class resolvableTypeType = Class.forName("org.springframework.core.ResolvableType");
+        Method resolveVariableMethod = spring4TypeResolvableHelperClazz.getDeclaredMethod("resolveVariable", typeVariableType, resolvableTypeType);
+        resolveVariableMethod.setAccessible(true);
+        java.lang.Object[] resolveVariableMethodArguments = new java.lang.Object[2];
+        resolveVariableMethodArguments[0] = null;
+        resolveVariableMethodArguments[1] = resolvableType;
+        ResolvableType actual = ((ResolvableType) resolveVariableMethod.invoke(null, resolveVariableMethodArguments));
+        
+        ResolvableType expected = ((ResolvableType) createInstance("org.springframework.core.ResolvableType"));
+        setField(expected, "type", null);
+        setField(expected, "typeProvider", null);
+        setField(expected, "variableResolver", null);
+        setField(expected, "componentType", null);
+        setField(expected, "resolved", null);
+        Integer integer = 0;
+        setField(expected, "hash", integer);
+        setField(expected, "superType", null);
+        setField(expected, "interfaces", null);
+        setField(expected, "generics", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testResolveVariable2() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Class typeVariableType = Class.forName("java.lang.reflect.TypeVariable");
+        Class resolvableTypeType = Class.forName("org.springframework.core.ResolvableType");
+        Method resolveVariableMethod = spring4TypeResolvableHelperClazz.getDeclaredMethod("resolveVariable", typeVariableType, resolvableTypeType);
+        resolveVariableMethod.setAccessible(true);
+        java.lang.Object[] resolveVariableMethodArguments = new java.lang.Object[2];
+        resolveVariableMethodArguments[0] = null;
+        resolveVariableMethodArguments[1] = null;
+        try {
+            resolveVariableMethod.invoke(null, resolveVariableMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsSupport1() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Method isSupportMethod = spring4TypeResolvableHelperClazz.getDeclaredMethod("isSupport");
+        isSupportMethod.setAccessible(true);
+        java.lang.Object[] isSupportMethodArguments = new java.lang.Object[0];
+        boolean actual = ((boolean) isSupportMethod.invoke(null, isSupportMethodArguments));
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsSupport2() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        boolean prevHasClazzResolvableType = ((boolean) getStaticFieldValue(spring4TypeResolvableHelperClazz, "hasClazzResolvableType"));
+        try {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", false);
+            
+            Method isSupportMethod = spring4TypeResolvableHelperClazz.getDeclaredMethod("isSupport");
+            isSupportMethod.setAccessible(true);
+            java.lang.Object[] isSupportMethodArguments = new java.lang.Object[0];
+            boolean actual = ((boolean) isSupportMethod.invoke(null, isSupportMethodArguments));
+            
+            assertFalse(actual);
+        } finally {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", prevHasClazzResolvableType);
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType3() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Class typeType = Class.forName("java.lang.reflect.Type");
+        Class classType = Class.forName("java.lang.Class");
+        Method getTypeMethod = spring4TypeResolvableHelperClazz.getDeclaredMethod("getType", typeType, classType);
+        getTypeMethod.setAccessible(true);
+        java.lang.Object[] getTypeMethodArguments = new java.lang.Object[2];
+        getTypeMethodArguments[0] = null;
+        getTypeMethodArguments[1] = null;
+        Type actual = ((Type) getTypeMethod.invoke(null, getTypeMethodArguments));
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSpring4TypeResolvableHelper1() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Constructor spring4TypeResolvableHelperConstructor = spring4TypeResolvableHelperClazz.getDeclaredConstructor();
+        spring4TypeResolvableHelperConstructor.setAccessible(true);
+        java.lang.Object[] spring4TypeResolvableHelperConstructorArguments = new java.lang.Object[0];
+        Object actual = spring4TypeResolvableHelperConstructor.newInstance(spring4TypeResolvableHelperConstructorArguments);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSpring4TypeResolvableHelper2() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Constructor spring4TypeResolvableHelperConstructor = spring4TypeResolvableHelperClazz.getDeclaredConstructor();
+        spring4TypeResolvableHelperConstructor.setAccessible(true);
+        java.lang.Object[] spring4TypeResolvableHelperConstructorArguments = new java.lang.Object[0];
+        Object actual = spring4TypeResolvableHelperConstructor.newInstance(spring4TypeResolvableHelperConstructorArguments);
     }
     ///endregion
     
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static Object getStaticFieldValue(Class<?> clazz, String fieldName) throws Exception {
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+                
+                return field.get(null);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
+    
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + clazz);
+    }
+    private static void setStaticField(Class<?> clazz, String fieldName, Object fieldValue) throws Exception {
+        java.lang.reflect.Field field;
+    
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+            } catch (Exception e) {
+                clazz = clazz.getSuperclass();
+                field = null;
+            }
+        } while (field == null);
+        
+        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(null, fieldValue);
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();
@@ -4436,24 +774,182 @@ public class JSONReaderTest {
         field.setAccessible(true);
         field.set(object, fieldValue);
     }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
+    static class FieldsPair {
+        final Object o1;
+        final Object o2;
+    
+        public FieldsPair(Object o1, Object o2) {
+            this.o1 = o1;
+            this.o2 = o2;
+        }
+    
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            FieldsPair that = (FieldsPair) o;
+            return Objects.equals(o1, that.o1) && Objects.equals(o2, that.o2);
+        }
+    
+        @Override
+        public int hashCode() {
+            return Objects.hash(o1, o2);
+        }
+    }
+    
+    private boolean deepEquals(Object o1, Object o2) {
+        try {
+            return deepEquals(o1, o2, new HashSet<>());
+        } catch (Throwable t) {
+            return true;
+        }
+    }
+    
+    private boolean deepEquals(Object o1, Object o2, Set<FieldsPair> visited) {
+        visited.add(new FieldsPair(o1, o2));
+    
+        if (o1 == o2) {
+            return true;
+        }
+    
+        if (o1 == null || o2 == null) {
+            return false;
+        }
+    
+        if (o1 instanceof Iterable) {
+            if (!(o2 instanceof Iterable)) {
+                return false;
+            }
+    
+            return iterablesDeepEquals((Iterable<?>) o1, (Iterable<?>) o2, visited);
+        }
+        
+        if (o2 instanceof Iterable) {
+            return false;
+        }
+    
+        if (o1 instanceof Map) {
+            if (!(o2 instanceof Map)) {
+                return false;
+            }
+    
+            return mapsDeepEquals((Map<?, ?>) o1, (Map<?, ?>) o2, visited);
+        }
+        
+        if (o2 instanceof Map) {
+            return false;
+        }
+    
+        Class<?> firstClass = o1.getClass();
+        if (firstClass.isArray()) {
+            if (!o2.getClass().isArray()) {
+                return false;
+            }
+    
+            // Primitive arrays should not appear here
+            return arraysDeepEquals(o1, o2, visited);
+        }
+    
+        // common classes
+    
+        // common classes without custom equals, use comparison by fields
+        final List<java.lang.reflect.Field> fields = new ArrayList<>();
+        while (firstClass != Object.class) {
+            fields.addAll(Arrays.asList(firstClass.getDeclaredFields()));
+            // Interface should not appear here
+            firstClass = firstClass.getSuperclass();
+        }
+    
+        for (java.lang.reflect.Field field : fields) {
+            field.setAccessible(true);
             try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
+                final Object field1 = field.get(o1);
+                final Object field2 = field.get(o2);
+                if (!visited.contains(new FieldsPair(field1, field2)) && !deepEquals(field1, field2, visited)) {
+                    return false;
+                }
+            } catch (IllegalArgumentException e) {
+                return false;
+            } catch (IllegalAccessException e) {
+                // should never occur because field was set accessible
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    private boolean arraysDeepEquals(Object arr1, Object arr2, Set<FieldsPair> visited) {
+        final int length = Array.getLength(arr1);
+        if (length != Array.getLength(arr2)) {
+            return false;
+        }
+    
+        for (int i = 0; i < length; i++) {
+            if (!deepEquals(Array.get(arr1, i), Array.get(arr2, i), visited)) {
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    private boolean iterablesDeepEquals(Iterable<?> i1, Iterable<?> i2, Set<FieldsPair> visited) {
+        final Iterator<?> firstIterator = i1.iterator();
+        final Iterator<?> secondIterator = i2.iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    private boolean mapsDeepEquals(Map<?, ?> m1, Map<?, ?> m2, Set<FieldsPair> visited) {
+        final Iterator<? extends Map.Entry<?, ?>> firstIterator = m1.entrySet().iterator();
+        final Iterator<? extends Map.Entry<?, ?>> secondIterator = m2.entrySet().iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            final Map.Entry<?, ?> firstEntry = firstIterator.next();
+            final Map.Entry<?, ?> secondEntry = secondIterator.next();
+    
+            if (!deepEquals(firstEntry.getKey(), secondEntry.getKey(), visited)) {
+                return false;
+            }
+    
+            if (!deepEquals(firstEntry.getValue(), secondEntry.getValue(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    private boolean hasCustomEquals(Class<?> clazz) {
+        while (!Object.class.equals(clazz)) {
+            try {
+                clazz.getDeclaredMethod("equals", Object.class);
+                return true;
+            } catch (Exception e) { 
+                // Interface should not appear here
                 clazz = clazz.getSuperclass();
             }
-        } while (clazz != null);
+        }
     
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
+        return false;
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

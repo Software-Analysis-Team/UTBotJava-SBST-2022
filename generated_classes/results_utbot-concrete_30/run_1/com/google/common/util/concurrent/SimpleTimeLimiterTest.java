@@ -5,12 +5,13 @@ import java.lang.reflect.Method;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ForkJoinPool;
 import java.util.InputMismatchException;
-import java.util.concurrent.ThreadPoolExecutor;
 import com.google.common.cache.CacheLoader.InvalidCacheLoadException;
 import com.google.common.cache.CacheLoader;
 import com.google.common.base.VerifyException;
 import java.nio.channels.UnresolvedAddressException;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.io.IOError;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -25,8 +26,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class SimpleTimeLimiterTest {
     ///region
@@ -123,19 +124,6 @@ public class SimpleTimeLimiterTest {
     }
     ///endregion
     
-    
-    ///region Errors report for callUninterruptiblyWithTimeout
-    
-    public void testCallUninterruptiblyWithTimeout_errors1()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
@@ -215,8 +203,23 @@ public class SimpleTimeLimiterTest {
     public void testCallWithTimeout1() throws Throwable  {
         SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
         
-        simpleTimeLimiter.callWithTimeout(null, 0L, null);
-    }
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class callableType = Class.forName("java.util.concurrent.Callable");
+        Class longType = long.class;
+        Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
+        Class booleanType = boolean.class;
+        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", callableType, longType, timeUnitType, booleanType);
+        callWithTimeoutMethod.setAccessible(true);
+        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[4];
+        callWithTimeoutMethodArguments[0] = null;
+        callWithTimeoutMethodArguments[1] = 0L;
+        callWithTimeoutMethodArguments[2] = null;
+        callWithTimeoutMethodArguments[3] = false;
+        try {
+            callWithTimeoutMethod.invoke(simpleTimeLimiter, callWithTimeoutMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     ///region
@@ -230,12 +233,14 @@ public class SimpleTimeLimiterTest {
         Class runnableAdapterType = Class.forName("java.util.concurrent.Callable");
         Class longType = long.class;
         Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
-        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", runnableAdapterType, longType, timeUnitType);
+        Class booleanType = boolean.class;
+        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", runnableAdapterType, longType, timeUnitType, booleanType);
         callWithTimeoutMethod.setAccessible(true);
-        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[3];
+        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[4];
         callWithTimeoutMethodArguments[0] = runnableAdapter;
         callWithTimeoutMethodArguments[1] = 0L;
         callWithTimeoutMethodArguments[2] = null;
+        callWithTimeoutMethodArguments[3] = false;
         try {
             callWithTimeoutMethod.invoke(simpleTimeLimiter, callWithTimeoutMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -275,23 +280,8 @@ public class SimpleTimeLimiterTest {
     public void testCallWithTimeout5() throws Throwable  {
         SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
         
-        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class callableType = Class.forName("java.util.concurrent.Callable");
-        Class longType = long.class;
-        Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
-        Class booleanType = boolean.class;
-        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", callableType, longType, timeUnitType, booleanType);
-        callWithTimeoutMethod.setAccessible(true);
-        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[4];
-        callWithTimeoutMethodArguments[0] = null;
-        callWithTimeoutMethodArguments[1] = 0L;
-        callWithTimeoutMethodArguments[2] = null;
-        callWithTimeoutMethodArguments[3] = false;
-        try {
-            callWithTimeoutMethod.invoke(simpleTimeLimiter, callWithTimeoutMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+        simpleTimeLimiter.callWithTimeout(null, 0L, null);
+    }
     ///endregion
     
     ///region
@@ -305,14 +295,12 @@ public class SimpleTimeLimiterTest {
         Class runnableAdapterType = Class.forName("java.util.concurrent.Callable");
         Class longType = long.class;
         Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
-        Class booleanType = boolean.class;
-        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", runnableAdapterType, longType, timeUnitType, booleanType);
+        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", runnableAdapterType, longType, timeUnitType);
         callWithTimeoutMethod.setAccessible(true);
-        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[4];
+        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[3];
         callWithTimeoutMethodArguments[0] = runnableAdapter;
         callWithTimeoutMethodArguments[1] = 0L;
         callWithTimeoutMethodArguments[2] = null;
-        callWithTimeoutMethodArguments[3] = false;
         try {
             callWithTimeoutMethod.invoke(simpleTimeLimiter, callWithTimeoutMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -366,19 +354,6 @@ public class SimpleTimeLimiterTest {
         Class class1 = Object.class;
         
         simpleTimeLimiter.newProxy(fifoWaitQueueArray, class1, 0L, null);
-    }
-    ///endregion
-    
-    
-    ///region Errors report for newProxy
-    
-    public void testNewProxy_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
-        // 
     }
     ///endregion
     
@@ -523,44 +498,6 @@ public class SimpleTimeLimiterTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreate1() throws Throwable  {
-        SimpleTimeLimiter.create(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCreate2() throws Throwable  {
-        ThreadPoolExecutor threadPoolExecutor = ((ThreadPoolExecutor) createInstance("java.util.concurrent.ThreadPoolExecutor"));
-        
-        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class threadPoolExecutorType = Class.forName("java.util.concurrent.ExecutorService");
-        Method createMethod = simpleTimeLimiterClazz.getDeclaredMethod("create", threadPoolExecutorType);
-        createMethod.setAccessible(true);
-        java.lang.Object[] createMethodArguments = new java.lang.Object[1];
-        createMethodArguments[0] = threadPoolExecutor;
-        SimpleTimeLimiter actual = ((SimpleTimeLimiter) createMethod.invoke(null, createMethodArguments));
-        
-        SimpleTimeLimiter expected = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
-        setField(expected, "executor", threadPoolExecutor);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreate3() throws Throwable  {
-        SimpleTimeLimiter.create(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testThrowCause1() throws Throwable  {
         Exception exception = new Exception();
         
@@ -696,17 +633,17 @@ public class SimpleTimeLimiterTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testThrowCause7() throws Throwable  {
-        ClassNotFoundException classNotFoundException = ((ClassNotFoundException) createInstance("java.lang.ClassNotFoundException"));
+        UndeclaredThrowableException undeclaredThrowableException = ((UndeclaredThrowableException) createInstance("java.lang.reflect.UndeclaredThrowableException"));
         IOError iOError = ((IOError) createInstance("java.io.IOError"));
-        setField(classNotFoundException, "ex", iOError);
+        setField(undeclaredThrowableException, "undeclaredThrowable", iOError);
         
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class classNotFoundExceptionType = Class.forName("java.lang.Exception");
+        Class undeclaredThrowableExceptionType = Class.forName("java.lang.Exception");
         Class booleanType = boolean.class;
-        Method throwCauseMethod = simpleTimeLimiterClazz.getDeclaredMethod("throwCause", classNotFoundExceptionType, booleanType);
+        Method throwCauseMethod = simpleTimeLimiterClazz.getDeclaredMethod("throwCause", undeclaredThrowableExceptionType, booleanType);
         throwCauseMethod.setAccessible(true);
         java.lang.Object[] throwCauseMethodArguments = new java.lang.Object[2];
-        throwCauseMethodArguments[0] = classNotFoundException;
+        throwCauseMethodArguments[0] = undeclaredThrowableException;
         throwCauseMethodArguments[1] = true;
         try {
             throwCauseMethod.invoke(null, throwCauseMethodArguments);
@@ -842,7 +779,7 @@ public class SimpleTimeLimiterTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewProxy4() throws Throwable  {
+    public void testNewProxy3() throws Throwable  {
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
         Class classType = Class.forName("java.lang.Class");
         Class invocationHandlerType = Class.forName("java.lang.reflect.InvocationHandler");
@@ -861,13 +798,51 @@ public class SimpleTimeLimiterTest {
     
     ///region Errors report for newProxy
     
-    public void testNewProxy_errors1()
+    public void testNewProxy_errors()
      {
         // Couldn't generate some tests. List of errors:
         // 
         // 1 occurrences of:
         // Field security is not found in class java.lang.System
         // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreate1() throws Throwable  {
+        SimpleTimeLimiter.create(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCreate2() throws Throwable  {
+        ThreadPoolExecutor threadPoolExecutor = ((ThreadPoolExecutor) createInstance("java.util.concurrent.ThreadPoolExecutor"));
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class threadPoolExecutorType = Class.forName("java.util.concurrent.ExecutorService");
+        Method createMethod = simpleTimeLimiterClazz.getDeclaredMethod("create", threadPoolExecutorType);
+        createMethod.setAccessible(true);
+        java.lang.Object[] createMethodArguments = new java.lang.Object[1];
+        createMethodArguments[0] = threadPoolExecutor;
+        SimpleTimeLimiter actual = ((SimpleTimeLimiter) createMethod.invoke(null, createMethodArguments));
+        
+        SimpleTimeLimiter expected = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        setField(expected, "executor", threadPoolExecutor);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreate3() throws Throwable  {
+        SimpleTimeLimiter.create(null);
     }
     ///endregion
     

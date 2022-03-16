@@ -20,6 +20,7 @@ import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -147,37 +148,6 @@ public class BranchRegisterRequestTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDecode5() throws Throwable  {
         BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
-        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(heapByteBufferR, "limit", -2147483642);
-        setField(heapByteBufferR, "position", -2147483647);
-        setField(heapByteBufferR, "bigEndian", true);
-        setField(heapByteBufferR, "offset", Integer.MAX_VALUE);
-        byte[] byteArray = new byte[11];
-        byteArray[0] = java.lang.Byte.MIN_VALUE;
-        setField(heapByteBufferR, "hb", byteArray);
-        
-        Class branchRegisterRequestClazz = Class.forName("io.seata.core.protocol.transaction.BranchRegisterRequest");
-        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
-        Method decodeMethod = branchRegisterRequestClazz.getDeclaredMethod("decode", heapByteBufferRType);
-        decodeMethod.setAccessible(true);
-        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
-        decodeMethodArguments[0] = heapByteBufferR;
-        try {
-            decodeMethod.invoke(branchRegisterRequest, decodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
-        
-        assertEquals(-2147483642, finalHeapByteBufferRPosition);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecode6() throws Throwable  {
-        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
         Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
         setField(heapByteBuffer, "limit", 268435456);
         setField(heapByteBuffer, "position", 0);
@@ -200,6 +170,19 @@ public class BranchRegisterRequestTest {
         Object finalHeapByteBufferPosition = getFieldValue(heapByteBuffer, "position");
         
         assertEquals(13, finalHeapByteBufferPosition);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEncode1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        
+        byte[] actual = branchRegisterRequest.encode();
+        
+        byte[] expected = new byte[13];
+        assertArrayEquals(expected, actual);
     }
     ///endregion
     
@@ -262,56 +245,6 @@ public class BranchRegisterRequestTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetBranchType1() throws Throwable  {
-        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
-        
-        BranchType actual = branchRegisterRequest.getBranchType();
-        
-        BranchType expected = BranchType.AT;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetBranchType2() throws Throwable  {
-        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
-        setField(branchRegisterRequest, "branchType", null);
-        
-        BranchType actual = branchRegisterRequest.getBranchType();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetResourceId1() throws Throwable  {
-        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
-        String string = new String();
-        
-        branchRegisterRequest.setResourceId(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetResourceId2() throws Throwable  {
-        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
-        setField(branchRegisterRequest, "resourceId", null);
-        
-        branchRegisterRequest.setResourceId(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testSetLockKey1() throws Throwable  {
         BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
         String string = new String();
@@ -326,8 +259,9 @@ public class BranchRegisterRequestTest {
     public void testSetLockKey2() throws Throwable  {
         BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
         setField(branchRegisterRequest, "lockKey", null);
+        String string = new String("");
         
-        branchRegisterRequest.setLockKey(null);
+        branchRegisterRequest.setLockKey(string);
     }
     ///endregion
     
@@ -359,6 +293,78 @@ public class BranchRegisterRequestTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testSetResourceId1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        String string = new String();
+        
+        branchRegisterRequest.setResourceId(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetResourceId2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "resourceId", null);
+        String string = new String("");
+        
+        branchRegisterRequest.setResourceId(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetBranchType1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        
+        BranchType actual = branchRegisterRequest.getBranchType();
+        
+        BranchType expected = BranchType.AT;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetBranchType2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "branchType", null);
+        
+        BranchType actual = branchRegisterRequest.getBranchType();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetBranchType1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "branchType", null);
+        BranchType branchType = BranchType.AT;
+        
+        Object initialBranchRegisterRequestBranchType = getFieldValue(branchRegisterRequest, "branchType");
+        
+        branchRegisterRequest.setBranchType(branchType);
+        
+        Object finalBranchRegisterRequestBranchType = getFieldValue(branchRegisterRequest, "branchType");
+        
+        BranchType expectedFinalBranchRegisterRequestBranchType = BranchType.AT;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expectedFinalBranchRegisterRequestBranchType, finalBranchRegisterRequestBranchType));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testGetLockKey1() throws Throwable  {
         BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
         
@@ -378,6 +384,29 @@ public class BranchRegisterRequestTest {
         String actual = branchRegisterRequest.getLockKey();
         
         assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetApplicationData1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        String string = new String();
+        
+        branchRegisterRequest.setApplicationData(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetApplicationData2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "applicationData", null);
+        String string = new String("");
+        
+        branchRegisterRequest.setApplicationData(string);
     }
     ///endregion
     
@@ -409,39 +438,6 @@ public class BranchRegisterRequestTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetBranchType1() throws Throwable  {
-        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
-        setField(branchRegisterRequest, "branchType", null);
-        
-        branchRegisterRequest.setBranchType(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetApplicationData1() throws Throwable  {
-        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
-        String string = new String();
-        
-        branchRegisterRequest.setApplicationData(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetApplicationData2() throws Throwable  {
-        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
-        setField(branchRegisterRequest, "applicationData", null);
-        
-        branchRegisterRequest.setApplicationData(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testSetXid1() throws Throwable  {
         BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
         String string = new String();
@@ -456,8 +452,9 @@ public class BranchRegisterRequestTest {
     public void testSetXid2() throws Throwable  {
         BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
         setField(branchRegisterRequest, "xid", null);
+        String string = new String("");
         
-        branchRegisterRequest.setXid(null);
+        branchRegisterRequest.setXid(string);
     }
     ///endregion
     

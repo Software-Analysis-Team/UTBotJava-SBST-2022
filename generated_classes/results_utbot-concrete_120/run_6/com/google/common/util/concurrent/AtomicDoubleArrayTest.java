@@ -18,7 +18,6 @@ import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 public class AtomicDoubleArrayTest {
     ///region
@@ -84,19 +83,16 @@ public class AtomicDoubleArrayTest {
     }
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000)
-    public void testGet3() throws Throwable  {
-        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
-        AtomicLongArray atomicLongArray = ((AtomicLongArray) createInstance("java.util.concurrent.atomic.AtomicLongArray"));
-        long[] longArray = new long[9];
-        setField(atomicLongArray, "array", longArray);
-        setField(atomicDoubleArray, "longs", atomicLongArray);
-        
-        double actual = atomicDoubleArray.get(0);
-        
-        assertEquals(0.0, actual, 1.0E-6);
+    ///region Errors report for get
+    
+    public void testGet_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
@@ -133,7 +129,7 @@ public class AtomicDoubleArrayTest {
         
         int actual = atomicDoubleArray.length();
         
-        org.junit.Assert.assertEquals(9, actual);
+        assertEquals(9, actual);
     }
     ///endregion
     
@@ -293,19 +289,16 @@ public class AtomicDoubleArrayTest {
     }
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000)
-    public void testCompareAndSet3() throws Throwable  {
-        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
-        AtomicLongArray atomicLongArray = ((AtomicLongArray) createInstance("java.util.concurrent.atomic.AtomicLongArray"));
-        long[] longArray = new long[24];
-        setField(atomicLongArray, "array", longArray);
-        setField(atomicDoubleArray, "longs", atomicLongArray);
-        
-        boolean actual = atomicDoubleArray.compareAndSet(0, java.lang.Double.NaN, java.lang.Double.NaN);
-        
-        assertFalse(actual);
+    ///region Errors report for compareAndSet
+    
+    public void testCompareAndSet_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     

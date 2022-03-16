@@ -10,6 +10,7 @@ import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
 import com.alibaba.fastjson.parser.JSONReaderScanner;
 import java.lang.reflect.Type;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
-import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
@@ -48,8 +48,9 @@ public class JavaObjectDeserializerTest {
     public void testDeserialze2() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         Class class1 = Object.class;
+        java.lang.Object[] ofRefArray = createArray("java.util.stream.Nodes$ToArrayTask$OfRef", 0);
         
-        javaObjectDeserializer.deserialze(null, class1, null);
+        javaObjectDeserializer.deserialze(null, class1, ofRefArray);
     }
     ///endregion
     
@@ -331,8 +332,8 @@ public class JavaObjectDeserializerTest {
     public void testDeserialze14() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(defaultJSONParser, "lexer", jSONScanner);
+        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
+        setField(defaultJSONParser, "lexer", jSONReaderScanner);
         Class class1 = Object.class;
         
         javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);
@@ -438,6 +439,15 @@ public class JavaObjectDeserializerTest {
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();

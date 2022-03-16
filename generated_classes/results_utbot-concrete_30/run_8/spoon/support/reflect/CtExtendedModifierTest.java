@@ -1,10 +1,11 @@
 package spoon.support.reflect;
 
 import org.junit.Test;
-import sun.java2d.loops.ScaledBlit;
+import javax.swing.tree.DefaultTreeCellEditor;
 import spoon.reflect.declaration.ModifierKind;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.cu.position.NoSourcePosition;
+import spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -66,9 +67,9 @@ public class CtExtendedModifierTest {
     @Test(timeout = 10000)
     public void testEquals4() throws Throwable  {
         CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        sun.java2d.loops.ScaledBlit[][] scaledBlitArray = new sun.java2d.loops.ScaledBlit[0][];
+        javax.swing.tree.DefaultTreeCellEditor[] defaultTreeCellEditorArray = new javax.swing.tree.DefaultTreeCellEditor[0];
         
-        boolean actual = ctExtendedModifier.equals(scaledBlitArray);
+        boolean actual = ctExtendedModifier.equals(defaultTreeCellEditorArray);
         
         assertFalse(actual);
     }
@@ -125,7 +126,7 @@ public class CtExtendedModifierTest {
         
         int actual = ctExtendedModifier.hashCode();
         
-        assertEquals(505662502, actual);
+        assertEquals(895499205, actual);
     }
     ///endregion
     
@@ -149,14 +150,14 @@ public class CtExtendedModifierTest {
     @Test(timeout = 10000)
     public void testGetPosition2() throws Throwable  {
         CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        NoSourcePosition noSourcePosition = ((NoSourcePosition) createInstance("spoon.reflect.cu.position.NoSourcePosition"));
-        setField(ctExtendedModifier, "position", noSourcePosition);
+        BodyHolderSourcePositionImpl bodyHolderSourcePositionImpl = ((BodyHolderSourcePositionImpl) createInstance("spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl"));
+        setField(ctExtendedModifier, "position", bodyHolderSourcePositionImpl);
         
         SourcePosition actual = ctExtendedModifier.getPosition();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(noSourcePosition, actual));
+        assertTrue(deepEquals(bodyHolderSourcePositionImpl, actual));
     }
     ///endregion
     
@@ -173,84 +174,6 @@ public class CtExtendedModifierTest {
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetKind1() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        
-        ModifierKind actual = ctExtendedModifier.getKind();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetKind2() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        setField(ctExtendedModifier, "kind", null);
-        
-        ModifierKind actual = ctExtendedModifier.getKind();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetImplicit1() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        
-        ctExtendedModifier.setImplicit(false);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetImplicit2() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        setField(ctExtendedModifier, "implicit", false);
-        
-        ctExtendedModifier.setImplicit(false);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetKind1() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        setField(ctExtendedModifier, "kind", null);
-        
-        ctExtendedModifier.setKind(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetPosition1() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        
-        ctExtendedModifier.setPosition(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetPosition2() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        setField(ctExtendedModifier, "position", null);
-        
-        ctExtendedModifier.setPosition(null);
     }
     ///endregion
     
@@ -282,8 +205,86 @@ public class CtExtendedModifierTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testSetKind1() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        setField(ctExtendedModifier, "kind", null);
+        
+        ctExtendedModifier.setKind(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetKind1() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        
+        ModifierKind actual = ctExtendedModifier.getKind();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetKind2() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        setField(ctExtendedModifier, "kind", null);
+        
+        ModifierKind actual = ctExtendedModifier.getKind();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetPosition1() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        
+        ctExtendedModifier.setPosition(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetPosition2() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        setField(ctExtendedModifier, "position", null);
+        
+        ctExtendedModifier.setPosition(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetImplicit1() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        
+        ctExtendedModifier.setImplicit(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetImplicit2() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        setField(ctExtendedModifier, "implicit", false);
+        
+        ctExtendedModifier.setImplicit(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testCtExtendedModifier1() {
-        CtExtendedModifier actual = new CtExtendedModifier(null);
+        CtExtendedModifier actual = new CtExtendedModifier(null, false);
     }
     ///endregion
     
@@ -291,7 +292,7 @@ public class CtExtendedModifierTest {
     
     @Test(timeout = 10000)
     public void testCtExtendedModifier2() {
-        CtExtendedModifier actual = new CtExtendedModifier(null, false);
+        CtExtendedModifier actual = new CtExtendedModifier(null);
     }
     ///endregion
     

@@ -4,8 +4,8 @@ import org.junit.Test;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Comparator;
 import com.google.common.base.Converter;
+import java.util.Comparator;
 import java.lang.reflect.Constructor;
 import com.google.common.primitives.Shorts;
 import java.util.Objects;
@@ -330,12 +330,13 @@ public class ShortsTest {
     
     @Test(timeout = 10000)
     public void testIndexOf14() throws Throwable  {
-        short[] shortArray = new short[9];
-        short[] shortArray1 = new short[9];
+        short[] shortArray = new short[33];
+        shortArray[0] = java.lang.Short.MIN_VALUE;
+        short[] shortArray1 = new short[32];
         
         int actual = Shorts.indexOf(shortArray, shortArray1);
         
-        assertEquals(0, actual);
+        assertEquals(1, actual);
     }
     ///endregion
     
@@ -707,10 +708,11 @@ public class ShortsTest {
     public void testJoin5() throws Throwable  {
         String string = new String("");
         short[] shortArray = new short[9];
+        shortArray[0] = (short) -32767;
         
         String actual = Shorts.join(string, shortArray);
         
-        String expected = new String("000000000");
+        String expected = new String("-3276700000000");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -756,25 +758,6 @@ public class ShortsTest {
     public void testToArray2() throws Throwable  {
         Shorts.toArray(null);
     }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testToArray3() throws Throwable  {
-        Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
-        
-        Class shortsClazz = Class.forName("com.google.common.primitives.Shorts");
-        Class shortArrayAsListType = Class.forName("java.util.Collection");
-        Method toArrayMethod = shortsClazz.getDeclaredMethod("toArray", shortArrayAsListType);
-        toArrayMethod.setAccessible(true);
-        java.lang.Object[] toArrayMethodArguments = new java.lang.Object[1];
-        toArrayMethodArguments[0] = shortArrayAsList;
-        try {
-            toArrayMethod.invoke(null, toArrayMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
     ///endregion
     
     ///region
@@ -892,8 +875,18 @@ public class ShortsTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testReverse5() throws Throwable  {
+        short[] shortArray = new short[9];
+        
+        Shorts.reverse(shortArray, 1, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReverse6() throws Throwable  {
         short[] shortArray = new short[33];
         
         Shorts.reverse(shortArray, 2, 32);
@@ -903,7 +896,7 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testReverse6() throws Throwable  {
+    public void testReverse7() throws Throwable  {
         short[] shortArray = new short[0];
         
         Shorts.reverse(shortArray);
@@ -913,7 +906,7 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testReverse7() throws Throwable  {
+    public void testReverse8() throws Throwable  {
         Shorts.reverse(null);
     }
     ///endregion
@@ -921,7 +914,7 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testReverse8() throws Throwable  {
+    public void testReverse9() throws Throwable  {
         short[] shortArray = new short[0];
         
         Shorts.reverse(shortArray);
@@ -931,7 +924,7 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testReverse9() throws Throwable  {
+    public void testReverse10() throws Throwable  {
         short[] shortArray = new short[2];
         
         Shorts.reverse(shortArray);
@@ -1012,6 +1005,16 @@ public class ShortsTest {
     
     @Test(timeout = 10000)
     public void testSortDescending6() throws Throwable  {
+        short[] shortArray = new short[32];
+        
+        Shorts.sortDescending(shortArray, 4, 32);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSortDescending7() throws Throwable  {
         short[] shortArray = new short[0];
         
         Shorts.sortDescending(shortArray);
@@ -1021,7 +1024,7 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSortDescending7() throws Throwable  {
+    public void testSortDescending8() throws Throwable  {
         Shorts.sortDescending(null);
     }
     ///endregion
@@ -1029,7 +1032,7 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSortDescending8() throws Throwable  {
+    public void testSortDescending9() throws Throwable  {
         short[] shortArray = new short[16];
         
         Shorts.sortDescending(shortArray);
@@ -1073,34 +1076,6 @@ public class ShortsTest {
         short actual = Shorts.saturatedCast(32767L);
         
         assertEquals(java.lang.Short.MAX_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLexicographicalComparator1() throws Throwable  {
-        Comparator actual = Shorts.lexicographicalComparator();
-        
-        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Shorts$LexicographicalComparator");
-        Object expected = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLexicographicalComparator2() throws Throwable  {
-        Comparator actual = Shorts.lexicographicalComparator();
-        
-        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Shorts$LexicographicalComparator");
-        Object expected = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
     }
     ///endregion
     
@@ -1188,6 +1163,34 @@ public class ShortsTest {
         Object expected = createInstance("com.google.common.primitives.Shorts$ShortConverter");
         setField(expected, "handleNullAutomatically", true);
         setField(expected, "reverse", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLexicographicalComparator1() throws Throwable  {
+        Comparator actual = Shorts.lexicographicalComparator();
+        
+        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Shorts$LexicographicalComparator");
+        Object expected = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLexicographicalComparator2() throws Throwable  {
+        Comparator actual = Shorts.lexicographicalComparator();
+        
+        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Shorts$LexicographicalComparator");
+        Object expected = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -1316,8 +1319,8 @@ public class ShortsTest {
     @Test(timeout = 10000)
     public void testContains8() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
-        setField(shortArrayAsList, "end", 1);
-        setField(shortArrayAsList, "start", 0);
+        setField(shortArrayAsList, "end", -2);
+        setField(shortArrayAsList, "start", -2);
         short[] shortArray = new short[9];
         setField(shortArrayAsList, "array", shortArray);
         Short short1 = (short) 0;
@@ -1330,7 +1333,7 @@ public class ShortsTest {
         containsMethodArguments[0] = short1;
         boolean actual = ((boolean) containsMethod.invoke(shortArrayAsList, containsMethodArguments));
         
-        assertTrue(actual);
+        assertFalse(actual);
     }
     ///endregion
     
@@ -1355,6 +1358,29 @@ public class ShortsTest {
         boolean actual = ((boolean) containsMethod.invoke(shortArrayAsList, containsMethodArguments));
         
         assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testContains10() throws Throwable  {
+        Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
+        setField(shortArrayAsList, "end", 1);
+        setField(shortArrayAsList, "start", 0);
+        short[] shortArray = new short[9];
+        setField(shortArrayAsList, "array", shortArray);
+        Short short1 = (short) 0;
+        
+        Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
+        Class short1Type = Class.forName("java.lang.Object");
+        Method containsMethod = shortArrayAsListClazz.getDeclaredMethod("contains", short1Type);
+        containsMethod.setAccessible(true);
+        java.lang.Object[] containsMethodArguments = new java.lang.Object[1];
+        containsMethodArguments[0] = short1;
+        boolean actual = ((boolean) containsMethod.invoke(shortArrayAsList, containsMethodArguments));
+        
+        assertTrue(actual);
     }
     ///endregion
     
@@ -1432,14 +1458,14 @@ public class ShortsTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testEquals3() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
-        Object randomAccessListWrapper = createInstance("com.google.common.collect.Lists$RandomAccessListWrapper");
+        Object randomAccessSubList = createInstance("java.util.RandomAccessSubList");
         
         Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
-        Class randomAccessListWrapperType = Class.forName("java.lang.Object");
-        Method equalsMethod = shortArrayAsListClazz.getDeclaredMethod("equals", randomAccessListWrapperType);
+        Class randomAccessSubListType = Class.forName("java.lang.Object");
+        Method equalsMethod = shortArrayAsListClazz.getDeclaredMethod("equals", randomAccessSubListType);
         equalsMethod.setAccessible(true);
         java.lang.Object[] equalsMethodArguments = new java.lang.Object[1];
-        equalsMethodArguments[0] = randomAccessListWrapper;
+        equalsMethodArguments[0] = randomAccessSubList;
         try {
             equalsMethod.invoke(shortArrayAsList, equalsMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -1603,12 +1629,36 @@ public class ShortsTest {
     
     ///region
     
+    @Test(timeout = 10000)
+    public void testToString3() throws Throwable  {
+        Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
+        setField(shortArrayAsList, "end", 0);
+        setField(shortArrayAsList, "start", 0);
+        short[] shortArray = new short[9];
+        shortArray[0] = (short) -32767;
+        setField(shortArrayAsList, "array", shortArray);
+        
+        Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
+        Method toStringMethod = shortArrayAsListClazz.getDeclaredMethod("toString");
+        toStringMethod.setAccessible(true);
+        java.lang.Object[] toStringMethodArguments = new java.lang.Object[0];
+        String actual = ((String) toStringMethod.invoke(shortArrayAsList, toStringMethodArguments));
+        
+        String expected = new String("[-32767]");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testSet1() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
-        setField(shortArrayAsList, "end", -1476395007);
-        setField(shortArrayAsList, "start", 1073741824);
-        short[] shortArray = new short[9];
+        setField(shortArrayAsList, "end", -1780656387);
+        setField(shortArrayAsList, "start", 1073741828);
+        short[] shortArray = new short[13];
         setField(shortArrayAsList, "array", shortArray);
         
         Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
@@ -1939,8 +1989,8 @@ public class ShortsTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGet4() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
-        setField(shortArrayAsList, "end", 2147483646);
-        setField(shortArrayAsList, "start", -1073741823);
+        setField(shortArrayAsList, "end", 2147482750);
+        setField(shortArrayAsList, "start", -1073740927);
         
         Class shortArrayAsListClazz = Class.forName("com.google.common.primitives.Shorts$ShortArrayAsList");
         Class intType = int.class;
@@ -2068,10 +2118,10 @@ public class ShortsTest {
     @Test(timeout = 10000)
     public void testIndexOf19() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
-        setField(shortArrayAsList, "end", 1);
-        setField(shortArrayAsList, "start", 0);
-        short[] shortArray = new short[9];
-        shortArray[0] = java.lang.Short.MIN_VALUE;
+        setField(shortArrayAsList, "end", 3);
+        setField(shortArrayAsList, "start", 1);
+        short[] shortArray = new short[10];
+        shortArray[1] = java.lang.Short.MIN_VALUE;
         setField(shortArrayAsList, "array", shortArray);
         Short short1 = (short) 0;
         
@@ -2083,7 +2133,7 @@ public class ShortsTest {
         indexOfMethodArguments[0] = short1;
         int actual = ((int) indexOfMethod.invoke(shortArrayAsList, indexOfMethodArguments));
         
-        assertEquals(-1, actual);
+        assertEquals(1, actual);
     }
     ///endregion
     
@@ -2217,7 +2267,7 @@ public class ShortsTest {
     public void testToShortArray2() throws Throwable  {
         Object shortArrayAsList = createInstance("com.google.common.primitives.Shorts$ShortArrayAsList");
         setField(shortArrayAsList, "end", 1073741824);
-        setField(shortArrayAsList, "start", -1610612736);
+        setField(shortArrayAsList, "start", -1342177280);
         short[] shortArray = new short[9];
         setField(shortArrayAsList, "array", shortArray);
         
@@ -2370,7 +2420,7 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testToString3() throws Throwable  {
+    public void testToString4() throws Throwable  {
         Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Shorts$LexicographicalComparator");
         Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
         
@@ -2392,13 +2442,14 @@ public class ShortsTest {
     public void testCompare3() throws Throwable  {
         Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Shorts$LexicographicalComparator");
         Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
+        short[] shortArray = new short[9];
         
         Class shortArrayType = Class.forName("[S");
         Method compareMethod = lexicographicalComparatorClazz.getDeclaredMethod("compare", shortArrayType, shortArrayType);
         compareMethod.setAccessible(true);
         java.lang.Object[] compareMethodArguments = new java.lang.Object[2];
         compareMethodArguments[0] = null;
-        compareMethodArguments[1] = null;
+        compareMethodArguments[1] = ((Object) shortArray);
         try {
             compareMethod.invoke(lexicographicalComparator, compareMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -2585,7 +2636,7 @@ public class ShortsTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testToString4() throws Throwable  {
+    public void testToString5() throws Throwable  {
         Object shortConverter = createInstance("com.google.common.primitives.Shorts$ShortConverter");
         
         Class shortConverterClazz = Class.forName("com.google.common.primitives.Shorts$ShortConverter");
@@ -2625,7 +2676,7 @@ public class ShortsTest {
     @Test(timeout = 10000)
     public void testDoBackward2() throws Throwable  {
         Object shortConverter = createInstance("com.google.common.primitives.Shorts$ShortConverter");
-        Short short1 = (short) 7;
+        Short short1 = (short) 9;
         
         Class shortConverterClazz = Class.forName("com.google.common.primitives.Shorts$ShortConverter");
         Class short1Type = Class.forName("java.lang.Short");
@@ -2635,7 +2686,7 @@ public class ShortsTest {
         doBackwardMethodArguments[0] = short1;
         String actual = ((String) doBackwardMethod.invoke(shortConverter, doBackwardMethodArguments));
         
-        String expected = new String("7");
+        String expected = new String("9");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));

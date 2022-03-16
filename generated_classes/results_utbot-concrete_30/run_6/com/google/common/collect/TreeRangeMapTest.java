@@ -8,13 +8,13 @@ import java.util.Map;
 import java.lang.reflect.Method;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Array;
 import java.util.Objects;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
-import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
@@ -34,6 +34,19 @@ public class TreeRangeMapTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testPutCoalescing1() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        Object emptyNavigableMap = createInstance("java.util.Collections$UnmodifiableNavigableMap$EmptyNavigableMap");
+        setField(treeRangeMap, "entriesByLowerBound", emptyNavigableMap);
+        java.lang.Object[] fileBuilderArray = createArray("java.security.KeyStore$Builder$FileBuilder", 0);
+        
+        treeRangeMap.putCoalescing(null, fileBuilderArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testSpan1() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
@@ -44,19 +57,6 @@ public class TreeRangeMapTest {
         setField(treeRangeMap, "entriesByLowerBound", treeMap);
         
         treeRangeMap.span();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutCoalescing1() throws Throwable  {
-        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        Object unmodifiableNavigableMap = createInstance("java.util.Collections$UnmodifiableNavigableMap");
-        setField(treeRangeMap, "entriesByLowerBound", unmodifiableNavigableMap);
-        Range range = ((Range) createInstance("com.google.common.collect.Range"));
-        
-        treeRangeMap.putCoalescing(range, null);
     }
     ///endregion
     
@@ -89,16 +89,15 @@ public class TreeRangeMapTest {
     public void testAsDescendingMapOfRanges1() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
-        setField(treeMap, "values", null);
+        Object filteredSet = createInstance("com.google.common.collect.Sets$FilteredSet");
+        setField(treeMap, "values", filteredSet);
         setField(treeMap, "descendingMap", treeMap);
         setField(treeRangeMap, "entriesByLowerBound", treeMap);
         
         Map actual = treeRangeMap.asDescendingMapOfRanges();
         
         Object expected = createInstance("com.google.common.collect.TreeRangeMap$AsMapOfRanges");
-        Object values = createInstance("java.util.TreeMap$Values");
-        setField(values, "this$0", treeMap);
-        setField(expected, "entryIterable", values);
+        setField(expected, "entryIterable", filteredSet);
         setField(expected, "this$0", treeRangeMap);
         setField(expected, "keySet", null);
         setField(expected, "values", null);
@@ -176,15 +175,14 @@ public class TreeRangeMapTest {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         Object complementRangesByLowerBound = createInstance("com.google.common.collect.TreeRangeSet$ComplementRangesByLowerBound");
         setField(treeRangeMap, "entriesByLowerBound", complementRangesByLowerBound);
-        Class naturalOrderComparatorClazz = Class.forName("java.util.Comparators$NaturalOrderComparator");
-        Object naturalOrderComparator = getEnumConstantByName(naturalOrderComparatorClazz, "INSTANCE");
+        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
         
         Class treeRangeMapClazz = Class.forName("com.google.common.collect.TreeRangeMap");
-        Class naturalOrderComparatorType = Class.forName("java.lang.Comparable");
-        Method getMethod = treeRangeMapClazz.getDeclaredMethod("get", naturalOrderComparatorType);
+        Class heapByteBufferRType = Class.forName("java.lang.Comparable");
+        Method getMethod = treeRangeMapClazz.getDeclaredMethod("get", heapByteBufferRType);
         getMethod.setAccessible(true);
         java.lang.Object[] getMethodArguments = new java.lang.Object[1];
-        getMethodArguments[0] = naturalOrderComparator;
+        getMethodArguments[0] = heapByteBufferR;
         try {
             getMethod.invoke(treeRangeMap, getMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -264,6 +262,15 @@ public class TreeRangeMapTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     static class FieldsPair {
         final Object o1;
@@ -432,28 +439,6 @@ public class TreeRangeMapTest {
         }
     
         return false;
-    }
-    private static Object getEnumConstantByName(Class<?> enumClass, String name) throws IllegalAccessException {
-        java.lang.reflect.Field[] fields = enumClass.getDeclaredFields();
-        for (java.lang.reflect.Field field : fields) {
-            String fieldName = field.getName();
-            if (field.isEnumConstant() && fieldName.equals(name)) {
-                field.setAccessible(true);
-                
-                return field.get(null);
-            }
-        }
-        
-        return null;
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

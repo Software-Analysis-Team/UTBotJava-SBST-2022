@@ -4,21 +4,22 @@ import org.junit.Test;
 import spoon.compiler.builder.JDTBuilder;
 import spoon.reflect.factory.FactoryImpl;
 import sun.security.util.Debug;
-import spoon.support.compiler.VirtualFolder;
-import java.util.LinkedHashSet;
 import java.lang.reflect.Method;
 import org.eclipse.jdt.internal.compiler.problem.DefaultProblem;
 import spoon.support.compiler.FilteringFolder;
+import java.util.LinkedHashSet;
 import spoon.support.StandardEnvironment;
-import spoon.compiler.builder.JDTBuilderImpl;
 import spoon.reflect.factory.Factory;
+import spoon.compiler.builder.JDTBuilderImpl;
+import spoon.support.compiler.VirtualFolder;
 import spoon.reflect.cu.CompilationUnit;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertFalse;
+import static java.lang.reflect.Array.get;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
 
 public class JDTSnippetCompilerTest {
     ///region
@@ -99,22 +100,6 @@ public class JDTSnippetCompilerTest {
         // 1 occurrences of:
         // Field security is not found in class java.lang.System
         // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testBuild8() throws Throwable  {
-        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
-        VirtualFolder virtualFolder = ((VirtualFolder) createInstance("spoon.support.compiler.VirtualFolder"));
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        setField(virtualFolder, "files", linkedHashSet);
-        setField(jDTSnippetCompiler, "sources", virtualFolder);
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(jDTSnippetCompiler, "factory", factoryImpl);
-        
-        jDTSnippetCompiler.build();
     }
     ///endregion
     
@@ -249,9 +234,47 @@ public class JDTSnippetCompilerTest {
         setField(jDTSnippetCompiler, "sources", filteringFolder);
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
-        setField(standardEnvironment, "sourceClasspath", null);
+        java.lang.String[] stringArray = new java.lang.String[9];
+        setField(standardEnvironment, "sourceClasspath", stringArray);
         setField(factoryImpl, "environment", standardEnvironment);
         setField(jDTSnippetCompiler, "factory", factoryImpl);
+        
+        Factory factory = jDTSnippetCompiler.factory;
+        Object factoryFactoryEnvironment = getFieldValue(factory, "environment");
+        Object factoryFactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factoryFactoryEnvironment, "sourceClasspath");
+        Object initialJDTSnippetCompilerFactoryEnvironmentSourceClasspath0 = get(factoryFactoryEnvironmentFactoryEnvironmentSourceClasspath, 0);
+        Factory factory1 = jDTSnippetCompiler.factory;
+        Object factory1FactoryEnvironment = getFieldValue(factory1, "environment");
+        Object factory1FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory1FactoryEnvironment, "sourceClasspath");
+        Object initialJDTSnippetCompilerFactoryEnvironmentSourceClasspath1 = get(factory1FactoryEnvironmentFactoryEnvironmentSourceClasspath, 1);
+        Factory factory2 = jDTSnippetCompiler.factory;
+        Object factory2FactoryEnvironment = getFieldValue(factory2, "environment");
+        Object factory2FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory2FactoryEnvironment, "sourceClasspath");
+        Object initialJDTSnippetCompilerFactoryEnvironmentSourceClasspath2 = get(factory2FactoryEnvironmentFactoryEnvironmentSourceClasspath, 2);
+        Factory factory3 = jDTSnippetCompiler.factory;
+        Object factory3FactoryEnvironment = getFieldValue(factory3, "environment");
+        Object factory3FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory3FactoryEnvironment, "sourceClasspath");
+        Object initialJDTSnippetCompilerFactoryEnvironmentSourceClasspath3 = get(factory3FactoryEnvironmentFactoryEnvironmentSourceClasspath, 3);
+        Factory factory4 = jDTSnippetCompiler.factory;
+        Object factory4FactoryEnvironment = getFieldValue(factory4, "environment");
+        Object factory4FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory4FactoryEnvironment, "sourceClasspath");
+        Object initialJDTSnippetCompilerFactoryEnvironmentSourceClasspath4 = get(factory4FactoryEnvironmentFactoryEnvironmentSourceClasspath, 4);
+        Factory factory5 = jDTSnippetCompiler.factory;
+        Object factory5FactoryEnvironment = getFieldValue(factory5, "environment");
+        Object factory5FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory5FactoryEnvironment, "sourceClasspath");
+        Object initialJDTSnippetCompilerFactoryEnvironmentSourceClasspath5 = get(factory5FactoryEnvironmentFactoryEnvironmentSourceClasspath, 5);
+        Factory factory6 = jDTSnippetCompiler.factory;
+        Object factory6FactoryEnvironment = getFieldValue(factory6, "environment");
+        Object factory6FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory6FactoryEnvironment, "sourceClasspath");
+        Object initialJDTSnippetCompilerFactoryEnvironmentSourceClasspath6 = get(factory6FactoryEnvironmentFactoryEnvironmentSourceClasspath, 6);
+        Factory factory7 = jDTSnippetCompiler.factory;
+        Object factory7FactoryEnvironment = getFieldValue(factory7, "environment");
+        Object factory7FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory7FactoryEnvironment, "sourceClasspath");
+        Object initialJDTSnippetCompilerFactoryEnvironmentSourceClasspath7 = get(factory7FactoryEnvironmentFactoryEnvironmentSourceClasspath, 7);
+        Factory factory8 = jDTSnippetCompiler.factory;
+        Object factory8FactoryEnvironment = getFieldValue(factory8, "environment");
+        Object factory8FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory8FactoryEnvironment, "sourceClasspath");
+        Object initialJDTSnippetCompilerFactoryEnvironmentSourceClasspath8 = get(factory8FactoryEnvironmentFactoryEnvironmentSourceClasspath, 8);
         
         Class jDTSnippetCompilerClazz = Class.forName("spoon.support.compiler.jdt.JDTSnippetCompiler");
         Class jDTBuilderType = Class.forName("spoon.compiler.builder.JDTBuilder");
@@ -263,7 +286,62 @@ public class JDTSnippetCompilerTest {
             buildSourcesMethod.invoke(jDTSnippetCompiler, buildSourcesMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }}
+        }
+        Factory factory9 = jDTSnippetCompiler.factory;
+        Object factory9FactoryEnvironment = getFieldValue(factory9, "environment");
+        Object factory9FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory9FactoryEnvironment, "sourceClasspath");
+        Object finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath0 = get(factory9FactoryEnvironmentFactoryEnvironmentSourceClasspath, 0);
+        Factory factory10 = jDTSnippetCompiler.factory;
+        Object factory10FactoryEnvironment = getFieldValue(factory10, "environment");
+        Object factory10FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory10FactoryEnvironment, "sourceClasspath");
+        Object finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath1 = get(factory10FactoryEnvironmentFactoryEnvironmentSourceClasspath, 1);
+        Factory factory11 = jDTSnippetCompiler.factory;
+        Object factory11FactoryEnvironment = getFieldValue(factory11, "environment");
+        Object factory11FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory11FactoryEnvironment, "sourceClasspath");
+        Object finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath2 = get(factory11FactoryEnvironmentFactoryEnvironmentSourceClasspath, 2);
+        Factory factory12 = jDTSnippetCompiler.factory;
+        Object factory12FactoryEnvironment = getFieldValue(factory12, "environment");
+        Object factory12FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory12FactoryEnvironment, "sourceClasspath");
+        Object finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath3 = get(factory12FactoryEnvironmentFactoryEnvironmentSourceClasspath, 3);
+        Factory factory13 = jDTSnippetCompiler.factory;
+        Object factory13FactoryEnvironment = getFieldValue(factory13, "environment");
+        Object factory13FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory13FactoryEnvironment, "sourceClasspath");
+        Object finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath4 = get(factory13FactoryEnvironmentFactoryEnvironmentSourceClasspath, 4);
+        Factory factory14 = jDTSnippetCompiler.factory;
+        Object factory14FactoryEnvironment = getFieldValue(factory14, "environment");
+        Object factory14FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory14FactoryEnvironment, "sourceClasspath");
+        Object finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath5 = get(factory14FactoryEnvironmentFactoryEnvironmentSourceClasspath, 5);
+        Factory factory15 = jDTSnippetCompiler.factory;
+        Object factory15FactoryEnvironment = getFieldValue(factory15, "environment");
+        Object factory15FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory15FactoryEnvironment, "sourceClasspath");
+        Object finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath6 = get(factory15FactoryEnvironmentFactoryEnvironmentSourceClasspath, 6);
+        Factory factory16 = jDTSnippetCompiler.factory;
+        Object factory16FactoryEnvironment = getFieldValue(factory16, "environment");
+        Object factory16FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory16FactoryEnvironment, "sourceClasspath");
+        Object finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath7 = get(factory16FactoryEnvironmentFactoryEnvironmentSourceClasspath, 7);
+        Factory factory17 = jDTSnippetCompiler.factory;
+        Object factory17FactoryEnvironment = getFieldValue(factory17, "environment");
+        Object factory17FactoryEnvironmentFactoryEnvironmentSourceClasspath = getFieldValue(factory17FactoryEnvironment, "sourceClasspath");
+        Object finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath8 = get(factory17FactoryEnvironmentFactoryEnvironmentSourceClasspath, 8);
+        
+        assertNull(finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath0);
+        
+        assertNull(finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath1);
+        
+        assertNull(finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath2);
+        
+        assertNull(finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath3);
+        
+        assertNull(finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath4);
+        
+        assertNull(finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath5);
+        
+        assertNull(finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath6);
+        
+        assertNull(finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath7);
+        
+        assertNull(finalJDTSnippetCompilerFactoryEnvironmentSourceClasspath8);
+    }
     ///endregion
     
     ///region
@@ -303,10 +381,10 @@ public class JDTSnippetCompilerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testBuildSources5() throws Throwable  {
         JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
-        FilteringFolder filteringFolder = ((FilteringFolder) createInstance("spoon.support.compiler.FilteringFolder"));
+        VirtualFolder virtualFolder = ((VirtualFolder) createInstance("spoon.support.compiler.VirtualFolder"));
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        setField(filteringFolder, "files", linkedHashSet);
-        setField(jDTSnippetCompiler, "sources", filteringFolder);
+        setField(virtualFolder, "files", linkedHashSet);
+        setField(jDTSnippetCompiler, "sources", virtualFolder);
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
         setField(standardEnvironment, "sourceClasspath", null);

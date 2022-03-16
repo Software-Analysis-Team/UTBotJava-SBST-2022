@@ -5,7 +5,6 @@ import java.io.StringWriter;
 import java.io.OutputStreamWriter;
 import sun.nio.cs.StreamEncoder;
 import com.alibaba.fastjson.parser.DefaultJSONParser;
-import jdk.net.NetworkPermission;
 import com.alibaba.fastjson.parser.JSONReaderScanner;
 import com.alibaba.fastjson.parser.JSONLexer;
 import com.alibaba.fastjson.parser.JSONScanner;
@@ -45,9 +44,9 @@ public class BooleanCodecTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testWrite2() throws Throwable  {
         BooleanCodec booleanCodec = ((BooleanCodec) createInstance("com.alibaba.fastjson.serializer.BooleanCodec"));
-        Object object = createInstance("java.lang.Object");
+        Object unixFileStoreAttributes = createInstance("sun.nio.fs.UnixFileStoreAttributes");
         
-        booleanCodec.write(null, null, object, null, 0);
+        booleanCodec.write(null, null, unixFileStoreAttributes, null, 0);
     }
     ///endregion
     
@@ -188,6 +187,30 @@ public class BooleanCodecTest {
     
     ///region
     
+    @Test(timeout = 10000)
+    public void testGetFastMatchToken1() throws Throwable  {
+        BooleanCodec booleanCodec = new BooleanCodec();
+        
+        int actual = booleanCodec.getFastMatchToken();
+        
+        assertEquals(6, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetFastMatchToken2() throws Throwable  {
+        BooleanCodec booleanCodec = ((BooleanCodec) createInstance("com.alibaba.fastjson.serializer.BooleanCodec"));
+        
+        int actual = booleanCodec.getFastMatchToken();
+        
+        assertEquals(6, actual);
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDeserialze1() throws Throwable  {
         BooleanCodec booleanCodec = new BooleanCodec();
@@ -203,9 +226,8 @@ public class BooleanCodecTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDeserialze2() throws Throwable  {
         BooleanCodec booleanCodec = ((BooleanCodec) createInstance("com.alibaba.fastjson.serializer.BooleanCodec"));
-        jdk.net.NetworkPermission[] networkPermissionArray = new jdk.net.NetworkPermission[0];
         
-        booleanCodec.deserialze(null, null, networkPermissionArray);
+        booleanCodec.deserialze(null, null, null);
     }
     ///endregion
     
@@ -414,24 +436,113 @@ public class BooleanCodecTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetFastMatchToken1() throws Throwable  {
-        BooleanCodec booleanCodec = new BooleanCodec();
+    public void testDeserialze9() throws Throwable  {
+        BooleanCodec booleanCodec = ((BooleanCodec) createInstance("com.alibaba.fastjson.serializer.BooleanCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 1);
+        setField(jSONScanner, "ch", '}');
+        setField(jSONScanner, "token", 6);
+        setField(jSONScanner, "len", -2147483645);
+        setField(defaultJSONParser, "lexer", jSONScanner);
         
-        int actual = booleanCodec.getFastMatchToken();
+        Object actual = booleanCodec.deserialze(defaultJSONParser, null, null);
         
-        assertEquals(6, actual);
+        Boolean expected = false;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(2, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(13, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetFastMatchToken2() throws Throwable  {
+    public void testDeserialze10() throws Throwable  {
         BooleanCodec booleanCodec = ((BooleanCodec) createInstance("com.alibaba.fastjson.serializer.BooleanCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 1);
+        setField(jSONScanner, "ch", '[');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 6);
+        setField(jSONScanner, "len", -2147483645);
+        setField(defaultJSONParser, "lexer", jSONScanner);
         
-        int actual = booleanCodec.getFastMatchToken();
+        Object actual = booleanCodec.deserialze(defaultJSONParser, null, null);
         
-        assertEquals(6, actual);
+        Boolean expected = false;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer2, "pos");
+        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
+        
+        assertEquals(2, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(1, finalDefaultJSONParserLexerPos);
+        
+        assertEquals(14, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDeserialze11() throws Throwable  {
+        BooleanCodec booleanCodec = ((BooleanCodec) createInstance("com.alibaba.fastjson.serializer.BooleanCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 1);
+        setField(jSONScanner, "ch", ']');
+        setField(jSONScanner, "token", 6);
+        setField(jSONScanner, "len", -2147483645);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Object actual = booleanCodec.deserialze(defaultJSONParser, null, null);
+        
+        Boolean expected = false;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(2, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(15, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     

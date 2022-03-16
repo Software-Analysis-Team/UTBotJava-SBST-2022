@@ -111,19 +111,6 @@ public class CaseFormatTest {
     ///endregion
     
     
-    ///region Errors report for convert
-    
-    public void testConvert_errors5()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    
     ///region Errors report for converterTo
     
     public void testConverterTo_errors()
@@ -218,27 +205,6 @@ public class CaseFormatTest {
     
     @Test(timeout = 10000)
     public void testFirstCharOnlyToUpper5() throws Throwable  {
-        String string = new String("{AA");
-        
-        Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
-        Class stringType = Class.forName("java.lang.String");
-        Method firstCharOnlyToUpperMethod = caseFormatClazz.getDeclaredMethod("firstCharOnlyToUpper", stringType);
-        firstCharOnlyToUpperMethod.setAccessible(true);
-        java.lang.Object[] firstCharOnlyToUpperMethodArguments = new java.lang.Object[1];
-        firstCharOnlyToUpperMethodArguments[0] = string;
-        String actual = ((String) firstCharOnlyToUpperMethod.invoke(null, firstCharOnlyToUpperMethodArguments));
-        
-        String expected = new String("{aa");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testFirstCharOnlyToUpper6() throws Throwable  {
         String string = new String("{[");
         
         Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
@@ -250,6 +216,27 @@ public class CaseFormatTest {
         String actual = ((String) firstCharOnlyToUpperMethod.invoke(null, firstCharOnlyToUpperMethodArguments));
         
         String expected = new String("{[");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testFirstCharOnlyToUpper6() throws Throwable  {
+        String string = new String("{A\u0000\u2041\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
+        
+        Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
+        Class stringType = Class.forName("java.lang.String");
+        Method firstCharOnlyToUpperMethod = caseFormatClazz.getDeclaredMethod("firstCharOnlyToUpper", stringType);
+        firstCharOnlyToUpperMethod.setAccessible(true);
+        java.lang.Object[] firstCharOnlyToUpperMethodArguments = new java.lang.Object[1];
+        firstCharOnlyToUpperMethodArguments[0] = string;
+        String actual = ((String) firstCharOnlyToUpperMethod.invoke(null, firstCharOnlyToUpperMethodArguments));
+        
+        String expected = new String("{a\u0000\u2041\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -354,13 +341,14 @@ public class CaseFormatTest {
     @Test(timeout = 10000)
     public void testEquals2() throws Throwable  {
         Object stringConverter = createInstance("com.google.common.base.CaseFormat$StringConverter");
+        java.lang.Object[] holderArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraints$Holder", 0);
         
         Class stringConverterClazz = Class.forName("com.google.common.base.CaseFormat$StringConverter");
-        Class objectType = Class.forName("java.lang.Object");
-        Method equalsMethod = stringConverterClazz.getDeclaredMethod("equals", objectType);
+        Class holderArrayType = Class.forName("java.lang.Object");
+        Method equalsMethod = stringConverterClazz.getDeclaredMethod("equals", holderArrayType);
         equalsMethod.setAccessible(true);
         java.lang.Object[] equalsMethodArguments = new java.lang.Object[1];
-        equalsMethodArguments[0] = null;
+        equalsMethodArguments[0] = ((Object) holderArray);
         boolean actual = ((boolean) equalsMethod.invoke(stringConverter, equalsMethodArguments));
         
         assertFalse(actual);
@@ -471,52 +459,6 @@ public class CaseFormatTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoForward1() throws Throwable  {
-        Object stringConverter = createInstance("com.google.common.base.CaseFormat$StringConverter");
-        String string = new String();
-        
-        Class stringConverterClazz = Class.forName("com.google.common.base.CaseFormat$StringConverter");
-        Class stringType = Class.forName("java.lang.String");
-        Method doForwardMethod = stringConverterClazz.getDeclaredMethod("doForward", stringType);
-        doForwardMethod.setAccessible(true);
-        java.lang.Object[] doForwardMethodArguments = new java.lang.Object[1];
-        doForwardMethodArguments[0] = string;
-        try {
-            doForwardMethod.invoke(stringConverter, doForwardMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    
-    ///region Errors report for doForward
-    
-    public void testDoForward_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId com.google.common.base.CaseFormat$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    
-    ///region Errors report for doForward
-    
-    public void testDoForward_errors1()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId com.google.common.base.CaseFormat$4 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testDoBackward1() throws Throwable  {
         Object stringConverter = createInstance("com.google.common.base.CaseFormat$StringConverter");
         String string = new String();
@@ -556,6 +498,52 @@ public class CaseFormatTest {
         // 
         // 1 occurrences of:
         // ClassId com.google.common.base.CaseFormat$4 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoForward1() throws Throwable  {
+        Object stringConverter = createInstance("com.google.common.base.CaseFormat$StringConverter");
+        String string = new String();
+        
+        Class stringConverterClazz = Class.forName("com.google.common.base.CaseFormat$StringConverter");
+        Class stringType = Class.forName("java.lang.String");
+        Method doForwardMethod = stringConverterClazz.getDeclaredMethod("doForward", stringType);
+        doForwardMethod.setAccessible(true);
+        java.lang.Object[] doForwardMethodArguments = new java.lang.Object[1];
+        doForwardMethodArguments[0] = string;
+        try {
+            doForwardMethod.invoke(stringConverter, doForwardMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for doForward
+    
+    public void testDoForward_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$4 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for doForward
+    
+    public void testDoForward_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$1 does not have canonical name
         // 
     }
     ///endregion
@@ -744,6 +732,15 @@ public class CaseFormatTest {
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

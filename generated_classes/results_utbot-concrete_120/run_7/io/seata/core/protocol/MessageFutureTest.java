@@ -41,28 +41,6 @@ public class MessageFutureTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetRequestMessage1() throws Throwable  {
-        MessageFuture messageFuture = new MessageFuture();
-        RpcMessage rpcMessage = new RpcMessage();
-        
-        messageFuture.setRequestMessage(rpcMessage);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetRequestMessage2() throws Throwable  {
-        MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
-        setField(messageFuture, "requestMessage", null);
-        
-        messageFuture.setRequestMessage(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testGetRequestMessage1() throws Throwable  {
         MessageFuture messageFuture = new MessageFuture();
         
@@ -82,6 +60,28 @@ public class MessageFutureTest {
         RpcMessage actual = messageFuture.getRequestMessage();
         
         assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetRequestMessage1() throws Throwable  {
+        MessageFuture messageFuture = new MessageFuture();
+        RpcMessage rpcMessage = new RpcMessage();
+        
+        messageFuture.setRequestMessage(rpcMessage);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetRequestMessage2() throws Throwable  {
+        MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
+        setField(messageFuture, "requestMessage", null);
+        
+        messageFuture.setRequestMessage(null);
     }
     ///endregion
     
@@ -170,7 +170,7 @@ public class MessageFutureTest {
         
         boolean actual = messageFuture.isTimeout();
         
-        assertTrue(actual);
+        assertFalse(actual);
     }
     ///endregion
     
@@ -193,8 +193,8 @@ public class MessageFutureTest {
     @Test(timeout = 10000)
     public void testIsTimeout3() throws Throwable  {
         MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
-        setField(messageFuture, "start", 5023556104466039809L);
-        setField(messageFuture, "timeout", 0L);
+        setField(messageFuture, "start", 5188189734066332705L);
+        setField(messageFuture, "timeout", 17179869184L);
         
         boolean actual = messageFuture.isTimeout();
         

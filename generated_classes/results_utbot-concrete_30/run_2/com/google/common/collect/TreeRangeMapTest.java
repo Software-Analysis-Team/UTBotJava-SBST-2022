@@ -1,20 +1,19 @@
 package com.google.common.collect;
 
 import org.junit.Test;
-import javax.security.auth.callback.PasswordCallback;
 import java.util.TreeMap;
 import com.google.common.collect.Maps.Values;
 import com.google.common.collect.Maps;
 import java.util.Map;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Array;
 import java.util.Objects;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
-import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
@@ -38,10 +37,9 @@ public class TreeRangeMapTest {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         Object unmodifiableNavigableMap = createInstance("java.util.Collections$UnmodifiableNavigableMap");
         setField(treeRangeMap, "entriesByLowerBound", unmodifiableNavigableMap);
-        Range range = ((Range) createInstance("com.google.common.collect.Range"));
-        javax.security.auth.callback.PasswordCallback[] passwordCallbackArray = new javax.security.auth.callback.PasswordCallback[0];
+        java.lang.Object[] fileBuilderArray = createArray("java.security.KeyStore$Builder$FileBuilder", 0);
         
-        treeRangeMap.putCoalescing(range, passwordCallbackArray);
+        treeRangeMap.putCoalescing(null, fileBuilderArray);
     }
     ///endregion
     
@@ -53,20 +51,8 @@ public class TreeRangeMapTest {
         TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
         Object entry = createInstance("java.util.TreeMap$Entry");
         setField(entry, "left", null);
+        setField(entry, "key", null);
         setField(treeMap, "root", entry);
-        setField(treeRangeMap, "entriesByLowerBound", treeMap);
-        
-        treeRangeMap.span();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSpan2() throws Throwable  {
-        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
-        setField(treeMap, "root", null);
         setField(treeRangeMap, "entriesByLowerBound", treeMap);
         
         treeRangeMap.span();
@@ -185,9 +171,24 @@ public class TreeRangeMapTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testRemove5() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        Range range = ((Range) createInstance("com.google.common.collect.Range"));
+        Object belowAll = createInstance("com.google.common.collect.Cut$BelowAll");
+        setField(range, "upperBound", belowAll);
+        Object belowValue = createInstance("com.google.common.collect.Cut$BelowValue");
+        setField(range, "lowerBound", belowValue);
+        
+        treeRangeMap.remove(range);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testPut1() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        java.lang.Object[] defaultProgressMeteringPolicyArray = createArray("[[[Lsun.net.DefaultProgressMeteringPolicy;", 0);
+        java.lang.Object[] defaultProgressMeteringPolicyArray = createArray("sun.net.DefaultProgressMeteringPolicy", 0);
         
         treeRangeMap.put(null, defaultProgressMeteringPolicyArray);
     }
@@ -254,6 +255,15 @@ public class TreeRangeMapTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     static class FieldsPair {
         final Object o1;
@@ -422,15 +432,6 @@ public class TreeRangeMapTest {
         }
     
         return false;
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

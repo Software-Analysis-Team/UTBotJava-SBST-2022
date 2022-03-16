@@ -9,7 +9,7 @@ import io.netty.channel.ReflectiveChannelFactory;
 import io.netty.bootstrap.BootstrapConfig;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.DefaultChannelPipeline;
-import io.netty.util.concurrent.DefaultEventExecutor;
+import io.netty.util.concurrent.GlobalEventExecutor;
 import io.seata.core.rpc.netty.NettyPoolKey.TransactionRole;
 import io.seata.core.rpc.netty.NettyPoolKey;
 import io.seata.core.protocol.RegisterTMResponse;
@@ -275,6 +275,17 @@ public class NettyPoolableFactoryTest {
     @Test(timeout = 10000)
     public void testDestroyObject1() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
+        
+        nettyPoolableFactory.destroyObject(nettyPoolKey, ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDestroyObject2() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
         
         nettyPoolableFactory.destroyObject(((NettyPoolKey) null), ((Channel) null));
     }
@@ -283,7 +294,7 @@ public class NettyPoolableFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDestroyObject2() throws Throwable  {
+    public void testDestroyObject3() throws Throwable  {
         org.mockito.MockedStatic mockedStatic = null;
         try {
             mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
@@ -299,8 +310,8 @@ public class NettyPoolableFactoryTest {
             setField(failedChannel1, "pipeline", null);
             setField(defaultChannelPipeline, "channel", failedChannel1);
             Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
-            DefaultEventExecutor defaultEventExecutor = ((DefaultEventExecutor) createInstance("io.netty.util.concurrent.DefaultEventExecutor"));
-            setField(defaultChannelHandlerContext, "executor", defaultEventExecutor);
+            GlobalEventExecutor globalEventExecutor = ((GlobalEventExecutor) createInstance("io.netty.util.concurrent.GlobalEventExecutor"));
+            setField(defaultChannelHandlerContext, "executor", globalEventExecutor);
             setField(defaultChannelHandlerContext, "pipeline", defaultChannelPipeline);
             setField(defaultChannelHandlerContext, "prev", null);
             setField(defaultChannelPipeline, "tail", defaultChannelHandlerContext);

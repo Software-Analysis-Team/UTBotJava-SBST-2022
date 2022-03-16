@@ -77,6 +77,19 @@ public class GlobalBeginResponseTest {
     }
     ///endregion
     
+    
+    ///region Errors report for decode
+    
+    public void testDecode_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // lateinit property resultModel has not been initialized
+        // 
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000)
@@ -180,7 +193,7 @@ public class GlobalBeginResponseTest {
         Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
         setField(heapByteBuffer, "limit", 84015105);
         setField(heapByteBuffer, "position", -1073741824);
-        setField(heapByteBuffer, "bigEndian", false);
+        setField(heapByteBuffer, "bigEndian", true);
         setField(heapByteBuffer, "offset", 1073741824);
         byte[] byteArray = new byte[11];
         setField(heapByteBuffer, "hb", byteArray);
@@ -220,9 +233,8 @@ public class GlobalBeginResponseTest {
     public void testSetExtraData2() throws Throwable  {
         GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
         setField(globalBeginResponse, "extraData", null);
-        String string = new String("");
         
-        globalBeginResponse.setExtraData(string);
+        globalBeginResponse.setExtraData(null);
     }
     ///endregion
     
@@ -268,9 +280,8 @@ public class GlobalBeginResponseTest {
     public void testSetXid2() throws Throwable  {
         GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
         setField(globalBeginResponse, "xid", null);
-        String string = new String("");
         
-        globalBeginResponse.setXid(string);
+        globalBeginResponse.setXid(null);
     }
     ///endregion
     

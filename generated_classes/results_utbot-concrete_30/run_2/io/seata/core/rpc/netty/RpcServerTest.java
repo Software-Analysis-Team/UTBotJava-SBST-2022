@@ -3,11 +3,11 @@ package io.seata.core.rpc.netty;
 import org.junit.Test;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.timeout.IdleStateEvent;
+import java.lang.reflect.Method;
 import io.seata.core.protocol.RpcMessage;
 import io.netty.channel.Channel;
 import io.seata.core.protocol.HeartbeatMessage;
 import io.netty.channel.ChannelOutboundBuffer;
-import java.lang.reflect.Method;
 import io.seata.core.rpc.ServerMessageListener;
 import org.slf4j.Logger;
 import io.netty.channel.DefaultChannelPipeline;
@@ -86,9 +86,19 @@ public class RpcServerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testChannelInactive2() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
         
-        rpcServer.channelInactive(((ChannelHandlerContext) null));
-    }
+        Class rpcServerClazz = Class.forName("io.seata.core.rpc.netty.RpcServer");
+        Class defaultChannelHandlerContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Method channelInactiveMethod = rpcServerClazz.getDeclaredMethod("channelInactive", defaultChannelHandlerContextType);
+        channelInactiveMethod.setAccessible(true);
+        java.lang.Object[] channelInactiveMethodArguments = new java.lang.Object[1];
+        channelInactiveMethodArguments[0] = defaultChannelHandlerContext;
+        try {
+            channelInactiveMethod.invoke(rpcServer, channelInactiveMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     ///region
@@ -137,6 +147,19 @@ public class RpcServerTest {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         
         rpcServer.destroy();
+    }
+    ///endregion
+    
+    
+    ///region Errors report for destroy
+    
+    public void testDestroy_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     

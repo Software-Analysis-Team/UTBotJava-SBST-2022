@@ -84,10 +84,10 @@ public class BranchReportRequestTest {
     public void testDecode3() throws Throwable  {
         BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
         Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(heapByteBufferR, "limit", 268435456);
-        setField(heapByteBufferR, "position", 0);
+        setField(heapByteBufferR, "limit", 1073741824);
+        setField(heapByteBufferR, "position", 536870913);
         setField(heapByteBufferR, "bigEndian", false);
-        setField(heapByteBufferR, "offset", 1);
+        setField(heapByteBufferR, "offset", -536870912);
         byte[] byteArray = new byte[11];
         setField(heapByteBufferR, "hb", byteArray);
         
@@ -104,7 +104,7 @@ public class BranchReportRequestTest {
         }
         Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
         
-        assertEquals(11, finalHeapByteBufferRPosition);
+        assertEquals(536870924, finalHeapByteBufferRPosition);
     }
     ///endregion
     
@@ -190,52 +190,6 @@ public class BranchReportRequestTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetBranchId1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        
-        branchReportRequest.setBranchId(0L);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetBranchId2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "branchId", 0L);
-        
-        branchReportRequest.setBranchId(0L);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetXid1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        
-        String actual = branchReportRequest.getXid();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetXid2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "xid", null);
-        
-        String actual = branchReportRequest.getXid();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testGetStatus1() throws Throwable  {
         BranchReportRequest branchReportRequest = new BranchReportRequest();
         
@@ -255,17 +209,6 @@ public class BranchReportRequestTest {
         BranchStatus actual = branchReportRequest.getStatus();
         
         assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetBranchType1() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "branchType", null);
-        
-        branchReportRequest.setBranchType(null);
     }
     ///endregion
     
@@ -297,44 +240,64 @@ public class BranchReportRequestTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetApplicationData1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        String string = new String();
-        
-        branchReportRequest.setApplicationData(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetApplicationData2() throws Throwable  {
+    public void testSetBranchType1() throws Throwable  {
         BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "applicationData", null);
+        setField(branchReportRequest, "branchType", null);
         
-        branchReportRequest.setApplicationData(null);
+        branchReportRequest.setBranchType(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testSetStatus1() throws Throwable  {
+    public void testGetXid1() throws Throwable  {
         BranchReportRequest branchReportRequest = new BranchReportRequest();
-        BranchStatus branchStatus = ((BranchStatus) createInstance("io.seata.core.model.BranchStatus"));
         
-        branchReportRequest.setStatus(branchStatus);
+        String actual = branchReportRequest.getXid();
+        
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testSetStatus2() throws Throwable  {
+    public void testGetXid2() throws Throwable  {
         BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "status", null);
+        setField(branchReportRequest, "xid", null);
         
-        branchReportRequest.setStatus(null);
+        String actual = branchReportRequest.getXid();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetBranchType1() throws Throwable  {
+        BranchReportRequest branchReportRequest = new BranchReportRequest();
+        
+        BranchType actual = branchReportRequest.getBranchType();
+        
+        BranchType expected = BranchType.AT;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetBranchType2() throws Throwable  {
+        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
+        setField(branchReportRequest, "branchType", null);
+        
+        BranchType actual = branchReportRequest.getBranchType();
+        
+        assertNull(actual);
     }
     ///endregion
     
@@ -357,6 +320,71 @@ public class BranchReportRequestTest {
         setField(branchReportRequest, "xid", null);
         
         branchReportRequest.setXid(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetApplicationData1() throws Throwable  {
+        BranchReportRequest branchReportRequest = new BranchReportRequest();
+        String string = new String();
+        
+        branchReportRequest.setApplicationData(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetApplicationData2() throws Throwable  {
+        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
+        setField(branchReportRequest, "applicationData", null);
+        
+        branchReportRequest.setApplicationData(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetBranchId1() throws Throwable  {
+        BranchReportRequest branchReportRequest = new BranchReportRequest();
+        
+        branchReportRequest.setBranchId(0L);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetBranchId2() throws Throwable  {
+        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
+        setField(branchReportRequest, "branchId", 0L);
+        
+        branchReportRequest.setBranchId(0L);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetStatus1() throws Throwable  {
+        BranchReportRequest branchReportRequest = new BranchReportRequest();
+        BranchStatus branchStatus = ((BranchStatus) createInstance("io.seata.core.model.BranchStatus"));
+        
+        branchReportRequest.setStatus(branchStatus);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetStatus2() throws Throwable  {
+        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
+        setField(branchReportRequest, "status", null);
+        
+        branchReportRequest.setStatus(null);
     }
     ///endregion
     
@@ -429,34 +457,6 @@ public class BranchReportRequestTest {
         setField(branchReportRequest, "resourceId", null);
         
         branchReportRequest.setResourceId(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetBranchType1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        
-        BranchType actual = branchReportRequest.getBranchType();
-        
-        BranchType expected = BranchType.AT;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetBranchType2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "branchType", null);
-        
-        BranchType actual = branchReportRequest.getBranchType();
-        
-        assertNull(actual);
     }
     ///endregion
     

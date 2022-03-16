@@ -6,7 +6,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.reflect.Constructor;
-import sun.net.ConnectionResetException;
 import com.google.common.primitives.Booleans;
 import java.lang.reflect.Field;
 import java.util.Objects;
@@ -58,20 +57,6 @@ public class BooleansTest {
     
     @Test(timeout = 10000)
     public void testLexicographicalComparator1() throws Throwable  {
-        Comparator actual = Booleans.lexicographicalComparator();
-        
-        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Booleans$LexicographicalComparator");
-        Object expected = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLexicographicalComparator2() throws Throwable  {
         Comparator actual = Booleans.lexicographicalComparator();
         
         Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Booleans$LexicographicalComparator");
@@ -210,7 +195,7 @@ public class BooleansTest {
     
     @Test(timeout = 10000)
     public void testIndexOf5() throws Throwable  {
-        boolean[] booleanArray = new boolean[33];
+        boolean[] booleanArray = new boolean[34];
         booleanArray[0] = true;
         boolean[] booleanArray1 = new boolean[32];
         
@@ -247,8 +232,6 @@ public class BooleansTest {
     
     @Test(timeout = 10000)
     public void testIndexOf7() throws Throwable  {
-        boolean[] booleanArray = new boolean[9];
-        
         Class booleansClazz = Class.forName("com.google.common.primitives.Booleans");
         Class booleanArrayType = Class.forName("[Z");
         Class booleanType = boolean.class;
@@ -256,7 +239,7 @@ public class BooleansTest {
         Method indexOfMethod = booleansClazz.getDeclaredMethod("indexOf", booleanArrayType, booleanType, intType, intType);
         indexOfMethod.setAccessible(true);
         java.lang.Object[] indexOfMethodArguments = new java.lang.Object[4];
-        indexOfMethodArguments[0] = ((Object) booleanArray);
+        indexOfMethodArguments[0] = null;
         indexOfMethodArguments[1] = false;
         indexOfMethodArguments[2] = 0;
         indexOfMethodArguments[3] = -2147483647;
@@ -409,8 +392,6 @@ public class BooleansTest {
     
     @Test(timeout = 10000)
     public void testLastIndexOf2() throws Throwable  {
-        boolean[] booleanArray = new boolean[9];
-        
         Class booleansClazz = Class.forName("com.google.common.primitives.Booleans");
         Class booleanArrayType = Class.forName("[Z");
         Class booleanType = boolean.class;
@@ -418,7 +399,7 @@ public class BooleansTest {
         Method lastIndexOfMethod = booleansClazz.getDeclaredMethod("lastIndexOf", booleanArrayType, booleanType, intType, intType);
         lastIndexOfMethod.setAccessible(true);
         java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[4];
-        lastIndexOfMethodArguments[0] = ((Object) booleanArray);
+        lastIndexOfMethodArguments[0] = null;
         lastIndexOfMethodArguments[1] = false;
         lastIndexOfMethodArguments[2] = 1;
         lastIndexOfMethodArguments[3] = -2147483647;
@@ -523,11 +504,11 @@ public class BooleansTest {
     
     @Test(timeout = 10000)
     public void testLastIndexOf8() throws Throwable  {
-        boolean[] booleanArray = new boolean[1];
+        boolean[] booleanArray = new boolean[2];
         
         int actual = Booleans.lastIndexOf(booleanArray, false);
         
-        assertEquals(0, actual);
+        assertEquals(1, actual);
     }
     ///endregion
     
@@ -818,6 +799,29 @@ public class BooleansTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testToArray3() throws Throwable  {
+        Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
+        setField(booleanArrayAsList, "end", 0);
+        setField(booleanArrayAsList, "start", 0);
+        boolean[] booleanArray = new boolean[9];
+        setField(booleanArrayAsList, "array", booleanArray);
+        
+        Class booleansClazz = Class.forName("com.google.common.primitives.Booleans");
+        Class booleanArrayAsListType = Class.forName("java.util.Collection");
+        Method toArrayMethod = booleansClazz.getDeclaredMethod("toArray", booleanArrayAsListType);
+        toArrayMethod.setAccessible(true);
+        java.lang.Object[] toArrayMethodArguments = new java.lang.Object[1];
+        toArrayMethodArguments[0] = booleanArrayAsList;
+        boolean[] actual = ((boolean[]) toArrayMethod.invoke(null, toArrayMethodArguments));
+        
+        boolean[] expected = new boolean[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testAsList1() throws Throwable  {
         boolean[] booleanArray = new boolean[0];
         
@@ -925,19 +929,6 @@ public class BooleansTest {
         boolean[] booleanArray = new boolean[0];
         
         Booleans.ensureCapacity(booleanArray, 1073741824, 1073741824);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testEnsureCapacity6() throws Throwable  {
-        boolean[] booleanArray = new boolean[3];
-        
-        boolean[] actual = Booleans.ensureCapacity(booleanArray, 34, 0);
-        
-        boolean[] expected = new boolean[34];
-        assertArrayEquals(expected, actual);
     }
     ///endregion
     
@@ -1085,14 +1076,13 @@ public class BooleansTest {
     @Test(timeout = 10000)
     public void testContains7() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        sun.net.ConnectionResetException[] connectionResetExceptionArray = new sun.net.ConnectionResetException[0];
         
         Class booleanArrayAsListClazz = Class.forName("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        Class connectionResetExceptionArrayType = Class.forName("java.lang.Object");
-        Method containsMethod = booleanArrayAsListClazz.getDeclaredMethod("contains", connectionResetExceptionArrayType);
+        Class objectType = Class.forName("java.lang.Object");
+        Method containsMethod = booleanArrayAsListClazz.getDeclaredMethod("contains", objectType);
         containsMethod.setAccessible(true);
         java.lang.Object[] containsMethodArguments = new java.lang.Object[1];
-        containsMethodArguments[0] = ((Object) connectionResetExceptionArray);
+        containsMethodArguments[0] = null;
         boolean actual = ((boolean) containsMethod.invoke(booleanArrayAsList, containsMethodArguments));
         
         assertFalse(actual);
@@ -1104,8 +1094,8 @@ public class BooleansTest {
     @Test(timeout = 10000)
     public void testContains8() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        setField(booleanArrayAsList, "end", 0);
-        setField(booleanArrayAsList, "start", 0);
+        setField(booleanArrayAsList, "end", -2);
+        setField(booleanArrayAsList, "start", -2);
         boolean[] booleanArray = new boolean[9];
         setField(booleanArrayAsList, "array", booleanArray);
         Boolean boolean1 = false;
@@ -1124,8 +1114,32 @@ public class BooleansTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testContains9() throws Throwable  {
+        Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
+        setField(booleanArrayAsList, "end", 1);
+        setField(booleanArrayAsList, "start", Integer.MIN_VALUE);
+        boolean[] booleanArray = new boolean[9];
+        setField(booleanArrayAsList, "array", booleanArray);
+        Boolean boolean1 = false;
+        
+        Class booleanArrayAsListClazz = Class.forName("com.google.common.primitives.Booleans$BooleanArrayAsList");
+        Class boolean1Type = Class.forName("java.lang.Object");
+        Method containsMethod = booleanArrayAsListClazz.getDeclaredMethod("contains", boolean1Type);
+        containsMethod.setAccessible(true);
+        java.lang.Object[] containsMethodArguments = new java.lang.Object[1];
+        containsMethodArguments[0] = boolean1;
+        try {
+            containsMethod.invoke(booleanArrayAsList, containsMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testContains10() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
         setField(booleanArrayAsList, "end", 1);
         setField(booleanArrayAsList, "start", 0);
@@ -1148,7 +1162,7 @@ public class BooleansTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testContains10() throws Throwable  {
+    public void testContains11() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
         setField(booleanArrayAsList, "end", 1);
         setField(booleanArrayAsList, "start", 0);
@@ -1240,21 +1254,22 @@ public class BooleansTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testEquals3() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        Object byteArrayAsList = createInstance("com.google.common.primitives.Bytes$ByteArrayAsList");
+        Object randomAccessSubList = createInstance("java.util.RandomAccessSubList");
         
         Class booleanArrayAsListClazz = Class.forName("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        Class byteArrayAsListType = Class.forName("java.lang.Object");
-        Method equalsMethod = booleanArrayAsListClazz.getDeclaredMethod("equals", byteArrayAsListType);
+        Class randomAccessSubListType = Class.forName("java.lang.Object");
+        Method equalsMethod = booleanArrayAsListClazz.getDeclaredMethod("equals", randomAccessSubListType);
         equalsMethod.setAccessible(true);
         java.lang.Object[] equalsMethodArguments = new java.lang.Object[1];
-        equalsMethodArguments[0] = byteArrayAsList;
-        boolean actual = ((boolean) equalsMethod.invoke(booleanArrayAsList, equalsMethodArguments));
-        
-        assertTrue(actual);
-    }
+        equalsMethodArguments[0] = randomAccessSubList;
+        try {
+            equalsMethod.invoke(booleanArrayAsList, equalsMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     ///region
@@ -1277,6 +1292,24 @@ public class BooleansTest {
         boolean actual = ((boolean) equalsMethod.invoke(booleanArrayAsList, equalsMethodArguments));
         
         assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEquals5() throws Throwable  {
+        Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
+        
+        Class booleanArrayAsListClazz = Class.forName("com.google.common.primitives.Booleans$BooleanArrayAsList");
+        Class objectType = Class.forName("java.lang.Object");
+        Method equalsMethod = booleanArrayAsListClazz.getDeclaredMethod("equals", objectType);
+        equalsMethod.setAccessible(true);
+        java.lang.Object[] equalsMethodArguments = new java.lang.Object[1];
+        equalsMethodArguments[0] = null;
+        boolean actual = ((boolean) equalsMethod.invoke(booleanArrayAsList, equalsMethodArguments));
+        
+        assertFalse(actual);
     }
     ///endregion
     
@@ -1440,19 +1473,20 @@ public class BooleansTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testSet1() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        setField(booleanArrayAsList, "end", -1780656147);
+        setField(booleanArrayAsList, "end", -1753385487);
         setField(booleanArrayAsList, "start", 1073741828);
         boolean[] booleanArray = new boolean[13];
         setField(booleanArrayAsList, "array", booleanArray);
+        Boolean boolean1 = false;
         
         Class booleanArrayAsListClazz = Class.forName("com.google.common.primitives.Booleans$BooleanArrayAsList");
         Class intType = int.class;
-        Class booleanType = Class.forName("java.lang.Boolean");
-        Method setMethod = booleanArrayAsListClazz.getDeclaredMethod("set", intType, booleanType);
+        Class boolean1Type = Class.forName("java.lang.Boolean");
+        Method setMethod = booleanArrayAsListClazz.getDeclaredMethod("set", intType, boolean1Type);
         setMethod.setAccessible(true);
         java.lang.Object[] setMethodArguments = new java.lang.Object[2];
         setMethodArguments[0] = 0;
-        setMethodArguments[1] = null;
+        setMethodArguments[1] = boolean1;
         try {
             setMethod.invoke(booleanArrayAsList, setMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -1488,9 +1522,9 @@ public class BooleansTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testSet3() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        setField(booleanArrayAsList, "end", 1);
-        setField(booleanArrayAsList, "start", 0);
-        boolean[] booleanArray = new boolean[9];
+        setField(booleanArrayAsList, "end", 2147182037);
+        setField(booleanArrayAsList, "start", 4);
+        boolean[] booleanArray = new boolean[13];
         setField(booleanArrayAsList, "array", booleanArray);
         
         Class booleanArrayAsListClazz = Class.forName("com.google.common.primitives.Booleans$BooleanArrayAsList");
@@ -1654,8 +1688,8 @@ public class BooleansTest {
     public void testSubList5() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
         setField(booleanArrayAsList, "modCount", 0);
-        setField(booleanArrayAsList, "end", 1610612764);
-        setField(booleanArrayAsList, "start", 536870912);
+        setField(booleanArrayAsList, "end", 1073741840);
+        setField(booleanArrayAsList, "start", 16);
         boolean[] booleanArray = new boolean[9];
         setField(booleanArrayAsList, "array", booleanArray);
         
@@ -1665,13 +1699,13 @@ public class BooleansTest {
         subListMethod.setAccessible(true);
         java.lang.Object[] subListMethodArguments = new java.lang.Object[2];
         subListMethodArguments[0] = 0;
-        subListMethodArguments[1] = 4096;
+        subListMethodArguments[1] = 1024;
         List actual = ((List) subListMethod.invoke(booleanArrayAsList, subListMethodArguments));
         
         Object expected = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
         setField(expected, "array", booleanArray);
-        setField(expected, "start", 536870912);
-        setField(expected, "end", 536875008);
+        setField(expected, "start", 16);
+        setField(expected, "end", 1040);
         setField(expected, "modCount", 0);
         
         // Current deep equals depth exceeds max depth 0
@@ -1729,9 +1763,9 @@ public class BooleansTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGet2() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        setField(booleanArrayAsList, "end", -1098907775);
-        setField(booleanArrayAsList, "start", 1073741856);
-        boolean[] booleanArray = new boolean[33];
+        setField(booleanArrayAsList, "end", -1437755983);
+        setField(booleanArrayAsList, "start", 1073741840);
+        boolean[] booleanArray = new boolean[25];
         setField(booleanArrayAsList, "array", booleanArray);
         
         Class booleanArrayAsListClazz = Class.forName("com.google.common.primitives.Booleans$BooleanArrayAsList");
@@ -1773,9 +1807,9 @@ public class BooleansTest {
     @Test(timeout = 10000)
     public void testGet4() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        setField(booleanArrayAsList, "end", 1073616253);
-        setField(booleanArrayAsList, "start", 4);
-        boolean[] booleanArray = new boolean[13];
+        setField(booleanArrayAsList, "end", 1);
+        setField(booleanArrayAsList, "start", 0);
+        boolean[] booleanArray = new boolean[9];
         setField(booleanArrayAsList, "array", booleanArray);
         
         Class booleanArrayAsListClazz = Class.forName("com.google.common.primitives.Booleans$BooleanArrayAsList");
@@ -1798,8 +1832,8 @@ public class BooleansTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGet5() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        setField(booleanArrayAsList, "end", 2147482750);
-        setField(booleanArrayAsList, "start", -1073740927);
+        setField(booleanArrayAsList, "end", 2147483646);
+        setField(booleanArrayAsList, "start", -1073741823);
         
         Class booleanArrayAsListClazz = Class.forName("com.google.common.primitives.Booleans$BooleanArrayAsList");
         Class intType = int.class;
@@ -1838,14 +1872,13 @@ public class BooleansTest {
     @Test(timeout = 10000)
     public void testIndexOf16() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        sun.net.ConnectionResetException[] connectionResetExceptionArray = new sun.net.ConnectionResetException[0];
         
         Class booleanArrayAsListClazz = Class.forName("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        Class connectionResetExceptionArrayType = Class.forName("java.lang.Object");
-        Method indexOfMethod = booleanArrayAsListClazz.getDeclaredMethod("indexOf", connectionResetExceptionArrayType);
+        Class objectType = Class.forName("java.lang.Object");
+        Method indexOfMethod = booleanArrayAsListClazz.getDeclaredMethod("indexOf", objectType);
         indexOfMethod.setAccessible(true);
         java.lang.Object[] indexOfMethodArguments = new java.lang.Object[1];
-        indexOfMethodArguments[0] = ((Object) connectionResetExceptionArray);
+        indexOfMethodArguments[0] = null;
         int actual = ((int) indexOfMethod.invoke(booleanArrayAsList, indexOfMethodArguments));
         
         assertEquals(-1, actual);
@@ -1922,14 +1955,13 @@ public class BooleansTest {
     @Test(timeout = 10000)
     public void testLastIndexOf12() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        sun.net.ConnectionResetException[] connectionResetExceptionArray = new sun.net.ConnectionResetException[0];
         
         Class booleanArrayAsListClazz = Class.forName("com.google.common.primitives.Booleans$BooleanArrayAsList");
-        Class connectionResetExceptionArrayType = Class.forName("java.lang.Object");
-        Method lastIndexOfMethod = booleanArrayAsListClazz.getDeclaredMethod("lastIndexOf", connectionResetExceptionArrayType);
+        Class objectType = Class.forName("java.lang.Object");
+        Method lastIndexOfMethod = booleanArrayAsListClazz.getDeclaredMethod("lastIndexOf", objectType);
         lastIndexOfMethod.setAccessible(true);
         java.lang.Object[] lastIndexOfMethodArguments = new java.lang.Object[1];
-        lastIndexOfMethodArguments[0] = ((Object) connectionResetExceptionArray);
+        lastIndexOfMethodArguments[0] = null;
         int actual = ((int) lastIndexOfMethod.invoke(booleanArrayAsList, lastIndexOfMethodArguments));
         
         assertEquals(-1, actual);
@@ -2029,7 +2061,7 @@ public class BooleansTest {
     public void testToBooleanArray2() throws Throwable  {
         Object booleanArrayAsList = createInstance("com.google.common.primitives.Booleans$BooleanArrayAsList");
         setField(booleanArrayAsList, "end", 1073741824);
-        setField(booleanArrayAsList, "start", -1342177280);
+        setField(booleanArrayAsList, "start", -1075838976);
         boolean[] booleanArray = new boolean[9];
         setField(booleanArrayAsList, "array", booleanArray);
         
@@ -2380,7 +2412,7 @@ public class BooleansTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testLexicographicalComparator3() throws Throwable  {
+    public void testLexicographicalComparator2() throws Throwable  {
         String string = new String("");
         Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Booleans$LexicographicalComparator");
         Class stringType = Class.forName("java.lang.String");

@@ -2,13 +2,13 @@ package io.seata.core.rpc.netty;
 
 import org.junit.Test;
 import io.netty.channel.ChannelHandlerContext;
-import java.util.EnumMap;
 import io.netty.handler.timeout.IdleStateEvent;
 import java.lang.reflect.Method;
 import java.util.concurrent.ConcurrentHashMap;
 import io.netty.channel.Channel;
 import org.apache.commons.pool.impl.GenericKeyedObjectPool;
 import org.slf4j.Logger;
+import io.seata.core.protocol.transaction.GlobalBeginResponse;
 import io.seata.core.protocol.RegisterRMResponse;
 import org.apache.commons.pool.impl.GenericKeyedObjectPool.Config;
 import io.seata.core.rpc.netty.NettyPoolKey.TransactionRole;
@@ -65,9 +65,8 @@ public class RmRpcClientTest {
     @Test(timeout = 10000)
     public void testUserEventTriggered2() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        java.util.EnumMap[] enumMapArray = new java.util.EnumMap[0];
         
-        rmRpcClient.userEventTriggered(((ChannelHandlerContext) null), enumMapArray);
+        rmRpcClient.userEventTriggered(((ChannelHandlerContext) null), null);
     }
     ///endregion
     
@@ -531,8 +530,9 @@ public class RmRpcClientTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testOnRegisterMsgFail2() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
         
-        rmRpcClient.onRegisterMsgFail(null, null, null, null);
+        rmRpcClient.onRegisterMsgFail(null, null, null, globalBeginResponse);
     }
     ///endregion
     
@@ -572,11 +572,27 @@ public class RmRpcClientTest {
             }).thenReturn(loggerMock);
             RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
             String string = new String("");
+            Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
             RegisterRMResponse registerRMResponse = ((RegisterRMResponse) createInstance("io.seata.core.protocol.RegisterRMResponse"));
             setField(registerRMResponse, "version", null);
             
-            rmRpcClient.onRegisterMsgFail(string, null, registerRMResponse, null);
-        } finally {
+            Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
+            Class stringType = Class.forName("java.lang.String");
+            Class failedChannelType = Class.forName("io.netty.channel.Channel");
+            Class registerRMResponseType = Class.forName("java.lang.Object");
+            Class abstractMessageType = Class.forName("io.seata.core.protocol.AbstractMessage");
+            Method onRegisterMsgFailMethod = rmRpcClientClazz.getDeclaredMethod("onRegisterMsgFail", stringType, failedChannelType, registerRMResponseType, abstractMessageType);
+            onRegisterMsgFailMethod.setAccessible(true);
+            java.lang.Object[] onRegisterMsgFailMethodArguments = new java.lang.Object[4];
+            onRegisterMsgFailMethodArguments[0] = string;
+            onRegisterMsgFailMethodArguments[1] = failedChannel;
+            onRegisterMsgFailMethodArguments[2] = registerRMResponse;
+            onRegisterMsgFailMethodArguments[3] = null;
+            try {
+                onRegisterMsgFailMethod.invoke(rmRpcClient, onRegisterMsgFailMethodArguments);
+            } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+                throw invocationTargetException.getTargetException();
+            }} finally {
             mockedStatic.close();
         }
     }
@@ -586,17 +602,6 @@ public class RmRpcClientTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testSendMsgWithResponse1() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        Object object = new Object();
-        
-        rmRpcClient.sendMsgWithResponse(object);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendMsgWithResponse2() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         String string = new String();
         Object object = new Object();
@@ -608,7 +613,7 @@ public class RmRpcClientTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendMsgWithResponse3() throws Throwable  {
+    public void testSendMsgWithResponse2() throws Throwable  {
         Class runtimeClazz = Class.forName("java.lang.Runtime");
         Runtime prevCurrentRuntime = ((Runtime) getStaticFieldValue(runtimeClazz, "currentRuntime"));
         try {
@@ -931,27 +936,6 @@ public class RmRpcClientTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetResourceManager1() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        
-        rmRpcClient.setResourceManager(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetResourceManager2() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        setField(rmRpcClient, "resourceManager", null);
-        
-        rmRpcClient.setResourceManager(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testSetTransactionServiceGroup1() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         String string = new String();
@@ -968,6 +952,27 @@ public class RmRpcClientTest {
         setField(rmRpcClient, "transactionServiceGroup", null);
         
         rmRpcClient.setTransactionServiceGroup(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetResourceManager1() throws Throwable  {
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        
+        rmRpcClient.setResourceManager(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetResourceManager2() throws Throwable  {
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        setField(rmRpcClient, "resourceManager", null);
+        
+        rmRpcClient.setResourceManager(null);
     }
     ///endregion
     
@@ -1386,10 +1391,9 @@ public class RmRpcClientTest {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         ResourceManager resourceManagerMock = mock(ResourceManager.class);
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        Integer integer = 0;
-        java.lang.Integer[] integerArray = new java.lang.Integer[0];
-        linkedHashMap.put(integer, integerArray);
-        linkedHashMap.put(integerArray, null);
+        Character character = '\u0000';
+        java.lang.Character[] characterArray = new java.lang.Character[9];
+        linkedHashMap.put(character, characterArray);
         when(resourceManagerMock.getManagedResources()).thenReturn(((Map) linkedHashMap));
         
         rmRpcClient.getMergedResourceKeys(resourceManagerMock);

@@ -24,8 +24,8 @@ import sun.misc.Unsafe;
 import static org.mockito.Mockito.mock;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.mockStatic;
 import static org.junit.Assert.assertEquals;
 
@@ -282,42 +282,7 @@ public class DefaultServerMessageListenerImplTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetServerMessageSender1() throws Throwable  {
-        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
-        
-        ServerMessageSender actual = defaultServerMessageListenerImpl.getServerMessageSender();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetServerMessageSender2() throws Throwable  {
-        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
-        setField(defaultServerMessageListenerImpl, "serverMessageSender", null);
-        
-        ServerMessageSender actual = defaultServerMessageListenerImpl.getServerMessageSender();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testSetServerMessageSender1() throws Throwable  {
-        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
-        
-        defaultServerMessageListenerImpl.setServerMessageSender(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetServerMessageSender2() throws Throwable  {
         DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
         setField(defaultServerMessageListenerImpl, "serverMessageSender", null);
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
@@ -335,31 +300,22 @@ public class DefaultServerMessageListenerImplTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testInit1() throws Throwable  {
+    public void testGetServerMessageSender1() throws Throwable  {
         DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        setField(defaultServerMessageListenerImpl, "serverMessageSender", null);
         
-        defaultServerMessageListenerImpl.init();
+        ServerMessageSender actual = defaultServerMessageListenerImpl.getServerMessageSender();
+        
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testDefaultServerMessageListenerImpl1() {
-        DefaultServerMessageListenerImpl actual = new DefaultServerMessageListenerImpl(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDefaultServerMessageListenerImpl2() throws Throwable  {
+    public void testDefaultServerMessageListenerImpl1() throws Throwable  {
         TransactionMessageHandler transactionMessageHandlerMock = mock(TransactionMessageHandler.class);
-        
         DefaultServerMessageListenerImpl actual = new DefaultServerMessageListenerImpl(transactionMessageHandlerMock);
-        
-        TransactionMessageHandler finalTransactionMessageHandlerMock = transactionMessageHandlerMock;
-        
     }
     ///endregion
     

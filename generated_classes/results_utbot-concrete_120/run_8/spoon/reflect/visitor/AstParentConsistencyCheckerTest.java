@@ -14,10 +14,9 @@ import spoon.support.reflect.declaration.CtInterfaceImpl;
 import spoon.reflect.factory.ModuleFactory.CtUnnamedModule;
 import spoon.reflect.factory.ModuleFactory;
 import java.lang.reflect.Method;
-import spoon.support.reflect.declaration.CtClassImpl;
 import spoon.support.reflect.reference.CtFieldReferenceImpl;
 import spoon.support.reflect.declaration.CtPackageImpl;
-import spoon.support.reflect.declaration.CtTypeParameterImpl;
+import spoon.support.reflect.declaration.CtClassImpl;
 import spoon.support.reflect.declaration.InvisibleArrayConstructorImpl;
 import spoon.support.reflect.reference.CtArrayTypeReferenceImpl;
 import spoon.support.StandardEnvironment;
@@ -148,24 +147,6 @@ public class AstParentConsistencyCheckerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testScan6() throws Throwable  {
         AstParentConsistencyChecker astParentConsistencyChecker = ((AstParentConsistencyChecker) createInstance("spoon.reflect.visitor.AstParentConsistencyChecker"));
-        setField(astParentConsistencyChecker, "parent", null);
-        CtClassImpl ctClassImpl = ((CtClassImpl) createInstance("spoon.support.reflect.declaration.CtClassImpl"));
-        
-        Object initialAstParentConsistencyCheckerParent = getFieldValue(astParentConsistencyChecker, "parent");
-        
-        astParentConsistencyChecker.scan(ctClassImpl);
-        
-        Object finalAstParentConsistencyCheckerParent = getFieldValue(astParentConsistencyChecker, "parent");
-        
-        assertFalse(initialAstParentConsistencyCheckerParent == finalAstParentConsistencyCheckerParent);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testScan7() throws Throwable  {
-        AstParentConsistencyChecker astParentConsistencyChecker = ((AstParentConsistencyChecker) createInstance("spoon.reflect.visitor.AstParentConsistencyChecker"));
         CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
         CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
         setField(ctEnumImpl, "parent", ctEnumImpl);
@@ -200,9 +181,9 @@ public class AstParentConsistencyCheckerTest {
     @Test(timeout = 10000)
     public void testToDebugString2() throws Throwable  {
         CtPackageImpl ctPackageImpl = ((CtPackageImpl) createInstance("spoon.support.reflect.declaration.CtPackageImpl"));
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(ctFieldReferenceImpl, "parent", null);
-        setField(ctPackageImpl, "parent", ctFieldReferenceImpl);
+        CtClassImpl ctClassImpl = ((CtClassImpl) createInstance("spoon.support.reflect.declaration.CtClassImpl"));
+        setField(ctClassImpl, "parent", null);
+        setField(ctPackageImpl, "parent", ctClassImpl);
         
         Class astParentConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.AstParentConsistencyChecker");
         Class ctPackageImplType = Class.forName("spoon.reflect.declaration.CtElement");
@@ -225,10 +206,10 @@ public class AstParentConsistencyCheckerTest {
     public void testToDebugString3() throws Throwable  {
         CtPackageImpl ctPackageImpl = ((CtPackageImpl) createInstance("spoon.support.reflect.declaration.CtPackageImpl"));
         CtModuleImpl ctModuleImpl = ((CtModuleImpl) createInstance("spoon.support.reflect.declaration.CtModuleImpl"));
-        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
-        setField(ctTypeParameterImpl, "parent", null);
-        setField(ctTypeParameterImpl, "factory", null);
-        setField(ctModuleImpl, "parent", ctTypeParameterImpl);
+        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
+        setField(ctFieldReferenceImpl, "parent", null);
+        setField(ctFieldReferenceImpl, "factory", null);
+        setField(ctModuleImpl, "parent", ctFieldReferenceImpl);
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         CtModelImpl ctModelImpl = ((CtModelImpl) createInstance("spoon.reflect.CtModelImpl"));
         ModuleFactory.CtUnnamedModule ctUnnamedModule = ((ModuleFactory.CtUnnamedModule) createInstance("spoon.reflect.factory.ModuleFactory$CtUnnamedModule"));

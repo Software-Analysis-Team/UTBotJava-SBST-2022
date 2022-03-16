@@ -1,35 +1,38 @@
 package com.alibaba.fastjson.parser;
 
 import org.junit.Test;
-import com.alibaba.fastjson.util.IdentityHashMap;
-import java.lang.reflect.Method;
 import java.util.Properties;
+import java.lang.reflect.Method;
+import com.alibaba.fastjson.util.IdentityHashMap;
 import com.alibaba.fastjson.parser.deserializer.MapDeserializer;
-import com.alibaba.fastjson.serializer.ReferenceCodec;
-import com.alibaba.fastjson.serializer.BigDecimalCodec;
+import com.alibaba.fastjson.serializer.MiscCodec;
+import com.alibaba.fastjson.serializer.BooleanCodec;
 import com.alibaba.fastjson.parser.deserializer.NumberDeserializer;
 import com.alibaba.fastjson.serializer.StringCodec;
-import com.alibaba.fastjson.serializer.MiscCodec;
+import com.alibaba.fastjson.serializer.AtomicCodec;
 import com.alibaba.fastjson.serializer.LongCodec;
 import com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer;
-import com.alibaba.fastjson.parser.deserializer.TimeDeserializer;
-import com.alibaba.fastjson.serializer.CollectionCodec;
+import com.alibaba.fastjson.serializer.DateCodec;
 import com.alibaba.fastjson.serializer.FloatCodec;
 import com.alibaba.fastjson.serializer.CharArrayCodec;
-import com.alibaba.fastjson.serializer.BooleanCodec;
-import com.alibaba.fastjson.serializer.DateCodec;
-import com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer;
-import com.alibaba.fastjson.serializer.IntegerCodec;
-import com.alibaba.fastjson.serializer.BigIntegerCodec;
-import com.alibaba.fastjson.serializer.CharacterCodec;
-import com.alibaba.fastjson.serializer.AtomicCodec;
-import com.alibaba.fastjson.parser.deserializer.StackTraceElementDeserializer;
+import com.alibaba.fastjson.serializer.ReferenceCodec;
 import com.alibaba.fastjson.serializer.CalendarCodec;
+import com.alibaba.fastjson.parser.deserializer.TimeDeserializer;
 import com.alibaba.fastjson.parser.deserializer.JSONPDeserializer;
+import com.alibaba.fastjson.serializer.IntegerCodec;
+import com.alibaba.fastjson.parser.deserializer.StackTraceElementDeserializer;
+import com.alibaba.fastjson.serializer.CollectionCodec;
+import com.alibaba.fastjson.serializer.BigDecimalCodec;
+import com.alibaba.fastjson.serializer.BigIntegerCodec;
+import com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer;
+import com.alibaba.fastjson.serializer.CharacterCodec;
 import com.alibaba.fastjson.util.FieldInfo;
 import java.lang.reflect.Type;
 import com.alibaba.fastjson.parser.deserializer.ObjectDeserializer;
-import java.util.LinkedHashMap;
+import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
+import com.alibaba.fastjson.util.JavaBeanInfo;
+import com.alibaba.fastjson.parser.deserializer.FieldDeserializer;
+import com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer;
 import com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory;
 import com.alibaba.fastjson.util.ASMClassLoader;
 import java.security.ProtectionDomain;
@@ -113,10 +116,11 @@ import sun.security.x509.NetscapeCertTypeExtension;
 import sun.security.x509.SubjectAlternativeNameExtension;
 import sun.security.x509.SubjectKeyIdentifierExtension;
 import java.security.Timestamp;
+import java.util.LinkedHashMap;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Array;
 import java.util.Objects;
 import java.util.Map;
 import java.util.List;
@@ -127,22 +131,10 @@ import java.util.Iterator;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertNull;
-import static java.lang.reflect.Array.get;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class ParserConfigTest {
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAddDeny1() throws Throwable  {
-        ParserConfig parserConfig = new ParserConfig();
-        String string = new String();
-        
-        parserConfig.addDeny(string);
-    }
-    ///endregion
-    
     ///region
     
     @Test(timeout = 10000)
@@ -179,102 +171,10 @@ public class ParserConfigTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testClearDeserializers2() throws Throwable  {
-        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
-        java.lang.Object[] entryArray = createArray("com.alibaba.fastjson.util.IdentityHashMap$Entry", 9);
-        setField(identityHashMap, "buckets", entryArray);
-        setField(parserConfig, "deserializers", identityHashMap);
-        
-        Object parserConfigDeserializers = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializersDeserializersBuckets = getFieldValue(parserConfigDeserializers, "buckets");
-        Object initialParserConfigDeserializersBuckets0 = get(parserConfigDeserializersDeserializersBuckets, 0);
-        Object parserConfigDeserializers1 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers1DeserializersBuckets = getFieldValue(parserConfigDeserializers1, "buckets");
-        Object initialParserConfigDeserializersBuckets1 = get(parserConfigDeserializers1DeserializersBuckets, 1);
-        Object parserConfigDeserializers2 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers2DeserializersBuckets = getFieldValue(parserConfigDeserializers2, "buckets");
-        Object initialParserConfigDeserializersBuckets2 = get(parserConfigDeserializers2DeserializersBuckets, 2);
-        Object parserConfigDeserializers3 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers3DeserializersBuckets = getFieldValue(parserConfigDeserializers3, "buckets");
-        Object initialParserConfigDeserializersBuckets3 = get(parserConfigDeserializers3DeserializersBuckets, 3);
-        Object parserConfigDeserializers4 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers4DeserializersBuckets = getFieldValue(parserConfigDeserializers4, "buckets");
-        Object initialParserConfigDeserializersBuckets4 = get(parserConfigDeserializers4DeserializersBuckets, 4);
-        Object parserConfigDeserializers5 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers5DeserializersBuckets = getFieldValue(parserConfigDeserializers5, "buckets");
-        Object initialParserConfigDeserializersBuckets5 = get(parserConfigDeserializers5DeserializersBuckets, 5);
-        Object parserConfigDeserializers6 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers6DeserializersBuckets = getFieldValue(parserConfigDeserializers6, "buckets");
-        Object initialParserConfigDeserializersBuckets6 = get(parserConfigDeserializers6DeserializersBuckets, 6);
-        Object parserConfigDeserializers7 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers7DeserializersBuckets = getFieldValue(parserConfigDeserializers7, "buckets");
-        Object initialParserConfigDeserializersBuckets7 = get(parserConfigDeserializers7DeserializersBuckets, 7);
-        Object parserConfigDeserializers8 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers8DeserializersBuckets = getFieldValue(parserConfigDeserializers8, "buckets");
-        Object initialParserConfigDeserializersBuckets8 = get(parserConfigDeserializers8DeserializersBuckets, 8);
-        
-        parserConfig.clearDeserializers();
-        
-        Object parserConfigDeserializers9 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers9DeserializersBuckets = getFieldValue(parserConfigDeserializers9, "buckets");
-        Object finalParserConfigDeserializersBuckets0 = get(parserConfigDeserializers9DeserializersBuckets, 0);
-        Object parserConfigDeserializers10 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers10DeserializersBuckets = getFieldValue(parserConfigDeserializers10, "buckets");
-        Object finalParserConfigDeserializersBuckets1 = get(parserConfigDeserializers10DeserializersBuckets, 1);
-        Object parserConfigDeserializers11 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers11DeserializersBuckets = getFieldValue(parserConfigDeserializers11, "buckets");
-        Object finalParserConfigDeserializersBuckets2 = get(parserConfigDeserializers11DeserializersBuckets, 2);
-        Object parserConfigDeserializers12 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers12DeserializersBuckets = getFieldValue(parserConfigDeserializers12, "buckets");
-        Object finalParserConfigDeserializersBuckets3 = get(parserConfigDeserializers12DeserializersBuckets, 3);
-        Object parserConfigDeserializers13 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers13DeserializersBuckets = getFieldValue(parserConfigDeserializers13, "buckets");
-        Object finalParserConfigDeserializersBuckets4 = get(parserConfigDeserializers13DeserializersBuckets, 4);
-        Object parserConfigDeserializers14 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers14DeserializersBuckets = getFieldValue(parserConfigDeserializers14, "buckets");
-        Object finalParserConfigDeserializersBuckets5 = get(parserConfigDeserializers14DeserializersBuckets, 5);
-        Object parserConfigDeserializers15 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers15DeserializersBuckets = getFieldValue(parserConfigDeserializers15, "buckets");
-        Object finalParserConfigDeserializersBuckets6 = get(parserConfigDeserializers15DeserializersBuckets, 6);
-        Object parserConfigDeserializers16 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers16DeserializersBuckets = getFieldValue(parserConfigDeserializers16, "buckets");
-        Object finalParserConfigDeserializersBuckets7 = get(parserConfigDeserializers16DeserializersBuckets, 7);
-        Object parserConfigDeserializers17 = getFieldValue(parserConfig, "deserializers");
-        Object parserConfigDeserializers17DeserializersBuckets = getFieldValue(parserConfigDeserializers17, "buckets");
-        Object finalParserConfigDeserializersBuckets8 = get(parserConfigDeserializers17DeserializersBuckets, 8);
-        
-        assertFalse(initialParserConfigDeserializersBuckets0 == finalParserConfigDeserializersBuckets0);
-        
-        assertNull(finalParserConfigDeserializersBuckets1);
-        
-        assertNull(finalParserConfigDeserializersBuckets2);
-        
-        assertNull(finalParserConfigDeserializersBuckets3);
-        
-        assertNull(finalParserConfigDeserializersBuckets4);
-        
-        assertNull(finalParserConfigDeserializersBuckets5);
-        
-        assertNull(finalParserConfigDeserializersBuckets6);
-        
-        assertNull(finalParserConfigDeserializersBuckets7);
-        
-        assertNull(finalParserConfigDeserializersBuckets8);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testInitDeserializers1() throws Throwable  {
+    public void testSetAutoTypeSupport1() throws Throwable  {
         ParserConfig parserConfig = new ParserConfig();
         
-        Class parserConfigClazz = Class.forName("com.alibaba.fastjson.parser.ParserConfig");
-        Method initDeserializersMethod = parserConfigClazz.getDeclaredMethod("initDeserializers");
-        initDeserializersMethod.setAccessible(true);
-        java.lang.Object[] initDeserializersMethodArguments = new java.lang.Object[0];
-        initDeserializersMethod.invoke(parserConfig, initDeserializersMethodArguments);
+        parserConfig.setAutoTypeSupport(false);
     }
     ///endregion
     
@@ -286,16 +186,6 @@ public class ParserConfigTest {
         Properties properties = new Properties();
         
         parserConfig.configFromPropety(properties);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testConfigFromPropety2() throws Throwable  {
-        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        
-        parserConfig.configFromPropety(null);
     }
     ///endregion
     
@@ -352,52 +242,6 @@ public class ParserConfigTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testIsAutoTypeSupport1() throws Throwable  {
-        ParserConfig parserConfig = new ParserConfig();
-        
-        boolean actual = parserConfig.isAutoTypeSupport();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsAutoTypeSupport2() throws Throwable  {
-        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        setField(parserConfig, "autoTypeSupport", false);
-        
-        boolean actual = parserConfig.isAutoTypeSupport();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetAutoTypeSupport1() throws Throwable  {
-        ParserConfig parserConfig = new ParserConfig();
-        
-        parserConfig.setAutoTypeSupport(false);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetAutoTypeSupport2() throws Throwable  {
-        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        setField(parserConfig, "autoTypeSupport", false);
-        
-        parserConfig.setAutoTypeSupport(false);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testIsAsmEnable1() throws Throwable  {
         ParserConfig parserConfig = new ParserConfig();
         
@@ -433,6 +277,17 @@ public class ParserConfigTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testSetAsmEnable2() throws Throwable  {
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        setField(parserConfig, "asmEnable", false);
+        
+        parserConfig.setAsmEnable(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testGetDerializers1() throws Throwable  {
         ParserConfig parserConfig = new ParserConfig();
         
@@ -451,18 +306,21 @@ public class ParserConfigTest {
         entryArray[144] = entry;
         Object entry1 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry1, "hashCode", 400064818);
-        Class class2 = SoftReference.class;
+        Class class2 = java.util.UUID.class;
         setField(entry1, "key", class2);
-        ReferenceCodec referenceCodec = ((ReferenceCodec) createInstance("com.alibaba.fastjson.serializer.ReferenceCodec"));
-        setField(entry1, "value", referenceCodec);
+        MiscCodec miscCodec = ((MiscCodec) createInstance("com.alibaba.fastjson.serializer.MiscCodec"));
+        setField(miscCodec, "FILE_RELATIVE_PATH_SUPPORT", false);
+        setField(miscCodec, "method_paths_get", null);
+        setField(miscCodec, "method_paths_get_error", false);
+        setField(entry1, "value", miscCodec);
         setField(entry1, "next", null);
         entryArray[306] = entry1;
         Object entry2 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry2, "hashCode", 1866768727);
-        Class class3 = java.math.BigDecimal.class;
+        Class class3 = java.util.concurrent.atomic.AtomicBoolean.class;
         setField(entry2, "key", class3);
-        BigDecimalCodec bigDecimalCodec = ((BigDecimalCodec) createInstance("com.alibaba.fastjson.serializer.BigDecimalCodec"));
-        setField(entry2, "value", bigDecimalCodec);
+        BooleanCodec booleanCodec = ((BooleanCodec) createInstance("com.alibaba.fastjson.serializer.BooleanCodec"));
+        setField(entry2, "value", booleanCodec);
         setField(entry2, "next", null);
         entryArray[343] = entry2;
         Object entry3 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -486,25 +344,22 @@ public class ParserConfigTest {
         setField(entry5, "hashCode", 2060468723);
         Class class6 = File.class;
         setField(entry5, "key", class6);
-        MiscCodec miscCodec = ((MiscCodec) createInstance("com.alibaba.fastjson.serializer.MiscCodec"));
-        setField(miscCodec, "FILE_RELATIVE_PATH_SUPPORT", false);
-        setField(miscCodec, "method_paths_get", null);
-        setField(miscCodec, "method_paths_get_error", false);
         setField(entry5, "value", miscCodec);
         setField(entry5, "next", null);
         entryArray[499] = entry5;
         Object entry6 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry6, "hashCode", 919446210);
-        Class class7 = java.net.InetSocketAddress.class;
+        Class class7 = URI.class;
         setField(entry6, "key", class7);
         setField(entry6, "value", miscCodec);
         setField(entry6, "next", null);
         entryArray[706] = entry6;
         Object entry7 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry7, "hashCode", 1209770703);
-        Class class8 = Number.class;
+        Class class8 = java.util.concurrent.atomic.AtomicIntegerArray.class;
         setField(entry7, "key", class8);
-        setField(entry7, "value", numberDeserializer);
+        AtomicCodec atomicCodec = ((AtomicCodec) createInstance("com.alibaba.fastjson.serializer.AtomicCodec"));
+        setField(entry7, "value", atomicCodec);
         setField(entry7, "next", null);
         entryArray[719] = entry7;
         Object entry8 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -525,7 +380,7 @@ public class ParserConfigTest {
         entryArray[923] = entry9;
         Object entry10 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry10, "hashCode", 519979933);
-        Class class11 = java.io.Serializable.class;
+        Class class11 = Cloneable.class;
         setField(entry10, "key", class11);
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         setField(entry10, "value", javaObjectDeserializer);
@@ -540,32 +395,31 @@ public class ParserConfigTest {
         entryArray[980] = entry11;
         Object entry12 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry12, "hashCode", 1943634922);
-        Class class13 = java.sql.Time.class;
+        Class class13 = Date.class;
         setField(entry12, "key", class13);
-        TimeDeserializer timeDeserializer = ((TimeDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.TimeDeserializer"));
-        setField(entry12, "value", timeDeserializer);
+        DateCodec dateCodec = ((DateCodec) createInstance("com.alibaba.fastjson.serializer.DateCodec"));
+        setField(entry12, "value", dateCodec);
         setField(entry12, "next", null);
         entryArray[1002] = entry12;
         Object entry13 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry13, "hashCode", 1574749319);
-        Class class14 = java.util.UUID.class;
+        Class class14 = java.util.TimeZone.class;
         setField(entry13, "key", class14);
         setField(entry13, "value", miscCodec);
         setField(entry13, "next", null);
         entryArray[1159] = entry13;
         Object entry14 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry14, "hashCode", 1112737073);
-        Class class15 = java.util.Collection.class;
+        Class class15 = StringBuffer.class;
         setField(entry14, "key", class15);
-        CollectionCodec collectionCodec = ((CollectionCodec) createInstance("com.alibaba.fastjson.serializer.CollectionCodec"));
-        setField(entry14, "value", collectionCodec);
+        setField(entry14, "value", stringCodec);
         setField(entry14, "next", null);
         entryArray[1329] = entry14;
         Object entry15 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry15, "hashCode", 428696898);
-        Class class16 = com.alibaba.fastjson.JSONArray.class;
+        Class class16 = com.alibaba.fastjson.JSONObject.class;
         setField(entry15, "key", class16);
-        setField(entry15, "value", collectionCodec);
+        setField(entry15, "value", mapDeserializer);
         setField(entry15, "next", null);
         entryArray[1346] = entry15;
         Object entry16 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -586,26 +440,26 @@ public class ParserConfigTest {
         setField(entry17, "next", null);
         entryArray[1397] = entry17;
         Object entry18 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry18, "hashCode", 668312960);
-        Class class19 = com.alibaba.fastjson.JSONObject.class;
+        setField(entry18, "hashCode", 1976804832);
+        Class class19 = HashMap.class;
         setField(entry18, "key", class19);
         setField(entry18, "value", mapDeserializer);
         setField(entry18, "next", null);
-        entryArray[1408] = entry18;
+        entryArray[1504] = entry18;
         Object entry19 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry19, "hashCode", 1976804832);
-        Class class20 = TreeMap.class;
+        setField(entry19, "hashCode", 3540494);
+        Class class20 = Number.class;
         setField(entry19, "key", class20);
-        setField(entry19, "value", mapDeserializer);
+        setField(entry19, "value", numberDeserializer);
         setField(entry19, "next", null);
-        entryArray[1504] = entry19;
+        entryArray[1550] = entry19;
         Object entry20 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry20, "hashCode", 3540494);
-        Class class21 = java.nio.charset.Charset.class;
+        setField(entry20, "hashCode", 1961002599);
+        Class class21 = java.util.concurrent.ConcurrentMap.class;
         setField(entry20, "key", class21);
-        setField(entry20, "value", miscCodec);
+        setField(entry20, "value", mapDeserializer);
         setField(entry20, "next", null);
-        entryArray[1550] = entry20;
+        entryArray[1639] = entry20;
         Object entry21 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry21, "hashCode", 471910020);
         Class class22 = char[].class;
@@ -623,46 +477,47 @@ public class ParserConfigTest {
         entryArray[1674] = entry22;
         Object entry23 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry23, "hashCode", 1593165620);
-        Class class24 = java.util.Locale.class;
+        Class class24 = java.util.Currency.class;
         setField(entry23, "key", class24);
         setField(entry23, "value", miscCodec);
         setField(entry23, "next", null);
         entryArray[1844] = entry23;
         Object entry24 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry24, "hashCode", 199657303);
-        Class class25 = Cloneable.class;
+        Class class25 = Comparable.class;
         setField(entry24, "key", class25);
         setField(entry24, "value", javaObjectDeserializer);
         setField(entry24, "next", null);
         entryArray[1879] = entry24;
         Object entry25 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry25, "hashCode", 1513867245);
-        Class class26 = StringBuffer.class;
+        Class class26 = StringBuilder.class;
         setField(entry25, "key", class26);
         setField(entry25, "value", stringCodec);
         setField(entry25, "next", null);
         entryArray[2029] = entry25;
         Object entry26 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry26, "hashCode", 1808009213);
-        Class class27 = java.util.concurrent.atomic.AtomicBoolean.class;
+        Class class27 = java.lang.ref.WeakReference.class;
         setField(entry26, "key", class27);
-        BooleanCodec booleanCodec = ((BooleanCodec) createInstance("com.alibaba.fastjson.serializer.BooleanCodec"));
-        setField(entry26, "value", booleanCodec);
+        ReferenceCodec referenceCodec = ((ReferenceCodec) createInstance("com.alibaba.fastjson.serializer.ReferenceCodec"));
+        setField(entry26, "value", referenceCodec);
         setField(entry26, "next", null);
         entryArray[2045] = entry26;
         Object entry27 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry27, "hashCode", 917768476);
-        Class class28 = java.net.Inet4Address.class;
+        Class class28 = java.net.Inet6Address.class;
         setField(entry27, "key", class28);
         setField(entry27, "value", miscCodec);
         setField(entry27, "next", null);
         entryArray[2332] = entry27;
         Object entry28 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry28, "hashCode", 916835004);
-        Class class29 = Date.class;
+        Class class29 = javax.xml.datatype.XMLGregorianCalendar.class;
         setField(entry28, "key", class29);
-        DateCodec dateCodec = ((DateCodec) createInstance("com.alibaba.fastjson.serializer.DateCodec"));
-        setField(entry28, "value", dateCodec);
+        CalendarCodec calendarCodec = ((CalendarCodec) createInstance("com.alibaba.fastjson.serializer.CalendarCodec"));
+        setField(calendarCodec, "dateFactory", null);
+        setField(entry28, "value", calendarCodec);
         setField(entry28, "next", null);
         entryArray[2748] = entry28;
         Object entry29 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -674,89 +529,91 @@ public class ParserConfigTest {
         entryArray[2855] = entry29;
         Object entry30 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry30, "hashCode", 384617262);
-        Class class31 = java.util.TimeZone.class;
+        Class class31 = java.util.Locale.class;
         setField(entry30, "key", class31);
         setField(entry30, "value", miscCodec);
         setField(entry30, "next", null);
         entryArray[2862] = entry30;
         Object entry31 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry31, "hashCode", 1911155630);
-        Class class32 = java.sql.Date.class;
+        Class class32 = java.sql.Time.class;
         setField(entry31, "key", class32);
-        SqlDateDeserializer sqlDateDeserializer = ((SqlDateDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer"));
-        setField(sqlDateDeserializer, "timestamp", false);
-        setField(entry31, "value", sqlDateDeserializer);
+        TimeDeserializer timeDeserializer = ((TimeDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.TimeDeserializer"));
+        setField(entry31, "value", timeDeserializer);
         setField(entry31, "next", null);
         entryArray[2990] = entry31;
         Object entry32 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry32, "hashCode", 2065951873);
-        Class class33 = Integer.class;
+        setField(entry32, "hashCode", 2115628016);
+        Class class33 = com.alibaba.fastjson.JSONPObject.class;
         setField(entry32, "key", class33);
+        JSONPDeserializer jSONPDeserializer = ((JSONPDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JSONPDeserializer"));
+        setField(entry32, "value", jSONPDeserializer);
+        setField(entry32, "next", null);
+        entryArray[3056] = entry32;
+        Object entry33 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
+        setField(entry33, "hashCode", 2065951873);
+        Class class34 = Integer.class;
+        setField(entry33, "key", class34);
         IntegerCodec integerCodec = ((IntegerCodec) createInstance("com.alibaba.fastjson.serializer.IntegerCodec"));
         IntegerCodec.instance = integerCodec;
-        setField(entry32, "value", integerCodec);
-        setField(entry32, "next", null);
-        entryArray[3201] = entry32;
-        Object entry33 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry33, "hashCode", 617901222);
-        Class class34 = Object.class;
-        setField(entry33, "key", class34);
-        setField(entry33, "value", javaObjectDeserializer);
+        setField(entry33, "value", integerCodec);
         setField(entry33, "next", null);
-        entryArray[3238] = entry33;
+        entryArray[3201] = entry33;
         Object entry34 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry34, "hashCode", 2111991224);
-        Class class35 = Double.class;
+        setField(entry34, "hashCode", 617901222);
+        Class class35 = Object.class;
         setField(entry34, "key", class35);
-        setField(entry34, "value", numberDeserializer);
+        setField(entry34, "value", javaObjectDeserializer);
         setField(entry34, "next", null);
-        entryArray[3512] = entry34;
+        entryArray[3238] = entry34;
         Object entry35 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry35, "hashCode", 315805187);
-        Class class36 = java.io.Closeable.class;
+        setField(entry35, "hashCode", 1093864783);
+        Class class36 = StackTraceElement.class;
         setField(entry35, "key", class36);
-        setField(entry35, "value", javaObjectDeserializer);
+        StackTraceElementDeserializer stackTraceElementDeserializer = ((StackTraceElementDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.StackTraceElementDeserializer"));
+        setField(entry35, "value", stackTraceElementDeserializer);
         setField(entry35, "next", null);
-        entryArray[3587] = entry35;
+        entryArray[3407] = entry35;
         Object entry36 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry36, "hashCode", 2101636817);
-        Class class37 = Comparable.class;
+        setField(entry36, "hashCode", 2111991224);
+        Class class37 = Double.class;
         setField(entry36, "key", class37);
-        setField(entry36, "value", javaObjectDeserializer);
+        setField(entry36, "value", numberDeserializer);
         setField(entry36, "next", null);
-        entryArray[3793] = entry36;
+        entryArray[3512] = entry36;
         Object entry37 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry37, "hashCode", 2108297149);
-        Class class38 = Map.class;
+        setField(entry37, "hashCode", 2101636817);
+        Class class38 = java.io.Closeable.class;
         setField(entry37, "key", class38);
-        setField(entry37, "value", mapDeserializer);
+        setField(entry37, "value", javaObjectDeserializer);
         setField(entry37, "next", null);
-        entryArray[4029] = entry37;
+        entryArray[3793] = entry37;
         Object entry38 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry38, "hashCode", 1168420930);
-        Class class39 = com.alibaba.fastjson.JSONPath.class;
+        setField(entry38, "hashCode", 2108297149);
+        Class class39 = java.util.Collection.class;
         setField(entry38, "key", class39);
-        setField(entry38, "value", miscCodec);
+        CollectionCodec collectionCodec = ((CollectionCodec) createInstance("com.alibaba.fastjson.serializer.CollectionCodec"));
+        setField(entry38, "value", collectionCodec);
         setField(entry38, "next", null);
-        entryArray[4162] = entry38;
+        entryArray[4029] = entry38;
         Object entry39 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry39, "hashCode", 895766599);
-        Class class40 = BigInteger.class;
+        Class class40 = java.math.BigDecimal.class;
         setField(entry39, "key", class40);
-        BigIntegerCodec bigIntegerCodec = ((BigIntegerCodec) createInstance("com.alibaba.fastjson.serializer.BigIntegerCodec"));
-        setField(entry39, "value", bigIntegerCodec);
+        BigDecimalCodec bigDecimalCodec = ((BigDecimalCodec) createInstance("com.alibaba.fastjson.serializer.BigDecimalCodec"));
+        setField(entry39, "value", bigDecimalCodec);
         setField(entry39, "next", null);
         entryArray[4167] = entry39;
         Object entry40 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry40, "hashCode", 1181815135);
-        Class class41 = java.net.Inet6Address.class;
+        Class class41 = java.net.InetSocketAddress.class;
         setField(entry40, "key", class41);
         setField(entry40, "value", miscCodec);
         setField(entry40, "next", null);
         entryArray[4447] = entry40;
         Object entry41 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry41, "hashCode", 57241990);
-        Class class42 = URI.class;
+        Class class42 = URL.class;
         setField(entry41, "key", class42);
         setField(entry41, "value", miscCodec);
         setField(entry41, "next", null);
@@ -784,9 +641,10 @@ public class ParserConfigTest {
         entryArray[4823] = entry44;
         Object entry45 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry45, "hashCode", 404648734);
-        Class class46 = StringBuilder.class;
+        Class class46 = BigInteger.class;
         setField(entry45, "key", class46);
-        setField(entry45, "value", stringCodec);
+        BigIntegerCodec bigIntegerCodec = ((BigIntegerCodec) createInstance("com.alibaba.fastjson.serializer.BigIntegerCodec"));
+        setField(entry45, "value", bigIntegerCodec);
         setField(entry45, "next", null);
         entryArray[4894] = entry45;
         Object entry46 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -798,25 +656,25 @@ public class ParserConfigTest {
         entryArray[4975] = entry46;
         Object entry47 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry47, "hashCode", 1530295320);
-        Class class48 = java.util.regex.Pattern.class;
+        Class class48 = java.nio.charset.Charset.class;
         setField(entry47, "key", class48);
         setField(entry47, "value", miscCodec);
         setField(entry47, "next", null);
         entryArray[5144] = entry47;
         Object entry48 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry48, "hashCode", 360936478);
-        Class class49 = URL.class;
+        Class class49 = java.util.regex.Pattern.class;
         setField(entry48, "key", class49);
         setField(entry48, "value", miscCodec);
         setField(entry48, "next", null);
         entryArray[5150] = entry48;
         Object entry49 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry49, "hashCode", 1364497552);
-        Class class50 = java.sql.Timestamp.class;
+        Class class50 = java.sql.Date.class;
         setField(entry49, "key", class50);
-        SqlDateDeserializer sqlDateDeserializer1 = ((SqlDateDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer"));
-        setField(sqlDateDeserializer1, "timestamp", true);
-        setField(entry49, "value", sqlDateDeserializer1);
+        SqlDateDeserializer sqlDateDeserializer = ((SqlDateDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer"));
+        setField(sqlDateDeserializer, "timestamp", false);
+        setField(entry49, "value", sqlDateDeserializer);
         setField(entry49, "next", null);
         entryArray[5264] = entry49;
         Object entry50 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -829,142 +687,139 @@ public class ParserConfigTest {
         entryArray[5397] = entry50;
         Object entry51 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry51, "hashCode", 776484396);
-        Class class52 = java.util.concurrent.atomic.AtomicLongArray.class;
+        Class class52 = java.io.Serializable.class;
         setField(entry51, "key", class52);
-        AtomicCodec atomicCodec = ((AtomicCodec) createInstance("com.alibaba.fastjson.serializer.AtomicCodec"));
-        setField(entry51, "value", atomicCodec);
+        setField(entry51, "value", javaObjectDeserializer);
         setField(entry51, "next", null);
         entryArray[5676] = entry51;
         Object entry52 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry52, "hashCode", 512456259);
-        Class class53 = java.text.SimpleDateFormat.class;
+        Class class53 = java.sql.Timestamp.class;
         setField(entry52, "key", class53);
-        setField(entry52, "value", miscCodec);
+        SqlDateDeserializer sqlDateDeserializer1 = ((SqlDateDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer"));
+        setField(sqlDateDeserializer1, "timestamp", true);
+        setField(entry52, "value", sqlDateDeserializer1);
         setField(entry52, "next", null);
         entryArray[5699] = entry52;
         Object entry53 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry53, "hashCode", 540325452);
-        Class class54 = HashMap.class;
+        setField(entry53, "hashCode", 1313953385);
+        Class class54 = byte.class;
         setField(entry53, "key", class54);
-        setField(entry53, "value", mapDeserializer);
+        setField(entry53, "value", numberDeserializer);
         setField(entry53, "next", null);
-        entryArray[5708] = entry53;
+        entryArray[5737] = entry53;
         Object entry54 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry54, "hashCode", 1313953385);
-        Class class55 = byte.class;
+        setField(entry54, "hashCode", 498931366);
+        Class class55 = java.util.concurrent.atomic.AtomicLong.class;
         setField(entry54, "key", class55);
-        setField(entry54, "value", numberDeserializer);
+        setField(entry54, "value", longCodec);
         setField(entry54, "next", null);
-        entryArray[5737] = entry54;
+        entryArray[5798] = entry54;
         Object entry55 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry55, "hashCode", 498931366);
-        Class class56 = java.util.concurrent.atomic.AtomicLong.class;
+        setField(entry55, "hashCode", 249034932);
+        Class class56 = java.util.concurrent.atomic.AtomicReference.class;
         setField(entry55, "key", class56);
-        setField(entry55, "value", longCodec);
+        setField(entry55, "value", referenceCodec);
         setField(entry55, "next", null);
-        entryArray[5798] = entry55;
+        entryArray[6324] = entry55;
         Object entry56 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry56, "hashCode", 940857381);
-        Class class57 = StackTraceElement.class;
+        setField(entry56, "hashCode", 1126185196);
+        Class class57 = Map.class;
         setField(entry56, "key", class57);
-        StackTraceElementDeserializer stackTraceElementDeserializer = ((StackTraceElementDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.StackTraceElementDeserializer"));
-        setField(entry56, "value", stackTraceElementDeserializer);
+        setField(entry56, "value", mapDeserializer);
         setField(entry56, "next", null);
-        entryArray[6181] = entry56;
+        entryArray[6380] = entry56;
         Object entry57 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry57, "hashCode", 249034932);
-        Class class58 = java.util.concurrent.atomic.AtomicReference.class;
+        setField(entry57, "hashCode", 681842940);
+        Class class58 = int.class;
         setField(entry57, "key", class58);
-        setField(entry57, "value", referenceCodec);
+        setField(entry57, "value", integerCodec);
         setField(entry57, "next", null);
-        entryArray[6324] = entry57;
+        entryArray[6396] = entry57;
         Object entry58 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry58, "hashCode", 1902237905);
-        Class class59 = java.util.concurrent.ConcurrentMap.class;
+        setField(entry58, "hashCode", 932583850);
+        Class class59 = Float.class;
         setField(entry58, "key", class59);
-        setField(entry58, "value", mapDeserializer);
+        setField(entry58, "value", floatCodec);
         setField(entry58, "next", null);
-        entryArray[6353] = entry58;
+        entryArray[6570] = entry58;
         Object entry59 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry59, "hashCode", 1126185196);
-        Class class60 = javax.xml.datatype.XMLGregorianCalendar.class;
+        setField(entry59, "hashCode", 914504136);
+        Class class60 = java.util.Calendar.class;
         setField(entry59, "key", class60);
-        CalendarCodec calendarCodec = ((CalendarCodec) createInstance("com.alibaba.fastjson.serializer.CalendarCodec"));
-        setField(calendarCodec, "dateFactory", null);
         setField(entry59, "value", calendarCodec);
         setField(entry59, "next", null);
-        entryArray[6380] = entry59;
+        entryArray[6600] = entry59;
         Object entry60 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry60, "hashCode", 681842940);
-        Class class61 = int.class;
+        setField(entry60, "hashCode", 380812044);
+        Class class61 = com.alibaba.fastjson.JSONPath.class;
         setField(entry60, "key", class61);
-        setField(entry60, "value", integerCodec);
+        setField(entry60, "value", miscCodec);
         setField(entry60, "next", null);
-        entryArray[6396] = entry60;
+        entryArray[6924] = entry60;
         Object entry61 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry61, "hashCode", 932583850);
-        Class class62 = Float.class;
+        setField(entry61, "hashCode", 1581267786);
+        Class class62 = com.alibaba.fastjson.JSONArray.class;
         setField(entry61, "key", class62);
-        setField(entry61, "value", floatCodec);
+        setField(entry61, "value", collectionCodec);
         setField(entry61, "next", null);
-        entryArray[6570] = entry61;
+        entryArray[6986] = entry61;
         Object entry62 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry62, "hashCode", 914504136);
-        Class class63 = java.util.Calendar.class;
+        setField(entry62, "hashCode", 1579572132);
+        Class class63 = Character.class;
         setField(entry62, "key", class63);
-        setField(entry62, "value", calendarCodec);
+        setField(entry62, "value", characterCodec);
         setField(entry62, "next", null);
-        entryArray[6600] = entry62;
+        entryArray[7076] = entry62;
         Object entry63 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry63, "hashCode", 1579572132);
-        Class class64 = Character.class;
+        setField(entry63, "hashCode", 1959910454);
+        Class class64 = TreeMap.class;
         setField(entry63, "key", class64);
-        setField(entry63, "value", characterCodec);
+        setField(entry63, "value", mapDeserializer);
         setField(entry63, "next", null);
-        entryArray[7076] = entry63;
+        entryArray[7222] = entry63;
         Object entry64 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry64, "hashCode", 1186339926);
-        Class class65 = java.util.concurrent.atomic.AtomicIntegerArray.class;
+        Class class65 = java.util.concurrent.atomic.AtomicLongArray.class;
         setField(entry64, "key", class65);
         setField(entry64, "value", atomicCodec);
         setField(entry64, "next", null);
         entryArray[7254] = entry64;
         Object entry65 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry65, "hashCode", 225909961);
-        Class class66 = java.util.Currency.class;
+        setField(entry65, "hashCode", 1062714541);
+        Class class66 = java.text.SimpleDateFormat.class;
         setField(entry65, "key", class66);
         setField(entry65, "value", miscCodec);
         setField(entry65, "next", null);
-        entryArray[7369] = entry65;
+        entryArray[7341] = entry65;
         Object entry66 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry66, "hashCode", 834600351);
-        Class class67 = List.class;
+        setField(entry66, "hashCode", 225909961);
+        Class class67 = java.net.Inet4Address.class;
         setField(entry66, "key", class67);
-        setField(entry66, "value", collectionCodec);
+        setField(entry66, "value", miscCodec);
         setField(entry66, "next", null);
-        entryArray[7583] = entry66;
+        entryArray[7369] = entry66;
         Object entry67 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry67, "hashCode", 2694936);
-        Class class68 = java.lang.ref.WeakReference.class;
+        setField(entry67, "hashCode", 834600351);
+        Class class68 = List.class;
         setField(entry67, "key", class68);
-        setField(entry67, "value", referenceCodec);
+        setField(entry67, "value", collectionCodec);
         setField(entry67, "next", null);
-        entryArray[7960] = entry67;
+        entryArray[7583] = entry67;
         Object entry68 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry68, "hashCode", 989110044);
-        Class class69 = boolean.class;
+        setField(entry68, "hashCode", 2694936);
+        Class class69 = SoftReference.class;
         setField(entry68, "key", class69);
-        setField(entry68, "value", booleanCodec);
+        setField(entry68, "value", referenceCodec);
         setField(entry68, "next", null);
-        entryArray[7964] = entry68;
+        entryArray[7960] = entry68;
         Object entry69 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry69, "hashCode", 1047478056);
-        Class class70 = com.alibaba.fastjson.JSONPObject.class;
+        setField(entry69, "hashCode", 989110044);
+        Class class70 = boolean.class;
         setField(entry69, "key", class70);
-        JSONPDeserializer jSONPDeserializer = ((JSONPDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JSONPDeserializer"));
-        setField(entry69, "value", jSONPDeserializer);
+        setField(entry69, "value", booleanCodec);
         setField(entry69, "next", null);
-        entryArray[7976] = entry69;
+        entryArray[7964] = entry69;
         setField(expected, "buckets", entryArray);
         setField(expected, "indexMask", 8191);
         
@@ -1010,18 +865,21 @@ public class ParserConfigTest {
         entryArray[144] = entry;
         Object entry1 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry1, "hashCode", 400064818);
-        Class class2 = SoftReference.class;
+        Class class2 = java.util.UUID.class;
         setField(entry1, "key", class2);
-        ReferenceCodec referenceCodec = ((ReferenceCodec) createInstance("com.alibaba.fastjson.serializer.ReferenceCodec"));
-        setField(entry1, "value", referenceCodec);
+        MiscCodec miscCodec = ((MiscCodec) createInstance("com.alibaba.fastjson.serializer.MiscCodec"));
+        setField(miscCodec, "FILE_RELATIVE_PATH_SUPPORT", false);
+        setField(miscCodec, "method_paths_get", null);
+        setField(miscCodec, "method_paths_get_error", false);
+        setField(entry1, "value", miscCodec);
         setField(entry1, "next", null);
         entryArray[306] = entry1;
         Object entry2 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry2, "hashCode", 1866768727);
-        Class class3 = java.math.BigDecimal.class;
+        Class class3 = java.util.concurrent.atomic.AtomicBoolean.class;
         setField(entry2, "key", class3);
-        BigDecimalCodec bigDecimalCodec = ((BigDecimalCodec) createInstance("com.alibaba.fastjson.serializer.BigDecimalCodec"));
-        setField(entry2, "value", bigDecimalCodec);
+        BooleanCodec booleanCodec = ((BooleanCodec) createInstance("com.alibaba.fastjson.serializer.BooleanCodec"));
+        setField(entry2, "value", booleanCodec);
         setField(entry2, "next", null);
         entryArray[343] = entry2;
         Object entry3 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -1045,25 +903,22 @@ public class ParserConfigTest {
         setField(entry5, "hashCode", 2060468723);
         Class class6 = File.class;
         setField(entry5, "key", class6);
-        MiscCodec miscCodec = ((MiscCodec) createInstance("com.alibaba.fastjson.serializer.MiscCodec"));
-        setField(miscCodec, "FILE_RELATIVE_PATH_SUPPORT", false);
-        setField(miscCodec, "method_paths_get", null);
-        setField(miscCodec, "method_paths_get_error", false);
         setField(entry5, "value", miscCodec);
         setField(entry5, "next", null);
         entryArray[499] = entry5;
         Object entry6 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry6, "hashCode", 919446210);
-        Class class7 = java.net.InetSocketAddress.class;
+        Class class7 = URI.class;
         setField(entry6, "key", class7);
         setField(entry6, "value", miscCodec);
         setField(entry6, "next", null);
         entryArray[706] = entry6;
         Object entry7 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry7, "hashCode", 1209770703);
-        Class class8 = Number.class;
+        Class class8 = java.util.concurrent.atomic.AtomicIntegerArray.class;
         setField(entry7, "key", class8);
-        setField(entry7, "value", numberDeserializer);
+        AtomicCodec atomicCodec = ((AtomicCodec) createInstance("com.alibaba.fastjson.serializer.AtomicCodec"));
+        setField(entry7, "value", atomicCodec);
         setField(entry7, "next", null);
         entryArray[719] = entry7;
         Object entry8 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -1084,7 +939,7 @@ public class ParserConfigTest {
         entryArray[923] = entry9;
         Object entry10 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry10, "hashCode", 519979933);
-        Class class11 = java.io.Serializable.class;
+        Class class11 = Cloneable.class;
         setField(entry10, "key", class11);
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         setField(entry10, "value", javaObjectDeserializer);
@@ -1099,32 +954,31 @@ public class ParserConfigTest {
         entryArray[980] = entry11;
         Object entry12 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry12, "hashCode", 1943634922);
-        Class class13 = java.sql.Time.class;
+        Class class13 = Date.class;
         setField(entry12, "key", class13);
-        TimeDeserializer timeDeserializer = ((TimeDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.TimeDeserializer"));
-        setField(entry12, "value", timeDeserializer);
+        DateCodec dateCodec = ((DateCodec) createInstance("com.alibaba.fastjson.serializer.DateCodec"));
+        setField(entry12, "value", dateCodec);
         setField(entry12, "next", null);
         entryArray[1002] = entry12;
         Object entry13 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry13, "hashCode", 1574749319);
-        Class class14 = java.util.UUID.class;
+        Class class14 = java.util.TimeZone.class;
         setField(entry13, "key", class14);
         setField(entry13, "value", miscCodec);
         setField(entry13, "next", null);
         entryArray[1159] = entry13;
         Object entry14 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry14, "hashCode", 1112737073);
-        Class class15 = java.util.Collection.class;
+        Class class15 = StringBuffer.class;
         setField(entry14, "key", class15);
-        CollectionCodec collectionCodec = ((CollectionCodec) createInstance("com.alibaba.fastjson.serializer.CollectionCodec"));
-        setField(entry14, "value", collectionCodec);
+        setField(entry14, "value", stringCodec);
         setField(entry14, "next", null);
         entryArray[1329] = entry14;
         Object entry15 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry15, "hashCode", 428696898);
-        Class class16 = com.alibaba.fastjson.JSONArray.class;
+        Class class16 = com.alibaba.fastjson.JSONObject.class;
         setField(entry15, "key", class16);
-        setField(entry15, "value", collectionCodec);
+        setField(entry15, "value", mapDeserializer);
         setField(entry15, "next", null);
         entryArray[1346] = entry15;
         Object entry16 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -1145,26 +999,26 @@ public class ParserConfigTest {
         setField(entry17, "next", null);
         entryArray[1397] = entry17;
         Object entry18 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry18, "hashCode", 668312960);
-        Class class19 = com.alibaba.fastjson.JSONObject.class;
+        setField(entry18, "hashCode", 1976804832);
+        Class class19 = HashMap.class;
         setField(entry18, "key", class19);
         setField(entry18, "value", mapDeserializer);
         setField(entry18, "next", null);
-        entryArray[1408] = entry18;
+        entryArray[1504] = entry18;
         Object entry19 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry19, "hashCode", 1976804832);
-        Class class20 = TreeMap.class;
+        setField(entry19, "hashCode", 3540494);
+        Class class20 = Number.class;
         setField(entry19, "key", class20);
-        setField(entry19, "value", mapDeserializer);
+        setField(entry19, "value", numberDeserializer);
         setField(entry19, "next", null);
-        entryArray[1504] = entry19;
+        entryArray[1550] = entry19;
         Object entry20 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry20, "hashCode", 3540494);
-        Class class21 = java.nio.charset.Charset.class;
+        setField(entry20, "hashCode", 1961002599);
+        Class class21 = java.util.concurrent.ConcurrentMap.class;
         setField(entry20, "key", class21);
-        setField(entry20, "value", miscCodec);
+        setField(entry20, "value", mapDeserializer);
         setField(entry20, "next", null);
-        entryArray[1550] = entry20;
+        entryArray[1639] = entry20;
         Object entry21 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry21, "hashCode", 471910020);
         Class class22 = char[].class;
@@ -1182,46 +1036,47 @@ public class ParserConfigTest {
         entryArray[1674] = entry22;
         Object entry23 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry23, "hashCode", 1593165620);
-        Class class24 = java.util.Locale.class;
+        Class class24 = java.util.Currency.class;
         setField(entry23, "key", class24);
         setField(entry23, "value", miscCodec);
         setField(entry23, "next", null);
         entryArray[1844] = entry23;
         Object entry24 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry24, "hashCode", 199657303);
-        Class class25 = Cloneable.class;
+        Class class25 = Comparable.class;
         setField(entry24, "key", class25);
         setField(entry24, "value", javaObjectDeserializer);
         setField(entry24, "next", null);
         entryArray[1879] = entry24;
         Object entry25 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry25, "hashCode", 1513867245);
-        Class class26 = StringBuffer.class;
+        Class class26 = StringBuilder.class;
         setField(entry25, "key", class26);
         setField(entry25, "value", stringCodec);
         setField(entry25, "next", null);
         entryArray[2029] = entry25;
         Object entry26 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry26, "hashCode", 1808009213);
-        Class class27 = java.util.concurrent.atomic.AtomicBoolean.class;
+        Class class27 = java.lang.ref.WeakReference.class;
         setField(entry26, "key", class27);
-        BooleanCodec booleanCodec = ((BooleanCodec) createInstance("com.alibaba.fastjson.serializer.BooleanCodec"));
-        setField(entry26, "value", booleanCodec);
+        ReferenceCodec referenceCodec = ((ReferenceCodec) createInstance("com.alibaba.fastjson.serializer.ReferenceCodec"));
+        setField(entry26, "value", referenceCodec);
         setField(entry26, "next", null);
         entryArray[2045] = entry26;
         Object entry27 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry27, "hashCode", 917768476);
-        Class class28 = java.net.Inet4Address.class;
+        Class class28 = java.net.Inet6Address.class;
         setField(entry27, "key", class28);
         setField(entry27, "value", miscCodec);
         setField(entry27, "next", null);
         entryArray[2332] = entry27;
         Object entry28 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry28, "hashCode", 916835004);
-        Class class29 = Date.class;
+        Class class29 = javax.xml.datatype.XMLGregorianCalendar.class;
         setField(entry28, "key", class29);
-        DateCodec dateCodec = ((DateCodec) createInstance("com.alibaba.fastjson.serializer.DateCodec"));
-        setField(entry28, "value", dateCodec);
+        CalendarCodec calendarCodec = ((CalendarCodec) createInstance("com.alibaba.fastjson.serializer.CalendarCodec"));
+        setField(calendarCodec, "dateFactory", null);
+        setField(entry28, "value", calendarCodec);
         setField(entry28, "next", null);
         entryArray[2748] = entry28;
         Object entry29 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -1233,89 +1088,91 @@ public class ParserConfigTest {
         entryArray[2855] = entry29;
         Object entry30 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry30, "hashCode", 384617262);
-        Class class31 = java.util.TimeZone.class;
+        Class class31 = java.util.Locale.class;
         setField(entry30, "key", class31);
         setField(entry30, "value", miscCodec);
         setField(entry30, "next", null);
         entryArray[2862] = entry30;
         Object entry31 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry31, "hashCode", 1911155630);
-        Class class32 = java.sql.Date.class;
+        Class class32 = java.sql.Time.class;
         setField(entry31, "key", class32);
-        SqlDateDeserializer sqlDateDeserializer = ((SqlDateDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer"));
-        setField(sqlDateDeserializer, "timestamp", false);
-        setField(entry31, "value", sqlDateDeserializer);
+        TimeDeserializer timeDeserializer = ((TimeDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.TimeDeserializer"));
+        setField(entry31, "value", timeDeserializer);
         setField(entry31, "next", null);
         entryArray[2990] = entry31;
         Object entry32 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry32, "hashCode", 2065951873);
-        Class class33 = Integer.class;
+        setField(entry32, "hashCode", 2115628016);
+        Class class33 = com.alibaba.fastjson.JSONPObject.class;
         setField(entry32, "key", class33);
+        JSONPDeserializer jSONPDeserializer = ((JSONPDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JSONPDeserializer"));
+        setField(entry32, "value", jSONPDeserializer);
+        setField(entry32, "next", null);
+        entryArray[3056] = entry32;
+        Object entry33 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
+        setField(entry33, "hashCode", 2065951873);
+        Class class34 = Integer.class;
+        setField(entry33, "key", class34);
         IntegerCodec integerCodec = ((IntegerCodec) createInstance("com.alibaba.fastjson.serializer.IntegerCodec"));
         IntegerCodec.instance = integerCodec;
-        setField(entry32, "value", integerCodec);
-        setField(entry32, "next", null);
-        entryArray[3201] = entry32;
-        Object entry33 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry33, "hashCode", 617901222);
-        Class class34 = Object.class;
-        setField(entry33, "key", class34);
-        setField(entry33, "value", javaObjectDeserializer);
+        setField(entry33, "value", integerCodec);
         setField(entry33, "next", null);
-        entryArray[3238] = entry33;
+        entryArray[3201] = entry33;
         Object entry34 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry34, "hashCode", 2111991224);
-        Class class35 = Double.class;
+        setField(entry34, "hashCode", 617901222);
+        Class class35 = Object.class;
         setField(entry34, "key", class35);
-        setField(entry34, "value", numberDeserializer);
+        setField(entry34, "value", javaObjectDeserializer);
         setField(entry34, "next", null);
-        entryArray[3512] = entry34;
+        entryArray[3238] = entry34;
         Object entry35 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry35, "hashCode", 315805187);
-        Class class36 = java.io.Closeable.class;
+        setField(entry35, "hashCode", 1093864783);
+        Class class36 = StackTraceElement.class;
         setField(entry35, "key", class36);
-        setField(entry35, "value", javaObjectDeserializer);
+        StackTraceElementDeserializer stackTraceElementDeserializer = ((StackTraceElementDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.StackTraceElementDeserializer"));
+        setField(entry35, "value", stackTraceElementDeserializer);
         setField(entry35, "next", null);
-        entryArray[3587] = entry35;
+        entryArray[3407] = entry35;
         Object entry36 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry36, "hashCode", 2101636817);
-        Class class37 = Comparable.class;
+        setField(entry36, "hashCode", 2111991224);
+        Class class37 = Double.class;
         setField(entry36, "key", class37);
-        setField(entry36, "value", javaObjectDeserializer);
+        setField(entry36, "value", numberDeserializer);
         setField(entry36, "next", null);
-        entryArray[3793] = entry36;
+        entryArray[3512] = entry36;
         Object entry37 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry37, "hashCode", 2108297149);
-        Class class38 = Map.class;
+        setField(entry37, "hashCode", 2101636817);
+        Class class38 = java.io.Closeable.class;
         setField(entry37, "key", class38);
-        setField(entry37, "value", mapDeserializer);
+        setField(entry37, "value", javaObjectDeserializer);
         setField(entry37, "next", null);
-        entryArray[4029] = entry37;
+        entryArray[3793] = entry37;
         Object entry38 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry38, "hashCode", 1168420930);
-        Class class39 = com.alibaba.fastjson.JSONPath.class;
+        setField(entry38, "hashCode", 2108297149);
+        Class class39 = java.util.Collection.class;
         setField(entry38, "key", class39);
-        setField(entry38, "value", miscCodec);
+        CollectionCodec collectionCodec = ((CollectionCodec) createInstance("com.alibaba.fastjson.serializer.CollectionCodec"));
+        setField(entry38, "value", collectionCodec);
         setField(entry38, "next", null);
-        entryArray[4162] = entry38;
+        entryArray[4029] = entry38;
         Object entry39 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry39, "hashCode", 895766599);
-        Class class40 = BigInteger.class;
+        Class class40 = java.math.BigDecimal.class;
         setField(entry39, "key", class40);
-        BigIntegerCodec bigIntegerCodec = ((BigIntegerCodec) createInstance("com.alibaba.fastjson.serializer.BigIntegerCodec"));
-        setField(entry39, "value", bigIntegerCodec);
+        BigDecimalCodec bigDecimalCodec = ((BigDecimalCodec) createInstance("com.alibaba.fastjson.serializer.BigDecimalCodec"));
+        setField(entry39, "value", bigDecimalCodec);
         setField(entry39, "next", null);
         entryArray[4167] = entry39;
         Object entry40 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry40, "hashCode", 1181815135);
-        Class class41 = java.net.Inet6Address.class;
+        Class class41 = java.net.InetSocketAddress.class;
         setField(entry40, "key", class41);
         setField(entry40, "value", miscCodec);
         setField(entry40, "next", null);
         entryArray[4447] = entry40;
         Object entry41 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry41, "hashCode", 57241990);
-        Class class42 = URI.class;
+        Class class42 = URL.class;
         setField(entry41, "key", class42);
         setField(entry41, "value", miscCodec);
         setField(entry41, "next", null);
@@ -1343,9 +1200,10 @@ public class ParserConfigTest {
         entryArray[4823] = entry44;
         Object entry45 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry45, "hashCode", 404648734);
-        Class class46 = StringBuilder.class;
+        Class class46 = BigInteger.class;
         setField(entry45, "key", class46);
-        setField(entry45, "value", stringCodec);
+        BigIntegerCodec bigIntegerCodec = ((BigIntegerCodec) createInstance("com.alibaba.fastjson.serializer.BigIntegerCodec"));
+        setField(entry45, "value", bigIntegerCodec);
         setField(entry45, "next", null);
         entryArray[4894] = entry45;
         Object entry46 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -1357,25 +1215,25 @@ public class ParserConfigTest {
         entryArray[4975] = entry46;
         Object entry47 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry47, "hashCode", 1530295320);
-        Class class48 = java.util.regex.Pattern.class;
+        Class class48 = java.nio.charset.Charset.class;
         setField(entry47, "key", class48);
         setField(entry47, "value", miscCodec);
         setField(entry47, "next", null);
         entryArray[5144] = entry47;
         Object entry48 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry48, "hashCode", 360936478);
-        Class class49 = URL.class;
+        Class class49 = java.util.regex.Pattern.class;
         setField(entry48, "key", class49);
         setField(entry48, "value", miscCodec);
         setField(entry48, "next", null);
         entryArray[5150] = entry48;
         Object entry49 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry49, "hashCode", 1364497552);
-        Class class50 = java.sql.Timestamp.class;
+        Class class50 = java.sql.Date.class;
         setField(entry49, "key", class50);
-        SqlDateDeserializer sqlDateDeserializer1 = ((SqlDateDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer"));
-        setField(sqlDateDeserializer1, "timestamp", true);
-        setField(entry49, "value", sqlDateDeserializer1);
+        SqlDateDeserializer sqlDateDeserializer = ((SqlDateDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer"));
+        setField(sqlDateDeserializer, "timestamp", false);
+        setField(entry49, "value", sqlDateDeserializer);
         setField(entry49, "next", null);
         entryArray[5264] = entry49;
         Object entry50 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
@@ -1388,163 +1246,144 @@ public class ParserConfigTest {
         entryArray[5397] = entry50;
         Object entry51 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry51, "hashCode", 776484396);
-        Class class52 = java.util.concurrent.atomic.AtomicLongArray.class;
+        Class class52 = java.io.Serializable.class;
         setField(entry51, "key", class52);
-        AtomicCodec atomicCodec = ((AtomicCodec) createInstance("com.alibaba.fastjson.serializer.AtomicCodec"));
-        setField(entry51, "value", atomicCodec);
+        setField(entry51, "value", javaObjectDeserializer);
         setField(entry51, "next", null);
         entryArray[5676] = entry51;
         Object entry52 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry52, "hashCode", 512456259);
-        Class class53 = java.text.SimpleDateFormat.class;
+        Class class53 = java.sql.Timestamp.class;
         setField(entry52, "key", class53);
-        setField(entry52, "value", miscCodec);
+        SqlDateDeserializer sqlDateDeserializer1 = ((SqlDateDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.SqlDateDeserializer"));
+        setField(sqlDateDeserializer1, "timestamp", true);
+        setField(entry52, "value", sqlDateDeserializer1);
         setField(entry52, "next", null);
         entryArray[5699] = entry52;
         Object entry53 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry53, "hashCode", 540325452);
-        Class class54 = HashMap.class;
+        setField(entry53, "hashCode", 1313953385);
+        Class class54 = byte.class;
         setField(entry53, "key", class54);
-        setField(entry53, "value", mapDeserializer);
+        setField(entry53, "value", numberDeserializer);
         setField(entry53, "next", null);
-        entryArray[5708] = entry53;
+        entryArray[5737] = entry53;
         Object entry54 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry54, "hashCode", 1313953385);
-        Class class55 = byte.class;
+        setField(entry54, "hashCode", 498931366);
+        Class class55 = java.util.concurrent.atomic.AtomicLong.class;
         setField(entry54, "key", class55);
-        setField(entry54, "value", numberDeserializer);
+        setField(entry54, "value", longCodec);
         setField(entry54, "next", null);
-        entryArray[5737] = entry54;
+        entryArray[5798] = entry54;
         Object entry55 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry55, "hashCode", 498931366);
-        Class class56 = java.util.concurrent.atomic.AtomicLong.class;
+        setField(entry55, "hashCode", 249034932);
+        Class class56 = java.util.concurrent.atomic.AtomicReference.class;
         setField(entry55, "key", class56);
-        setField(entry55, "value", longCodec);
+        setField(entry55, "value", referenceCodec);
         setField(entry55, "next", null);
-        entryArray[5798] = entry55;
+        entryArray[6324] = entry55;
         Object entry56 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry56, "hashCode", 940857381);
-        Class class57 = StackTraceElement.class;
+        setField(entry56, "hashCode", 1126185196);
+        Class class57 = Map.class;
         setField(entry56, "key", class57);
-        StackTraceElementDeserializer stackTraceElementDeserializer = ((StackTraceElementDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.StackTraceElementDeserializer"));
-        setField(entry56, "value", stackTraceElementDeserializer);
+        setField(entry56, "value", mapDeserializer);
         setField(entry56, "next", null);
-        entryArray[6181] = entry56;
+        entryArray[6380] = entry56;
         Object entry57 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry57, "hashCode", 249034932);
-        Class class58 = java.util.concurrent.atomic.AtomicReference.class;
+        setField(entry57, "hashCode", 681842940);
+        Class class58 = int.class;
         setField(entry57, "key", class58);
-        setField(entry57, "value", referenceCodec);
+        setField(entry57, "value", integerCodec);
         setField(entry57, "next", null);
-        entryArray[6324] = entry57;
+        entryArray[6396] = entry57;
         Object entry58 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry58, "hashCode", 1902237905);
-        Class class59 = java.util.concurrent.ConcurrentMap.class;
+        setField(entry58, "hashCode", 932583850);
+        Class class59 = Float.class;
         setField(entry58, "key", class59);
-        setField(entry58, "value", mapDeserializer);
+        setField(entry58, "value", floatCodec);
         setField(entry58, "next", null);
-        entryArray[6353] = entry58;
+        entryArray[6570] = entry58;
         Object entry59 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry59, "hashCode", 1126185196);
-        Class class60 = javax.xml.datatype.XMLGregorianCalendar.class;
+        setField(entry59, "hashCode", 914504136);
+        Class class60 = java.util.Calendar.class;
         setField(entry59, "key", class60);
-        CalendarCodec calendarCodec = ((CalendarCodec) createInstance("com.alibaba.fastjson.serializer.CalendarCodec"));
-        setField(calendarCodec, "dateFactory", null);
         setField(entry59, "value", calendarCodec);
         setField(entry59, "next", null);
-        entryArray[6380] = entry59;
+        entryArray[6600] = entry59;
         Object entry60 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry60, "hashCode", 681842940);
-        Class class61 = int.class;
+        setField(entry60, "hashCode", 380812044);
+        Class class61 = com.alibaba.fastjson.JSONPath.class;
         setField(entry60, "key", class61);
-        setField(entry60, "value", integerCodec);
+        setField(entry60, "value", miscCodec);
         setField(entry60, "next", null);
-        entryArray[6396] = entry60;
+        entryArray[6924] = entry60;
         Object entry61 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry61, "hashCode", 932583850);
-        Class class62 = Float.class;
+        setField(entry61, "hashCode", 1581267786);
+        Class class62 = com.alibaba.fastjson.JSONArray.class;
         setField(entry61, "key", class62);
-        setField(entry61, "value", floatCodec);
+        setField(entry61, "value", collectionCodec);
         setField(entry61, "next", null);
-        entryArray[6570] = entry61;
+        entryArray[6986] = entry61;
         Object entry62 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry62, "hashCode", 914504136);
-        Class class63 = java.util.Calendar.class;
+        setField(entry62, "hashCode", 1579572132);
+        Class class63 = Character.class;
         setField(entry62, "key", class63);
-        setField(entry62, "value", calendarCodec);
+        setField(entry62, "value", characterCodec);
         setField(entry62, "next", null);
-        entryArray[6600] = entry62;
+        entryArray[7076] = entry62;
         Object entry63 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry63, "hashCode", 1579572132);
-        Class class64 = Character.class;
+        setField(entry63, "hashCode", 1959910454);
+        Class class64 = TreeMap.class;
         setField(entry63, "key", class64);
-        setField(entry63, "value", characterCodec);
+        setField(entry63, "value", mapDeserializer);
         setField(entry63, "next", null);
-        entryArray[7076] = entry63;
+        entryArray[7222] = entry63;
         Object entry64 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
         setField(entry64, "hashCode", 1186339926);
-        Class class65 = java.util.concurrent.atomic.AtomicIntegerArray.class;
+        Class class65 = java.util.concurrent.atomic.AtomicLongArray.class;
         setField(entry64, "key", class65);
         setField(entry64, "value", atomicCodec);
         setField(entry64, "next", null);
         entryArray[7254] = entry64;
         Object entry65 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry65, "hashCode", 225909961);
-        Class class66 = java.util.Currency.class;
+        setField(entry65, "hashCode", 1062714541);
+        Class class66 = java.text.SimpleDateFormat.class;
         setField(entry65, "key", class66);
         setField(entry65, "value", miscCodec);
         setField(entry65, "next", null);
-        entryArray[7369] = entry65;
+        entryArray[7341] = entry65;
         Object entry66 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry66, "hashCode", 834600351);
-        Class class67 = List.class;
+        setField(entry66, "hashCode", 225909961);
+        Class class67 = java.net.Inet4Address.class;
         setField(entry66, "key", class67);
-        setField(entry66, "value", collectionCodec);
+        setField(entry66, "value", miscCodec);
         setField(entry66, "next", null);
-        entryArray[7583] = entry66;
+        entryArray[7369] = entry66;
         Object entry67 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry67, "hashCode", 2694936);
-        Class class68 = java.lang.ref.WeakReference.class;
+        setField(entry67, "hashCode", 834600351);
+        Class class68 = List.class;
         setField(entry67, "key", class68);
-        setField(entry67, "value", referenceCodec);
+        setField(entry67, "value", collectionCodec);
         setField(entry67, "next", null);
-        entryArray[7960] = entry67;
+        entryArray[7583] = entry67;
         Object entry68 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry68, "hashCode", 989110044);
-        Class class69 = boolean.class;
+        setField(entry68, "hashCode", 2694936);
+        Class class69 = SoftReference.class;
         setField(entry68, "key", class69);
-        setField(entry68, "value", booleanCodec);
+        setField(entry68, "value", referenceCodec);
         setField(entry68, "next", null);
-        entryArray[7964] = entry68;
+        entryArray[7960] = entry68;
         Object entry69 = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        setField(entry69, "hashCode", 1047478056);
-        Class class70 = com.alibaba.fastjson.JSONPObject.class;
+        setField(entry69, "hashCode", 989110044);
+        Class class70 = boolean.class;
         setField(entry69, "key", class70);
-        JSONPDeserializer jSONPDeserializer = ((JSONPDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JSONPDeserializer"));
-        setField(entry69, "value", jSONPDeserializer);
+        setField(entry69, "value", booleanCodec);
         setField(entry69, "next", null);
-        entryArray[7976] = entry69;
+        entryArray[7964] = entry69;
         setField(expected, "buckets", entryArray);
         setField(expected, "indexMask", 8191);
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetDeserializers2() throws Throwable  {
-        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
-        setField(parserConfig, "deserializers", identityHashMap);
-        
-        IdentityHashMap actual = parserConfig.getDeserializers();
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(identityHashMap, actual));
     }
     ///endregion
     
@@ -1561,13 +1400,71 @@ public class ParserConfigTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testGetDeserializer2() throws Throwable  {
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        
+        parserConfig.getDeserializer(((FieldInfo) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetDeserializer3() throws Throwable  {
         ParserConfig parserConfig = new ParserConfig();
         
         ObjectDeserializer actual = parserConfig.getDeserializer(((Type) null));
         
         JavaObjectDeserializer expected = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateJavaBeanDeserializer1() throws Throwable  {
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        setField(parserConfig, "fieldBased", false);
+        setField(parserConfig, "asmEnable", false);
+        
+        parserConfig.createJavaBeanDeserializer(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateJavaBeanDeserializer2() throws Throwable  {
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        setField(parserConfig, "fieldBased", true);
+        setField(parserConfig, "asmEnable", false);
+        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
+        
+        parserConfig.createJavaBeanDeserializer(null, typeVariableImpl);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCreateFieldDeserializer1() throws Throwable  {
+        ParserConfig parserConfig = new ParserConfig();
+        ParserConfig parserConfig1 = new ParserConfig();
+        JavaBeanInfo javaBeanInfo = ((JavaBeanInfo) createInstance("com.alibaba.fastjson.util.JavaBeanInfo"));
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        
+        FieldDeserializer actual = parserConfig.createFieldDeserializer(parserConfig1, javaBeanInfo, fieldInfo);
+        
+        DefaultFieldDeserializer expected = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
+        setField(expected, "fieldValueDeserilizer", null);
+        setField(expected, "customDeserilizer", false);
+        setField(expected, "fieldInfo", fieldInfo);
+        setField(expected, "clazz", null);
+        setField(expected, "beanContext", null);
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -1584,62 +1481,6 @@ public class ParserConfigTest {
         boolean actual = parserConfig.isPrimitive(class1);
         
         assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testIsPrimitive21() throws Throwable  {
-        ParserConfig.isPrimitive2(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPrimitive22() throws Throwable  {
-        Class class1 = Object.class;
-        
-        boolean actual = ParserConfig.isPrimitive2(class1);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParserAllFieldToCache1() throws Throwable  {
-        ParserConfig.parserAllFieldToCache(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFieldFromCache1() throws Throwable  {
-        String string = new String();
-        
-        ParserConfig.getFieldFromCache(string, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFieldFromCache2() throws Throwable  {
-        ParserConfig.getFieldFromCache(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFieldFromCache3() throws Throwable  {
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        
-        ParserConfig.getFieldFromCache(null, linkedHashMap);
     }
     ///endregion
     
@@ -1732,9 +1573,66 @@ public class ParserConfigTest {
     
     ///region
     
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIsPrimitive21() throws Throwable  {
+        ParserConfig.isPrimitive2(null);
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000)
-    public void testParserConfig1() {
-        ParserConfig actual = new ParserConfig();
+    public void testIsPrimitive22() throws Throwable  {
+        Class class1 = Object.class;
+        
+        boolean actual = ParserConfig.isPrimitive2(class1);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParserAllFieldToCache1() throws Throwable  {
+        ParserConfig.parserAllFieldToCache(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetFieldFromCache1() throws Throwable  {
+        String string = new String();
+        
+        ParserConfig.getFieldFromCache(string, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetFieldFromCache2() throws Throwable  {
+        ParserConfig.getFieldFromCache(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetFieldFromCache3() throws Throwable  {
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        
+        ParserConfig.getFieldFromCache(null, linkedHashMap);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParserConfig1() throws Throwable  {
+        ASMDeserializerFactory aSMDeserializerFactory = ((ASMDeserializerFactory) createInstance("com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory"));
+        ParserConfig actual = new ParserConfig(aSMDeserializerFactory);
     }
     ///endregion
     
@@ -1757,7 +1655,15 @@ public class ParserConfigTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testParserConfig4() throws Throwable  {
+    public void testParserConfig4() {
+        ParserConfig actual = new ParserConfig();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParserConfig5() throws Throwable  {
         ASMDeserializerFactory aSMDeserializerFactory = ((ASMDeserializerFactory) createInstance("com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory"));
         Class parserConfigClazz = Class.forName("com.alibaba.fastjson.parser.ParserConfig");
         Class aSMDeserializerFactoryType = Class.forName("com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory");
@@ -1773,27 +1679,9 @@ public class ParserConfigTest {
     }
     ///endregion
     
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testParserConfig5() throws Throwable  {
-        ASMDeserializerFactory aSMDeserializerFactory = ((ASMDeserializerFactory) createInstance("com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory"));
-        ParserConfig actual = new ParserConfig(aSMDeserializerFactory);
-    }
-    ///endregion
-    
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();
@@ -1815,24 +1703,14 @@ public class ParserConfigTest {
         field.setAccessible(true);
         field.set(object, fieldValue);
     }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
     
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     static class FieldsPair {
         final Object o1;

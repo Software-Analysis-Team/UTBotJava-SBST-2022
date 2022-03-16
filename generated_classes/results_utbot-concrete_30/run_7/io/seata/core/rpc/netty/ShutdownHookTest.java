@@ -2,8 +2,8 @@ package io.seata.core.rpc.netty;
 
 import org.junit.Test;
 import java.util.LinkedHashSet;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.lang.reflect.Constructor;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -92,16 +92,15 @@ public class ShutdownHookTest {
         linkedHashSet.add(integer);
         linkedHashSet.add(null);
         setField(shutdownHook, "disposables", linkedHashSet);
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         
-        shutdownHook.addDisposable(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetInstance1() throws Throwable  {
-        ShutdownHook.getInstance();
+        Class shutdownHookClazz = Class.forName("io.seata.core.rpc.netty.ShutdownHook");
+        Class rmRpcClientType = Class.forName("io.seata.core.rpc.Disposable");
+        Method addDisposableMethod = shutdownHookClazz.getDeclaredMethod("addDisposable", rmRpcClientType);
+        addDisposableMethod.setAccessible(true);
+        java.lang.Object[] addDisposableMethodArguments = new java.lang.Object[1];
+        addDisposableMethodArguments[0] = rmRpcClient;
+        addDisposableMethod.invoke(shutdownHook, addDisposableMethodArguments);
     }
     ///endregion
     
@@ -127,6 +126,14 @@ public class ShutdownHookTest {
         } finally {
             setStaticField(Runtime.class, "currentRuntime", prevCurrentRuntime);
         }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetInstance1() throws Throwable  {
+        ShutdownHook.getInstance();
     }
     ///endregion
     

@@ -2,9 +2,27 @@ package com.google.common.collect;
 
 import org.junit.Test;
 import java.util.TreeMap;
+import com.google.common.collect.Maps.Values;
+import com.google.common.collect.Maps;
+import java.util.Map;
+import com.google.common.collect.TreeRangeSet.RangesByUpperBound;
+import com.google.common.collect.TreeRangeSet;
+import java.util.Locale.FilteringMode;
+import java.util.Locale;
+import java.lang.reflect.Method;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
+import java.lang.reflect.Array;
+import java.util.Iterator;
 import sun.misc.Unsafe;
+
+import static org.junit.Assert.assertTrue;
 
 public class TreeRangeMapTest {
     ///region
@@ -20,6 +38,81 @@ public class TreeRangeMapTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testSpan1() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
+        Object entry = createInstance("java.util.TreeMap$Entry");
+        setField(entry, "left", null);
+        setField(entry, "key", null);
+        setField(treeMap, "root", entry);
+        setField(treeRangeMap, "entriesByLowerBound", treeMap);
+        
+        treeRangeMap.span();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPutCoalescing1() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        Object unmodifiableNavigableMap = createInstance("java.util.Collections$UnmodifiableNavigableMap");
+        setField(treeRangeMap, "entriesByLowerBound", unmodifiableNavigableMap);
+        
+        treeRangeMap.putCoalescing(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAsMapOfRanges1() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
+        Maps.Values values = ((Maps.Values) createInstance("com.google.common.collect.Maps$Values"));
+        setField(treeMap, "values", values);
+        setField(treeRangeMap, "entriesByLowerBound", treeMap);
+        
+        Map actual = treeRangeMap.asMapOfRanges();
+        
+        Object expected = createInstance("com.google.common.collect.TreeRangeMap$AsMapOfRanges");
+        setField(expected, "entryIterable", values);
+        setField(expected, "this$0", treeRangeMap);
+        setField(expected, "keySet", null);
+        setField(expected, "values", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAsDescendingMapOfRanges1() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
+        Object keySet = createInstance("java.util.HashMap$KeySet");
+        setField(treeMap, "values", keySet);
+        setField(treeMap, "descendingMap", treeMap);
+        setField(treeRangeMap, "entriesByLowerBound", treeMap);
+        
+        Map actual = treeRangeMap.asDescendingMapOfRanges();
+        
+        Object expected = createInstance("com.google.common.collect.TreeRangeMap$AsMapOfRanges");
+        setField(expected, "entryIterable", keySet);
+        setField(expected, "this$0", treeRangeMap);
+        setField(expected, "keySet", null);
+        setField(expected, "values", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testRemove1() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         
@@ -29,13 +122,75 @@ public class TreeRangeMapTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testRemove2() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         Range range = ((Range) createInstance("com.google.common.collect.Range"));
+        Object belowAll = createInstance("com.google.common.collect.Cut$BelowAll");
+        setField(range, "upperBound", belowAll);
+        setField(range, "lowerBound", belowAll);
         
         treeRangeMap.remove(range);
     }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testRemove3() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
+        Object entry = createInstance("java.util.TreeMap$Entry");
+        setField(entry, "key", null);
+        setField(treeMap, "root", entry);
+        setField(treeRangeMap, "entriesByLowerBound", treeMap);
+        Range range = ((Range) createInstance("com.google.common.collect.Range"));
+        Object belowAll = createInstance("com.google.common.collect.Cut$BelowAll");
+        setField(range, "upperBound", belowAll);
+        Object belowAll1 = createInstance("com.google.common.collect.Cut$BelowAll");
+        setField(range, "lowerBound", belowAll1);
+        
+        treeRangeMap.remove(range);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testRemove4() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
+        setField(treeRangeMap, "entriesByLowerBound", treeMap);
+        Range range = ((Range) createInstance("com.google.common.collect.Range"));
+        Object belowAll = createInstance("com.google.common.collect.Cut$BelowAll");
+        setField(range, "upperBound", belowAll);
+        Object belowAll1 = createInstance("com.google.common.collect.Cut$BelowAll");
+        setField(range, "lowerBound", belowAll1);
+        
+        treeRangeMap.remove(range);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGet1() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        TreeRangeSet.RangesByUpperBound rangesByUpperBound = ((TreeRangeSet.RangesByUpperBound) createInstance("com.google.common.collect.TreeRangeSet$RangesByUpperBound"));
+        setField(treeRangeMap, "entriesByLowerBound", rangesByUpperBound);
+        Locale.FilteringMode filteringMode = Locale.FilteringMode.AUTOSELECT_FILTERING;
+        
+        Class treeRangeMapClazz = Class.forName("com.google.common.collect.TreeRangeMap");
+        Class filteringModeType = Class.forName("java.lang.Comparable");
+        Method getMethod = treeRangeMapClazz.getDeclaredMethod("get", filteringModeType);
+        getMethod.setAccessible(true);
+        java.lang.Object[] getMethodArguments = new java.lang.Object[1];
+        getMethodArguments[0] = filteringMode;
+        try {
+            getMethod.invoke(treeRangeMap, getMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     ///region
@@ -109,6 +264,174 @@ public class TreeRangeMapTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
+    }
+    static class FieldsPair {
+        final Object o1;
+        final Object o2;
+    
+        public FieldsPair(Object o1, Object o2) {
+            this.o1 = o1;
+            this.o2 = o2;
+        }
+    
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            FieldsPair that = (FieldsPair) o;
+            return Objects.equals(o1, that.o1) && Objects.equals(o2, that.o2);
+        }
+    
+        @Override
+        public int hashCode() {
+            return Objects.hash(o1, o2);
+        }
+    }
+    
+    private boolean deepEquals(Object o1, Object o2) {
+        try {
+            return deepEquals(o1, o2, new HashSet<>());
+        } catch (Throwable t) {
+            return true;
+        }
+    }
+    
+    private boolean deepEquals(Object o1, Object o2, Set<FieldsPair> visited) {
+        visited.add(new FieldsPair(o1, o2));
+    
+        if (o1 == o2) {
+            return true;
+        }
+    
+        if (o1 == null || o2 == null) {
+            return false;
+        }
+    
+        if (o1 instanceof Iterable) {
+            if (!(o2 instanceof Iterable)) {
+                return false;
+            }
+    
+            return iterablesDeepEquals((Iterable<?>) o1, (Iterable<?>) o2, visited);
+        }
+        
+        if (o2 instanceof Iterable) {
+            return false;
+        }
+    
+        if (o1 instanceof Map) {
+            if (!(o2 instanceof Map)) {
+                return false;
+            }
+    
+            return mapsDeepEquals((Map<?, ?>) o1, (Map<?, ?>) o2, visited);
+        }
+        
+        if (o2 instanceof Map) {
+            return false;
+        }
+    
+        Class<?> firstClass = o1.getClass();
+        if (firstClass.isArray()) {
+            if (!o2.getClass().isArray()) {
+                return false;
+            }
+    
+            // Primitive arrays should not appear here
+            return arraysDeepEquals(o1, o2, visited);
+        }
+    
+        // common classes
+    
+        // common classes without custom equals, use comparison by fields
+        final List<java.lang.reflect.Field> fields = new ArrayList<>();
+        while (firstClass != Object.class) {
+            fields.addAll(Arrays.asList(firstClass.getDeclaredFields()));
+            // Interface should not appear here
+            firstClass = firstClass.getSuperclass();
+        }
+    
+        for (java.lang.reflect.Field field : fields) {
+            field.setAccessible(true);
+            try {
+                final Object field1 = field.get(o1);
+                final Object field2 = field.get(o2);
+                if (!visited.contains(new FieldsPair(field1, field2)) && !deepEquals(field1, field2, visited)) {
+                    return false;
+                }
+            } catch (IllegalArgumentException e) {
+                return false;
+            } catch (IllegalAccessException e) {
+                // should never occur because field was set accessible
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    private boolean arraysDeepEquals(Object arr1, Object arr2, Set<FieldsPair> visited) {
+        final int length = Array.getLength(arr1);
+        if (length != Array.getLength(arr2)) {
+            return false;
+        }
+    
+        for (int i = 0; i < length; i++) {
+            if (!deepEquals(Array.get(arr1, i), Array.get(arr2, i), visited)) {
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    private boolean iterablesDeepEquals(Iterable<?> i1, Iterable<?> i2, Set<FieldsPair> visited) {
+        final Iterator<?> firstIterator = i1.iterator();
+        final Iterator<?> secondIterator = i2.iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    private boolean mapsDeepEquals(Map<?, ?> m1, Map<?, ?> m2, Set<FieldsPair> visited) {
+        final Iterator<? extends Map.Entry<?, ?>> firstIterator = m1.entrySet().iterator();
+        final Iterator<? extends Map.Entry<?, ?>> secondIterator = m2.entrySet().iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            final Map.Entry<?, ?> firstEntry = firstIterator.next();
+            final Map.Entry<?, ?> secondEntry = secondIterator.next();
+    
+            if (!deepEquals(firstEntry.getKey(), secondEntry.getKey(), visited)) {
+                return false;
+            }
+    
+            if (!deepEquals(firstEntry.getValue(), secondEntry.getValue(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    private boolean hasCustomEquals(Class<?> clazz) {
+        while (!Object.class.equals(clazz)) {
+            try {
+                clazz.getDeclaredMethod("equals", Object.class);
+                return true;
+            } catch (Exception e) { 
+                // Interface should not appear here
+                clazz = clazz.getSuperclass();
+            }
+        }
+    
+        return false;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

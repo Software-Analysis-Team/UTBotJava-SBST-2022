@@ -206,17 +206,6 @@ public class CtExtendedModifierTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetKind1() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        setField(ctExtendedModifier, "kind", null);
-        
-        ctExtendedModifier.setKind(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testSetImplicit1() throws Throwable  {
         CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
         
@@ -232,6 +221,17 @@ public class CtExtendedModifierTest {
         setField(ctExtendedModifier, "implicit", false);
         
         ctExtendedModifier.setImplicit(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetKind1() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        setField(ctExtendedModifier, "kind", null);
+        
+        ctExtendedModifier.setKind(null);
     }
     ///endregion
     

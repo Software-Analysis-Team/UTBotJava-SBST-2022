@@ -226,15 +226,12 @@ public class SparseImmutableTableTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testCreateSerializedForm5() throws Throwable  {
         SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
-        ImmutableEnumMap immutableEnumMap = ((ImmutableEnumMap) createInstance("com.google.common.collect.ImmutableEnumMap"));
-        ImmutableEnumSet immutableEnumSet = ((ImmutableEnumSet) createInstance("com.google.common.collect.ImmutableEnumSet"));
-        Object jumboEnumSet = createInstance("java.util.JumboEnumSet");
-        setField(jumboEnumSet, "size", 9);
-        long[] longArray = new long[9];
-        setField(jumboEnumSet, "elements", longArray);
-        setField(immutableEnumSet, "delegate", jumboEnumSet);
-        setField(immutableEnumMap, "keySet", immutableEnumSet);
-        setField(sparseImmutableTable, "columnMap", immutableEnumMap);
+        RegularImmutableMap regularImmutableMap = ((RegularImmutableMap) createInstance("com.google.common.collect.RegularImmutableMap"));
+        RegularImmutableSet regularImmutableSet = ((RegularImmutableSet) createInstance("com.google.common.collect.RegularImmutableSet"));
+        java.lang.Object[] objectArray = new java.lang.Object[0];
+        setField(regularImmutableSet, "elements", objectArray);
+        setField(regularImmutableMap, "keySet", regularImmutableSet);
+        setField(sparseImmutableTable, "columnMap", regularImmutableMap);
         
         sparseImmutableTable.createSerializedForm();
     }
@@ -260,7 +257,7 @@ public class SparseImmutableTableTest {
         int[] intArray = new int[9];
         setField(sparseImmutableTable, "cellRowIndices", intArray);
         
-        sparseImmutableTable.getCell(134217728);
+        sparseImmutableTable.getCell(1073741824);
     }
     ///endregion
     
@@ -269,27 +266,27 @@ public class SparseImmutableTableTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetCell3() throws Throwable  {
         SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
-        int[] intArray = new int[1];
+        int[] intArray = new int[9];
+        intArray[1] = 19;
+        intArray[2] = 19;
+        intArray[3] = 19;
+        intArray[4] = 19;
+        intArray[5] = 19;
+        intArray[6] = 19;
+        intArray[7] = 19;
+        intArray[8] = 19;
         setField(sparseImmutableTable, "cellRowIndices", intArray);
         ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
-        Object keySet = createInstance("com.google.common.collect.RegularImmutableMap$KeySet");
-        RegularImmutableAsList regularImmutableAsList = ((RegularImmutableAsList) createInstance("com.google.common.collect.RegularImmutableAsList"));
+        ImmutableEnumSet immutableEnumSet = ((ImmutableEnumSet) createInstance("com.google.common.collect.ImmutableEnumSet"));
+        ImmutableSortedAsList immutableSortedAsList = ((ImmutableSortedAsList) createInstance("com.google.common.collect.ImmutableSortedAsList"));
         RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
         java.lang.Object[] objectArray = new java.lang.Object[9];
         java.lang.Object[] directLongBufferRSArray = createArray("java.nio.DirectLongBufferRS", 0);
         objectArray[0] = directLongBufferRSArray;
-        objectArray[1] = ((Object) regularImmutableAsList);
-        objectArray[2] = ((Object) regularImmutableAsList);
-        objectArray[3] = ((Object) regularImmutableAsList);
-        objectArray[4] = ((Object) regularImmutableAsList);
-        objectArray[5] = ((Object) regularImmutableAsList);
-        objectArray[6] = ((Object) regularImmutableAsList);
-        objectArray[7] = ((Object) regularImmutableAsList);
-        objectArray[8] = ((Object) regularImmutableAsList);
         setField(regularImmutableList, "array", objectArray);
-        setField(regularImmutableAsList, "delegateList", regularImmutableList);
-        setField(keySet, "asList", regularImmutableAsList);
-        setField(immutableSortedMap, "entrySet", keySet);
+        setField(immutableSortedAsList, "delegateList", regularImmutableList);
+        setField(immutableEnumSet, "asList", immutableSortedAsList);
+        setField(immutableSortedMap, "entrySet", immutableEnumSet);
         setField(sparseImmutableTable, "rowMap", immutableSortedMap);
         
         sparseImmutableTable.getCell(0);
@@ -303,54 +300,35 @@ public class SparseImmutableTableTest {
         SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
         int[] intArray = new int[9];
         setField(sparseImmutableTable, "cellColumnInRowIndices", intArray);
-        int[] intArray1 = new int[9];
-        intArray1[1] = 524288;
-        intArray1[2] = 524288;
-        intArray1[3] = 524288;
-        intArray1[4] = 524288;
-        intArray1[5] = 524288;
-        intArray1[6] = 524288;
-        intArray1[7] = 524288;
-        intArray1[8] = 524288;
+        int[] intArray1 = new int[1];
         setField(sparseImmutableTable, "cellRowIndices", intArray1);
-        Object inverse = createInstance("com.google.common.collect.RegularImmutableBiMap$Inverse");
-        Object cellSet = createInstance("com.google.common.collect.RegularImmutableTable$CellSet");
+        ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
+        Object keySet = createInstance("com.google.common.collect.RegularImmutableMap$KeySet");
         RegularImmutableAsList regularImmutableAsList = ((RegularImmutableAsList) createInstance("com.google.common.collect.RegularImmutableAsList"));
-        RegularImmutableAsList regularImmutableAsList1 = ((RegularImmutableAsList) createInstance("com.google.common.collect.RegularImmutableAsList"));
         RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
         java.lang.Object[] objectArray = new java.lang.Object[9];
-        Object attributeEntry = createInstance("java.text.AttributeEntry");
-        ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
-        Object cellSet1 = createInstance("com.google.common.collect.RegularImmutableTable$CellSet");
-        setField(cellSet1, "asList", null);
-        setField(immutableSortedMap, "entrySet", cellSet1);
-        setField(attributeEntry, "value", immutableSortedMap);
-        objectArray[0] = attributeEntry;
-        objectArray[1] = inverse;
-        objectArray[2] = inverse;
-        objectArray[3] = inverse;
-        objectArray[4] = inverse;
-        objectArray[5] = inverse;
-        objectArray[6] = inverse;
-        objectArray[7] = inverse;
-        objectArray[8] = inverse;
+        ImmutableMapEntry.NonTerminalImmutableBiMapEntry nonTerminalImmutableBiMapEntry = ((ImmutableMapEntry.NonTerminalImmutableBiMapEntry) createInstance("com.google.common.collect.ImmutableMapEntry$NonTerminalImmutableBiMapEntry"));
+        RegularImmutableMap regularImmutableMap = ((RegularImmutableMap) createInstance("com.google.common.collect.RegularImmutableMap"));
+        RegularImmutableSet regularImmutableSet = ((RegularImmutableSet) createInstance("com.google.common.collect.RegularImmutableSet"));
+        setField(regularImmutableSet, "asList", null);
+        setField(regularImmutableMap, "entrySet", regularImmutableSet);
+        setField(nonTerminalImmutableBiMapEntry, "value", regularImmutableMap);
+        objectArray[0] = ((Object) nonTerminalImmutableBiMapEntry);
         setField(regularImmutableList, "array", objectArray);
-        setField(regularImmutableAsList1, "delegateList", regularImmutableList);
-        setField(regularImmutableAsList, "delegateList", regularImmutableAsList1);
-        setField(cellSet, "asList", regularImmutableAsList);
-        setField(inverse, "entrySet", cellSet);
-        setField(sparseImmutableTable, "rowMap", inverse);
+        setField(regularImmutableAsList, "delegateList", regularImmutableList);
+        setField(keySet, "asList", regularImmutableAsList);
+        setField(immutableSortedMap, "entrySet", keySet);
+        setField(sparseImmutableTable, "rowMap", immutableSortedMap);
         
         Object sparseImmutableTableRowMap = getFieldValue(sparseImmutableTable, "rowMap");
         Object sparseImmutableTableRowMapRowMapEntrySet = getFieldValue(sparseImmutableTableRowMap, "entrySet");
         Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsList = getFieldValue(sparseImmutableTableRowMapRowMapEntrySet, "asList");
         Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateList = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsList, "delegateList");
-        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateList = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateList, "delegateList");
-        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArray = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateList, "array");
-        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0 = get(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArray, 0);
-        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0RowMapEntrySetAsListDelegateListDelegateListArray0Value = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0, "value");
-        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0RowMapEntrySetAsListDelegateListDelegateListArray0ValueRowMapEntrySetAsListDelegateListDelegateListArray0ValueEntrySet = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0RowMapEntrySetAsListDelegateListDelegateListArray0Value, "entrySet");
-        Object initialSparseImmutableTableRowMapEntrySetAsListDelegateListDelegateListArray0ValueEntrySetAsList = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0RowMapEntrySetAsListDelegateListDelegateListArray0ValueRowMapEntrySetAsListDelegateListDelegateListArray0ValueEntrySet, "asList");
+        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArray = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateList, "array");
+        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0 = get(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArray, 0);
+        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0Value = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0, "value");
+        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0ValueRowMapEntrySetAsListDelegateListArray0ValueEntrySet = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0Value, "entrySet");
+        Object initialSparseImmutableTableRowMapEntrySetAsListDelegateListArray0ValueEntrySetAsList = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0ValueRowMapEntrySetAsListDelegateListArray0ValueEntrySet, "asList");
         
         sparseImmutableTable.getCell(0);
         
@@ -358,14 +336,13 @@ public class SparseImmutableTableTest {
         Object sparseImmutableTableRowMap1RowMapEntrySet = getFieldValue(sparseImmutableTableRowMap1, "entrySet");
         Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsList = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySet, "asList");
         Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateList = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsList, "delegateList");
-        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateList = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateList, "delegateList");
-        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArray = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateList, "array");
-        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0 = get(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArray, 0);
-        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0RowMapEntrySetAsListDelegateListDelegateListArray0Value = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0, "value");
-        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0RowMapEntrySetAsListDelegateListDelegateListArray0ValueRowMapEntrySetAsListDelegateListDelegateListArray0ValueEntrySet = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0RowMapEntrySetAsListDelegateListDelegateListArray0Value, "entrySet");
-        Object finalSparseImmutableTableRowMapEntrySetAsListDelegateListDelegateListArray0ValueEntrySetAsList = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListDelegateListRowMapEntrySetAsListDelegateListDelegateListArrayRowMapEntrySetAsListDelegateListDelegateListArray0RowMapEntrySetAsListDelegateListDelegateListArray0ValueRowMapEntrySetAsListDelegateListDelegateListArray0ValueEntrySet, "asList");
+        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArray = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateList, "array");
+        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0 = get(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArray, 0);
+        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0Value = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0, "value");
+        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0ValueRowMapEntrySetAsListDelegateListArray0ValueEntrySet = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0Value, "entrySet");
+        Object finalSparseImmutableTableRowMapEntrySetAsListDelegateListArray0ValueEntrySetAsList = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0ValueRowMapEntrySetAsListDelegateListArray0ValueEntrySet, "asList");
         
-        assertFalse(initialSparseImmutableTableRowMapEntrySetAsListDelegateListDelegateListArray0ValueEntrySetAsList == finalSparseImmutableTableRowMapEntrySetAsListDelegateListDelegateListArray0ValueEntrySetAsList);
+        assertFalse(initialSparseImmutableTableRowMapEntrySetAsListDelegateListArray0ValueEntrySetAsList == finalSparseImmutableTableRowMapEntrySetAsListDelegateListArray0ValueEntrySetAsList);
     }
     ///endregion
     
@@ -425,147 +402,23 @@ public class SparseImmutableTableTest {
         setField(sparseImmutableTable, "cellColumnInRowIndices", intArray);
         int[] intArray1 = new int[1];
         setField(sparseImmutableTable, "cellRowIndices", intArray1);
-        ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
-        Object entrySet = createInstance("com.google.common.collect.ImmutableSetMultimap$EntrySet");
+        Object column = createInstance("com.google.common.collect.DenseImmutableTable$Column");
+        Object entrySet = createInstance("com.google.common.collect.ImmutableMultiset$EntrySet");
         RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        ImmutableMapEntry.NonTerminalImmutableBiMapEntry nonTerminalImmutableBiMapEntry = ((ImmutableMapEntry.NonTerminalImmutableBiMapEntry) createInstance("com.google.common.collect.ImmutableMapEntry$NonTerminalImmutableBiMapEntry"));
-        ImmutableSortedMap immutableSortedMap1 = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
-        SingletonImmutableSet singletonImmutableSet = ((SingletonImmutableSet) createInstance("com.google.common.collect.SingletonImmutableSet"));
-        setField(singletonImmutableSet, "asList", null);
-        setField(immutableSortedMap1, "entrySet", singletonImmutableSet);
-        setField(nonTerminalImmutableBiMapEntry, "value", immutableSortedMap1);
-        objectArray[0] = ((Object) nonTerminalImmutableBiMapEntry);
+        java.lang.Object[] objectArray = new java.lang.Object[1];
+        Object attributeEntry = createInstance("java.text.AttributeEntry");
+        ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
+        Object entrySet1 = createInstance("com.google.common.collect.ImmutableSetMultimap$EntrySet");
+        setField(entrySet1, "asList", null);
+        setField(immutableSortedMap, "entrySet", entrySet1);
+        setField(attributeEntry, "value", immutableSortedMap);
+        objectArray[0] = attributeEntry;
         setField(regularImmutableList, "array", objectArray);
         setField(entrySet, "asList", regularImmutableList);
-        setField(immutableSortedMap, "entrySet", entrySet);
-        setField(sparseImmutableTable, "rowMap", immutableSortedMap);
+        setField(column, "entrySet", entrySet);
+        setField(sparseImmutableTable, "rowMap", column);
         
         sparseImmutableTable.getCell(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCell7() throws Throwable  {
-        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
-        int[] intArray = new int[9];
-        setField(sparseImmutableTable, "cellColumnInRowIndices", intArray);
-        int[] intArray1 = new int[1];
-        setField(sparseImmutableTable, "cellRowIndices", intArray1);
-        ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
-        RegularImmutableSet regularImmutableSet = ((RegularImmutableSet) createInstance("com.google.common.collect.RegularImmutableSet"));
-        RegularImmutableAsList regularImmutableAsList = ((RegularImmutableAsList) createInstance("com.google.common.collect.RegularImmutableAsList"));
-        RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        Object attributeEntry = createInstance("java.text.AttributeEntry");
-        RegularImmutableMap regularImmutableMap = ((RegularImmutableMap) createInstance("com.google.common.collect.RegularImmutableMap"));
-        Object entrySet = createInstance("com.google.common.collect.ImmutableSetMultimap$EntrySet");
-        setField(entrySet, "asList", null);
-        setField(regularImmutableMap, "entrySet", entrySet);
-        setField(attributeEntry, "value", regularImmutableMap);
-        objectArray[0] = attributeEntry;
-        Object object = createInstance("java.lang.Object");
-        objectArray[1] = object;
-        objectArray[2] = object;
-        objectArray[3] = object;
-        objectArray[4] = object;
-        objectArray[5] = object;
-        objectArray[6] = object;
-        objectArray[7] = object;
-        objectArray[8] = object;
-        setField(regularImmutableList, "array", objectArray);
-        setField(regularImmutableAsList, "delegateList", regularImmutableList);
-        setField(regularImmutableSet, "asList", regularImmutableAsList);
-        setField(immutableSortedMap, "entrySet", regularImmutableSet);
-        setField(sparseImmutableTable, "rowMap", immutableSortedMap);
-        
-        sparseImmutableTable.getCell(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCell8() throws Throwable  {
-        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
-        int[] intArray = new int[9];
-        setField(sparseImmutableTable, "cellColumnInRowIndices", intArray);
-        int[] intArray1 = new int[1];
-        setField(sparseImmutableTable, "cellRowIndices", intArray1);
-        ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
-        RegularImmutableSet regularImmutableSet = ((RegularImmutableSet) createInstance("com.google.common.collect.RegularImmutableSet"));
-        RegularImmutableAsList regularImmutableAsList = ((RegularImmutableAsList) createInstance("com.google.common.collect.RegularImmutableAsList"));
-        RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        Object attributeEntry = createInstance("java.text.AttributeEntry");
-        ImmutableSortedMap immutableSortedMap1 = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
-        RegularImmutableSortedSet regularImmutableSortedSet = ((RegularImmutableSortedSet) createInstance("com.google.common.collect.RegularImmutableSortedSet"));
-        setField(regularImmutableSortedSet, "asList", null);
-        setField(immutableSortedMap1, "entrySet", regularImmutableSortedSet);
-        setField(attributeEntry, "value", immutableSortedMap1);
-        objectArray[0] = attributeEntry;
-        setField(regularImmutableList, "array", objectArray);
-        setField(regularImmutableAsList, "delegateList", regularImmutableList);
-        setField(regularImmutableSet, "asList", regularImmutableAsList);
-        setField(immutableSortedMap, "entrySet", regularImmutableSet);
-        setField(sparseImmutableTable, "rowMap", immutableSortedMap);
-        
-        sparseImmutableTable.getCell(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCell9() throws Throwable  {
-        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
-        int[] intArray = new int[9];
-        setField(sparseImmutableTable, "cellColumnInRowIndices", intArray);
-        int[] intArray1 = new int[1];
-        setField(sparseImmutableTable, "cellRowIndices", intArray1);
-        ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
-        Object keySet = createInstance("com.google.common.collect.RegularImmutableMap$KeySet");
-        RegularImmutableAsList regularImmutableAsList = ((RegularImmutableAsList) createInstance("com.google.common.collect.RegularImmutableAsList"));
-        RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        ImmutableEntry immutableEntry = ((ImmutableEntry) createInstance("com.google.common.collect.ImmutableEntry"));
-        RegularImmutableMap regularImmutableMap = ((RegularImmutableMap) createInstance("com.google.common.collect.RegularImmutableMap"));
-        RegularImmutableSet regularImmutableSet = ((RegularImmutableSet) createInstance("com.google.common.collect.RegularImmutableSet"));
-        setField(regularImmutableSet, "asList", null);
-        setField(regularImmutableMap, "entrySet", regularImmutableSet);
-        setField(immutableEntry, "value", regularImmutableMap);
-        objectArray[0] = ((Object) immutableEntry);
-        setField(regularImmutableList, "array", objectArray);
-        setField(regularImmutableAsList, "delegateList", regularImmutableList);
-        setField(keySet, "asList", regularImmutableAsList);
-        setField(immutableSortedMap, "entrySet", keySet);
-        setField(sparseImmutableTable, "rowMap", immutableSortedMap);
-        
-        Object sparseImmutableTableRowMap = getFieldValue(sparseImmutableTable, "rowMap");
-        Object sparseImmutableTableRowMapRowMapEntrySet = getFieldValue(sparseImmutableTableRowMap, "entrySet");
-        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsList = getFieldValue(sparseImmutableTableRowMapRowMapEntrySet, "asList");
-        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateList = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsList, "delegateList");
-        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArray = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateList, "array");
-        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0 = get(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArray, 0);
-        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0Value = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0, "value");
-        Object sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0ValueRowMapEntrySetAsListDelegateListArray0ValueEntrySet = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0Value, "entrySet");
-        Object initialSparseImmutableTableRowMapEntrySetAsListDelegateListArray0ValueEntrySetAsList = getFieldValue(sparseImmutableTableRowMapRowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0ValueRowMapEntrySetAsListDelegateListArray0ValueEntrySet, "asList");
-        
-        sparseImmutableTable.getCell(0);
-        
-        Object sparseImmutableTableRowMap1 = getFieldValue(sparseImmutableTable, "rowMap");
-        Object sparseImmutableTableRowMap1RowMapEntrySet = getFieldValue(sparseImmutableTableRowMap1, "entrySet");
-        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsList = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySet, "asList");
-        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateList = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsList, "delegateList");
-        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArray = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateList, "array");
-        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0 = get(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArray, 0);
-        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0Value = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0, "value");
-        Object sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0ValueRowMapEntrySetAsListDelegateListArray0ValueEntrySet = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0Value, "entrySet");
-        Object finalSparseImmutableTableRowMapEntrySetAsListDelegateListArray0ValueEntrySetAsList = getFieldValue(sparseImmutableTableRowMap1RowMapEntrySetRowMapEntrySetAsListRowMapEntrySetAsListDelegateListRowMapEntrySetAsListDelegateListArrayRowMapEntrySetAsListDelegateListArray0RowMapEntrySetAsListDelegateListArray0ValueRowMapEntrySetAsListDelegateListArray0ValueEntrySet, "asList");
-        
-        assertFalse(initialSparseImmutableTableRowMapEntrySetAsListDelegateListArray0ValueEntrySetAsList == finalSparseImmutableTableRowMapEntrySetAsListDelegateListArray0ValueEntrySetAsList);
     }
     ///endregion
     
@@ -589,7 +442,7 @@ public class SparseImmutableTableTest {
         int[] intArray = new int[9];
         setField(sparseImmutableTable, "cellRowIndices", intArray);
         
-        sparseImmutableTable.getValue(134217728);
+        sparseImmutableTable.getValue(1073741824);
     }
     ///endregion
     
@@ -637,42 +490,11 @@ public class SparseImmutableTableTest {
     public void testGetValue4() throws Throwable  {
         SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
         int[] intArray = new int[9];
-        setField(sparseImmutableTable, "cellColumnInRowIndices", intArray);
-        int[] intArray1 = new int[9];
-        intArray1[1] = 256;
-        intArray1[2] = 256;
-        intArray1[3] = 256;
-        intArray1[4] = 256;
-        intArray1[5] = 256;
-        intArray1[6] = 256;
-        intArray1[7] = 256;
-        intArray1[8] = 256;
-        setField(sparseImmutableTable, "cellRowIndices", intArray1);
-        ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
-        ImmutableSortedAsList immutableSortedAsList = ((ImmutableSortedAsList) createInstance("com.google.common.collect.ImmutableSortedAsList"));
-        RegularImmutableAsList regularImmutableAsList = ((RegularImmutableAsList) createInstance("com.google.common.collect.RegularImmutableAsList"));
-        RegularImmutableAsList regularImmutableAsList1 = ((RegularImmutableAsList) createInstance("com.google.common.collect.RegularImmutableAsList"));
-        RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        RegularImmutableMap regularImmutableMap = ((RegularImmutableMap) createInstance("com.google.common.collect.RegularImmutableMap"));
-        Object stringAsImmutableList = createInstance("com.google.common.collect.Lists$StringAsImmutableList");
-        setField(regularImmutableMap, "values", stringAsImmutableList);
-        objectArray[0] = ((Object) regularImmutableMap);
-        objectArray[1] = ((Object) immutableSortedAsList);
-        objectArray[2] = ((Object) immutableSortedAsList);
-        objectArray[3] = ((Object) immutableSortedAsList);
-        objectArray[4] = ((Object) immutableSortedAsList);
-        objectArray[5] = ((Object) immutableSortedAsList);
-        objectArray[6] = ((Object) immutableSortedAsList);
-        objectArray[7] = ((Object) immutableSortedAsList);
-        objectArray[8] = ((Object) immutableSortedAsList);
-        setField(regularImmutableList, "array", objectArray);
-        setField(regularImmutableAsList1, "delegateList", regularImmutableList);
-        setField(regularImmutableAsList, "delegateList", regularImmutableAsList1);
-        setField(immutableSortedAsList, "delegateList", regularImmutableAsList);
-        setField(immutableSortedMap, "values", immutableSortedAsList);
-        setField(immutableSortedMap, "valueList", immutableSortedAsList);
-        setField(sparseImmutableTable, "rowMap", immutableSortedMap);
+        setField(sparseImmutableTable, "cellRowIndices", intArray);
+        Object row = createInstance("com.google.common.collect.DenseImmutableTable$Row");
+        SingletonImmutableList singletonImmutableList = ((SingletonImmutableList) createInstance("com.google.common.collect.SingletonImmutableList"));
+        setField(row, "values", singletonImmutableList);
+        setField(sparseImmutableTable, "rowMap", row);
         
         sparseImmutableTable.getValue(0);
     }
@@ -686,8 +508,8 @@ public class SparseImmutableTableTest {
         int[] intArray = new int[9];
         setField(sparseImmutableTable, "cellRowIndices", intArray);
         Object row = createInstance("com.google.common.collect.DenseImmutableTable$Row");
-        DescendingImmutableSortedMultiset descendingImmutableSortedMultiset = ((DescendingImmutableSortedMultiset) createInstance("com.google.common.collect.DescendingImmutableSortedMultiset"));
-        setField(row, "values", descendingImmutableSortedMultiset);
+        SingletonImmutableSet singletonImmutableSet = ((SingletonImmutableSet) createInstance("com.google.common.collect.SingletonImmutableSet"));
+        setField(row, "values", singletonImmutableSet);
         setField(sparseImmutableTable, "rowMap", row);
         
         sparseImmutableTable.getValue(0);
@@ -713,31 +535,21 @@ public class SparseImmutableTableTest {
         setField(sparseImmutableTable, "cellRowIndices", intArray1);
         ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
         setField(immutableSortedMap, "values", null);
+        ImmutableSortedAsList immutableSortedAsList = ((ImmutableSortedAsList) createInstance("com.google.common.collect.ImmutableSortedAsList"));
+        RegularImmutableAsList regularImmutableAsList = ((RegularImmutableAsList) createInstance("com.google.common.collect.RegularImmutableAsList"));
+        RegularImmutableAsList regularImmutableAsList1 = ((RegularImmutableAsList) createInstance("com.google.common.collect.RegularImmutableAsList"));
         RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
         java.lang.Object[] objectArray = new java.lang.Object[9];
         RegularImmutableMap regularImmutableMap = ((RegularImmutableMap) createInstance("com.google.common.collect.RegularImmutableMap"));
-        JdkBackedImmutableMultiset jdkBackedImmutableMultiset = ((JdkBackedImmutableMultiset) createInstance("com.google.common.collect.JdkBackedImmutableMultiset"));
-        setField(regularImmutableMap, "values", jdkBackedImmutableMultiset);
+        Object stringAsImmutableList = createInstance("com.google.common.collect.Lists$StringAsImmutableList");
+        setField(regularImmutableMap, "values", stringAsImmutableList);
         objectArray[0] = ((Object) regularImmutableMap);
         setField(regularImmutableList, "array", objectArray);
-        setField(immutableSortedMap, "valueList", regularImmutableList);
+        setField(regularImmutableAsList1, "delegateList", regularImmutableList);
+        setField(regularImmutableAsList, "delegateList", regularImmutableAsList1);
+        setField(immutableSortedAsList, "delegateList", regularImmutableAsList);
+        setField(immutableSortedMap, "valueList", immutableSortedAsList);
         setField(sparseImmutableTable, "rowMap", immutableSortedMap);
-        
-        sparseImmutableTable.getValue(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetValue7() throws Throwable  {
-        SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
-        int[] intArray = new int[9];
-        setField(sparseImmutableTable, "cellRowIndices", intArray);
-        Object column = createInstance("com.google.common.collect.DenseImmutableTable$Column");
-        Object values = createInstance("com.google.common.collect.RegularImmutableMap$Values");
-        setField(column, "values", values);
-        setField(sparseImmutableTable, "rowMap", column);
         
         sparseImmutableTable.getValue(0);
     }
@@ -813,6 +625,27 @@ public class SparseImmutableTableTest {
         sparseImmutableTableConstructorArguments[0] = inverseEntries;
         sparseImmutableTableConstructorArguments[1] = regularImmutableSet;
         sparseImmutableTableConstructorArguments[2] = null;
+        sparseImmutableTableConstructor.newInstance(sparseImmutableTableConstructorArguments);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSparseImmutableTable5() throws Throwable  {
+        RegularImmutableSet regularImmutableSet = ((RegularImmutableSet) createInstance("com.google.common.collect.RegularImmutableSet"));
+        java.lang.Object[] objectArray = new java.lang.Object[0];
+        setField(regularImmutableSet, "elements", objectArray);
+        Object entrySet = createInstance("com.google.common.collect.ImmutableSetMultimap$EntrySet");
+        Class sparseImmutableTableClazz = Class.forName("com.google.common.collect.SparseImmutableTable");
+        Class immutableListType = Class.forName("com.google.common.collect.ImmutableList");
+        Class regularImmutableSetType = Class.forName("com.google.common.collect.ImmutableSet");
+        Constructor sparseImmutableTableConstructor = sparseImmutableTableClazz.getDeclaredConstructor(immutableListType, regularImmutableSetType, regularImmutableSetType);
+        sparseImmutableTableConstructor.setAccessible(true);
+        java.lang.Object[] sparseImmutableTableConstructorArguments = new java.lang.Object[3];
+        sparseImmutableTableConstructorArguments[0] = null;
+        sparseImmutableTableConstructorArguments[1] = regularImmutableSet;
+        sparseImmutableTableConstructorArguments[2] = entrySet;
         sparseImmutableTableConstructor.newInstance(sparseImmutableTableConstructorArguments);
     }
     ///endregion

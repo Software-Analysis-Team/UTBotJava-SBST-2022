@@ -111,6 +111,55 @@ public class JDTBatchCompilerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetCompilationUnits5() throws Throwable  {
+        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
+        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[9];
+        CompilationUnitWrapper compilationUnitWrapper = ((CompilationUnitWrapper) createInstance("spoon.support.compiler.jdt.CompilationUnitWrapper"));
+        setField(compilationUnitWrapper, "fileName", null);
+        compilationUnitArray[0] = ((CompilationUnit) compilationUnitWrapper);
+        jDTBatchCompiler.compilationUnits = compilationUnitArray;
+        
+        CompilationUnit initialJDTBatchCompilerCompilationUnits1 = jDTBatchCompiler.compilationUnits[1];
+        CompilationUnit initialJDTBatchCompilerCompilationUnits2 = jDTBatchCompiler.compilationUnits[2];
+        CompilationUnit initialJDTBatchCompilerCompilationUnits3 = jDTBatchCompiler.compilationUnits[3];
+        CompilationUnit initialJDTBatchCompilerCompilationUnits4 = jDTBatchCompiler.compilationUnits[4];
+        CompilationUnit initialJDTBatchCompilerCompilationUnits5 = jDTBatchCompiler.compilationUnits[5];
+        CompilationUnit initialJDTBatchCompilerCompilationUnits6 = jDTBatchCompiler.compilationUnits[6];
+        CompilationUnit initialJDTBatchCompilerCompilationUnits7 = jDTBatchCompiler.compilationUnits[7];
+        CompilationUnit initialJDTBatchCompilerCompilationUnits8 = jDTBatchCompiler.compilationUnits[8];
+        
+        jDTBatchCompiler.getCompilationUnits();
+        
+        CompilationUnit finalJDTBatchCompilerCompilationUnits1 = jDTBatchCompiler.compilationUnits[1];
+        CompilationUnit finalJDTBatchCompilerCompilationUnits2 = jDTBatchCompiler.compilationUnits[2];
+        CompilationUnit finalJDTBatchCompilerCompilationUnits3 = jDTBatchCompiler.compilationUnits[3];
+        CompilationUnit finalJDTBatchCompilerCompilationUnits4 = jDTBatchCompiler.compilationUnits[4];
+        CompilationUnit finalJDTBatchCompilerCompilationUnits5 = jDTBatchCompiler.compilationUnits[5];
+        CompilationUnit finalJDTBatchCompilerCompilationUnits6 = jDTBatchCompiler.compilationUnits[6];
+        CompilationUnit finalJDTBatchCompilerCompilationUnits7 = jDTBatchCompiler.compilationUnits[7];
+        CompilationUnit finalJDTBatchCompilerCompilationUnits8 = jDTBatchCompiler.compilationUnits[8];
+        
+        assertNull(finalJDTBatchCompilerCompilationUnits1);
+        
+        assertNull(finalJDTBatchCompilerCompilationUnits2);
+        
+        assertNull(finalJDTBatchCompilerCompilationUnits3);
+        
+        assertNull(finalJDTBatchCompilerCompilationUnits4);
+        
+        assertNull(finalJDTBatchCompilerCompilationUnits5);
+        
+        assertNull(finalJDTBatchCompilerCompilationUnits6);
+        
+        assertNull(finalJDTBatchCompilerCompilationUnits7);
+        
+        assertNull(finalJDTBatchCompilerCompilationUnits8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testGetUnits1() throws Throwable  {
         JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
         
@@ -141,7 +190,7 @@ public class JDTBatchCompilerTest {
         
         assertNull(finalJDTBatchCompilerLimitedModules);
         
-        assertEquals(1645788817036L, finalJDTBatchCompilerStartTime);
+        assertEquals(1645033788879L, finalJDTBatchCompilerStartTime);
     }
     ///endregion
     
@@ -162,8 +211,77 @@ public class JDTBatchCompilerTest {
     public void testSetCompilationUnits2() throws Throwable  {
         JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
         setField(jDTBatchCompiler, "compilationUnits", null);
+        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[9];
         
-        jDTBatchCompiler.setCompilationUnits(null);
+        CompilationUnit initialCompilationUnitArray0 = compilationUnitArray[0];
+        CompilationUnit initialCompilationUnitArray1 = compilationUnitArray[1];
+        CompilationUnit initialCompilationUnitArray2 = compilationUnitArray[2];
+        CompilationUnit initialCompilationUnitArray3 = compilationUnitArray[3];
+        CompilationUnit initialCompilationUnitArray4 = compilationUnitArray[4];
+        CompilationUnit initialCompilationUnitArray5 = compilationUnitArray[5];
+        CompilationUnit initialCompilationUnitArray6 = compilationUnitArray[6];
+        CompilationUnit initialCompilationUnitArray7 = compilationUnitArray[7];
+        CompilationUnit initialCompilationUnitArray8 = compilationUnitArray[8];
+        
+        jDTBatchCompiler.setCompilationUnits(compilationUnitArray);
+        
+        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] finalJDTBatchCompilerCompilationUnits = jDTBatchCompiler.compilationUnits;
+        
+        CompilationUnit finalCompilationUnitArray0 = compilationUnitArray[0];
+        CompilationUnit finalCompilationUnitArray1 = compilationUnitArray[1];
+        CompilationUnit finalCompilationUnitArray2 = compilationUnitArray[2];
+        CompilationUnit finalCompilationUnitArray3 = compilationUnitArray[3];
+        CompilationUnit finalCompilationUnitArray4 = compilationUnitArray[4];
+        CompilationUnit finalCompilationUnitArray5 = compilationUnitArray[5];
+        CompilationUnit finalCompilationUnitArray6 = compilationUnitArray[6];
+        CompilationUnit finalCompilationUnitArray7 = compilationUnitArray[7];
+        CompilationUnit finalCompilationUnitArray8 = compilationUnitArray[8];
+        
+        assertNull(finalCompilationUnitArray0);
+        
+        assertNull(finalCompilationUnitArray1);
+        
+        assertNull(finalCompilationUnitArray2);
+        
+        assertNull(finalCompilationUnitArray3);
+        
+        assertNull(finalCompilationUnitArray4);
+        
+        assertNull(finalCompilationUnitArray5);
+        
+        assertNull(finalCompilationUnitArray6);
+        
+        assertNull(finalCompilationUnitArray7);
+        
+        assertNull(finalCompilationUnitArray8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetJdtCompiler1() throws Throwable  {
+        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
+        
+        JDTBasedSpoonCompiler actual = jDTBatchCompiler.getJdtCompiler();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetJdtCompiler2() throws Throwable  {
+        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
+        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
+        setField(jDTBatchCompiler, "jdtCompiler", jDTBasedSpoonCompiler);
+        
+        JDTBasedSpoonCompiler actual = jDTBatchCompiler.getJdtCompiler();
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(jDTBasedSpoonCompiler, actual));
     }
     ///endregion
     
@@ -203,37 +321,11 @@ public class JDTBatchCompilerTest {
         LinkedHashSet linkedHashSet = new LinkedHashSet();
         Integer integer = 0;
         linkedHashSet.add(integer);
+        Integer integer1 = 0;
+        linkedHashSet.add(integer1);
         setField(jDTBatchCompiler, "filesToBeIgnored", linkedHashSet);
         
         jDTBatchCompiler.ignoreFile(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetJdtCompiler1() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        
-        JDTBasedSpoonCompiler actual = jDTBatchCompiler.getJdtCompiler();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetJdtCompiler2() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
-        setField(jDTBatchCompiler, "jdtCompiler", jDTBasedSpoonCompiler);
-        
-        JDTBasedSpoonCompiler actual = jDTBatchCompiler.getJdtCompiler();
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(jDTBasedSpoonCompiler, actual));
     }
     ///endregion
     
@@ -251,6 +343,15 @@ public class JDTBatchCompilerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testJDTBatchCompiler2() {
         new JDTBatchCompiler(null, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testJDTBatchCompiler3() throws Throwable  {
+        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
+        new JDTBatchCompiler(jDTBasedSpoonCompiler);
     }
     ///endregion
     

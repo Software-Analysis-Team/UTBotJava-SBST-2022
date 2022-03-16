@@ -2,21 +2,20 @@ package spoon.reflect.visitor.filter;
 
 import org.junit.Test;
 import spoon.reflect.visitor.Filter;
-import spoon.support.reflect.declaration.CtEnumValueImpl;
-import spoon.support.reflect.code.CtConstructorCallImpl;
-import spoon.support.reflect.declaration.CtClassImpl;
+import spoon.support.reflect.declaration.CtEnumImpl;
+import spoon.support.reflect.code.CtJavaDocTagImpl;
 import spoon.support.reflect.reference.CtFieldReferenceImpl;
 import spoon.support.reflect.code.CtFieldReadImpl;
-import spoon.support.reflect.code.CtSuperAccessImpl;
-import spoon.reflect.factory.FactoryImpl;
+import spoon.support.reflect.code.CtConstructorCallImpl;
+import spoon.support.reflect.code.CtAnnotationFieldAccessImpl;
 import java.lang.reflect.Method;
 import spoon.support.reflect.code.CtArrayReadImpl;
 import spoon.reflect.factory.ModuleFactory.CtUnnamedModule;
 import spoon.reflect.factory.ModuleFactory;
-import spoon.support.reflect.declaration.CtEnumImpl;
+import spoon.reflect.factory.FactoryImpl;
 import spoon.reflect.factory.AnnotationFactory;
-import spoon.reflect.factory.PackageFactory;
-import spoon.reflect.CtModelImpl;
+import spoon.support.reflect.declaration.CtTypeParameterImpl;
+import spoon.support.reflect.code.CtSuperAccessImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -61,7 +60,7 @@ public class CompositeFilterTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testMatches3() throws Throwable  {
         CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        FilteringOperator filteringOperator = FilteringOperator.UNION;
+        FilteringOperator filteringOperator = FilteringOperator.INTERSECTION;
         compositeFilter.operator = filteringOperator;
         
         compositeFilter.matches(null);
@@ -85,7 +84,7 @@ public class CompositeFilterTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testMatches5() throws Throwable  {
         CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        FilteringOperator filteringOperator = FilteringOperator.INTERSECTION;
+        FilteringOperator filteringOperator = FilteringOperator.UNION;
         compositeFilter.operator = filteringOperator;
         setField(compositeFilter, "filters", null);
         
@@ -308,7 +307,7 @@ public class CompositeFilterTest {
         FieldAccessFilter fieldAccessFilter = ((FieldAccessFilter) createInstance("spoon.reflect.visitor.filter.FieldAccessFilter"));
         filterArray[0] = ((Filter) fieldAccessFilter);
         compositeFilter.filters = filterArray;
-        CtEnumValueImpl ctEnumValueImpl = ((CtEnumValueImpl) createInstance("spoon.support.reflect.declaration.CtEnumValueImpl"));
+        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
         
         Filter initialCompositeFilterFilters1 = compositeFilter.filters[1];
         Filter initialCompositeFilterFilters2 = compositeFilter.filters[2];
@@ -319,7 +318,7 @@ public class CompositeFilterTest {
         Filter initialCompositeFilterFilters7 = compositeFilter.filters[7];
         Filter initialCompositeFilterFilters8 = compositeFilter.filters[8];
         
-        boolean actual = compositeFilter.matches(ctEnumValueImpl);
+        boolean actual = compositeFilter.matches(ctEnumImpl);
         
         assertFalse(actual);
         
@@ -361,9 +360,9 @@ public class CompositeFilterTest {
         FieldAccessFilter fieldAccessFilter = ((FieldAccessFilter) createInstance("spoon.reflect.visitor.filter.FieldAccessFilter"));
         filterArray[0] = ((Filter) fieldAccessFilter);
         compositeFilter.filters = filterArray;
-        CtConstructorCallImpl ctConstructorCallImpl = ((CtConstructorCallImpl) createInstance("spoon.support.reflect.code.CtConstructorCallImpl"));
+        CtJavaDocTagImpl ctJavaDocTagImpl = ((CtJavaDocTagImpl) createInstance("spoon.support.reflect.code.CtJavaDocTagImpl"));
         
-        boolean actual = compositeFilter.matches(ctConstructorCallImpl);
+        boolean actual = compositeFilter.matches(ctJavaDocTagImpl);
         
         assertFalse(actual);
     }
@@ -376,13 +375,13 @@ public class CompositeFilterTest {
         CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
         FilteringOperator filteringOperator = FilteringOperator.INTERSECTION;
         compositeFilter.operator = filteringOperator;
-        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[20];
+        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[9];
         AnnotationFilter annotationFilter = ((AnnotationFilter) createInstance("spoon.reflect.visitor.filter.AnnotationFilter"));
         Class class1 = Object.class;
         setField(annotationFilter, "type", class1);
         filterArray[0] = ((Filter) annotationFilter);
         compositeFilter.filters = filterArray;
-        CtClassImpl ctClassImpl = ((CtClassImpl) createInstance("spoon.support.reflect.declaration.CtClassImpl"));
+        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
         
         Filter initialCompositeFilterFilters1 = compositeFilter.filters[1];
         Filter initialCompositeFilterFilters2 = compositeFilter.filters[2];
@@ -392,19 +391,8 @@ public class CompositeFilterTest {
         Filter initialCompositeFilterFilters6 = compositeFilter.filters[6];
         Filter initialCompositeFilterFilters7 = compositeFilter.filters[7];
         Filter initialCompositeFilterFilters8 = compositeFilter.filters[8];
-        Filter initialCompositeFilterFilters9 = compositeFilter.filters[9];
-        Filter initialCompositeFilterFilters10 = compositeFilter.filters[10];
-        Filter initialCompositeFilterFilters11 = compositeFilter.filters[11];
-        Filter initialCompositeFilterFilters12 = compositeFilter.filters[12];
-        Filter initialCompositeFilterFilters13 = compositeFilter.filters[13];
-        Filter initialCompositeFilterFilters14 = compositeFilter.filters[14];
-        Filter initialCompositeFilterFilters15 = compositeFilter.filters[15];
-        Filter initialCompositeFilterFilters16 = compositeFilter.filters[16];
-        Filter initialCompositeFilterFilters17 = compositeFilter.filters[17];
-        Filter initialCompositeFilterFilters18 = compositeFilter.filters[18];
-        Filter initialCompositeFilterFilters19 = compositeFilter.filters[19];
         
-        compositeFilter.matches(ctClassImpl);
+        compositeFilter.matches(ctEnumImpl);
         
         Filter finalCompositeFilterFilters1 = compositeFilter.filters[1];
         Filter finalCompositeFilterFilters2 = compositeFilter.filters[2];
@@ -414,17 +402,6 @@ public class CompositeFilterTest {
         Filter finalCompositeFilterFilters6 = compositeFilter.filters[6];
         Filter finalCompositeFilterFilters7 = compositeFilter.filters[7];
         Filter finalCompositeFilterFilters8 = compositeFilter.filters[8];
-        Filter finalCompositeFilterFilters9 = compositeFilter.filters[9];
-        Filter finalCompositeFilterFilters10 = compositeFilter.filters[10];
-        Filter finalCompositeFilterFilters11 = compositeFilter.filters[11];
-        Filter finalCompositeFilterFilters12 = compositeFilter.filters[12];
-        Filter finalCompositeFilterFilters13 = compositeFilter.filters[13];
-        Filter finalCompositeFilterFilters14 = compositeFilter.filters[14];
-        Filter finalCompositeFilterFilters15 = compositeFilter.filters[15];
-        Filter finalCompositeFilterFilters16 = compositeFilter.filters[16];
-        Filter finalCompositeFilterFilters17 = compositeFilter.filters[17];
-        Filter finalCompositeFilterFilters18 = compositeFilter.filters[18];
-        Filter finalCompositeFilterFilters19 = compositeFilter.filters[19];
         
         assertNull(finalCompositeFilterFilters1);
         
@@ -441,28 +418,6 @@ public class CompositeFilterTest {
         assertNull(finalCompositeFilterFilters7);
         
         assertNull(finalCompositeFilterFilters8);
-        
-        assertNull(finalCompositeFilterFilters9);
-        
-        assertNull(finalCompositeFilterFilters10);
-        
-        assertNull(finalCompositeFilterFilters11);
-        
-        assertNull(finalCompositeFilterFilters12);
-        
-        assertNull(finalCompositeFilterFilters13);
-        
-        assertNull(finalCompositeFilterFilters14);
-        
-        assertNull(finalCompositeFilterFilters15);
-        
-        assertNull(finalCompositeFilterFilters16);
-        
-        assertNull(finalCompositeFilterFilters17);
-        
-        assertNull(finalCompositeFilterFilters18);
-        
-        assertNull(finalCompositeFilterFilters19);
     }
     ///endregion
     
@@ -525,74 +480,17 @@ public class CompositeFilterTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testMatches16() throws Throwable  {
         CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        FilteringOperator filteringOperator = FilteringOperator.UNION;
-        compositeFilter.operator = filteringOperator;
-        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[9];
-        FieldAccessFilter fieldAccessFilter = ((FieldAccessFilter) createInstance("spoon.reflect.visitor.filter.FieldAccessFilter"));
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(fieldAccessFilter, "variable", ctFieldReferenceImpl);
-        filterArray[0] = ((Filter) fieldAccessFilter);
-        compositeFilter.filters = filterArray;
-        CtSuperAccessImpl ctSuperAccessImpl = ((CtSuperAccessImpl) createInstance("spoon.support.reflect.code.CtSuperAccessImpl"));
-        CtFieldReferenceImpl ctFieldReferenceImpl1 = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(ctSuperAccessImpl, "variable", ctFieldReferenceImpl1);
-        
-        Filter initialCompositeFilterFilters1 = compositeFilter.filters[1];
-        Filter initialCompositeFilterFilters2 = compositeFilter.filters[2];
-        Filter initialCompositeFilterFilters3 = compositeFilter.filters[3];
-        Filter initialCompositeFilterFilters4 = compositeFilter.filters[4];
-        Filter initialCompositeFilterFilters5 = compositeFilter.filters[5];
-        Filter initialCompositeFilterFilters6 = compositeFilter.filters[6];
-        Filter initialCompositeFilterFilters7 = compositeFilter.filters[7];
-        Filter initialCompositeFilterFilters8 = compositeFilter.filters[8];
-        
-        compositeFilter.matches(ctSuperAccessImpl);
-        
-        Filter finalCompositeFilterFilters1 = compositeFilter.filters[1];
-        Filter finalCompositeFilterFilters2 = compositeFilter.filters[2];
-        Filter finalCompositeFilterFilters3 = compositeFilter.filters[3];
-        Filter finalCompositeFilterFilters4 = compositeFilter.filters[4];
-        Filter finalCompositeFilterFilters5 = compositeFilter.filters[5];
-        Filter finalCompositeFilterFilters6 = compositeFilter.filters[6];
-        Filter finalCompositeFilterFilters7 = compositeFilter.filters[7];
-        Filter finalCompositeFilterFilters8 = compositeFilter.filters[8];
-        
-        assertNull(finalCompositeFilterFilters1);
-        
-        assertNull(finalCompositeFilterFilters2);
-        
-        assertNull(finalCompositeFilterFilters3);
-        
-        assertNull(finalCompositeFilterFilters4);
-        
-        assertNull(finalCompositeFilterFilters5);
-        
-        assertNull(finalCompositeFilterFilters6);
-        
-        assertNull(finalCompositeFilterFilters7);
-        
-        assertNull(finalCompositeFilterFilters8);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMatches17() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
         FilteringOperator filteringOperator = FilteringOperator.INTERSECTION;
         compositeFilter.operator = filteringOperator;
-        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[10];
+        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[17];
         AnnotationFilter annotationFilter = ((AnnotationFilter) createInstance("spoon.reflect.visitor.filter.AnnotationFilter"));
         Class class1 = Object.class;
         setField(annotationFilter, "type", class1);
         setField(annotationFilter, "annotationType", class1);
         filterArray[0] = ((Filter) annotationFilter);
         compositeFilter.filters = filterArray;
-        CtEnumValueImpl ctEnumValueImpl = ((CtEnumValueImpl) createInstance("spoon.support.reflect.declaration.CtEnumValueImpl"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "annotation", null);
-        setField(ctEnumValueImpl, "factory", factoryImpl);
+        CtConstructorCallImpl ctConstructorCallImpl = ((CtConstructorCallImpl) createInstance("spoon.support.reflect.code.CtConstructorCallImpl"));
+        setField(ctConstructorCallImpl, "factory", null);
         
         Filter initialCompositeFilterFilters1 = compositeFilter.filters[1];
         Filter initialCompositeFilterFilters2 = compositeFilter.filters[2];
@@ -603,8 +501,15 @@ public class CompositeFilterTest {
         Filter initialCompositeFilterFilters7 = compositeFilter.filters[7];
         Filter initialCompositeFilterFilters8 = compositeFilter.filters[8];
         Filter initialCompositeFilterFilters9 = compositeFilter.filters[9];
+        Filter initialCompositeFilterFilters10 = compositeFilter.filters[10];
+        Filter initialCompositeFilterFilters11 = compositeFilter.filters[11];
+        Filter initialCompositeFilterFilters12 = compositeFilter.filters[12];
+        Filter initialCompositeFilterFilters13 = compositeFilter.filters[13];
+        Filter initialCompositeFilterFilters14 = compositeFilter.filters[14];
+        Filter initialCompositeFilterFilters15 = compositeFilter.filters[15];
+        Filter initialCompositeFilterFilters16 = compositeFilter.filters[16];
         
-        compositeFilter.matches(ctEnumValueImpl);
+        compositeFilter.matches(ctConstructorCallImpl);
         
         Filter finalCompositeFilterFilters1 = compositeFilter.filters[1];
         Filter finalCompositeFilterFilters2 = compositeFilter.filters[2];
@@ -615,6 +520,13 @@ public class CompositeFilterTest {
         Filter finalCompositeFilterFilters7 = compositeFilter.filters[7];
         Filter finalCompositeFilterFilters8 = compositeFilter.filters[8];
         Filter finalCompositeFilterFilters9 = compositeFilter.filters[9];
+        Filter finalCompositeFilterFilters10 = compositeFilter.filters[10];
+        Filter finalCompositeFilterFilters11 = compositeFilter.filters[11];
+        Filter finalCompositeFilterFilters12 = compositeFilter.filters[12];
+        Filter finalCompositeFilterFilters13 = compositeFilter.filters[13];
+        Filter finalCompositeFilterFilters14 = compositeFilter.filters[14];
+        Filter finalCompositeFilterFilters15 = compositeFilter.filters[15];
+        Filter finalCompositeFilterFilters16 = compositeFilter.filters[16];
         
         assertNull(finalCompositeFilterFilters1);
         
@@ -633,138 +545,37 @@ public class CompositeFilterTest {
         assertNull(finalCompositeFilterFilters8);
         
         assertNull(finalCompositeFilterFilters9);
+        
+        assertNull(finalCompositeFilterFilters10);
+        
+        assertNull(finalCompositeFilterFilters11);
+        
+        assertNull(finalCompositeFilterFilters12);
+        
+        assertNull(finalCompositeFilterFilters13);
+        
+        assertNull(finalCompositeFilterFilters14);
+        
+        assertNull(finalCompositeFilterFilters15);
+        
+        assertNull(finalCompositeFilterFilters16);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMatches18() throws Throwable  {
+    public void testMatches17() throws Throwable  {
         CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        FilteringOperator filteringOperator = FilteringOperator.UNION;
+        FilteringOperator filteringOperator = FilteringOperator.INTERSECTION;
         compositeFilter.operator = filteringOperator;
-        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[9];
-        FieldAccessFilter fieldAccessFilter = ((FieldAccessFilter) createInstance("spoon.reflect.visitor.filter.FieldAccessFilter"));
-        filterArray[0] = ((Filter) fieldAccessFilter);
+        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[1];
+        VariableAccessFilter variableAccessFilter = ((VariableAccessFilter) createInstance("spoon.reflect.visitor.filter.VariableAccessFilter"));
+        filterArray[0] = ((Filter) variableAccessFilter);
         compositeFilter.filters = filterArray;
-        CtFieldReadImpl ctFieldReadImpl = ((CtFieldReadImpl) createInstance("spoon.support.reflect.code.CtFieldReadImpl"));
+        CtAnnotationFieldAccessImpl ctAnnotationFieldAccessImpl = ((CtAnnotationFieldAccessImpl) createInstance("spoon.support.reflect.code.CtAnnotationFieldAccessImpl"));
         
-        Filter initialCompositeFilterFilters1 = compositeFilter.filters[1];
-        Filter initialCompositeFilterFilters2 = compositeFilter.filters[2];
-        Filter initialCompositeFilterFilters3 = compositeFilter.filters[3];
-        Filter initialCompositeFilterFilters4 = compositeFilter.filters[4];
-        Filter initialCompositeFilterFilters5 = compositeFilter.filters[5];
-        Filter initialCompositeFilterFilters6 = compositeFilter.filters[6];
-        Filter initialCompositeFilterFilters7 = compositeFilter.filters[7];
-        Filter initialCompositeFilterFilters8 = compositeFilter.filters[8];
-        
-        compositeFilter.matches(ctFieldReadImpl);
-        
-        Filter finalCompositeFilterFilters1 = compositeFilter.filters[1];
-        Filter finalCompositeFilterFilters2 = compositeFilter.filters[2];
-        Filter finalCompositeFilterFilters3 = compositeFilter.filters[3];
-        Filter finalCompositeFilterFilters4 = compositeFilter.filters[4];
-        Filter finalCompositeFilterFilters5 = compositeFilter.filters[5];
-        Filter finalCompositeFilterFilters6 = compositeFilter.filters[6];
-        Filter finalCompositeFilterFilters7 = compositeFilter.filters[7];
-        Filter finalCompositeFilterFilters8 = compositeFilter.filters[8];
-        
-        assertNull(finalCompositeFilterFilters1);
-        
-        assertNull(finalCompositeFilterFilters2);
-        
-        assertNull(finalCompositeFilterFilters3);
-        
-        assertNull(finalCompositeFilterFilters4);
-        
-        assertNull(finalCompositeFilterFilters5);
-        
-        assertNull(finalCompositeFilterFilters6);
-        
-        assertNull(finalCompositeFilterFilters7);
-        
-        assertNull(finalCompositeFilterFilters8);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMatches19() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        FilteringOperator filteringOperator = FilteringOperator.UNION;
-        compositeFilter.operator = filteringOperator;
-        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[9];
-        FieldAccessFilter fieldAccessFilter = ((FieldAccessFilter) createInstance("spoon.reflect.visitor.filter.FieldAccessFilter"));
-        filterArray[0] = ((Filter) fieldAccessFilter);
-        compositeFilter.filters = filterArray;
-        CtSuperAccessImpl ctSuperAccessImpl = ((CtSuperAccessImpl) createInstance("spoon.support.reflect.code.CtSuperAccessImpl"));
-        
-        Filter initialCompositeFilterFilters1 = compositeFilter.filters[1];
-        Filter initialCompositeFilterFilters2 = compositeFilter.filters[2];
-        Filter initialCompositeFilterFilters3 = compositeFilter.filters[3];
-        Filter initialCompositeFilterFilters4 = compositeFilter.filters[4];
-        Filter initialCompositeFilterFilters5 = compositeFilter.filters[5];
-        Filter initialCompositeFilterFilters6 = compositeFilter.filters[6];
-        Filter initialCompositeFilterFilters7 = compositeFilter.filters[7];
-        Filter initialCompositeFilterFilters8 = compositeFilter.filters[8];
-        
-        compositeFilter.matches(ctSuperAccessImpl);
-        
-        Filter finalCompositeFilterFilters1 = compositeFilter.filters[1];
-        Filter finalCompositeFilterFilters2 = compositeFilter.filters[2];
-        Filter finalCompositeFilterFilters3 = compositeFilter.filters[3];
-        Filter finalCompositeFilterFilters4 = compositeFilter.filters[4];
-        Filter finalCompositeFilterFilters5 = compositeFilter.filters[5];
-        Filter finalCompositeFilterFilters6 = compositeFilter.filters[6];
-        Filter finalCompositeFilterFilters7 = compositeFilter.filters[7];
-        Filter finalCompositeFilterFilters8 = compositeFilter.filters[8];
-        
-        assertNull(finalCompositeFilterFilters1);
-        
-        assertNull(finalCompositeFilterFilters2);
-        
-        assertNull(finalCompositeFilterFilters3);
-        
-        assertNull(finalCompositeFilterFilters4);
-        
-        assertNull(finalCompositeFilterFilters5);
-        
-        assertNull(finalCompositeFilterFilters6);
-        
-        assertNull(finalCompositeFilterFilters7);
-        
-        assertNull(finalCompositeFilterFilters8);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetType1() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        
-        Class actual = compositeFilter.getType();
-        
-        Class expected = spoon.reflect.declaration.CtElement.class;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetType2() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        
-        Class actual = compositeFilter.getType();
-        
-        Class expected = spoon.reflect.declaration.CtElement.class;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        compositeFilter.matches(ctAnnotationFieldAccessImpl);
     }
     ///endregion
     
@@ -891,57 +702,21 @@ public class CompositeFilterTest {
         Class class1 = Object.class;
         setField(annotationFilter, "type", class1);
         setField(annotationFilter, "annotationType", class1);
-        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
+        CtConstructorCallImpl ctConstructorCallImpl = ((CtConstructorCallImpl) createInstance("spoon.support.reflect.code.CtConstructorCallImpl"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "packageF", null);
         AnnotationFactory annotationFactory = ((AnnotationFactory) createInstance("spoon.reflect.factory.AnnotationFactory"));
-        setField(annotationFactory, "factory", factoryImpl);
+        setField(annotationFactory, "factory", null);
         setField(factoryImpl, "annotation", annotationFactory);
-        setField(ctEnumImpl, "factory", factoryImpl);
-        
-        Object ctEnumImplFactory = getFieldValue(ctEnumImpl, "factory");
-        Object initialCtEnumImplFactoryPackageF = getFieldValue(ctEnumImplFactory, "packageF");
+        setField(ctConstructorCallImpl, "factory", factoryImpl);
         
         Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
         Class annotationFilterType = Class.forName("spoon.reflect.visitor.Filter");
-        Class ctEnumImplType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", annotationFilterType, ctEnumImplType);
+        Class ctConstructorCallImplType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", annotationFilterType, ctConstructorCallImplType);
         hasMatchMethod.setAccessible(true);
         java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
         hasMatchMethodArguments[0] = annotationFilter;
-        hasMatchMethodArguments[1] = ctEnumImpl;
-        try {
-            hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object ctEnumImplFactory1 = getFieldValue(ctEnumImpl, "factory");
-        Object finalCtEnumImplFactoryPackageF = getFieldValue(ctEnumImplFactory1, "packageF");
-        
-        assertFalse(initialCtEnumImplFactoryPackageF == finalCtEnumImplFactoryPackageF);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasMatch7() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        VariableAccessFilter variableAccessFilter = ((VariableAccessFilter) createInstance("spoon.reflect.visitor.filter.VariableAccessFilter"));
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(variableAccessFilter, "variable", ctFieldReferenceImpl);
-        CtFieldReadImpl ctFieldReadImpl = ((CtFieldReadImpl) createInstance("spoon.support.reflect.code.CtFieldReadImpl"));
-        CtFieldReferenceImpl ctFieldReferenceImpl1 = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(ctFieldReadImpl, "variable", ctFieldReferenceImpl1);
-        
-        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
-        Class variableAccessFilterType = Class.forName("spoon.reflect.visitor.Filter");
-        Class ctFieldReadImplType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", variableAccessFilterType, ctFieldReadImplType);
-        hasMatchMethod.setAccessible(true);
-        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
-        hasMatchMethodArguments[0] = variableAccessFilter;
-        hasMatchMethodArguments[1] = ctFieldReadImpl;
+        hasMatchMethodArguments[1] = ctConstructorCallImpl;
         try {
             hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -952,36 +727,70 @@ public class CompositeFilterTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasMatch8() throws Throwable  {
+    public void testHasMatch7() throws Throwable  {
         CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
         AnnotationFilter annotationFilter = ((AnnotationFilter) createInstance("spoon.reflect.visitor.filter.AnnotationFilter"));
         Class class1 = Object.class;
         setField(annotationFilter, "type", class1);
         setField(annotationFilter, "annotationType", class1);
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
+        CtTypeParameterImpl ctTypeParameterImpl = ((CtTypeParameterImpl) createInstance("spoon.support.reflect.declaration.CtTypeParameterImpl"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "model", null);
-        PackageFactory packageFactory = ((PackageFactory) createInstance("spoon.reflect.factory.PackageFactory"));
+        setField(factoryImpl, "packageF", null);
+        AnnotationFactory annotationFactory = ((AnnotationFactory) createInstance("spoon.reflect.factory.AnnotationFactory"));
         FactoryImpl factoryImpl1 = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        CtModelImpl ctModelImpl = ((CtModelImpl) createInstance("spoon.reflect.CtModelImpl"));
-        setField(factoryImpl1, "model", ctModelImpl);
         setField(factoryImpl1, "packageF", null);
         setField(factoryImpl1, "annotation", null);
-        setField(packageFactory, "factory", factoryImpl1);
-        setField(factoryImpl, "packageF", packageFactory);
-        AnnotationFactory annotationFactory = ((AnnotationFactory) createInstance("spoon.reflect.factory.AnnotationFactory"));
-        setField(annotationFactory, "factory", factoryImpl);
+        setField(annotationFactory, "factory", factoryImpl1);
         setField(factoryImpl, "annotation", annotationFactory);
-        setField(ctFieldReferenceImpl, "factory", factoryImpl);
+        setField(ctTypeParameterImpl, "factory", factoryImpl);
+        
+        Object ctTypeParameterImplFactory = getFieldValue(ctTypeParameterImpl, "factory");
+        Object ctTypeParameterImplFactoryFactoryAnnotation = getFieldValue(ctTypeParameterImplFactory, "annotation");
+        Object ctTypeParameterImplFactoryFactoryAnnotationFactoryAnnotationFactory = getFieldValue(ctTypeParameterImplFactoryFactoryAnnotation, "factory");
+        Object initialCtTypeParameterImplFactoryAnnotationFactoryPackageF = getFieldValue(ctTypeParameterImplFactoryFactoryAnnotationFactoryAnnotationFactory, "packageF");
         
         Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
         Class annotationFilterType = Class.forName("spoon.reflect.visitor.Filter");
-        Class ctFieldReferenceImplType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", annotationFilterType, ctFieldReferenceImplType);
+        Class ctTypeParameterImplType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", annotationFilterType, ctTypeParameterImplType);
         hasMatchMethod.setAccessible(true);
         java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
         hasMatchMethodArguments[0] = annotationFilter;
-        hasMatchMethodArguments[1] = ctFieldReferenceImpl;
+        hasMatchMethodArguments[1] = ctTypeParameterImpl;
+        try {
+            hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object ctTypeParameterImplFactory1 = getFieldValue(ctTypeParameterImpl, "factory");
+        Object ctTypeParameterImplFactory1FactoryAnnotation = getFieldValue(ctTypeParameterImplFactory1, "annotation");
+        Object ctTypeParameterImplFactory1FactoryAnnotationFactoryAnnotationFactory = getFieldValue(ctTypeParameterImplFactory1FactoryAnnotation, "factory");
+        Object finalCtTypeParameterImplFactoryAnnotationFactoryPackageF = getFieldValue(ctTypeParameterImplFactory1FactoryAnnotationFactoryAnnotationFactory, "packageF");
+        
+        assertFalse(initialCtTypeParameterImplFactoryAnnotationFactoryPackageF == finalCtTypeParameterImplFactoryAnnotationFactoryPackageF);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHasMatch8() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        VariableAccessFilter variableAccessFilter = ((VariableAccessFilter) createInstance("spoon.reflect.visitor.filter.VariableAccessFilter"));
+        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
+        setField(variableAccessFilter, "variable", ctFieldReferenceImpl);
+        CtSuperAccessImpl ctSuperAccessImpl = ((CtSuperAccessImpl) createInstance("spoon.support.reflect.code.CtSuperAccessImpl"));
+        CtFieldReferenceImpl ctFieldReferenceImpl1 = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
+        setField(ctSuperAccessImpl, "variable", ctFieldReferenceImpl1);
+        
+        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
+        Class variableAccessFilterType = Class.forName("spoon.reflect.visitor.Filter");
+        Class ctSuperAccessImplType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", variableAccessFilterType, ctSuperAccessImplType);
+        hasMatchMethod.setAccessible(true);
+        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
+        hasMatchMethodArguments[0] = variableAccessFilter;
+        hasMatchMethodArguments[1] = ctSuperAccessImpl;
         try {
             hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -1021,6 +830,36 @@ public class CompositeFilterTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testGetType1() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        
+        Class actual = compositeFilter.getType();
+        
+        Class expected = spoon.reflect.declaration.CtElement.class;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType2() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        
+        Class actual = compositeFilter.getType();
+        
+        Class expected = spoon.reflect.declaration.CtElement.class;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testCompositeFilter1() {
         CompositeFilter actual = new CompositeFilter(null, null);
     }
@@ -1049,6 +888,25 @@ public class CompositeFilterTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
+    }
+    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
+        Class<?> clazz = obj.getClass();
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                
+                return field.get(obj);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
+    
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     static class FieldsPair {
         final Object o1;
@@ -1217,25 +1075,6 @@ public class CompositeFilterTest {
         }
     
         return false;
-    }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

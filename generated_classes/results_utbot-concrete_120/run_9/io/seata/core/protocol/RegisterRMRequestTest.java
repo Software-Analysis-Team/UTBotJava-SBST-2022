@@ -436,6 +436,17 @@ public class RegisterRMRequestTest {
     
     @Test(timeout = 10000)
     public void testSetResourceIds1() throws Throwable  {
+        RegisterRMRequest registerRMRequest = new RegisterRMRequest();
+        String string = new String();
+        
+        registerRMRequest.setResourceIds(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetResourceIds2() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
         setField(registerRMRequest, "resourceIds", null);
         
@@ -472,7 +483,9 @@ public class RegisterRMRequestTest {
     
     @Test(timeout = 10000)
     public void testRegisterRMRequest1() {
-        RegisterRMRequest actual = new RegisterRMRequest();
+        String string = new String();
+        String string1 = new String();
+        RegisterRMRequest actual = new RegisterRMRequest(string, string1);
     }
     ///endregion
     
@@ -480,9 +493,7 @@ public class RegisterRMRequestTest {
     
     @Test(timeout = 10000)
     public void testRegisterRMRequest2() {
-        String string = new String();
-        String string1 = new String();
-        RegisterRMRequest actual = new RegisterRMRequest(string, string1);
+        RegisterRMRequest actual = new RegisterRMRequest();
     }
     ///endregion
     

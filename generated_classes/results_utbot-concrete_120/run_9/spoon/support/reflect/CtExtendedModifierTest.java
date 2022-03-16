@@ -6,7 +6,6 @@ import sun.awt.image.PixelConverter;
 import spoon.reflect.declaration.ModifierKind;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.cu.position.NoSourcePosition;
-import spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -127,7 +126,7 @@ public class CtExtendedModifierTest {
         
         int actual = ctExtendedModifier.hashCode();
         
-        assertEquals(895499205, actual);
+        assertEquals(1931302771, actual);
     }
     ///endregion
     
@@ -151,14 +150,14 @@ public class CtExtendedModifierTest {
     @Test(timeout = 10000)
     public void testGetPosition2() throws Throwable  {
         CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        BodyHolderSourcePositionImpl bodyHolderSourcePositionImpl = ((BodyHolderSourcePositionImpl) createInstance("spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl"));
-        setField(ctExtendedModifier, "position", bodyHolderSourcePositionImpl);
+        NoSourcePosition noSourcePosition = ((NoSourcePosition) createInstance("spoon.reflect.cu.position.NoSourcePosition"));
+        setField(ctExtendedModifier, "position", noSourcePosition);
         
         SourcePosition actual = ctExtendedModifier.getPosition();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(bodyHolderSourcePositionImpl, actual));
+        assertTrue(deepEquals(noSourcePosition, actual));
     }
     ///endregion
     

@@ -39,18 +39,9 @@ public class ThrowablesTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetRootCause2() throws Throwable  {
-        Throwables.getRootCause(null);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
-    public void testGetRootCause3() throws Throwable  {
+    public void testGetRootCause2() throws Throwable  {
         Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        setField(throwable, "cause", null);
         
         Throwable actual = Throwables.getRootCause(throwable);
         
@@ -130,6 +121,14 @@ public class ThrowablesTest {
     
     ///region
     
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testThrowIfUnchecked4() throws Throwable  {
+        Throwables.throwIfUnchecked(null);
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000)
     public void testGetCausalChain1() throws Throwable  {
         Throwable throwable = new Throwable();
@@ -144,14 +143,6 @@ public class ThrowablesTest {
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCausalChain2() throws Throwable  {
-        Throwables.getCausalChain(null);
     }
     ///endregion
     
@@ -173,6 +164,14 @@ public class ThrowablesTest {
         Class class1 = Object.class;
         
         Throwables.throwIfInstanceOf(throwable, class1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testThrowIfInstanceOf3() throws Throwable  {
+        Throwables.throwIfInstanceOf(null, null);
     }
     ///endregion
     
@@ -285,9 +284,7 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetCauseAs1() throws Throwable  {
-        Class class1 = Object.class;
-        
-        Throwables.getCauseAs(null, class1);
+        Throwables.getCauseAs(null, null);
     }
     ///endregion
     
@@ -339,6 +336,19 @@ public class ThrowablesTest {
     }
     ///endregion
     
+    
+    ///region Errors report for lazyStackTrace
+    
+    public void testLazyStackTrace_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000)
@@ -346,6 +356,19 @@ public class ThrowablesTest {
         boolean actual = Throwables.lazyStackTraceIsLazy();
         
         assertTrue(actual);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for lazyStackTraceIsLazy
+    
+    public void testLazyStackTraceIsLazy_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
@@ -370,18 +393,18 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testInvokeAccessibleNonThrowingMethod1() throws Throwable  {
-        java.lang.Object[] ofRefArray = createArray("java.util.stream.Nodes$InternalNodeSpliterator$OfRef", 0);
+        java.lang.Object[] stdSocketOptionArray = createArray("java.net.StandardSocketOptions$StdSocketOption", 0);
         java.lang.Object[] objectArray = new java.lang.Object[9];
         
         Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
         Class methodType = Class.forName("java.lang.reflect.Method");
-        Class ofRefArrayType = Class.forName("java.lang.Object");
+        Class stdSocketOptionArrayType = Class.forName("java.lang.Object");
         Class objectArrayType = Class.forName("[Ljava.lang.Object;");
-        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, ofRefArrayType, objectArrayType);
+        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, stdSocketOptionArrayType, objectArrayType);
         invokeAccessibleNonThrowingMethodMethod.setAccessible(true);
         java.lang.Object[] invokeAccessibleNonThrowingMethodMethodArguments = new java.lang.Object[3];
         invokeAccessibleNonThrowingMethodMethodArguments[0] = null;
-        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) ofRefArray);
+        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) stdSocketOptionArray);
         invokeAccessibleNonThrowingMethodMethodArguments[2] = ((Object) objectArray);
         try {
             invokeAccessibleNonThrowingMethodMethod.invoke(null, invokeAccessibleNonThrowingMethodMethodArguments);

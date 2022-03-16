@@ -347,29 +347,6 @@ public class GlobalBeginResponseTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetExtraData1() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
-        String string = new String();
-        
-        globalBeginResponse.setExtraData(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetExtraData2() throws Throwable  {
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
-        setField(globalBeginResponse, "extraData", null);
-        String string = new String("");
-        
-        globalBeginResponse.setExtraData(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testGetExtraData1() throws Throwable  {
         GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
         
@@ -395,6 +372,28 @@ public class GlobalBeginResponseTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testSetExtraData1() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
+        String string = new String();
+        
+        globalBeginResponse.setExtraData(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetExtraData2() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        setField(globalBeginResponse, "extraData", null);
+        
+        globalBeginResponse.setExtraData(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testSetXid1() throws Throwable  {
         GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
         String string = new String();
@@ -409,9 +408,8 @@ public class GlobalBeginResponseTest {
     public void testSetXid2() throws Throwable  {
         GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
         setField(globalBeginResponse, "xid", null);
-        String string = new String("");
         
-        globalBeginResponse.setXid(string);
+        globalBeginResponse.setXid(null);
     }
     ///endregion
     

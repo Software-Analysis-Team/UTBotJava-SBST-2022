@@ -4,7 +4,6 @@ import org.junit.Test;
 import java.util.List;
 import java.util.ArrayList;
 import io.seata.core.protocol.transaction.GlobalBeginResponse;
-import io.seata.core.protocol.transaction.BranchRegisterRequest;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.EmptyByteBuf;
 import io.netty.buffer.SwappedByteBuf;
@@ -116,25 +115,6 @@ public class MergedWarpMessageTest {
         ArrayList arrayList = new ArrayList();
         GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
         arrayList.add(globalBeginResponse);
-        Object object = createInstance("java.lang.Object");
-        arrayList.add(object);
-        arrayList.add(object);
-        setField(mergedWarpMessage, "msgs", arrayList);
-        
-        mergedWarpMessage.toString();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testToString7() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        ArrayList arrayList = new ArrayList();
-        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
-        String string = new String("");
-        setField(branchRegisterRequest, "xid", string);
-        arrayList.add(branchRegisterRequest);
         Object object = createInstance("java.lang.Object");
         arrayList.add(object);
         arrayList.add(object);
@@ -339,12 +319,12 @@ public class MergedWarpMessageTest {
     public void testDoDecode4() throws Throwable  {
         MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
         Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(heapByteBufferR, "limit", 5);
-        setField(heapByteBufferR, "position", 3);
+        setField(heapByteBufferR, "limit", 2);
+        setField(heapByteBufferR, "position", 0);
         setField(heapByteBufferR, "bigEndian", true);
-        setField(heapByteBufferR, "offset", 2);
-        byte[] byteArray = new byte[15];
-        byteArray[5] = (byte) 1;
+        setField(heapByteBufferR, "offset", 1);
+        byte[] byteArray = new byte[11];
+        byteArray[1] = (byte) 1;
         setField(heapByteBufferR, "hb", byteArray);
         
         Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
@@ -360,7 +340,7 @@ public class MergedWarpMessageTest {
         }
         Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
         
-        assertEquals(5, finalHeapByteBufferRPosition);
+        assertEquals(2, finalHeapByteBufferRPosition);
     }
     ///endregion
     
@@ -369,25 +349,25 @@ public class MergedWarpMessageTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDoDecode5() throws Throwable  {
         MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        Object directByteBuffer = createInstance("java.nio.DirectByteBuffer");
-        setField(directByteBuffer, "address", 0L);
-        setField(directByteBuffer, "limit", 136331520);
-        setField(directByteBuffer, "position", -198672384);
+        Object directByteBufferR = createInstance("java.nio.DirectByteBufferR");
+        setField(directByteBufferR, "address", 0L);
+        setField(directByteBufferR, "limit", -2144337664);
+        setField(directByteBufferR, "position", 1425595886);
         
         Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
-        Class directByteBufferType = Class.forName("java.nio.ByteBuffer");
-        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", directByteBufferType);
+        Class directByteBufferRType = Class.forName("java.nio.ByteBuffer");
+        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", directByteBufferRType);
         doDecodeMethod.setAccessible(true);
         java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
-        doDecodeMethodArguments[0] = directByteBuffer;
+        doDecodeMethodArguments[0] = directByteBufferR;
         try {
             doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }
-        Object finalDirectByteBufferPosition = getFieldValue(directByteBuffer, "position");
+        Object finalDirectByteBufferRPosition = getFieldValue(directByteBufferR, "position");
         
-        assertEquals(-198672382, finalDirectByteBufferPosition);
+        assertEquals(1425595888, finalDirectByteBufferRPosition);
     }
     ///endregion
     
@@ -396,25 +376,25 @@ public class MergedWarpMessageTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDoDecode6() throws Throwable  {
         MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        Object directByteBuffer = createInstance("java.nio.DirectByteBuffer");
-        setField(directByteBuffer, "address", 0L);
-        setField(directByteBuffer, "limit", 151552);
-        setField(directByteBuffer, "position", -116254527);
+        Object directByteBufferR = createInstance("java.nio.DirectByteBufferR");
+        setField(directByteBufferR, "address", 0L);
+        setField(directByteBufferR, "limit", -2147417600);
+        setField(directByteBufferR, "position", 1103044561);
         
         Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
-        Class directByteBufferType = Class.forName("java.nio.ByteBuffer");
-        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", directByteBufferType);
+        Class directByteBufferRType = Class.forName("java.nio.ByteBuffer");
+        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", directByteBufferRType);
         doDecodeMethod.setAccessible(true);
         java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
-        doDecodeMethodArguments[0] = directByteBuffer;
+        doDecodeMethodArguments[0] = directByteBufferR;
         try {
             doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }
-        Object finalDirectByteBufferPosition = getFieldValue(directByteBuffer, "position");
+        Object finalDirectByteBufferRPosition = getFieldValue(directByteBufferR, "position");
         
-        assertEquals(-116254525, finalDirectByteBufferPosition);
+        assertEquals(1103044563, finalDirectByteBufferRPosition);
     }
     ///endregion
     
@@ -424,13 +404,13 @@ public class MergedWarpMessageTest {
     public void testDoDecode7() throws Throwable  {
         MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
         Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(heapByteBufferR, "limit", -2147483647);
-        setField(heapByteBufferR, "position", 1073741825);
+        setField(heapByteBufferR, "limit", 1275068813);
+        setField(heapByteBufferR, "position", 1006632993);
         setField(heapByteBufferR, "bigEndian", true);
-        setField(heapByteBufferR, "offset", -1073741824);
-        byte[] byteArray = new byte[15];
-        byteArray[1] = (byte) 1;
-        byteArray[4] = (byte) 8;
+        setField(heapByteBufferR, "offset", -1006632960);
+        byte[] byteArray = new byte[39];
+        byteArray[33] = (byte) 1;
+        byteArray[36] = (byte) 8;
         setField(heapByteBufferR, "hb", byteArray);
         
         Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
@@ -446,7 +426,7 @@ public class MergedWarpMessageTest {
         }
         Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
         
-        assertEquals(1073741829, finalHeapByteBufferRPosition);
+        assertEquals(1006632997, finalHeapByteBufferRPosition);
     }
     ///endregion
     
@@ -454,14 +434,6 @@ public class MergedWarpMessageTest {
     
     @Test(timeout = 10000)
     public void testMergedWarpMessage1() {
-        MergedWarpMessage actual = new MergedWarpMessage();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testMergedWarpMessage2() {
         MergedWarpMessage actual = new MergedWarpMessage();
     }
     ///endregion

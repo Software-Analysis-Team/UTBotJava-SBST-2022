@@ -4,7 +4,6 @@ import org.junit.Test;
 import java.nio.ByteBuffer;
 import java.lang.reflect.Method;
 import io.seata.core.protocol.ResultCode;
-import io.seata.core.exception.TransactionExceptionCode;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
@@ -47,10 +46,23 @@ public class GlobalBeginResponseTest {
         }}
     ///endregion
     
+    
+    ///region Errors report for decode
+    
+    public void testDecode_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // lateinit property resultModel has not been initialized
+        // 
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecode3() throws Throwable  {
+    public void testDecode4() throws Throwable  {
         GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
         Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
         setField(heapByteBuffer, "limit", 1);
@@ -74,19 +86,6 @@ public class GlobalBeginResponseTest {
         Object finalHeapByteBufferPosition = getFieldValue(heapByteBuffer, "position");
         
         assertEquals(1, finalHeapByteBufferPosition);
-    }
-    ///endregion
-    
-    
-    ///region Errors report for decode
-    
-    public void testDecode_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // lateinit property resultModel has not been initialized
-        // 
     }
     ///endregion
     
@@ -186,33 +185,34 @@ public class GlobalBeginResponseTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testDoEncode4() throws Throwable  {
         GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
         setField(globalBeginResponse, "msg", null);
         Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
-        setField(heapByteBuffer, "limit", 84015105);
-        setField(heapByteBuffer, "position", -1073741824);
+        setField(heapByteBuffer, "limit", 536870912);
+        setField(heapByteBuffer, "position", 0);
         setField(heapByteBuffer, "bigEndian", true);
-        setField(heapByteBuffer, "offset", 1073741824);
+        setField(heapByteBuffer, "offset", 1);
         byte[] byteArray = new byte[11];
         setField(heapByteBuffer, "hb", byteArray);
         setField(globalBeginResponse, "byteBuffer", heapByteBuffer);
         ResultCode resultCode = ResultCode.Failed;
         setField(globalBeginResponse, "resultCode", resultCode);
-        TransactionExceptionCode transactionExceptionCode = TransactionExceptionCode.Unknown;
-        setField(globalBeginResponse, "transactionExceptionCode", transactionExceptionCode);
         
         Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
         Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
         doEncodeMethod.setAccessible(true);
         java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
-        doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
-        
+        try {
+            doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
         ByteBuffer byteBuffer = globalBeginResponse.byteBuffer;
         Object finalGlobalBeginResponseByteBufferPosition = getFieldValue(byteBuffer, "position");
         
-        assertEquals(-1073741816, finalGlobalBeginResponseByteBufferPosition);
+        assertEquals(3, finalGlobalBeginResponseByteBufferPosition);
     }
     ///endregion
     

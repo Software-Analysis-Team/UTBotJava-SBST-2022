@@ -304,26 +304,6 @@ public class JavaObjectDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze14() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 9);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        Class class1 = Object.class;
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
     public void testJavaObjectDeserializer1() {
         JavaObjectDeserializer actual = new JavaObjectDeserializer();

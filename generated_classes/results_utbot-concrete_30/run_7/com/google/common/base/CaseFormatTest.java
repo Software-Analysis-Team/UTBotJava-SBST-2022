@@ -85,32 +85,6 @@ public class CaseFormatTest {
     ///endregion
     
     
-    ///region Errors report for convert
-    
-    public void testConvert_errors3()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    
-    ///region Errors report for convert
-    
-    public void testConvert_errors4()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    
     ///region Errors report for converterTo
     
     public void testConverterTo_errors()
@@ -258,18 +232,18 @@ public class CaseFormatTest {
     @Test(timeout = 10000)
     public void testCaseFormat1() throws Throwable  {
         String string = new String("");
-        Object none = createInstance("com.google.common.base.CharMatcher$None");
+        Object javaUpperCase = createInstance("com.google.common.base.CharMatcher$JavaUpperCase");
         String string1 = new String("");
         Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
         Class stringType = Class.forName("java.lang.String");
         Class intType = int.class;
-        Class noneType = Class.forName("com.google.common.base.CharMatcher");
-        Constructor caseFormatConstructor = caseFormatClazz.getDeclaredConstructor(stringType, intType, noneType, stringType);
+        Class javaUpperCaseType = Class.forName("com.google.common.base.CharMatcher");
+        Constructor caseFormatConstructor = caseFormatClazz.getDeclaredConstructor(stringType, intType, javaUpperCaseType, stringType);
         caseFormatConstructor.setAccessible(true);
         java.lang.Object[] caseFormatConstructorArguments = new java.lang.Object[4];
         caseFormatConstructorArguments[0] = string;
         caseFormatConstructorArguments[1] = 0;
-        caseFormatConstructorArguments[2] = none;
+        caseFormatConstructorArguments[2] = javaUpperCase;
         caseFormatConstructorArguments[3] = string1;
         CaseFormat actual = ((CaseFormat) caseFormatConstructor.newInstance(caseFormatConstructorArguments));
     }
@@ -455,19 +429,6 @@ public class CaseFormatTest {
         // 
         // 1 occurrences of:
         // ClassId com.google.common.base.CaseFormat$4 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    
-    ///region Errors report for doBackward
-    
-    public void testDoBackward_errors2()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId com.google.common.base.CaseFormat$5 does not have canonical name
         // 
     }
     ///endregion

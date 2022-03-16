@@ -6,11 +6,12 @@ import spoon.reflect.factory.FactoryImpl;
 import sun.security.util.Debug;
 import java.lang.reflect.Method;
 import org.eclipse.jdt.internal.compiler.problem.DefaultProblem;
-import spoon.support.compiler.VirtualFolder;
+import spoon.support.compiler.FilteringFolder;
 import java.util.LinkedHashSet;
 import spoon.support.StandardEnvironment;
 import spoon.compiler.builder.JDTBuilderImpl;
 import spoon.reflect.factory.Factory;
+import spoon.support.compiler.VirtualFolder;
 import spoon.reflect.cu.CompilationUnit;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -223,13 +224,14 @@ public class JDTSnippetCompilerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testBuildSources3() throws Throwable  {
         JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
-        VirtualFolder virtualFolder = ((VirtualFolder) createInstance("spoon.support.compiler.VirtualFolder"));
+        FilteringFolder filteringFolder = ((FilteringFolder) createInstance("spoon.support.compiler.FilteringFolder"));
         LinkedHashSet linkedHashSet = new LinkedHashSet();
         Integer integer = 0;
         linkedHashSet.add(integer);
-        linkedHashSet.add(integer);
-        setField(virtualFolder, "files", linkedHashSet);
-        setField(jDTSnippetCompiler, "sources", virtualFolder);
+        Integer integer1 = 0;
+        linkedHashSet.add(integer1);
+        setField(filteringFolder, "files", linkedHashSet);
+        setField(jDTSnippetCompiler, "sources", filteringFolder);
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
         setField(standardEnvironment, "sourceClasspath", null);

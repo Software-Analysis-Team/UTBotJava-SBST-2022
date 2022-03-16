@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.util.PriorityQueue;
 import java.util.ArrayList;
 import java.lang.reflect.Method;
+import sun.misc.ASCIICaseInsensitiveComparator;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -67,7 +68,7 @@ public class QueuesTest {
         Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
         setField(priorityQueue, "comparator", lexicographicalComparator);
         setField(priorityQueue, "size", Integer.MIN_VALUE);
-        java.lang.Object[] objectArray = new java.lang.Object[9];
+        java.lang.Object[] objectArray = new java.lang.Object[0];
         setField(priorityQueue, "queue", objectArray);
         
         Class queuesClazz = Class.forName("com.google.common.collect.Queues");
@@ -89,8 +90,8 @@ public class QueuesTest {
     public void testNewPriorityQueue4() throws Throwable  {
         PriorityQueue priorityQueue = ((PriorityQueue) createInstance("java.util.PriorityQueue"));
         setField(priorityQueue, "modCount", 0);
-        Object reverseComparator2 = createInstance("java.util.Collections$ReverseComparator2");
-        setField(priorityQueue, "comparator", reverseComparator2);
+        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
+        setField(priorityQueue, "comparator", aSCIICaseInsensitiveComparator);
         setField(priorityQueue, "size", 10);
         java.lang.Object[] objectArray = new java.lang.Object[11];
         setField(priorityQueue, "queue", objectArray);
@@ -107,7 +108,7 @@ public class QueuesTest {
         java.lang.Object[] objectArray1 = new java.lang.Object[10];
         setField(expected, "queue", objectArray1);
         setField(expected, "size", 10);
-        setField(expected, "comparator", reverseComparator2);
+        setField(expected, "comparator", aSCIICaseInsensitiveComparator);
         setField(expected, "modCount", 0);
         
         // Current deep equals depth exceeds max depth 0

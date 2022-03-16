@@ -88,10 +88,9 @@ public class ShutdownHookTest {
     public void testAddDisposable5() throws Throwable  {
         ShutdownHook shutdownHook = ((ShutdownHook) createInstance("io.seata.core.rpc.netty.ShutdownHook"));
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        Integer integer = 1;
+        Integer integer = 0;
         linkedHashSet.add(integer);
-        Integer integer1 = 0;
-        linkedHashSet.add(integer1);
+        linkedHashSet.add(null);
         setField(shutdownHook, "disposables", linkedHashSet);
         
         shutdownHook.addDisposable(null);

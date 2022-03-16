@@ -4,11 +4,13 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.FilterOutputStream;
 import java.io.File;
+import sun.security.util.DerOutputStream;
 import java.lang.reflect.Method;
+import java.io.InputStream;
+import java.io.ByteArrayInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import com.google.common.hash.HashingOutputStream;
-import sun.security.util.DerOutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -23,8 +25,8 @@ import java.util.Iterator;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertFalse;
 
 public class FileBackedOutputStreamTest {
@@ -172,13 +174,13 @@ public class FileBackedOutputStreamTest {
         FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
         setField(fileBackedOutputStream, "file", null);
         Object memoryOutput = createInstance("com.google.common.io.FileBackedOutputStream$MemoryOutput");
-        setField(memoryOutput, "count", 1073734399);
+        setField(memoryOutput, "count", 1073741823);
         setField(fileBackedOutputStream, "memory", memoryOutput);
         setField(fileBackedOutputStream, "out", null);
         setField(fileBackedOutputStream, "fileThreshold", 0);
-        byte[] byteArray = new byte[1];
+        byte[] byteArray = new byte[9];
         
-        fileBackedOutputStream.write(byteArray, 0, 2147476222);
+        fileBackedOutputStream.write(byteArray, 0, 2147483646);
     }
     ///endregion
     
@@ -189,11 +191,11 @@ public class FileBackedOutputStreamTest {
         FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
         File file = ((File) createInstance("java.io.File"));
         setField(fileBackedOutputStream, "file", file);
-        Object memoryOutput = createInstance("com.google.common.io.FileBackedOutputStream$MemoryOutput");
-        setField(memoryOutput, "count", 0);
-        byte[] byteArray = new byte[21];
-        setField(memoryOutput, "buf", byteArray);
-        setField(fileBackedOutputStream, "out", memoryOutput);
+        DerOutputStream derOutputStream = ((DerOutputStream) createInstance("sun.security.util.DerOutputStream"));
+        setField(derOutputStream, "count", 3);
+        byte[] byteArray = new byte[32];
+        setField(derOutputStream, "buf", byteArray);
+        setField(fileBackedOutputStream, "out", derOutputStream);
         byte[] byteArray1 = new byte[32];
         
         fileBackedOutputStream.write(byteArray1, 2, 12);
@@ -201,7 +203,7 @@ public class FileBackedOutputStreamTest {
         Object fileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
         Object finalFileBackedOutputStreamOutCount = getFieldValue(fileBackedOutputStreamOut, "count");
         
-        assertEquals(12, finalFileBackedOutputStreamOutCount);
+        assertEquals(15, finalFileBackedOutputStreamOutCount);
     }
     ///endregion
     
@@ -280,6 +282,157 @@ public class FileBackedOutputStreamTest {
         byte[] byteArray = new byte[30];
         
         fileBackedOutputStream.write(byteArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite11() throws Throwable  {
+        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        
+        fileBackedOutputStream.write(0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite12() throws Throwable  {
+        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        setField(fileBackedOutputStream, "file", null);
+        setField(fileBackedOutputStream, "memory", null);
+        
+        fileBackedOutputStream.write(0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite13() throws Throwable  {
+        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        File file = ((File) createInstance("java.io.File"));
+        setField(fileBackedOutputStream, "file", file);
+        setField(fileBackedOutputStream, "out", null);
+        
+        fileBackedOutputStream.write(0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite14() throws Throwable  {
+        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        setField(fileBackedOutputStream, "file", null);
+        Object memoryOutput = createInstance("com.google.common.io.FileBackedOutputStream$MemoryOutput");
+        setField(memoryOutput, "count", -2);
+        setField(fileBackedOutputStream, "memory", memoryOutput);
+        setField(fileBackedOutputStream, "out", null);
+        setField(fileBackedOutputStream, "fileThreshold", 0);
+        
+        fileBackedOutputStream.write(0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testWrite15() throws Throwable  {
+        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        File file = ((File) createInstance("java.io.File"));
+        setField(fileBackedOutputStream, "file", file);
+        ByteArrayOutputStream byteArrayOutputStream = ((ByteArrayOutputStream) createInstance("java.io.ByteArrayOutputStream"));
+        setField(byteArrayOutputStream, "count", 0);
+        byte[] byteArray = new byte[3];
+        setField(byteArrayOutputStream, "buf", byteArray);
+        setField(fileBackedOutputStream, "out", byteArrayOutputStream);
+        
+        fileBackedOutputStream.write(0);
+        
+        Object fileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
+        Object finalFileBackedOutputStreamOutCount = getFieldValue(fileBackedOutputStreamOut, "count");
+        
+        assertEquals(1, finalFileBackedOutputStreamOutCount);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOpenInputStream1() throws Throwable  {
+        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        
+        Class fileBackedOutputStreamClazz = Class.forName("com.google.common.io.FileBackedOutputStream");
+        Method openInputStreamMethod = fileBackedOutputStreamClazz.getDeclaredMethod("openInputStream");
+        openInputStreamMethod.setAccessible(true);
+        java.lang.Object[] openInputStreamMethodArguments = new java.lang.Object[0];
+        try {
+            openInputStreamMethod.invoke(fileBackedOutputStream, openInputStreamMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOpenInputStream2() throws Throwable  {
+        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        setField(fileBackedOutputStream, "file", null);
+        setField(fileBackedOutputStream, "memory", null);
+        
+        Class fileBackedOutputStreamClazz = Class.forName("com.google.common.io.FileBackedOutputStream");
+        Method openInputStreamMethod = fileBackedOutputStreamClazz.getDeclaredMethod("openInputStream");
+        openInputStreamMethod.setAccessible(true);
+        java.lang.Object[] openInputStreamMethodArguments = new java.lang.Object[0];
+        try {
+            openInputStreamMethod.invoke(fileBackedOutputStream, openInputStreamMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testOpenInputStream3() throws Throwable  {
+        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        setField(fileBackedOutputStream, "file", null);
+        Object memoryOutput = createInstance("com.google.common.io.FileBackedOutputStream$MemoryOutput");
+        setField(memoryOutput, "count", -2147483647);
+        byte[] byteArray = new byte[0];
+        setField(memoryOutput, "buf", byteArray);
+        setField(fileBackedOutputStream, "memory", memoryOutput);
+        
+        Class fileBackedOutputStreamClazz = Class.forName("com.google.common.io.FileBackedOutputStream");
+        Method openInputStreamMethod = fileBackedOutputStreamClazz.getDeclaredMethod("openInputStream");
+        openInputStreamMethod.setAccessible(true);
+        java.lang.Object[] openInputStreamMethodArguments = new java.lang.Object[0];
+        InputStream actual = ((InputStream) openInputStreamMethod.invoke(fileBackedOutputStream, openInputStreamMethodArguments));
+        
+        ByteArrayInputStream expected = ((ByteArrayInputStream) createInstance("java.io.ByteArrayInputStream"));
+        setField(expected, "buf", byteArray);
+        setField(expected, "pos", 0);
+        setField(expected, "mark", 0);
+        setField(expected, "count", -2147483647);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    
+    ///region Errors report for openInputStream
+    
+    public void testOpenInputStream_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
@@ -428,27 +581,21 @@ public class FileBackedOutputStreamTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testReset3() throws Throwable  {
         FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        DataOutputStream dataOutputStream = ((DataOutputStream) createInstance("java.io.DataOutputStream"));
         Object processPipeOutputStream = createInstance("java.lang.UNIXProcess$ProcessPipeOutputStream");
-        FilterOutputStream filterOutputStream = ((FilterOutputStream) createInstance("java.io.FilterOutputStream"));
-        CountingOutputStream countingOutputStream = ((CountingOutputStream) createInstance("com.google.common.io.CountingOutputStream"));
-        BufferedOutputStream bufferedOutputStream = ((BufferedOutputStream) createInstance("java.io.BufferedOutputStream"));
-        ByteArrayOutputStream byteArrayOutputStream = ((ByteArrayOutputStream) createInstance("java.io.ByteArrayOutputStream"));
-        setField(byteArrayOutputStream, "count", 33);
-        byte[] byteArray = new byte[3];
-        setField(byteArrayOutputStream, "buf", byteArray);
-        setField(bufferedOutputStream, "out", byteArrayOutputStream);
-        setField(bufferedOutputStream, "count", 1);
-        byte[] byteArray1 = new byte[1];
-        setField(bufferedOutputStream, "buf", byteArray1);
-        setField(countingOutputStream, "out", bufferedOutputStream);
-        setField(filterOutputStream, "out", countingOutputStream);
-        setField(processPipeOutputStream, "out", filterOutputStream);
-        setField(processPipeOutputStream, "count", 0);
-        setField(processPipeOutputStream, "buf", null);
-        setField(fileBackedOutputStream, "out", processPipeOutputStream);
+        Object memoryOutput = createInstance("com.google.common.io.FileBackedOutputStream$MemoryOutput");
+        setField(memoryOutput, "count", 2147483645);
+        byte[] byteArray = new byte[2];
+        setField(memoryOutput, "buf", byteArray);
+        setField(processPipeOutputStream, "out", memoryOutput);
+        setField(processPipeOutputStream, "count", 2);
+        byte[] byteArray1 = new byte[32];
+        setField(processPipeOutputStream, "buf", byteArray1);
+        setField(dataOutputStream, "out", processPipeOutputStream);
+        setField(fileBackedOutputStream, "out", dataOutputStream);
         
         Object initialFileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
         
@@ -465,48 +612,24 @@ public class FileBackedOutputStreamTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testReset4() throws Throwable  {
         FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
-        DataOutputStream dataOutputStream = ((DataOutputStream) createInstance("java.io.DataOutputStream"));
         BufferedOutputStream bufferedOutputStream = ((BufferedOutputStream) createInstance("java.io.BufferedOutputStream"));
-        ByteArrayOutputStream byteArrayOutputStream = ((ByteArrayOutputStream) createInstance("java.io.ByteArrayOutputStream"));
-        setField(byteArrayOutputStream, "count", -1610612683);
-        byte[] byteArray = new byte[32];
-        setField(byteArrayOutputStream, "buf", byteArray);
-        setField(bufferedOutputStream, "out", byteArrayOutputStream);
-        setField(bufferedOutputStream, "count", 4);
-        byte[] byteArray1 = new byte[10];
-        setField(bufferedOutputStream, "buf", byteArray1);
-        setField(dataOutputStream, "out", bufferedOutputStream);
-        setField(fileBackedOutputStream, "out", dataOutputStream);
-        
-        Object initialFileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
-        
-        fileBackedOutputStream.reset();
-        
-        Object finalFileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
-        
-        assertFalse(initialFileBackedOutputStreamOut == finalFileBackedOutputStreamOut);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReset5() throws Throwable  {
-        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
-        DataOutputStream dataOutputStream = ((DataOutputStream) createInstance("java.io.DataOutputStream"));
         HashingOutputStream hashingOutputStream = ((HashingOutputStream) createInstance("com.google.common.hash.HashingOutputStream"));
-        BufferedOutputStream bufferedOutputStream = ((BufferedOutputStream) createInstance("java.io.BufferedOutputStream"));
-        DerOutputStream derOutputStream = ((DerOutputStream) createInstance("sun.security.util.DerOutputStream"));
-        setField(derOutputStream, "count", -12);
-        byte[] byteArray = new byte[2];
-        setField(derOutputStream, "buf", byteArray);
-        setField(bufferedOutputStream, "out", derOutputStream);
-        setField(bufferedOutputStream, "count", 16);
-        byte[] byteArray1 = new byte[32];
-        setField(bufferedOutputStream, "buf", byteArray1);
-        setField(hashingOutputStream, "out", bufferedOutputStream);
-        setField(dataOutputStream, "out", hashingOutputStream);
-        setField(fileBackedOutputStream, "out", dataOutputStream);
+        FilterOutputStream filterOutputStream = ((FilterOutputStream) createInstance("java.io.FilterOutputStream"));
+        Object processPipeOutputStream = createInstance("java.lang.UNIXProcess$ProcessPipeOutputStream");
+        BufferedOutputStream bufferedOutputStream1 = ((BufferedOutputStream) createInstance("java.io.BufferedOutputStream"));
+        setField(bufferedOutputStream1, "out", null);
+        setField(bufferedOutputStream1, "count", 0);
+        byte[] byteArray = new byte[9];
+        setField(bufferedOutputStream1, "buf", byteArray);
+        setField(processPipeOutputStream, "out", bufferedOutputStream1);
+        setField(processPipeOutputStream, "count", 1073741824);
+        setField(processPipeOutputStream, "buf", null);
+        setField(filterOutputStream, "out", processPipeOutputStream);
+        setField(hashingOutputStream, "out", filterOutputStream);
+        setField(bufferedOutputStream, "out", hashingOutputStream);
+        setField(bufferedOutputStream, "count", -2147483647);
+        setField(bufferedOutputStream, "buf", filterOutputStream);
+        setField(fileBackedOutputStream, "out", bufferedOutputStream);
         
         Object initialFileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
         
@@ -528,6 +651,102 @@ public class FileBackedOutputStreamTest {
         // 1 occurrences of:
         // Field security is not found in class java.lang.System
         // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReset6() throws Throwable  {
+        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        DataOutputStream dataOutputStream = ((DataOutputStream) createInstance("java.io.DataOutputStream"));
+        Object processPipeOutputStream = createInstance("java.lang.UNIXProcess$ProcessPipeOutputStream");
+        DerOutputStream derOutputStream = ((DerOutputStream) createInstance("sun.security.util.DerOutputStream"));
+        setField(derOutputStream, "count", 1);
+        byte[] byteArray = new byte[2];
+        setField(derOutputStream, "buf", byteArray);
+        setField(processPipeOutputStream, "out", derOutputStream);
+        setField(processPipeOutputStream, "count", 2);
+        byte[] byteArray1 = new byte[2];
+        setField(processPipeOutputStream, "buf", byteArray1);
+        setField(dataOutputStream, "out", processPipeOutputStream);
+        setField(fileBackedOutputStream, "out", dataOutputStream);
+        
+        Object initialFileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
+        
+        fileBackedOutputStream.reset();
+        
+        Object finalFileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
+        
+        assertFalse(initialFileBackedOutputStreamOut == finalFileBackedOutputStreamOut);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReset7() throws Throwable  {
+        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        BufferedOutputStream bufferedOutputStream = ((BufferedOutputStream) createInstance("java.io.BufferedOutputStream"));
+        LittleEndianDataOutputStream littleEndianDataOutputStream = ((LittleEndianDataOutputStream) createInstance("com.google.common.io.LittleEndianDataOutputStream"));
+        HashingOutputStream hashingOutputStream = ((HashingOutputStream) createInstance("com.google.common.hash.HashingOutputStream"));
+        Object processPipeOutputStream = createInstance("java.lang.UNIXProcess$ProcessPipeOutputStream");
+        Object exposedByteArrayOutputStream = createInstance("com.google.common.hash.AbstractNonStreamingHashFunction$ExposedByteArrayOutputStream");
+        setField(exposedByteArrayOutputStream, "count", 18);
+        byte[] byteArray = new byte[14];
+        setField(exposedByteArrayOutputStream, "buf", byteArray);
+        setField(processPipeOutputStream, "out", exposedByteArrayOutputStream);
+        setField(processPipeOutputStream, "count", 8);
+        byte[] byteArray1 = new byte[32];
+        setField(processPipeOutputStream, "buf", byteArray1);
+        setField(hashingOutputStream, "out", processPipeOutputStream);
+        setField(littleEndianDataOutputStream, "out", hashingOutputStream);
+        setField(bufferedOutputStream, "out", littleEndianDataOutputStream);
+        setField(bufferedOutputStream, "count", 0);
+        setField(bufferedOutputStream, "buf", null);
+        setField(fileBackedOutputStream, "out", bufferedOutputStream);
+        
+        Object initialFileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
+        
+        fileBackedOutputStream.reset();
+        
+        Object finalFileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
+        
+        assertFalse(initialFileBackedOutputStreamOut == finalFileBackedOutputStreamOut);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReset8() throws Throwable  {
+        FileBackedOutputStream fileBackedOutputStream = ((FileBackedOutputStream) createInstance("com.google.common.io.FileBackedOutputStream"));
+        Object processPipeOutputStream = createInstance("java.lang.UNIXProcess$ProcessPipeOutputStream");
+        CountingOutputStream countingOutputStream = ((CountingOutputStream) createInstance("com.google.common.io.CountingOutputStream"));
+        Object encOutputStream = createInstance("java.util.Base64$EncOutputStream");
+        Object processPipeOutputStream1 = createInstance("java.lang.UNIXProcess$ProcessPipeOutputStream");
+        ByteArrayOutputStream byteArrayOutputStream = ((ByteArrayOutputStream) createInstance("java.io.ByteArrayOutputStream"));
+        setField(byteArrayOutputStream, "count", -2147483615);
+        byte[] byteArray = new byte[40];
+        setField(byteArrayOutputStream, "buf", byteArray);
+        setField(processPipeOutputStream1, "out", byteArrayOutputStream);
+        setField(processPipeOutputStream1, "count", 5);
+        byte[] byteArray1 = new byte[7];
+        setField(processPipeOutputStream1, "buf", byteArray1);
+        setField(encOutputStream, "out", processPipeOutputStream1);
+        setField(countingOutputStream, "out", encOutputStream);
+        setField(processPipeOutputStream, "out", countingOutputStream);
+        setField(processPipeOutputStream, "count", -2147450880);
+        setField(processPipeOutputStream, "buf", null);
+        setField(fileBackedOutputStream, "out", processPipeOutputStream);
+        
+        Object initialFileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
+        
+        fileBackedOutputStream.reset();
+        
+        Object finalFileBackedOutputStreamOut = getFieldValue(fileBackedOutputStream, "out");
+        
+        assertFalse(initialFileBackedOutputStreamOut == finalFileBackedOutputStreamOut);
     }
     ///endregion
     

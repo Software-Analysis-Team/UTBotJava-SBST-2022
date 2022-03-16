@@ -8,13 +8,11 @@ import java.util.LinkedHashSet;
 import java.lang.reflect.Method;
 import org.eclipse.jdt.internal.compiler.problem.DefaultProblem;
 import spoon.compiler.builder.JDTBuilderImpl;
-import spoon.reflect.factory.Factory;
 import spoon.reflect.cu.CompilationUnit;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 
 public class JDTSnippetCompilerTest {
@@ -243,9 +241,6 @@ public class JDTSnippetCompilerTest {
         setField(jDTSnippetCompiler, "factory", factoryImpl);
         JDTBuilderImpl jDTBuilderImpl = ((JDTBuilderImpl) createInstance("spoon.compiler.builder.JDTBuilderImpl"));
         
-        Factory factory = jDTSnippetCompiler.factory;
-        Object initialJDTSnippetCompilerFactoryEnvironment = getFieldValue(factory, "environment");
-        
         Class jDTSnippetCompilerClazz = Class.forName("spoon.support.compiler.jdt.JDTSnippetCompiler");
         Class jDTBuilderImplType = Class.forName("spoon.compiler.builder.JDTBuilder");
         Method buildSourcesMethod = jDTSnippetCompilerClazz.getDeclaredMethod("buildSources", jDTBuilderImplType);
@@ -256,12 +251,7 @@ public class JDTSnippetCompilerTest {
             buildSourcesMethod.invoke(jDTSnippetCompiler, buildSourcesMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }
-        Factory factory1 = jDTSnippetCompiler.factory;
-        Object finalJDTSnippetCompilerFactoryEnvironment = getFieldValue(factory1, "environment");
-        
-        assertFalse(initialJDTSnippetCompilerFactoryEnvironment == finalJDTSnippetCompilerFactoryEnvironment);
-    }
+        }}
     ///endregion
     
     ///region
@@ -334,25 +324,6 @@ public class JDTSnippetCompilerTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
-    }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

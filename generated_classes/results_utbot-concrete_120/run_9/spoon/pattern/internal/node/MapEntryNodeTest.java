@@ -1,22 +1,17 @@
 package spoon.pattern.internal.node;
 
 import org.junit.Test;
-import java.util.function.BiConsumer;
-import java.util.ArrayList;
-import spoon.pattern.internal.DefaultGenerator;
-import spoon.pattern.internal.PatternPrinter;
-import java.lang.reflect.Method;
 import java.util.LinkedHashMap;
+import java.lang.reflect.Method;
+import java.util.function.BiConsumer;
+import spoon.pattern.internal.DefaultGenerator;
 import spoon.pattern.Quantifier;
 import spoon.pattern.internal.parameter.ListParameterInfo;
 import spoon.pattern.internal.parameter.MapParameterInfo;
 import spoon.reflect.meta.ContainerKind;
-import sun.awt.image.PixelConverter.Ushort555Rgbx;
-import sun.awt.image.PixelConverter;
+import com.fasterxml.jackson.databind.ObjectReader;
 import java.text.Format.Field;
 import java.text.Format;
-import java.text.MessageFormat;
-import spoon.support.util.ImmutableMapImpl;
 import spoon.reflect.declaration.CtElement;
 import java.lang.reflect.Constructor;
 import spoon.pattern.internal.node.MapEntryNode;
@@ -24,6 +19,7 @@ import java.lang.reflect.Modifier;
 import java.util.Objects;
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
@@ -31,12 +27,113 @@ import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.mockito.Mockito.mock;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertFalse;
 
 public class MapEntryNodeTest {
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReplaceNode1() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        
+        boolean actual = mapEntryNode.replaceNode(null, null);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReplaceNode2() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "key", null);
+        
+        boolean actual = mapEntryNode.replaceNode(null, null);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReplaceNode3() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "value", null);
+        ElementNode elementNode = ((ElementNode) createInstance("spoon.pattern.internal.node.ElementNode"));
+        setField(mapEntryNode, "key", elementNode);
+        
+        boolean actual = mapEntryNode.replaceNode(null, null);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReplaceNode4() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        ForEachNode forEachNode = ((ForEachNode) createInstance("spoon.pattern.internal.node.ForEachNode"));
+        setField(mapEntryNode, "value", forEachNode);
+        setField(mapEntryNode, "key", null);
+        ForEachNode forEachNode1 = ((ForEachNode) createInstance("spoon.pattern.internal.node.ForEachNode"));
+        
+        mapEntryNode.replaceNode(forEachNode1, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReplaceNode5() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        ElementNode elementNode = ((ElementNode) createInstance("spoon.pattern.internal.node.ElementNode"));
+        setField(mapEntryNode, "value", elementNode);
+        ForEachNode forEachNode = ((ForEachNode) createInstance("spoon.pattern.internal.node.ForEachNode"));
+        setField(forEachNode, "iterableParameter", null);
+        setField(mapEntryNode, "key", forEachNode);
+        
+        boolean actual = mapEntryNode.replaceNode(null, null);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReplaceNode6() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "value", null);
+        ForEachNode forEachNode = ((ForEachNode) createInstance("spoon.pattern.internal.node.ForEachNode"));
+        ElementNode elementNode = ((ElementNode) createInstance("spoon.pattern.internal.node.ElementNode"));
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        setField(elementNode, "roleToNode", linkedHashMap);
+        setField(forEachNode, "iterableParameter", elementNode);
+        setField(mapEntryNode, "key", forEachNode);
+        MapEntryNode mapEntryNode1 = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode1, "value", null);
+        setField(mapEntryNode1, "key", forEachNode);
+        
+        Class mapEntryNodeClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode");
+        Class mapEntryNode1Type = Class.forName("spoon.pattern.internal.node.RootNode");
+        Method replaceNodeMethod = mapEntryNodeClazz.getDeclaredMethod("replaceNode", mapEntryNode1Type, mapEntryNode1Type);
+        replaceNodeMethod.setAccessible(true);
+        java.lang.Object[] replaceNodeMethodArguments = new java.lang.Object[2];
+        replaceNodeMethodArguments[0] = mapEntryNode1;
+        replaceNodeMethodArguments[1] = null;
+        try {
+            replaceNodeMethod.invoke(mapEntryNode, replaceNodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
@@ -85,9 +182,9 @@ public class MapEntryNodeTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGenerateTargets1() throws Throwable  {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        setField(mapEntryNode, "key", null);
+        DefaultGenerator defaultGenerator = ((DefaultGenerator) createInstance("spoon.pattern.internal.DefaultGenerator"));
         
-        mapEntryNode.generateTargets(null, null, null);
+        mapEntryNode.generateTargets(defaultGenerator, null, null);
     }
     ///endregion
     
@@ -96,145 +193,9 @@ public class MapEntryNodeTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGenerateTargets2() throws Throwable  {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        setField(mapEntryNode, "simplifyGenerated", false);
-        SwitchNode switchNode = ((SwitchNode) createInstance("spoon.pattern.internal.node.SwitchNode"));
-        setField(switchNode, "simplifyGenerated", false);
-        ArrayList arrayList = new ArrayList();
-        setField(switchNode, "cases", arrayList);
-        setField(mapEntryNode, "key", switchNode);
-        DefaultGenerator defaultGenerator = ((DefaultGenerator) createInstance("spoon.pattern.internal.DefaultGenerator"));
-        
-        mapEntryNode.generateTargets(defaultGenerator, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGenerateTargets3() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        setField(mapEntryNode, "simplifyGenerated", false);
-        SwitchNode switchNode = ((SwitchNode) createInstance("spoon.pattern.internal.node.SwitchNode"));
-        setField(switchNode, "simplifyGenerated", true);
-        ArrayList arrayList = new ArrayList();
-        setField(switchNode, "cases", arrayList);
-        setField(mapEntryNode, "key", switchNode);
-        DefaultGenerator defaultGenerator = ((DefaultGenerator) createInstance("spoon.pattern.internal.DefaultGenerator"));
-        
-        mapEntryNode.generateTargets(defaultGenerator, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGenerateTargets4() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        setField(mapEntryNode, "key", null);
-        PatternPrinter patternPrinter = ((PatternPrinter) createInstance("spoon.pattern.internal.PatternPrinter"));
-        
-        mapEntryNode.generateTargets(patternPrinter, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReplaceNode1() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        
-        boolean actual = mapEntryNode.replaceNode(null, null);
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReplaceNode2() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
         setField(mapEntryNode, "key", null);
         
-        boolean actual = mapEntryNode.replaceNode(null, null);
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReplaceNode3() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        setField(mapEntryNode, "value", null);
-        ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
-        setField(mapEntryNode, "key", parameterNode);
-        
-        boolean actual = mapEntryNode.replaceNode(null, null);
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReplaceNode4() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        setField(mapEntryNode, "value", null);
-        setField(mapEntryNode, "key", null);
-        Object caseNode = createInstance("spoon.pattern.internal.node.SwitchNode$CaseNode");
-        
-        Class mapEntryNodeClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode");
-        Class caseNodeType = Class.forName("spoon.pattern.internal.node.RootNode");
-        Method replaceNodeMethod = mapEntryNodeClazz.getDeclaredMethod("replaceNode", caseNodeType, caseNodeType);
-        replaceNodeMethod.setAccessible(true);
-        java.lang.Object[] replaceNodeMethodArguments = new java.lang.Object[2];
-        replaceNodeMethodArguments[0] = caseNode;
-        replaceNodeMethodArguments[1] = null;
-        try {
-            replaceNodeMethod.invoke(mapEntryNode, replaceNodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReplaceNode5() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        ElementNode elementNode = ((ElementNode) createInstance("spoon.pattern.internal.node.ElementNode"));
-        setField(mapEntryNode, "value", elementNode);
-        ForEachNode forEachNode = ((ForEachNode) createInstance("spoon.pattern.internal.node.ForEachNode"));
-        setField(forEachNode, "iterableParameter", null);
-        setField(mapEntryNode, "key", forEachNode);
-        
-        boolean actual = mapEntryNode.replaceNode(null, null);
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReplaceNode6() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        StringNode stringNode = ((StringNode) createInstance("spoon.pattern.internal.node.StringNode"));
-        setField(mapEntryNode, "value", stringNode);
-        ForEachNode forEachNode = ((ForEachNode) createInstance("spoon.pattern.internal.node.ForEachNode"));
-        ElementNode elementNode = ((ElementNode) createInstance("spoon.pattern.internal.node.ElementNode"));
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        setField(elementNode, "roleToNode", linkedHashMap);
-        setField(forEachNode, "iterableParameter", elementNode);
-        setField(mapEntryNode, "key", forEachNode);
-        SwitchNode switchNode = ((SwitchNode) createInstance("spoon.pattern.internal.node.SwitchNode"));
-        
-        boolean actual = mapEntryNode.replaceNode(null, switchNode);
-        
-        assertTrue(actual);
+        mapEntryNode.generateTargets(null, null, null);
     }
     ///endregion
     
@@ -318,7 +279,7 @@ public class MapEntryNodeTest {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
         ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
         MapParameterInfo mapParameterInfo = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
-        ContainerKind containerKind = ContainerKind.LIST;
+        ContainerKind containerKind = ContainerKind.MAP;
         setField(mapParameterInfo, "containerKind", containerKind);
         setField(parameterNode, "parameterInfo", mapParameterInfo);
         setField(mapEntryNode, "key", parameterNode);
@@ -334,7 +295,7 @@ public class MapEntryNodeTest {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
         ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
         MapParameterInfo mapParameterInfo = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
-        ContainerKind containerKind = ContainerKind.SINGLE;
+        ContainerKind containerKind = ContainerKind.LIST;
         setField(mapParameterInfo, "containerKind", containerKind);
         setField(parameterNode, "parameterInfo", mapParameterInfo);
         setField(mapEntryNode, "key", parameterNode);
@@ -349,23 +310,23 @@ public class MapEntryNodeTest {
     public void testIsTryNextMatch5() throws Throwable  {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
         ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
-        ListParameterInfo listParameterInfo = ((ListParameterInfo) createInstance("spoon.pattern.internal.parameter.ListParameterInfo"));
-        ContainerKind containerKind = ContainerKind.SINGLE;
-        setField(listParameterInfo, "containerKind", containerKind);
-        ListParameterInfo listParameterInfo1 = ((ListParameterInfo) createInstance("spoon.pattern.internal.parameter.ListParameterInfo"));
-        setField(listParameterInfo1, "containerKind", null);
         MapParameterInfo mapParameterInfo = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
-        setField(mapParameterInfo, "containerKind", null);
+        ContainerKind containerKind = ContainerKind.SINGLE;
+        setField(mapParameterInfo, "containerKind", containerKind);
         MapParameterInfo mapParameterInfo1 = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
         setField(mapParameterInfo1, "containerKind", null);
         MapParameterInfo mapParameterInfo2 = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
         setField(mapParameterInfo2, "containerKind", null);
-        setField(mapParameterInfo2, "containerItemAccessor", mapParameterInfo2);
+        MapParameterInfo mapParameterInfo3 = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
+        setField(mapParameterInfo3, "containerKind", null);
+        MapParameterInfo mapParameterInfo4 = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
+        setField(mapParameterInfo4, "containerKind", null);
+        setField(mapParameterInfo4, "containerItemAccessor", null);
+        setField(mapParameterInfo3, "containerItemAccessor", mapParameterInfo4);
+        setField(mapParameterInfo2, "containerItemAccessor", mapParameterInfo3);
         setField(mapParameterInfo1, "containerItemAccessor", mapParameterInfo2);
         setField(mapParameterInfo, "containerItemAccessor", mapParameterInfo1);
-        setField(listParameterInfo1, "containerItemAccessor", mapParameterInfo);
-        setField(listParameterInfo, "containerItemAccessor", listParameterInfo1);
-        setField(parameterNode, "parameterInfo", listParameterInfo);
+        setField(parameterNode, "parameterInfo", mapParameterInfo);
         setField(mapEntryNode, "key", parameterNode);
         
         mapEntryNode.isTryNextMatch(null);
@@ -382,13 +343,7 @@ public class MapEntryNodeTest {
         setField(mapParameterInfo, "containerKind", null);
         ListParameterInfo listParameterInfo = ((ListParameterInfo) createInstance("spoon.pattern.internal.parameter.ListParameterInfo"));
         setField(listParameterInfo, "containerKind", null);
-        ListParameterInfo listParameterInfo1 = ((ListParameterInfo) createInstance("spoon.pattern.internal.parameter.ListParameterInfo"));
-        setField(listParameterInfo1, "containerKind", null);
-        MapParameterInfo mapParameterInfo1 = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
-        setField(mapParameterInfo1, "containerKind", null);
-        setField(mapParameterInfo1, "containerItemAccessor", null);
-        setField(listParameterInfo1, "containerItemAccessor", mapParameterInfo1);
-        setField(listParameterInfo, "containerItemAccessor", listParameterInfo1);
+        setField(listParameterInfo, "containerItemAccessor", mapParameterInfo);
         setField(mapParameterInfo, "containerItemAccessor", listParameterInfo);
         setField(parameterNode, "parameterInfo", mapParameterInfo);
         setField(mapEntryNode, "key", parameterNode);
@@ -413,9 +368,9 @@ public class MapEntryNodeTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testMatchTarget2() throws Throwable  {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        sun.awt.image.PixelConverter.Ushort555Rgbx[] ushort555RgbxArray = new sun.awt.image.PixelConverter.Ushort555Rgbx[0];
+        com.fasterxml.jackson.databind.ObjectReader[] objectReaderArray = new com.fasterxml.jackson.databind.ObjectReader[0];
         
-        mapEntryNode.matchTarget(ushort555RgbxArray, null);
+        mapEntryNode.matchTarget(objectReaderArray, null);
     }
     ///endregion
     
@@ -441,29 +396,9 @@ public class MapEntryNodeTest {
     public void testMatchTarget4() throws Throwable  {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
         setField(mapEntryNode, "key", null);
-        Object attributeEntry = createInstance("java.text.AttributeEntry");
-        java.text.MessageFormat.Field field = ((java.text.MessageFormat.Field) createInstance("java.text.MessageFormat$Field"));
-        setField(attributeEntry, "key", field);
-        ImmutableMapImpl immutableMapImpl = ((ImmutableMapImpl) createInstance("spoon.support.util.ImmutableMapImpl"));
+        Object treeNode = createInstance("java.util.HashMap$TreeNode");
         
-        mapEntryNode.matchTarget(attributeEntry, immutableMapImpl);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMatchTarget5() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        ForEachNode forEachNode = ((ForEachNode) createInstance("spoon.pattern.internal.node.ForEachNode"));
-        setField(forEachNode, "nestedModel", null);
-        setField(mapEntryNode, "key", forEachNode);
-        Object attributeEntry = createInstance("java.text.AttributeEntry");
-        java.text.MessageFormat.Field field = ((java.text.MessageFormat.Field) createInstance("java.text.MessageFormat$Field"));
-        setField(attributeEntry, "key", field);
-        ImmutableMapImpl immutableMapImpl = ((ImmutableMapImpl) createInstance("spoon.support.util.ImmutableMapImpl"));
-        
-        mapEntryNode.matchTarget(attributeEntry, immutableMapImpl);
+        mapEntryNode.matchTarget(treeNode, null);
     }
     ///endregion
     

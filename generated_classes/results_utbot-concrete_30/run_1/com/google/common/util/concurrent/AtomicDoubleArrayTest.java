@@ -18,6 +18,7 @@ import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class AtomicDoubleArrayTest {
     ///region
@@ -263,16 +264,19 @@ public class AtomicDoubleArrayTest {
     }
     ///endregion
     
+    ///region
     
-    ///region Errors report for compareAndSet
-    
-    public void testCompareAndSet_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
+    @Test(timeout = 10000)
+    public void testCompareAndSet3() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        AtomicLongArray atomicLongArray = ((AtomicLongArray) createInstance("java.util.concurrent.atomic.AtomicLongArray"));
+        long[] longArray = new long[17];
+        setField(atomicLongArray, "array", longArray);
+        setField(atomicDoubleArray, "longs", atomicLongArray);
+        
+        boolean actual = atomicDoubleArray.compareAndSet(0, java.lang.Double.NaN, java.lang.Double.NaN);
+        
+        assertFalse(actual);
     }
     ///endregion
     
@@ -297,16 +301,19 @@ public class AtomicDoubleArrayTest {
     }
     ///endregion
     
+    ///region
     
-    ///region Errors report for weakCompareAndSet
-    
-    public void testWeakCompareAndSet_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
+    @Test(timeout = 10000)
+    public void testWeakCompareAndSet3() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        AtomicLongArray atomicLongArray = ((AtomicLongArray) createInstance("java.util.concurrent.atomic.AtomicLongArray"));
+        long[] longArray = new long[9];
+        setField(atomicLongArray, "array", longArray);
+        setField(atomicDoubleArray, "longs", atomicLongArray);
+        
+        boolean actual = atomicDoubleArray.weakCompareAndSet(0, java.lang.Double.NaN, java.lang.Double.NaN);
+        
+        assertFalse(actual);
     }
     ///endregion
     

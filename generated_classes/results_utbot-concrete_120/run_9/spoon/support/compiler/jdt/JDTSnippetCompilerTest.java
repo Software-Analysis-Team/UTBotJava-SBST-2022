@@ -11,6 +11,7 @@ import java.util.LinkedHashSet;
 import spoon.support.StandardEnvironment;
 import spoon.compiler.builder.JDTBuilderImpl;
 import spoon.reflect.factory.Factory;
+import spoon.support.compiler.VirtualFolder;
 import spoon.reflect.cu.CompilationUnit;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -235,14 +236,13 @@ public class JDTSnippetCompilerTest {
         setField(standardEnvironment, "sourceClasspath", null);
         setField(factoryImpl, "environment", standardEnvironment);
         setField(jDTSnippetCompiler, "factory", factoryImpl);
-        JDTBuilderImpl jDTBuilderImpl = ((JDTBuilderImpl) createInstance("spoon.compiler.builder.JDTBuilderImpl"));
         
         Class jDTSnippetCompilerClazz = Class.forName("spoon.support.compiler.jdt.JDTSnippetCompiler");
-        Class jDTBuilderImplType = Class.forName("spoon.compiler.builder.JDTBuilder");
-        Method buildSourcesMethod = jDTSnippetCompilerClazz.getDeclaredMethod("buildSources", jDTBuilderImplType);
+        Class jDTBuilderType = Class.forName("spoon.compiler.builder.JDTBuilder");
+        Method buildSourcesMethod = jDTSnippetCompilerClazz.getDeclaredMethod("buildSources", jDTBuilderType);
         buildSourcesMethod.setAccessible(true);
         java.lang.Object[] buildSourcesMethodArguments = new java.lang.Object[1];
-        buildSourcesMethodArguments[0] = jDTBuilderImpl;
+        buildSourcesMethodArguments[0] = null;
         try {
             buildSourcesMethod.invoke(jDTSnippetCompiler, buildSourcesMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -287,10 +287,10 @@ public class JDTSnippetCompilerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testBuildSources5() throws Throwable  {
         JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
-        FilteringFolder filteringFolder = ((FilteringFolder) createInstance("spoon.support.compiler.FilteringFolder"));
+        VirtualFolder virtualFolder = ((VirtualFolder) createInstance("spoon.support.compiler.VirtualFolder"));
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        setField(filteringFolder, "files", linkedHashSet);
-        setField(jDTSnippetCompiler, "sources", filteringFolder);
+        setField(virtualFolder, "files", linkedHashSet);
+        setField(jDTSnippetCompiler, "sources", virtualFolder);
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
         StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
         setField(standardEnvironment, "sourceClasspath", null);

@@ -1,21 +1,20 @@
 package spoon.reflect.visitor;
 
 import org.junit.Test;
-import java.lang.reflect.Method;
-import java.util.LinkedList;
-import java.util.Deque;
 import spoon.reflect.declaration.CtElement;
 import java.util.ArrayDeque;
 import spoon.support.reflect.declaration.CtModuleImpl;
-import spoon.support.reflect.declaration.CtPackageImpl;
+import spoon.support.reflect.declaration.CtAnnotationTypeImpl;
+import spoon.reflect.factory.FactoryImpl;
 import spoon.support.reflect.reference.CtFieldReferenceImpl;
 import spoon.support.reflect.code.CtCommentImpl;
 import spoon.support.reflect.code.CtLambdaImpl;
+import java.lang.reflect.Method;
+import java.util.LinkedList;
+import java.util.Deque;
 import spoon.support.StandardEnvironment;
 import org.apache.log4j.spi.RootLogger;
 import org.apache.log4j.Hierarchy;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.locks.ReentrantLock;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
@@ -24,6 +23,110 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
 
 public class ModelConsistencyCheckerTest {
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEnter1() throws Throwable  {
+        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
+        
+        modelConsistencyChecker.enter(((CtElement) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEnter2() throws Throwable  {
+        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
+        setField(modelConsistencyChecker, "stack", null);
+        
+        modelConsistencyChecker.enter(((CtElement) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEnter3() throws Throwable  {
+        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
+        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
+        setField(arrayDeque, "tail", 134217728);
+        setField(arrayDeque, "head", 0);
+        setField(modelConsistencyChecker, "stack", arrayDeque);
+        
+        modelConsistencyChecker.enter(((CtElement) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEnter4() throws Throwable  {
+        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
+        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
+        setField(arrayDeque, "tail", 0);
+        setField(arrayDeque, "head", Integer.MIN_VALUE);
+        setField(modelConsistencyChecker, "stack", arrayDeque);
+        CtModuleImpl ctModuleImpl = ((CtModuleImpl) createInstance("spoon.support.reflect.declaration.CtModuleImpl"));
+        CtAnnotationTypeImpl ctAnnotationTypeImpl = ((CtAnnotationTypeImpl) createInstance("spoon.support.reflect.declaration.CtAnnotationTypeImpl"));
+        setField(ctAnnotationTypeImpl, "parent", null);
+        setField(ctAnnotationTypeImpl, "factory", null);
+        setField(ctModuleImpl, "parent", ctAnnotationTypeImpl);
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(ctModuleImpl, "factory", factoryImpl);
+        
+        modelConsistencyChecker.enter(ctModuleImpl);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEnter5() throws Throwable  {
+        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
+        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
+        setField(arrayDeque, "tail", 0);
+        setField(arrayDeque, "head", 1);
+        setField(modelConsistencyChecker, "stack", arrayDeque);
+        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
+        setField(ctFieldReferenceImpl, "parent", null);
+        
+        modelConsistencyChecker.enter(ctFieldReferenceImpl);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEnter6() throws Throwable  {
+        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
+        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
+        setField(arrayDeque, "tail", 0);
+        setField(arrayDeque, "head", 0);
+        setField(modelConsistencyChecker, "stack", arrayDeque);
+        
+        modelConsistencyChecker.enter(((CtElement) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEnter7() throws Throwable  {
+        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
+        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
+        setField(arrayDeque, "tail", 0);
+        setField(arrayDeque, "head", 1);
+        setField(modelConsistencyChecker, "stack", arrayDeque);
+        CtCommentImpl ctCommentImpl = ((CtCommentImpl) createInstance("spoon.support.reflect.code.CtCommentImpl"));
+        CtLambdaImpl ctLambdaImpl = ((CtLambdaImpl) createInstance("spoon.support.reflect.code.CtLambdaImpl"));
+        setField(ctLambdaImpl, "parent", null);
+        setField(ctCommentImpl, "parent", ctLambdaImpl);
+        
+        modelConsistencyChecker.enter(ctCommentImpl);
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
@@ -107,109 +210,6 @@ public class ModelConsistencyCheckerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter1() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        
-        modelConsistencyChecker.enter(((CtElement) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter2() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        setField(modelConsistencyChecker, "stack", null);
-        
-        modelConsistencyChecker.enter(((CtElement) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter3() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
-        setField(arrayDeque, "tail", 134217728);
-        setField(arrayDeque, "head", 0);
-        setField(modelConsistencyChecker, "stack", arrayDeque);
-        
-        modelConsistencyChecker.enter(((CtElement) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter4() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
-        setField(arrayDeque, "tail", 0);
-        setField(arrayDeque, "head", 512);
-        setField(modelConsistencyChecker, "stack", arrayDeque);
-        CtModuleImpl ctModuleImpl = ((CtModuleImpl) createInstance("spoon.support.reflect.declaration.CtModuleImpl"));
-        CtPackageImpl ctPackageImpl = ((CtPackageImpl) createInstance("spoon.support.reflect.declaration.CtPackageImpl"));
-        setField(ctPackageImpl, "parent", null);
-        setField(ctPackageImpl, "factory", null);
-        setField(ctModuleImpl, "parent", ctPackageImpl);
-        setField(ctModuleImpl, "factory", null);
-        
-        modelConsistencyChecker.enter(ctModuleImpl);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter5() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
-        setField(arrayDeque, "tail", 0);
-        setField(arrayDeque, "head", 1);
-        setField(modelConsistencyChecker, "stack", arrayDeque);
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(ctFieldReferenceImpl, "parent", null);
-        
-        modelConsistencyChecker.enter(ctFieldReferenceImpl);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter6() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
-        setField(arrayDeque, "tail", 0);
-        setField(arrayDeque, "head", 0);
-        setField(modelConsistencyChecker, "stack", arrayDeque);
-        
-        modelConsistencyChecker.enter(((CtElement) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEnter7() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
-        setField(arrayDeque, "tail", 0);
-        setField(arrayDeque, "head", 1);
-        setField(modelConsistencyChecker, "stack", arrayDeque);
-        CtCommentImpl ctCommentImpl = ((CtCommentImpl) createInstance("spoon.support.reflect.code.CtCommentImpl"));
-        CtLambdaImpl ctLambdaImpl = ((CtLambdaImpl) createInstance("spoon.support.reflect.code.CtLambdaImpl"));
-        setField(ctLambdaImpl, "parent", null);
-        setField(ctCommentImpl, "parent", ctLambdaImpl);
-        
-        modelConsistencyChecker.enter(ctCommentImpl);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testDumpStack1() throws Throwable  {
         ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
         
@@ -267,33 +267,16 @@ public class ModelConsistencyCheckerTest {
         }}
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000)
-    public void testDumpStack4() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        LinkedBlockingDeque linkedBlockingDeque = ((LinkedBlockingDeque) createInstance("java.util.concurrent.LinkedBlockingDeque"));
-        ReentrantLock reentrantLock = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object fairSync = createInstance("java.util.concurrent.locks.ReentrantLock$FairSync");
-        setField(fairSync, "state", 0);
-        setField(fairSync, "tail", null);
-        setField(fairSync, "head", null);
-        setField(reentrantLock, "sync", fairSync);
-        setField(linkedBlockingDeque, "lock", reentrantLock);
-        setField(modelConsistencyChecker, "stack", linkedBlockingDeque);
-        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
-        RootLogger rootLogger = ((RootLogger) createInstance("org.apache.log4j.spi.RootLogger"));
-        Hierarchy hierarchy = ((Hierarchy) createInstance("org.apache.log4j.Hierarchy"));
-        setField(hierarchy, "thresholdInt", 10257);
-        setField(rootLogger, "repository", hierarchy);
-        setField(standardEnvironment, "logger", rootLogger);
-        setField(modelConsistencyChecker, "environment", standardEnvironment);
-        
-        Class modelConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.ModelConsistencyChecker");
-        Method dumpStackMethod = modelConsistencyCheckerClazz.getDeclaredMethod("dumpStack");
-        dumpStackMethod.setAccessible(true);
-        java.lang.Object[] dumpStackMethodArguments = new java.lang.Object[0];
-        dumpStackMethod.invoke(modelConsistencyChecker, dumpStackMethodArguments);
+    ///region Errors report for dumpStack
+    
+    public void testDumpStack_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     

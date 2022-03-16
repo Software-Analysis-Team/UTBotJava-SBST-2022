@@ -5,16 +5,15 @@ import java.util.TreeMap;
 import com.google.common.collect.Maps.Values;
 import com.google.common.collect.Maps;
 import java.util.Map;
-import java.lang.reflect.Method;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Array;
 import java.util.Objects;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
+import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
@@ -33,14 +32,33 @@ public class TreeRangeMapTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPutCoalescing1() throws Throwable  {
+    @Test(timeout = 10000)
+    public void testToString1() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        Object emptyNavigableMap = createInstance("java.util.Collections$UnmodifiableNavigableMap$EmptyNavigableMap");
-        setField(treeRangeMap, "entriesByLowerBound", emptyNavigableMap);
-        java.lang.Object[] fileBuilderArray = createArray("java.security.KeyStore$Builder$FileBuilder", 0);
+        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
+        setField(treeMap, "values", null);
+        setField(treeRangeMap, "entriesByLowerBound", treeMap);
         
-        treeRangeMap.putCoalescing(null, fileBuilderArray);
+        String actual = treeRangeMap.toString();
+        
+        String expected = new String("[]");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testToString2() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
+        Object keySet = createInstance("com.google.common.collect.AbstractBiMap$KeySet");
+        setField(treeMap, "values", keySet);
+        setField(treeRangeMap, "entriesByLowerBound", treeMap);
+        
+        treeRangeMap.toString();
     }
     ///endregion
     
@@ -89,15 +107,16 @@ public class TreeRangeMapTest {
     public void testAsDescendingMapOfRanges1() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
-        Object filteredSet = createInstance("com.google.common.collect.Sets$FilteredSet");
-        setField(treeMap, "values", filteredSet);
+        setField(treeMap, "values", null);
         setField(treeMap, "descendingMap", treeMap);
         setField(treeRangeMap, "entriesByLowerBound", treeMap);
         
         Map actual = treeRangeMap.asDescendingMapOfRanges();
         
         Object expected = createInstance("com.google.common.collect.TreeRangeMap$AsMapOfRanges");
-        setField(expected, "entryIterable", filteredSet);
+        Object values = createInstance("java.util.TreeMap$Values");
+        setField(values, "this$0", treeMap);
+        setField(expected, "entryIterable", values);
         setField(expected, "this$0", treeRangeMap);
         setField(expected, "keySet", null);
         setField(expected, "values", null);
@@ -171,33 +190,10 @@ public class TreeRangeMapTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGet1() throws Throwable  {
-        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        Object complementRangesByLowerBound = createInstance("com.google.common.collect.TreeRangeSet$ComplementRangesByLowerBound");
-        setField(treeRangeMap, "entriesByLowerBound", complementRangesByLowerBound);
-        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        
-        Class treeRangeMapClazz = Class.forName("com.google.common.collect.TreeRangeMap");
-        Class heapByteBufferRType = Class.forName("java.lang.Comparable");
-        Method getMethod = treeRangeMapClazz.getDeclaredMethod("get", heapByteBufferRType);
-        getMethod.setAccessible(true);
-        java.lang.Object[] getMethodArguments = new java.lang.Object[1];
-        getMethodArguments[0] = heapByteBufferR;
-        try {
-            getMethod.invoke(treeRangeMap, getMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testPut1() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        java.lang.Object[] defaultProgressMeteringPolicyArray = createArray("sun.net.DefaultProgressMeteringPolicy", 0);
         
-        treeRangeMap.put(null, defaultProgressMeteringPolicyArray);
+        treeRangeMap.put(null, null);
     }
     ///endregion
     
@@ -262,15 +258,6 @@ public class TreeRangeMapTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     static class FieldsPair {
         final Object o1;

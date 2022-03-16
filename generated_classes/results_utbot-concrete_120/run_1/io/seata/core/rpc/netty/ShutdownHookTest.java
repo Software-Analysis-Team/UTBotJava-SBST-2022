@@ -119,14 +119,6 @@ public class ShutdownHookTest {
     
     @Test(timeout = 10000)
     public void testRemoveRuntimeShutdownHook1() throws Throwable  {
-        ShutdownHook.removeRuntimeShutdownHook();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testRemoveRuntimeShutdownHook2() throws Throwable  {
         Class runtimeClazz = Class.forName("java.lang.Runtime");
         Runtime prevCurrentRuntime = ((Runtime) getStaticFieldValue(runtimeClazz, "currentRuntime"));
         try {

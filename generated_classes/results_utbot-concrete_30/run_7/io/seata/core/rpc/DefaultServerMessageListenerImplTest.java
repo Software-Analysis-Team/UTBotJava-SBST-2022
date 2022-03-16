@@ -2,13 +2,15 @@ package io.seata.core.rpc;
 
 import org.junit.Test;
 import io.seata.core.protocol.RegisterRMRequest;
-import io.seata.core.rpc.netty.RpcServer;
 import io.seata.core.rpc.netty.RegisterCheckAuthHandler;
-import io.seata.core.protocol.RegisterTMRequest;
 import io.netty.channel.DefaultChannelPipeline;
-import io.netty.channel.unix.DomainSocketAddress;
+import io.seata.core.rpc.netty.RpcServer;
 import java.lang.reflect.Method;
-import java.nio.InvalidMarkException;
+import io.seata.core.protocol.RegisterTMRequest;
+import io.netty.channel.unix.DomainSocketAddress;
+import java.net.InetSocketAddress;
+import java.net.Inet6Address;
+import java.net.Inet4Address;
 import java.util.concurrent.BlockingQueue;
 import org.slf4j.Logger;
 import io.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable;
@@ -63,15 +65,48 @@ public class DefaultServerMessageListenerImplTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testOnRegRmMessage2() throws Throwable  {
         DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         RegisterCheckAuthHandler registerCheckAuthHandlerMock = mock(RegisterCheckAuthHandler.class);
         when(registerCheckAuthHandlerMock.regResourceManagerCheckAuth(any())).thenReturn(false);
         
-        defaultServerMessageListenerImpl.onRegRmMessage(0L, null, null, rpcServer, registerCheckAuthHandlerMock);
+        defaultServerMessageListenerImpl.onRegRmMessage(0L, null, null, null, registerCheckAuthHandlerMock);
         
         RegisterCheckAuthHandler finalRegisterCheckAuthHandlerMock = registerCheckAuthHandlerMock;
         
     }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOnRegRmMessage3() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        Object headContext = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
+        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        setField(defaultChannelPipeline, "channel", failedChannel);
+        setField(headContext, "pipeline", defaultChannelPipeline);
+        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        
+        Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
+        Class longType = long.class;
+        Class headContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Class registerRMRequestType = Class.forName("io.seata.core.protocol.RegisterRMRequest");
+        Class rpcServerType = Class.forName("io.seata.core.rpc.ServerMessageSender");
+        Class registerCheckAuthHandlerType = Class.forName("io.seata.core.rpc.netty.RegisterCheckAuthHandler");
+        Method onRegRmMessageMethod = defaultServerMessageListenerImplClazz.getDeclaredMethod("onRegRmMessage", longType, headContextType, registerRMRequestType, rpcServerType, registerCheckAuthHandlerType);
+        onRegRmMessageMethod.setAccessible(true);
+        java.lang.Object[] onRegRmMessageMethodArguments = new java.lang.Object[5];
+        onRegRmMessageMethodArguments[0] = 0L;
+        onRegRmMessageMethodArguments[1] = headContext;
+        onRegRmMessageMethodArguments[2] = registerRMRequest;
+        onRegRmMessageMethodArguments[3] = rpcServer;
+        onRegRmMessageMethodArguments[4] = null;
+        try {
+            onRegRmMessageMethod.invoke(defaultServerMessageListenerImpl, onRegRmMessageMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     ///region
@@ -137,6 +172,97 @@ public class DefaultServerMessageListenerImplTest {
     
     ///region
     
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOnRegTmMessage4() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        Object headContext = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
+        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
+        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
+        Inet6Address inet6Address = ((Inet6Address) createInstance("java.net.Inet6Address"));
+        Object inet6AddressHolder = createInstance("java.net.Inet6Address$Inet6AddressHolder");
+        byte[] byteArray = new byte[9];
+        byteArray[1] = (byte) 4;
+        setField(inet6AddressHolder, "ipaddress", byteArray);
+        setField(inet6Address, "holder6", inet6AddressHolder);
+        setField(inetSocketAddressHolder, "addr", inet6Address);
+        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
+        setField(failedChannel, "remoteAddress", inetSocketAddress);
+        setField(defaultChannelPipeline, "channel", failedChannel);
+        setField(headContext, "pipeline", defaultChannelPipeline);
+        RegisterTMRequest registerTMRequest = ((RegisterTMRequest) createInstance("io.seata.core.protocol.RegisterTMRequest"));
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        
+        Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
+        Class longType = long.class;
+        Class headContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Class registerTMRequestType = Class.forName("io.seata.core.protocol.RegisterTMRequest");
+        Class rpcServerType = Class.forName("io.seata.core.rpc.ServerMessageSender");
+        Class registerCheckAuthHandlerType = Class.forName("io.seata.core.rpc.netty.RegisterCheckAuthHandler");
+        Method onRegTmMessageMethod = defaultServerMessageListenerImplClazz.getDeclaredMethod("onRegTmMessage", longType, headContextType, registerTMRequestType, rpcServerType, registerCheckAuthHandlerType);
+        onRegTmMessageMethod.setAccessible(true);
+        java.lang.Object[] onRegTmMessageMethodArguments = new java.lang.Object[5];
+        onRegTmMessageMethodArguments[0] = 0L;
+        onRegTmMessageMethodArguments[1] = headContext;
+        onRegTmMessageMethodArguments[2] = registerTMRequest;
+        onRegTmMessageMethodArguments[3] = rpcServer;
+        onRegTmMessageMethodArguments[4] = null;
+        try {
+            onRegTmMessageMethod.invoke(defaultServerMessageListenerImpl, onRegTmMessageMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOnRegTmMessage5() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
+        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
+        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
+        Inet4Address inet4Address = ((Inet4Address) createInstance("java.net.Inet4Address"));
+        Object inetAddressHolder = createInstance("java.net.InetAddress$InetAddressHolder");
+        setField(inetAddressHolder, "address", 0);
+        setField(inet4Address, "holder", inetAddressHolder);
+        setField(inetSocketAddressHolder, "addr", inet4Address);
+        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
+        setField(failedChannel, "remoteAddress", inetSocketAddress);
+        setField(defaultChannelPipeline, "channel", failedChannel);
+        setField(tailContext, "pipeline", defaultChannelPipeline);
+        RegisterTMRequest registerTMRequest = ((RegisterTMRequest) createInstance("io.seata.core.protocol.RegisterTMRequest"));
+        RegisterCheckAuthHandler registerCheckAuthHandlerMock = mock(RegisterCheckAuthHandler.class);
+        
+        Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
+        Class longType = long.class;
+        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Class registerTMRequestType = Class.forName("io.seata.core.protocol.RegisterTMRequest");
+        Class serverMessageSenderType = Class.forName("io.seata.core.rpc.ServerMessageSender");
+        Class registerCheckAuthHandlerMockType = Class.forName("io.seata.core.rpc.netty.RegisterCheckAuthHandler");
+        Method onRegTmMessageMethod = defaultServerMessageListenerImplClazz.getDeclaredMethod("onRegTmMessage", longType, tailContextType, registerTMRequestType, serverMessageSenderType, registerCheckAuthHandlerMockType);
+        onRegTmMessageMethod.setAccessible(true);
+        java.lang.Object[] onRegTmMessageMethodArguments = new java.lang.Object[5];
+        onRegTmMessageMethodArguments[0] = 0L;
+        onRegTmMessageMethodArguments[1] = tailContext;
+        onRegTmMessageMethodArguments[2] = registerTMRequest;
+        onRegTmMessageMethodArguments[3] = null;
+        onRegTmMessageMethodArguments[4] = registerCheckAuthHandlerMock;
+        try {
+            onRegTmMessageMethod.invoke(defaultServerMessageListenerImpl, onRegTmMessageMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        RegisterCheckAuthHandler finalRegisterCheckAuthHandlerMock = registerCheckAuthHandlerMock;
+        
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000)
     public void testOnCheckMessage1() throws Throwable  {
         DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
@@ -148,31 +274,10 @@ public class DefaultServerMessageListenerImplTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testOnCheckMessage2() throws Throwable  {
+    public void testInit1() throws Throwable  {
         DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        Object failedChannelUnsafe = createInstance("io.netty.bootstrap.FailedChannel$FailedChannelUnsafe");
-        setField(failedChannelUnsafe, "outboundBuffer", null);
-        setField(failedChannel, "unsafe", failedChannelUnsafe);
-        setField(defaultChannelPipeline, "channel", failedChannel);
-        setField(tailContext, "pipeline", defaultChannelPipeline);
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        java.nio.InvalidMarkException[] invalidMarkExceptionArray = new java.nio.InvalidMarkException[0];
-        setField(rpcServer, "lock", invalidMarkExceptionArray);
         
-        Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
-        Class longType = long.class;
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Class rpcServerType = Class.forName("io.seata.core.rpc.ServerMessageSender");
-        Method onCheckMessageMethod = defaultServerMessageListenerImplClazz.getDeclaredMethod("onCheckMessage", longType, tailContextType, rpcServerType);
-        onCheckMessageMethod.setAccessible(true);
-        java.lang.Object[] onCheckMessageMethodArguments = new java.lang.Object[3];
-        onCheckMessageMethodArguments[0] = 0L;
-        onCheckMessageMethodArguments[1] = tailContext;
-        onCheckMessageMethodArguments[2] = rpcServer;
-        onCheckMessageMethod.invoke(defaultServerMessageListenerImpl, onCheckMessageMethodArguments);
+        defaultServerMessageListenerImpl.init();
     }
     ///endregion
     
@@ -219,16 +324,6 @@ public class DefaultServerMessageListenerImplTest {
         setField(defaultServerMessageListenerImpl, "serverMessageSender", null);
         
         defaultServerMessageListenerImpl.setServerMessageSender(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testInit1() throws Throwable  {
-        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
-        
-        defaultServerMessageListenerImpl.init();
     }
     ///endregion
     

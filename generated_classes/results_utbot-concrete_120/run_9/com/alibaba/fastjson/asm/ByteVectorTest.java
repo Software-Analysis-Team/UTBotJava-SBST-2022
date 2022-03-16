@@ -51,11 +51,11 @@ public class ByteVectorTest {
     @Test(timeout = 10000)
     public void testPutByteArray3() throws Throwable  {
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = -1073741854;
-        byte[] byteArray = new byte[10];
+        byteVector.length = 2147483608;
+        byte[] byteArray = new byte[2];
         byteVector.data = byteArray;
         
-        ByteVector actual = byteVector.putByteArray(null, 0, 1073741795);
+        ByteVector actual = byteVector.putByteArray(null, 0, 1073741801);
         
         
         // Current deep equals depth exceeds max depth 0
@@ -63,7 +63,7 @@ public class ByteVectorTest {
         
         int finalByteVectorLength = byteVector.length;
         
-        assertEquals(-59, finalByteVectorLength);
+        assertEquals(-1073741887, finalByteVectorLength);
     }
     ///endregion
     
@@ -75,7 +75,7 @@ public class ByteVectorTest {
         byteVector.length = 1073741822;
         byte[] byteArray = new byte[0];
         byteVector.data = byteArray;
-        byte[] byteArray1 = new byte[18];
+        byte[] byteArray1 = new byte[9];
         
         byteVector.putByteArray(byteArray1, 0, -1073741825);
     }
@@ -573,7 +573,7 @@ public class ByteVectorTest {
     @Test(timeout = 10000)
     public void testEnlarge3() throws Throwable  {
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 7;
+        byteVector.length = 11;
         byte[] byteArray = new byte[18];
         byteVector.data = byteArray;
         
@@ -582,7 +582,7 @@ public class ByteVectorTest {
         Method enlargeMethod = byteVectorClazz.getDeclaredMethod("enlarge", intType);
         enlargeMethod.setAccessible(true);
         java.lang.Object[] enlargeMethodArguments = new java.lang.Object[1];
-        enlargeMethodArguments[0] = 2147483641;
+        enlargeMethodArguments[0] = 2147483638;
         enlargeMethod.invoke(byteVector, enlargeMethodArguments);
         
         byte[] finalByteVectorData = byteVector.data;

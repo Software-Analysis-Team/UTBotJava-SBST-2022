@@ -1,228 +1,134 @@
-package spoon.reflect.visitor.filter;
+package spoon.support.compiler.jdt;
 
 import org.junit.Test;
-import java.lang.reflect.Method;
-import spoon.support.reflect.code.CtArrayReadImpl;
-import spoon.support.reflect.reference.CtFieldReferenceImpl;
-import spoon.support.reflect.code.CtFieldReadImpl;
-import spoon.reflect.factory.ModuleFactory.CtUnnamedModule;
-import spoon.reflect.factory.ModuleFactory;
-import spoon.support.reflect.declaration.CtEnumImpl;
+import spoon.compiler.builder.JDTBuilder;
 import spoon.reflect.factory.FactoryImpl;
+import spoon.support.compiler.VirtualFolder;
+import java.util.LinkedHashSet;
+import java.lang.reflect.Method;
+import org.eclipse.jdt.internal.compiler.problem.DefaultProblem;
+import spoon.compiler.builder.JDTBuilderImpl;
+import spoon.reflect.cu.CompilationUnit;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Objects;
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Arrays;
-import java.lang.reflect.Array;
-import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
-public class CompositeFilterTest {
+public class JDTSnippetCompilerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMatches1() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+    public void testBuild1() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
         
-        compositeFilter.matches(null);
+        jDTSnippetCompiler.build(((JDTBuilder) null));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMatches2() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        setField(compositeFilter, "operator", null);
+    public void testBuild2() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        setField(jDTSnippetCompiler, "factory", null);
         
-        compositeFilter.matches(null);
+        jDTSnippetCompiler.build(((JDTBuilder) null));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMatches3() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        FilteringOperator filteringOperator = FilteringOperator.SUBSTRACTION;
-        compositeFilter.operator = filteringOperator;
-        
-        compositeFilter.matches(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMatches4() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        FilteringOperator filteringOperator = FilteringOperator.UNION;
-        compositeFilter.operator = filteringOperator;
-        setField(compositeFilter, "filters", null);
-        
-        compositeFilter.matches(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMatches5() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        FilteringOperator filteringOperator = FilteringOperator.INTERSECTION;
-        compositeFilter.operator = filteringOperator;
-        setField(compositeFilter, "filters", null);
-        
-        compositeFilter.matches(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasMatch1() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        
-        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
-        Class filterType = Class.forName("spoon.reflect.visitor.Filter");
-        Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", filterType, ctElementType);
-        hasMatchMethod.setAccessible(true);
-        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
-        hasMatchMethodArguments[0] = null;
-        hasMatchMethodArguments[1] = null;
-        try {
-            hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasMatch2() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        
-        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
-        Class filterType = Class.forName("spoon.reflect.visitor.Filter");
-        Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", filterType, ctElementType);
-        hasMatchMethod.setAccessible(true);
-        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
-        hasMatchMethodArguments[0] = null;
-        hasMatchMethodArguments[1] = null;
-        try {
-            hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHasMatch3() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        FieldAccessFilter fieldAccessFilter = ((FieldAccessFilter) createInstance("spoon.reflect.visitor.filter.FieldAccessFilter"));
-        CtArrayReadImpl ctArrayReadImpl = ((CtArrayReadImpl) createInstance("spoon.support.reflect.code.CtArrayReadImpl"));
-        
-        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
-        Class fieldAccessFilterType = Class.forName("spoon.reflect.visitor.Filter");
-        Class ctArrayReadImplType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", fieldAccessFilterType, ctArrayReadImplType);
-        hasMatchMethod.setAccessible(true);
-        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
-        hasMatchMethodArguments[0] = fieldAccessFilter;
-        hasMatchMethodArguments[1] = ctArrayReadImpl;
-        boolean actual = ((boolean) hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments));
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHasMatch4() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        VariableAccessFilter variableAccessFilter = ((VariableAccessFilter) createInstance("spoon.reflect.visitor.filter.VariableAccessFilter"));
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(variableAccessFilter, "variable", ctFieldReferenceImpl);
-        CtFieldReadImpl ctFieldReadImpl = ((CtFieldReadImpl) createInstance("spoon.support.reflect.code.CtFieldReadImpl"));
-        setField(ctFieldReadImpl, "variable", ctFieldReferenceImpl);
-        
-        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
-        Class variableAccessFilterType = Class.forName("spoon.reflect.visitor.Filter");
-        Class ctFieldReadImplType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", variableAccessFilterType, ctFieldReadImplType);
-        hasMatchMethod.setAccessible(true);
-        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
-        hasMatchMethodArguments[0] = variableAccessFilter;
-        hasMatchMethodArguments[1] = ctFieldReadImpl;
-        boolean actual = ((boolean) hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments));
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasMatch5() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        AnnotationFilter annotationFilter = ((AnnotationFilter) createInstance("spoon.reflect.visitor.filter.AnnotationFilter"));
-        Class class1 = Object.class;
-        setField(annotationFilter, "type", class1);
-        ModuleFactory.CtUnnamedModule ctUnnamedModule = ((ModuleFactory.CtUnnamedModule) createInstance("spoon.reflect.factory.ModuleFactory$CtUnnamedModule"));
-        
-        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
-        Class annotationFilterType = Class.forName("spoon.reflect.visitor.Filter");
-        Class ctUnnamedModuleType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", annotationFilterType, ctUnnamedModuleType);
-        hasMatchMethod.setAccessible(true);
-        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
-        hasMatchMethodArguments[0] = annotationFilter;
-        hasMatchMethodArguments[1] = ctUnnamedModule;
-        try {
-            hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasMatch6() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        AnnotationFilter annotationFilter = ((AnnotationFilter) createInstance("spoon.reflect.visitor.filter.AnnotationFilter"));
-        Class class1 = Object.class;
-        setField(annotationFilter, "type", class1);
-        setField(annotationFilter, "annotationType", null);
-        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
+    public void testBuild3() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        setField(jDTSnippetCompiler, "sources", null);
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "annotation", null);
-        setField(ctEnumImpl, "factory", factoryImpl);
+        setField(jDTSnippetCompiler, "factory", factoryImpl);
         
-        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
-        Class annotationFilterType = Class.forName("spoon.reflect.visitor.Filter");
-        Class ctEnumImplType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", annotationFilterType, ctEnumImplType);
-        hasMatchMethod.setAccessible(true);
-        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
-        hasMatchMethodArguments[0] = annotationFilter;
-        hasMatchMethodArguments[1] = ctEnumImpl;
+        jDTSnippetCompiler.build(((JDTBuilder) null));
+    }
+    ///endregion
+    
+    
+    ///region Errors report for build
+    
+    public void testBuild_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testBuild5() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        
+        jDTSnippetCompiler.build();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testBuild6() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        setField(jDTSnippetCompiler, "factory", null);
+        
+        jDTSnippetCompiler.build();
+    }
+    ///endregion
+    
+    
+    ///region Errors report for build
+    
+    public void testBuild_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testBuild8() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        VirtualFolder virtualFolder = ((VirtualFolder) createInstance("spoon.support.compiler.VirtualFolder"));
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        setField(virtualFolder, "files", linkedHashSet);
+        setField(jDTSnippetCompiler, "sources", virtualFolder);
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(jDTSnippetCompiler, "factory", factoryImpl);
+        
+        jDTSnippetCompiler.build();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReport1() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        
+        Class jDTSnippetCompilerClazz = Class.forName("spoon.support.compiler.jdt.JDTSnippetCompiler");
+        Class environmentType = Class.forName("spoon.compiler.Environment");
+        Class categorizedProblemType = Class.forName("org.eclipse.jdt.core.compiler.CategorizedProblem");
+        Method reportMethod = jDTSnippetCompilerClazz.getDeclaredMethod("report", environmentType, categorizedProblemType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[2];
+        reportMethodArguments[0] = null;
+        reportMethodArguments[1] = null;
         try {
-            hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
+            reportMethod.invoke(jDTSnippetCompiler, reportMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -231,25 +137,42 @@ public class CompositeFilterTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasMatch7() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
-        FieldAccessFilter fieldAccessFilter = ((FieldAccessFilter) createInstance("spoon.reflect.visitor.filter.FieldAccessFilter"));
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(fieldAccessFilter, "variable", ctFieldReferenceImpl);
-        CtFieldReadImpl ctFieldReadImpl = ((CtFieldReadImpl) createInstance("spoon.support.reflect.code.CtFieldReadImpl"));
-        CtFieldReferenceImpl ctFieldReferenceImpl1 = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(ctFieldReadImpl, "variable", ctFieldReferenceImpl1);
+    public void testReport2() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
         
-        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
-        Class fieldAccessFilterType = Class.forName("spoon.reflect.visitor.Filter");
-        Class ctFieldReadImplType = Class.forName("spoon.reflect.declaration.CtElement");
-        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", fieldAccessFilterType, ctFieldReadImplType);
-        hasMatchMethod.setAccessible(true);
-        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
-        hasMatchMethodArguments[0] = fieldAccessFilter;
-        hasMatchMethodArguments[1] = ctFieldReadImpl;
+        Class jDTSnippetCompilerClazz = Class.forName("spoon.support.compiler.jdt.JDTSnippetCompiler");
+        Class environmentType = Class.forName("spoon.compiler.Environment");
+        Class categorizedProblemType = Class.forName("org.eclipse.jdt.core.compiler.CategorizedProblem");
+        Method reportMethod = jDTSnippetCompilerClazz.getDeclaredMethod("report", environmentType, categorizedProblemType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[2];
+        reportMethodArguments[0] = null;
+        reportMethodArguments[1] = null;
         try {
-            hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
+            reportMethod.invoke(jDTSnippetCompiler, reportMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReport3() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        DefaultProblem defaultProblem = ((DefaultProblem) createInstance("org.eclipse.jdt.internal.compiler.problem.DefaultProblem"));
+        setField(defaultProblem, "severity", 1);
+        
+        Class jDTSnippetCompilerClazz = Class.forName("spoon.support.compiler.jdt.JDTSnippetCompiler");
+        Class environmentType = Class.forName("spoon.compiler.Environment");
+        Class defaultProblemType = Class.forName("org.eclipse.jdt.core.compiler.CategorizedProblem");
+        Method reportMethod = jDTSnippetCompilerClazz.getDeclaredMethod("report", environmentType, defaultProblemType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[2];
+        reportMethodArguments[0] = null;
+        reportMethodArguments[1] = defaultProblem;
+        try {
+            reportMethod.invoke(jDTSnippetCompiler, reportMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -258,38 +181,123 @@ public class CompositeFilterTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetType1() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+    public void testReport4() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        DefaultProblem defaultProblem = ((DefaultProblem) createInstance("org.eclipse.jdt.internal.compiler.problem.DefaultProblem"));
+        setField(defaultProblem, "severity", 0);
         
-        Class actual = compositeFilter.getType();
+        Class jDTSnippetCompilerClazz = Class.forName("spoon.support.compiler.jdt.JDTSnippetCompiler");
+        Class environmentType = Class.forName("spoon.compiler.Environment");
+        Class defaultProblemType = Class.forName("org.eclipse.jdt.core.compiler.CategorizedProblem");
+        Method reportMethod = jDTSnippetCompilerClazz.getDeclaredMethod("report", environmentType, defaultProblemType);
+        reportMethod.setAccessible(true);
+        java.lang.Object[] reportMethodArguments = new java.lang.Object[2];
+        reportMethodArguments[0] = null;
+        reportMethodArguments[1] = defaultProblem;
+        reportMethod.invoke(jDTSnippetCompiler, reportMethodArguments);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testBuildSources1() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
         
-        Class expected = spoon.reflect.declaration.CtElement.class;
+        Class jDTSnippetCompilerClazz = Class.forName("spoon.support.compiler.jdt.JDTSnippetCompiler");
+        Class jDTBuilderType = Class.forName("spoon.compiler.builder.JDTBuilder");
+        Method buildSourcesMethod = jDTSnippetCompilerClazz.getDeclaredMethod("buildSources", jDTBuilderType);
+        buildSourcesMethod.setAccessible(true);
+        java.lang.Object[] buildSourcesMethodArguments = new java.lang.Object[1];
+        buildSourcesMethodArguments[0] = null;
+        try {
+            buildSourcesMethod.invoke(jDTSnippetCompiler, buildSourcesMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for buildSources
+    
+    public void testBuildSources_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testBuildSources3() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        setField(jDTSnippetCompiler, "sources", null);
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "environment", null);
+        setField(jDTSnippetCompiler, "factory", factoryImpl);
+        JDTBuilderImpl jDTBuilderImpl = ((JDTBuilderImpl) createInstance("spoon.compiler.builder.JDTBuilderImpl"));
         
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        Class jDTSnippetCompilerClazz = Class.forName("spoon.support.compiler.jdt.JDTSnippetCompiler");
+        Class jDTBuilderImplType = Class.forName("spoon.compiler.builder.JDTBuilder");
+        Method buildSourcesMethod = jDTSnippetCompilerClazz.getDeclaredMethod("buildSources", jDTBuilderImplType);
+        buildSourcesMethod.setAccessible(true);
+        java.lang.Object[] buildSourcesMethodArguments = new java.lang.Object[1];
+        buildSourcesMethodArguments[0] = jDTBuilderImpl;
+        try {
+            buildSourcesMethod.invoke(jDTSnippetCompiler, buildSourcesMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetSnippetCompilationUnit1() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        
+        CompilationUnit actual = jDTSnippetCompiler.getSnippetCompilationUnit();
+        
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetType2() throws Throwable  {
-        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+    public void testGetSnippetCompilationUnit2() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        setField(jDTSnippetCompiler, "snippetCompilationUnit", null);
         
-        Class actual = compositeFilter.getType();
+        CompilationUnit actual = jDTSnippetCompiler.getSnippetCompilationUnit();
         
-        Class expected = spoon.reflect.declaration.CtElement.class;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testCompositeFilter1() {
-        CompositeFilter actual = new CompositeFilter(null, null);
+    public void testJDTSnippetCompiler1() {
+        String string = new String();
+        JDTSnippetCompiler actual = new JDTSnippetCompiler(null, string);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for <init>
+    
+    public void testJDTSnippetCompiler_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
@@ -316,174 +324,6 @@ public class CompositeFilterTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
-    }
-    static class FieldsPair {
-        final Object o1;
-        final Object o2;
-    
-        public FieldsPair(Object o1, Object o2) {
-            this.o1 = o1;
-            this.o2 = o2;
-        }
-    
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            FieldsPair that = (FieldsPair) o;
-            return Objects.equals(o1, that.o1) && Objects.equals(o2, that.o2);
-        }
-    
-        @Override
-        public int hashCode() {
-            return Objects.hash(o1, o2);
-        }
-    }
-    
-    private boolean deepEquals(Object o1, Object o2) {
-        try {
-            return deepEquals(o1, o2, new HashSet<>());
-        } catch (Throwable t) {
-            return true;
-        }
-    }
-    
-    private boolean deepEquals(Object o1, Object o2, Set<FieldsPair> visited) {
-        visited.add(new FieldsPair(o1, o2));
-    
-        if (o1 == o2) {
-            return true;
-        }
-    
-        if (o1 == null || o2 == null) {
-            return false;
-        }
-    
-        if (o1 instanceof Iterable) {
-            if (!(o2 instanceof Iterable)) {
-                return false;
-            }
-    
-            return iterablesDeepEquals((Iterable<?>) o1, (Iterable<?>) o2, visited);
-        }
-        
-        if (o2 instanceof Iterable) {
-            return false;
-        }
-    
-        if (o1 instanceof Map) {
-            if (!(o2 instanceof Map)) {
-                return false;
-            }
-    
-            return mapsDeepEquals((Map<?, ?>) o1, (Map<?, ?>) o2, visited);
-        }
-        
-        if (o2 instanceof Map) {
-            return false;
-        }
-    
-        Class<?> firstClass = o1.getClass();
-        if (firstClass.isArray()) {
-            if (!o2.getClass().isArray()) {
-                return false;
-            }
-    
-            // Primitive arrays should not appear here
-            return arraysDeepEquals(o1, o2, visited);
-        }
-    
-        // common classes
-    
-        // common classes without custom equals, use comparison by fields
-        final List<java.lang.reflect.Field> fields = new ArrayList<>();
-        while (firstClass != Object.class) {
-            fields.addAll(Arrays.asList(firstClass.getDeclaredFields()));
-            // Interface should not appear here
-            firstClass = firstClass.getSuperclass();
-        }
-    
-        for (java.lang.reflect.Field field : fields) {
-            field.setAccessible(true);
-            try {
-                final Object field1 = field.get(o1);
-                final Object field2 = field.get(o2);
-                if (!visited.contains(new FieldsPair(field1, field2)) && !deepEquals(field1, field2, visited)) {
-                    return false;
-                }
-            } catch (IllegalArgumentException e) {
-                return false;
-            } catch (IllegalAccessException e) {
-                // should never occur because field was set accessible
-                return false;
-            }
-        }
-    
-        return true;
-    }
-    private boolean arraysDeepEquals(Object arr1, Object arr2, Set<FieldsPair> visited) {
-        final int length = Array.getLength(arr1);
-        if (length != Array.getLength(arr2)) {
-            return false;
-        }
-    
-        for (int i = 0; i < length; i++) {
-            if (!deepEquals(Array.get(arr1, i), Array.get(arr2, i), visited)) {
-                return false;
-            }
-        }
-    
-        return true;
-    }
-    private boolean iterablesDeepEquals(Iterable<?> i1, Iterable<?> i2, Set<FieldsPair> visited) {
-        final Iterator<?> firstIterator = i1.iterator();
-        final Iterator<?> secondIterator = i2.iterator();
-        while (firstIterator.hasNext() && secondIterator.hasNext()) {
-            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
-                return false;
-            }
-        }
-    
-        if (firstIterator.hasNext()) {
-            return false;
-        }
-    
-        return !secondIterator.hasNext();
-    }
-    private boolean mapsDeepEquals(Map<?, ?> m1, Map<?, ?> m2, Set<FieldsPair> visited) {
-        final Iterator<? extends Map.Entry<?, ?>> firstIterator = m1.entrySet().iterator();
-        final Iterator<? extends Map.Entry<?, ?>> secondIterator = m2.entrySet().iterator();
-        while (firstIterator.hasNext() && secondIterator.hasNext()) {
-            final Map.Entry<?, ?> firstEntry = firstIterator.next();
-            final Map.Entry<?, ?> secondEntry = secondIterator.next();
-    
-            if (!deepEquals(firstEntry.getKey(), secondEntry.getKey(), visited)) {
-                return false;
-            }
-    
-            if (!deepEquals(firstEntry.getValue(), secondEntry.getValue(), visited)) {
-                return false;
-            }
-        }
-    
-        if (firstIterator.hasNext()) {
-            return false;
-        }
-    
-        return !secondIterator.hasNext();
-    }
-    private boolean hasCustomEquals(Class<?> clazz) {
-        while (!Object.class.equals(clazz)) {
-            try {
-                clazz.getDeclaredMethod("equals", Object.class);
-                return true;
-            } catch (Exception e) { 
-                // Interface should not appear here
-                clazz = clazz.getSuperclass();
-            }
-        }
-    
-        return false;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

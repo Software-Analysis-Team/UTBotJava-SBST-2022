@@ -6,10 +6,10 @@ import java.net.InetSocketAddress;
 import java.net.Inet4Address;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ConcurrentHashMap;
+import io.netty.channel.unix.DatagramSocketAddress;
+import io.netty.channel.DefaultChannelId;
 import java.util.Map;
 import java.lang.reflect.Method;
-import java.net.Inet6Address;
-import io.netty.channel.DefaultChannelId;
 import io.seata.core.rpc.netty.NettyPoolKey.TransactionRole;
 import io.seata.core.rpc.netty.NettyPoolKey;
 import java.util.Set;
@@ -17,8 +17,8 @@ import java.util.TreeSet;
 import java.util.TreeMap;
 import java.util.LinkedHashSet;
 import io.netty.channel.Channel;
-import io.netty.channel.unix.DatagramSocketAddress;
 import java.net.InetAddress;
+import java.net.Inet6Address;
 import java.util.Objects;
 import java.util.List;
 import java.util.ArrayList;
@@ -48,29 +48,6 @@ public class RpcContextTest {
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetVersion1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        String string = new String();
-        
-        rpcContext.setVersion(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetVersion2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "version", null);
-        String string = new String("");
-        
-        rpcContext.setVersion(string);
     }
     ///endregion
     
@@ -171,6 +148,29 @@ public class RpcContextTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testSetVersion1() throws Throwable  {
+        RpcContext rpcContext = new RpcContext();
+        String string = new String();
+        
+        rpcContext.setVersion(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetVersion2() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        setField(rpcContext, "version", null);
+        String string = new String("");
+        
+        rpcContext.setVersion(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testGetVersion1() throws Throwable  {
         RpcContext rpcContext = new RpcContext();
         
@@ -213,6 +213,31 @@ public class RpcContextTest {
         setField(rpcContext, "clientRMHolderMap", null);
         
         ConcurrentMap actual = rpcContext.getClientRMHolderMap();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetTransactionServiceGroup1() throws Throwable  {
+        RpcContext rpcContext = new RpcContext();
+        
+        String actual = rpcContext.getTransactionServiceGroup();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetTransactionServiceGroup2() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        setField(rpcContext, "transactionServiceGroup", null);
+        
+        String actual = rpcContext.getTransactionServiceGroup();
         
         assertNull(actual);
     }
@@ -277,7 +302,7 @@ public class RpcContextTest {
         setField(rpcContext, "clientTMHolderMap", null);
         Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
         DomainSocketAddress domainSocketAddress = ((DomainSocketAddress) createInstance("io.netty.channel.unix.DomainSocketAddress"));
-        String string = new String("");
+        String string = new String("\u0000");
         setField(domainSocketAddress, "socketPath", string);
         setField(failedChannel, "remoteAddress", domainSocketAddress);
         setField(rpcContext, "channel", failedChannel);
@@ -290,6 +315,27 @@ public class RpcContextTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testHoldInClientChannels6() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        setField(rpcContext, "clientTMHolderMap", null);
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        DatagramSocketAddress datagramSocketAddress = ((DatagramSocketAddress) createInstance("io.netty.channel.unix.DatagramSocketAddress"));
+        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
+        setField(inetSocketAddressHolder, "port", 0);
+        setField(inetSocketAddressHolder, "addr", null);
+        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
+        setField(inetSocketAddressHolder, "hostname", string);
+        setField(datagramSocketAddress, "holder", inetSocketAddressHolder);
+        setField(failedChannel, "remoteAddress", datagramSocketAddress);
+        setField(rpcContext, "channel", failedChannel);
+        
+        rpcContext.holdInClientChannels(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInClientChannels7() throws Throwable  {
         RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
         setField(rpcContext, "clientTMHolderMap", null);
         Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
@@ -306,7 +352,7 @@ public class RpcContextTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testHoldInClientChannels7() throws Throwable  {
+    public void testHoldInClientChannels8() throws Throwable  {
         RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
         setField(rpcContext, "clientTMHolderMap", null);
         Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
@@ -327,6 +373,260 @@ public class RpcContextTest {
         Object finalRpcContextClientTMHolderMap = getFieldValue(rpcContext, "clientTMHolderMap");
         
         assertFalse(initialRpcContextClientTMHolderMap == finalRpcContextClientTMHolderMap);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInIdentifiedChannels1() throws Throwable  {
+        RpcContext rpcContext = new RpcContext();
+        
+        rpcContext.holdInIdentifiedChannels(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInIdentifiedChannels2() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+        setField(rpcContext, "clientIDHolderMap", concurrentHashMap);
+        
+        rpcContext.holdInIdentifiedChannels(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInIdentifiedChannels3() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        setField(rpcContext, "clientIDHolderMap", null);
+        setField(rpcContext, "channel", null);
+        
+        rpcContext.holdInIdentifiedChannels(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testHoldInIdentifiedChannels4() throws Throwable  {
+        Class runtimeClazz = Class.forName("java.lang.Runtime");
+        Runtime prevCurrentRuntime = ((Runtime) getStaticFieldValue(runtimeClazz, "currentRuntime"));
+        try {
+            Runtime currentRuntime = ((Runtime) createInstance("java.lang.Runtime"));
+            setStaticField(runtimeClazz, "currentRuntime", currentRuntime);
+            RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+            setField(rpcContext, "clientIDHolderMap", null);
+            Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+            DefaultChannelId defaultChannelId = ((DefaultChannelId) createInstance("io.netty.channel.DefaultChannelId"));
+            setField(defaultChannelId, "hashCode", 0);
+            setField(failedChannel, "id", defaultChannelId);
+            setField(rpcContext, "channel", failedChannel);
+            ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+            setField(concurrentHashMap, "sizeCtl", 0);
+            setField(concurrentHashMap, "table", null);
+            
+            Object initialRpcContextClientIDHolderMap = getFieldValue(rpcContext, "clientIDHolderMap");
+            
+            rpcContext.holdInIdentifiedChannels(concurrentHashMap);
+            
+            Object finalRpcContextClientIDHolderMap = getFieldValue(rpcContext, "clientIDHolderMap");
+            
+            Object finalConcurrentHashMapSizeCtl = getFieldValue(concurrentHashMap, "sizeCtl");
+            Object finalConcurrentHashMapTable = getFieldValue(concurrentHashMap, "table");
+            
+            assertFalse(initialRpcContextClientIDHolderMap == finalRpcContextClientIDHolderMap);
+            
+            assertEquals(12, finalConcurrentHashMapSizeCtl);
+            
+        } finally {
+            setStaticField(Runtime.class, "currentRuntime", prevCurrentRuntime);
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInResourceManagerChannels1() throws Throwable  {
+        RpcContext rpcContext = new RpcContext();
+        String string = new String();
+        
+        rpcContext.holdInResourceManagerChannels(string, ((ConcurrentMap) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInResourceManagerChannels2() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
+        setField(rpcContext, "channel", null);
+        
+        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInResourceManagerChannels3() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        setField(rpcContext, "clientRMHolderMap", null);
+        setField(rpcContext, "channel", null);
+        
+        Object initialRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
+        
+        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
+        
+        Object finalRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
+        
+        assertFalse(initialRpcContextClientRMHolderMap == finalRpcContextClientRMHolderMap);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInResourceManagerChannels4() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        setField(failedChannel, "remoteAddress", null);
+        Object failedChannelUnsafe = createInstance("io.netty.bootstrap.FailedChannel$FailedChannelUnsafe");
+        setField(failedChannelUnsafe, "this$0", failedChannel);
+        setField(failedChannel, "unsafe", failedChannelUnsafe);
+        setField(rpcContext, "channel", failedChannel);
+        
+        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInResourceManagerChannels5() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        setField(rpcContext, "clientRMHolderMap", null);
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        DomainSocketAddress domainSocketAddress = ((DomainSocketAddress) createInstance("io.netty.channel.unix.DomainSocketAddress"));
+        String string = new String("");
+        setField(domainSocketAddress, "socketPath", string);
+        setField(failedChannel, "remoteAddress", domainSocketAddress);
+        setField(rpcContext, "channel", failedChannel);
+        
+        Object initialRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
+        
+        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
+        
+        Object finalRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
+        
+        assertFalse(initialRpcContextClientRMHolderMap == finalRpcContextClientRMHolderMap);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInResourceManagerChannels6() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
+        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
+        setField(inetSocketAddressHolder, "addr", null);
+        setField(inetSocketAddressHolder, "hostname", null);
+        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
+        setField(failedChannel, "remoteAddress", inetSocketAddress);
+        setField(rpcContext, "channel", failedChannel);
+        
+        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInResourceManagerChannels7() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
+        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
+        setField(inetSocketAddressHolder, "addr", null);
+        String string = new String("");
+        setField(inetSocketAddressHolder, "hostname", string);
+        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
+        setField(failedChannel, "remoteAddress", inetSocketAddress);
+        setField(rpcContext, "channel", failedChannel);
+        ConcurrentHashMap concurrentHashMap1 = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+        
+        rpcContext.holdInResourceManagerChannels(((String) null), concurrentHashMap1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInResourceManagerChannels8() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
+        
+        rpcContext.holdInResourceManagerChannels(((String) null), ((Integer) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInResourceManagerChannels9() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        setField(rpcContext, "clientRMHolderMap", null);
+        
+        Object initialRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
+        
+        rpcContext.holdInResourceManagerChannels(((String) null), ((Integer) null));
+        
+        Object finalRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
+        
+        assertFalse(initialRpcContextClientRMHolderMap == finalRpcContextClientRMHolderMap);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHoldInResourceManagerChannels10() throws Throwable  {
+        Class runtimeClazz = Class.forName("java.lang.Runtime");
+        Runtime prevCurrentRuntime = ((Runtime) getStaticFieldValue(runtimeClazz, "currentRuntime"));
+        try {
+            Runtime currentRuntime = ((Runtime) createInstance("java.lang.Runtime"));
+            setStaticField(runtimeClazz, "currentRuntime", currentRuntime);
+            RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+            ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+            java.lang.Object[] nodeArray = createArray("java.util.concurrent.ConcurrentHashMap$Node", 9);
+            setField(concurrentHashMap, "table", nodeArray);
+            setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
+            String string = new String("");
+            
+            rpcContext.holdInResourceManagerChannels(string, ((Integer) null));
+            
+            Object rpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
+            Object finalRpcContextClientRMHolderMapTable = getFieldValue(rpcContextClientRMHolderMap, "table");
+            
+        } finally {
+            setStaticField(Runtime.class, "currentRuntime", prevCurrentRuntime);
+        }
     }
     ///endregion
     
@@ -431,316 +731,6 @@ public class RpcContextTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        String string = new String();
-        
-        rpcContext.holdInResourceManagerChannels(string, ((ConcurrentMap) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
-        setField(rpcContext, "channel", null);
-        
-        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels3() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientRMHolderMap", null);
-        setField(rpcContext, "channel", null);
-        
-        Object initialRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
-        
-        Object finalRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        assertFalse(initialRpcContextClientRMHolderMap == finalRpcContextClientRMHolderMap);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels4() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(failedChannel, "remoteAddress", null);
-        Object failedChannelUnsafe = createInstance("io.netty.bootstrap.FailedChannel$FailedChannelUnsafe");
-        setField(failedChannelUnsafe, "this$0", failedChannel);
-        setField(failedChannel, "unsafe", failedChannelUnsafe);
-        setField(rpcContext, "channel", failedChannel);
-        
-        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels5() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientRMHolderMap", null);
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
-        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        Inet6Address inet6Address = ((Inet6Address) createInstance("java.net.Inet6Address"));
-        Object inetAddressHolder = createInstance("java.net.InetAddress$InetAddressHolder");
-        setField(inetAddressHolder, "hostName", null);
-        setField(inet6Address, "holder", inetAddressHolder);
-        setField(inetSocketAddressHolder, "addr", inet6Address);
-        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", inetSocketAddress);
-        setField(rpcContext, "channel", failedChannel);
-        String string = new String("");
-        
-        Object initialRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        rpcContext.holdInResourceManagerChannels(string, ((ConcurrentMap) null));
-        
-        Object finalRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        assertFalse(initialRpcContextClientRMHolderMap == finalRpcContextClientRMHolderMap);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels6() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientRMHolderMap", null);
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
-        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        setField(inetSocketAddressHolder, "addr", null);
-        setField(inetSocketAddressHolder, "hostname", null);
-        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", inetSocketAddress);
-        setField(rpcContext, "channel", failedChannel);
-        String string = new String("");
-        
-        Object initialRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        rpcContext.holdInResourceManagerChannels(string, ((ConcurrentMap) null));
-        
-        Object finalRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        assertFalse(initialRpcContextClientRMHolderMap == finalRpcContextClientRMHolderMap);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels7() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientRMHolderMap", null);
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        DomainSocketAddress domainSocketAddress = ((DomainSocketAddress) createInstance("io.netty.channel.unix.DomainSocketAddress"));
-        String string = new String("");
-        setField(domainSocketAddress, "socketPath", string);
-        setField(failedChannel, "remoteAddress", domainSocketAddress);
-        setField(rpcContext, "channel", failedChannel);
-        
-        Object initialRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        rpcContext.holdInResourceManagerChannels(((String) null), ((ConcurrentMap) null));
-        
-        Object finalRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        assertFalse(initialRpcContextClientRMHolderMap == finalRpcContextClientRMHolderMap);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels8() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
-        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        setField(inetSocketAddressHolder, "addr", null);
-        String string = new String("");
-        setField(inetSocketAddressHolder, "hostname", string);
-        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", inetSocketAddress);
-        setField(rpcContext, "channel", failedChannel);
-        ConcurrentHashMap concurrentHashMap1 = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        
-        rpcContext.holdInResourceManagerChannels(((String) null), concurrentHashMap1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels9() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
-        
-        rpcContext.holdInResourceManagerChannels(((String) null), ((Integer) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels10() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientRMHolderMap", null);
-        
-        Object initialRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        rpcContext.holdInResourceManagerChannels(((String) null), ((Integer) null));
-        
-        Object finalRpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        
-        assertFalse(initialRpcContextClientRMHolderMap == finalRpcContextClientRMHolderMap);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInResourceManagerChannels11() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(concurrentHashMap, "sizeCtl", 0);
-        setField(concurrentHashMap, "table", null);
-        setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
-        String string = new String("");
-        
-        rpcContext.holdInResourceManagerChannels(string, ((Integer) null));
-        
-        Object rpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-        Object finalRpcContextClientRMHolderMapSizeCtl = getFieldValue(rpcContextClientRMHolderMap, "sizeCtl");
-        Object rpcContextClientRMHolderMap1 = getFieldValue(rpcContext, "clientRMHolderMap");
-        Object finalRpcContextClientRMHolderMapTable = getFieldValue(rpcContextClientRMHolderMap1, "table");
-        
-        assertEquals(12, finalRpcContextClientRMHolderMapSizeCtl);
-        
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHoldInResourceManagerChannels12() throws Throwable  {
-        Class runtimeClazz = Class.forName("java.lang.Runtime");
-        Runtime prevCurrentRuntime = ((Runtime) getStaticFieldValue(runtimeClazz, "currentRuntime"));
-        try {
-            Runtime currentRuntime = ((Runtime) createInstance("java.lang.Runtime"));
-            setStaticField(runtimeClazz, "currentRuntime", currentRuntime);
-            RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-            ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-            setField(concurrentHashMap, "sizeCtl", 0);
-            setField(concurrentHashMap, "table", null);
-            setField(rpcContext, "clientRMHolderMap", concurrentHashMap);
-            String string = new String(".");
-            Integer integer = 0;
-            
-            rpcContext.holdInResourceManagerChannels(string, integer);
-            
-            Object rpcContextClientRMHolderMap = getFieldValue(rpcContext, "clientRMHolderMap");
-            Object finalRpcContextClientRMHolderMapSizeCtl = getFieldValue(rpcContextClientRMHolderMap, "sizeCtl");
-            Object rpcContextClientRMHolderMap1 = getFieldValue(rpcContext, "clientRMHolderMap");
-            Object finalRpcContextClientRMHolderMapTable = getFieldValue(rpcContextClientRMHolderMap1, "table");
-            
-            assertEquals(12, finalRpcContextClientRMHolderMapSizeCtl);
-            
-        } finally {
-            setStaticField(Runtime.class, "currentRuntime", prevCurrentRuntime);
-        }
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInIdentifiedChannels1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        rpcContext.holdInIdentifiedChannels(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInIdentifiedChannels2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(rpcContext, "clientIDHolderMap", concurrentHashMap);
-        
-        rpcContext.holdInIdentifiedChannels(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHoldInIdentifiedChannels3() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientIDHolderMap", null);
-        setField(rpcContext, "channel", null);
-        
-        rpcContext.holdInIdentifiedChannels(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHoldInIdentifiedChannels4() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "clientIDHolderMap", null);
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        DefaultChannelId defaultChannelId = ((DefaultChannelId) createInstance("io.netty.channel.DefaultChannelId"));
-        setField(defaultChannelId, "hashCode", 0);
-        setField(failedChannel, "id", defaultChannelId);
-        setField(rpcContext, "channel", failedChannel);
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        setField(concurrentHashMap, "sizeCtl", 0);
-        java.lang.Object[] nodeArray = createArray("java.util.concurrent.ConcurrentHashMap$Node", 0);
-        setField(concurrentHashMap, "table", nodeArray);
-        
-        Object initialRpcContextClientIDHolderMap = getFieldValue(rpcContext, "clientIDHolderMap");
-        
-        rpcContext.holdInIdentifiedChannels(concurrentHashMap);
-        
-        Object finalRpcContextClientIDHolderMap = getFieldValue(rpcContext, "clientIDHolderMap");
-        
-        Object finalConcurrentHashMapSizeCtl = getFieldValue(concurrentHashMap, "sizeCtl");
-        Object finalConcurrentHashMapTable = getFieldValue(concurrentHashMap, "table");
-        
-        assertFalse(initialRpcContextClientIDHolderMap == finalRpcContextClientIDHolderMap);
-        
-        assertEquals(12, finalConcurrentHashMapSizeCtl);
-        
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
     public void testGetApplicationId1() throws Throwable  {
         RpcContext rpcContext = new RpcContext();
@@ -790,6 +780,29 @@ public class RpcContextTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testSetTransactionServiceGroup1() throws Throwable  {
+        RpcContext rpcContext = new RpcContext();
+        String string = new String();
+        
+        rpcContext.setTransactionServiceGroup(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetTransactionServiceGroup2() throws Throwable  {
+        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
+        setField(rpcContext, "transactionServiceGroup", null);
+        String string = new String("");
+        
+        rpcContext.setTransactionServiceGroup(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testGetClientRole1() throws Throwable  {
         RpcContext rpcContext = new RpcContext();
         
@@ -809,54 +822,6 @@ public class RpcContextTest {
         NettyPoolKey.TransactionRole actual = rpcContext.getClientRole();
         
         assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetTransactionServiceGroup1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        
-        String actual = rpcContext.getTransactionServiceGroup();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetTransactionServiceGroup2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "transactionServiceGroup", null);
-        
-        String actual = rpcContext.getTransactionServiceGroup();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetTransactionServiceGroup1() throws Throwable  {
-        RpcContext rpcContext = new RpcContext();
-        String string = new String();
-        
-        rpcContext.setTransactionServiceGroup(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetTransactionServiceGroup2() throws Throwable  {
-        RpcContext rpcContext = ((RpcContext) createInstance("io.seata.core.rpc.RpcContext"));
-        setField(rpcContext, "transactionServiceGroup", null);
-        String string = new String("");
-        
-        rpcContext.setTransactionServiceGroup(string);
     }
     ///endregion
     
@@ -1188,15 +1153,15 @@ public class RpcContextTest {
     @Test(timeout = 10000)
     public void testGetAddressFromChannel5() throws Throwable  {
         Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        DatagramSocketAddress datagramSocketAddress = ((DatagramSocketAddress) createInstance("io.netty.channel.unix.DatagramSocketAddress"));
+        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
         Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
         InetAddress inetAddress = ((InetAddress) createInstance("java.net.InetAddress"));
         Object inetAddressHolder = createInstance("java.net.InetAddress$InetAddressHolder");
         setField(inetAddressHolder, "hostName", null);
         setField(inetAddress, "holder", inetAddressHolder);
         setField(inetSocketAddressHolder, "addr", inetAddress);
-        setField(datagramSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", datagramSocketAddress);
+        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
+        setField(failedChannel, "remoteAddress", inetSocketAddress);
         
         Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
         Class failedChannelType = Class.forName("io.netty.channel.Channel");
@@ -1290,7 +1255,7 @@ public class RpcContextTest {
         Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
         Inet6Address inet6Address = ((Inet6Address) createInstance("java.net.Inet6Address"));
         Object inetAddressHolder = createInstance("java.net.InetAddress$InetAddressHolder");
-        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
+        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
         setField(inetAddressHolder, "hostName", string);
         setField(inet6Address, "holder", inetAddressHolder);
         Object inet6AddressHolder = createInstance("java.net.Inet6Address$Inet6AddressHolder");
@@ -1319,31 +1284,6 @@ public class RpcContextTest {
     @Test(timeout = 10000)
     public void testGetClientPortFromChannel5() throws Throwable  {
         Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        DomainSocketAddress domainSocketAddress = ((DomainSocketAddress) createInstance("io.netty.channel.unix.DomainSocketAddress"));
-        String string = new String("\u0000/\u0000");
-        setField(domainSocketAddress, "socketPath", string);
-        setField(failedChannel, "remoteAddress", domainSocketAddress);
-        
-        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method getClientPortFromChannelMethod = rpcContextClazz.getDeclaredMethod("getClientPortFromChannel", failedChannelType);
-        getClientPortFromChannelMethod.setAccessible(true);
-        java.lang.Object[] getClientPortFromChannelMethodArguments = new java.lang.Object[1];
-        getClientPortFromChannelMethodArguments[0] = failedChannel;
-        Integer actual = ((Integer) getClientPortFromChannelMethod.invoke(null, getClientPortFromChannelMethodArguments));
-        
-        Integer expected = 0;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetClientPortFromChannel6() throws Throwable  {
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
         InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
         Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
         setField(inetSocketAddressHolder, "port", 1);
@@ -1362,6 +1302,31 @@ public class RpcContextTest {
         Integer actual = ((Integer) getClientPortFromChannelMethod.invoke(null, getClientPortFromChannelMethodArguments));
         
         Integer expected = 1;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetClientPortFromChannel6() throws Throwable  {
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        DomainSocketAddress domainSocketAddress = ((DomainSocketAddress) createInstance("io.netty.channel.unix.DomainSocketAddress"));
+        String string = new String("\u0000\u0000\u0000\u0000");
+        setField(domainSocketAddress, "socketPath", string);
+        setField(failedChannel, "remoteAddress", domainSocketAddress);
+        
+        Class rpcContextClazz = Class.forName("io.seata.core.rpc.RpcContext");
+        Class failedChannelType = Class.forName("io.netty.channel.Channel");
+        Method getClientPortFromChannelMethod = rpcContextClazz.getDeclaredMethod("getClientPortFromChannel", failedChannelType);
+        getClientPortFromChannelMethod.setAccessible(true);
+        java.lang.Object[] getClientPortFromChannelMethodArguments = new java.lang.Object[1];
+        getClientPortFromChannelMethodArguments[0] = failedChannel;
+        Integer actual = ((Integer) getClientPortFromChannelMethod.invoke(null, getClientPortFromChannelMethodArguments));
+        
+        Integer expected = 0;
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -1595,15 +1560,6 @@ public class RpcContextTest {
     
         throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
-    }
     private static Object getStaticFieldValue(Class<?> clazz, String fieldName) throws Exception {
         java.lang.reflect.Field field;
         do {
@@ -1640,6 +1596,15 @@ public class RpcContextTest {
     
         field.setAccessible(true);
         field.set(null, fieldValue);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

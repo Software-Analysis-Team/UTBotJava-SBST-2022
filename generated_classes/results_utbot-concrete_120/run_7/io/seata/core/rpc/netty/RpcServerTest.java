@@ -9,18 +9,18 @@ import io.seata.core.protocol.RpcMessage;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.locks.ReentrantLock;
 import io.netty.util.concurrent.GlobalEventExecutor;
-import io.netty.channel.Channel;
-import io.seata.core.protocol.HeartbeatMessage;
-import java.text.RuleBasedCollator;
 import io.seata.core.protocol.RegisterRMRequest;
 import io.seata.core.rpc.DefaultServerMessageListenerImpl;
 import io.netty.channel.DefaultChannelPipeline;
+import io.netty.channel.Channel;
+import io.seata.core.protocol.HeartbeatMessage;
 import io.seata.core.rpc.ServerMessageListener;
 import io.netty.channel.unix.DomainSocketAddress;
 import io.netty.channel.unix.DatagramSocketAddress;
 import java.net.Inet6Address;
-import java.net.InetAddress;
+import java.net.Inet4Address;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
@@ -102,8 +102,9 @@ public class RpcServerTest {
     @Test(timeout = 10000)
     public void testUserEventTriggered2() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        java.lang.Object[] heapIntBufferRArray = createArray("java.nio.HeapIntBufferR", 0);
         
-        rpcServer.userEventTriggered(((ChannelHandlerContext) null), null);
+        rpcServer.userEventTriggered(((ChannelHandlerContext) null), heapIntBufferRArray);
     }
     ///endregion
     
@@ -112,16 +113,16 @@ public class RpcServerTest {
     @Test(timeout = 10000)
     public void testUserEventTriggered3() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
+        Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
         IdleStateEvent idleStateEvent = ((IdleStateEvent) createInstance("io.netty.handler.timeout.IdleStateEvent"));
         
         Class rpcServerClazz = Class.forName("io.seata.core.rpc.netty.RpcServer");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Class defaultChannelHandlerContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
         Class idleStateEventType = Class.forName("java.lang.Object");
-        Method userEventTriggeredMethod = rpcServerClazz.getDeclaredMethod("userEventTriggered", tailContextType, idleStateEventType);
+        Method userEventTriggeredMethod = rpcServerClazz.getDeclaredMethod("userEventTriggered", defaultChannelHandlerContextType, idleStateEventType);
         userEventTriggeredMethod.setAccessible(true);
         java.lang.Object[] userEventTriggeredMethodArguments = new java.lang.Object[2];
-        userEventTriggeredMethodArguments[0] = tailContext;
+        userEventTriggeredMethodArguments[0] = defaultChannelHandlerContext;
         userEventTriggeredMethodArguments[1] = idleStateEvent;
         userEventTriggeredMethod.invoke(rpcServer, userEventTriggeredMethodArguments);
     }
@@ -253,28 +254,6 @@ public class RpcServerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendResponse1() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        Object object = new Object();
-        
-        rpcServer.sendResponse(0L, ((Channel) null), object);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendResponse2() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        HeartbeatMessage heartbeatMessage = ((HeartbeatMessage) createInstance("io.seata.core.protocol.HeartbeatMessage"));
-        
-        rpcServer.sendResponse(0L, ((Channel) null), heartbeatMessage);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testDispatch1() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         Object object = new Object();
@@ -288,9 +267,9 @@ public class RpcServerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDispatch2() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        java.text.RuleBasedCollator[] ruleBasedCollatorArray = new java.text.RuleBasedCollator[0];
+        java.lang.Object[] dictionaryBasedBreakIteratorArray = createArray("[[Lsun.util.locale.provider.DictionaryBasedBreakIterator;", 0);
         
-        rpcServer.dispatch(0L, ((ChannelHandlerContext) null), ruleBasedCollatorArray);
+        rpcServer.dispatch(0L, ((ChannelHandlerContext) null), dictionaryBasedBreakIteratorArray);
     }
     ///endregion
     
@@ -380,41 +359,59 @@ public class RpcServerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendSyncRequest1() throws Throwable  {
+    public void testSendResponse1() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        String string = new String();
-        String string1 = new String();
         Object object = new Object();
         
-        rpcServer.sendSyncRequest(string, string1, object, 0L);
+        rpcServer.sendResponse(0L, ((Channel) null), object);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendSyncRequest2() throws Throwable  {
+    public void testSendResponse2() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        HeartbeatMessage heartbeatMessage = ((HeartbeatMessage) createInstance("io.seata.core.protocol.HeartbeatMessage"));
         
-        rpcServer.sendSyncRequest(null, null, null, 0L);
+        rpcServer.sendResponse(0L, ((Channel) null), heartbeatMessage);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendSyncRequest3() throws Throwable  {
+    public void testSendResponse3() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        String string = new String("");
+        java.lang.Object[] ruleBasedBreakIteratorArray = createArray("sun.util.locale.provider.RuleBasedBreakIterator", 0);
+        setField(rpcServer, "lock", ruleBasedBreakIteratorArray);
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        Object failedChannelUnsafe = createInstance("io.netty.bootstrap.FailedChannel$FailedChannelUnsafe");
+        setField(failedChannelUnsafe, "outboundBuffer", null);
+        setField(failedChannel, "unsafe", failedChannelUnsafe);
+        HeartbeatMessage heartbeatMessage = ((HeartbeatMessage) createInstance("io.seata.core.protocol.HeartbeatMessage"));
         
-        rpcServer.sendSyncRequest(null, string, null, 0L);
-    }
+        Class rpcServerClazz = Class.forName("io.seata.core.rpc.netty.RpcServer");
+        Class longType = long.class;
+        Class failedChannelType = Class.forName("io.netty.channel.Channel");
+        Class heartbeatMessageType = Class.forName("java.lang.Object");
+        Method sendResponseMethod = rpcServerClazz.getDeclaredMethod("sendResponse", longType, failedChannelType, heartbeatMessageType);
+        sendResponseMethod.setAccessible(true);
+        java.lang.Object[] sendResponseMethodArguments = new java.lang.Object[3];
+        sendResponseMethodArguments[0] = 0L;
+        sendResponseMethodArguments[1] = failedChannel;
+        sendResponseMethodArguments[2] = heartbeatMessage;
+        try {
+            sendResponseMethod.invoke(rpcServer, sendResponseMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendSyncRequest4() throws Throwable  {
+    public void testSendSyncRequest1() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         String string = new String();
         String string1 = new String();
@@ -427,10 +424,44 @@ public class RpcServerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendSyncRequest5() throws Throwable  {
+    public void testSendSyncRequest2() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         
         rpcServer.sendSyncRequest(null, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSendSyncRequest3() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        String string = new String();
+        String string1 = new String();
+        Object object = new Object();
+        
+        rpcServer.sendSyncRequest(string, string1, object, 0L);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSendSyncRequest4() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        
+        rpcServer.sendSyncRequest(null, null, null, 0L);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSendSyncRequest5() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        String string = new String("");
+        
+        rpcServer.sendSyncRequest(null, string, null, 0L);
     }
     ///endregion
     
@@ -479,14 +510,18 @@ public class RpcServerTest {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         setField(rpcServer, "checkAuthHandler", null);
         setField(rpcServer, "transactionMessageHandler", null);
+        RegisterCheckAuthHandler registerCheckAuthHandlerMock = mock(RegisterCheckAuthHandler.class);
         
         Object initialRpcServerCheckAuthHandler = getFieldValue(rpcServer, "checkAuthHandler");
         
-        rpcServer.setHandler(null, null);
+        rpcServer.setHandler(null, registerCheckAuthHandlerMock);
         
         Object finalRpcServerCheckAuthHandler = getFieldValue(rpcServer, "checkAuthHandler");
         
-        assertNull(finalRpcServerCheckAuthHandler);
+        RegisterCheckAuthHandler finalRegisterCheckAuthHandlerMock = registerCheckAuthHandlerMock;
+        
+        assertFalse(initialRpcServerCheckAuthHandler == finalRpcServerCheckAuthHandler);
+        
     }
     ///endregion
     
@@ -512,27 +547,6 @@ public class RpcServerTest {
         ServerMessageListener actual = rpcServer.getServerMessageListener();
         
         assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetServerMessageListener1() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        
-        rpcServer.setServerMessageListener(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetServerMessageListener2() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        setField(rpcServer, "serverMessageListener", null);
-        
-        rpcServer.setServerMessageListener(null);
     }
     ///endregion
     
@@ -650,6 +664,27 @@ public class RpcServerTest {
             }} finally {
             mockedStatic.close();
         }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetServerMessageListener1() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        
+        rpcServer.setServerMessageListener(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetServerMessageListener2() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        setField(rpcServer, "serverMessageListener", null);
+        
+        rpcServer.setServerMessageListener(null);
     }
     ///endregion
     
@@ -814,9 +849,11 @@ public class RpcServerTest {
         Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
         DatagramSocketAddress datagramSocketAddress = ((DatagramSocketAddress) createInstance("io.netty.channel.unix.DatagramSocketAddress"));
         Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        setField(inetSocketAddressHolder, "port", Integer.MIN_VALUE);
-        InetAddress inetAddress = ((InetAddress) createInstance("java.net.InetAddress"));
-        setField(inetSocketAddressHolder, "addr", inetAddress);
+        Inet4Address inet4Address = ((Inet4Address) createInstance("java.net.Inet4Address"));
+        Object inetAddressHolder = createInstance("java.net.InetAddress$InetAddressHolder");
+        setField(inetAddressHolder, "address", 16777216);
+        setField(inet4Address, "holder", inetAddressHolder);
+        setField(inetSocketAddressHolder, "addr", inet4Address);
         setField(datagramSocketAddress, "holder", inetSocketAddressHolder);
         setField(failedChannel, "remoteAddress", datagramSocketAddress);
         setField(defaultChannelPipeline, "channel", failedChannel);
@@ -847,6 +884,15 @@ public class RpcServerTest {
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();

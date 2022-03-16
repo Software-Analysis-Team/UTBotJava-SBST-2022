@@ -38,7 +38,7 @@ public class FinalizerTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testRun2() throws Throwable  {
         Class referenceQueueClazz = Class.forName("java.lang.ref.ReferenceQueue");
         ReferenceQueue prevNULL = ((ReferenceQueue) getStaticFieldValue(referenceQueueClazz, "NULL"));
@@ -51,19 +51,67 @@ public class FinalizerTest {
             Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
             Object null = createInstance("java.lang.ref.ReferenceQueue$Null");
             setField(null, "queueLength", 0L);
-            Object weakValueReference = createInstance("com.google.common.cache.LocalCache$WeakValueReference");
-            Object weakKeyDummyValueEntry = createInstance("com.google.common.collect.MapMakerInternalMap$WeakKeyDummyValueEntry");
-            setField(weakKeyDummyValueEntry, "next", null);
-            setField(weakKeyDummyValueEntry, "queue", null);
-            setField(weakKeyDummyValueEntry, "referent", null);
-            setField(weakValueReference, "next", weakKeyDummyValueEntry);
+            Object softCacheEntry = createInstance("sun.security.util.MemoryCache$SoftCacheEntry");
+            Object cacheKey = createInstance("java.lang.reflect.WeakCache$CacheKey");
+            setField(cacheKey, "next", null);
+            setField(cacheKey, "queue", null);
+            setField(cacheKey, "referent", null);
+            setField(softCacheEntry, "next", cacheKey);
             ReferenceQueue referenceQueue = ((ReferenceQueue) createInstance("java.lang.ref.ReferenceQueue"));
             setField(referenceQueue, "queueLength", 0L);
             setField(referenceQueue, "head", null);
             setField(referenceQueue, "lock", null);
-            setField(weakValueReference, "queue", referenceQueue);
-            setField(weakValueReference, "referent", null);
-            setField(null, "head", weakValueReference);
+            setField(softCacheEntry, "queue", referenceQueue);
+            setField(softCacheEntry, "referent", null);
+            setField(null, "head", softCacheEntry);
+            setField(null, "lock", null);
+            setField(finalizer, "queue", null);
+            Object weakClassKey = createInstance("java.io.ObjectStreamClass$WeakClassKey");
+            setField(weakClassKey, "next", null);
+            setField(weakClassKey, "queue", null);
+            setField(weakClassKey, "referent", null);
+            setField(finalizer, "finalizableReferenceClassReference", weakClassKey);
+            
+            finalizer.run();
+        } finally {
+            setStaticField(ReferenceQueue.class, "NULL", prevNULL);
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testRun3() throws Throwable  {
+        Class vMClazz = Class.forName("sun.misc.VM");
+        int prevFinalRefCount = ((int) getStaticFieldValue(vMClazz, "finalRefCount"));
+        int prevPeakFinalRefCount = ((int) getStaticFieldValue(vMClazz, "peakFinalRefCount"));
+        Class referenceQueueClazz = Class.forName("java.lang.ref.ReferenceQueue");
+        ReferenceQueue prevNULL = ((ReferenceQueue) getStaticFieldValue(referenceQueueClazz, "NULL"));
+        try {
+            setStaticField(vMClazz, "finalRefCount", Integer.MIN_VALUE);
+            setStaticField(vMClazz, "peakFinalRefCount", 0);
+            Object nULL = createInstance("java.lang.ref.ReferenceQueue$Null");
+            setField(nULL, "queueLength", 0L);
+            setField(nULL, "head", null);
+            setField(nULL, "lock", null);
+            setStaticField(referenceQueueClazz, "NULL", nULL);
+            Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
+            Object null = createInstance("java.lang.ref.ReferenceQueue$Null");
+            setField(null, "queueLength", 0L);
+            Object finalReference = createInstance("java.lang.ref.FinalReference");
+            Object resourceReference = createInstance("sun.util.locale.provider.LocaleResources$ResourceReference");
+            setField(resourceReference, "next", null);
+            setField(resourceReference, "queue", null);
+            setField(resourceReference, "referent", null);
+            setField(finalReference, "next", resourceReference);
+            ReferenceQueue referenceQueue = ((ReferenceQueue) createInstance("java.lang.ref.ReferenceQueue"));
+            setField(referenceQueue, "queueLength", 0L);
+            setField(referenceQueue, "head", null);
+            setField(referenceQueue, "lock", null);
+            setField(finalReference, "queue", referenceQueue);
+            setField(finalReference, "referent", null);
+            setField(null, "head", finalReference);
             Object lock = createInstance("java.lang.ref.ReferenceQueue$Lock");
             setField(null, "lock", lock);
             setField(finalizer, "queue", null);
@@ -76,6 +124,11 @@ public class FinalizerTest {
             Object finalizerQueue = getFieldValue(finalizer, "queue");
             Object initialFinalizerQueueHead = getFieldValue(finalizerQueue, "head");
             
+            Object object = getStaticFieldValue(sun.misc.VM.class, "finalRefCount");
+            Object initialVMFinalRefCount = object;
+            Object object1 = getStaticFieldValue(sun.misc.VM.class, "peakFinalRefCount");
+            Object initialVMPeakFinalRefCount = object1;
+            
             finalizer.run();
             
             Object finalizerQueue1 = getFieldValue(finalizer, "queue");
@@ -83,10 +136,21 @@ public class FinalizerTest {
             Object finalizerQueue2 = getFieldValue(finalizer, "queue");
             Object finalFinalizerQueueHead = getFieldValue(finalizerQueue2, "head");
             
+            Object object2 = getStaticFieldValue(sun.misc.VM.class, "finalRefCount");
+            Object finalVMFinalRefCount = object2;
+            Object object3 = getStaticFieldValue(sun.misc.VM.class, "peakFinalRefCount");
+            Object finalVMPeakFinalRefCount = object3;
+            
             assertFalse(initialFinalizerQueueHead == finalFinalizerQueueHead);
             
             assertEquals(-1L, finalFinalizerQueueQueueLength);
+            
+            assertEquals(Integer.MAX_VALUE, finalVMFinalRefCount);
+            
+            assertEquals(Integer.MAX_VALUE, finalVMPeakFinalRefCount);
         } finally {
+            setStaticField(sun.misc.VM.class, "finalRefCount", prevFinalRefCount);
+            setStaticField(sun.misc.VM.class, "peakFinalRefCount", prevPeakFinalRefCount);
             setStaticField(ReferenceQueue.class, "NULL", prevNULL);
         }
     }

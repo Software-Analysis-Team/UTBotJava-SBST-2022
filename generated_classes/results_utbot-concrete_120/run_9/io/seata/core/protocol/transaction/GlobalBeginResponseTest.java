@@ -361,8 +361,9 @@ public class GlobalBeginResponseTest {
     public void testSetExtraData2() throws Throwable  {
         GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
         setField(globalBeginResponse, "extraData", null);
+        String string = new String("");
         
-        globalBeginResponse.setExtraData(null);
+        globalBeginResponse.setExtraData(string);
     }
     ///endregion
     
@@ -408,8 +409,9 @@ public class GlobalBeginResponseTest {
     public void testSetXid2() throws Throwable  {
         GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
         setField(globalBeginResponse, "xid", null);
+        String string = new String("");
         
-        globalBeginResponse.setXid(null);
+        globalBeginResponse.setXid(string);
     }
     ///endregion
     

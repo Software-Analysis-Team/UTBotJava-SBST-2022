@@ -7,37 +7,12 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class MessageFutureTest {
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetRequestMessage1() throws Throwable  {
-        MessageFuture messageFuture = new MessageFuture();
-        
-        RpcMessage actual = messageFuture.getRequestMessage();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetRequestMessage2() throws Throwable  {
-        MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
-        setField(messageFuture, "requestMessage", null);
-        
-        RpcMessage actual = messageFuture.getRequestMessage();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
     ///region
     
     @Test(timeout = 10000)
@@ -82,6 +57,31 @@ public class MessageFutureTest {
         setField(messageFuture, "requestMessage", null);
         
         messageFuture.setRequestMessage(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetRequestMessage1() throws Throwable  {
+        MessageFuture messageFuture = new MessageFuture();
+        
+        RpcMessage actual = messageFuture.getRequestMessage();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetRequestMessage2() throws Throwable  {
+        MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
+        setField(messageFuture, "requestMessage", null);
+        
+        RpcMessage actual = messageFuture.getRequestMessage();
+        
+        assertNull(actual);
     }
     ///endregion
     
@@ -193,7 +193,7 @@ public class MessageFutureTest {
     @Test(timeout = 10000)
     public void testIsTimeout3() throws Throwable  {
         MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
-        setField(messageFuture, "start", 5044144760517949189L);
+        setField(messageFuture, "start", 4611686849714479113L);
         setField(messageFuture, "timeout", 0L);
         
         boolean actual = messageFuture.isTimeout();

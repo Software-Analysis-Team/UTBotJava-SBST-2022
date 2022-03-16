@@ -3,15 +3,17 @@ package spoon.pattern.internal.node;
 import org.junit.Test;
 import java.util.function.BiConsumer;
 import spoon.pattern.internal.DefaultGenerator;
-import java.util.ArrayList;
-import spoon.pattern.internal.ResultHolder.Multiple;
-import spoon.pattern.internal.ResultHolder;
+import spoon.support.util.ImmutableMapImpl;
 import spoon.pattern.internal.PatternPrinter;
+import spoon.pattern.internal.ResultHolder.Single;
+import spoon.pattern.internal.ResultHolder;
+import java.util.Collections;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import spoon.pattern.Quantifier;
 import spoon.pattern.internal.parameter.ListParameterInfo;
-import sun.awt.image.PixelConverter.Ushort555Rgbx;
-import sun.awt.image.PixelConverter;
-import java.lang.reflect.Method;
+import spoon.pattern.internal.parameter.MapParameterInfo;
+import spoon.reflect.meta.ContainerKind;
 import spoon.reflect.declaration.CtElement;
 import java.lang.reflect.Constructor;
 import spoon.pattern.internal.node.MapEntryNode;
@@ -27,65 +29,12 @@ import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 
 public class MapEntryNodeTest {
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReplaceNode1() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        
-        boolean actual = mapEntryNode.replaceNode(null, null);
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReplaceNode2() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        setField(mapEntryNode, "key", null);
-        
-        boolean actual = mapEntryNode.replaceNode(null, null);
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testReplaceNode3() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        setField(mapEntryNode, "value", null);
-        ElementNode elementNode = ((ElementNode) createInstance("spoon.pattern.internal.node.ElementNode"));
-        setField(mapEntryNode, "key", elementNode);
-        
-        boolean actual = mapEntryNode.replaceNode(null, null);
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testReplaceNode4() throws Throwable  {
-        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        setField(mapEntryNode, "value", null);
-        setField(mapEntryNode, "key", null);
-        SwitchNode switchNode = ((SwitchNode) createInstance("spoon.pattern.internal.node.SwitchNode"));
-        
-        mapEntryNode.replaceNode(switchNode, null);
-    }
-    ///endregion
-    
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
@@ -140,8 +89,9 @@ public class MapEntryNodeTest {
     public void testGenerateTargets2() throws Throwable  {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
         setField(mapEntryNode, "key", null);
+        ImmutableMapImpl immutableMapImpl = ((ImmutableMapImpl) createInstance("spoon.support.util.ImmutableMapImpl"));
         
-        mapEntryNode.generateTargets(null, null, null);
+        mapEntryNode.generateTargets(null, null, immutableMapImpl);
     }
     ///endregion
     
@@ -150,27 +100,97 @@ public class MapEntryNodeTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGenerateTargets3() throws Throwable  {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        SwitchNode switchNode = ((SwitchNode) createInstance("spoon.pattern.internal.node.SwitchNode"));
-        ArrayList arrayList = new ArrayList();
-        setField(switchNode, "cases", arrayList);
-        setField(mapEntryNode, "key", switchNode);
-        DefaultGenerator defaultGenerator = ((DefaultGenerator) createInstance("spoon.pattern.internal.DefaultGenerator"));
-        ResultHolder.Multiple multiple = ((ResultHolder.Multiple) createInstance("spoon.pattern.internal.ResultHolder$Multiple"));
-        setField(multiple, "requiredClass", null);
+        ConstantNode constantNode = ((ConstantNode) createInstance("spoon.pattern.internal.node.ConstantNode"));
+        setField(mapEntryNode, "key", constantNode);
+        PatternPrinter patternPrinter = ((PatternPrinter) createInstance("spoon.pattern.internal.PatternPrinter"));
+        ResultHolder.Single single = ((ResultHolder.Single) createInstance("spoon.pattern.internal.ResultHolder$Single"));
+        setField(single, "requiredClass", null);
+        Collections collections = ((Collections) createInstance("java.util.Collections"));
+        setField(single, "result", collections);
+        ImmutableMapImpl immutableMapImpl = ((ImmutableMapImpl) createInstance("spoon.support.util.ImmutableMapImpl"));
         
-        mapEntryNode.generateTargets(defaultGenerator, multiple, null);
+        mapEntryNode.generateTargets(patternPrinter, single, immutableMapImpl);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReplaceNode1() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        
+        boolean actual = mapEntryNode.replaceNode(null, null);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReplaceNode2() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "key", null);
+        
+        boolean actual = mapEntryNode.replaceNode(null, null);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReplaceNode3() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "value", null);
+        ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
+        setField(mapEntryNode, "key", parameterNode);
+        
+        boolean actual = mapEntryNode.replaceNode(null, null);
+        
+        assertTrue(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGenerateTargets4() throws Throwable  {
+    public void testReplaceNode4() throws Throwable  {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "value", null);
         setField(mapEntryNode, "key", null);
-        PatternPrinter patternPrinter = ((PatternPrinter) createInstance("spoon.pattern.internal.PatternPrinter"));
+        Object caseNode = createInstance("spoon.pattern.internal.node.SwitchNode$CaseNode");
         
-        mapEntryNode.generateTargets(patternPrinter, null, null);
+        Class mapEntryNodeClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode");
+        Class caseNodeType = Class.forName("spoon.pattern.internal.node.RootNode");
+        Method replaceNodeMethod = mapEntryNodeClazz.getDeclaredMethod("replaceNode", caseNodeType, caseNodeType);
+        replaceNodeMethod.setAccessible(true);
+        java.lang.Object[] replaceNodeMethodArguments = new java.lang.Object[2];
+        replaceNodeMethodArguments[0] = caseNode;
+        replaceNodeMethodArguments[1] = null;
+        try {
+            replaceNodeMethod.invoke(mapEntryNode, replaceNodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReplaceNode5() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
+        setField(mapEntryNode, "value", parameterNode);
+        SwitchNode switchNode = ((SwitchNode) createInstance("spoon.pattern.internal.node.SwitchNode"));
+        ArrayList arrayList = new ArrayList();
+        setField(switchNode, "cases", arrayList);
+        setField(mapEntryNode, "key", switchNode);
+        
+        boolean actual = mapEntryNode.replaceNode(null, null);
+        
+        assertFalse(actual);
     }
     ///endregion
     
@@ -250,6 +270,37 @@ public class MapEntryNodeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testIsTryNextMatch3() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
+        MapParameterInfo mapParameterInfo = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
+        setField(mapParameterInfo, "containerKind", null);
+        setField(parameterNode, "parameterInfo", mapParameterInfo);
+        setField(mapEntryNode, "key", parameterNode);
+        
+        mapEntryNode.isTryNextMatch(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIsTryNextMatch4() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
+        MapParameterInfo mapParameterInfo = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
+        ContainerKind containerKind = ContainerKind.SINGLE;
+        setField(mapParameterInfo, "containerKind", containerKind);
+        setField(parameterNode, "parameterInfo", mapParameterInfo);
+        setField(mapEntryNode, "key", parameterNode);
+        
+        mapEntryNode.isTryNextMatch(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testMatchTarget1() throws Throwable  {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
         Object object = new Object();
@@ -263,9 +314,20 @@ public class MapEntryNodeTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testMatchTarget2() throws Throwable  {
         MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
-        sun.awt.image.PixelConverter.Ushort555Rgbx[] ushort555RgbxArray = new sun.awt.image.PixelConverter.Ushort555Rgbx[0];
         
-        mapEntryNode.matchTarget(ushort555RgbxArray, null);
+        mapEntryNode.matchTarget(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMatchTarget3() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "key", null);
+        Object treeNode = createInstance("java.util.HashMap$TreeNode");
+        
+        mapEntryNode.matchTarget(treeNode, null);
     }
     ///endregion
     

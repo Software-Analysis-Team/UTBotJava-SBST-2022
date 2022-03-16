@@ -6,9 +6,9 @@ import java.util.LinkedList;
 import java.util.Deque;
 import spoon.reflect.declaration.CtElement;
 import java.util.ArrayDeque;
+import spoon.support.reflect.reference.CtFieldReferenceImpl;
 import spoon.support.reflect.declaration.CtModuleImpl;
 import spoon.support.reflect.declaration.CtPackageImpl;
-import spoon.support.reflect.reference.CtFieldReferenceImpl;
 import spoon.support.reflect.code.CtCommentImpl;
 import spoon.support.reflect.code.CtLambdaImpl;
 import spoon.support.StandardEnvironment;
@@ -144,16 +144,12 @@ public class ModelConsistencyCheckerTest {
         ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
         ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
         setField(arrayDeque, "tail", 0);
-        setField(arrayDeque, "head", 512);
+        setField(arrayDeque, "head", 1);
         setField(modelConsistencyChecker, "stack", arrayDeque);
-        CtModuleImpl ctModuleImpl = ((CtModuleImpl) createInstance("spoon.support.reflect.declaration.CtModuleImpl"));
-        CtPackageImpl ctPackageImpl = ((CtPackageImpl) createInstance("spoon.support.reflect.declaration.CtPackageImpl"));
-        setField(ctPackageImpl, "parent", null);
-        setField(ctPackageImpl, "factory", null);
-        setField(ctModuleImpl, "parent", ctPackageImpl);
-        setField(ctModuleImpl, "factory", null);
+        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
+        setField(ctFieldReferenceImpl, "parent", null);
         
-        modelConsistencyChecker.enter(ctModuleImpl);
+        modelConsistencyChecker.enter(ctFieldReferenceImpl);
     }
     ///endregion
     
@@ -164,12 +160,16 @@ public class ModelConsistencyCheckerTest {
         ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
         ArrayDeque arrayDeque = ((ArrayDeque) createInstance("java.util.ArrayDeque"));
         setField(arrayDeque, "tail", 0);
-        setField(arrayDeque, "head", 1);
+        setField(arrayDeque, "head", 512);
         setField(modelConsistencyChecker, "stack", arrayDeque);
-        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
-        setField(ctFieldReferenceImpl, "parent", null);
+        CtModuleImpl ctModuleImpl = ((CtModuleImpl) createInstance("spoon.support.reflect.declaration.CtModuleImpl"));
+        CtPackageImpl ctPackageImpl = ((CtPackageImpl) createInstance("spoon.support.reflect.declaration.CtPackageImpl"));
+        setField(ctPackageImpl, "parent", null);
+        setField(ctPackageImpl, "factory", null);
+        setField(ctModuleImpl, "parent", ctPackageImpl);
+        setField(ctModuleImpl, "factory", null);
         
-        modelConsistencyChecker.enter(ctFieldReferenceImpl);
+        modelConsistencyChecker.enter(ctModuleImpl);
     }
     ///endregion
     

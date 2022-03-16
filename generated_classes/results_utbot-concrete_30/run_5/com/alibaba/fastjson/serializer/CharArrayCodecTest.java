@@ -4,8 +4,8 @@ import org.junit.Test;
 import com.alibaba.fastjson.parser.DefaultJSONParser;
 import com.alibaba.fastjson.parser.JSONScanner;
 import com.alibaba.fastjson.parser.JSONLexer;
-import com.alibaba.fastjson.parser.JSONReaderScanner;
 import com.alibaba.fastjson.parser.DefaultExtJSONParser;
+import com.alibaba.fastjson.parser.JSONReaderScanner;
 import java.lang.reflect.Method;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -206,12 +206,12 @@ public class CharArrayCodecTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDeserialze8() throws Throwable  {
         CharArrayCodec charArrayCodec = ((CharArrayCodec) createInstance("com.alibaba.fastjson.serializer.CharArrayCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
         JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
         setField(jSONReaderScanner, "token", 0);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
+        setField(defaultExtJSONParser, "lexer", jSONReaderScanner);
         
-        charArrayCodec.deserialze(defaultJSONParser, null, null);
+        charArrayCodec.deserialze(defaultExtJSONParser, null, null);
     }
     ///endregion
     
@@ -386,7 +386,7 @@ public class CharArrayCodecTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testDeserialze15() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -395,95 +395,44 @@ public class CharArrayCodecTest {
         char[] charArray = new char[9];
         setField(jSONScanner, "sbuf", charArray);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
+        setField(jSONScanner, "ch", '\"');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 4);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = CharArrayCodec.deserialze(defaultJSONParser);
-        
-        char[] expected = new char[0];
-        assertArrayEquals(expected, ((char[]) actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze16() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", true);
-        setField(jSONScanner, "sp", 9);
-        char[] charArray = new char[32];
-        setField(jSONScanner, "sbuf", charArray);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '+');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 4);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = CharArrayCodec.deserialze(defaultJSONParser);
-        
-        char[] expected = new char[9];
-        assertArrayEquals(expected, ((char[]) actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
-        
-        assertEquals(0, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(2, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze17() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", true);
-        setField(jSONScanner, "sp", 0);
-        char[] charArray = new char[9];
-        setField(jSONScanner, "sbuf", charArray);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '\b');
-        setField(jSONScanner, "token", 4);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         CharArrayCodec.deserialze(defaultJSONParser);
         
         JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        Object finalDefaultJSONParserLexerHasSpecial = getFieldValue(jSONLexer, "hasSpecial");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer1, "sp");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerSbuf = getFieldValue(jSONLexer2, "sbuf");
+        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer3, "bp");
+        JSONLexer jSONLexer4 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer4, "ch");
         
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        Class assertClazz = Class.forName("org.junit.Assert");
+        Class finalDefaultJSONParserLexerHasSpecialType = boolean.class;
+        Method assertFalseMethod = assertClazz.getDeclaredMethod("assertFalse", finalDefaultJSONParserLexerHasSpecialType);
+        assertFalseMethod.setAccessible(true);
+        java.lang.Object[] assertFalseMethodArguments = new java.lang.Object[1];
+        assertFalseMethodArguments[0] = finalDefaultJSONParserLexerHasSpecial;
+        assertFalseMethod.invoke(null, assertFalseMethodArguments);
+        
+        assertEquals(14975, finalDefaultJSONParserLexerSp);
+        
+        assertEquals(14976, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze18() throws Throwable  {
+    public void testDeserialze16() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
@@ -523,62 +472,52 @@ public class CharArrayCodecTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testDeserialze19() throws Throwable  {
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeserialze17() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
         setField(jSONScanner, "sp", 9);
         char[] charArray = new char[32];
         setField(jSONScanner, "sbuf", charArray);
-        setField(jSONScanner, "bp", 1);
-        setField(jSONScanner, "ch", '!');
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", '.');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 4);
-        setField(jSONScanner, "len", 0);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
-        Object actual = CharArrayCodec.deserialze(defaultJSONParser);
-        
-        char[] expected = new char[9];
-        assertArrayEquals(expected, ((char[]) actual));
+        CharArrayCodec.deserialze(defaultJSONParser);
         
         JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
         JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer3, "pos");
-        JSONLexer jSONLexer4 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer4, "token");
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer2, "pos");
         
         assertEquals(0, finalDefaultJSONParserLexerSp);
         
-        assertEquals(2, finalDefaultJSONParserLexerBp);
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
         
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(1, finalDefaultJSONParserLexerPos);
-        
-        assertEquals(1, finalDefaultJSONParserLexerToken);
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze20() throws Throwable  {
+    public void testDeserialze18() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
-        setField(jSONScanner, "np", 0);
         setField(jSONScanner, "sp", 9);
         char[] charArray = new char[32];
         setField(jSONScanner, "sbuf", charArray);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '-');
+        setField(jSONScanner, "ch", ')');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 4);
         setField(jSONScanner, "len", 0);
@@ -598,20 +537,20 @@ public class CharArrayCodecTest {
         JSONLexer jSONLexer3 = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
         
-        assertEquals(1, finalDefaultJSONParserLexerSp);
+        assertEquals(0, finalDefaultJSONParserLexerSp);
         
         assertEquals(1, finalDefaultJSONParserLexerBp);
         
         assertEquals('\u001A', finalDefaultJSONParserLexerCh);
         
-        assertEquals(2, finalDefaultJSONParserLexerToken);
+        assertEquals(11, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze21() throws Throwable  {
+    @Test(timeout = 10000)
+    public void testDeserialze19() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
@@ -619,108 +558,27 @@ public class CharArrayCodecTest {
         char[] charArray = new char[9];
         setField(jSONScanner, "sbuf", charArray);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
+        setField(jSONScanner, "ch", '\u0000');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 4);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        CharArrayCodec.deserialze(defaultJSONParser);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze22() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", true);
-        setField(jSONScanner, "sp", 9);
-        char[] charArray = new char[32];
-        setField(jSONScanner, "sbuf", charArray);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '{');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 4);
-        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Object actual = CharArrayCodec.deserialze(defaultJSONParser);
         
-        char[] expected = new char[9];
+        char[] expected = new char[0];
         assertArrayEquals(expected, ((char[]) actual));
         
         JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
         
-        assertEquals(0, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(12, finalDefaultJSONParserLexerToken);
+        assertEquals(20, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze23() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", true);
-        setField(jSONScanner, "sp", 9);
-        char[] charArray = new char[32];
-        setField(jSONScanner, "sbuf", charArray);
-        setField(jSONScanner, "bp", 1);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 4);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        CharArrayCodec.deserialze(defaultJSONParser);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer3, "pos");
-        
-        assertEquals(0, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(14170, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(14169, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze24() throws Throwable  {
+    public void testDeserialze20() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
@@ -772,44 +630,53 @@ public class CharArrayCodecTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze25() throws Throwable  {
+    @Test(timeout = 10000)
+    public void testDeserialze21() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
         setField(jSONScanner, "sp", 9);
         char[] charArray = new char[32];
         setField(jSONScanner, "sbuf", charArray);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '.');
+        setField(jSONScanner, "bp", 1);
+        setField(jSONScanner, "ch", '!');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 4);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
+        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
-        CharArrayCodec.deserialze(defaultJSONParser);
+        Object actual = CharArrayCodec.deserialze(defaultJSONParser);
+        
+        char[] expected = new char[9];
+        assertArrayEquals(expected, ((char[]) actual));
         
         JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
         JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer2, "pos");
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
+        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer3, "pos");
+        JSONLexer jSONLexer4 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer4, "token");
         
         assertEquals(0, finalDefaultJSONParserLexerSp);
         
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        assertEquals(2, finalDefaultJSONParserLexerBp);
         
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(1, finalDefaultJSONParserLexerPos);
+        
+        assertEquals(1, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze26() throws Throwable  {
+    public void testDeserialze22() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
@@ -858,7 +725,7 @@ public class CharArrayCodecTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze27() throws Throwable  {
+    public void testDeserialze23() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
@@ -892,7 +759,7 @@ public class CharArrayCodecTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze28() throws Throwable  {
+    public void testDeserialze24() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
@@ -928,30 +795,34 @@ public class CharArrayCodecTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze29() throws Throwable  {
+    public void testDeserialze25() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
-        setField(jSONScanner, "sp", 0);
-        char[] charArray = new char[9];
+        setField(jSONScanner, "sp", 9);
+        char[] charArray = new char[32];
         setField(jSONScanner, "sbuf", charArray);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\n');
+        setField(jSONScanner, "ch", '\t');
         setField(jSONScanner, "token", 4);
         setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Object actual = CharArrayCodec.deserialze(defaultJSONParser);
         
-        char[] expected = new char[0];
+        char[] expected = new char[9];
         assertArrayEquals(expected, ((char[]) actual));
         
         JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
         JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
+        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
+        
+        assertEquals(0, finalDefaultJSONParserLexerSp);
         
         assertEquals(1, finalDefaultJSONParserLexerBp);
         
@@ -964,7 +835,7 @@ public class CharArrayCodecTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze30() throws Throwable  {
+    public void testDeserialze26() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
@@ -972,7 +843,7 @@ public class CharArrayCodecTest {
         char[] charArray = new char[32];
         setField(jSONScanner, "sbuf", charArray);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ';');
+        setField(jSONScanner, "ch", ':');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 4);
         setField(defaultJSONParser, "lexer", jSONScanner);
@@ -997,127 +868,14 @@ public class CharArrayCodecTest {
         
         assertEquals('\u001A', finalDefaultJSONParserLexerCh);
         
-        assertEquals(24, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze31() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", true);
-        setField(jSONScanner, "sp", 9);
-        char[] charArray = new char[32];
-        setField(jSONScanner, "sbuf", charArray);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", 't');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 4);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        CharArrayCodec.deserialze(defaultJSONParser);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer2, "pos");
-        
-        assertEquals(0, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze32() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", true);
-        setField(jSONScanner, "sp", 9);
-        char[] charArray = new char[32];
-        setField(jSONScanner, "sbuf", charArray);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", 'x');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 4);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        CharArrayCodec.deserialze(defaultJSONParser);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer2, "pos");
-        
-        assertEquals(0, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+        assertEquals(17, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze33() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", true);
-        setField(jSONScanner, "sp", 9);
-        char[] charArray = new char[32];
-        setField(jSONScanner, "sbuf", charArray);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ')');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 4);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = CharArrayCodec.deserialze(defaultJSONParser);
-        
-        char[] expected = new char[9];
-        assertArrayEquals(expected, ((char[]) actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
-        
-        assertEquals(0, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(11, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze34() throws Throwable  {
+    public void testDeserialze27() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
@@ -1159,19 +917,18 @@ public class CharArrayCodecTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze35() throws Throwable  {
+    public void testDeserialze28() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
         setField(jSONScanner, "sp", 9);
         char[] charArray = new char[32];
         setField(jSONScanner, "sbuf", charArray);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", ']');
+        setField(jSONScanner, "bp", 1);
+        setField(jSONScanner, "ch", '\u0000');
+        setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 4);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
+        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         CharArrayCodec.deserialze(defaultJSONParser);
@@ -1181,65 +938,24 @@ public class CharArrayCodecTest {
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
         JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
+        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer3, "pos");
         
         assertEquals(0, finalDefaultJSONParserLexerSp);
         
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(15, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze36() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", true);
-        setField(jSONScanner, "sp", 0);
-        char[] charArray = new char[9];
-        setField(jSONScanner, "sbuf", charArray);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\"');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 4);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        CharArrayCodec.deserialze(defaultJSONParser);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerHasSpecial = getFieldValue(jSONLexer, "hasSpecial");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer1, "sp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSbuf = getFieldValue(jSONLexer2, "sbuf");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer3, "bp");
-        JSONLexer jSONLexer4 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer4, "ch");
-        
-        Class assertClazz = Class.forName("org.junit.Assert");
-        Class finalDefaultJSONParserLexerHasSpecialType = boolean.class;
-        Method assertFalseMethod = assertClazz.getDeclaredMethod("assertFalse", finalDefaultJSONParserLexerHasSpecialType);
-        assertFalseMethod.setAccessible(true);
-        java.lang.Object[] assertFalseMethodArguments = new java.lang.Object[1];
-        assertFalseMethodArguments[0] = finalDefaultJSONParserLexerHasSpecial;
-        assertFalseMethod.invoke(null, assertFalseMethodArguments);
-        
-        assertEquals(14975, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(14976, finalDefaultJSONParserLexerBp);
+        assertEquals(14170, finalDefaultJSONParserLexerBp);
         
         assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(14169, finalDefaultJSONParserLexerPos);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze37() throws Throwable  {
+    public void testDeserialze29() throws Throwable  {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", true);
@@ -1247,7 +963,7 @@ public class CharArrayCodecTest {
         char[] charArray = new char[32];
         setField(jSONScanner, "sbuf", charArray);
         setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '[');
+        setField(jSONScanner, "ch", 't');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 4);
         setField(jSONScanner, "len", 1);
@@ -1269,6 +985,31 @@ public class CharArrayCodecTest {
         assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
         
         assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeserialze30() throws Throwable  {
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "hasSpecial", true);
+        setField(jSONScanner, "sp", 9);
+        char[] charArray = new char[32];
+        setField(jSONScanner, "sbuf", charArray);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '\'');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 4);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        CharArrayCodec.deserialze(defaultJSONParser);
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
+        
+        assertEquals(0, finalDefaultJSONParserLexerSp);
     }
     ///endregion
     

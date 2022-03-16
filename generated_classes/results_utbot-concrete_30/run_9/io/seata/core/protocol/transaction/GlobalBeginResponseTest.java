@@ -1,221 +1,130 @@
-package io.seata.core.rpc.netty;
+package io.seata.core.protocol.transaction;
 
 import org.junit.Test;
-import io.netty.channel.Channel;
-import org.slf4j.Logger;
+import java.nio.ByteBuffer;
 import java.lang.reflect.Method;
-import io.seata.core.rpc.netty.NettyPoolKey.TransactionRole;
-import io.seata.core.rpc.netty.NettyPoolKey;
-import io.seata.core.protocol.RegisterTMResponse;
-import io.seata.core.protocol.RegisterRMResponse;
+import io.seata.core.protocol.ResultCode;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertFalse;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
-public class NettyPoolableFactoryTest {
+public class GlobalBeginResponseTest {
     ///region
     
-    @Test(timeout = 10000)
-    public void testValidateObject1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode1() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
         
-        boolean actual = nettyPoolableFactory.validateObject(nettyPoolKey, ((Channel) null));
-        
-        assertFalse(actual);
+        globalBeginResponse.decode(((ByteBuffer) null));
     }
     ///endregion
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testValidateObject2() throws Throwable  {
-        org.mockito.MockedStatic mockedStatic = null;
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode2() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "limit", -2147483647);
+        setField(heapByteBuffer, "position", 0);
+        byte[] byteArray = new byte[9];
+        setField(heapByteBuffer, "hb", byteArray);
+        
+        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
+        Class heapByteBufferType = Class.forName("java.nio.ByteBuffer");
+        Method decodeMethod = globalBeginResponseClazz.getDeclaredMethod("decode", heapByteBufferType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
+        decodeMethodArguments[0] = heapByteBuffer;
         try {
-            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
-            Logger loggerMock = mock(Logger.class);
-            when(loggerMock.isInfoEnabled()).thenReturn(false);
-            mockedStatic.when(() -> {
-                org.slf4j.LoggerFactory.getLogger(any(Class.class));
-            }).thenReturn(loggerMock);
-            NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-            Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-            
-            Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-            Class nettyPoolKeyType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey");
-            Class failedChannelType = Class.forName("io.netty.channel.Channel");
-            Method validateObjectMethod = nettyPoolableFactoryClazz.getDeclaredMethod("validateObject", nettyPoolKeyType, failedChannelType);
-            validateObjectMethod.setAccessible(true);
-            java.lang.Object[] validateObjectMethodArguments = new java.lang.Object[2];
-            validateObjectMethodArguments[0] = null;
-            validateObjectMethodArguments[1] = failedChannel;
-            boolean actual = ((boolean) validateObjectMethod.invoke(nettyPoolableFactory, validateObjectMethodArguments));
-            
-            assertFalse(actual);
-        } finally {
-            mockedStatic.close();
+            decodeMethod.invoke(globalBeginResponse, decodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for decode
+    
+    public void testDecode_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // lateinit property resultModel has not been initialized
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode4() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "limit", 1);
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "offset", 0);
+        byte[] byteArray = new byte[9];
+        byteArray[0] = java.lang.Byte.MIN_VALUE;
+        setField(heapByteBuffer, "hb", byteArray);
+        
+        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
+        Class heapByteBufferType = Class.forName("java.nio.ByteBuffer");
+        Method decodeMethod = globalBeginResponseClazz.getDeclaredMethod("decode", heapByteBufferType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
+        decodeMethodArguments[0] = heapByteBuffer;
+        try {
+            decodeMethod.invoke(globalBeginResponse, decodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
         }
+        Object finalHeapByteBufferPosition = getFieldValue(heapByteBuffer, "position");
+        
+        assertEquals(1, finalHeapByteBufferPosition);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetTypeCode1() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
+        
+        short actual = globalBeginResponse.getTypeCode();
+        
+        assertEquals((short) 2, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetTypeCode2() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        
+        short actual = globalBeginResponse.getTypeCode();
+        
+        assertEquals((short) 2, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMakeObject1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
+    public void testDoEncode1() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
         
-        nettyPoolableFactory.makeObject(nettyPoolKey);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMakeObject2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        
-        nettyPoolableFactory.makeObject(((NettyPoolKey) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMakeObject3() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        String string = new String("");
-        setField(nettyPoolKey, "address", string);
-        
-        nettyPoolableFactory.makeObject(nettyPoolKey);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMakeObject4() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        String string = new String(":\u0000");
-        setField(nettyPoolKey, "address", string);
-        
-        nettyPoolableFactory.makeObject(nettyPoolKey);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDestroyObject1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.destroyObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDestroyObject2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.destroyObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testActivateObject1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.activateObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testActivateObject2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class nettyPoolKeyType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method activateObjectMethod = nettyPoolableFactoryClazz.getDeclaredMethod("activateObject", nettyPoolKeyType, failedChannelType);
-        activateObjectMethod.setAccessible(true);
-        java.lang.Object[] activateObjectMethodArguments = new java.lang.Object[2];
-        activateObjectMethodArguments[0] = nettyPoolKey;
-        activateObjectMethodArguments[1] = failedChannel;
-        activateObjectMethod.invoke(nettyPoolableFactory, activateObjectMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPassivateObject1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.passivateObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPassivateObject2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class nettyPoolKeyType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method passivateObjectMethod = nettyPoolableFactoryClazz.getDeclaredMethod("passivateObject", nettyPoolKeyType, failedChannelType);
-        passivateObjectMethod.setAccessible(true);
-        java.lang.Object[] passivateObjectMethodArguments = new java.lang.Object[2];
-        passivateObjectMethodArguments[0] = nettyPoolKey;
-        passivateObjectMethodArguments[1] = failedChannel;
-        passivateObjectMethod.invoke(nettyPoolableFactory, passivateObjectMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetVersion1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        Object object = new Object();
-        NettyPoolKey.TransactionRole transactionRole = ((NettyPoolKey.TransactionRole) createInstance("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole"));
-        
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class objectType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method getVersionMethod = nettyPoolableFactoryClazz.getDeclaredMethod("getVersion", objectType, transactionRoleType);
-        getVersionMethod.setAccessible(true);
-        java.lang.Object[] getVersionMethodArguments = new java.lang.Object[2];
-        getVersionMethodArguments[0] = object;
-        getVersionMethodArguments[1] = transactionRole;
+        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
+        Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
+        doEncodeMethod.setAccessible(true);
+        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
         try {
-            getVersionMethod.invoke(nettyPoolableFactory, getVersionMethodArguments);
+            doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -224,19 +133,19 @@ public class NettyPoolableFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetVersion2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+    public void testDoEncode2() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
+        setField(globalBeginResponse, "byteBuffer", heapByteBufferR);
+        ResultCode resultCode = ResultCode.Failed;
+        setField(globalBeginResponse, "resultCode", resultCode);
         
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class objectType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method getVersionMethod = nettyPoolableFactoryClazz.getDeclaredMethod("getVersion", objectType, transactionRoleType);
-        getVersionMethod.setAccessible(true);
-        java.lang.Object[] getVersionMethodArguments = new java.lang.Object[2];
-        getVersionMethodArguments[0] = null;
-        getVersionMethodArguments[1] = null;
+        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
+        Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
+        doEncodeMethod.setAccessible(true);
+        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
         try {
-            getVersionMethod.invoke(nettyPoolableFactory, getVersionMethodArguments);
+            doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -245,66 +154,97 @@ public class NettyPoolableFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetVersion3() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        java.lang.Object[] byteBufferAsLongBufferBArray = createArray("java.nio.ByteBufferAsLongBufferB", 0);
-        NettyPoolKey.TransactionRole transactionRole = NettyPoolKey.TransactionRole.TMROLE;
+    public void testDoEncode3() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        setField(globalBeginResponse, "msg", null);
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "limit", 2);
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "offset", 0);
+        byte[] byteArray = new byte[9];
+        setField(heapByteBuffer, "hb", byteArray);
+        setField(globalBeginResponse, "byteBuffer", heapByteBuffer);
+        ResultCode resultCode = ResultCode.Failed;
+        setField(globalBeginResponse, "resultCode", resultCode);
         
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class byteBufferAsLongBufferBArrayType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method getVersionMethod = nettyPoolableFactoryClazz.getDeclaredMethod("getVersion", byteBufferAsLongBufferBArrayType, transactionRoleType);
-        getVersionMethod.setAccessible(true);
-        java.lang.Object[] getVersionMethodArguments = new java.lang.Object[2];
-        getVersionMethodArguments[0] = ((Object) byteBufferAsLongBufferBArray);
-        getVersionMethodArguments[1] = transactionRole;
+        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
+        Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
+        doEncodeMethod.setAccessible(true);
+        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
         try {
-            getVersionMethod.invoke(nettyPoolableFactory, getVersionMethodArguments);
+            doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }}
+        }
+        ByteBuffer byteBuffer = globalBeginResponse.byteBuffer;
+        Object finalGlobalBeginResponseByteBufferPosition = getFieldValue(byteBuffer, "position");
+        
+        assertEquals(1, finalGlobalBeginResponseByteBufferPosition);
+    }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetVersion4() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey.TransactionRole transactionRole = NettyPoolKey.TransactionRole.TMROLE;
+    public void testDoEncode4() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        setField(globalBeginResponse, "msg", null);
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "limit", 536870912);
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "bigEndian", true);
+        setField(heapByteBuffer, "offset", 1);
+        byte[] byteArray = new byte[11];
+        setField(heapByteBuffer, "hb", byteArray);
+        setField(globalBeginResponse, "byteBuffer", heapByteBuffer);
+        ResultCode resultCode = ResultCode.Failed;
+        setField(globalBeginResponse, "resultCode", resultCode);
         
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class objectType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method getVersionMethod = nettyPoolableFactoryClazz.getDeclaredMethod("getVersion", objectType, transactionRoleType);
-        getVersionMethod.setAccessible(true);
-        java.lang.Object[] getVersionMethodArguments = new java.lang.Object[2];
-        getVersionMethodArguments[0] = null;
-        getVersionMethodArguments[1] = transactionRole;
+        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
+        Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
+        doEncodeMethod.setAccessible(true);
+        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
         try {
-            getVersionMethod.invoke(nettyPoolableFactory, getVersionMethodArguments);
+            doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }}
+        }
+        ByteBuffer byteBuffer = globalBeginResponse.byteBuffer;
+        Object finalGlobalBeginResponseByteBufferPosition = getFieldValue(byteBuffer, "position");
+        
+        assertEquals(3, finalGlobalBeginResponseByteBufferPosition);
+    }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetVersion5() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        RegisterTMResponse registerTMResponse = ((RegisterTMResponse) createInstance("io.seata.core.protocol.RegisterTMResponse"));
-        setField(registerTMResponse, "version", null);
-        NettyPoolKey.TransactionRole transactionRole = NettyPoolKey.TransactionRole.TMROLE;
+    public void testSetExtraData1() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
+        String string = new String();
         
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class registerTMResponseType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method getVersionMethod = nettyPoolableFactoryClazz.getDeclaredMethod("getVersion", registerTMResponseType, transactionRoleType);
-        getVersionMethod.setAccessible(true);
-        java.lang.Object[] getVersionMethodArguments = new java.lang.Object[2];
-        getVersionMethodArguments[0] = registerTMResponse;
-        getVersionMethodArguments[1] = transactionRole;
-        String actual = ((String) getVersionMethod.invoke(nettyPoolableFactory, getVersionMethodArguments));
+        globalBeginResponse.setExtraData(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetExtraData2() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        setField(globalBeginResponse, "extraData", null);
+        
+        globalBeginResponse.setExtraData(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetExtraData1() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
+        
+        String actual = globalBeginResponse.getExtraData();
         
         assertNull(actual);
     }
@@ -313,208 +253,68 @@ public class NettyPoolableFactoryTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testIsResponseSuccess1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        Object object = new Object();
-        NettyPoolKey.TransactionRole transactionRole = ((NettyPoolKey.TransactionRole) createInstance("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole"));
+    public void testGetExtraData2() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        setField(globalBeginResponse, "extraData", null);
         
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class objectType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method isResponseSuccessMethod = nettyPoolableFactoryClazz.getDeclaredMethod("isResponseSuccess", objectType, transactionRoleType);
-        isResponseSuccessMethod.setAccessible(true);
-        java.lang.Object[] isResponseSuccessMethodArguments = new java.lang.Object[2];
-        isResponseSuccessMethodArguments[0] = object;
-        isResponseSuccessMethodArguments[1] = transactionRole;
-        boolean actual = ((boolean) isResponseSuccessMethod.invoke(nettyPoolableFactory, isResponseSuccessMethodArguments));
+        String actual = globalBeginResponse.getExtraData();
         
-        assertFalse(actual);
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testIsResponseSuccess2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+    public void testSetXid1() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
+        String string = new String();
         
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class objectType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method isResponseSuccessMethod = nettyPoolableFactoryClazz.getDeclaredMethod("isResponseSuccess", objectType, transactionRoleType);
-        isResponseSuccessMethod.setAccessible(true);
-        java.lang.Object[] isResponseSuccessMethodArguments = new java.lang.Object[2];
-        isResponseSuccessMethodArguments[0] = null;
-        isResponseSuccessMethodArguments[1] = null;
-        boolean actual = ((boolean) isResponseSuccessMethod.invoke(nettyPoolableFactory, isResponseSuccessMethodArguments));
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testIsResponseSuccess3() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        java.lang.Object[] directFloatBufferSArray = createArray("java.nio.DirectFloatBufferS", 0);
-        
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class directFloatBufferSArrayType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method isResponseSuccessMethod = nettyPoolableFactoryClazz.getDeclaredMethod("isResponseSuccess", directFloatBufferSArrayType, transactionRoleType);
-        isResponseSuccessMethod.setAccessible(true);
-        java.lang.Object[] isResponseSuccessMethodArguments = new java.lang.Object[2];
-        isResponseSuccessMethodArguments[0] = ((Object) directFloatBufferSArray);
-        isResponseSuccessMethodArguments[1] = null;
-        try {
-            isResponseSuccessMethod.invoke(nettyPoolableFactory, isResponseSuccessMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsResponseSuccess4() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        java.lang.Object[] directFloatBufferSArray = createArray("java.nio.DirectFloatBufferS", 0);
-        NettyPoolKey.TransactionRole transactionRole = NettyPoolKey.TransactionRole.TMROLE;
-        
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class directFloatBufferSArrayType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method isResponseSuccessMethod = nettyPoolableFactoryClazz.getDeclaredMethod("isResponseSuccess", directFloatBufferSArrayType, transactionRoleType);
-        isResponseSuccessMethod.setAccessible(true);
-        java.lang.Object[] isResponseSuccessMethodArguments = new java.lang.Object[2];
-        isResponseSuccessMethodArguments[0] = ((Object) directFloatBufferSArray);
-        isResponseSuccessMethodArguments[1] = transactionRole;
-        boolean actual = ((boolean) isResponseSuccessMethod.invoke(nettyPoolableFactory, isResponseSuccessMethodArguments));
-        
-        assertFalse(actual);
+        globalBeginResponse.setXid(string);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testIsResponseSuccess5() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        RegisterTMResponse registerTMResponse = ((RegisterTMResponse) createInstance("io.seata.core.protocol.RegisterTMResponse"));
-        setField(registerTMResponse, "identified", true);
-        NettyPoolKey.TransactionRole transactionRole = NettyPoolKey.TransactionRole.TMROLE;
+    public void testSetXid2() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        setField(globalBeginResponse, "xid", null);
         
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class registerTMResponseType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method isResponseSuccessMethod = nettyPoolableFactoryClazz.getDeclaredMethod("isResponseSuccess", registerTMResponseType, transactionRoleType);
-        isResponseSuccessMethod.setAccessible(true);
-        java.lang.Object[] isResponseSuccessMethodArguments = new java.lang.Object[2];
-        isResponseSuccessMethodArguments[0] = registerTMResponse;
-        isResponseSuccessMethodArguments[1] = transactionRole;
-        boolean actual = ((boolean) isResponseSuccessMethod.invoke(nettyPoolableFactory, isResponseSuccessMethodArguments));
-        
-        assertTrue(actual);
+        globalBeginResponse.setXid(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testIsResponseSuccess6() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        RegisterTMResponse registerTMResponse = ((RegisterTMResponse) createInstance("io.seata.core.protocol.RegisterTMResponse"));
-        setField(registerTMResponse, "identified", false);
-        NettyPoolKey.TransactionRole transactionRole = NettyPoolKey.TransactionRole.TMROLE;
+    public void testGetXid1() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = new GlobalBeginResponse();
         
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class registerTMResponseType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method isResponseSuccessMethod = nettyPoolableFactoryClazz.getDeclaredMethod("isResponseSuccess", registerTMResponseType, transactionRoleType);
-        isResponseSuccessMethod.setAccessible(true);
-        java.lang.Object[] isResponseSuccessMethodArguments = new java.lang.Object[2];
-        isResponseSuccessMethodArguments[0] = registerTMResponse;
-        isResponseSuccessMethodArguments[1] = transactionRole;
-        boolean actual = ((boolean) isResponseSuccessMethod.invoke(nettyPoolableFactory, isResponseSuccessMethodArguments));
+        String actual = globalBeginResponse.getXid();
         
-        assertFalse(actual);
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testIsResponseSuccess7() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        java.lang.Object[] directFloatBufferSArray = createArray("java.nio.DirectFloatBufferS", 0);
-        NettyPoolKey.TransactionRole transactionRole = NettyPoolKey.TransactionRole.RMROLE;
+    public void testGetXid2() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        setField(globalBeginResponse, "xid", null);
         
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class directFloatBufferSArrayType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method isResponseSuccessMethod = nettyPoolableFactoryClazz.getDeclaredMethod("isResponseSuccess", directFloatBufferSArrayType, transactionRoleType);
-        isResponseSuccessMethod.setAccessible(true);
-        java.lang.Object[] isResponseSuccessMethodArguments = new java.lang.Object[2];
-        isResponseSuccessMethodArguments[0] = ((Object) directFloatBufferSArray);
-        isResponseSuccessMethodArguments[1] = transactionRole;
-        boolean actual = ((boolean) isResponseSuccessMethod.invoke(nettyPoolableFactory, isResponseSuccessMethodArguments));
+        String actual = globalBeginResponse.getXid();
         
-        assertFalse(actual);
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testIsResponseSuccess8() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        RegisterRMResponse registerRMResponse = ((RegisterRMResponse) createInstance("io.seata.core.protocol.RegisterRMResponse"));
-        setField(registerRMResponse, "identified", false);
-        NettyPoolKey.TransactionRole transactionRole = NettyPoolKey.TransactionRole.RMROLE;
-        
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class registerRMResponseType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method isResponseSuccessMethod = nettyPoolableFactoryClazz.getDeclaredMethod("isResponseSuccess", registerRMResponseType, transactionRoleType);
-        isResponseSuccessMethod.setAccessible(true);
-        java.lang.Object[] isResponseSuccessMethodArguments = new java.lang.Object[2];
-        isResponseSuccessMethodArguments[0] = registerRMResponse;
-        isResponseSuccessMethodArguments[1] = transactionRole;
-        boolean actual = ((boolean) isResponseSuccessMethod.invoke(nettyPoolableFactory, isResponseSuccessMethodArguments));
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsResponseSuccess9() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        RegisterRMResponse registerRMResponse = ((RegisterRMResponse) createInstance("io.seata.core.protocol.RegisterRMResponse"));
-        setField(registerRMResponse, "identified", true);
-        NettyPoolKey.TransactionRole transactionRole = NettyPoolKey.TransactionRole.RMROLE;
-        
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class registerRMResponseType = Class.forName("java.lang.Object");
-        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
-        Method isResponseSuccessMethod = nettyPoolableFactoryClazz.getDeclaredMethod("isResponseSuccess", registerRMResponseType, transactionRoleType);
-        isResponseSuccessMethod.setAccessible(true);
-        java.lang.Object[] isResponseSuccessMethodArguments = new java.lang.Object[2];
-        isResponseSuccessMethodArguments[0] = registerRMResponse;
-        isResponseSuccessMethodArguments[1] = transactionRole;
-        boolean actual = ((boolean) isResponseSuccessMethod.invoke(nettyPoolableFactory, isResponseSuccessMethodArguments));
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testNettyPoolableFactory1() {
-        new NettyPoolableFactory(null);
+    public void testGlobalBeginResponse1() {
+        GlobalBeginResponse actual = new GlobalBeginResponse();
     }
     ///endregion
     
@@ -542,14 +342,24 @@ public class NettyPoolableFactoryTest {
         field.setAccessible(true);
         field.set(object, fieldValue);
     }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
+        Class<?> clazz = obj.getClass();
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                
+                return field.get(obj);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
     
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

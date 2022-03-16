@@ -34,12 +34,12 @@ import java.nio.charset.CoderResult;
 import spoon.reflect.declaration.CtTypedElement;
 import spoon.support.reflect.reference.CtTypeReferenceImpl;
 import spoon.reflect.reference.CtTypeReference;
-import spoon.reflect.code.CtExpression;
-import java.util.ArrayList;
-import spoon.support.reflect.reference.CtArrayTypeReferenceImpl;
+import spoon.support.reflect.reference.CtWildcardStaticTypeMemberReferenceImpl;
 import java.util.List;
-import spoon.support.reflect.declaration.CtAnnotationImpl;
+import java.util.ArrayList;
+import spoon.reflect.code.CtExpression;
 import spoon.reflect.code.CtRHSReceiver;
+import spoon.support.reflect.declaration.CtAnnotationImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Array;
@@ -121,9 +121,7 @@ public class CtAssignmentImplTest {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
         EqualsVisitor equalsVisitor = ((EqualsVisitor) createInstance("spoon.support.visitor.equals.EqualsVisitor"));
         Object keepAliveStreamCleaner = createInstance("sun.net.www.http.KeepAliveStreamCleaner");
-        Object node = createInstance("java.util.LinkedList$Node");
-        setField(node, "item", null);
-        setField(keepAliveStreamCleaner, "first", node);
+        setField(keepAliveStreamCleaner, "first", null);
         setField(equalsVisitor, "stack", keepAliveStreamCleaner);
         EqualsChecker equalsChecker = ((EqualsChecker) createInstance("spoon.support.visitor.equals.EqualsChecker"));
         setField(equalsChecker, "isNotEqual", false);
@@ -248,14 +246,14 @@ public class CtAssignmentImplTest {
     @Test(timeout = 10000)
     public void testGetType2() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
-        CtTypeReferenceImpl ctTypeReferenceImpl = ((CtTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtTypeReferenceImpl"));
-        setField(ctAssignmentImpl, "type", ctTypeReferenceImpl);
+        CtWildcardStaticTypeMemberReferenceImpl ctWildcardStaticTypeMemberReferenceImpl = ((CtWildcardStaticTypeMemberReferenceImpl) createInstance("spoon.support.reflect.reference.CtWildcardStaticTypeMemberReferenceImpl"));
+        setField(ctAssignmentImpl, "type", ctWildcardStaticTypeMemberReferenceImpl);
         
         CtTypeReference actual = ctAssignmentImpl.getType();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctTypeReferenceImpl, actual));
+        assertTrue(deepEquals(ctWildcardStaticTypeMemberReferenceImpl, actual));
     }
     ///endregion
     
@@ -280,98 +278,6 @@ public class CtAssignmentImplTest {
         Object actual = ctAssignmentImpl.S();
         
         assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAddTypeCast1() throws Throwable  {
-        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
-        
-        CtExpression actual = ctAssignmentImpl.addTypeCast(null);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctAssignmentImpl, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAddTypeCast2() throws Throwable  {
-        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
-        
-        CtExpression actual = ctAssignmentImpl.addTypeCast(null);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctAssignmentImpl, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAddTypeCast3() throws Throwable  {
-        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
-        setField(ctAssignmentImpl, "parent", null);
-        setField(ctAssignmentImpl, "factory", null);
-        ArrayList arrayList = new ArrayList();
-        setField(ctAssignmentImpl, "typeCasts", arrayList);
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(ctArrayTypeReferenceImpl, "parent", null);
-        setField(ctArrayTypeReferenceImpl, "factory", null);
-        
-        Object initialCtArrayTypeReferenceImplParent = getFieldValue(ctArrayTypeReferenceImpl, "parent");
-        
-        CtExpression actual = ctAssignmentImpl.addTypeCast(ctArrayTypeReferenceImpl);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctAssignmentImpl, actual));
-        
-        Object finalCtArrayTypeReferenceImplParent = getFieldValue(ctArrayTypeReferenceImpl, "parent");
-        
-        assertFalse(initialCtArrayTypeReferenceImplParent == finalCtArrayTypeReferenceImplParent);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAddTypeCast4() throws Throwable  {
-        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
-        setField(ctAssignmentImpl, "parent", null);
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "environment", null);
-        setField(ctAssignmentImpl, "factory", factoryImpl);
-        ArrayList arrayList = new ArrayList();
-        setField(ctAssignmentImpl, "typeCasts", arrayList);
-        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
-        setField(ctArrayTypeReferenceImpl, "parent", null);
-        setField(ctArrayTypeReferenceImpl, "factory", null);
-        
-        Object ctAssignmentImplFactory = getFieldValue(ctAssignmentImpl, "factory");
-        Object initialCtAssignmentImplFactoryEnvironment = getFieldValue(ctAssignmentImplFactory, "environment");
-        
-        Object initialCtArrayTypeReferenceImplParent = getFieldValue(ctArrayTypeReferenceImpl, "parent");
-        
-        CtExpression actual = ctAssignmentImpl.addTypeCast(ctArrayTypeReferenceImpl);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctAssignmentImpl, actual));
-        
-        Object ctAssignmentImplFactory1 = getFieldValue(ctAssignmentImpl, "factory");
-        Object finalCtAssignmentImplFactoryEnvironment = getFieldValue(ctAssignmentImplFactory1, "environment");
-        
-        Object finalCtArrayTypeReferenceImplParent = getFieldValue(ctArrayTypeReferenceImpl, "parent");
-        
-        assertFalse(initialCtAssignmentImplFactoryEnvironment == finalCtAssignmentImplFactoryEnvironment);
-        
-        assertFalse(initialCtArrayTypeReferenceImplParent == finalCtArrayTypeReferenceImplParent);
     }
     ///endregion
     
@@ -483,6 +389,67 @@ public class CtAssignmentImplTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testAddTypeCast1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
+        
+        CtExpression actual = ctAssignmentImpl.addTypeCast(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddTypeCast2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        
+        CtExpression actual = ctAssignmentImpl.addTypeCast(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddTypeCast3() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        setField(ctAssignmentImpl, "parent", null);
+        setField(ctAssignmentImpl, "factory", null);
+        ArrayList arrayList = new ArrayList();
+        setField(ctAssignmentImpl, "typeCasts", arrayList);
+        CtWildcardStaticTypeMemberReferenceImpl ctWildcardStaticTypeMemberReferenceImpl = ((CtWildcardStaticTypeMemberReferenceImpl) createInstance("spoon.support.reflect.reference.CtWildcardStaticTypeMemberReferenceImpl"));
+        setField(ctWildcardStaticTypeMemberReferenceImpl, "parent", null);
+        setField(ctWildcardStaticTypeMemberReferenceImpl, "factory", null);
+        
+        Object initialCtWildcardStaticTypeMemberReferenceImplParent = getFieldValue(ctWildcardStaticTypeMemberReferenceImpl, "parent");
+        
+        Class ctAssignmentImplClazz = Class.forName("spoon.support.reflect.code.CtAssignmentImpl");
+        Class ctWildcardStaticTypeMemberReferenceImplType = Class.forName("spoon.reflect.reference.CtTypeReference");
+        Method addTypeCastMethod = ctAssignmentImplClazz.getDeclaredMethod("addTypeCast", ctWildcardStaticTypeMemberReferenceImplType);
+        addTypeCastMethod.setAccessible(true);
+        java.lang.Object[] addTypeCastMethodArguments = new java.lang.Object[1];
+        addTypeCastMethodArguments[0] = ctWildcardStaticTypeMemberReferenceImpl;
+        CtExpression actual = ((CtExpression) addTypeCastMethod.invoke(ctAssignmentImpl, addTypeCastMethodArguments));
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+        
+        Object finalCtWildcardStaticTypeMemberReferenceImplParent = getFieldValue(ctWildcardStaticTypeMemberReferenceImpl, "parent");
+        
+        assertFalse(initialCtWildcardStaticTypeMemberReferenceImplParent == finalCtWildcardStaticTypeMemberReferenceImplParent);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testGetAssignment1() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
         
@@ -497,14 +464,15 @@ public class CtAssignmentImplTest {
     @Test(timeout = 10000)
     public void testGetAssignment2() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
-        CtAnnotationImpl ctAnnotationImpl = ((CtAnnotationImpl) createInstance("spoon.support.reflect.declaration.CtAnnotationImpl"));
-        setField(ctAssignmentImpl, "assignment", ctAnnotationImpl);
+        CtOperatorAssignmentImpl ctOperatorAssignmentImpl = ((CtOperatorAssignmentImpl) createInstance("spoon.support.reflect.code.CtOperatorAssignmentImpl"));
+        setField(ctOperatorAssignmentImpl, "assignment", null);
+        setField(ctAssignmentImpl, "assignment", ctOperatorAssignmentImpl);
         
         CtExpression actual = ctAssignmentImpl.getAssignment();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctAnnotationImpl, actual));
+        assertTrue(deepEquals(ctOperatorAssignmentImpl, actual));
     }
     ///endregion
     
@@ -526,31 +494,6 @@ public class CtAssignmentImplTest {
     
     @Test(timeout = 10000)
     public void testSetAssignment2() throws Throwable  {
-        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
-        setField(ctAssignmentImpl, "parent", null);
-        setField(ctAssignmentImpl, "factory", null);
-        CtAnnotationImpl ctAnnotationImpl = ((CtAnnotationImpl) createInstance("spoon.support.reflect.declaration.CtAnnotationImpl"));
-        setField(ctAnnotationImpl, "parent", null);
-        setField(ctAnnotationImpl, "factory", null);
-        
-        Object initialCtAnnotationImplParent = getFieldValue(ctAnnotationImpl, "parent");
-        
-        CtRHSReceiver actual = ctAssignmentImpl.setAssignment(ctAnnotationImpl);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctAssignmentImpl, actual));
-        
-        Object finalCtAnnotationImplParent = getFieldValue(ctAnnotationImpl, "parent");
-        
-        assertFalse(initialCtAnnotationImplParent == finalCtAnnotationImplParent);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetAssignment3() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
         setField(ctAssignmentImpl, "parent", null);
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
@@ -585,6 +528,21 @@ public class CtAssignmentImplTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testSetAssignment3() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        setField(ctAssignmentImpl, "factory", null);
+        
+        CtRHSReceiver actual = ctAssignmentImpl.setAssignment(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testGetAssigned1() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
         
@@ -599,14 +557,15 @@ public class CtAssignmentImplTest {
     @Test(timeout = 10000)
     public void testGetAssigned2() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
-        CtAnnotationImpl ctAnnotationImpl = ((CtAnnotationImpl) createInstance("spoon.support.reflect.declaration.CtAnnotationImpl"));
-        setField(ctAssignmentImpl, "assigned", ctAnnotationImpl);
+        CtOperatorAssignmentImpl ctOperatorAssignmentImpl = ((CtOperatorAssignmentImpl) createInstance("spoon.support.reflect.code.CtOperatorAssignmentImpl"));
+        setField(ctOperatorAssignmentImpl, "assigned", null);
+        setField(ctAssignmentImpl, "assigned", ctOperatorAssignmentImpl);
         
         CtExpression actual = ctAssignmentImpl.getAssigned();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctAnnotationImpl, actual));
+        assertTrue(deepEquals(ctOperatorAssignmentImpl, actual));
     }
     ///endregion
     
@@ -628,6 +587,21 @@ public class CtAssignmentImplTest {
     
     @Test(timeout = 10000)
     public void testSetAssigned2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        setField(ctAssignmentImpl, "factory", null);
+        
+        CtAssignment actual = ctAssignmentImpl.setAssigned(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetAssigned3() throws Throwable  {
         CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
         setField(ctAssignmentImpl, "parent", null);
         setField(ctAssignmentImpl, "factory", null);

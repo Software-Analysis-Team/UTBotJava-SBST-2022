@@ -83,16 +83,19 @@ public class AtomicDoubleArrayTest {
     }
     ///endregion
     
+    ///region
     
-    ///region Errors report for get
-    
-    public void testGet_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
+    @Test(timeout = 10000)
+    public void testGet3() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        AtomicLongArray atomicLongArray = ((AtomicLongArray) createInstance("java.util.concurrent.atomic.AtomicLongArray"));
+        long[] longArray = new long[9];
+        setField(atomicLongArray, "array", longArray);
+        setField(atomicDoubleArray, "longs", atomicLongArray);
+        
+        double actual = atomicDoubleArray.get(0);
+        
+        assertEquals(0.0, actual, 1.0E-6);
     }
     ///endregion
     
@@ -129,7 +132,7 @@ public class AtomicDoubleArrayTest {
         
         int actual = atomicDoubleArray.length();
         
-        assertEquals(9, actual);
+        org.junit.Assert.assertEquals(9, actual);
     }
     ///endregion
     

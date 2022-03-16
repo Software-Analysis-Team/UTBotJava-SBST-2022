@@ -1,379 +1,241 @@
-package io.seata.core.rpc.netty;
+package spoon.reflect.visitor.filter;
 
 import org.junit.Test;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.util.concurrent.DefaultEventExecutor;
-import io.netty.channel.DefaultChannelPipeline;
+import spoon.reflect.visitor.Filter;
 import java.lang.reflect.Method;
-import io.netty.channel.nio.NioEventLoop;
-import io.netty.util.concurrent.GlobalEventExecutor;
-import io.netty.channel.ChannelOutboundHandlerAdapter;
-import org.slf4j.Logger;
+import spoon.support.reflect.code.CtAssertImpl;
+import spoon.support.reflect.reference.CtFieldReferenceImpl;
+import spoon.support.reflect.code.CtFieldReadImpl;
+import spoon.support.reflect.declaration.CtEnumValueImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Objects;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
 import java.lang.reflect.Array;
+import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-public class RpcServerHandlerTest {
+public class CompositeFilterTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testExceptionCaught1() throws Throwable  {
-        RpcServerHandler rpcServerHandler = new RpcServerHandler();
-        Throwable throwable = new Throwable();
+    public void testMatches1() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
         
-        rpcServerHandler.exceptionCaught(((ChannelHandlerContext) null), throwable);
+        compositeFilter.matches(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testExceptionCaught2() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
+    public void testMatches2() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        setField(compositeFilter, "operator", null);
         
-        rpcServerHandler.exceptionCaught(((ChannelHandlerContext) null), ((Throwable) null));
+        compositeFilter.matches(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testExceptionCaught3() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        DefaultEventExecutor defaultEventExecutor = ((DefaultEventExecutor) createInstance("io.netty.util.concurrent.DefaultEventExecutor"));
-        setField(tailContext, "executor", defaultEventExecutor);
-        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(defaultChannelPipeline, "channel", failedChannel);
-        setField(tailContext, "pipeline", defaultChannelPipeline);
-        setField(tailContext, "prev", null);
+    public void testMatches3() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        FilteringOperator filteringOperator = FilteringOperator.SUBSTRACTION;
+        compositeFilter.operator = filteringOperator;
         
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Class throwableType = Class.forName("java.lang.Throwable");
-        Method exceptionCaughtMethod = rpcServerHandlerClazz.getDeclaredMethod("exceptionCaught", tailContextType, throwableType);
-        exceptionCaughtMethod.setAccessible(true);
-        java.lang.Object[] exceptionCaughtMethodArguments = new java.lang.Object[2];
-        exceptionCaughtMethodArguments[0] = tailContext;
-        exceptionCaughtMethodArguments[1] = null;
-        try {
-            exceptionCaughtMethod.invoke(rpcServerHandler, exceptionCaughtMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testExceptionCaught4() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        Object epollEventLoop = createInstance("io.netty.channel.epoll.EpollEventLoop");
-        setField(tailContext, "executor", epollEventLoop);
-        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(defaultChannelPipeline, "channel", failedChannel);
-        setField(tailContext, "pipeline", defaultChannelPipeline);
-        setField(tailContext, "outbound", false);
-        Object tailContext1 = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext1, "executor", null);
-        setField(tailContext1, "pipeline", null);
-        setField(tailContext1, "outbound", false);
-        setField(tailContext1, "prev", tailContext1);
-        setField(tailContext, "prev", tailContext1);
-        
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Class throwableType = Class.forName("java.lang.Throwable");
-        Method exceptionCaughtMethod = rpcServerHandlerClazz.getDeclaredMethod("exceptionCaught", tailContextType, throwableType);
-        exceptionCaughtMethod.setAccessible(true);
-        java.lang.Object[] exceptionCaughtMethodArguments = new java.lang.Object[2];
-        exceptionCaughtMethodArguments[0] = tailContext;
-        exceptionCaughtMethodArguments[1] = null;
-        try {
-            exceptionCaughtMethod.invoke(rpcServerHandler, exceptionCaughtMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testExceptionCaught5() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        NioEventLoop nioEventLoop = ((NioEventLoop) createInstance("io.netty.channel.nio.NioEventLoop"));
-        setField(tailContext, "executor", nioEventLoop);
-        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(defaultChannelPipeline, "channel", failedChannel);
-        setField(tailContext, "pipeline", defaultChannelPipeline);
-        setField(tailContext, "outbound", false);
-        Object tailContext1 = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext1, "executor", nioEventLoop);
-        setField(tailContext1, "pipeline", null);
-        setField(tailContext1, "outbound", true);
-        setField(tailContext1, "prev", null);
-        setField(tailContext, "prev", tailContext1);
-        
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Class throwableType = Class.forName("java.lang.Throwable");
-        Method exceptionCaughtMethod = rpcServerHandlerClazz.getDeclaredMethod("exceptionCaught", tailContextType, throwableType);
-        exceptionCaughtMethod.setAccessible(true);
-        java.lang.Object[] exceptionCaughtMethodArguments = new java.lang.Object[2];
-        exceptionCaughtMethodArguments[0] = tailContext;
-        exceptionCaughtMethodArguments[1] = null;
-        try {
-            exceptionCaughtMethod.invoke(rpcServerHandler, exceptionCaughtMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testUserEventTriggered1() throws Throwable  {
-        RpcServerHandler rpcServerHandler = new RpcServerHandler();
-        Object object = new Object();
-        
-        rpcServerHandler.userEventTriggered(((ChannelHandlerContext) null), object);
+        compositeFilter.matches(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testUserEventTriggered2() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        java.lang.Object[] directLongBufferRUArray = createArray("java.nio.DirectLongBufferRU", 0);
+    public void testMatches4() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        FilteringOperator filteringOperator = FilteringOperator.UNION;
+        compositeFilter.operator = filteringOperator;
+        setField(compositeFilter, "filters", null);
         
-        rpcServerHandler.userEventTriggered(((ChannelHandlerContext) null), directLongBufferRUArray);
+        compositeFilter.matches(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testUserEventTriggered3() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext, "next", null);
+    public void testMatches5() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        FilteringOperator filteringOperator = FilteringOperator.INTERSECTION;
+        compositeFilter.operator = filteringOperator;
+        setField(compositeFilter, "filters", null);
         
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Class objectType = Class.forName("java.lang.Object");
-        Method userEventTriggeredMethod = rpcServerHandlerClazz.getDeclaredMethod("userEventTriggered", tailContextType, objectType);
-        userEventTriggeredMethod.setAccessible(true);
-        java.lang.Object[] userEventTriggeredMethodArguments = new java.lang.Object[2];
-        userEventTriggeredMethodArguments[0] = tailContext;
-        userEventTriggeredMethodArguments[1] = null;
-        try {
-            userEventTriggeredMethod.invoke(rpcServerHandler, userEventTriggeredMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+        compositeFilter.matches(null);
+    }
     ///endregion
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testUserEventTriggered4() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext, "inbound", false);
-        Object tailContext1 = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext1, "inbound", true);
-        setField(tailContext1, "next", null);
-        setField(tailContext, "next", tailContext1);
+    @Test(timeout = 10000)
+    public void testMatches6() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        FilteringOperator filteringOperator = FilteringOperator.SUBSTRACTION;
+        compositeFilter.operator = filteringOperator;
+        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[0];
+        compositeFilter.filters = filterArray;
         
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Class objectType = Class.forName("java.lang.Object");
-        Method userEventTriggeredMethod = rpcServerHandlerClazz.getDeclaredMethod("userEventTriggered", tailContextType, objectType);
-        userEventTriggeredMethod.setAccessible(true);
-        java.lang.Object[] userEventTriggeredMethodArguments = new java.lang.Object[2];
-        userEventTriggeredMethodArguments[0] = tailContext;
-        userEventTriggeredMethodArguments[1] = null;
-        try {
-            userEventTriggeredMethod.invoke(rpcServerHandler, userEventTriggeredMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+        boolean actual = compositeFilter.matches(null);
+        
+        assertFalse(actual);
+    }
     ///endregion
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testUserEventTriggered5() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext, "executor", null);
-        setField(tailContext, "inbound", false);
-        Object tailContext1 = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext1, "executor", null);
-        setField(tailContext1, "inbound", false);
-        Object tailContext2 = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        GlobalEventExecutor globalEventExecutor = ((GlobalEventExecutor) createInstance("io.netty.util.concurrent.GlobalEventExecutor"));
-        Thread thread = ((Thread) createInstance("java.lang.Thread"));
-        setField(globalEventExecutor, "thread", thread);
-        setField(tailContext2, "executor", globalEventExecutor);
-        setField(tailContext2, "inbound", true);
-        setField(tailContext2, "next", null);
-        setField(tailContext1, "next", tailContext2);
-        setField(tailContext, "next", tailContext1);
-        java.lang.Object[] zoneOffsetTransitionRuleArray = createArray("sun.util.calendar.ZoneInfoFile$ZoneOffsetTransitionRule", 0);
+    @Test(timeout = 10000)
+    public void testMatches7() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        FilteringOperator filteringOperator = FilteringOperator.UNION;
+        compositeFilter.operator = filteringOperator;
+        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[0];
+        compositeFilter.filters = filterArray;
         
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Class zoneOffsetTransitionRuleArrayType = Class.forName("java.lang.Object");
-        Method userEventTriggeredMethod = rpcServerHandlerClazz.getDeclaredMethod("userEventTriggered", tailContextType, zoneOffsetTransitionRuleArrayType);
-        userEventTriggeredMethod.setAccessible(true);
-        java.lang.Object[] userEventTriggeredMethodArguments = new java.lang.Object[2];
-        userEventTriggeredMethodArguments[0] = tailContext;
-        userEventTriggeredMethodArguments[1] = ((Object) zoneOffsetTransitionRuleArray);
-        try {
-            userEventTriggeredMethod.invoke(rpcServerHandler, userEventTriggeredMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testChannelInactive1() throws Throwable  {
-        RpcServerHandler rpcServerHandler = new RpcServerHandler();
+        boolean actual = compositeFilter.matches(null);
         
-        rpcServerHandler.channelInactive(((ChannelHandlerContext) null));
+        assertFalse(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testChannelInactive2() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext, "next", null);
+    public void testMatches8() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        FilteringOperator filteringOperator = FilteringOperator.SUBSTRACTION;
+        compositeFilter.operator = filteringOperator;
+        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[9];
+        compositeFilter.filters = filterArray;
         
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Method channelInactiveMethod = rpcServerHandlerClazz.getDeclaredMethod("channelInactive", tailContextType);
-        channelInactiveMethod.setAccessible(true);
-        java.lang.Object[] channelInactiveMethodArguments = new java.lang.Object[1];
-        channelInactiveMethodArguments[0] = tailContext;
-        try {
-            channelInactiveMethod.invoke(rpcServerHandler, channelInactiveMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testChannelInactive3() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
-        setField(defaultChannelHandlerContext, "handlerState", 0);
-        setField(defaultChannelHandlerContext, "executor", null);
-        setField(defaultChannelHandlerContext, "ordered", false);
-        setField(defaultChannelHandlerContext, "inbound", false);
-        Object defaultChannelHandlerContext1 = createInstance("io.netty.channel.DefaultChannelHandlerContext");
-        setField(defaultChannelHandlerContext1, "handlerState", 1);
-        GlobalEventExecutor globalEventExecutor = ((GlobalEventExecutor) createInstance("io.netty.util.concurrent.GlobalEventExecutor"));
-        Thread thread = ((Thread) createInstance("java.lang.Thread"));
-        setField(globalEventExecutor, "thread", thread);
-        setField(defaultChannelHandlerContext1, "executor", globalEventExecutor);
-        setField(defaultChannelHandlerContext1, "ordered", false);
-        setField(defaultChannelHandlerContext1, "inbound", true);
-        setField(defaultChannelHandlerContext1, "next", null);
-        ChannelOutboundHandlerAdapter channelOutboundHandlerAdapter = ((ChannelOutboundHandlerAdapter) createInstance("io.netty.channel.ChannelOutboundHandlerAdapter"));
-        setField(defaultChannelHandlerContext1, "handler", channelOutboundHandlerAdapter);
-        setField(defaultChannelHandlerContext, "next", defaultChannelHandlerContext1);
-        setField(defaultChannelHandlerContext, "handler", null);
+        Filter initialCompositeFilterFilters0 = compositeFilter.filters[0];
+        Filter initialCompositeFilterFilters1 = compositeFilter.filters[1];
+        Filter initialCompositeFilterFilters2 = compositeFilter.filters[2];
+        Filter initialCompositeFilterFilters3 = compositeFilter.filters[3];
+        Filter initialCompositeFilterFilters4 = compositeFilter.filters[4];
+        Filter initialCompositeFilterFilters5 = compositeFilter.filters[5];
+        Filter initialCompositeFilterFilters6 = compositeFilter.filters[6];
+        Filter initialCompositeFilterFilters7 = compositeFilter.filters[7];
+        Filter initialCompositeFilterFilters8 = compositeFilter.filters[8];
         
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class defaultChannelHandlerContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Method channelInactiveMethod = rpcServerHandlerClazz.getDeclaredMethod("channelInactive", defaultChannelHandlerContextType);
-        channelInactiveMethod.setAccessible(true);
-        java.lang.Object[] channelInactiveMethodArguments = new java.lang.Object[1];
-        channelInactiveMethodArguments[0] = defaultChannelHandlerContext;
-        try {
-            channelInactiveMethod.invoke(rpcServerHandler, channelInactiveMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testChannelInactive4() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext, "executor", null);
-        setField(tailContext, "inbound", false);
-        Object headContext = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
-        setField(headContext, "executor", null);
-        setField(headContext, "inbound", false);
-        Object tailContext1 = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        NioEventLoop nioEventLoop = ((NioEventLoop) createInstance("io.netty.channel.nio.NioEventLoop"));
-        setField(tailContext1, "executor", nioEventLoop);
-        setField(tailContext1, "inbound", true);
-        setField(tailContext1, "next", null);
-        setField(headContext, "next", tailContext1);
-        setField(tailContext, "next", headContext);
+        compositeFilter.matches(null);
         
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Method channelInactiveMethod = rpcServerHandlerClazz.getDeclaredMethod("channelInactive", tailContextType);
-        channelInactiveMethod.setAccessible(true);
-        java.lang.Object[] channelInactiveMethodArguments = new java.lang.Object[1];
-        channelInactiveMethodArguments[0] = tailContext;
-        try {
-            channelInactiveMethod.invoke(rpcServerHandler, channelInactiveMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testChannelActive1() throws Throwable  {
-        RpcServerHandler rpcServerHandler = new RpcServerHandler();
+        Filter finalCompositeFilterFilters0 = compositeFilter.filters[0];
+        Filter finalCompositeFilterFilters1 = compositeFilter.filters[1];
+        Filter finalCompositeFilterFilters2 = compositeFilter.filters[2];
+        Filter finalCompositeFilterFilters3 = compositeFilter.filters[3];
+        Filter finalCompositeFilterFilters4 = compositeFilter.filters[4];
+        Filter finalCompositeFilterFilters5 = compositeFilter.filters[5];
+        Filter finalCompositeFilterFilters6 = compositeFilter.filters[6];
+        Filter finalCompositeFilterFilters7 = compositeFilter.filters[7];
+        Filter finalCompositeFilterFilters8 = compositeFilter.filters[8];
         
-        rpcServerHandler.channelActive(((ChannelHandlerContext) null));
+        assertNull(finalCompositeFilterFilters0);
+        
+        assertNull(finalCompositeFilterFilters1);
+        
+        assertNull(finalCompositeFilterFilters2);
+        
+        assertNull(finalCompositeFilterFilters3);
+        
+        assertNull(finalCompositeFilterFilters4);
+        
+        assertNull(finalCompositeFilterFilters5);
+        
+        assertNull(finalCompositeFilterFilters6);
+        
+        assertNull(finalCompositeFilterFilters7);
+        
+        assertNull(finalCompositeFilterFilters8);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testChannelActive2() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext, "next", null);
+    public void testMatches9() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        FilteringOperator filteringOperator = FilteringOperator.UNION;
+        compositeFilter.operator = filteringOperator;
+        spoon.reflect.visitor.Filter[] filterArray = new spoon.reflect.visitor.Filter[9];
+        compositeFilter.filters = filterArray;
         
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Method channelActiveMethod = rpcServerHandlerClazz.getDeclaredMethod("channelActive", tailContextType);
-        channelActiveMethod.setAccessible(true);
-        java.lang.Object[] channelActiveMethodArguments = new java.lang.Object[1];
-        channelActiveMethodArguments[0] = tailContext;
+        Filter initialCompositeFilterFilters0 = compositeFilter.filters[0];
+        Filter initialCompositeFilterFilters1 = compositeFilter.filters[1];
+        Filter initialCompositeFilterFilters2 = compositeFilter.filters[2];
+        Filter initialCompositeFilterFilters3 = compositeFilter.filters[3];
+        Filter initialCompositeFilterFilters4 = compositeFilter.filters[4];
+        Filter initialCompositeFilterFilters5 = compositeFilter.filters[5];
+        Filter initialCompositeFilterFilters6 = compositeFilter.filters[6];
+        Filter initialCompositeFilterFilters7 = compositeFilter.filters[7];
+        Filter initialCompositeFilterFilters8 = compositeFilter.filters[8];
+        
+        compositeFilter.matches(null);
+        
+        Filter finalCompositeFilterFilters0 = compositeFilter.filters[0];
+        Filter finalCompositeFilterFilters1 = compositeFilter.filters[1];
+        Filter finalCompositeFilterFilters2 = compositeFilter.filters[2];
+        Filter finalCompositeFilterFilters3 = compositeFilter.filters[3];
+        Filter finalCompositeFilterFilters4 = compositeFilter.filters[4];
+        Filter finalCompositeFilterFilters5 = compositeFilter.filters[5];
+        Filter finalCompositeFilterFilters6 = compositeFilter.filters[6];
+        Filter finalCompositeFilterFilters7 = compositeFilter.filters[7];
+        Filter finalCompositeFilterFilters8 = compositeFilter.filters[8];
+        
+        assertNull(finalCompositeFilterFilters0);
+        
+        assertNull(finalCompositeFilterFilters1);
+        
+        assertNull(finalCompositeFilterFilters2);
+        
+        assertNull(finalCompositeFilterFilters3);
+        
+        assertNull(finalCompositeFilterFilters4);
+        
+        assertNull(finalCompositeFilterFilters5);
+        
+        assertNull(finalCompositeFilterFilters6);
+        
+        assertNull(finalCompositeFilterFilters7);
+        
+        assertNull(finalCompositeFilterFilters8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHasMatch1() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        
+        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
+        Class filterType = Class.forName("spoon.reflect.visitor.Filter");
+        Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", filterType, ctElementType);
+        hasMatchMethod.setAccessible(true);
+        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
+        hasMatchMethodArguments[0] = null;
+        hasMatchMethodArguments[1] = null;
         try {
-            channelActiveMethod.invoke(rpcServerHandler, channelActiveMethodArguments);
+            hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -382,76 +244,19 @@ public class RpcServerHandlerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testChannelActive3() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext, "handlerState", 0);
-        setField(tailContext, "executor", null);
-        setField(tailContext, "ordered", false);
-        setField(tailContext, "inbound", false);
-        Object tailContext1 = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext1, "handlerState", 0);
-        GlobalEventExecutor globalEventExecutor = ((GlobalEventExecutor) createInstance("io.netty.util.concurrent.GlobalEventExecutor"));
-        Thread thread = ((Thread) createInstance("java.lang.Thread"));
-        setField(globalEventExecutor, "thread", thread);
-        setField(tailContext1, "executor", globalEventExecutor);
-        setField(tailContext1, "ordered", true);
-        setField(tailContext1, "inbound", true);
-        Object tailContext2 = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext2, "handlerState", 0);
-        setField(tailContext2, "executor", null);
-        setField(tailContext2, "ordered", false);
-        setField(tailContext2, "inbound", false);
-        Object tailContext3 = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext3, "handlerState", 0);
-        setField(tailContext3, "executor", null);
-        setField(tailContext3, "ordered", false);
-        setField(tailContext3, "inbound", true);
-        setField(tailContext3, "next", null);
-        setField(tailContext2, "next", tailContext3);
-        setField(tailContext1, "next", tailContext2);
-        setField(tailContext, "next", tailContext1);
+    public void testHasMatch2() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
         
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Method channelActiveMethod = rpcServerHandlerClazz.getDeclaredMethod("channelActive", tailContextType);
-        channelActiveMethod.setAccessible(true);
-        java.lang.Object[] channelActiveMethodArguments = new java.lang.Object[1];
-        channelActiveMethodArguments[0] = tailContext;
+        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
+        Class filterType = Class.forName("spoon.reflect.visitor.Filter");
+        Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", filterType, ctElementType);
+        hasMatchMethod.setAccessible(true);
+        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
+        hasMatchMethodArguments[0] = null;
+        hasMatchMethodArguments[1] = null;
         try {
-            channelActiveMethod.invoke(rpcServerHandler, channelActiveMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testChannelActive4() throws Throwable  {
-        RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        setField(tailContext, "executor", null);
-        setField(tailContext, "inbound", false);
-        Object headContext = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
-        setField(headContext, "executor", null);
-        setField(headContext, "inbound", false);
-        Object tailContext1 = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
-        NioEventLoop nioEventLoop = ((NioEventLoop) createInstance("io.netty.channel.nio.NioEventLoop"));
-        setField(tailContext1, "executor", nioEventLoop);
-        setField(tailContext1, "inbound", true);
-        setField(tailContext1, "next", null);
-        setField(headContext, "next", tailContext1);
-        setField(tailContext, "next", headContext);
-        
-        Class rpcServerHandlerClazz = Class.forName("io.seata.core.rpc.netty.RpcServerHandler");
-        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Method channelActiveMethod = rpcServerHandlerClazz.getDeclaredMethod("channelActive", tailContextType);
-        channelActiveMethod.setAccessible(true);
-        java.lang.Object[] channelActiveMethodArguments = new java.lang.Object[1];
-        channelActiveMethodArguments[0] = tailContext;
-        try {
-            channelActiveMethod.invoke(rpcServerHandler, channelActiveMethodArguments);
+            hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -460,39 +265,137 @@ public class RpcServerHandlerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testChannelRead1() throws Throwable  {
-        RpcServerHandler rpcServerHandler = new RpcServerHandler();
-        Object object = new Object();
+    public void testHasMatch3() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        FieldAccessFilter fieldAccessFilter = ((FieldAccessFilter) createInstance("spoon.reflect.visitor.filter.FieldAccessFilter"));
+        CtAssertImpl ctAssertImpl = ((CtAssertImpl) createInstance("spoon.support.reflect.code.CtAssertImpl"));
         
-        rpcServerHandler.channelRead(((ChannelHandlerContext) null), object);
+        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
+        Class fieldAccessFilterType = Class.forName("spoon.reflect.visitor.Filter");
+        Class ctAssertImplType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", fieldAccessFilterType, ctAssertImplType);
+        hasMatchMethod.setAccessible(true);
+        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
+        hasMatchMethodArguments[0] = fieldAccessFilter;
+        hasMatchMethodArguments[1] = ctAssertImpl;
+        boolean actual = ((boolean) hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments));
+        
+        assertFalse(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testChannelRead2() throws Throwable  {
-        org.mockito.MockedStatic mockedStatic = null;
+    public void testHasMatch4() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        VariableAccessFilter variableAccessFilter = ((VariableAccessFilter) createInstance("spoon.reflect.visitor.filter.VariableAccessFilter"));
+        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
+        setField(variableAccessFilter, "variable", ctFieldReferenceImpl);
+        CtFieldReadImpl ctFieldReadImpl = ((CtFieldReadImpl) createInstance("spoon.support.reflect.code.CtFieldReadImpl"));
+        setField(ctFieldReadImpl, "variable", ctFieldReferenceImpl);
+        
+        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
+        Class variableAccessFilterType = Class.forName("spoon.reflect.visitor.Filter");
+        Class ctFieldReadImplType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", variableAccessFilterType, ctFieldReadImplType);
+        hasMatchMethod.setAccessible(true);
+        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
+        hasMatchMethodArguments[0] = variableAccessFilter;
+        hasMatchMethodArguments[1] = ctFieldReadImpl;
+        boolean actual = ((boolean) hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments));
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHasMatch5() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        AnnotationFilter annotationFilter = ((AnnotationFilter) createInstance("spoon.reflect.visitor.filter.AnnotationFilter"));
+        Class class1 = Object.class;
+        setField(annotationFilter, "type", class1);
+        CtEnumValueImpl ctEnumValueImpl = ((CtEnumValueImpl) createInstance("spoon.support.reflect.declaration.CtEnumValueImpl"));
+        
+        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
+        Class annotationFilterType = Class.forName("spoon.reflect.visitor.Filter");
+        Class ctEnumValueImplType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", annotationFilterType, ctEnumValueImplType);
+        hasMatchMethod.setAccessible(true);
+        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
+        hasMatchMethodArguments[0] = annotationFilter;
+        hasMatchMethodArguments[1] = ctEnumValueImpl;
         try {
-            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
-            Logger loggerMock = mock(Logger.class);
-            mockedStatic.when(() -> {
-                org.slf4j.LoggerFactory.getLogger(any(Class.class));
-            }).thenReturn(loggerMock);
-            RpcServerHandler rpcServerHandler = ((RpcServerHandler) createInstance("io.seata.core.rpc.netty.RpcServerHandler"));
-            
-            rpcServerHandler.channelRead(((ChannelHandlerContext) null), null);
-        } finally {
-            mockedStatic.close();
-        }
+            hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHasMatch6() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        FieldAccessFilter fieldAccessFilter = ((FieldAccessFilter) createInstance("spoon.reflect.visitor.filter.FieldAccessFilter"));
+        CtFieldReferenceImpl ctFieldReferenceImpl = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
+        setField(fieldAccessFilter, "variable", ctFieldReferenceImpl);
+        CtFieldReadImpl ctFieldReadImpl = ((CtFieldReadImpl) createInstance("spoon.support.reflect.code.CtFieldReadImpl"));
+        CtFieldReferenceImpl ctFieldReferenceImpl1 = ((CtFieldReferenceImpl) createInstance("spoon.support.reflect.reference.CtFieldReferenceImpl"));
+        setField(ctFieldReadImpl, "variable", ctFieldReferenceImpl1);
+        
+        Class compositeFilterClazz = Class.forName("spoon.reflect.visitor.filter.CompositeFilter");
+        Class fieldAccessFilterType = Class.forName("spoon.reflect.visitor.Filter");
+        Class ctFieldReadImplType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method hasMatchMethod = compositeFilterClazz.getDeclaredMethod("hasMatch", fieldAccessFilterType, ctFieldReadImplType);
+        hasMatchMethod.setAccessible(true);
+        java.lang.Object[] hasMatchMethodArguments = new java.lang.Object[2];
+        hasMatchMethodArguments[0] = fieldAccessFilter;
+        hasMatchMethodArguments[1] = ctFieldReadImpl;
+        try {
+            hasMatchMethod.invoke(compositeFilter, hasMatchMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType1() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        
+        Class actual = compositeFilter.getType();
+        
+        Class expected = spoon.reflect.declaration.CtElement.class;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testRpcServerHandler1() {
-        RpcServerHandler actual = new RpcServerHandler();
+    public void testGetType2() throws Throwable  {
+        CompositeFilter compositeFilter = ((CompositeFilter) createInstance("spoon.reflect.visitor.filter.CompositeFilter"));
+        
+        Class actual = compositeFilter.getType();
+        
+        Class expected = spoon.reflect.declaration.CtElement.class;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCompositeFilter1() {
+        CompositeFilter actual = new CompositeFilter(null, null);
     }
     ///endregion
     
@@ -520,14 +423,173 @@ public class RpcServerHandlerTest {
         field.setAccessible(true);
         field.set(object, fieldValue);
     }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    static class FieldsPair {
+        final Object o1;
+        final Object o2;
     
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
+        public FieldsPair(Object o1, Object o2) {
+            this.o1 = o1;
+            this.o2 = o2;
+        }
+    
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            FieldsPair that = (FieldsPair) o;
+            return Objects.equals(o1, that.o1) && Objects.equals(o2, that.o2);
+        }
+    
+        @Override
+        public int hashCode() {
+            return Objects.hash(o1, o2);
+        }
+    }
+    
+    private boolean deepEquals(Object o1, Object o2) {
+        try {
+            return deepEquals(o1, o2, new HashSet<>());
+        } catch (Throwable t) {
+            return true;
+        }
+    }
+    
+    private boolean deepEquals(Object o1, Object o2, Set<FieldsPair> visited) {
+        visited.add(new FieldsPair(o1, o2));
+    
+        if (o1 == o2) {
+            return true;
+        }
+    
+        if (o1 == null || o2 == null) {
+            return false;
+        }
+    
+        if (o1 instanceof Iterable) {
+            if (!(o2 instanceof Iterable)) {
+                return false;
+            }
+    
+            return iterablesDeepEquals((Iterable<?>) o1, (Iterable<?>) o2, visited);
         }
         
-        return (Object[]) array;
+        if (o2 instanceof Iterable) {
+            return false;
+        }
+    
+        if (o1 instanceof Map) {
+            if (!(o2 instanceof Map)) {
+                return false;
+            }
+    
+            return mapsDeepEquals((Map<?, ?>) o1, (Map<?, ?>) o2, visited);
+        }
+        
+        if (o2 instanceof Map) {
+            return false;
+        }
+    
+        Class<?> firstClass = o1.getClass();
+        if (firstClass.isArray()) {
+            if (!o2.getClass().isArray()) {
+                return false;
+            }
+    
+            // Primitive arrays should not appear here
+            return arraysDeepEquals(o1, o2, visited);
+        }
+    
+        // common classes
+    
+        // common classes without custom equals, use comparison by fields
+        final List<java.lang.reflect.Field> fields = new ArrayList<>();
+        while (firstClass != Object.class) {
+            fields.addAll(Arrays.asList(firstClass.getDeclaredFields()));
+            // Interface should not appear here
+            firstClass = firstClass.getSuperclass();
+        }
+    
+        for (java.lang.reflect.Field field : fields) {
+            field.setAccessible(true);
+            try {
+                final Object field1 = field.get(o1);
+                final Object field2 = field.get(o2);
+                if (!visited.contains(new FieldsPair(field1, field2)) && !deepEquals(field1, field2, visited)) {
+                    return false;
+                }
+            } catch (IllegalArgumentException e) {
+                return false;
+            } catch (IllegalAccessException e) {
+                // should never occur because field was set accessible
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    private boolean arraysDeepEquals(Object arr1, Object arr2, Set<FieldsPair> visited) {
+        final int length = Array.getLength(arr1);
+        if (length != Array.getLength(arr2)) {
+            return false;
+        }
+    
+        for (int i = 0; i < length; i++) {
+            if (!deepEquals(Array.get(arr1, i), Array.get(arr2, i), visited)) {
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    private boolean iterablesDeepEquals(Iterable<?> i1, Iterable<?> i2, Set<FieldsPair> visited) {
+        final Iterator<?> firstIterator = i1.iterator();
+        final Iterator<?> secondIterator = i2.iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    private boolean mapsDeepEquals(Map<?, ?> m1, Map<?, ?> m2, Set<FieldsPair> visited) {
+        final Iterator<? extends Map.Entry<?, ?>> firstIterator = m1.entrySet().iterator();
+        final Iterator<? extends Map.Entry<?, ?>> secondIterator = m2.entrySet().iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            final Map.Entry<?, ?> firstEntry = firstIterator.next();
+            final Map.Entry<?, ?> secondEntry = secondIterator.next();
+    
+            if (!deepEquals(firstEntry.getKey(), secondEntry.getKey(), visited)) {
+                return false;
+            }
+    
+            if (!deepEquals(firstEntry.getValue(), secondEntry.getValue(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    private boolean hasCustomEquals(Class<?> clazz) {
+        while (!Object.class.equals(clazz)) {
+            try {
+                clazz.getDeclaredMethod("equals", Object.class);
+                return true;
+            } catch (Exception e) { 
+                // Interface should not appear here
+                clazz = clazz.getSuperclass();
+            }
+        }
+    
+        return false;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

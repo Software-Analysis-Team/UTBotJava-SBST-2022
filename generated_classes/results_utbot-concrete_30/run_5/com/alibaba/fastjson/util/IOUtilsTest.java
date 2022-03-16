@@ -1,163 +1,1082 @@
-package com.alibaba.fastjson.parser.deserializer;
+package com.alibaba.fastjson.util;
 
 import org.junit.Test;
-import com.alibaba.fastjson.parser.DefaultJSONParser;
-import java.lang.reflect.Type;
-import java.util.Map;
-import com.alibaba.fastjson.util.FieldInfo;
-import sun.reflect.generics.reflectiveObjects.WildcardTypeImpl;
 import java.lang.reflect.Method;
-import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
-import com.alibaba.fastjson.parser.ParserConfig;
-import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.fastjson.util.IdentityHashMap;
+import java.util.jar.JarInputStream;
+import java.util.zip.ZipInputStream;
+import java.util.zip.Inflater;
+import java.util.zip.GZIPOutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Array;
-import java.util.Objects;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Arrays;
-import java.util.Iterator;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 
-public class DefaultFieldDeserializerTest {
+public class IOUtilsTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField1() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        Object object = new Object();
+    public void testGetStringProperty1() throws Throwable  {
+        String string = new String();
         
-        defaultFieldDeserializer.parseField(defaultJSONParser, object, ((Type) null), ((Map) null));
+        IOUtils.getStringProperty(string);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField2() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", null);
-        
-        defaultFieldDeserializer.parseField(((DefaultJSONParser) null), null, ((Type) null), ((Map) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField3() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        WildcardTypeImpl wildcardTypeImpl = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
-        setField(fieldInfo, "fieldType", wildcardTypeImpl);
-        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
-        JavaBeanDeserializer javaBeanDeserializer = ((JavaBeanDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer"));
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", javaBeanDeserializer);
-        java.lang.Object[] ofIntArray = createArray("java.util.stream.ForEachOps$ForEachOp$OfInt", 0);
-        Object parameterizedTypeImpl = createInstance("retrofit2.Utils$ParameterizedTypeImpl");
-        
-        Class defaultFieldDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class ofIntArrayType = Class.forName("java.lang.Object");
-        Class parameterizedTypeImplType = Class.forName("java.lang.reflect.Type");
-        Class mapType = Class.forName("java.util.Map");
-        Method parseFieldMethod = defaultFieldDeserializerClazz.getDeclaredMethod("parseField", defaultJSONParserType, ofIntArrayType, parameterizedTypeImplType, mapType);
-        parseFieldMethod.setAccessible(true);
-        java.lang.Object[] parseFieldMethodArguments = new java.lang.Object[4];
-        parseFieldMethodArguments[0] = null;
-        parseFieldMethodArguments[1] = ((Object) ofIntArray);
-        parseFieldMethodArguments[2] = parameterizedTypeImpl;
-        parseFieldMethodArguments[3] = null;
-        try {
-            parseFieldMethod.invoke(defaultFieldDeserializer, parseFieldMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField4() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+    public void testGetStringProperty2() throws Throwable  {
         String string = new String("");
-        setField(fieldInfo, "format", string);
-        setField(fieldInfo, "parserFeatures", 0);
-        WildcardTypeImpl wildcardTypeImpl = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
-        setField(fieldInfo, "fieldType", wildcardTypeImpl);
-        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
-        JavaBeanDeserializer javaBeanDeserializer = ((JavaBeanDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer"));
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", javaBeanDeserializer);
         
-        defaultFieldDeserializer.parseField(((DefaultJSONParser) null), null, ((Type) null), ((Map) null));
+        IOUtils.getStringProperty(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEncodeUTF81() throws Throwable  {
+        char[] charArray = new char[0];
+        byte[] byteArray = new byte[0];
+        
+        int actual = IOUtils.encodeUTF8(charArray, 0, 0, byteArray);
+        
+        assertEquals(0, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField5() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", null);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+    public void testEncodeUTF82() throws Throwable  {
+        char[] charArray = new char[9];
         
-        defaultFieldDeserializer.parseField(defaultJSONParser, null, ((Type) null), ((Map) null));
+        IOUtils.encodeUTF8(charArray, 0, 0, null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField6() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        WildcardTypeImpl wildcardTypeImpl = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
-        setField(fieldInfo, "fieldType", wildcardTypeImpl);
-        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
-        JavaBeanDeserializer javaBeanDeserializer = ((JavaBeanDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer"));
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", javaBeanDeserializer);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        java.lang.Object[] ofIntArray = createArray("java.util.stream.ForEachOps$ForEachOp$OfInt", 0);
-        Object syntheticParameterizedType = createInstance("org.springframework.core.ResolvableType$SyntheticParameterizedType");
+    public void testEncodeUTF83() throws Throwable  {
+        char[] charArray = new char[9];
+        byte[] byteArray = new byte[32];
         
-        Class defaultFieldDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class ofIntArrayType = Class.forName("java.lang.Object");
-        Class syntheticParameterizedTypeType = Class.forName("java.lang.reflect.Type");
-        Class mapType = Class.forName("java.util.Map");
-        Method parseFieldMethod = defaultFieldDeserializerClazz.getDeclaredMethod("parseField", defaultJSONParserType, ofIntArrayType, syntheticParameterizedTypeType, mapType);
-        parseFieldMethod.setAccessible(true);
-        java.lang.Object[] parseFieldMethodArguments = new java.lang.Object[4];
-        parseFieldMethodArguments[0] = defaultJSONParser;
-        parseFieldMethodArguments[1] = ((Object) ofIntArray);
-        parseFieldMethodArguments[2] = syntheticParameterizedType;
-        parseFieldMethodArguments[3] = null;
+        IOUtils.encodeUTF8(charArray, 1073741824, 1, byteArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEncodeUTF84() throws Throwable  {
+        char[] charArray = new char[17];
+        byte[] byteArray = new byte[32];
+        
+        int actual = IOUtils.encodeUTF8(charArray, 0, 1, byteArray);
+        
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEncodeUTF85() throws Throwable  {
+        char[] charArray = new char[17];
+        byte[] byteArray = new byte[0];
+        
+        IOUtils.encodeUTF8(charArray, 0, 1, byteArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLoadPropertiesFromFile1() throws Throwable  {
+        IOUtils.loadPropertiesFromFile();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLoadPropertiesFromFile2() throws Throwable  {
+        IOUtils.loadPropertiesFromFile();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testFirstIdentifier1() throws Throwable  {
+        boolean actual = IOUtils.firstIdentifier('\u0000');
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsIdent1() throws Throwable  {
+        boolean actual = IOUtils.isIdent('\u0000');
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase641() throws Throwable  {
+        String string = new String();
+        
+        byte[] actual = IOUtils.decodeBase64(string);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase642() throws Throwable  {
+        IOUtils.decodeBase64(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase643() throws Throwable  {
+        String string = new String("");
+        
+        byte[] actual = IOUtils.decodeBase64(string);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase644() throws Throwable  {
+        String string = new String("\u0000");
+        
+        byte[] actual = IOUtils.decodeBase64(string);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase645() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase646() throws Throwable  {
+        char[] charArray = new char[17];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase647() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        IOUtils.decodeBase64(charArray, 0, 1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase648() throws Throwable  {
+        char[] charArray = new char[15];
+        charArray[0] = '=';
+        
+        IOUtils.decodeBase64(charArray, 0, 1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase649() throws Throwable  {
+        char[] charArray = new char[9];
+        
+        IOUtils.decodeBase64(charArray, 1744830465, -1744830464);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6410() throws Throwable  {
+        char[] charArray = new char[9];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, 0, 1);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6411() throws Throwable  {
+        char[] charArray = new char[9];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, Integer.MAX_VALUE, -2147483646);
+        
+        byte[] expected = new byte[1];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6412() throws Throwable  {
+        IOUtils.decodeBase64(((char[]) null), 1608089600, -536903680);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6413() throws Throwable  {
+        char[] charArray = new char[10];
+        
+        IOUtils.decodeBase64(charArray, 534347776, 1597997056);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6414() throws Throwable  {
+        char[] charArray = new char[10];
+        
+        IOUtils.decodeBase64(charArray, 2147483624, -2147483623);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6415() throws Throwable  {
+        String string = new String();
+        
+        byte[] actual = IOUtils.decodeBase64(string, 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6416() throws Throwable  {
+        byte[] actual = IOUtils.decodeBase64(((String) null), 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6417() throws Throwable  {
+        IOUtils.decodeBase64(((String) null), 715827880, -2147483640);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6418() throws Throwable  {
+        String string = new String("\u0000");
+        
+        IOUtils.decodeBase64(string, 976568320, -976568319);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6419() throws Throwable  {
+        String string = new String("\u0000");
+        
+        byte[] actual = IOUtils.decodeBase64(string, 0, 1);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6420() throws Throwable  {
+        IOUtils.decodeBase64(((String) null), 1073741952, -1072136104);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6421() throws Throwable  {
+        String string = new String("\u0000");
+        
+        byte[] actual = IOUtils.decodeBase64(string, 715827882, -715827881);
+        
+        byte[] expected = new byte[1];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6422() throws Throwable  {
+        IOUtils.decodeBase64(((String) null), -2147483376, 7963720);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6423() throws Throwable  {
+        String string = new String("\u0000");
+        
+        IOUtils.decodeBase64(string, 1431655752, -1431655751);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6424() throws Throwable  {
+        String string = new String("=");
+        
+        IOUtils.decodeBase64(string, 0, 1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF81() throws Throwable  {
+        byte[] byteArray = new byte[0];
+        char[] charArray = new char[0];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 0, 0, charArray);
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF82() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        
+        IOUtils.decodeUTF8(byteArray, 0, 0, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF83() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        char[] charArray = new char[32];
+        
+        IOUtils.decodeUTF8(byteArray, 1073741824, 1, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF84() throws Throwable  {
+        char[] charArray = new char[10];
+        
+        int actual = IOUtils.decodeUTF8(null, 12288, -2147482613, charArray);
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF85() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        char[] charArray = new char[0];
+        
+        IOUtils.decodeUTF8(byteArray, -1341828864, -1073987583, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF86() throws Throwable  {
+        byte[] byteArray = new byte[34];
+        byteArray[33] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[31];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 33, 31, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF87() throws Throwable  {
+        byte[] byteArray = new byte[34];
+        byteArray[32] = (byte) -16;
+        char[] charArray = new char[17];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 32, 2, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF88() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        byteArray[8] = (byte) -32;
+        char[] charArray = new char[40];
+        
+        IOUtils.decodeUTF8(byteArray, 8, 39, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF89() throws Throwable  {
+        byte[] byteArray = new byte[34];
+        byteArray[32] = (byte) -32;
+        char[] charArray = new char[15];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 32, 1, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF810() throws Throwable  {
+        byte[] byteArray = new byte[34];
+        byteArray[33] = (byte) -64;
+        char[] charArray = new char[31];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 33, 31, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF811() throws Throwable  {
+        byte[] byteArray = new byte[34];
+        byteArray[32] = (byte) -62;
+        char[] charArray = new char[15];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 32, 1, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF812() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        byteArray[8] = (byte) -16;
+        char[] charArray = new char[40];
+        
+        IOUtils.decodeUTF8(byteArray, 8, 39, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF813() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        byteArray[8] = (byte) -62;
+        char[] charArray = new char[40];
+        
+        IOUtils.decodeUTF8(byteArray, 8, 39, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF814() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[3] = (byte) -31;
+        byteArray[4] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[12];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 3, 11, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF815() throws Throwable  {
+        byte[] byteArray = new byte[10];
+        byteArray[8] = (byte) -16;
+        char[] charArray = new char[40];
+        
+        IOUtils.decodeUTF8(byteArray, 8, 39, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF816() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[3] = (byte) -32;
+        byteArray[4] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[12];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 3, 11, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF817() throws Throwable  {
+        byte[] byteArray = new byte[11];
+        byteArray[1] = (byte) -62;
+        char[] charArray = new char[40];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 1, 38, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF818() throws Throwable  {
+        byte[] byteArray = new byte[11];
+        byteArray[1] = (byte) -62;
+        byteArray[2] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[40];
+        
+        IOUtils.decodeUTF8(byteArray, 1, 38, charArray);
+        
+        char finalCharArray0 = charArray[0];
+        
+        assertEquals('\u0080', finalCharArray0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF819() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[3] = (byte) -31;
+        byteArray[4] = java.lang.Byte.MIN_VALUE;
+        byteArray[5] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[12];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 3, 11, charArray);
+        
+        assertEquals(9, actual);
+        
+        char finalCharArray0 = charArray[0];
+        
+        assertEquals('\u1000', finalCharArray0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF820() throws Throwable  {
+        byte[] byteArray = new byte[17];
+        char[] charArray = new char[32];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 0, 1, charArray);
+        
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReadAll1() throws Throwable  {
+        IOUtils.readAll(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam1() throws Throwable  {
+        String string = new String();
+        
+        boolean actual = IOUtils.isValidJsonpQueryParam(string);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam2() throws Throwable  {
+        boolean actual = IOUtils.isValidJsonpQueryParam(null);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam3() throws Throwable  {
+        String string = new String("");
+        
+        boolean actual = IOUtils.isValidJsonpQueryParam(string);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam4() throws Throwable  {
+        String string = new String(".");
+        
+        boolean actual = IOUtils.isValidJsonpQueryParam(string);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam5() throws Throwable  {
+        String string = new String("..\u0000");
+        
+        boolean actual = IOUtils.isValidJsonpQueryParam(string);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars1() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        IOUtils.getChars(0, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars2() throws Throwable  {
+        char[] charArray = new char[17];
+        
+        IOUtils.getChars(Integer.MIN_VALUE, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars3() throws Throwable  {
+        char[] charArray = new char[17];
+        
+        IOUtils.getChars(65536, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars4() throws Throwable  {
+        char[] charArray = new char[17];
+        
+        IOUtils.getChars(0, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars5() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        IOUtils.getChars((byte) 0, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars6() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        IOUtils.getChars(0L, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars7() throws Throwable  {
+        char[] charArray = new char[17];
+        
+        IOUtils.getChars(-1073774592L, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars8() throws Throwable  {
+        char[] charArray = new char[17];
+        
+        IOUtils.getChars(4611686018427387904L, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars9() throws Throwable  {
+        IOUtils.getChars(1L, 0, ((char[]) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode1() throws Throwable  {
+        IOUtils.decode(null, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode2() throws Throwable  {
+        IOUtils.decode(null, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode3() throws Throwable  {
+        UTF8Decoder uTF8Decoder = ((UTF8Decoder) createInstance("com.alibaba.fastjson.util.UTF8Decoder"));
+        setField(uTF8Decoder, "state", 2);
+        
+        IOUtils.decode(uTF8Decoder, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecode4() throws Throwable  {
+        UTF8Decoder uTF8Decoder = ((UTF8Decoder) createInstance("com.alibaba.fastjson.util.UTF8Decoder"));
+        setField(uTF8Decoder, "state", 1);
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "limit", 0);
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "isReadOnly", false);
+        setField(heapByteBuffer, "offset", 0);
+        byte[] byteArray = new byte[9];
+        setField(heapByteBuffer, "hb", byteArray);
+        Object heapCharBufferR = createInstance("java.nio.HeapCharBufferR");
+        setField(heapCharBufferR, "limit", 0);
+        setField(heapCharBufferR, "position", 0);
+        setField(heapCharBufferR, "isReadOnly", false);
+        char[] charArray = new char[10];
+        setField(heapCharBufferR, "hb", charArray);
+        
+        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
+        Class uTF8DecoderType = Class.forName("java.nio.charset.CharsetDecoder");
+        Class heapByteBufferType = Class.forName("java.nio.ByteBuffer");
+        Class heapCharBufferRType = Class.forName("java.nio.CharBuffer");
+        Method decodeMethod = iOUtilsClazz.getDeclaredMethod("decode", uTF8DecoderType, heapByteBufferType, heapCharBufferRType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[3];
+        decodeMethodArguments[0] = uTF8Decoder;
+        decodeMethodArguments[1] = heapByteBuffer;
+        decodeMethodArguments[2] = heapCharBufferR;
+        decodeMethod.invoke(null, decodeMethodArguments);
+        
+        Object finalUTF8DecoderState = getFieldValue(uTF8Decoder, "state");
+        
+        assertEquals(3, finalUTF8DecoderState);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode5() throws Throwable  {
+        Object decoder = createInstance("sun.nio.cs.US_ASCII$Decoder");
+        setField(decoder, "state", 1);
+        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
+        setField(heapByteBufferR, "limit", 1);
+        setField(heapByteBufferR, "position", 0);
+        setField(heapByteBufferR, "isReadOnly", true);
+        setField(heapByteBufferR, "offset", 0);
+        byte[] byteArray = new byte[9];
+        setField(heapByteBufferR, "hb", byteArray);
+        Object heapCharBufferR = createInstance("java.nio.HeapCharBufferR");
+        setField(heapCharBufferR, "limit", 0);
+        setField(heapCharBufferR, "position", 0);
+        
+        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
+        Class decoderType = Class.forName("java.nio.charset.CharsetDecoder");
+        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
+        Class heapCharBufferRType = Class.forName("java.nio.CharBuffer");
+        Method decodeMethod = iOUtilsClazz.getDeclaredMethod("decode", decoderType, heapByteBufferRType, heapCharBufferRType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[3];
+        decodeMethodArguments[0] = decoder;
+        decodeMethodArguments[1] = heapByteBufferR;
+        decodeMethodArguments[2] = heapCharBufferR;
         try {
-            parseFieldMethod.invoke(defaultFieldDeserializer, parseFieldMethodArguments);
+            decodeMethod.invoke(null, decodeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }}
+        }
+        Object finalDecoderState = getFieldValue(decoder, "state");
+        
+        assertEquals(2, finalDecoderState);
+    }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetFastMatchToken1() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
+    public void testClose1() throws Throwable  {
+        IOUtils.close(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testClose2() throws Throwable  {
+        IOUtils.close(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testClose3() throws Throwable  {
+        JarInputStream jarInputStream = ((JarInputStream) createInstance("java.util.jar.JarInputStream"));
+        setField(jarInputStream, "closed", true);
         
-        int actual = defaultFieldDeserializer.getFastMatchToken();
+        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
+        Class jarInputStreamType = Class.forName("java.io.Closeable");
+        Method closeMethod = iOUtilsClazz.getDeclaredMethod("close", jarInputStreamType);
+        closeMethod.setAccessible(true);
+        java.lang.Object[] closeMethodArguments = new java.lang.Object[1];
+        closeMethodArguments[0] = jarInputStream;
+        closeMethod.invoke(null, closeMethodArguments);
+        
+        Object finalJarInputStreamClosed = getFieldValue(jarInputStream, "closed");
+        
+        Class assertClazz = Class.forName("org.junit.Assert");
+        Class finalJarInputStreamClosedType = boolean.class;
+        Method assertFalseMethod = assertClazz.getDeclaredMethod("assertFalse", finalJarInputStreamClosedType);
+        assertFalseMethod.setAccessible(true);
+        java.lang.Object[] assertFalseMethodArguments = new java.lang.Object[1];
+        assertFalseMethodArguments[0] = finalJarInputStreamClosed;
+        assertFalseMethod.invoke(null, assertFalseMethodArguments);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testClose4() throws Throwable  {
+        JarInputStream jarInputStream = ((JarInputStream) createInstance("java.util.jar.JarInputStream"));
+        ZipInputStream zipInputStream = ((ZipInputStream) createInstance("java.util.zip.ZipInputStream"));
+        setField(zipInputStream, "in", null);
+        setField(zipInputStream, "usesDefaultInflater", false);
+        setField(zipInputStream, "closed", true);
+        setField(zipInputStream, "inf", null);
+        setField(jarInputStream, "in", zipInputStream);
+        setField(jarInputStream, "usesDefaultInflater", true);
+        setField(jarInputStream, "closed", false);
+        Inflater inflater = ((Inflater) createInstance("java.util.zip.Inflater"));
+        setField(inflater, "buf", null);
+        Object zStreamRef = createInstance("java.util.zip.ZStreamRef");
+        setField(zStreamRef, "address", -9223372036854775807L);
+        setField(inflater, "zsRef", zStreamRef);
+        setField(jarInputStream, "inf", inflater);
+        
+        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
+        Class jarInputStreamType = Class.forName("java.io.Closeable");
+        Method closeMethod = iOUtilsClazz.getDeclaredMethod("close", jarInputStreamType);
+        closeMethod.setAccessible(true);
+        java.lang.Object[] closeMethodArguments = new java.lang.Object[1];
+        closeMethodArguments[0] = jarInputStream;
+        closeMethod.invoke(null, closeMethodArguments);
+        
+        Object finalJarInputStreamClosed = getFieldValue(jarInputStream, "closed");
+        Object jarInputStreamInf = getFieldValue(jarInputStream, "inf");
+        Object jarInputStreamInfInfZsRef = getFieldValue(jarInputStreamInf, "zsRef");
+        Object finalJarInputStreamInfZsRefAddress = getFieldValue(jarInputStreamInfInfZsRef, "address");
+        
+        Class assertClazz = Class.forName("org.junit.Assert");
+        Class finalJarInputStreamClosedType = boolean.class;
+        Method assertTrueMethod = assertClazz.getDeclaredMethod("assertTrue", finalJarInputStreamClosedType);
+        assertTrueMethod.setAccessible(true);
+        java.lang.Object[] assertTrueMethodArguments = new java.lang.Object[1];
+        assertTrueMethodArguments[0] = finalJarInputStreamClosed;
+        assertTrueMethod.invoke(null, assertTrueMethodArguments);
+        
+        assertEquals(0L, finalJarInputStreamInfZsRefAddress);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testClose5() throws Throwable  {
+        GZIPOutputStream gZIPOutputStream = ((GZIPOutputStream) createInstance("java.util.zip.GZIPOutputStream"));
+        setField(gZIPOutputStream, "closed", true);
+        
+        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
+        Class gZIPOutputStreamType = Class.forName("java.io.Closeable");
+        Method closeMethod = iOUtilsClazz.getDeclaredMethod("close", gZIPOutputStreamType);
+        closeMethod.setAccessible(true);
+        java.lang.Object[] closeMethodArguments = new java.lang.Object[1];
+        closeMethodArguments[0] = gZIPOutputStream;
+        closeMethod.invoke(null, closeMethodArguments);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testClose6() throws Throwable  {
+        JarInputStream jarInputStream = ((JarInputStream) createInstance("java.util.jar.JarInputStream"));
+        ZipInputStream zipInputStream = ((ZipInputStream) createInstance("java.util.zip.ZipInputStream"));
+        setField(zipInputStream, "in", null);
+        setField(zipInputStream, "usesDefaultInflater", false);
+        setField(zipInputStream, "closed", false);
+        setField(zipInputStream, "inf", null);
+        setField(jarInputStream, "in", zipInputStream);
+        setField(jarInputStream, "usesDefaultInflater", true);
+        setField(jarInputStream, "closed", false);
+        Inflater inflater = ((Inflater) createInstance("java.util.zip.Inflater"));
+        Object zStreamRef = createInstance("java.util.zip.ZStreamRef");
+        setField(zStreamRef, "address", 0L);
+        setField(inflater, "zsRef", zStreamRef);
+        setField(jarInputStream, "inf", inflater);
+        
+        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
+        Class jarInputStreamType = Class.forName("java.io.Closeable");
+        Method closeMethod = iOUtilsClazz.getDeclaredMethod("close", jarInputStreamType);
+        closeMethod.setAccessible(true);
+        java.lang.Object[] closeMethodArguments = new java.lang.Object[1];
+        closeMethodArguments[0] = jarInputStream;
+        closeMethod.invoke(null, closeMethodArguments);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testStringSize1() throws Throwable  {
+        int actual = IOUtils.stringSize(0L);
+        
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testStringSize2() throws Throwable  {
+        int actual = IOUtils.stringSize(-9223372036854775797L);
+        
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testStringSize3() throws Throwable  {
+        int actual = IOUtils.stringSize(11L);
         
         assertEquals(2, actual);
     }
@@ -166,212 +1085,26 @@ public class DefaultFieldDeserializerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetFastMatchToken2() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", null);
+    public void testStringSize4() throws Throwable  {
+        int actual = IOUtils.stringSize(1000000000000000000L);
         
-        int actual = defaultFieldDeserializer.getFastMatchToken();
-        
-        assertEquals(2, actual);
+        assertEquals(19, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetFastMatchToken3() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        ThrowableDeserializer throwableDeserializer = ((ThrowableDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer"));
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", throwableDeserializer);
-        
-        int actual = defaultFieldDeserializer.getFastMatchToken();
-        
-        assertEquals(12, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseFieldUnwrapped1() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        Object object = new Object();
-        
-        defaultFieldDeserializer.parseFieldUnwrapped(defaultJSONParser, object, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseFieldUnwrapped2() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        java.lang.Object[] privilegedThreadFactoryArray = createArray("[[[Ljava.util.concurrent.Executors$PrivilegedThreadFactory;", 0);
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        
-        defaultFieldDeserializer.parseFieldUnwrapped(defaultJSONParser, privilegedThreadFactoryArray, typeVariableImpl, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFieldValueDeserilizer1() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        ParserConfig parserConfig = new ParserConfig();
-        
-        defaultFieldDeserializer.getFieldValueDeserilizer(parserConfig);
+    public void testIOUtils1() {
+        IOUtils actual = new IOUtils();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetFieldValueDeserilizer2() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        ThrowableDeserializer throwableDeserializer = ((ThrowableDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer"));
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", throwableDeserializer);
-        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        
-        ObjectDeserializer actual = defaultFieldDeserializer.getFieldValueDeserilizer(parserConfig);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(throwableDeserializer, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFieldValueDeserilizer3() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        JSONField jSONFieldMock = mock(JSONField.class);
-        Class class1 = Object.class;
-        when(jSONFieldMock.deserializeUsing()).thenReturn(class1);
-        setField(fieldInfo, "fieldAnnotation", jSONFieldMock);
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        setField(fieldInfo, "fieldType", typeVariableImpl);
-        setField(fieldInfo, "fieldClass", class1);
-        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", null);
-        
-        FieldInfo fieldInfo1 = defaultFieldDeserializer.fieldInfo;
-        Object initialDefaultFieldDeserializerFieldInfoFieldAnnotation = getFieldValue(fieldInfo1, "fieldAnnotation");
-        
-        defaultFieldDeserializer.getFieldValueDeserilizer(null);
-        
-        FieldInfo fieldInfo2 = defaultFieldDeserializer.fieldInfo;
-        Object finalDefaultFieldDeserializerFieldInfoFieldAnnotation = getFieldValue(fieldInfo2, "fieldAnnotation");
-        
-        assertFalse(initialDefaultFieldDeserializerFieldInfoFieldAnnotation == finalDefaultFieldDeserializerFieldInfoFieldAnnotation);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFieldValueDeserilizer4() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        JSONField jSONFieldMock = mock(JSONField.class);
-        Class class1 = Object.class;
-        when(jSONFieldMock.deserializeUsing()).thenReturn(class1, ((Class) null));
-        setField(fieldInfo, "fieldAnnotation", jSONFieldMock);
-        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", null);
-        
-        FieldInfo fieldInfo1 = defaultFieldDeserializer.fieldInfo;
-        Object initialDefaultFieldDeserializerFieldInfoFieldAnnotation = getFieldValue(fieldInfo1, "fieldAnnotation");
-        
-        defaultFieldDeserializer.getFieldValueDeserilizer(null);
-        
-        FieldInfo fieldInfo2 = defaultFieldDeserializer.fieldInfo;
-        Object finalDefaultFieldDeserializerFieldInfoFieldAnnotation = getFieldValue(fieldInfo2, "fieldAnnotation");
-        
-        assertFalse(initialDefaultFieldDeserializerFieldInfoFieldAnnotation == finalDefaultFieldDeserializerFieldInfoFieldAnnotation);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetFieldValueDeserilizer5() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        JSONField jSONFieldMock = mock(JSONField.class);
-        Class class1 = Object.class;
-        when(jSONFieldMock.deserializeUsing()).thenReturn(class1);
-        setField(fieldInfo, "fieldAnnotation", jSONFieldMock);
-        Object wildcardTypeImpl = createInstance("retrofit2.Utils$WildcardTypeImpl");
-        setField(fieldInfo, "fieldType", wildcardTypeImpl);
-        setField(fieldInfo, "fieldClass", class1);
-        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", null);
-        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
-        IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
-        setField(identityHashMap, "indexMask", 38);
-        java.lang.Object[] entryArray = createArray("com.alibaba.fastjson.util.IdentityHashMap$Entry", 39);
-        Object entry = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
-        ThrowableDeserializer throwableDeserializer = ((ThrowableDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer"));
-        setField(entry, "value", throwableDeserializer);
-        setField(entry, "key", wildcardTypeImpl);
-        entryArray[38] = entry;
-        setField(identityHashMap, "buckets", entryArray);
-        setField(parserConfig, "deserializers", identityHashMap);
-        
-        ObjectDeserializer initialDefaultFieldDeserializerFieldValueDeserilizer = defaultFieldDeserializer.fieldValueDeserilizer;
-        
-        ObjectDeserializer actual = defaultFieldDeserializer.getFieldValueDeserilizer(parserConfig);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(throwableDeserializer, actual));
-        
-        ObjectDeserializer finalDefaultFieldDeserializerFieldValueDeserilizer = defaultFieldDeserializer.fieldValueDeserilizer;
-        
-        assertFalse(initialDefaultFieldDeserializerFieldValueDeserilizer == finalDefaultFieldDeserializerFieldValueDeserilizer);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDefaultFieldDeserializer1() throws Throwable  {
-        Class class1 = Object.class;
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        JSONField jSONFieldMock = mock(JSONField.class);
-        when(jSONFieldMock.deserializeUsing()).thenReturn(((Class) null));
-        setField(fieldInfo, "fieldAnnotation", jSONFieldMock);
-        
-        Object initialFieldInfoFieldAnnotation = getFieldValue(fieldInfo, "fieldAnnotation");
-        DefaultFieldDeserializer actual = new DefaultFieldDeserializer(null, class1, fieldInfo);
-        
-        Object finalFieldInfoFieldAnnotation = getFieldValue(fieldInfo, "fieldAnnotation");
-        
-        assertFalse(initialFieldInfoFieldAnnotation == finalFieldInfoFieldAnnotation);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDefaultFieldDeserializer2() throws Throwable  {
-        Class class1 = Object.class;
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        JSONField jSONFieldMock = mock(JSONField.class);
-        when(jSONFieldMock.deserializeUsing()).thenReturn(class1);
-        setField(fieldInfo, "fieldAnnotation", jSONFieldMock);
-        
-        Object initialFieldInfoFieldAnnotation = getFieldValue(fieldInfo, "fieldAnnotation");
-        DefaultFieldDeserializer actual = new DefaultFieldDeserializer(null, class1, fieldInfo);
-        
-        Object finalFieldInfoFieldAnnotation = getFieldValue(fieldInfo, "fieldAnnotation");
-        
-        assertFalse(initialFieldInfoFieldAnnotation == finalFieldInfoFieldAnnotation);
+    public void testIOUtils2() {
+        IOUtils actual = new IOUtils();
     }
     ///endregion
     
@@ -398,183 +1131,6 @@ public class DefaultFieldDeserializerTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
-    }
-    static class FieldsPair {
-        final Object o1;
-        final Object o2;
-    
-        public FieldsPair(Object o1, Object o2) {
-            this.o1 = o1;
-            this.o2 = o2;
-        }
-    
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            FieldsPair that = (FieldsPair) o;
-            return Objects.equals(o1, that.o1) && Objects.equals(o2, that.o2);
-        }
-    
-        @Override
-        public int hashCode() {
-            return Objects.hash(o1, o2);
-        }
-    }
-    
-    private boolean deepEquals(Object o1, Object o2) {
-        try {
-            return deepEquals(o1, o2, new HashSet<>());
-        } catch (Throwable t) {
-            return true;
-        }
-    }
-    
-    private boolean deepEquals(Object o1, Object o2, Set<FieldsPair> visited) {
-        visited.add(new FieldsPair(o1, o2));
-    
-        if (o1 == o2) {
-            return true;
-        }
-    
-        if (o1 == null || o2 == null) {
-            return false;
-        }
-    
-        if (o1 instanceof Iterable) {
-            if (!(o2 instanceof Iterable)) {
-                return false;
-            }
-    
-            return iterablesDeepEquals((Iterable<?>) o1, (Iterable<?>) o2, visited);
-        }
-        
-        if (o2 instanceof Iterable) {
-            return false;
-        }
-    
-        if (o1 instanceof Map) {
-            if (!(o2 instanceof Map)) {
-                return false;
-            }
-    
-            return mapsDeepEquals((Map<?, ?>) o1, (Map<?, ?>) o2, visited);
-        }
-        
-        if (o2 instanceof Map) {
-            return false;
-        }
-    
-        Class<?> firstClass = o1.getClass();
-        if (firstClass.isArray()) {
-            if (!o2.getClass().isArray()) {
-                return false;
-            }
-    
-            // Primitive arrays should not appear here
-            return arraysDeepEquals(o1, o2, visited);
-        }
-    
-        // common classes
-    
-        // common classes without custom equals, use comparison by fields
-        final List<java.lang.reflect.Field> fields = new ArrayList<>();
-        while (firstClass != Object.class) {
-            fields.addAll(Arrays.asList(firstClass.getDeclaredFields()));
-            // Interface should not appear here
-            firstClass = firstClass.getSuperclass();
-        }
-    
-        for (java.lang.reflect.Field field : fields) {
-            field.setAccessible(true);
-            try {
-                final Object field1 = field.get(o1);
-                final Object field2 = field.get(o2);
-                if (!visited.contains(new FieldsPair(field1, field2)) && !deepEquals(field1, field2, visited)) {
-                    return false;
-                }
-            } catch (IllegalArgumentException e) {
-                return false;
-            } catch (IllegalAccessException e) {
-                // should never occur because field was set accessible
-                return false;
-            }
-        }
-    
-        return true;
-    }
-    private boolean arraysDeepEquals(Object arr1, Object arr2, Set<FieldsPair> visited) {
-        final int length = Array.getLength(arr1);
-        if (length != Array.getLength(arr2)) {
-            return false;
-        }
-    
-        for (int i = 0; i < length; i++) {
-            if (!deepEquals(Array.get(arr1, i), Array.get(arr2, i), visited)) {
-                return false;
-            }
-        }
-    
-        return true;
-    }
-    private boolean iterablesDeepEquals(Iterable<?> i1, Iterable<?> i2, Set<FieldsPair> visited) {
-        final Iterator<?> firstIterator = i1.iterator();
-        final Iterator<?> secondIterator = i2.iterator();
-        while (firstIterator.hasNext() && secondIterator.hasNext()) {
-            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
-                return false;
-            }
-        }
-    
-        if (firstIterator.hasNext()) {
-            return false;
-        }
-    
-        return !secondIterator.hasNext();
-    }
-    private boolean mapsDeepEquals(Map<?, ?> m1, Map<?, ?> m2, Set<FieldsPair> visited) {
-        final Iterator<? extends Map.Entry<?, ?>> firstIterator = m1.entrySet().iterator();
-        final Iterator<? extends Map.Entry<?, ?>> secondIterator = m2.entrySet().iterator();
-        while (firstIterator.hasNext() && secondIterator.hasNext()) {
-            final Map.Entry<?, ?> firstEntry = firstIterator.next();
-            final Map.Entry<?, ?> secondEntry = secondIterator.next();
-    
-            if (!deepEquals(firstEntry.getKey(), secondEntry.getKey(), visited)) {
-                return false;
-            }
-    
-            if (!deepEquals(firstEntry.getValue(), secondEntry.getValue(), visited)) {
-                return false;
-            }
-        }
-    
-        if (firstIterator.hasNext()) {
-            return false;
-        }
-    
-        return !secondIterator.hasNext();
-    }
-    private boolean hasCustomEquals(Class<?> clazz) {
-        while (!Object.class.equals(clazz)) {
-            try {
-                clazz.getDeclaredMethod("equals", Object.class);
-                return true;
-            } catch (Exception e) { 
-                // Interface should not appear here
-                clazz = clazz.getSuperclass();
-            }
-        }
-    
-        return false;
     }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();

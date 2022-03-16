@@ -5,7 +5,6 @@ import java.util.TreeMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import sun.security.util.ByteArrayLexOrder;
-import sun.misc.ASCIICaseInsensitiveComparator;
 import java.lang.reflect.Method;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -56,18 +55,12 @@ public class TreeRangeMapTest {
         TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
         setField(treeMap, "values", null);
         setField(treeMap, "modCount", 0);
-        Object entry = createInstance("java.util.TreeMap$Entry");
-        Object entry1 = createInstance("java.util.TreeMap$Entry");
-        Object entry2 = createInstance("java.util.TreeMap$Entry");
-        setField(entry2, "left", null);
-        setField(entry1, "left", entry2);
-        setField(entry, "left", entry1);
-        setField(treeMap, "root", entry);
+        setField(treeMap, "root", null);
         setField(treeRangeMap, "entriesByLowerBound", treeMap);
         
         String actual = treeRangeMap.toString();
         
-        String expected = new String("[null]");
+        String expected = new String("[]");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -280,36 +273,8 @@ public class TreeRangeMapTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGet2() throws Throwable  {
-        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
-        Object entry = createInstance("java.util.TreeMap$Entry");
-        java.lang.Object[] cOWSubListIteratorArray = createArray("java.util.concurrent.CopyOnWriteArrayList$COWSubListIterator", 0);
-        setField(entry, "key", cOWSubListIteratorArray);
-        setField(treeMap, "root", entry);
-        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
-        setField(treeMap, "comparator", aSCIICaseInsensitiveComparator);
-        setField(treeRangeMap, "entriesByLowerBound", treeMap);
-        Object directByteBufferR = createInstance("java.nio.DirectByteBufferR");
-        
-        Class treeRangeMapClazz = Class.forName("com.google.common.collect.TreeRangeMap");
-        Class directByteBufferRType = Class.forName("java.lang.Comparable");
-        Method getMethod = treeRangeMapClazz.getDeclaredMethod("get", directByteBufferRType);
-        getMethod.setAccessible(true);
-        java.lang.Object[] getMethodArguments = new java.lang.Object[1];
-        getMethodArguments[0] = directByteBufferR;
-        try {
-            getMethod.invoke(treeRangeMap, getMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
-    public void testGet3() throws Throwable  {
+    public void testGet2() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
         setField(treeMap, "root", null);
@@ -376,11 +341,26 @@ public class TreeRangeMapTest {
         Range range = ((Range) createInstance("com.google.common.collect.Range"));
         Object belowAll = createInstance("com.google.common.collect.Cut$BelowAll");
         setField(range, "upperBound", belowAll);
-        Object aboveAll = createInstance("com.google.common.collect.Cut$AboveAll");
-        setField(range, "lowerBound", aboveAll);
+        Object belowAll1 = createInstance("com.google.common.collect.Cut$BelowAll");
+        setField(range, "lowerBound", belowAll1);
         java.lang.Object[] defaultProgressMeteringPolicyArray = createArray("sun.net.DefaultProgressMeteringPolicy", 0);
         
         treeRangeMap.put(range, defaultProgressMeteringPolicyArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPut5() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        Range range = ((Range) createInstance("com.google.common.collect.Range"));
+        Object aboveAll = createInstance("com.google.common.collect.Cut$AboveAll");
+        setField(range, "upperBound", aboveAll);
+        Object aboveValue = createInstance("com.google.common.collect.Cut$AboveValue");
+        setField(range, "lowerBound", aboveValue);
+        
+        treeRangeMap.put(range, null);
     }
     ///endregion
     
@@ -415,8 +395,23 @@ public class TreeRangeMapTest {
     public void testPutAll2() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         ImmutableRangeMap immutableRangeMap = ((ImmutableRangeMap) createInstance("com.google.common.collect.ImmutableRangeMap"));
-        Object values = createInstance("com.google.common.collect.RegularImmutableMap$Values");
-        setField(immutableRangeMap, "ranges", values);
+        SingletonImmutableList singletonImmutableList = ((SingletonImmutableList) createInstance("com.google.common.collect.SingletonImmutableList"));
+        setField(immutableRangeMap, "ranges", singletonImmutableList);
+        
+        treeRangeMap.putAll(immutableRangeMap);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPutAll3() throws Throwable  {
+        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
+        ImmutableRangeMap immutableRangeMap = ((ImmutableRangeMap) createInstance("com.google.common.collect.ImmutableRangeMap"));
+        RegularImmutableList regularImmutableList = ((RegularImmutableList) createInstance("com.google.common.collect.RegularImmutableList"));
+        java.lang.Object[] objectArray = new java.lang.Object[0];
+        setField(regularImmutableList, "array", objectArray);
+        setField(immutableRangeMap, "ranges", regularImmutableList);
         
         treeRangeMap.putAll(immutableRangeMap);
     }

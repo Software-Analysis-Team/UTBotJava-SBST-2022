@@ -69,90 +69,6 @@ public class NettyPoolableFactoryTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testDestroyObject1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.destroyObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDestroyObject2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.destroyObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testActivateObject1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.activateObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testActivateObject2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class nettyPoolKeyType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method activateObjectMethod = nettyPoolableFactoryClazz.getDeclaredMethod("activateObject", nettyPoolKeyType, failedChannelType);
-        activateObjectMethod.setAccessible(true);
-        java.lang.Object[] activateObjectMethodArguments = new java.lang.Object[2];
-        activateObjectMethodArguments[0] = nettyPoolKey;
-        activateObjectMethodArguments[1] = failedChannel;
-        activateObjectMethod.invoke(nettyPoolableFactory, activateObjectMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPassivateObject1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.passivateObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPassivateObject2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        
-        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-        Class nettyPoolKeyType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey");
-        Class failedChannelType = Class.forName("io.netty.channel.Channel");
-        Method passivateObjectMethod = nettyPoolableFactoryClazz.getDeclaredMethod("passivateObject", nettyPoolKeyType, failedChannelType);
-        passivateObjectMethod.setAccessible(true);
-        java.lang.Object[] passivateObjectMethodArguments = new java.lang.Object[2];
-        passivateObjectMethodArguments[0] = nettyPoolKey;
-        passivateObjectMethodArguments[1] = failedChannel;
-        passivateObjectMethod.invoke(nettyPoolableFactory, passivateObjectMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testMakeObject1() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
@@ -178,7 +94,7 @@ public class NettyPoolableFactoryTest {
     public void testMakeObject3() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
         NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        String string = new String("\u0000\u0000\u0000");
+        String string = new String(":\u0000\u0000");
         setField(nettyPoolKey, "address", string);
         
         nettyPoolableFactory.makeObject(nettyPoolKey);
@@ -191,10 +107,73 @@ public class NettyPoolableFactoryTest {
     public void testMakeObject4() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
         NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        String string = new String("\u0000\u0000\u0000:\u0000\u0000\u0000");
+        String string = new String("");
         setField(nettyPoolKey, "address", string);
         
         nettyPoolableFactory.makeObject(nettyPoolKey);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDestroyObject1() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
+        
+        nettyPoolableFactory.destroyObject(nettyPoolKey, ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDestroyObject2() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        
+        nettyPoolableFactory.destroyObject(((NettyPoolKey) null), ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testActivateObject1() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
+        
+        nettyPoolableFactory.activateObject(nettyPoolKey, ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testActivateObject2() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        
+        nettyPoolableFactory.activateObject(((NettyPoolKey) null), ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPassivateObject1() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
+        
+        nettyPoolableFactory.passivateObject(nettyPoolKey, ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPassivateObject2() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        
+        nettyPoolableFactory.passivateObject(((NettyPoolKey) null), ((Channel) null));
     }
     ///endregion
     

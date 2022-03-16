@@ -334,8 +334,8 @@ public class JavaObjectDeserializerTest {
     public void testDeserialze14() throws Throwable  {
         JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(defaultJSONParser, "lexer", jSONScanner);
+        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
+        setField(defaultJSONParser, "lexer", jSONReaderScanner);
         Class class1 = Object.class;
         
         javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);

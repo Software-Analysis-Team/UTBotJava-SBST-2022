@@ -52,11 +52,11 @@ public class ByteVectorTest {
     @Test(timeout = 10000)
     public void testPutByteArray3() throws Throwable  {
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = 2147483618;
-        byte[] byteArray = new byte[20];
+        byteVector.length = -1073995790;
+        byte[] byteArray = new byte[4];
         byteVector.data = byteArray;
         
-        ByteVector actual = byteVector.putByteArray(null, 0, 1073741795);
+        ByteVector actual = byteVector.putByteArray(null, 0, 1073512435);
         
         
         // Current deep equals depth exceeds max depth 0
@@ -64,7 +64,7 @@ public class ByteVectorTest {
         
         int finalByteVectorLength = byteVector.length;
         
-        assertEquals(-1073741883, finalByteVectorLength);
+        assertEquals(-483355, finalByteVectorLength);
     }
     ///endregion
     
@@ -76,7 +76,7 @@ public class ByteVectorTest {
         byteVector.length = 1073741822;
         byte[] byteArray = new byte[0];
         byteVector.data = byteArray;
-        byte[] byteArray1 = new byte[18];
+        byte[] byteArray1 = new byte[12];
         
         byteVector.putByteArray(byteArray1, 0, -1073741825);
     }
@@ -583,7 +583,7 @@ public class ByteVectorTest {
         Method enlargeMethod = byteVectorClazz.getDeclaredMethod("enlarge", intType);
         enlargeMethod.setAccessible(true);
         java.lang.Object[] enlargeMethodArguments = new java.lang.Object[1];
-        enlargeMethodArguments[0] = 2147483637;
+        enlargeMethodArguments[0] = 2147483638;
         enlargeMethod.invoke(byteVector, enlargeMethodArguments);
         
         byte[] finalByteVectorData = byteVector.data;
@@ -750,8 +750,8 @@ public class ByteVectorTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testPutShort3() throws Throwable  {
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = -251;
-        byte[] byteArray = new byte[2];
+        byteVector.length = -5;
+        byte[] byteArray = new byte[10];
         byteVector.data = byteArray;
         
         byteVector.putShort(0);
@@ -859,8 +859,8 @@ public class ByteVectorTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testPutInt3() throws Throwable  {
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        byteVector.length = -503;
-        byte[] byteArray = new byte[12];
+        byteVector.length = -11;
+        byte[] byteArray = new byte[0];
         byteVector.data = byteArray;
         
         byteVector.putInt(0);
@@ -894,7 +894,7 @@ public class ByteVectorTest {
     public void testPutInt5() throws Throwable  {
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
         byteVector.length = 1;
-        byte[] byteArray = new byte[2];
+        byte[] byteArray = new byte[1];
         byteVector.data = byteArray;
         
         ByteVector actual = byteVector.putInt(0);

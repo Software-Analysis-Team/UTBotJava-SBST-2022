@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import io.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable;
 import io.seata.core.rpc.DefaultServerMessageListenerImpl;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
@@ -45,8 +46,9 @@ public class DefaultServerMessageListenerImplTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testOnTrxMessage2() throws Throwable  {
         DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        java.lang.Object[] directLongBufferRUArray = createArray("[Ljava.nio.DirectLongBufferRU;", 0);
         
-        defaultServerMessageListenerImpl.onTrxMessage(0L, null, null, null);
+        defaultServerMessageListenerImpl.onTrxMessage(0L, null, directLongBufferRUArray, null);
     }
     ///endregion
     
@@ -500,6 +502,15 @@ public class DefaultServerMessageListenerImplTest {
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();

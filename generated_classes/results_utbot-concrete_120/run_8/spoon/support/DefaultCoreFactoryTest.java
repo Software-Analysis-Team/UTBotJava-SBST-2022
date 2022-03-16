@@ -16,6 +16,11 @@ import spoon.reflect.cu.CompilationUnit;
 import java.util.ArrayList;
 import java.util.HashSet;
 import spoon.reflect.declaration.CtElement;
+import spoon.support.reflect.declaration.InvisibleArrayConstructorImpl;
+import spoon.reflect.factory.FactoryImpl;
+import java.lang.reflect.Method;
+import spoon.reflect.CtModelImpl.CtRootPackage;
+import spoon.reflect.CtModelImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -35,20 +40,10 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateAnonymousExecutable1() throws Throwable  {
+    public void testCreateAssignment1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createAnonymousExecutable();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateClass1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createClass();
+        defaultCoreFactory.createAssignment();
     }
     ///endregion
     
@@ -65,10 +60,50 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateCatch1() throws Throwable  {
+    public void testCreateBinaryOperator1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createCatch();
+        defaultCoreFactory.createBinaryOperator();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateAssert1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createAssert();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateArrayRead1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createArrayRead();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateArrayWrite1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createArrayWrite();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateAnnotation1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createAnnotation();
     }
     ///endregion
     
@@ -79,16 +114,6 @@ public class DefaultCoreFactoryTest {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
         defaultCoreFactory.createBlock();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateAnnotationType1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createAnnotationType();
     }
     ///endregion
     
@@ -115,70 +140,40 @@ public class DefaultCoreFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateBinaryOperator1() throws Throwable  {
+    public void testCreateCatch1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createBinaryOperator();
+        defaultCoreFactory.createCatch();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateContinue1() throws Throwable  {
+    public void testCreateClass1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createContinue();
+        defaultCoreFactory.createClass();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateAssignment1() throws Throwable  {
+    public void testCreateAnnotationType1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createAssignment();
+        defaultCoreFactory.createAnnotationType();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateAnnotation1() throws Throwable  {
+    public void testCreateAnonymousExecutable1() throws Throwable  {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
-        defaultCoreFactory.createAnnotation();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateAssert1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createAssert();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayWrite1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createArrayWrite();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateArrayRead1() throws Throwable  {
-        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
-        
-        defaultCoreFactory.createArrayRead();
+        defaultCoreFactory.createAnonymousExecutable();
     }
     ///endregion
     
@@ -219,6 +214,16 @@ public class DefaultCoreFactoryTest {
         DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
         
         defaultCoreFactory.createInvisibleArrayConstructor();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateContinue1() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = new DefaultCoreFactory();
+        
+        defaultCoreFactory.createContinue();
     }
     ///endregion
     
@@ -1390,6 +1395,114 @@ public class DefaultCoreFactoryTest {
         CtElement actual = defaultCoreFactory.clone(null);
         
         assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testClone3() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
+        InvisibleArrayConstructorImpl invisibleArrayConstructorImpl = ((InvisibleArrayConstructorImpl) createInstance("spoon.support.reflect.declaration.InvisibleArrayConstructorImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        DefaultCoreFactory defaultCoreFactory1 = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
+        setField(factoryImpl, "core", defaultCoreFactory1);
+        setField(invisibleArrayConstructorImpl, "factory", factoryImpl);
+        
+        Class defaultCoreFactoryClazz = Class.forName("spoon.support.DefaultCoreFactory");
+        Class invisibleArrayConstructorImplType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method cloneMethod = defaultCoreFactoryClazz.getDeclaredMethod("clone", invisibleArrayConstructorImplType);
+        cloneMethod.setAccessible(true);
+        java.lang.Object[] cloneMethodArguments = new java.lang.Object[1];
+        cloneMethodArguments[0] = invisibleArrayConstructorImpl;
+        try {
+            cloneMethod.invoke(defaultCoreFactory, cloneMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testClone4() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
+        CtModelImpl.CtRootPackage ctRootPackage = ((CtModelImpl.CtRootPackage) createInstance("spoon.reflect.CtModelImpl$CtRootPackage"));
+        setField(ctRootPackage, "factory", null);
+        
+        Class defaultCoreFactoryClazz = Class.forName("spoon.support.DefaultCoreFactory");
+        Class ctRootPackageType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method cloneMethod = defaultCoreFactoryClazz.getDeclaredMethod("clone", ctRootPackageType);
+        cloneMethod.setAccessible(true);
+        java.lang.Object[] cloneMethodArguments = new java.lang.Object[1];
+        cloneMethodArguments[0] = ctRootPackage;
+        try {
+            cloneMethod.invoke(defaultCoreFactory, cloneMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testClone5() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
+        InvisibleArrayConstructorImpl invisibleArrayConstructorImpl = ((InvisibleArrayConstructorImpl) createInstance("spoon.support.reflect.declaration.InvisibleArrayConstructorImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "core", null);
+        setField(invisibleArrayConstructorImpl, "factory", factoryImpl);
+        
+        Object invisibleArrayConstructorImplFactory = getFieldValue(invisibleArrayConstructorImpl, "factory");
+        Object initialInvisibleArrayConstructorImplFactoryCore = getFieldValue(invisibleArrayConstructorImplFactory, "core");
+        
+        Class defaultCoreFactoryClazz = Class.forName("spoon.support.DefaultCoreFactory");
+        Class invisibleArrayConstructorImplType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method cloneMethod = defaultCoreFactoryClazz.getDeclaredMethod("clone", invisibleArrayConstructorImplType);
+        cloneMethod.setAccessible(true);
+        java.lang.Object[] cloneMethodArguments = new java.lang.Object[1];
+        cloneMethodArguments[0] = invisibleArrayConstructorImpl;
+        try {
+            cloneMethod.invoke(defaultCoreFactory, cloneMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object invisibleArrayConstructorImplFactory1 = getFieldValue(invisibleArrayConstructorImpl, "factory");
+        Object finalInvisibleArrayConstructorImplFactoryCore = getFieldValue(invisibleArrayConstructorImplFactory1, "core");
+        
+        assertFalse(initialInvisibleArrayConstructorImplFactoryCore == finalInvisibleArrayConstructorImplFactoryCore);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testClone6() throws Throwable  {
+        DefaultCoreFactory defaultCoreFactory = ((DefaultCoreFactory) createInstance("spoon.support.DefaultCoreFactory"));
+        setField(defaultCoreFactory, "factory", null);
+        CtModelImpl.CtRootPackage ctRootPackage = ((CtModelImpl.CtRootPackage) createInstance("spoon.reflect.CtModelImpl$CtRootPackage"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "core", null);
+        setField(ctRootPackage, "factory", factoryImpl);
+        
+        Object ctRootPackageFactory = getFieldValue(ctRootPackage, "factory");
+        Object initialCtRootPackageFactoryCore = getFieldValue(ctRootPackageFactory, "core");
+        
+        Class defaultCoreFactoryClazz = Class.forName("spoon.support.DefaultCoreFactory");
+        Class ctRootPackageType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method cloneMethod = defaultCoreFactoryClazz.getDeclaredMethod("clone", ctRootPackageType);
+        cloneMethod.setAccessible(true);
+        java.lang.Object[] cloneMethodArguments = new java.lang.Object[1];
+        cloneMethodArguments[0] = ctRootPackage;
+        try {
+            cloneMethod.invoke(defaultCoreFactory, cloneMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object ctRootPackageFactory1 = getFieldValue(ctRootPackage, "factory");
+        Object finalCtRootPackageFactoryCore = getFieldValue(ctRootPackageFactory1, "core");
+        
+        assertFalse(initialCtRootPackageFactoryCore == finalCtRootPackageFactoryCore);
     }
     ///endregion
     

@@ -3,7 +3,7 @@ package com.google.common.util.concurrent;
 import org.junit.Test;
 import java.lang.reflect.Method;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.InputMismatchException;
+import java.util.DuplicateFormatFlagsException;
 import com.google.common.cache.CacheLoader.InvalidCacheLoadException;
 import com.google.common.cache.CacheLoader;
 import com.google.common.base.VerifyException;
@@ -44,16 +44,16 @@ public class SimpleTimeLimiterTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testRunWithTimeout2() throws Throwable  {
         SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
-        Object perListenerQueue = createInstance("com.google.common.util.concurrent.ListenerCallQueue$PerListenerQueue");
+        Object fire = createInstance("com.google.common.util.concurrent.TimeoutFuture$Fire");
         
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class perListenerQueueType = Class.forName("java.lang.Runnable");
+        Class fireType = Class.forName("java.lang.Runnable");
         Class longType = long.class;
         Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
-        Method runWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("runWithTimeout", perListenerQueueType, longType, timeUnitType);
+        Method runWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("runWithTimeout", fireType, longType, timeUnitType);
         runWithTimeoutMethod.setAccessible(true);
         java.lang.Object[] runWithTimeoutMethodArguments = new java.lang.Object[3];
-        runWithTimeoutMethodArguments[0] = perListenerQueue;
+        runWithTimeoutMethodArguments[0] = fire;
         runWithTimeoutMethodArguments[1] = 0L;
         runWithTimeoutMethodArguments[2] = null;
         try {
@@ -95,23 +95,8 @@ public class SimpleTimeLimiterTest {
     public void testCallWithTimeout1() throws Throwable  {
         SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
         
-        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class callableType = Class.forName("java.util.concurrent.Callable");
-        Class longType = long.class;
-        Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
-        Class booleanType = boolean.class;
-        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", callableType, longType, timeUnitType, booleanType);
-        callWithTimeoutMethod.setAccessible(true);
-        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[4];
-        callWithTimeoutMethodArguments[0] = null;
-        callWithTimeoutMethodArguments[1] = 0L;
-        callWithTimeoutMethodArguments[2] = null;
-        callWithTimeoutMethodArguments[3] = false;
-        try {
-            callWithTimeoutMethod.invoke(simpleTimeLimiter, callWithTimeoutMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+        simpleTimeLimiter.callWithTimeout(null, 0L, null);
+    }
     ///endregion
     
     ///region
@@ -125,14 +110,12 @@ public class SimpleTimeLimiterTest {
         Class runnableAdapterType = Class.forName("java.util.concurrent.Callable");
         Class longType = long.class;
         Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
-        Class booleanType = boolean.class;
-        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", runnableAdapterType, longType, timeUnitType, booleanType);
+        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", runnableAdapterType, longType, timeUnitType);
         callWithTimeoutMethod.setAccessible(true);
-        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[4];
+        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[3];
         callWithTimeoutMethodArguments[0] = runnableAdapter;
         callWithTimeoutMethodArguments[1] = 0L;
         callWithTimeoutMethodArguments[2] = null;
-        callWithTimeoutMethodArguments[3] = false;
         try {
             callWithTimeoutMethod.invoke(simpleTimeLimiter, callWithTimeoutMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -172,8 +155,23 @@ public class SimpleTimeLimiterTest {
     public void testCallWithTimeout5() throws Throwable  {
         SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
         
-        simpleTimeLimiter.callWithTimeout(null, 0L, null);
-    }
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class callableType = Class.forName("java.util.concurrent.Callable");
+        Class longType = long.class;
+        Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
+        Class booleanType = boolean.class;
+        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", callableType, longType, timeUnitType, booleanType);
+        callWithTimeoutMethod.setAccessible(true);
+        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[4];
+        callWithTimeoutMethodArguments[0] = null;
+        callWithTimeoutMethodArguments[1] = 0L;
+        callWithTimeoutMethodArguments[2] = null;
+        callWithTimeoutMethodArguments[3] = false;
+        try {
+            callWithTimeoutMethod.invoke(simpleTimeLimiter, callWithTimeoutMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     ///region
@@ -187,12 +185,14 @@ public class SimpleTimeLimiterTest {
         Class runnableAdapterType = Class.forName("java.util.concurrent.Callable");
         Class longType = long.class;
         Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
-        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", runnableAdapterType, longType, timeUnitType);
+        Class booleanType = boolean.class;
+        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", runnableAdapterType, longType, timeUnitType, booleanType);
         callWithTimeoutMethod.setAccessible(true);
-        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[3];
+        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[4];
         callWithTimeoutMethodArguments[0] = runnableAdapter;
         callWithTimeoutMethodArguments[1] = 0L;
         callWithTimeoutMethodArguments[2] = null;
+        callWithTimeoutMethodArguments[3] = false;
         try {
             callWithTimeoutMethod.invoke(simpleTimeLimiter, callWithTimeoutMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -217,6 +217,55 @@ public class SimpleTimeLimiterTest {
     ///region Errors report for callWithTimeout
     
     public void testCallWithTimeout_errors3()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testNewProxy1() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
+        
+        simpleTimeLimiter.newProxy(fifoWaitQueueArray, null, 0L, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testNewProxy2() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
+        Class class1 = Object.class;
+        
+        simpleTimeLimiter.newProxy(fifoWaitQueueArray, class1, 0L, null);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for newProxy
+    
+    public void testNewProxy_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for newProxy
+    
+    public void testNewProxy_errors1()
      {
         // Couldn't generate some tests. List of errors:
         // 
@@ -301,16 +350,16 @@ public class SimpleTimeLimiterTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testRunUninterruptiblyWithTimeout2() throws Throwable  {
         SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
-        Object perListenerQueue = createInstance("com.google.common.util.concurrent.ListenerCallQueue$PerListenerQueue");
+        Object fire = createInstance("com.google.common.util.concurrent.TimeoutFuture$Fire");
         
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class perListenerQueueType = Class.forName("java.lang.Runnable");
+        Class fireType = Class.forName("java.lang.Runnable");
         Class longType = long.class;
         Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
-        Method runUninterruptiblyWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("runUninterruptiblyWithTimeout", perListenerQueueType, longType, timeUnitType);
+        Method runUninterruptiblyWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("runUninterruptiblyWithTimeout", fireType, longType, timeUnitType);
         runUninterruptiblyWithTimeoutMethod.setAccessible(true);
         java.lang.Object[] runUninterruptiblyWithTimeoutMethodArguments = new java.lang.Object[3];
-        runUninterruptiblyWithTimeoutMethodArguments[0] = perListenerQueue;
+        runUninterruptiblyWithTimeoutMethodArguments[0] = fire;
         runUninterruptiblyWithTimeoutMethodArguments[1] = 0L;
         runUninterruptiblyWithTimeoutMethodArguments[2] = null;
         try {
@@ -337,55 +386,6 @@ public class SimpleTimeLimiterTest {
     ///region Errors report for runUninterruptiblyWithTimeout
     
     public void testRunUninterruptiblyWithTimeout_errors1()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewProxy1() throws Throwable  {
-        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
-        java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
-        
-        simpleTimeLimiter.newProxy(fifoWaitQueueArray, null, 0L, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewProxy2() throws Throwable  {
-        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
-        java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
-        Class class1 = Object.class;
-        
-        simpleTimeLimiter.newProxy(fifoWaitQueueArray, class1, 0L, null);
-    }
-    ///endregion
-    
-    
-    ///region Errors report for newProxy
-    
-    public void testNewProxy_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
-        // 
-    }
-    ///endregion
-    
-    
-    ///region Errors report for newProxy
-    
-    public void testNewProxy_errors1()
      {
         // Couldn't generate some tests. List of errors:
         // 
@@ -459,14 +459,14 @@ public class SimpleTimeLimiterTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testWrapAndThrowExecutionExceptionOrError4() throws Throwable  {
         SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
-        InputMismatchException inputMismatchException = ((InputMismatchException) createInstance("java.util.InputMismatchException"));
+        DuplicateFormatFlagsException duplicateFormatFlagsException = ((DuplicateFormatFlagsException) createInstance("java.util.DuplicateFormatFlagsException"));
         
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class inputMismatchExceptionType = Class.forName("java.lang.Throwable");
-        Method wrapAndThrowExecutionExceptionOrErrorMethod = simpleTimeLimiterClazz.getDeclaredMethod("wrapAndThrowExecutionExceptionOrError", inputMismatchExceptionType);
+        Class duplicateFormatFlagsExceptionType = Class.forName("java.lang.Throwable");
+        Method wrapAndThrowExecutionExceptionOrErrorMethod = simpleTimeLimiterClazz.getDeclaredMethod("wrapAndThrowExecutionExceptionOrError", duplicateFormatFlagsExceptionType);
         wrapAndThrowExecutionExceptionOrErrorMethod.setAccessible(true);
         java.lang.Object[] wrapAndThrowExecutionExceptionOrErrorMethodArguments = new java.lang.Object[1];
-        wrapAndThrowExecutionExceptionOrErrorMethodArguments[0] = inputMismatchException;
+        wrapAndThrowExecutionExceptionOrErrorMethodArguments[0] = duplicateFormatFlagsException;
         try {
             wrapAndThrowExecutionExceptionOrErrorMethod.invoke(simpleTimeLimiter, wrapAndThrowExecutionExceptionOrErrorMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -531,6 +531,40 @@ public class SimpleTimeLimiterTest {
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testNewProxy5() throws Throwable  {
+        Object typeVariableInvocationHandler = createInstance("com.google.common.reflect.Types$TypeVariableInvocationHandler");
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class classType = Class.forName("java.lang.Class");
+        Class typeVariableInvocationHandlerType = Class.forName("java.lang.reflect.InvocationHandler");
+        Method newProxyMethod = simpleTimeLimiterClazz.getDeclaredMethod("newProxy", classType, typeVariableInvocationHandlerType);
+        newProxyMethod.setAccessible(true);
+        java.lang.Object[] newProxyMethodArguments = new java.lang.Object[2];
+        newProxyMethodArguments[0] = null;
+        newProxyMethodArguments[1] = typeVariableInvocationHandler;
+        try {
+            newProxyMethod.invoke(null, newProxyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for newProxy
+    
+    public void testNewProxy_errors2()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
     ///endregion
     
     ///region
@@ -833,40 +867,6 @@ public class SimpleTimeLimiterTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewProxy5() throws Throwable  {
-        Object typeVariableInvocationHandler = createInstance("com.google.common.reflect.Types$TypeVariableInvocationHandler");
-        
-        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class classType = Class.forName("java.lang.Class");
-        Class typeVariableInvocationHandlerType = Class.forName("java.lang.reflect.InvocationHandler");
-        Method newProxyMethod = simpleTimeLimiterClazz.getDeclaredMethod("newProxy", classType, typeVariableInvocationHandlerType);
-        newProxyMethod.setAccessible(true);
-        java.lang.Object[] newProxyMethodArguments = new java.lang.Object[2];
-        newProxyMethodArguments[0] = null;
-        newProxyMethodArguments[1] = typeVariableInvocationHandler;
-        try {
-            newProxyMethod.invoke(null, newProxyMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    
-    ///region Errors report for newProxy
-    
-    public void testNewProxy_errors2()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testCreate1() throws Throwable  {
         SimpleTimeLimiter.create(null);
     }
@@ -934,13 +934,13 @@ public class SimpleTimeLimiterTest {
     
     @Test(timeout = 10000)
     public void testSimpleTimeLimiter3() throws Throwable  {
-        ThreadPoolExecutor threadPoolExecutor = ((ThreadPoolExecutor) createInstance("java.util.concurrent.ThreadPoolExecutor"));
+        Object finalizableDelegatedExecutorService = createInstance("java.util.concurrent.Executors$FinalizableDelegatedExecutorService");
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class threadPoolExecutorType = Class.forName("java.util.concurrent.ExecutorService");
-        Constructor simpleTimeLimiterConstructor = simpleTimeLimiterClazz.getDeclaredConstructor(threadPoolExecutorType);
+        Class finalizableDelegatedExecutorServiceType = Class.forName("java.util.concurrent.ExecutorService");
+        Constructor simpleTimeLimiterConstructor = simpleTimeLimiterClazz.getDeclaredConstructor(finalizableDelegatedExecutorServiceType);
         simpleTimeLimiterConstructor.setAccessible(true);
         java.lang.Object[] simpleTimeLimiterConstructorArguments = new java.lang.Object[1];
-        simpleTimeLimiterConstructorArguments[0] = threadPoolExecutor;
+        simpleTimeLimiterConstructorArguments[0] = finalizableDelegatedExecutorService;
         SimpleTimeLimiter actual = ((SimpleTimeLimiter) simpleTimeLimiterConstructor.newInstance(simpleTimeLimiterConstructorArguments));
     }
     ///endregion

@@ -141,7 +141,7 @@ public class JDTBatchCompilerTest {
         
         assertNull(finalJDTBatchCompilerLimitedModules);
         
-        assertEquals(1645053752512L, finalJDTBatchCompilerStartTime);
+        assertEquals(1645048812274L, finalJDTBatchCompilerStartTime);
     }
     ///endregion
     
@@ -225,11 +225,10 @@ public class JDTBatchCompilerTest {
     public void testIgnoreFile2() throws Throwable  {
         JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
         setField(jDTBatchCompiler, "filesToBeIgnored", null);
-        String string = new String("");
         
         Set initialJDTBatchCompilerFilesToBeIgnored = jDTBatchCompiler.filesToBeIgnored;
         
-        jDTBatchCompiler.ignoreFile(string);
+        jDTBatchCompiler.ignoreFile(null);
         
         Set finalJDTBatchCompilerFilesToBeIgnored = jDTBatchCompiler.filesToBeIgnored;
         
@@ -292,15 +291,6 @@ public class JDTBatchCompilerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testJDTBatchCompiler2() {
         new JDTBatchCompiler(null, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testJDTBatchCompiler3() throws Throwable  {
-        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
-        new JDTBatchCompiler(jDTBasedSpoonCompiler);
     }
     ///endregion
     

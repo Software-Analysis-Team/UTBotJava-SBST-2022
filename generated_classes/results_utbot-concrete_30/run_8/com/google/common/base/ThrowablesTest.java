@@ -1,12 +1,13 @@
 package com.google.common.base;
 
 import org.junit.Test;
-import java.io.IOException;
+import javax.security.auth.DestroyFailedException;
+import javax.security.auth.callback.UnsupportedCallbackException;
 import java.util.List;
 import java.util.ArrayList;
-import javax.security.auth.callback.UnsupportedCallbackException;
 import java.net.UnknownHostException;
 import java.lang.reflect.Method;
+import java.time.chrono.ThaiBuddhistDate;
 import java.lang.reflect.Constructor;
 import java.util.Objects;
 import java.util.Map;
@@ -39,8 +40,16 @@ public class ThrowablesTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testGetRootCause2() throws Throwable  {
+        Throwables.getRootCause(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetRootCause3() throws Throwable  {
         Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
         setField(throwable, "cause", null);
         
@@ -66,9 +75,9 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testPropagate2() throws Throwable  {
-        IOException iOException = ((IOException) createInstance("java.io.IOException"));
+        DestroyFailedException destroyFailedException = ((DestroyFailedException) createInstance("javax.security.auth.DestroyFailedException"));
         
-        Throwables.propagate(iOException);
+        Throwables.propagate(destroyFailedException);
     }
     ///endregion
     
@@ -130,6 +139,123 @@ public class ThrowablesTest {
     
     ///region
     
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testThrowIfInstanceOf1() throws Throwable  {
+        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
+        
+        Throwables.throwIfInstanceOf(throwable, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPropagateIfInstanceOf1() throws Throwable  {
+        Class class1 = Object.class;
+        
+        Throwables.propagateIfInstanceOf(null, class1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPropagateIfInstanceOf2() throws Throwable  {
+        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
+        Class class1 = Object.class;
+        
+        Throwables.propagateIfInstanceOf(throwable, class1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPropagateIfPossible1() throws Throwable  {
+        Throwables.propagateIfPossible(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPropagateIfPossible2() throws Throwable  {
+        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
+        Class class1 = Object.class;
+        
+        Throwables.propagateIfPossible(throwable, class1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPropagateIfPossible3() throws Throwable  {
+        Throwable throwable = new Throwable();
+        
+        Throwables.propagateIfPossible(throwable);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPropagateIfPossible4() throws Throwable  {
+        Throwables.propagateIfPossible(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPropagateIfPossible5() throws Throwable  {
+        UnsupportedCallbackException unsupportedCallbackException = ((UnsupportedCallbackException) createInstance("javax.security.auth.callback.UnsupportedCallbackException"));
+        
+        Throwables.propagateIfPossible(unsupportedCallbackException);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPropagateIfPossible6() throws Throwable  {
+        AssertionError assertionError = ((AssertionError) createInstance("java.lang.AssertionError"));
+        
+        Throwables.propagateIfPossible(assertionError);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPropagateIfPossible7() throws Throwable  {
+        Throwables.propagateIfPossible(null, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPropagateIfPossible8() throws Throwable  {
+        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
+        Class class1 = Object.class;
+        
+        Throwables.propagateIfPossible(throwable, class1, class1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPropagateIfPossible9() throws Throwable  {
+        Class class1 = Object.class;
+        
+        Throwables.propagateIfPossible(null, null, class1);
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000)
     public void testGetCausalChain1() throws Throwable  {
         Throwable throwable = new Throwable();
@@ -149,8 +275,16 @@ public class ThrowablesTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testGetCausalChain2() throws Throwable  {
+        Throwables.getCausalChain(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetCausalChain3() throws Throwable  {
         Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
         
         List actual = Throwables.getCausalChain(throwable);
@@ -169,131 +303,10 @@ public class ThrowablesTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testThrowIfInstanceOf1() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        
-        Throwables.throwIfInstanceOf(throwable, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testThrowIfInstanceOf2() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        Class class1 = Object.class;
-        
-        Throwables.throwIfInstanceOf(throwable, class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testThrowIfInstanceOf3() throws Throwable  {
-        Throwables.throwIfInstanceOf(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfInstanceOf1() throws Throwable  {
-        Throwables.propagateIfInstanceOf(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagateIfInstanceOf2() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        Class class1 = Object.class;
-        
-        Throwables.propagateIfInstanceOf(throwable, class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagateIfPossible1() throws Throwable  {
-        Throwables.propagateIfPossible(null, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfPossible2() throws Throwable  {
-        Class class1 = Object.class;
-        
-        Throwables.propagateIfPossible(null, null, class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfPossible3() throws Throwable  {
-        Throwables.propagateIfPossible(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagateIfPossible4() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        Class class1 = Object.class;
-        
-        Throwables.propagateIfPossible(throwable, class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfPossible5() throws Throwable  {
-        Throwable throwable = new Throwable();
-        
-        Throwables.propagateIfPossible(throwable);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfPossible6() throws Throwable  {
-        Throwables.propagateIfPossible(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfPossible7() throws Throwable  {
-        UnsupportedCallbackException unsupportedCallbackException = ((UnsupportedCallbackException) createInstance("javax.security.auth.callback.UnsupportedCallbackException"));
-        
-        Throwables.propagateIfPossible(unsupportedCallbackException);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagateIfPossible8() throws Throwable  {
-        AssertionError assertionError = ((AssertionError) createInstance("java.lang.AssertionError"));
-        
-        Throwables.propagateIfPossible(assertionError);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testGetCauseAs1() throws Throwable  {
-        Throwables.getCauseAs(null, null);
+        Class class1 = Object.class;
+        
+        Throwables.getCauseAs(null, class1);
     }
     ///endregion
     
@@ -345,6 +358,19 @@ public class ThrowablesTest {
     }
     ///endregion
     
+    
+    ///region Errors report for lazyStackTrace
+    
+    public void testLazyStackTrace_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000)
@@ -352,19 +378,6 @@ public class ThrowablesTest {
         boolean actual = Throwables.lazyStackTraceIsLazy();
         
         assertTrue(actual);
-    }
-    ///endregion
-    
-    
-    ///region Errors report for lazyStackTraceIsLazy
-    
-    public void testLazyStackTraceIsLazy_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
     }
     ///endregion
     
@@ -389,18 +402,18 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testInvokeAccessibleNonThrowingMethod1() throws Throwable  {
-        java.lang.Object[] objectArray = new java.lang.Object[9];
+        java.time.chrono.ThaiBuddhistDate[] thaiBuddhistDateArray = new java.time.chrono.ThaiBuddhistDate[0];
         
         Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
         Class methodType = Class.forName("java.lang.reflect.Method");
-        Class objectType = Class.forName("java.lang.Object");
+        Class thaiBuddhistDateArrayType = Class.forName("java.lang.Object");
         Class objectArrayType = Class.forName("[Ljava.lang.Object;");
-        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, objectType, objectArrayType);
+        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, thaiBuddhistDateArrayType, objectArrayType);
         invokeAccessibleNonThrowingMethodMethod.setAccessible(true);
         java.lang.Object[] invokeAccessibleNonThrowingMethodMethodArguments = new java.lang.Object[3];
         invokeAccessibleNonThrowingMethodMethodArguments[0] = null;
-        invokeAccessibleNonThrowingMethodMethodArguments[1] = null;
-        invokeAccessibleNonThrowingMethodMethodArguments[2] = ((Object) objectArray);
+        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) thaiBuddhistDateArray);
+        invokeAccessibleNonThrowingMethodMethodArguments[2] = null;
         try {
             invokeAccessibleNonThrowingMethodMethod.invoke(null, invokeAccessibleNonThrowingMethodMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -559,19 +572,6 @@ public class ThrowablesTest {
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    
-    ///region Errors report for getSizeMethod
-    
-    public void testGetSizeMethod_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
     }
     ///endregion
     

@@ -18,8 +18,6 @@ import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static java.lang.reflect.Array.get;
 
 public class AtomicDoubleArrayTest {
     ///region
@@ -291,19 +289,16 @@ public class AtomicDoubleArrayTest {
     }
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000)
-    public void testCompareAndSet3() throws Throwable  {
-        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
-        AtomicLongArray atomicLongArray = ((AtomicLongArray) createInstance("java.util.concurrent.atomic.AtomicLongArray"));
-        long[] longArray = new long[17];
-        setField(atomicLongArray, "array", longArray);
-        setField(atomicDoubleArray, "longs", atomicLongArray);
-        
-        boolean actual = atomicDoubleArray.compareAndSet(0, java.lang.Double.NaN, java.lang.Double.NaN);
-        
-        assertFalse(actual);
+    ///region Errors report for compareAndSet
+    
+    public void testCompareAndSet_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
@@ -362,25 +357,16 @@ public class AtomicDoubleArrayTest {
     }
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000)
-    public void testAddAndGet3() throws Throwable  {
-        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
-        AtomicLongArray atomicLongArray = ((AtomicLongArray) createInstance("java.util.concurrent.atomic.AtomicLongArray"));
-        long[] longArray = new long[9];
-        setField(atomicLongArray, "array", longArray);
-        setField(atomicDoubleArray, "longs", atomicLongArray);
-        
-        double actual = atomicDoubleArray.addAndGet(0, java.lang.Double.NaN);
-        
-        org.junit.Assert.assertEquals(java.lang.Double.NaN, actual, 1.0E-6);
-        
-        Object atomicDoubleArrayLongs = getFieldValue(atomicDoubleArray, "longs");
-        Object atomicDoubleArrayLongsLongsArray = getFieldValue(atomicDoubleArrayLongs, "array");
-        Object finalAtomicDoubleArrayLongsArray0 = get(atomicDoubleArrayLongsLongsArray, 0);
-        
-        assertEquals(9221120237041090560L, finalAtomicDoubleArrayLongsArray0);
+    ///region Errors report for addAndGet
+    
+    public void testAddAndGet_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
@@ -634,25 +620,6 @@ public class AtomicDoubleArrayTest {
         }
     
         return false;
-    }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

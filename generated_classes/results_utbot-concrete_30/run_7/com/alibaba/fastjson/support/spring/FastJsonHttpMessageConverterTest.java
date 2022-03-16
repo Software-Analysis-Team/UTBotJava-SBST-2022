@@ -1,146 +1,200 @@
-package com.alibaba.fastjson.parser.deserializer;
+package com.alibaba.fastjson.support.spring;
 
 import org.junit.Test;
-import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
-import com.alibaba.fastjson.parser.DefaultJSONParser;
-import com.alibaba.fastjson.parser.JSONScanner;
-import com.alibaba.fastjson.parser.JSONLexer;
+import org.springframework.http.MediaType;
 import java.lang.reflect.Method;
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import java.nio.charset.Charset;
+import sun.nio.cs.StandardCharsets;
+import sun.nio.cs.US_ASCII;
+import java.util.concurrent.atomic.AtomicInteger;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.serializer.SerializeConfig;
+import com.alibaba.fastjson.serializer.ASMSerializerFactory;
+import com.alibaba.fastjson.util.ASMClassLoader;
+import java.security.ProtectionDomain;
+import java.security.CodeSource;
+import java.net.URL;
+import sun.net.www.protocol.file.Handler;
+import java.util.Hashtable;
+import com.huawei.utbot.instrumentation.process.HandlerClassesLoader;
+import sun.misc.URLClassPath;
+import java.util.ArrayList;
+import java.util.Stack;
+import java.io.File;
+import java.util.jar.JarFile;
+import java.nio.charset.CodingErrorAction;
+import java.util.WeakHashMap;
+import java.lang.ref.ReferenceQueue;
+import java.util.ArrayDeque;
+import java.util.zip.Inflater;
+import java.util.HashMap;
+import java.security.AccessControlContext;
+import java.lang.ref.SoftReference;
+import java.util.jar.Manifest;
+import java.util.jar.Attributes;
+import java.util.jar.Attributes.Name;
+import sun.misc.JarIndex;
+import java.util.LinkedList;
+import sun.net.www.protocol.jar.URLJarFile;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.Vector;
+import java.security.Principal;
+import java.security.cert.Certificate;
+import java.security.Permissions;
+import java.io.FilePermission;
+import java.security.CodeSigner;
+import sun.security.provider.certpath.X509CertPath;
+import sun.security.x509.X509CertImpl;
+import sun.security.x509.X509CertInfo;
+import sun.security.x509.CertificateVersion;
+import sun.security.x509.CertificateSerialNumber;
+import sun.security.x509.SerialNumber;
+import java.math.BigInteger;
+import sun.security.x509.CertificateAlgorithmId;
+import sun.security.x509.AlgorithmId;
+import sun.security.util.ObjectIdentifier;
+import sun.security.x509.X500Name;
+import sun.security.x509.RDN;
+import sun.security.x509.AVA;
+import sun.security.util.DerValue;
+import sun.security.util.DerInputStream;
+import sun.security.x509.CertificateValidity;
+import java.util.Date;
+import sun.security.x509.CertificateX509Key;
+import sun.security.rsa.RSAPublicKeyImpl;
+import sun.security.util.BitArray;
+import sun.security.x509.CertificateExtensions;
+import java.util.TreeMap;
+import sun.security.x509.Extension;
+import sun.security.x509.AuthorityInfoAccessExtension;
+import sun.security.x509.AccessDescription;
+import sun.security.x509.GeneralName;
+import sun.security.x509.URIName;
+import java.net.URI;
+import sun.security.x509.DNSName;
+import sun.security.x509.AuthorityKeyIdentifierExtension;
+import sun.security.x509.KeyIdentifier;
+import sun.security.x509.BasicConstraintsExtension;
+import sun.security.x509.CRLDistributionPointsExtension;
+import sun.security.x509.DistributionPoint;
+import sun.security.x509.GeneralNames;
+import sun.security.x509.CertificatePoliciesExtension;
+import sun.security.x509.PolicyInformation;
+import sun.security.x509.CertificatePolicyId;
+import java.util.LinkedHashSet;
+import java.security.cert.PolicyQualifierInfo;
+import sun.security.x509.ExtendedKeyUsageExtension;
+import sun.security.x509.KeyUsageExtension;
+import sun.security.x509.NetscapeCertTypeExtension;
+import sun.security.x509.SubjectAlternativeNameExtension;
+import sun.security.x509.SubjectKeyIdentifierExtension;
+import java.security.Timestamp;
+import com.alibaba.fastjson.serializer.PascalNameFilter;
+import com.alibaba.fastjson.serializer.SerializeFilter;
+import org.springframework.http.server.ServletServerHttpRequest;
+import org.springframework.web.context.support.ContextExposingHttpServletRequest;
 import java.lang.reflect.Type;
-import java.net.ServerSocket;
-import java.lang.reflect.Array;
+import org.springframework.core.ResolvableType;
+import java.lang.reflect.Constructor;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Objects;
 import java.util.Map;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
-import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.lang.reflect.Array;
 import java.util.Iterator;
-import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
 
-public class MapDeserializerTest {
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetFastMatchToken1() throws Throwable  {
-        MapDeserializer mapDeserializer = new MapDeserializer();
-        
-        int actual = mapDeserializer.getFastMatchToken();
-        
-        assertEquals(12, actual);
-    }
-    ///endregion
-    
+public class FastJsonHttpMessageConverterTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze1() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        java.lang.Object[] ofLongArray = createArray("[Ljava.util.stream.Nodes$EmptyNode$OfLong;", 0);
-        
-        mapDeserializer.deserialze(null, typeVariableImpl, ofLongArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze2() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+    public void testCanRead1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
         Class class1 = Object.class;
+        MediaType mediaType = ((MediaType) createInstance("org.springframework.http.MediaType"));
         
-        mapDeserializer.deserialze(null, class1, null);
-        
-        Class finalClass1 = class1;
-        
-        Class expectedFinalClass1 = com.alibaba.fastjson.JSONObject.class;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expectedFinalClass1, finalClass1));
+        fastJsonHttpMessageConverter.canRead(null, class1, mediaType);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze3() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "ch", '}');
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
+    public void testCanWrite1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
         
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
+        boolean actual = fastJsonHttpMessageConverter.canWrite(null, null, null);
         
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer, "ch");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer1, "token");
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(13, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze4() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
+        assertTrue(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze5() throws Throwable  {
-        MapDeserializer mapDeserializer = new MapDeserializer();
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+    public void testCanWrite2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        MediaType mediaType = ((MediaType) createInstance("org.springframework.http.MediaType"));
+        
+        fastJsonHttpMessageConverter.canWrite(null, null, mediaType);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReadInternal1() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        boolean prevHasClazzResolvableType = ((boolean) getStaticFieldValue(spring4TypeResolvableHelperClazz, "hasClazzResolvableType"));
+        try {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", false);
+            FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+            
+            Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+            Class classType = Class.forName("java.lang.Class");
+            Class httpInputMessageType = Class.forName("org.springframework.http.HttpInputMessage");
+            Method readInternalMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("readInternal", classType, httpInputMessageType);
+            readInternalMethod.setAccessible(true);
+            java.lang.Object[] readInternalMethodArguments = new java.lang.Object[2];
+            readInternalMethodArguments[0] = null;
+            readInternalMethodArguments[1] = null;
+            try {
+                readInternalMethod.invoke(fastJsonHttpMessageConverter, readInternalMethodArguments);
+            } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+                throw invocationTargetException.getTargetException();
+            }} finally {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", prevHasClazzResolvableType);
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWriteInternal1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
         Object object = new Object();
         
-        Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class typeType = Class.forName("java.lang.reflect.Type");
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
         Class objectType = Class.forName("java.lang.Object");
-        Class mapType = Class.forName("java.util.Map");
-        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, typeType, objectType, mapType);
-        deserialzeMethod.setAccessible(true);
-        java.lang.Object[] deserialzeMethodArguments = new java.lang.Object[4];
-        deserialzeMethodArguments[0] = defaultJSONParser;
-        deserialzeMethodArguments[1] = null;
-        deserialzeMethodArguments[2] = object;
-        deserialzeMethodArguments[3] = null;
+        Class httpOutputMessageType = Class.forName("org.springframework.http.HttpOutputMessage");
+        Method writeInternalMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("writeInternal", objectType, httpOutputMessageType);
+        writeInternalMethod.setAccessible(true);
+        java.lang.Object[] writeInternalMethodArguments = new java.lang.Object[2];
+        writeInternalMethodArguments[0] = object;
+        writeInternalMethodArguments[1] = null;
         try {
-            deserialzeMethod.invoke(mapDeserializer, deserialzeMethodArguments);
+            writeInternalMethod.invoke(fastJsonHttpMessageConverter, writeInternalMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -148,319 +202,746 @@ public class MapDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze6() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        Class class1 = Object.class;
-        java.lang.Object[] ofRefArray = createArray("[[[Ljava.util.stream.Nodes$ToArrayTask$OfRef;", 0);
+    @Test(timeout = 10000)
+    public void testSupports1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
         
-        Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class class1Type = Class.forName("java.lang.reflect.Type");
-        Class mapType = Class.forName("java.util.Map");
-        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, class1Type, class1, mapType);
-        deserialzeMethod.setAccessible(true);
-        java.lang.Object[] deserialzeMethodArguments = new java.lang.Object[4];
-        deserialzeMethodArguments[0] = null;
-        deserialzeMethodArguments[1] = class1;
-        deserialzeMethodArguments[2] = ((Object) ofRefArray);
-        deserialzeMethodArguments[3] = null;
-        try {
-            deserialzeMethod.invoke(mapDeserializer, deserialzeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze7() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
-        java.lang.reflect.Type[] typeArray = new java.lang.reflect.Type[0];
-        setField(parameterizedTypeImpl, "actualTypeArguments", typeArray);
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class classType = Class.forName("java.lang.Class");
+        Method supportsMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("supports", classType);
+        supportsMethod.setAccessible(true);
+        java.lang.Object[] supportsMethodArguments = new java.lang.Object[1];
+        supportsMethodArguments[0] = null;
+        boolean actual = ((boolean) supportsMethod.invoke(fastJsonHttpMessageConverter, supportsMethodArguments));
         
-        Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class parameterizedTypeImplType = Class.forName("java.lang.reflect.Type");
-        Class objectType = Class.forName("java.lang.Object");
-        Class mapType = Class.forName("java.util.Map");
-        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, parameterizedTypeImplType, objectType, mapType);
-        deserialzeMethod.setAccessible(true);
-        java.lang.Object[] deserialzeMethodArguments = new java.lang.Object[4];
-        deserialzeMethodArguments[0] = defaultJSONParser;
-        deserialzeMethodArguments[1] = parameterizedTypeImpl;
-        deserialzeMethodArguments[2] = null;
-        deserialzeMethodArguments[3] = null;
-        try {
-            deserialzeMethod.invoke(mapDeserializer, deserialzeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze8() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
-        java.lang.reflect.Type[] typeArray = new java.lang.reflect.Type[1];
-        setField(parameterizedTypeImpl, "actualTypeArguments", typeArray);
-        
-        Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class parameterizedTypeImplType = Class.forName("java.lang.reflect.Type");
-        Class objectType = Class.forName("java.lang.Object");
-        Class mapType = Class.forName("java.util.Map");
-        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, parameterizedTypeImplType, objectType, mapType);
-        deserialzeMethod.setAccessible(true);
-        java.lang.Object[] deserialzeMethodArguments = new java.lang.Object[4];
-        deserialzeMethodArguments[0] = null;
-        deserialzeMethodArguments[1] = parameterizedTypeImpl;
-        deserialzeMethodArguments[2] = null;
-        deserialzeMethodArguments[3] = null;
-        try {
-            deserialzeMethod.invoke(mapDeserializer, deserialzeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze9() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class typeType = Class.forName("java.lang.reflect.Type");
-        Class objectType = Class.forName("java.lang.Object");
-        Class mapType = Class.forName("java.util.Map");
-        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, typeType, objectType, mapType);
-        deserialzeMethod.setAccessible(true);
-        java.lang.Object[] deserialzeMethodArguments = new java.lang.Object[4];
-        deserialzeMethodArguments[0] = defaultJSONParser;
-        deserialzeMethodArguments[1] = null;
-        deserialzeMethodArguments[2] = null;
-        deserialzeMethodArguments[3] = null;
-        try {
-            deserialzeMethod.invoke(mapDeserializer, deserialzeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze10() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        Object syntheticParameterizedType = createInstance("org.springframework.core.ResolvableType$SyntheticParameterizedType");
-        
-        Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class syntheticParameterizedTypeType = Class.forName("java.lang.reflect.Type");
-        Class objectType = Class.forName("java.lang.Object");
-        Class mapType = Class.forName("java.util.Map");
-        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, syntheticParameterizedTypeType, objectType, mapType);
-        deserialzeMethod.setAccessible(true);
-        java.lang.Object[] deserialzeMethodArguments = new java.lang.Object[4];
-        deserialzeMethodArguments[0] = null;
-        deserialzeMethodArguments[1] = syntheticParameterizedType;
-        deserialzeMethodArguments[2] = null;
-        deserialzeMethodArguments[3] = null;
-        try {
-            deserialzeMethod.invoke(mapDeserializer, deserialzeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateMap1() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        
-        mapDeserializer.createMap(typeVariableImpl);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateMap2() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        
-        mapDeserializer.createMap(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateMap3() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        Class class1 = Object.class;
-        
-        mapDeserializer.createMap(class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap1() throws Throwable  {
-        ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
-        java.net.ServerSocket[] serverSocketArray = new java.net.ServerSocket[0];
-        
-        MapDeserializer.parseMap(null, null, parameterizedTypeImpl, serverSocketArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap2() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        setField(defaultJSONParser, "context", null);
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", ' ');
-        setField(jSONScanner, "token", 12);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        MapDeserializer.parseMap(defaultJSONParser, null, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap3() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        setField(defaultJSONParser, "context", null);
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "ch", '0');
-        setField(jSONScanner, "token", 12);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        MapDeserializer.parseMap(defaultJSONParser, null, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap4() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        setField(defaultJSONParser, "context", null);
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\r');
-        setField(jSONScanner, "token", 12);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        MapDeserializer.parseMap(defaultJSONParser, null, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap5() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        setField(defaultJSONParser, "context", null);
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
-        setField(jSONScanner, "token", 12);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        MapDeserializer.parseMap(defaultJSONParser, null, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap6() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        MapDeserializer.parseMap(defaultJSONParser, null, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap7() throws Throwable  {
-        com.alibaba.fastjson.util.ParameterizedTypeImpl parameterizedTypeImpl = ((com.alibaba.fastjson.util.ParameterizedTypeImpl) createInstance("com.alibaba.fastjson.util.ParameterizedTypeImpl"));
-        com.alibaba.fastjson.util.ParameterizedTypeImpl parameterizedTypeImpl1 = ((com.alibaba.fastjson.util.ParameterizedTypeImpl) createInstance("com.alibaba.fastjson.util.ParameterizedTypeImpl"));
-        java.lang.Object[] ofDoubleArray = createArray("java.util.stream.StreamSpliterators$ArrayBuffer$OfDouble", 0);
-        
-        MapDeserializer.parseMap(null, null, parameterizedTypeImpl, parameterizedTypeImpl1, ofDoubleArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap8() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 12);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(defaultJSONParser, "config", null);
-        
-        MapDeserializer.parseMap(defaultJSONParser, null, null, null, null);
+        assertTrue(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testMapDeserializer1() {
-        MapDeserializer actual = new MapDeserializer();
+    public void testSetFeatures1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        com.alibaba.fastjson.serializer.SerializerFeature[] serializerFeatureArray = new com.alibaba.fastjson.serializer.SerializerFeature[0];
+        
+        fastJsonHttpMessageConverter.setFeatures(serializerFeatureArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetCharset1() throws Throwable  {
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetCharset2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        
+        fastJsonHttpMessageConverter.getCharset();
+    }
+    ///endregion
+    
+    
+    ///region Errors report for getFastJsonConfig
+    
+    public void testGetFastJsonConfig_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.util.jar.JarVerifier$3 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetFastJsonConfig2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        
+        FastJsonConfig actual = fastJsonHttpMessageConverter.getFastJsonConfig();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddSerializeFilter1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        
+        fastJsonHttpMessageConverter.addSerializeFilter(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddSerializeFilter2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        
+        fastJsonHttpMessageConverter.addSerializeFilter(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testAddSerializeFilter3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        PascalNameFilter pascalNameFilter = ((PascalNameFilter) createInstance("com.alibaba.fastjson.serializer.PascalNameFilter"));
+        
+        fastJsonHttpMessageConverter.addSerializeFilter(pascalNameFilter);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testAddSerializeFilter4() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        FastJsonConfig fastJsonConfig = ((FastJsonConfig) createInstance("com.alibaba.fastjson.support.config.FastJsonConfig"));
+        setField(fastJsonConfig, "serializeFilters", null);
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", fastJsonConfig);
+        PascalNameFilter pascalNameFilter = ((PascalNameFilter) createInstance("com.alibaba.fastjson.serializer.PascalNameFilter"));
+        
+        fastJsonHttpMessageConverter.addSerializeFilter(pascalNameFilter);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetFilters1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        
+        com.alibaba.fastjson.serializer.SerializeFilter[] actual = fastJsonHttpMessageConverter.getFilters();
+        
+        com.alibaba.fastjson.serializer.SerializeFilter[] expected = new com.alibaba.fastjson.serializer.SerializeFilter[0];
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetFilters2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        
+        fastJsonHttpMessageConverter.getFilters();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetFilters3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        FastJsonConfig fastJsonConfig = ((FastJsonConfig) createInstance("com.alibaba.fastjson.support.config.FastJsonConfig"));
+        setField(fastJsonConfig, "serializeFilters", null);
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", fastJsonConfig);
+        
+        com.alibaba.fastjson.serializer.SerializeFilter[] actual = fastJsonHttpMessageConverter.getFilters();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetFilters1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        com.alibaba.fastjson.serializer.SerializeFilter[] serializeFilterArray = new com.alibaba.fastjson.serializer.SerializeFilter[0];
+        
+        fastJsonHttpMessageConverter.setFilters(serializeFilterArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSetFilters2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        com.alibaba.fastjson.serializer.SerializeFilter[] serializeFilterArray = new com.alibaba.fastjson.serializer.SerializeFilter[9];
+        
+        SerializeFilter initialSerializeFilterArray0 = serializeFilterArray[0];
+        SerializeFilter initialSerializeFilterArray1 = serializeFilterArray[1];
+        SerializeFilter initialSerializeFilterArray2 = serializeFilterArray[2];
+        SerializeFilter initialSerializeFilterArray3 = serializeFilterArray[3];
+        SerializeFilter initialSerializeFilterArray4 = serializeFilterArray[4];
+        SerializeFilter initialSerializeFilterArray5 = serializeFilterArray[5];
+        SerializeFilter initialSerializeFilterArray6 = serializeFilterArray[6];
+        SerializeFilter initialSerializeFilterArray7 = serializeFilterArray[7];
+        SerializeFilter initialSerializeFilterArray8 = serializeFilterArray[8];
+        
+        fastJsonHttpMessageConverter.setFilters(serializeFilterArray);
+        
+        SerializeFilter finalSerializeFilterArray0 = serializeFilterArray[0];
+        SerializeFilter finalSerializeFilterArray1 = serializeFilterArray[1];
+        SerializeFilter finalSerializeFilterArray2 = serializeFilterArray[2];
+        SerializeFilter finalSerializeFilterArray3 = serializeFilterArray[3];
+        SerializeFilter finalSerializeFilterArray4 = serializeFilterArray[4];
+        SerializeFilter finalSerializeFilterArray5 = serializeFilterArray[5];
+        SerializeFilter finalSerializeFilterArray6 = serializeFilterArray[6];
+        SerializeFilter finalSerializeFilterArray7 = serializeFilterArray[7];
+        SerializeFilter finalSerializeFilterArray8 = serializeFilterArray[8];
+        
+        assertNull(finalSerializeFilterArray0);
+        
+        assertNull(finalSerializeFilterArray1);
+        
+        assertNull(finalSerializeFilterArray2);
+        
+        assertNull(finalSerializeFilterArray3);
+        
+        assertNull(finalSerializeFilterArray4);
+        
+        assertNull(finalSerializeFilterArray5);
+        
+        assertNull(finalSerializeFilterArray6);
+        
+        assertNull(finalSerializeFilterArray7);
+        
+        assertNull(finalSerializeFilterArray8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetFilters3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        FastJsonConfig fastJsonConfig = ((FastJsonConfig) createInstance("com.alibaba.fastjson.support.config.FastJsonConfig"));
+        setField(fastJsonConfig, "serializeFilters", null);
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", fastJsonConfig);
+        com.alibaba.fastjson.serializer.SerializeFilter[] serializeFilterArray = new com.alibaba.fastjson.serializer.SerializeFilter[9];
+        
+        SerializeFilter initialSerializeFilterArray0 = serializeFilterArray[0];
+        SerializeFilter initialSerializeFilterArray1 = serializeFilterArray[1];
+        SerializeFilter initialSerializeFilterArray2 = serializeFilterArray[2];
+        SerializeFilter initialSerializeFilterArray3 = serializeFilterArray[3];
+        SerializeFilter initialSerializeFilterArray4 = serializeFilterArray[4];
+        SerializeFilter initialSerializeFilterArray5 = serializeFilterArray[5];
+        SerializeFilter initialSerializeFilterArray6 = serializeFilterArray[6];
+        SerializeFilter initialSerializeFilterArray7 = serializeFilterArray[7];
+        SerializeFilter initialSerializeFilterArray8 = serializeFilterArray[8];
+        
+        fastJsonHttpMessageConverter.setFilters(serializeFilterArray);
+        
+        Object fastJsonHttpMessageConverterFastJsonConfig = getFieldValue(fastJsonHttpMessageConverter, "fastJsonConfig");
+        Object finalFastJsonHttpMessageConverterFastJsonConfigSerializeFilters = getFieldValue(fastJsonHttpMessageConverterFastJsonConfig, "serializeFilters");
+        
+        SerializeFilter finalSerializeFilterArray0 = serializeFilterArray[0];
+        SerializeFilter finalSerializeFilterArray1 = serializeFilterArray[1];
+        SerializeFilter finalSerializeFilterArray2 = serializeFilterArray[2];
+        SerializeFilter finalSerializeFilterArray3 = serializeFilterArray[3];
+        SerializeFilter finalSerializeFilterArray4 = serializeFilterArray[4];
+        SerializeFilter finalSerializeFilterArray5 = serializeFilterArray[5];
+        SerializeFilter finalSerializeFilterArray6 = serializeFilterArray[6];
+        SerializeFilter finalSerializeFilterArray7 = serializeFilterArray[7];
+        SerializeFilter finalSerializeFilterArray8 = serializeFilterArray[8];
+        
+        assertNull(finalSerializeFilterArray0);
+        
+        assertNull(finalSerializeFilterArray1);
+        
+        assertNull(finalSerializeFilterArray2);
+        
+        assertNull(finalSerializeFilterArray3);
+        
+        assertNull(finalSerializeFilterArray4);
+        
+        assertNull(finalSerializeFilterArray5);
+        
+        assertNull(finalSerializeFilterArray6);
+        
+        assertNull(finalSerializeFilterArray7);
+        
+        assertNull(finalSerializeFilterArray8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetDateFormat1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        String string = new String();
+        
+        fastJsonHttpMessageConverter.setDateFormat(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSetDateFormat2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        
+        fastJsonHttpMessageConverter.setDateFormat(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetDateFormat3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        FastJsonConfig fastJsonConfig = ((FastJsonConfig) createInstance("com.alibaba.fastjson.support.config.FastJsonConfig"));
+        setField(fastJsonConfig, "dateFormat", null);
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", fastJsonConfig);
+        
+        fastJsonHttpMessageConverter.setDateFormat(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetDateFormat1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        
+        String actual = fastJsonHttpMessageConverter.getDateFormat();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetDateFormat2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        
+        fastJsonHttpMessageConverter.getDateFormat();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetDateFormat3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        FastJsonConfig fastJsonConfig = ((FastJsonConfig) createInstance("com.alibaba.fastjson.support.config.FastJsonConfig"));
+        setField(fastJsonConfig, "dateFormat", null);
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", fastJsonConfig);
+        
+        String actual = fastJsonHttpMessageConverter.getDateFormat();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testStrangeCodeForJackson1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        Object object = new Object();
+        
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class objectType = Class.forName("java.lang.Object");
+        Method strangeCodeForJacksonMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("strangeCodeForJackson", objectType);
+        strangeCodeForJacksonMethod.setAccessible(true);
+        java.lang.Object[] strangeCodeForJacksonMethodArguments = new java.lang.Object[1];
+        strangeCodeForJacksonMethodArguments[0] = object;
+        Object actual = strangeCodeForJacksonMethod.invoke(fastJsonHttpMessageConverter, strangeCodeForJacksonMethodArguments);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(object, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testStrangeCodeForJackson2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class objectType = Class.forName("java.lang.Object");
+        Method strangeCodeForJacksonMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("strangeCodeForJackson", objectType);
+        strangeCodeForJacksonMethod.setAccessible(true);
+        java.lang.Object[] strangeCodeForJacksonMethodArguments = new java.lang.Object[1];
+        strangeCodeForJacksonMethodArguments[0] = null;
+        Object actual = strangeCodeForJacksonMethod.invoke(fastJsonHttpMessageConverter, strangeCodeForJacksonMethodArguments);
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetFastJsonConfig1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        
+        fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetFastJsonConfig2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        
+        fastJsonHttpMessageConverter.setFastJsonConfig(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetFeatures1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        
+        com.alibaba.fastjson.serializer.SerializerFeature[] actual = fastJsonHttpMessageConverter.getFeatures();
+        
+        com.alibaba.fastjson.serializer.SerializerFeature[] expected = new com.alibaba.fastjson.serializer.SerializerFeature[1];
+        SerializerFeature serializerFeature = SerializerFeature.BrowserSecure;
+        expected[0] = serializerFeature;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetFeatures2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        
+        fastJsonHttpMessageConverter.getFeatures();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetFeatures3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        FastJsonConfig fastJsonConfig = ((FastJsonConfig) createInstance("com.alibaba.fastjson.support.config.FastJsonConfig"));
+        setField(fastJsonConfig, "serializerFeatures", null);
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", fastJsonConfig);
+        
+        com.alibaba.fastjson.serializer.SerializerFeature[] actual = fastJsonHttpMessageConverter.getFeatures();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetCharset1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        
+        fastJsonHttpMessageConverter.setCharset(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSetCharset2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", null);
+        
+        fastJsonHttpMessageConverter.setCharset(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetCharset3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        FastJsonConfig fastJsonConfig = ((FastJsonConfig) createInstance("com.alibaba.fastjson.support.config.FastJsonConfig"));
+        setField(fastJsonConfig, "charset", null);
+        setField(fastJsonHttpMessageConverter, "fastJsonConfig", fastJsonConfig);
+        
+        fastJsonHttpMessageConverter.setCharset(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReadType1() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class typeType = Class.forName("java.lang.reflect.Type");
+        Class httpInputMessageType = Class.forName("org.springframework.http.HttpInputMessage");
+        Method readTypeMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("readType", typeType, httpInputMessageType);
+        readTypeMethod.setAccessible(true);
+        java.lang.Object[] readTypeMethodArguments = new java.lang.Object[2];
+        readTypeMethodArguments[0] = null;
+        readTypeMethodArguments[1] = null;
+        try {
+            readTypeMethod.invoke(fastJsonHttpMessageConverter, readTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReadType2() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class typeType = Class.forName("java.lang.reflect.Type");
+        Class httpInputMessageType = Class.forName("org.springframework.http.HttpInputMessage");
+        Method readTypeMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("readType", typeType, httpInputMessageType);
+        readTypeMethod.setAccessible(true);
+        java.lang.Object[] readTypeMethodArguments = new java.lang.Object[2];
+        readTypeMethodArguments[0] = null;
+        readTypeMethodArguments[1] = null;
+        try {
+            readTypeMethod.invoke(fastJsonHttpMessageConverter, readTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReadType3() throws Throwable  {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+        ServletServerHttpRequest servletServerHttpRequest = ((ServletServerHttpRequest) createInstance("org.springframework.http.server.ServletServerHttpRequest"));
+        ContextExposingHttpServletRequest contextExposingHttpServletRequest = ((ContextExposingHttpServletRequest) createInstance("org.springframework.web.context.support.ContextExposingHttpServletRequest"));
+        setField(contextExposingHttpServletRequest, "request", contextExposingHttpServletRequest);
+        setField(servletServerHttpRequest, "servletRequest", contextExposingHttpServletRequest);
+        
+        Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+        Class typeType = Class.forName("java.lang.reflect.Type");
+        Class servletServerHttpRequestType = Class.forName("org.springframework.http.HttpInputMessage");
+        Method readTypeMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("readType", typeType, servletServerHttpRequestType);
+        readTypeMethod.setAccessible(true);
+        java.lang.Object[] readTypeMethodArguments = new java.lang.Object[2];
+        readTypeMethodArguments[0] = null;
+        readTypeMethodArguments[1] = servletServerHttpRequest;
+        try {
+            readTypeMethod.invoke(fastJsonHttpMessageConverter, readTypeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType1() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        boolean prevHasClazzResolvableType = ((boolean) getStaticFieldValue(spring4TypeResolvableHelperClazz, "hasClazzResolvableType"));
+        try {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", false);
+            FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+            
+            Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+            Class typeType = Class.forName("java.lang.reflect.Type");
+            Class classType = Class.forName("java.lang.Class");
+            Method getTypeMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("getType", typeType, classType);
+            getTypeMethod.setAccessible(true);
+            java.lang.Object[] getTypeMethodArguments = new java.lang.Object[2];
+            getTypeMethodArguments[0] = null;
+            getTypeMethodArguments[1] = null;
+            Type actual = ((Type) getTypeMethod.invoke(fastJsonHttpMessageConverter, getTypeMethodArguments));
+            
+            assertNull(actual);
+        } finally {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", prevHasClazzResolvableType);
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType2() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        boolean prevHasClazzResolvableType = ((boolean) getStaticFieldValue(spring4TypeResolvableHelperClazz, "hasClazzResolvableType"));
+        try {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", true);
+            FastJsonHttpMessageConverter fastJsonHttpMessageConverter = ((FastJsonHttpMessageConverter) createInstance("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"));
+            
+            Class fastJsonHttpMessageConverterClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter");
+            Class typeType = Class.forName("java.lang.reflect.Type");
+            Class classType = Class.forName("java.lang.Class");
+            Method getTypeMethod = fastJsonHttpMessageConverterClazz.getDeclaredMethod("getType", typeType, classType);
+            getTypeMethod.setAccessible(true);
+            java.lang.Object[] getTypeMethodArguments = new java.lang.Object[2];
+            getTypeMethodArguments[0] = null;
+            getTypeMethodArguments[1] = null;
+            Type actual = ((Type) getTypeMethod.invoke(fastJsonHttpMessageConverter, getTypeMethodArguments));
+            
+            assertNull(actual);
+        } finally {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", prevHasClazzResolvableType);
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testFastJsonHttpMessageConverter1() {
+        FastJsonHttpMessageConverter actual = new FastJsonHttpMessageConverter();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testResolveVariable1() throws Throwable  {
+        ResolvableType resolvableType = ((ResolvableType) createInstance("org.springframework.core.ResolvableType"));
+        
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Class typeVariableType = Class.forName("java.lang.reflect.TypeVariable");
+        Class resolvableTypeType = Class.forName("org.springframework.core.ResolvableType");
+        Method resolveVariableMethod = spring4TypeResolvableHelperClazz.getDeclaredMethod("resolveVariable", typeVariableType, resolvableTypeType);
+        resolveVariableMethod.setAccessible(true);
+        java.lang.Object[] resolveVariableMethodArguments = new java.lang.Object[2];
+        resolveVariableMethodArguments[0] = null;
+        resolveVariableMethodArguments[1] = resolvableType;
+        ResolvableType actual = ((ResolvableType) resolveVariableMethod.invoke(null, resolveVariableMethodArguments));
+        
+        ResolvableType expected = ((ResolvableType) createInstance("org.springframework.core.ResolvableType"));
+        setField(expected, "type", null);
+        setField(expected, "typeProvider", null);
+        setField(expected, "variableResolver", null);
+        setField(expected, "componentType", null);
+        setField(expected, "resolved", null);
+        Integer integer = 0;
+        setField(expected, "hash", integer);
+        setField(expected, "superType", null);
+        setField(expected, "interfaces", null);
+        setField(expected, "generics", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testResolveVariable2() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Class typeVariableType = Class.forName("java.lang.reflect.TypeVariable");
+        Class resolvableTypeType = Class.forName("org.springframework.core.ResolvableType");
+        Method resolveVariableMethod = spring4TypeResolvableHelperClazz.getDeclaredMethod("resolveVariable", typeVariableType, resolvableTypeType);
+        resolveVariableMethod.setAccessible(true);
+        java.lang.Object[] resolveVariableMethodArguments = new java.lang.Object[2];
+        resolveVariableMethodArguments[0] = null;
+        resolveVariableMethodArguments[1] = null;
+        try {
+            resolveVariableMethod.invoke(null, resolveVariableMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsSupport1() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Method isSupportMethod = spring4TypeResolvableHelperClazz.getDeclaredMethod("isSupport");
+        isSupportMethod.setAccessible(true);
+        java.lang.Object[] isSupportMethodArguments = new java.lang.Object[0];
+        boolean actual = ((boolean) isSupportMethod.invoke(null, isSupportMethodArguments));
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsSupport2() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        boolean prevHasClazzResolvableType = ((boolean) getStaticFieldValue(spring4TypeResolvableHelperClazz, "hasClazzResolvableType"));
+        try {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", false);
+            
+            Method isSupportMethod = spring4TypeResolvableHelperClazz.getDeclaredMethod("isSupport");
+            isSupportMethod.setAccessible(true);
+            java.lang.Object[] isSupportMethodArguments = new java.lang.Object[0];
+            boolean actual = ((boolean) isSupportMethod.invoke(null, isSupportMethodArguments));
+            
+            assertFalse(actual);
+        } finally {
+            setStaticField(spring4TypeResolvableHelperClazz, "hasClazzResolvableType", prevHasClazzResolvableType);
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType3() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Class typeType = Class.forName("java.lang.reflect.Type");
+        Class classType = Class.forName("java.lang.Class");
+        Method getTypeMethod = spring4TypeResolvableHelperClazz.getDeclaredMethod("getType", typeType, classType);
+        getTypeMethod.setAccessible(true);
+        java.lang.Object[] getTypeMethodArguments = new java.lang.Object[2];
+        getTypeMethodArguments[0] = null;
+        getTypeMethodArguments[1] = null;
+        Type actual = ((Type) getTypeMethod.invoke(null, getTypeMethodArguments));
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSpring4TypeResolvableHelper1() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Constructor spring4TypeResolvableHelperConstructor = spring4TypeResolvableHelperClazz.getDeclaredConstructor();
+        spring4TypeResolvableHelperConstructor.setAccessible(true);
+        java.lang.Object[] spring4TypeResolvableHelperConstructorArguments = new java.lang.Object[0];
+        Object actual = spring4TypeResolvableHelperConstructor.newInstance(spring4TypeResolvableHelperConstructorArguments);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSpring4TypeResolvableHelper2() throws Throwable  {
+        Class spring4TypeResolvableHelperClazz = Class.forName("com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter$Spring4TypeResolvableHelper");
+        Constructor spring4TypeResolvableHelperConstructor = spring4TypeResolvableHelperClazz.getDeclaredConstructor();
+        spring4TypeResolvableHelperConstructor.setAccessible(true);
+        java.lang.Object[] spring4TypeResolvableHelperConstructorArguments = new java.lang.Object[0];
+        Object actual = spring4TypeResolvableHelperConstructor.newInstance(spring4TypeResolvableHelperConstructorArguments);
     }
     ///endregion
     
@@ -468,14 +949,62 @@ public class MapDeserializerTest {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
     }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    private static Object getStaticFieldValue(Class<?> clazz, String fieldName) throws Exception {
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+                
+                return field.get(null);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
     
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + clazz);
+    }
+    private static void setStaticField(Class<?> clazz, String fieldName, Object fieldValue) throws Exception {
+        java.lang.reflect.Field field;
+    
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+            } catch (Exception e) {
+                clazz = clazz.getSuperclass();
+                field = null;
+            }
+        } while (field == null);
         
-        return (Object[]) array;
+        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(null, fieldValue);
+    }
+    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
+        Class<?> clazz = object.getClass();
+        java.lang.reflect.Field field;
+    
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+            } catch (Exception e) {
+                clazz = clazz.getSuperclass();
+                field = null;
+            }
+        } while (field == null);
+        
+        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(object, fieldValue);
     }
     static class FieldsPair {
         final Object o1;
@@ -645,25 +1174,14 @@ public class MapDeserializerTest {
     
         return false;
     }
-    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
-        Class<?> clazz = object.getClass();
-        java.lang.reflect.Field field;
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
     
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-            } catch (Exception e) {
-                clazz = clazz.getSuperclass();
-                field = null;
-            }
-        } while (field == null);
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
         
-        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-    
-        field.setAccessible(true);
-        field.set(object, fieldValue);
+        return (Object[]) array;
     }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();

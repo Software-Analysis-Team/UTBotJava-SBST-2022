@@ -2,15 +2,16 @@ package io.seata.core.rpc.netty;
 
 import org.junit.Test;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.timeout.IdleStateEvent;
 import java.lang.reflect.Method;
 import io.seata.core.protocol.RpcMessage;
+import java.text.RuleBasedCollator;
+import io.seata.core.protocol.RegisterRMRequest;
+import io.seata.core.rpc.DefaultServerMessageListenerImpl;
+import io.netty.channel.DefaultChannelPipeline;
 import io.netty.channel.Channel;
 import io.seata.core.protocol.HeartbeatMessage;
 import io.netty.channel.ChannelOutboundBuffer;
-import io.seata.core.protocol.RegisterRMRequest;
 import org.slf4j.Logger;
-import io.netty.channel.DefaultChannelPipeline;
 import io.seata.core.rpc.ServerMessageListener;
 import io.netty.channel.unix.DomainSocketAddress;
 import io.netty.channel.unix.DatagramSocketAddress;
@@ -23,10 +24,11 @@ import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertFalse;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mockStatic;
 
 public class RpcServerTest {
     ///region
@@ -63,17 +65,6 @@ public class RpcServerTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testUserEventTriggered3() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        IdleStateEvent idleStateEvent = ((IdleStateEvent) createInstance("io.netty.handler.timeout.IdleStateEvent"));
-        
-        rpcServer.userEventTriggered(((ChannelHandlerContext) null), idleStateEvent);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testChannelInactive1() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
@@ -100,6 +91,16 @@ public class RpcServerTest {
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testChannelInactive3() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        
+        rpcServer.channelInactive(((ChannelHandlerContext) null));
+    }
     ///endregion
     
     ///region
@@ -167,6 +168,126 @@ public class RpcServerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testDispatch1() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        Object object = new Object();
+        
+        rpcServer.dispatch(0L, ((ChannelHandlerContext) null), object);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDispatch2() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        java.text.RuleBasedCollator[] ruleBasedCollatorArray = new java.text.RuleBasedCollator[0];
+        
+        rpcServer.dispatch(0L, ((ChannelHandlerContext) null), ruleBasedCollatorArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDispatch3() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        RegisterCheckAuthHandler registerCheckAuthHandlerMock = mock(RegisterCheckAuthHandler.class);
+        setField(rpcServer, "checkAuthHandler", registerCheckAuthHandlerMock);
+        setField(rpcServer, "serverMessageListener", null);
+        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
+        
+        Object initialRpcServerCheckAuthHandler = getFieldValue(rpcServer, "checkAuthHandler");
+        
+        rpcServer.dispatch(0L, ((ChannelHandlerContext) null), registerRMRequest);
+        
+        Object finalRpcServerCheckAuthHandler = getFieldValue(rpcServer, "checkAuthHandler");
+        
+        assertFalse(initialRpcServerCheckAuthHandler == finalRpcServerCheckAuthHandler);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDispatch4() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        RegisterCheckAuthHandler registerCheckAuthHandlerMock = mock(RegisterCheckAuthHandler.class);
+        when(registerCheckAuthHandlerMock.regResourceManagerCheckAuth(any())).thenReturn(true);
+        setField(rpcServer, "checkAuthHandler", registerCheckAuthHandlerMock);
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        setField(rpcServer, "serverMessageListener", defaultServerMessageListenerImpl);
+        Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
+        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        setField(defaultChannelPipeline, "channel", failedChannel);
+        setField(defaultChannelHandlerContext, "pipeline", defaultChannelPipeline);
+        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
+        
+        Object initialRpcServerCheckAuthHandler = getFieldValue(rpcServer, "checkAuthHandler");
+        
+        Class rpcServerClazz = Class.forName("io.seata.core.rpc.netty.RpcServer");
+        Class longType = long.class;
+        Class defaultChannelHandlerContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Class registerRMRequestType = Class.forName("java.lang.Object");
+        Method dispatchMethod = rpcServerClazz.getDeclaredMethod("dispatch", longType, defaultChannelHandlerContextType, registerRMRequestType);
+        dispatchMethod.setAccessible(true);
+        java.lang.Object[] dispatchMethodArguments = new java.lang.Object[3];
+        dispatchMethodArguments[0] = 0L;
+        dispatchMethodArguments[1] = defaultChannelHandlerContext;
+        dispatchMethodArguments[2] = registerRMRequest;
+        try {
+            dispatchMethod.invoke(rpcServer, dispatchMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object finalRpcServerCheckAuthHandler = getFieldValue(rpcServer, "checkAuthHandler");
+        
+        assertFalse(initialRpcServerCheckAuthHandler == finalRpcServerCheckAuthHandler);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDispatch5() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        Object headContext = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
+        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        setField(defaultChannelPipeline, "channel", failedChannel);
+        setField(headContext, "pipeline", defaultChannelPipeline);
+        
+        Class rpcServerClazz = Class.forName("io.seata.core.rpc.netty.RpcServer");
+        Class longType = long.class;
+        Class headContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Class objectType = Class.forName("java.lang.Object");
+        Method dispatchMethod = rpcServerClazz.getDeclaredMethod("dispatch", longType, headContextType, objectType);
+        dispatchMethod.setAccessible(true);
+        java.lang.Object[] dispatchMethodArguments = new java.lang.Object[3];
+        dispatchMethodArguments[0] = 0L;
+        dispatchMethodArguments[1] = headContext;
+        dispatchMethodArguments[2] = null;
+        try {
+            dispatchMethod.invoke(rpcServer, dispatchMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInit1() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        
+        rpcServer.init();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testSendResponse1() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         Object object = new Object();
@@ -221,84 +342,7 @@ public class RpcServerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDispatch1() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        Object object = new Object();
-        
-        rpcServer.dispatch(0L, ((ChannelHandlerContext) null), object);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDispatch2() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        
-        rpcServer.dispatch(0L, ((ChannelHandlerContext) null), null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDispatch3() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        setField(rpcServer, "serverMessageListener", null);
-        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
-        
-        rpcServer.dispatch(0L, ((ChannelHandlerContext) null), registerRMRequest);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testInit1() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        
-        rpcServer.init();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testSendSyncRequest1() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        String string = new String();
-        String string1 = new String();
-        Object object = new Object();
-        
-        rpcServer.sendSyncRequest(string, string1, object, 0L);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendSyncRequest2() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        
-        rpcServer.sendSyncRequest(null, null, null, 0L);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendSyncRequest3() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        String string = new String("");
-        
-        rpcServer.sendSyncRequest(null, string, null, 0L);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendSyncRequest4() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         String string = new String();
         String string1 = new String();
@@ -311,10 +355,44 @@ public class RpcServerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendSyncRequest5() throws Throwable  {
+    public void testSendSyncRequest2() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         
         rpcServer.sendSyncRequest(null, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSendSyncRequest3() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        String string = new String();
+        String string1 = new String();
+        Object object = new Object();
+        
+        rpcServer.sendSyncRequest(string, string1, object, 0L);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSendSyncRequest4() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        
+        rpcServer.sendSyncRequest(null, null, null, 0L);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSendSyncRequest5() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        String string = new String("");
+        
+        rpcServer.sendSyncRequest(null, string, null, 0L);
     }
     ///endregion
     
@@ -324,7 +402,7 @@ public class RpcServerTest {
     public void testSetHandler1() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         
-        rpcServer.setHandler(null);
+        rpcServer.setHandler(null, null);
     }
     ///endregion
     
@@ -338,7 +416,7 @@ public class RpcServerTest {
         
         Object initialRpcServerCheckAuthHandler = getFieldValue(rpcServer, "checkAuthHandler");
         
-        rpcServer.setHandler(null);
+        rpcServer.setHandler(null, null);
         
         Object finalRpcServerCheckAuthHandler = getFieldValue(rpcServer, "checkAuthHandler");
         
@@ -352,7 +430,7 @@ public class RpcServerTest {
     public void testSetHandler3() throws Throwable  {
         RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         
-        rpcServer.setHandler(null, null);
+        rpcServer.setHandler(null);
     }
     ///endregion
     
@@ -366,32 +444,11 @@ public class RpcServerTest {
         
         Object initialRpcServerCheckAuthHandler = getFieldValue(rpcServer, "checkAuthHandler");
         
-        rpcServer.setHandler(null, null);
+        rpcServer.setHandler(null);
         
         Object finalRpcServerCheckAuthHandler = getFieldValue(rpcServer, "checkAuthHandler");
         
         assertNull(finalRpcServerCheckAuthHandler);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetServerMessageListener1() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        
-        rpcServer.setServerMessageListener(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetServerMessageListener2() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        setField(rpcServer, "serverMessageListener", null);
-        
-        rpcServer.setServerMessageListener(null);
     }
     ///endregion
     
@@ -424,7 +481,7 @@ public class RpcServerTest {
             Logger loggerMock = mock(Logger.class);
             when(loggerMock.isInfoEnabled()).thenReturn(false);
             mockedStatic.when(() -> {
-                org.slf4j.LoggerFactory.getLogger(any(Class.class));
+                org.slf4j.LoggerFactory.getLogger(org.mockito.ArgumentMatchers.any(Class.class));
             }).thenReturn(loggerMock);
             RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
             
@@ -454,7 +511,7 @@ public class RpcServerTest {
             Logger loggerMock = mock(Logger.class);
             when(loggerMock.isInfoEnabled()).thenReturn(true);
             mockedStatic.when(() -> {
-                org.slf4j.LoggerFactory.getLogger(any(Class.class));
+                org.slf4j.LoggerFactory.getLogger(org.mockito.ArgumentMatchers.any(Class.class));
             }).thenReturn(loggerMock);
             RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
             
@@ -476,39 +533,22 @@ public class RpcServerTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCloseChannelHandlerContext4() throws Throwable  {
-        org.mockito.MockedStatic mockedStatic = null;
-        try {
-            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
-            Logger loggerMock = mock(Logger.class);
-            when(loggerMock.isInfoEnabled()).thenReturn(false);
-            mockedStatic.when(() -> {
-                org.slf4j.LoggerFactory.getLogger(any(Class.class));
-            }).thenReturn(loggerMock);
-            RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-            Object headContext = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
-            Object epollEventLoop = createInstance("io.netty.channel.epoll.EpollEventLoop");
-            setField(headContext, "executor", epollEventLoop);
-            DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
-            Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-            setField(defaultChannelPipeline, "channel", failedChannel);
-            setField(headContext, "pipeline", defaultChannelPipeline);
-            setField(headContext, "prev", null);
-            
-            Class rpcServerClazz = Class.forName("io.seata.core.rpc.netty.RpcServer");
-            Class headContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-            Method closeChannelHandlerContextMethod = rpcServerClazz.getDeclaredMethod("closeChannelHandlerContext", headContextType);
-            closeChannelHandlerContextMethod.setAccessible(true);
-            java.lang.Object[] closeChannelHandlerContextMethodArguments = new java.lang.Object[1];
-            closeChannelHandlerContextMethodArguments[0] = headContext;
-            try {
-                closeChannelHandlerContextMethod.invoke(rpcServer, closeChannelHandlerContextMethodArguments);
-            } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-                throw invocationTargetException.getTargetException();
-            }} finally {
-            mockedStatic.close();
-        }
+    @Test(timeout = 10000)
+    public void testSetServerMessageListener1() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        
+        rpcServer.setServerMessageListener(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetServerMessageListener2() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        setField(rpcServer, "serverMessageListener", null);
+        
+        rpcServer.setServerMessageListener(null);
     }
     ///endregion
     
@@ -534,6 +574,59 @@ public class RpcServerTest {
         ServerMessageListener actual = rpcServer.getServerMessageListener();
         
         assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDebugLog1() throws Throwable  {
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        String string = new String();
+        
+        rpcServer.debugLog(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDebugLog2() throws Throwable  {
+        org.mockito.MockedStatic mockedStatic = null;
+        try {
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+            Logger loggerMock = mock(Logger.class);
+            when(loggerMock.isDebugEnabled()).thenReturn(false);
+            mockedStatic.when(() -> {
+                org.slf4j.LoggerFactory.getLogger(org.mockito.ArgumentMatchers.any(Class.class));
+            }).thenReturn(loggerMock);
+            RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+            
+            rpcServer.debugLog(null);
+        } finally {
+            mockedStatic.close();
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDebugLog3() throws Throwable  {
+        org.mockito.MockedStatic mockedStatic = null;
+        try {
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+            Logger loggerMock = mock(Logger.class);
+            when(loggerMock.isDebugEnabled()).thenReturn(true);
+            mockedStatic.when(() -> {
+                org.slf4j.LoggerFactory.getLogger(org.mockito.ArgumentMatchers.any(Class.class));
+            }).thenReturn(loggerMock);
+            RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+            
+            rpcServer.debugLog(null);
+        } finally {
+            mockedStatic.close();
+        }
     }
     ///endregion
     
@@ -666,59 +759,6 @@ public class RpcServerTest {
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDebugLog1() throws Throwable  {
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        String string = new String();
-        
-        rpcServer.debugLog(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDebugLog2() throws Throwable  {
-        org.mockito.MockedStatic mockedStatic = null;
-        try {
-            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
-            Logger loggerMock = mock(Logger.class);
-            when(loggerMock.isDebugEnabled()).thenReturn(false);
-            mockedStatic.when(() -> {
-                org.slf4j.LoggerFactory.getLogger(any(Class.class));
-            }).thenReturn(loggerMock);
-            RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-            
-            rpcServer.debugLog(null);
-        } finally {
-            mockedStatic.close();
-        }
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDebugLog3() throws Throwable  {
-        org.mockito.MockedStatic mockedStatic = null;
-        try {
-            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
-            Logger loggerMock = mock(Logger.class);
-            when(loggerMock.isDebugEnabled()).thenReturn(true);
-            mockedStatic.when(() -> {
-                org.slf4j.LoggerFactory.getLogger(any(Class.class));
-            }).thenReturn(loggerMock);
-            RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-            
-            rpcServer.debugLog(null);
-        } finally {
-            mockedStatic.close();
-        }
-    }
     ///endregion
     
     ///region

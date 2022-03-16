@@ -1,142 +1,92 @@
-package com.alibaba.fastjson.serializer;
+package com.alibaba.fastjson.parser.deserializer;
 
 import org.junit.Test;
-import java.time.chrono.MinguoChronology;
-import java.io.StringWriter;
-import java.io.OutputStreamWriter;
-import sun.nio.cs.StreamEncoder;
-import java.util.zip.GZIPOutputStream;
-import java.util.zip.Deflater;
+import com.alibaba.fastjson.parser.DefaultJSONParser;
+import java.lang.reflect.Type;
+import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertNull;
-
-public class ClobSeriliazerTest {
+public class ResolveFieldDeserializerTest {
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testWrite1() throws Throwable  {
-        ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
+    @Test(timeout = 10000)
+    public void testParseField1() throws Throwable  {
+        ResolveFieldDeserializer resolveFieldDeserializer = ((ResolveFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        Object object = new Object();
         
-        clobSeriliazer.write(null, null, null, null, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testWrite2() throws Throwable  {
-        ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
-        java.time.chrono.MinguoChronology[] minguoChronologyArray = new java.time.chrono.MinguoChronology[0];
-        
-        clobSeriliazer.write(null, minguoChronologyArray, null, null, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testWrite3() throws Throwable  {
-        ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
-        serializeWriter.count = -1073741827;
-        char[] charArray = new char[0];
-        serializeWriter.buf = charArray;
-        setField(jSONSerializer, "out", serializeWriter);
-        
-        clobSeriliazer.write(jSONSerializer, null, null, null, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testWrite4() throws Throwable  {
-        ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
-        StringWriter stringWriter = ((StringWriter) createInstance("java.io.StringWriter"));
-        setField(serializeWriter, "writer", stringWriter);
-        serializeWriter.count = 2147483642;
-        char[] charArray = new char[0];
-        serializeWriter.buf = charArray;
-        setField(jSONSerializer, "out", serializeWriter);
-        
-        clobSeriliazer.write(jSONSerializer, null, null, null, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testWrite5() throws Throwable  {
-        ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
-        setField(serializeWriter, "lock", null);
-        OutputStreamWriter outputStreamWriter = ((OutputStreamWriter) createInstance("java.io.OutputStreamWriter"));
-        setField(outputStreamWriter, "lock", null);
-        StreamEncoder streamEncoder = ((StreamEncoder) createInstance("sun.nio.cs.StreamEncoder"));
-        java.lang.Object[] forEachTaskArray = createArray("java.util.stream.ForEachOps$ForEachTask", 0);
-        setField(streamEncoder, "lock", forEachTaskArray);
-        Object encOutputStream = createInstance("java.util.Base64$EncOutputStream");
-        Object encOutputStream1 = createInstance("java.util.Base64$EncOutputStream");
-        GZIPOutputStream gZIPOutputStream = ((GZIPOutputStream) createInstance("java.util.zip.GZIPOutputStream"));
-        GZIPOutputStream gZIPOutputStream1 = ((GZIPOutputStream) createInstance("java.util.zip.GZIPOutputStream"));
-        setField(gZIPOutputStream1, "out", null);
-        setField(gZIPOutputStream1, "syncFlush", false);
-        setField(gZIPOutputStream1, "def", null);
-        setField(gZIPOutputStream, "out", gZIPOutputStream1);
-        setField(gZIPOutputStream, "syncFlush", true);
-        Deflater deflater = ((Deflater) createInstance("java.util.zip.Deflater"));
-        setField(deflater, "finished", true);
-        Object zStreamRef = createInstance("java.util.zip.ZStreamRef");
-        setField(deflater, "zsRef", zStreamRef);
-        setField(gZIPOutputStream, "def", deflater);
-        setField(encOutputStream1, "out", gZIPOutputStream);
-        setField(encOutputStream, "out", encOutputStream1);
-        setField(streamEncoder, "out", encOutputStream);
-        Object directByteBuffer = createInstance("java.nio.DirectByteBuffer");
-        setField(directByteBuffer, "position", -2147483647);
-        setField(streamEncoder, "bb", directByteBuffer);
-        setField(streamEncoder, "isOpen", true);
-        setField(outputStreamWriter, "se", streamEncoder);
-        setField(serializeWriter, "writer", outputStreamWriter);
-        serializeWriter.count = 0;
-        char[] charArray = new char[0];
-        serializeWriter.buf = charArray;
-        setField(jSONSerializer, "out", serializeWriter);
-        java.lang.Object[] forEachTaskArray1 = createArray("java.util.stream.ForEachOps$ForEachTask", 0);
-        
-        SerializeWriter serializeWriter1 = jSONSerializer.out;
-        Object initialJSONSerializerOutLock = getFieldValue(serializeWriter1, "lock");
-        SerializeWriter serializeWriter2 = jSONSerializer.out;
-        Object serializeWriter2OutWriter = getFieldValue(serializeWriter2, "writer");
-        Object initialJSONSerializerOutWriterLock = getFieldValue(serializeWriter2OutWriter, "lock");
-        
-        clobSeriliazer.write(jSONSerializer, null, forEachTaskArray1, null, 0);
-        
-        SerializeWriter serializeWriter3 = jSONSerializer.out;
-        Object finalJSONSerializerOutLock = getFieldValue(serializeWriter3, "lock");
-        SerializeWriter serializeWriter4 = jSONSerializer.out;
-        Object serializeWriter4OutWriter = getFieldValue(serializeWriter4, "writer");
-        Object finalJSONSerializerOutWriterLock = getFieldValue(serializeWriter4OutWriter, "lock");
-        
-        assertNull(finalJSONSerializerOutLock);
-        
-        assertNull(finalJSONSerializerOutWriterLock);
+        resolveFieldDeserializer.parseField(defaultJSONParser, object, ((Type) null), ((Map) null));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testClobSeriliazer1() {
-        ClobSeriliazer actual = new ClobSeriliazer();
+    public void testParseField2() throws Throwable  {
+        ResolveFieldDeserializer resolveFieldDeserializer = ((ResolveFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer"));
+        
+        resolveFieldDeserializer.parseField(((DefaultJSONParser) null), null, ((Type) null), ((Map) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSetValue1() throws Throwable  {
+        ResolveFieldDeserializer resolveFieldDeserializer = ((ResolveFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer"));
+        Object object = new Object();
+        Object object1 = new Object();
+        
+        resolveFieldDeserializer.setValue(object, object1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetValue2() throws Throwable  {
+        ResolveFieldDeserializer resolveFieldDeserializer = ((ResolveFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ResolveFieldDeserializer"));
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        setField(resolveFieldDeserializer, "map", linkedHashMap);
+        java.lang.Object[] listItrArray = createArray("java.util.ArrayList$ListItr", 0);
+        setField(resolveFieldDeserializer, "key", listItrArray);
+        Object listMouseMotionHandler = createInstance("javax.swing.plaf.basic.BasicComboPopup$ListMouseMotionHandler");
+        java.lang.Object[] toggleComponentOrientationActionArray = createArray("javax.swing.text.DefaultEditorKit$ToggleComponentOrientationAction", 0);
+        
+        resolveFieldDeserializer.setValue(listMouseMotionHandler, toggleComponentOrientationActionArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testResolveFieldDeserializer1() throws Throwable  {
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        ArrayList arrayList = new ArrayList();
+        ResolveFieldDeserializer actual = new ResolveFieldDeserializer(defaultJSONParser, arrayList, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testResolveFieldDeserializer2() {
+        ArrayList arrayList = new ArrayList();
+        ResolveFieldDeserializer actual = new ResolveFieldDeserializer(arrayList);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testResolveFieldDeserializer3() {
+        Object object = new Object();
+        ResolveFieldDeserializer actual = new ResolveFieldDeserializer(null, object);
     }
     ///endregion
     
@@ -172,25 +122,6 @@ public class ClobSeriliazerTest {
         }
         
         return (Object[]) array;
-    }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

@@ -221,48 +221,6 @@ public class NettyPoolableFactoryTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testActivateObject1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.activateObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testActivateObject2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        
-        nettyPoolableFactory.activateObject(((NettyPoolKey) null), ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPassivateObject1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.passivateObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPassivateObject2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        
-        nettyPoolableFactory.passivateObject(((NettyPoolKey) null), ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testMakeObject1() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
@@ -350,7 +308,7 @@ public class NettyPoolableFactoryTest {
                 org.slf4j.LoggerFactory.getLogger(any(Class.class));
             }).thenReturn(loggerMock);
             NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-            TmRpcClient tmRpcClient = ((TmRpcClient) createInstance("io.seata.core.rpc.netty.TmRpcClient"));
+            RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
             Bootstrap bootstrap = ((Bootstrap) createInstance("io.netty.bootstrap.Bootstrap"));
             setField(bootstrap, "handler", null);
             ReflectiveChannelFactory reflectiveChannelFactory = ((ReflectiveChannelFactory) createInstance("io.netty.channel.ReflectiveChannelFactory"));
@@ -364,8 +322,8 @@ public class NettyPoolableFactoryTest {
             setField(serverBootstrap, "group", null);
             setField(bootstrapConfig, "bootstrap", serverBootstrap);
             setField(bootstrap, "config", bootstrapConfig);
-            setField(tmRpcClient, "bootstrap", bootstrap);
-            setField(nettyPoolableFactory, "rpcRemotingClient", tmRpcClient);
+            setField(rmRpcClient, "bootstrap", bootstrap);
+            setField(nettyPoolableFactory, "rpcRemotingClient", rmRpcClient);
             NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
             String string = new String("[\u0000");
             setField(nettyPoolKey, "address", string);
@@ -379,8 +337,73 @@ public class NettyPoolableFactoryTest {
     
     ///region
     
+    @Test(timeout = 10000)
+    public void testActivateObject1() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
+        
+        nettyPoolableFactory.activateObject(nettyPoolKey, ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testActivateObject2() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        
+        nettyPoolableFactory.activateObject(((NettyPoolKey) null), ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPassivateObject1() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
+        
+        nettyPoolableFactory.passivateObject(nettyPoolKey, ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPassivateObject2() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        
+        nettyPoolableFactory.passivateObject(((NettyPoolKey) null), ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetVersion1() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        Object object = new Object();
+        NettyPoolKey.TransactionRole transactionRole = ((NettyPoolKey.TransactionRole) createInstance("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole"));
+        
+        Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
+        Class objectType = Class.forName("java.lang.Object");
+        Class transactionRoleType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey$TransactionRole");
+        Method getVersionMethod = nettyPoolableFactoryClazz.getDeclaredMethod("getVersion", objectType, transactionRoleType);
+        getVersionMethod.setAccessible(true);
+        java.lang.Object[] getVersionMethodArguments = new java.lang.Object[2];
+        getVersionMethodArguments[0] = object;
+        getVersionMethodArguments[1] = transactionRole;
+        try {
+            getVersionMethod.invoke(nettyPoolableFactory, getVersionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetVersion2() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
         
         Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
@@ -401,7 +424,7 @@ public class NettyPoolableFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetVersion2() throws Throwable  {
+    public void testGetVersion3() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
         java.lang.Object[] byteBufferAsLongBufferBArray = createArray("java.nio.ByteBufferAsLongBufferB", 0);
         NettyPoolKey.TransactionRole transactionRole = NettyPoolKey.TransactionRole.TMROLE;
@@ -424,7 +447,7 @@ public class NettyPoolableFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetVersion3() throws Throwable  {
+    public void testGetVersion4() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
         NettyPoolKey.TransactionRole transactionRole = NettyPoolKey.TransactionRole.TMROLE;
         
@@ -446,7 +469,7 @@ public class NettyPoolableFactoryTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetVersion4() throws Throwable  {
+    public void testGetVersion5() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
         RegisterTMResponse registerTMResponse = ((RegisterTMResponse) createInstance("io.seata.core.protocol.RegisterTMResponse"));
         setField(registerTMResponse, "version", null);

@@ -471,12 +471,11 @@ public class TypeTest {
     @Test(timeout = 10000)
     public void testGetClassName16() throws Throwable  {
         Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
-        setField(type, "len", 0);
-        setField(type, "off", 0);
+        setField(type, "off", 2);
         char[] charArray = new char[15];
-        charArray[1] = '[';
-        charArray[2] = 'Y';
-        charArray[3] = ';';
+        charArray[3] = '[';
+        charArray[4] = 'M';
+        charArray[6] = ';';
         setField(type, "buf", charArray);
         setField(type, "sort", 9);
         
@@ -486,7 +485,7 @@ public class TypeTest {
         java.lang.Object[] getClassNameMethodArguments = new java.lang.Object[0];
         String actual = ((String) getClassNameMethod.invoke(type, getClassNameMethodArguments));
         
-        String expected = new String("[][]");
+        String expected = new String("\u0000[][]");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -742,18 +741,8 @@ public class TypeTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetArgumentTypes15() throws Throwable  {
-        String string = new String("\u0000T);Z");
-        
-        Type.getArgumentTypes(string);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
-    public void testGetArgumentTypes16() throws Throwable  {
+    public void testGetArgumentTypes15() throws Throwable  {
         String string = new String("\u0000CL;)");
         
         com.alibaba.fastjson.asm.Type[] actual = Type.getArgumentTypes(string);
@@ -785,8 +774,8 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetArgumentTypes17() throws Throwable  {
-        String string = new String("\u0000H);B");
+    public void testGetArgumentTypes16() throws Throwable  {
+        String string = new String("\u0000U);Z");
         
         Type.getArgumentTypes(string);
     }
@@ -794,9 +783,41 @@ public class TypeTest {
     
     ///region
     
+    @Test(timeout = 10000)
+    public void testGetArgumentTypes17() throws Throwable  {
+        String string = new String("\u0000JL;)");
+        
+        com.alibaba.fastjson.asm.Type[] actual = Type.getArgumentTypes(string);
+        
+        com.alibaba.fastjson.asm.Type[] expected = new com.alibaba.fastjson.asm.Type[2];
+        Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
+        setField(type, "sort", 7);
+        setField(type, "buf", null);
+        setField(type, "off", 1241579778);
+        setField(type, "len", 1);
+        expected[0] = type;
+        Type type1 = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
+        setField(type1, "sort", 10);
+        char[] charArray = new char[5];
+        charArray[1] = 'J';
+        charArray[2] = 'L';
+        charArray[3] = ';';
+        charArray[4] = ')';
+        setField(type1, "buf", charArray);
+        setField(type1, "off", 3);
+        setField(type1, "len", 0);
+        expected[1] = type1;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetArgumentTypes18() throws Throwable  {
-        String string = new String("\u0000X);I");
+        String string = new String("\u0000M);I");
         
         Type.getArgumentTypes(string);
     }
@@ -806,6 +827,38 @@ public class TypeTest {
     
     @Test(timeout = 10000)
     public void testGetArgumentTypes19() throws Throwable  {
+        String string = new String("\u0000SL;)");
+        
+        com.alibaba.fastjson.asm.Type[] actual = Type.getArgumentTypes(string);
+        
+        com.alibaba.fastjson.asm.Type[] expected = new com.alibaba.fastjson.asm.Type[2];
+        Type type = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
+        setField(type, "sort", 4);
+        setField(type, "buf", null);
+        setField(type, "off", 1392510721);
+        setField(type, "len", 1);
+        expected[0] = type;
+        Type type1 = ((Type) createInstance("com.alibaba.fastjson.asm.Type"));
+        setField(type1, "sort", 10);
+        char[] charArray = new char[5];
+        charArray[1] = 'S';
+        charArray[2] = 'L';
+        charArray[3] = ';';
+        charArray[4] = ')';
+        setField(type1, "buf", charArray);
+        setField(type1, "off", 3);
+        setField(type1, "len", 0);
+        expected[1] = type1;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetArgumentTypes20() throws Throwable  {
         String string = new String("\u0000DL;)");
         
         com.alibaba.fastjson.asm.Type[] actual = Type.getArgumentTypes(string);
@@ -837,18 +890,8 @@ public class TypeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetArgumentTypes20() throws Throwable  {
-        String string = new String("\u0000M);V");
-        
-        Type.getArgumentTypes(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testGetArgumentTypes21() throws Throwable  {
-        String string = new String("\u0000X);J");
+        String string = new String("\u0000M);B");
         
         Type.getArgumentTypes(string);
     }
@@ -858,7 +901,7 @@ public class TypeTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetArgumentTypes22() throws Throwable  {
-        String string = new String("\u0000T);S");
+        String string = new String("\u0000U);V");
         
         Type.getArgumentTypes(string);
     }
@@ -868,7 +911,7 @@ public class TypeTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetArgumentTypes23() throws Throwable  {
-        String string = new String("\u0000F\u0000)");
+        String string = new String("\u0000T);F");
         
         Type.getArgumentTypes(string);
     }

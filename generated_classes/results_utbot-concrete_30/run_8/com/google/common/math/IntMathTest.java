@@ -25,14 +25,6 @@ public class IntMathTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testLog22() throws Throwable  {
-        IntMath.log2(0, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testMod1() throws Throwable  {
         IntMath.mod(0, 0);
     }
@@ -128,7 +120,7 @@ public class IntMathTest {
     
     @Test(timeout = 10000)
     public void testSaturatedAdd2() throws Throwable  {
-        int actual = IntMath.saturatedAdd(-17007614, -2147483647);
+        int actual = IntMath.saturatedAdd(-17056766, -2147450879);
         
         assertEquals(Integer.MIN_VALUE, actual);
     }
@@ -168,7 +160,7 @@ public class IntMathTest {
     
     @Test(timeout = 10000)
     public void testSaturatedSubtract2() throws Throwable  {
-        int actual = IntMath.saturatedSubtract(-1886912516, 1345323009);
+        int actual = IntMath.saturatedSubtract(-1879053826, 1342177797);
         
         assertEquals(Integer.MIN_VALUE, actual);
     }
@@ -178,59 +170,9 @@ public class IntMathTest {
     
     @Test(timeout = 10000)
     public void testSaturatedSubtract3() throws Throwable  {
-        int actual = IntMath.saturatedSubtract(-2002780156, 144703492);
+        int actual = IntMath.saturatedSubtract(0, 0);
         
-        assertEquals(Integer.MIN_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedSubtract4() throws Throwable  {
-        int actual = IntMath.saturatedSubtract(558388866, -2080374784);
-        
-        assertEquals(Integer.MAX_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPowerOfTwo1() throws Throwable  {
-        boolean actual = IntMath.isPowerOfTwo(0);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPowerOfTwo2() throws Throwable  {
-        boolean actual = IntMath.isPowerOfTwo(Integer.MAX_VALUE);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPowerOfTwo3() throws Throwable  {
-        boolean actual = IntMath.isPowerOfTwo(-1);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPowerOfTwo4() throws Throwable  {
-        boolean actual = IntMath.isPowerOfTwo(536870912);
-        
-        assertTrue(actual);
+        assertEquals(0, actual);
     }
     ///endregion
     
@@ -280,9 +222,49 @@ public class IntMathTest {
     
     @Test(timeout = 10000)
     public void testCeilingPowerOfTwo3() throws Throwable  {
-        int actual = IntMath.ceilingPowerOfTwo(4096);
+        int actual = IntMath.ceilingPowerOfTwo(1);
         
-        assertEquals(4096, actual);
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsPowerOfTwo1() throws Throwable  {
+        boolean actual = IntMath.isPowerOfTwo(0);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsPowerOfTwo2() throws Throwable  {
+        boolean actual = IntMath.isPowerOfTwo(Integer.MAX_VALUE);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsPowerOfTwo3() throws Throwable  {
+        boolean actual = IntMath.isPowerOfTwo(-1);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsPowerOfTwo4() throws Throwable  {
+        boolean actual = IntMath.isPowerOfTwo(536870912);
+        
+        assertTrue(actual);
     }
     ///endregion
     
@@ -331,10 +313,10 @@ public class IntMathTest {
         Method log10FloorMethod = intMathClazz.getDeclaredMethod("log10Floor", intType);
         log10FloorMethod.setAccessible(true);
         java.lang.Object[] log10FloorMethodArguments = new java.lang.Object[1];
-        log10FloorMethodArguments[0] = 4096;
+        log10FloorMethodArguments[0] = 256;
         int actual = ((int) log10FloorMethod.invoke(null, log10FloorMethodArguments));
         
-        assertEquals(3, actual);
+        assertEquals(2, actual);
     }
     ///endregion
     
@@ -596,11 +578,9 @@ public class IntMathTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testCheckedPow17() throws Throwable  {
-        int actual = IntMath.checkedPow(-19193, 2);
-        
-        assertEquals(368371249, actual);
+        IntMath.checkedPow(46343, 3);
     }
     ///endregion
     
@@ -608,7 +588,15 @@ public class IntMathTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testCheckedPow18() throws Throwable  {
-        IntMath.checkedPow(46343, 3);
+        IntMath.checkedPow(-19193, 4);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCheckedPow19() throws Throwable  {
+        IntMath.checkedPow(-19193, 3);
     }
     ///endregion
     
@@ -626,7 +614,7 @@ public class IntMathTest {
     
     @Test(timeout = 10000)
     public void testSaturatedMultiply2() throws Throwable  {
-        int actual = IntMath.saturatedMultiply(293189390, -1669169102);
+        int actual = IntMath.saturatedMultiply(-2147483628, 536871936);
         
         assertEquals(Integer.MIN_VALUE, actual);
     }
@@ -646,7 +634,7 @@ public class IntMathTest {
     
     @Test(timeout = 10000)
     public void testSaturatedMultiply4() throws Throwable  {
-        int actual = IntMath.saturatedMultiply(305207476, 319355896);
+        int actual = IntMath.saturatedMultiply(1901430016, 1229635136);
         
         assertEquals(Integer.MAX_VALUE, actual);
     }
@@ -824,9 +812,9 @@ public class IntMathTest {
     
     @Test(timeout = 10000)
     public void testSaturatedPow18() throws Throwable  {
-        int actual = IntMath.saturatedPow(-18432, 2);
+        int actual = IntMath.saturatedPow(-18167, 2);
         
-        assertEquals(339738624, actual);
+        assertEquals(330039889, actual);
     }
     ///endregion
     
@@ -994,9 +982,9 @@ public class IntMathTest {
     
     @Test(timeout = 10000)
     public void testIsPrime5() throws Throwable  {
-        boolean actual = IntMath.isPrime(2013265921);
+        boolean actual = IntMath.isPrime(476941);
         
-        assertTrue(actual);
+        assertFalse(actual);
     }
     ///endregion
     
@@ -1004,7 +992,7 @@ public class IntMathTest {
     
     @Test(timeout = 10000)
     public void testIsPrime6() throws Throwable  {
-        boolean actual = IntMath.isPrime(2081423377);
+        boolean actual = IntMath.isPrime(1006632979);
         
         assertFalse(actual);
     }
@@ -1042,9 +1030,13 @@ public class IntMathTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testSqrt3() throws Throwable  {
-        IntMath.sqrt(32776, null);
+        RoundingMode roundingMode = RoundingMode.UP;
+        
+        int actual = IntMath.sqrt(557989956, roundingMode);
+        
+        assertEquals(23622, actual);
     }
     ///endregion
     
@@ -1070,7 +1062,7 @@ public class IntMathTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testLog103() throws Throwable  {
-        IntMath.log10(4352, null);
+        IntMath.log10(4, null);
     }
     ///endregion
     
@@ -1278,7 +1270,7 @@ public class IntMathTest {
     public void testDivide5() throws Throwable  {
         RoundingMode roundingMode = RoundingMode.CEILING;
         
-        int actual = IntMath.divide(4096, -2130704384, roundingMode);
+        int actual = IntMath.divide(-1, 131072, roundingMode);
         
         assertEquals(0, actual);
     }
@@ -1290,9 +1282,9 @@ public class IntMathTest {
     public void testDivide6() throws Throwable  {
         RoundingMode roundingMode = RoundingMode.CEILING;
         
-        int actual = IntMath.divide(1073741828, 8388596, roundingMode);
+        int actual = IntMath.divide(-131168, -16908384, roundingMode);
         
-        assertEquals(129, actual);
+        assertEquals(1, actual);
     }
     ///endregion
     

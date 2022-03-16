@@ -7,7 +7,7 @@ import java.nio.charset.CharacterCodingException;
 import java.time.DateTimeException;
 import java.io.FileNotFoundException;
 import java.lang.reflect.UndeclaredThrowableException;
-import java.io.IOException;
+import javax.security.auth.DestroyFailedException;
 import java.util.List;
 import java.util.ArrayList;
 import javax.security.auth.callback.UnsupportedCallbackException;
@@ -130,9 +130,9 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testPropagate2() throws Throwable  {
-        IOException iOException = ((IOException) createInstance("java.io.IOException"));
+        DestroyFailedException destroyFailedException = ((DestroyFailedException) createInstance("javax.security.auth.DestroyFailedException"));
         
-        Throwables.propagate(iOException);
+        Throwables.propagate(destroyFailedException);
     }
     ///endregion
     
@@ -399,9 +399,7 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetCauseAs1() throws Throwable  {
-        Class class1 = Object.class;
-        
-        Throwables.getCauseAs(null, class1);
+        Throwables.getCauseAs(null, null);
     }
     ///endregion
     
@@ -497,58 +495,23 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testInvokeAccessibleNonThrowingMethod1() throws Throwable  {
-        java.lang.Object[] operatorArray = createArray("[Lsun.security.util.DisabledAlgorithmConstraints$Constraint$Operator;", 0);
+        java.lang.Object[] subRangeMapAsMapArray = createArray("com.google.common.collect.TreeRangeMap$SubRangeMap$SubRangeMapAsMap", 0);
         
         Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
         Class methodType = Class.forName("java.lang.reflect.Method");
-        Class operatorArrayType = Class.forName("java.lang.Object");
+        Class subRangeMapAsMapArrayType = Class.forName("java.lang.Object");
         Class objectArrayType = Class.forName("[Ljava.lang.Object;");
-        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, operatorArrayType, objectArrayType);
+        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, subRangeMapAsMapArrayType, objectArrayType);
         invokeAccessibleNonThrowingMethodMethod.setAccessible(true);
         java.lang.Object[] invokeAccessibleNonThrowingMethodMethodArguments = new java.lang.Object[3];
         invokeAccessibleNonThrowingMethodMethodArguments[0] = null;
-        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) operatorArray);
+        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) subRangeMapAsMapArray);
         invokeAccessibleNonThrowingMethodMethodArguments[2] = null;
         try {
             invokeAccessibleNonThrowingMethodMethod.invoke(null, invokeAccessibleNonThrowingMethodMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testInvokeAccessibleNonThrowingMethod2() throws Throwable  {
-        Method method = ((Method) createInstance("java.lang.reflect.Method"));
-        setField(method, "securityCheckCache", null);
-        setField(method, "override", false);
-        setField(method, "modifiers", 0);
-        Class class1 = Object.class;
-        setField(method, "clazz", class1);
-        java.lang.Object[] socketAdaptorArray = createArray("sun.nio.ch.SocketAdaptor", 0);
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        
-        Object initialMethodSecurityCheckCache = getFieldValue(method, "securityCheckCache");
-        
-        Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
-        Class methodType = Class.forName("java.lang.reflect.Method");
-        Class objectArrayType = Class.forName("[Ljava.lang.Object;");
-        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, class1, objectArrayType);
-        invokeAccessibleNonThrowingMethodMethod.setAccessible(true);
-        java.lang.Object[] invokeAccessibleNonThrowingMethodMethodArguments = new java.lang.Object[3];
-        invokeAccessibleNonThrowingMethodMethodArguments[0] = method;
-        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) socketAdaptorArray);
-        invokeAccessibleNonThrowingMethodMethodArguments[2] = ((Object) objectArray);
-        try {
-            invokeAccessibleNonThrowingMethodMethod.invoke(null, invokeAccessibleNonThrowingMethodMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalMethodSecurityCheckCache = getFieldValue(method, "securityCheckCache");
-        
-        assertNull(finalMethodSecurityCheckCache);
-    }
     ///endregion
     
     ///region
@@ -950,25 +913,6 @@ public class ThrowablesTest {
         }
         
         return (Object[]) array;
-    }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

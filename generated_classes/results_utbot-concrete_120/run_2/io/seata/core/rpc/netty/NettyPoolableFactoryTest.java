@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import java.lang.reflect.Method;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ReflectiveChannelFactory;
+import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.bootstrap.BootstrapConfig;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.DefaultChannelPipeline;
@@ -243,13 +244,13 @@ public class NettyPoolableFactoryTest {
                 org.slf4j.LoggerFactory.getLogger(any(Class.class));
             }).thenReturn(loggerMock);
             NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-            RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+            TmRpcClient tmRpcClient = ((TmRpcClient) createInstance("io.seata.core.rpc.netty.TmRpcClient"));
             Bootstrap bootstrap = ((Bootstrap) createInstance("io.netty.bootstrap.Bootstrap"));
             setField(bootstrap, "handler", null);
             ReflectiveChannelFactory reflectiveChannelFactory = ((ReflectiveChannelFactory) createInstance("io.netty.channel.ReflectiveChannelFactory"));
             setField(bootstrap, "channelFactory", reflectiveChannelFactory);
-            Object epollEventLoop = createInstance("io.netty.channel.epoll.EpollEventLoop");
-            setField(bootstrap, "group", epollEventLoop);
+            NioEventLoopGroup nioEventLoopGroup = ((NioEventLoopGroup) createInstance("io.netty.channel.nio.NioEventLoopGroup"));
+            setField(bootstrap, "group", nioEventLoopGroup);
             BootstrapConfig bootstrapConfig = ((BootstrapConfig) createInstance("io.netty.bootstrap.BootstrapConfig"));
             ServerBootstrap serverBootstrap = ((ServerBootstrap) createInstance("io.netty.bootstrap.ServerBootstrap"));
             setField(serverBootstrap, "handler", null);
@@ -257,8 +258,8 @@ public class NettyPoolableFactoryTest {
             setField(serverBootstrap, "group", null);
             setField(bootstrapConfig, "bootstrap", serverBootstrap);
             setField(bootstrap, "config", bootstrapConfig);
-            setField(rmRpcClient, "bootstrap", bootstrap);
-            setField(nettyPoolableFactory, "rpcRemotingClient", rmRpcClient);
+            setField(tmRpcClient, "bootstrap", bootstrap);
+            setField(nettyPoolableFactory, "rpcRemotingClient", tmRpcClient);
             NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
             String string = new String("[\u0000");
             setField(nettyPoolKey, "address", string);
@@ -286,8 +287,9 @@ public class NettyPoolableFactoryTest {
     @Test(timeout = 10000)
     public void testDestroyObject2() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
         
-        nettyPoolableFactory.destroyObject(((NettyPoolKey) null), ((Channel) null));
+        nettyPoolableFactory.destroyObject(nettyPoolKey, ((Channel) null));
     }
     ///endregion
     
@@ -351,8 +353,9 @@ public class NettyPoolableFactoryTest {
     @Test(timeout = 10000)
     public void testActivateObject2() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
         
-        nettyPoolableFactory.activateObject(((NettyPoolKey) null), ((Channel) null));
+        nettyPoolableFactory.activateObject(nettyPoolKey, ((Channel) null));
     }
     ///endregion
     
@@ -372,8 +375,9 @@ public class NettyPoolableFactoryTest {
     @Test(timeout = 10000)
     public void testPassivateObject2() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
         
-        nettyPoolableFactory.passivateObject(((NettyPoolKey) null), ((Channel) null));
+        nettyPoolableFactory.passivateObject(nettyPoolKey, ((Channel) null));
     }
     ///endregion
     

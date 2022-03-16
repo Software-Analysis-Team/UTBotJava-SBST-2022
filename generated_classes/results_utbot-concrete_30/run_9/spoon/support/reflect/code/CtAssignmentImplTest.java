@@ -1,451 +1,619 @@
-package io.seata.core.protocol;
+package spoon.support.reflect.code;
 
 import org.junit.Test;
+import spoon.reflect.code.CtAssignment;
+import spoon.support.util.EmptyClearableList;
+import spoon.reflect.factory.FactoryImpl;
+import spoon.support.DefaultCoreFactory;
+import spoon.support.StandardEnvironment;
+import org.apache.log4j.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.spi.RootLogger;
+import org.apache.log4j.Hierarchy;
+import java.util.Vector;
+import java.util.Hashtable;
+import org.apache.log4j.or.RendererMap;
+import org.apache.log4j.helpers.AppenderAttachableImpl;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.helpers.QuietWriter;
+import org.apache.log4j.helpers.OnlyOnceErrorHandler;
+import java.io.OutputStreamWriter;
+import sun.nio.cs.StreamEncoder;
+import sun.nio.cs.US_ASCII;
+import sun.nio.cs.StandardCharsets;
+import java.util.concurrent.atomic.AtomicInteger;
+import sun.nio.cs.Surrogate.Parser;
+import sun.nio.cs.Surrogate;
+import java.nio.charset.CoderResult;
+import spoon.reflect.declaration.CtTypedElement;
+import spoon.support.reflect.reference.CtTypeReferenceImpl;
+import spoon.reflect.reference.CtTypeReference;
+import spoon.support.reflect.reference.CtArrayTypeReferenceImpl;
 import java.util.List;
 import java.util.ArrayList;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.EmptyByteBuf;
-import io.netty.buffer.SwappedByteBuf;
+import spoon.reflect.code.CtExpression;
+import spoon.support.reflect.reference.CtWildcardStaticTypeMemberReferenceImpl;
 import java.lang.reflect.Method;
+import spoon.support.reflect.reference.CtWildcardReferenceImpl;
+import spoon.reflect.code.CtRHSReceiver;
+import spoon.support.reflect.declaration.CtAnnotationImpl;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Array;
 import java.util.Objects;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
-import java.lang.reflect.Field;
 import java.util.Arrays;
-import java.lang.reflect.Array;
 import java.util.Iterator;
-import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-public class MergedWarpMessageTest {
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testToString1() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = new MergedWarpMessage();
-        
-        String actual = mergedWarpMessage.toString();
-        
-        String expected = new String("SeataMergeMessage ");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
+public class CtAssignmentImplTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testToString2() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        setField(mergedWarpMessage, "msgs", null);
+    public void testAccept1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
         
-        List initialMergedWarpMessageMsgs = mergedWarpMessage.msgs;
-        
-        mergedWarpMessage.toString();
-        
-        List finalMergedWarpMessageMsgs = mergedWarpMessage.msgs;
-        
-        assertNull(finalMergedWarpMessageMsgs);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testToString3() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        ArrayList arrayList = new ArrayList();
-        setField(mergedWarpMessage, "msgs", arrayList);
-        
-        String actual = mergedWarpMessage.toString();
-        
-        String expected = new String("SeataMergeMessage ");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecode1() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = new MergedWarpMessage();
-        
-        mergedWarpMessage.decode(((ByteBuf) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecode2() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        
-        mergedWarpMessage.decode(((ByteBuf) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDecode3() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        EmptyByteBuf emptyByteBuf = ((EmptyByteBuf) createInstance("io.netty.buffer.EmptyByteBuf"));
-        
-        boolean actual = mergedWarpMessage.decode(emptyByteBuf);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDecode4() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        SwappedByteBuf swappedByteBuf = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
-        SwappedByteBuf swappedByteBuf1 = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
-        Object unsafeHeapSwappedByteBuf = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
-        Object simpleLeakAwareByteBuf = createInstance("io.netty.buffer.SimpleLeakAwareByteBuf");
-        EmptyByteBuf emptyByteBuf = ((EmptyByteBuf) createInstance("io.netty.buffer.EmptyByteBuf"));
-        setField(simpleLeakAwareByteBuf, "buf", emptyByteBuf);
-        setField(unsafeHeapSwappedByteBuf, "buf", simpleLeakAwareByteBuf);
-        setField(swappedByteBuf1, "buf", unsafeHeapSwappedByteBuf);
-        setField(swappedByteBuf, "buf", swappedByteBuf1);
-        
-        boolean actual = mergedWarpMessage.decode(swappedByteBuf);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncode1() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = new MergedWarpMessage();
-        
-        mergedWarpMessage.encode();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncode2() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        setField(mergedWarpMessage, "msgs", null);
-        
-        List initialMergedWarpMessageMsgs = mergedWarpMessage.msgs;
-        
-        mergedWarpMessage.encode();
-        
-        List finalMergedWarpMessageMsgs = mergedWarpMessage.msgs;
-        
-        assertNull(finalMergedWarpMessageMsgs);
+        ctAssignmentImpl.accept(null);
     }
     ///endregion
     
     
-    ///region Errors report for encode
+    ///region Errors report for clone
     
-    public void testEncode_errors()
+    public void testClone_errors()
      {
         // Couldn't generate some tests. List of errors:
         // 
         // 1 occurrences of:
-        // Field security is not found in class java.lang.System
+        // ClassId java.nio.charset.CoderResult$1 does not have canonical name
         // 
     }
     ///endregion
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testGetTypeCode1() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = new MergedWarpMessage();
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testClone2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
         
-        short actual = mergedWarpMessage.getTypeCode();
-        
-        assertEquals((short) 59, actual);
+        ctAssignmentImpl.clone();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetTypeCode2() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
+    public void testSetType1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
         
-        short actual = mergedWarpMessage.getTypeCode();
+        CtTypedElement actual = ctAssignmentImpl.setType(null);
         
-        assertEquals((short) 59, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoDecode1() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = new MergedWarpMessage();
         
-        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
-        Class byteBufferType = Class.forName("java.nio.ByteBuffer");
-        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", byteBufferType);
-        doDecodeMethod.setAccessible(true);
-        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
-        doDecodeMethodArguments[0] = null;
-        try {
-            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoDecode2() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        
-        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
-        Class byteBufferType = Class.forName("java.nio.ByteBuffer");
-        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", byteBufferType);
-        doDecodeMethod.setAccessible(true);
-        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
-        doDecodeMethodArguments[0] = null;
-        try {
-            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDoDecode3() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(heapByteBufferR, "limit", 2);
-        setField(heapByteBufferR, "position", 0);
-        setField(heapByteBufferR, "bigEndian", true);
-        setField(heapByteBufferR, "offset", 1);
-        byte[] byteArray = new byte[11];
-        byteArray[1] = java.lang.Byte.MIN_VALUE;
-        setField(heapByteBufferR, "hb", byteArray);
-        
-        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
-        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
-        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", heapByteBufferRType);
-        doDecodeMethod.setAccessible(true);
-        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
-        doDecodeMethodArguments[0] = heapByteBufferR;
-        doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
-        
-        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
-        
-        assertEquals(2, finalHeapByteBufferRPosition);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoDecode4() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(heapByteBufferR, "limit", 5);
-        setField(heapByteBufferR, "position", 3);
-        setField(heapByteBufferR, "bigEndian", true);
-        setField(heapByteBufferR, "offset", 2);
-        byte[] byteArray = new byte[15];
-        byteArray[5] = (byte) 1;
-        setField(heapByteBufferR, "hb", byteArray);
-        
-        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
-        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
-        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", heapByteBufferRType);
-        doDecodeMethod.setAccessible(true);
-        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
-        doDecodeMethodArguments[0] = heapByteBufferR;
-        try {
-            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
-        
-        assertEquals(5, finalHeapByteBufferRPosition);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoDecode5() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        Object directByteBuffer = createInstance("java.nio.DirectByteBuffer");
-        setField(directByteBuffer, "address", 0L);
-        setField(directByteBuffer, "limit", 153616640);
-        setField(directByteBuffer, "position", 0);
-        
-        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
-        Class directByteBufferType = Class.forName("java.nio.ByteBuffer");
-        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", directByteBufferType);
-        doDecodeMethod.setAccessible(true);
-        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
-        doDecodeMethodArguments[0] = directByteBuffer;
-        try {
-            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalDirectByteBufferPosition = getFieldValue(directByteBuffer, "position");
-        
-        assertEquals(2, finalDirectByteBufferPosition);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoDecode6() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        Object directByteBuffer = createInstance("java.nio.DirectByteBuffer");
-        setField(directByteBuffer, "address", 0L);
-        setField(directByteBuffer, "limit", 532480);
-        setField(directByteBuffer, "position", -267226431);
-        
-        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
-        Class directByteBufferType = Class.forName("java.nio.ByteBuffer");
-        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", directByteBufferType);
-        doDecodeMethod.setAccessible(true);
-        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
-        doDecodeMethodArguments[0] = directByteBuffer;
-        try {
-            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalDirectByteBufferPosition = getFieldValue(directByteBuffer, "position");
-        
-        assertEquals(-267226429, finalDirectByteBufferPosition);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoDecode7() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(heapByteBufferR, "limit", 1073741848);
-        setField(heapByteBufferR, "position", 23);
-        setField(heapByteBufferR, "bigEndian", true);
-        setField(heapByteBufferR, "offset", 10);
-        byte[] byteArray = new byte[39];
-        byteArray[33] = (byte) 1;
-        byteArray[36] = (byte) 8;
-        setField(heapByteBufferR, "hb", byteArray);
-        
-        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
-        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
-        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", heapByteBufferRType);
-        doDecodeMethod.setAccessible(true);
-        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
-        doDecodeMethodArguments[0] = heapByteBufferR;
-        try {
-            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
-        
-        assertEquals(27, finalHeapByteBufferRPosition);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoDecode8() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(heapByteBufferR, "limit", 1073741848);
-        setField(heapByteBufferR, "position", 23);
-        setField(heapByteBufferR, "bigEndian", true);
-        setField(heapByteBufferR, "offset", 10);
-        byte[] byteArray = new byte[39];
-        byteArray[33] = (byte) 1;
-        byteArray[36] = (byte) 15;
-        setField(heapByteBufferR, "hb", byteArray);
-        
-        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
-        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
-        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", heapByteBufferRType);
-        doDecodeMethod.setAccessible(true);
-        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
-        doDecodeMethodArguments[0] = heapByteBufferR;
-        try {
-            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
-        
-        assertEquals(31, finalHeapByteBufferRPosition);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoDecode9() throws Throwable  {
-        MergedWarpMessage mergedWarpMessage = ((MergedWarpMessage) createInstance("io.seata.core.protocol.MergedWarpMessage"));
-        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(heapByteBufferR, "limit", 1073741848);
-        setField(heapByteBufferR, "position", 23);
-        setField(heapByteBufferR, "bigEndian", true);
-        setField(heapByteBufferR, "offset", 10);
-        byte[] byteArray = new byte[39];
-        byteArray[33] = (byte) 1;
-        byteArray[36] = (byte) 21;
-        setField(heapByteBufferR, "hb", byteArray);
-        
-        Class mergedWarpMessageClazz = Class.forName("io.seata.core.protocol.MergedWarpMessage");
-        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
-        Method doDecodeMethod = mergedWarpMessageClazz.getDeclaredMethod("doDecode", heapByteBufferRType);
-        doDecodeMethod.setAccessible(true);
-        java.lang.Object[] doDecodeMethodArguments = new java.lang.Object[1];
-        doDecodeMethodArguments[0] = heapByteBufferR;
-        try {
-            doDecodeMethod.invoke(mergedWarpMessage, doDecodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
-        
-        assertEquals(30, finalHeapByteBufferRPosition);
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testMergedWarpMessage1() {
-        MergedWarpMessage actual = new MergedWarpMessage();
+    public void testSetType2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        setField(ctAssignmentImpl, "parent", null);
+        setField(ctAssignmentImpl, "factory", null);
+        CtTypeReferenceImpl ctTypeReferenceImpl = ((CtTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtTypeReferenceImpl"));
+        setField(ctTypeReferenceImpl, "parent", null);
+        setField(ctTypeReferenceImpl, "factory", null);
+        
+        Object initialCtTypeReferenceImplParent = getFieldValue(ctTypeReferenceImpl, "parent");
+        
+        CtTypedElement actual = ctAssignmentImpl.setType(ctTypeReferenceImpl);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+        
+        Object finalCtTypeReferenceImplParent = getFieldValue(ctTypeReferenceImpl, "parent");
+        
+        assertFalse(initialCtTypeReferenceImplParent == finalCtTypeReferenceImplParent);
     }
     ///endregion
     
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetType3() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "environment", null);
+        setField(ctAssignmentImpl, "factory", factoryImpl);
+        
+        Object ctAssignmentImplFactory = getFieldValue(ctAssignmentImpl, "factory");
+        Object initialCtAssignmentImplFactoryEnvironment = getFieldValue(ctAssignmentImplFactory, "environment");
+        
+        CtTypedElement actual = ctAssignmentImpl.setType(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+        
+        Object ctAssignmentImplFactory1 = getFieldValue(ctAssignmentImpl, "factory");
+        Object finalCtAssignmentImplFactoryEnvironment = getFieldValue(ctAssignmentImplFactory1, "environment");
+        
+        assertFalse(initialCtAssignmentImplFactoryEnvironment == finalCtAssignmentImplFactoryEnvironment);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
+        
+        CtTypeReference actual = ctAssignmentImpl.getType();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetType2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        CtArrayTypeReferenceImpl ctArrayTypeReferenceImpl = ((CtArrayTypeReferenceImpl) createInstance("spoon.support.reflect.reference.CtArrayTypeReferenceImpl"));
+        setField(ctAssignmentImpl, "type", ctArrayTypeReferenceImpl);
+        
+        CtTypeReference actual = ctAssignmentImpl.getType();
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctArrayTypeReferenceImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testS1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
+        
+        Object actual = ctAssignmentImpl.S();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testS2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        
+        Object actual = ctAssignmentImpl.S();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetTypeCasts1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
+        
+        List actual = ctAssignmentImpl.getTypeCasts();
+        
+        EmptyClearableList expected = ((EmptyClearableList) createInstance("spoon.support.util.EmptyClearableList"));
+        setField(expected, "modCount", 0);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetTypeCasts2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctAssignmentImpl, "typeCasts", arrayList);
+        
+        List actual = ctAssignmentImpl.getTypeCasts();
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(arrayList, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetTypeCasts1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
+        ArrayList arrayList = new ArrayList();
+        
+        CtExpression actual = ctAssignmentImpl.setTypeCasts(arrayList);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testSetTypeCasts2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        
+        ctAssignmentImpl.setTypeCasts(arrayList);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetTypeCasts3() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        
+        CtExpression actual = ctAssignmentImpl.setTypeCasts(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddTypeCast1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
+        
+        CtExpression actual = ctAssignmentImpl.addTypeCast(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddTypeCast2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        
+        CtExpression actual = ctAssignmentImpl.addTypeCast(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddTypeCast3() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        setField(ctAssignmentImpl, "parent", null);
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(ctAssignmentImpl, "factory", factoryImpl);
+        ArrayList arrayList = new ArrayList();
+        setField(ctAssignmentImpl, "typeCasts", arrayList);
+        CtWildcardStaticTypeMemberReferenceImpl ctWildcardStaticTypeMemberReferenceImpl = ((CtWildcardStaticTypeMemberReferenceImpl) createInstance("spoon.support.reflect.reference.CtWildcardStaticTypeMemberReferenceImpl"));
+        setField(ctWildcardStaticTypeMemberReferenceImpl, "parent", null);
+        setField(ctWildcardStaticTypeMemberReferenceImpl, "factory", null);
+        
+        Object initialCtWildcardStaticTypeMemberReferenceImplParent = getFieldValue(ctWildcardStaticTypeMemberReferenceImpl, "parent");
+        
+        Class ctAssignmentImplClazz = Class.forName("spoon.support.reflect.code.CtAssignmentImpl");
+        Class ctWildcardStaticTypeMemberReferenceImplType = Class.forName("spoon.reflect.reference.CtTypeReference");
+        Method addTypeCastMethod = ctAssignmentImplClazz.getDeclaredMethod("addTypeCast", ctWildcardStaticTypeMemberReferenceImplType);
+        addTypeCastMethod.setAccessible(true);
+        java.lang.Object[] addTypeCastMethodArguments = new java.lang.Object[1];
+        addTypeCastMethodArguments[0] = ctWildcardStaticTypeMemberReferenceImpl;
+        CtExpression actual = ((CtExpression) addTypeCastMethod.invoke(ctAssignmentImpl, addTypeCastMethodArguments));
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+        
+        Object finalCtWildcardStaticTypeMemberReferenceImplParent = getFieldValue(ctWildcardStaticTypeMemberReferenceImpl, "parent");
+        
+        assertFalse(initialCtWildcardStaticTypeMemberReferenceImplParent == finalCtWildcardStaticTypeMemberReferenceImplParent);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddTypeCast4() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctAssignmentImpl, "typeCasts", arrayList);
+        CtWildcardReferenceImpl ctWildcardReferenceImpl = ((CtWildcardReferenceImpl) createInstance("spoon.support.reflect.reference.CtWildcardReferenceImpl"));
+        
+        CtExpression actual = ctAssignmentImpl.addTypeCast(ctWildcardReferenceImpl);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetAssignment1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
+        
+        CtExpression actual = ctAssignmentImpl.getAssignment();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetAssignment2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        CtOperatorAssignmentImpl ctOperatorAssignmentImpl = ((CtOperatorAssignmentImpl) createInstance("spoon.support.reflect.code.CtOperatorAssignmentImpl"));
+        setField(ctOperatorAssignmentImpl, "assignment", null);
+        setField(ctAssignmentImpl, "assignment", ctOperatorAssignmentImpl);
+        
+        CtExpression actual = ctAssignmentImpl.getAssignment();
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctOperatorAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetAssignment1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
+        
+        CtRHSReceiver actual = ctAssignmentImpl.setAssignment(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetAssignment2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        setField(ctAssignmentImpl, "factory", null);
+        
+        CtRHSReceiver actual = ctAssignmentImpl.setAssignment(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetAssignment3() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(ctAssignmentImpl, "factory", factoryImpl);
+        
+        CtRHSReceiver actual = ctAssignmentImpl.setAssignment(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetAssignment4() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        setField(ctAssignmentImpl, "parent", null);
+        CtArrayWriteImpl ctArrayWriteImpl = ((CtArrayWriteImpl) createInstance("spoon.support.reflect.code.CtArrayWriteImpl"));
+        setField(ctArrayWriteImpl, "parent", null);
+        
+        Object initialCtArrayWriteImplParent = getFieldValue(ctArrayWriteImpl, "parent");
+        
+        CtRHSReceiver actual = ctAssignmentImpl.setAssignment(ctArrayWriteImpl);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+        
+        Object finalCtArrayWriteImplParent = getFieldValue(ctArrayWriteImpl, "parent");
+        
+        assertFalse(initialCtArrayWriteImplParent == finalCtArrayWriteImplParent);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetAssigned1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
+        
+        CtExpression actual = ctAssignmentImpl.getAssigned();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetAssigned2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        CtOperatorAssignmentImpl ctOperatorAssignmentImpl = ((CtOperatorAssignmentImpl) createInstance("spoon.support.reflect.code.CtOperatorAssignmentImpl"));
+        setField(ctOperatorAssignmentImpl, "assigned", null);
+        setField(ctAssignmentImpl, "assigned", ctOperatorAssignmentImpl);
+        
+        CtExpression actual = ctAssignmentImpl.getAssigned();
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctOperatorAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetAssigned1() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = new CtAssignmentImpl();
+        
+        CtAssignment actual = ctAssignmentImpl.setAssigned(null);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetAssigned2() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        setField(ctAssignmentImpl, "parent", null);
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(factoryImpl, "environment", null);
+        setField(ctAssignmentImpl, "factory", factoryImpl);
+        CtOperatorAssignmentImpl ctOperatorAssignmentImpl = ((CtOperatorAssignmentImpl) createInstance("spoon.support.reflect.code.CtOperatorAssignmentImpl"));
+        setField(ctOperatorAssignmentImpl, "parent", null);
+        setField(ctOperatorAssignmentImpl, "factory", null);
+        
+        Object ctAssignmentImplFactory = getFieldValue(ctAssignmentImpl, "factory");
+        Object initialCtAssignmentImplFactoryEnvironment = getFieldValue(ctAssignmentImplFactory, "environment");
+        
+        Object initialCtOperatorAssignmentImplParent = getFieldValue(ctOperatorAssignmentImpl, "parent");
+        
+        CtAssignment actual = ctAssignmentImpl.setAssigned(ctOperatorAssignmentImpl);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+        
+        Object ctAssignmentImplFactory1 = getFieldValue(ctAssignmentImpl, "factory");
+        Object finalCtAssignmentImplFactoryEnvironment = getFieldValue(ctAssignmentImplFactory1, "environment");
+        
+        Object finalCtOperatorAssignmentImplParent = getFieldValue(ctOperatorAssignmentImpl, "parent");
+        
+        assertFalse(initialCtAssignmentImplFactoryEnvironment == finalCtAssignmentImplFactoryEnvironment);
+        
+        assertFalse(initialCtOperatorAssignmentImplParent == finalCtOperatorAssignmentImplParent);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetAssigned3() throws Throwable  {
+        CtAssignmentImpl ctAssignmentImpl = ((CtAssignmentImpl) createInstance("spoon.support.reflect.code.CtAssignmentImpl"));
+        setField(ctAssignmentImpl, "parent", null);
+        setField(ctAssignmentImpl, "factory", null);
+        CtAnnotationImpl ctAnnotationImpl = ((CtAnnotationImpl) createInstance("spoon.support.reflect.declaration.CtAnnotationImpl"));
+        setField(ctAnnotationImpl, "parent", null);
+        setField(ctAnnotationImpl, "factory", null);
+        
+        Object initialCtAnnotationImplParent = getFieldValue(ctAnnotationImpl, "parent");
+        
+        CtAssignment actual = ctAssignmentImpl.setAssigned(ctAnnotationImpl);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctAssignmentImpl, actual));
+        
+        Object finalCtAnnotationImplParent = getFieldValue(ctAnnotationImpl, "parent");
+        
+        assertFalse(initialCtAnnotationImplParent == finalCtAnnotationImplParent);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCtAssignmentImpl1() {
+        CtAssignmentImpl actual = new CtAssignmentImpl();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCtAssignmentImpl2() {
+        CtAssignmentImpl actual = new CtAssignmentImpl();
+    }
+    ///endregion
+    
+    private static Object createInstance(String className) throws Exception {
+        Class<?> clazz = Class.forName(className);
+        return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
+        Class<?> clazz = object.getClass();
+        java.lang.reflect.Field field;
+    
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+            } catch (Exception e) {
+                clazz = clazz.getSuperclass();
+                field = null;
+            }
+        } while (field == null);
+        
+        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(object, fieldValue);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
+    }
     static class FieldsPair {
         final Object o1;
         final Object o2;
@@ -613,30 +781,6 @@ public class MergedWarpMessageTest {
         }
     
         return false;
-    }
-    private static Object createInstance(String className) throws Exception {
-        Class<?> clazz = Class.forName(className);
-        return getUnsafeInstance().allocateInstance(clazz);
-    }
-    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
-        Class<?> clazz = object.getClass();
-        java.lang.reflect.Field field;
-    
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-            } catch (Exception e) {
-                clazz = clazz.getSuperclass();
-                field = null;
-            }
-        } while (field == null);
-        
-        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-    
-        field.setAccessible(true);
-        field.set(object, fieldValue);
     }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();

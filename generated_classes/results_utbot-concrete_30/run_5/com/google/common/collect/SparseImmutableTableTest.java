@@ -2,7 +2,6 @@ package com.google.common.collect;
 
 import org.junit.Test;
 import com.google.common.primitives.Bytes;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -219,7 +218,7 @@ public class SparseImmutableTableTest {
         int[] intArray = new int[9];
         setField(sparseImmutableTable, "cellRowIndices", intArray);
         
-        sparseImmutableTable.getCell(536870912);
+        sparseImmutableTable.getCell(1073741824);
     }
     ///endregion
     
@@ -275,7 +274,7 @@ public class SparseImmutableTableTest {
         int[] intArray = new int[9];
         setField(sparseImmutableTable, "cellRowIndices", intArray);
         
-        sparseImmutableTable.getValue(536870912);
+        sparseImmutableTable.getValue(1073741824);
     }
     ///endregion
     
@@ -324,10 +323,10 @@ public class SparseImmutableTableTest {
         SparseImmutableTable sparseImmutableTable = ((SparseImmutableTable) createInstance("com.google.common.collect.SparseImmutableTable"));
         int[] intArray = new int[9];
         setField(sparseImmutableTable, "cellRowIndices", intArray);
-        Object row = createInstance("com.google.common.collect.DenseImmutableTable$Row");
-        SingletonImmutableSet singletonImmutableSet = ((SingletonImmutableSet) createInstance("com.google.common.collect.SingletonImmutableSet"));
-        setField(row, "values", singletonImmutableSet);
-        setField(sparseImmutableTable, "rowMap", row);
+        JdkBackedImmutableMap jdkBackedImmutableMap = ((JdkBackedImmutableMap) createInstance("com.google.common.collect.JdkBackedImmutableMap"));
+        Object entrySet = createInstance("com.google.common.collect.ImmutableSetMultimap$EntrySet");
+        setField(jdkBackedImmutableMap, "values", entrySet);
+        setField(sparseImmutableTable, "rowMap", jdkBackedImmutableMap);
         
         sparseImmutableTable.getValue(0);
     }
@@ -373,19 +372,9 @@ public class SparseImmutableTableTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testSparseImmutableTable4() throws Throwable  {
         RegularImmutableSet regularImmutableSet = ((RegularImmutableSet) createInstance("com.google.common.collect.RegularImmutableSet"));
-        java.lang.Object[] objectArray = new java.lang.Object[9];
+        java.lang.Object[] objectArray = new java.lang.Object[1];
         setField(regularImmutableSet, "elements", objectArray);
-        Object cellSet = createInstance("com.google.common.collect.RegularImmutableTable$CellSet");
-        Class sparseImmutableTableClazz = Class.forName("com.google.common.collect.SparseImmutableTable");
-        Class immutableListType = Class.forName("com.google.common.collect.ImmutableList");
-        Class regularImmutableSetType = Class.forName("com.google.common.collect.ImmutableSet");
-        Constructor sparseImmutableTableConstructor = sparseImmutableTableClazz.getDeclaredConstructor(immutableListType, regularImmutableSetType, regularImmutableSetType);
-        sparseImmutableTableConstructor.setAccessible(true);
-        java.lang.Object[] sparseImmutableTableConstructorArguments = new java.lang.Object[3];
-        sparseImmutableTableConstructorArguments[0] = null;
-        sparseImmutableTableConstructorArguments[1] = regularImmutableSet;
-        sparseImmutableTableConstructorArguments[2] = cellSet;
-        sparseImmutableTableConstructor.newInstance(sparseImmutableTableConstructorArguments);
+        new SparseImmutableTable(null, regularImmutableSet, null);
     }
     ///endregion
     

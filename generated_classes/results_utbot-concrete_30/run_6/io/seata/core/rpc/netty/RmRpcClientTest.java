@@ -13,7 +13,6 @@ import io.seata.core.rpc.netty.NettyPoolKey.TransactionRole;
 import io.seata.core.rpc.netty.NettyPoolKey;
 import io.seata.core.model.ResourceManager;
 import java.util.LinkedHashMap;
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -23,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
+import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
@@ -30,9 +30,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertTrue;
 import static java.lang.reflect.Array.get;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 public class RmRpcClientTest {
     ///region
@@ -62,9 +62,8 @@ public class RmRpcClientTest {
     @Test(timeout = 10000)
     public void testUserEventTriggered2() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        java.lang.Object[] byteBufferAsIntBufferLArray = createArray("java.nio.ByteBufferAsIntBufferL", 0);
         
-        rmRpcClient.userEventTriggered(((ChannelHandlerContext) null), byteBufferAsIntBufferLArray);
+        rmRpcClient.userEventTriggered(((ChannelHandlerContext) null), null);
     }
     ///endregion
     
@@ -244,95 +243,6 @@ public class RmRpcClientTest {
         Object object = new Object();
         
         rmRpcClient.sendMsgWithResponse(string, object, 0L);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSendMsgWithResponse2() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
-        java.lang.Object[] nodeArray = createArray("java.util.concurrent.ConcurrentHashMap$Node", 9);
-        setField(concurrentHashMap, "table", nodeArray);
-        setField(rmRpcClient, "channels", concurrentHashMap);
-        String string = new String("");
-        
-        Object rmRpcClientChannels = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannelsChannelsTable = getFieldValue(rmRpcClientChannels, "table");
-        Object initialRmRpcClientChannelsTable0 = get(rmRpcClientChannelsChannelsTable, 0);
-        Object rmRpcClientChannels1 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels1ChannelsTable = getFieldValue(rmRpcClientChannels1, "table");
-        Object initialRmRpcClientChannelsTable1 = get(rmRpcClientChannels1ChannelsTable, 1);
-        Object rmRpcClientChannels2 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels2ChannelsTable = getFieldValue(rmRpcClientChannels2, "table");
-        Object initialRmRpcClientChannelsTable2 = get(rmRpcClientChannels2ChannelsTable, 2);
-        Object rmRpcClientChannels3 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels3ChannelsTable = getFieldValue(rmRpcClientChannels3, "table");
-        Object initialRmRpcClientChannelsTable3 = get(rmRpcClientChannels3ChannelsTable, 3);
-        Object rmRpcClientChannels4 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels4ChannelsTable = getFieldValue(rmRpcClientChannels4, "table");
-        Object initialRmRpcClientChannelsTable4 = get(rmRpcClientChannels4ChannelsTable, 4);
-        Object rmRpcClientChannels5 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels5ChannelsTable = getFieldValue(rmRpcClientChannels5, "table");
-        Object initialRmRpcClientChannelsTable5 = get(rmRpcClientChannels5ChannelsTable, 5);
-        Object rmRpcClientChannels6 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels6ChannelsTable = getFieldValue(rmRpcClientChannels6, "table");
-        Object initialRmRpcClientChannelsTable6 = get(rmRpcClientChannels6ChannelsTable, 6);
-        Object rmRpcClientChannels7 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels7ChannelsTable = getFieldValue(rmRpcClientChannels7, "table");
-        Object initialRmRpcClientChannelsTable7 = get(rmRpcClientChannels7ChannelsTable, 7);
-        Object rmRpcClientChannels8 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels8ChannelsTable = getFieldValue(rmRpcClientChannels8, "table");
-        Object initialRmRpcClientChannelsTable8 = get(rmRpcClientChannels8ChannelsTable, 8);
-        
-        rmRpcClient.sendMsgWithResponse(string, null, 0L);
-        
-        Object rmRpcClientChannels9 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels9ChannelsTable = getFieldValue(rmRpcClientChannels9, "table");
-        Object finalRmRpcClientChannelsTable0 = get(rmRpcClientChannels9ChannelsTable, 0);
-        Object rmRpcClientChannels10 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels10ChannelsTable = getFieldValue(rmRpcClientChannels10, "table");
-        Object finalRmRpcClientChannelsTable1 = get(rmRpcClientChannels10ChannelsTable, 1);
-        Object rmRpcClientChannels11 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels11ChannelsTable = getFieldValue(rmRpcClientChannels11, "table");
-        Object finalRmRpcClientChannelsTable2 = get(rmRpcClientChannels11ChannelsTable, 2);
-        Object rmRpcClientChannels12 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels12ChannelsTable = getFieldValue(rmRpcClientChannels12, "table");
-        Object finalRmRpcClientChannelsTable3 = get(rmRpcClientChannels12ChannelsTable, 3);
-        Object rmRpcClientChannels13 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels13ChannelsTable = getFieldValue(rmRpcClientChannels13, "table");
-        Object finalRmRpcClientChannelsTable4 = get(rmRpcClientChannels13ChannelsTable, 4);
-        Object rmRpcClientChannels14 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels14ChannelsTable = getFieldValue(rmRpcClientChannels14, "table");
-        Object finalRmRpcClientChannelsTable5 = get(rmRpcClientChannels14ChannelsTable, 5);
-        Object rmRpcClientChannels15 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels15ChannelsTable = getFieldValue(rmRpcClientChannels15, "table");
-        Object finalRmRpcClientChannelsTable6 = get(rmRpcClientChannels15ChannelsTable, 6);
-        Object rmRpcClientChannels16 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels16ChannelsTable = getFieldValue(rmRpcClientChannels16, "table");
-        Object finalRmRpcClientChannelsTable7 = get(rmRpcClientChannels16ChannelsTable, 7);
-        Object rmRpcClientChannels17 = getFieldValue(rmRpcClient, "channels");
-        Object rmRpcClientChannels17ChannelsTable = getFieldValue(rmRpcClientChannels17, "table");
-        Object finalRmRpcClientChannelsTable8 = get(rmRpcClientChannels17ChannelsTable, 8);
-        
-        assertNull(finalRmRpcClientChannelsTable0);
-        
-        assertNull(finalRmRpcClientChannelsTable1);
-        
-        assertNull(finalRmRpcClientChannelsTable2);
-        
-        assertNull(finalRmRpcClientChannelsTable3);
-        
-        assertNull(finalRmRpcClientChannelsTable4);
-        
-        assertNull(finalRmRpcClientChannelsTable5);
-        
-        assertNull(finalRmRpcClientChannelsTable6);
-        
-        assertNull(finalRmRpcClientChannelsTable7);
-        
-        assertNull(finalRmRpcClientChannelsTable8);
     }
     ///endregion
     
@@ -638,6 +548,48 @@ public class RmRpcClientTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoConnect2() throws Throwable  {
+        Class runtimeClazz = Class.forName("java.lang.Runtime");
+        Runtime prevCurrentRuntime = ((Runtime) getStaticFieldValue(runtimeClazz, "currentRuntime"));
+        try {
+            Runtime currentRuntime = ((Runtime) createInstance("java.lang.Runtime"));
+            setStaticField(runtimeClazz, "currentRuntime", currentRuntime);
+            RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+            ConcurrentHashMap concurrentHashMap = ((ConcurrentHashMap) createInstance("java.util.concurrent.ConcurrentHashMap"));
+            java.lang.Object[] nodeArray = createArray("java.util.concurrent.ConcurrentHashMap$Node", 1);
+            setField(concurrentHashMap, "table", nodeArray);
+            setField(rmRpcClient, "channels", concurrentHashMap);
+            String string = new String("");
+            
+            Object rmRpcClientChannels = getFieldValue(rmRpcClient, "channels");
+            Object rmRpcClientChannelsChannelsTable = getFieldValue(rmRpcClientChannels, "table");
+            Object initialRmRpcClientChannelsTable0 = get(rmRpcClientChannelsChannelsTable, 0);
+            
+            Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
+            Class stringType = Class.forName("java.lang.String");
+            Method doConnectMethod = rmRpcClientClazz.getDeclaredMethod("doConnect", stringType);
+            doConnectMethod.setAccessible(true);
+            java.lang.Object[] doConnectMethodArguments = new java.lang.Object[1];
+            doConnectMethodArguments[0] = string;
+            try {
+                doConnectMethod.invoke(rmRpcClient, doConnectMethodArguments);
+            } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+                throw invocationTargetException.getTargetException();
+            }
+            Object rmRpcClientChannels1 = getFieldValue(rmRpcClient, "channels");
+            Object rmRpcClientChannels1ChannelsTable = getFieldValue(rmRpcClientChannels1, "table");
+            Object finalRmRpcClientChannelsTable0 = get(rmRpcClientChannels1ChannelsTable, 0);
+            
+            assertNull(finalRmRpcClientChannelsTable0);
+        } finally {
+            setStaticField(Runtime.class, "currentRuntime", prevCurrentRuntime);
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testGetExistAliveChannel1() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         String string = new String();
@@ -821,16 +773,20 @@ public class RmRpcClientTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testGetMergedResourceKeys4() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         ResourceManager resourceManagerMock = mock(ResourceManager.class);
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        java.lang.Object[] rangeLongSpliteratorArray = createArray("java.util.stream.Streams$RangeLongSpliterator", 9);
-        linkedHashMap.put(rangeLongSpliteratorArray, rangeLongSpliteratorArray);
+        linkedHashMap.put(null, null);
         when(resourceManagerMock.getManagedResources()).thenReturn(((Map) linkedHashMap));
         
-        rmRpcClient.getMergedResourceKeys(resourceManagerMock);
+        String actual = rmRpcClient.getMergedResourceKeys(resourceManagerMock);
+        
+        String expected = new String("null");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
         
         ResourceManager finalResourceManagerMock = resourceManagerMock;
         
@@ -924,15 +880,6 @@ public class RmRpcClientTest {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
     }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
-    }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();
         java.lang.reflect.Field field;
@@ -952,25 +899,6 @@ public class RmRpcClientTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
-    }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     static class FieldsPair {
         final Object o1;
@@ -1176,6 +1104,34 @@ public class RmRpcClientTest {
     
         field.setAccessible(true);
         field.set(null, fieldValue);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
+    }
+    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
+        Class<?> clazz = obj.getClass();
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                
+                return field.get(obj);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
+    
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

@@ -4,7 +4,6 @@ import org.junit.Test;
 import java.lang.ref.ReferenceQueue;
 import java.lang.reflect.Method;
 import java.nio.file.attribute.PosixFilePermission;
-import sun.misc.Cleaner;
 import java.lang.reflect.Field;
 import java.lang.reflect.Constructor;
 import java.lang.ref.PhantomReference;
@@ -133,15 +132,15 @@ public class FinalizerTest {
         java.lang.Object[] eSSCertIdArray = createArray("sun.security.pkcs.ESSCertId", 0);
         setField(entry, "referent", eSSCertIdArray);
         setField(finalizer, "finalizableReferenceClassReference", entry);
-        Object resourceReference = createInstance("sun.util.locale.provider.LocaleResources$ResourceReference");
-        setField(resourceReference, "referent", null);
+        Object loggerWeakRef = createInstance("java.util.logging.LogManager$LoggerWeakRef");
+        setField(loggerWeakRef, "referent", null);
         
         Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
-        Class resourceReferenceType = Class.forName("java.lang.ref.Reference");
-        Method cleanUpMethod = finalizerClazz.getDeclaredMethod("cleanUp", resourceReferenceType);
+        Class loggerWeakRefType = Class.forName("java.lang.ref.Reference");
+        Method cleanUpMethod = finalizerClazz.getDeclaredMethod("cleanUp", loggerWeakRefType);
         cleanUpMethod.setAccessible(true);
         java.lang.Object[] cleanUpMethodArguments = new java.lang.Object[1];
-        cleanUpMethodArguments[0] = resourceReference;
+        cleanUpMethodArguments[0] = loggerWeakRef;
         try {
             cleanUpMethod.invoke(finalizer, cleanUpMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -228,9 +227,9 @@ public class FinalizerTest {
     @Test(timeout = 10000)
     public void testGetFinalizeReferentMethod3() throws Throwable  {
         Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
-        Object weakClassKey = createInstance("java.io.ObjectStreamClass$WeakClassKey");
-        setField(weakClassKey, "referent", null);
-        setField(finalizer, "finalizableReferenceClassReference", weakClassKey);
+        Object arrayReference = createInstance("com.google.common.util.concurrent.Striped$SmallLazyStriped$ArrayReference");
+        setField(arrayReference, "referent", null);
+        setField(finalizer, "finalizableReferenceClassReference", arrayReference);
         
         Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
         Method getFinalizeReferentMethodMethod = finalizerClazz.getDeclaredMethod("getFinalizeReferentMethod");
@@ -259,24 +258,8 @@ public class FinalizerTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testStartFinalizer1() throws Throwable  {
-        Object null = createInstance("java.lang.ref.ReferenceQueue$Null");
-        Cleaner cleaner = ((Cleaner) createInstance("sun.misc.Cleaner"));
-        
-        Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
-        Class classType = Class.forName("java.lang.Class");
-        Class nullType = Class.forName("java.lang.ref.ReferenceQueue");
-        Class cleanerType = Class.forName("java.lang.ref.PhantomReference");
-        Method startFinalizerMethod = finalizerClazz.getDeclaredMethod("startFinalizer", classType, nullType, cleanerType);
-        startFinalizerMethod.setAccessible(true);
-        java.lang.Object[] startFinalizerMethodArguments = new java.lang.Object[3];
-        startFinalizerMethodArguments[0] = null;
-        startFinalizerMethodArguments[1] = null;
-        startFinalizerMethodArguments[2] = cleaner;
-        try {
-            startFinalizerMethod.invoke(null, startFinalizerMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
+        Finalizer.startFinalizer(null, null, null);
+    }
     ///endregion
     
     ///region

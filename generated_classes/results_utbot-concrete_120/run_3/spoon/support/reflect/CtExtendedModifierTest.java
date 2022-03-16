@@ -127,7 +127,7 @@ public class CtExtendedModifierTest {
         
         int actual = ctExtendedModifier.hashCode();
         
-        assertEquals(1931302771, actual);
+        assertEquals(895499205, actual);
     }
     ///endregion
     
@@ -175,6 +175,52 @@ public class CtExtendedModifierTest {
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsImplicit1() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        
+        boolean actual = ctExtendedModifier.isImplicit();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsImplicit2() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        setField(ctExtendedModifier, "implicit", false);
+        
+        boolean actual = ctExtendedModifier.isImplicit();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetImplicit1() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        
+        ctExtendedModifier.setImplicit(false);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetImplicit2() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        setField(ctExtendedModifier, "implicit", false);
+        
+        ctExtendedModifier.setImplicit(false);
     }
     ///endregion
     
@@ -238,54 +284,8 @@ public class CtExtendedModifierTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetImplicit1() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        
-        ctExtendedModifier.setImplicit(false);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetImplicit2() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        setField(ctExtendedModifier, "implicit", false);
-        
-        ctExtendedModifier.setImplicit(false);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsImplicit1() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        
-        boolean actual = ctExtendedModifier.isImplicit();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsImplicit2() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        setField(ctExtendedModifier, "implicit", false);
-        
-        boolean actual = ctExtendedModifier.isImplicit();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testCtExtendedModifier1() {
-        CtExtendedModifier actual = new CtExtendedModifier(null);
+        CtExtendedModifier actual = new CtExtendedModifier(null, false);
     }
     ///endregion
     
@@ -293,7 +293,7 @@ public class CtExtendedModifierTest {
     
     @Test(timeout = 10000)
     public void testCtExtendedModifier2() {
-        CtExtendedModifier actual = new CtExtendedModifier(null, false);
+        CtExtendedModifier actual = new CtExtendedModifier(null);
     }
     ///endregion
     

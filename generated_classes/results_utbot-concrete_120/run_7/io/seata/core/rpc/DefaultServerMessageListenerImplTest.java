@@ -2,12 +2,12 @@ package io.seata.core.rpc;
 
 import org.junit.Test;
 import io.seata.core.protocol.RegisterRMRequest;
+import io.seata.core.rpc.netty.RpcServer;
 import io.seata.core.rpc.netty.RegisterCheckAuthHandler;
 import io.netty.channel.DefaultChannelPipeline;
 import java.lang.reflect.Method;
 import io.seata.core.protocol.RegisterTMRequest;
 import io.netty.channel.unix.DomainSocketAddress;
-import io.seata.core.rpc.netty.RpcServer;
 import java.net.InetSocketAddress;
 import java.net.Inet6Address;
 import java.net.Inet4Address;
@@ -66,10 +66,11 @@ public class DefaultServerMessageListenerImplTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testOnRegRmMessage2() throws Throwable  {
         DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         RegisterCheckAuthHandler registerCheckAuthHandlerMock = mock(RegisterCheckAuthHandler.class);
         when(registerCheckAuthHandlerMock.regResourceManagerCheckAuth(any())).thenReturn(false);
         
-        defaultServerMessageListenerImpl.onRegRmMessage(0L, null, null, null, registerCheckAuthHandlerMock);
+        defaultServerMessageListenerImpl.onRegRmMessage(0L, null, null, rpcServer, registerCheckAuthHandlerMock);
         
         RegisterCheckAuthHandler finalRegisterCheckAuthHandlerMock = registerCheckAuthHandlerMock;
         
@@ -133,9 +134,10 @@ public class DefaultServerMessageListenerImplTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testOnRegTmMessage2() throws Throwable  {
         DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        RegisterTMRequest registerTMRequest = ((RegisterTMRequest) createInstance("io.seata.core.protocol.RegisterTMRequest"));
         RegisterCheckAuthHandler registerCheckAuthHandlerMock = mock(RegisterCheckAuthHandler.class);
         
-        defaultServerMessageListenerImpl.onRegTmMessage(0L, null, null, null, registerCheckAuthHandlerMock);
+        defaultServerMessageListenerImpl.onRegTmMessage(0L, null, registerTMRequest, null, registerCheckAuthHandlerMock);
         
         RegisterCheckAuthHandler finalRegisterCheckAuthHandlerMock = registerCheckAuthHandlerMock;
         

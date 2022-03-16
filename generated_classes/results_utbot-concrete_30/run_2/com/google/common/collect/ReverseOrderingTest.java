@@ -3,13 +3,11 @@ package com.google.common.collect;
 import org.junit.Test;
 import java.util.Comparator;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.time.chrono.ThaiBuddhistDate;
+import sun.net.ConnectionResetException;
+import java.util.LinkedHashSet;
 import java.util.HashMap;
-import com.google.common.collect.Ordering.ArbitraryOrdering;
-import com.google.common.collect.Ordering;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -57,9 +55,9 @@ public class ReverseOrderingTest {
     @Test(timeout = 10000)
     public void testEquals3() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        java.lang.Object[] intSortingSinkArray = createArray("java.util.stream.SortedOps$IntSortingSink", 0);
+        java.lang.Object[] operatorArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraint$Operator", 0);
         
-        boolean actual = reverseOrdering.equals(intSortingSinkArray);
+        boolean actual = reverseOrdering.equals(operatorArray);
         
         assertFalse(actual);
     }
@@ -135,12 +133,12 @@ public class ReverseOrderingTest {
     @Test(timeout = 10000)
     public void testToString2() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        Object rangeLexOrdering = createInstance("com.google.common.collect.Range$RangeLexOrdering");
-        setField(reverseOrdering, "forwardOrder", rangeLexOrdering);
+        AllEqualOrdering allEqualOrdering = ((AllEqualOrdering) createInstance("com.google.common.collect.AllEqualOrdering"));
+        setField(reverseOrdering, "forwardOrder", allEqualOrdering);
         
         String actual = reverseOrdering.toString();
         
-        String expected = new String("com.google.common.collect.Range$RangeLexOrdering@35603ba6.reverse()");
+        String expected = new String("Ordering.allEqual().reverse()");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -190,23 +188,8 @@ public class ReverseOrderingTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testCompare4() throws Throwable  {
-        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        NullsFirstOrdering nullsFirstOrdering = ((NullsFirstOrdering) createInstance("com.google.common.collect.NullsFirstOrdering"));
-        setField(reverseOrdering, "forwardOrder", nullsFirstOrdering);
-        java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
-        
-        int actual = reverseOrdering.compare(fifoWaitQueueArray, null);
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCompare5() throws Throwable  {
+    public void testCompare4() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         NullsFirstOrdering nullsFirstOrdering = ((NullsFirstOrdering) createInstance("com.google.common.collect.NullsFirstOrdering"));
         setField(reverseOrdering, "forwardOrder", nullsFirstOrdering);
@@ -234,24 +217,13 @@ public class ReverseOrderingTest {
     public void testMin2() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
-        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
-        LinkedHashSet linkedHashSet = ((LinkedHashSet) createInstance("java.util.LinkedHashSet"));
-        
-        reverseOrdering.min(linkedHashSet);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin3() throws Throwable  {
-        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering3 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering4 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering2, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering4, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering3, "forwardOrder", reverseOrdering4);
+        setField(reverseOrdering2, "forwardOrder", reverseOrdering3);
         setField(reverseOrdering1, "forwardOrder", reverseOrdering2);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
         
@@ -262,7 +234,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin4() throws Throwable  {
+    public void testMin3() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         
         reverseOrdering.min(((Iterator) null));
@@ -272,7 +244,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin5() throws Throwable  {
+    public void testMin4() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
@@ -287,7 +259,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin6() throws Throwable  {
+    public void testMin5() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         Object object = new Object();
         Object object1 = new Object();
@@ -299,7 +271,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin7() throws Throwable  {
+    public void testMin6() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
@@ -312,7 +284,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin8() throws Throwable  {
+    public void testMin7() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
@@ -325,21 +297,21 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin9() throws Throwable  {
+    public void testMin8() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
-        java.time.chrono.ThaiBuddhistDate[] thaiBuddhistDateArray = new java.time.chrono.ThaiBuddhistDate[0];
+        java.lang.Object[] findOpArray = createArray("java.util.stream.FindOps$FindOp", 0);
         
-        reverseOrdering.min(thaiBuddhistDateArray, null);
+        reverseOrdering.min(null, findOpArray);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin10() throws Throwable  {
+    public void testMin9() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
@@ -351,7 +323,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin11() throws Throwable  {
+    public void testMin10() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         Object object = new Object();
         Object object1 = new Object();
@@ -365,7 +337,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin12() throws Throwable  {
+    public void testMin11() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
@@ -456,13 +428,92 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin13() throws Throwable  {
+    public void testMin12() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        sun.net.ConnectionResetException[] connectionResetExceptionArray = new sun.net.ConnectionResetException[9];
+        java.lang.Object[] functionForMapNoDefaultArray = createArray("com.google.common.base.Functions$FunctionForMapNoDefault", 9);
+        java.lang.Object[] objectArray = new java.lang.Object[9];
         
-        reverseOrdering.min(null, null, null, ((java.lang.Object[]) null));
+        ConnectionResetException initialConnectionResetExceptionArray0 = connectionResetExceptionArray[0];
+        ConnectionResetException initialConnectionResetExceptionArray1 = connectionResetExceptionArray[1];
+        ConnectionResetException initialConnectionResetExceptionArray2 = connectionResetExceptionArray[2];
+        ConnectionResetException initialConnectionResetExceptionArray3 = connectionResetExceptionArray[3];
+        ConnectionResetException initialConnectionResetExceptionArray4 = connectionResetExceptionArray[4];
+        ConnectionResetException initialConnectionResetExceptionArray5 = connectionResetExceptionArray[5];
+        ConnectionResetException initialConnectionResetExceptionArray6 = connectionResetExceptionArray[6];
+        ConnectionResetException initialConnectionResetExceptionArray7 = connectionResetExceptionArray[7];
+        ConnectionResetException initialConnectionResetExceptionArray8 = connectionResetExceptionArray[8];
+        
+        Object initialFunctionForMapNoDefaultArray0 = functionForMapNoDefaultArray[0];
+        Object initialFunctionForMapNoDefaultArray1 = functionForMapNoDefaultArray[1];
+        Object initialFunctionForMapNoDefaultArray2 = functionForMapNoDefaultArray[2];
+        Object initialFunctionForMapNoDefaultArray3 = functionForMapNoDefaultArray[3];
+        Object initialFunctionForMapNoDefaultArray4 = functionForMapNoDefaultArray[4];
+        Object initialFunctionForMapNoDefaultArray5 = functionForMapNoDefaultArray[5];
+        Object initialFunctionForMapNoDefaultArray6 = functionForMapNoDefaultArray[6];
+        Object initialFunctionForMapNoDefaultArray7 = functionForMapNoDefaultArray[7];
+        Object initialFunctionForMapNoDefaultArray8 = functionForMapNoDefaultArray[8];
+        
+        reverseOrdering.min(connectionResetExceptionArray, functionForMapNoDefaultArray, null, objectArray);
+        
+        ConnectionResetException finalConnectionResetExceptionArray0 = connectionResetExceptionArray[0];
+        ConnectionResetException finalConnectionResetExceptionArray1 = connectionResetExceptionArray[1];
+        ConnectionResetException finalConnectionResetExceptionArray2 = connectionResetExceptionArray[2];
+        ConnectionResetException finalConnectionResetExceptionArray3 = connectionResetExceptionArray[3];
+        ConnectionResetException finalConnectionResetExceptionArray4 = connectionResetExceptionArray[4];
+        ConnectionResetException finalConnectionResetExceptionArray5 = connectionResetExceptionArray[5];
+        ConnectionResetException finalConnectionResetExceptionArray6 = connectionResetExceptionArray[6];
+        ConnectionResetException finalConnectionResetExceptionArray7 = connectionResetExceptionArray[7];
+        ConnectionResetException finalConnectionResetExceptionArray8 = connectionResetExceptionArray[8];
+        
+        Object finalFunctionForMapNoDefaultArray0 = functionForMapNoDefaultArray[0];
+        Object finalFunctionForMapNoDefaultArray1 = functionForMapNoDefaultArray[1];
+        Object finalFunctionForMapNoDefaultArray2 = functionForMapNoDefaultArray[2];
+        Object finalFunctionForMapNoDefaultArray3 = functionForMapNoDefaultArray[3];
+        Object finalFunctionForMapNoDefaultArray4 = functionForMapNoDefaultArray[4];
+        Object finalFunctionForMapNoDefaultArray5 = functionForMapNoDefaultArray[5];
+        Object finalFunctionForMapNoDefaultArray6 = functionForMapNoDefaultArray[6];
+        Object finalFunctionForMapNoDefaultArray7 = functionForMapNoDefaultArray[7];
+        Object finalFunctionForMapNoDefaultArray8 = functionForMapNoDefaultArray[8];
+        
+        assertNull(finalConnectionResetExceptionArray0);
+        
+        assertNull(finalConnectionResetExceptionArray1);
+        
+        assertNull(finalConnectionResetExceptionArray2);
+        
+        assertNull(finalConnectionResetExceptionArray3);
+        
+        assertNull(finalConnectionResetExceptionArray4);
+        
+        assertNull(finalConnectionResetExceptionArray5);
+        
+        assertNull(finalConnectionResetExceptionArray6);
+        
+        assertNull(finalConnectionResetExceptionArray7);
+        
+        assertNull(finalConnectionResetExceptionArray8);
+        
+        assertNull(finalFunctionForMapNoDefaultArray0);
+        
+        assertNull(finalFunctionForMapNoDefaultArray1);
+        
+        assertNull(finalFunctionForMapNoDefaultArray2);
+        
+        assertNull(finalFunctionForMapNoDefaultArray3);
+        
+        assertNull(finalFunctionForMapNoDefaultArray4);
+        
+        assertNull(finalFunctionForMapNoDefaultArray5);
+        
+        assertNull(finalFunctionForMapNoDefaultArray6);
+        
+        assertNull(finalFunctionForMapNoDefaultArray7);
+        
+        assertNull(finalFunctionForMapNoDefaultArray8);
     }
     ///endregion
     
@@ -621,8 +672,9 @@ public class ReverseOrderingTest {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
-        Class stateClazz = Class.forName("com.google.common.base.AbstractIterator$State");
-        Object state = getEnumConstantByName(stateClazz, "READY");
+        Class operatorClazz = Class.forName("sun.security.util.DisabledAlgorithmConstraints$Constraint$Operator");
+        Object operator = getEnumConstantByName(operatorClazz, "EQ");
+        Object scheduledFutureTask = createInstance("java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask");
         java.lang.Comparable[] comparableArray = new java.lang.Comparable[9];
         
         Comparable initialComparableArray0 = comparableArray[0];
@@ -635,7 +687,7 @@ public class ReverseOrderingTest {
         Comparable initialComparableArray7 = comparableArray[7];
         Comparable initialComparableArray8 = comparableArray[8];
         
-        reverseOrdering.max(state, null, null, comparableArray);
+        reverseOrdering.max(operator, null, scheduledFutureTask, comparableArray);
         
         Comparable finalComparableArray0 = comparableArray[0];
         Comparable finalComparableArray1 = comparableArray[1];
@@ -675,8 +727,87 @@ public class ReverseOrderingTest {
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        sun.net.ConnectionResetException[] connectionResetExceptionArray = new sun.net.ConnectionResetException[9];
+        java.lang.Object[] functionForMapNoDefaultArray = createArray("com.google.common.base.Functions$FunctionForMapNoDefault", 9);
+        java.lang.Object[] objectArray = new java.lang.Object[9];
         
-        reverseOrdering.max(null, null, null, ((java.lang.Object[]) null));
+        ConnectionResetException initialConnectionResetExceptionArray0 = connectionResetExceptionArray[0];
+        ConnectionResetException initialConnectionResetExceptionArray1 = connectionResetExceptionArray[1];
+        ConnectionResetException initialConnectionResetExceptionArray2 = connectionResetExceptionArray[2];
+        ConnectionResetException initialConnectionResetExceptionArray3 = connectionResetExceptionArray[3];
+        ConnectionResetException initialConnectionResetExceptionArray4 = connectionResetExceptionArray[4];
+        ConnectionResetException initialConnectionResetExceptionArray5 = connectionResetExceptionArray[5];
+        ConnectionResetException initialConnectionResetExceptionArray6 = connectionResetExceptionArray[6];
+        ConnectionResetException initialConnectionResetExceptionArray7 = connectionResetExceptionArray[7];
+        ConnectionResetException initialConnectionResetExceptionArray8 = connectionResetExceptionArray[8];
+        
+        Object initialFunctionForMapNoDefaultArray0 = functionForMapNoDefaultArray[0];
+        Object initialFunctionForMapNoDefaultArray1 = functionForMapNoDefaultArray[1];
+        Object initialFunctionForMapNoDefaultArray2 = functionForMapNoDefaultArray[2];
+        Object initialFunctionForMapNoDefaultArray3 = functionForMapNoDefaultArray[3];
+        Object initialFunctionForMapNoDefaultArray4 = functionForMapNoDefaultArray[4];
+        Object initialFunctionForMapNoDefaultArray5 = functionForMapNoDefaultArray[5];
+        Object initialFunctionForMapNoDefaultArray6 = functionForMapNoDefaultArray[6];
+        Object initialFunctionForMapNoDefaultArray7 = functionForMapNoDefaultArray[7];
+        Object initialFunctionForMapNoDefaultArray8 = functionForMapNoDefaultArray[8];
+        
+        reverseOrdering.max(connectionResetExceptionArray, functionForMapNoDefaultArray, null, objectArray);
+        
+        ConnectionResetException finalConnectionResetExceptionArray0 = connectionResetExceptionArray[0];
+        ConnectionResetException finalConnectionResetExceptionArray1 = connectionResetExceptionArray[1];
+        ConnectionResetException finalConnectionResetExceptionArray2 = connectionResetExceptionArray[2];
+        ConnectionResetException finalConnectionResetExceptionArray3 = connectionResetExceptionArray[3];
+        ConnectionResetException finalConnectionResetExceptionArray4 = connectionResetExceptionArray[4];
+        ConnectionResetException finalConnectionResetExceptionArray5 = connectionResetExceptionArray[5];
+        ConnectionResetException finalConnectionResetExceptionArray6 = connectionResetExceptionArray[6];
+        ConnectionResetException finalConnectionResetExceptionArray7 = connectionResetExceptionArray[7];
+        ConnectionResetException finalConnectionResetExceptionArray8 = connectionResetExceptionArray[8];
+        
+        Object finalFunctionForMapNoDefaultArray0 = functionForMapNoDefaultArray[0];
+        Object finalFunctionForMapNoDefaultArray1 = functionForMapNoDefaultArray[1];
+        Object finalFunctionForMapNoDefaultArray2 = functionForMapNoDefaultArray[2];
+        Object finalFunctionForMapNoDefaultArray3 = functionForMapNoDefaultArray[3];
+        Object finalFunctionForMapNoDefaultArray4 = functionForMapNoDefaultArray[4];
+        Object finalFunctionForMapNoDefaultArray5 = functionForMapNoDefaultArray[5];
+        Object finalFunctionForMapNoDefaultArray6 = functionForMapNoDefaultArray[6];
+        Object finalFunctionForMapNoDefaultArray7 = functionForMapNoDefaultArray[7];
+        Object finalFunctionForMapNoDefaultArray8 = functionForMapNoDefaultArray[8];
+        
+        assertNull(finalConnectionResetExceptionArray0);
+        
+        assertNull(finalConnectionResetExceptionArray1);
+        
+        assertNull(finalConnectionResetExceptionArray2);
+        
+        assertNull(finalConnectionResetExceptionArray3);
+        
+        assertNull(finalConnectionResetExceptionArray4);
+        
+        assertNull(finalConnectionResetExceptionArray5);
+        
+        assertNull(finalConnectionResetExceptionArray6);
+        
+        assertNull(finalConnectionResetExceptionArray7);
+        
+        assertNull(finalConnectionResetExceptionArray8);
+        
+        assertNull(finalFunctionForMapNoDefaultArray0);
+        
+        assertNull(finalFunctionForMapNoDefaultArray1);
+        
+        assertNull(finalFunctionForMapNoDefaultArray2);
+        
+        assertNull(finalFunctionForMapNoDefaultArray3);
+        
+        assertNull(finalFunctionForMapNoDefaultArray4);
+        
+        assertNull(finalFunctionForMapNoDefaultArray5);
+        
+        assertNull(finalFunctionForMapNoDefaultArray6);
+        
+        assertNull(finalFunctionForMapNoDefaultArray7);
+        
+        assertNull(finalFunctionForMapNoDefaultArray8);
     }
     ///endregion
     
@@ -720,8 +851,8 @@ public class ReverseOrderingTest {
     
     @Test(timeout = 10000)
     public void testReverseOrdering2() throws Throwable  {
-        Ordering.ArbitraryOrdering arbitraryOrdering = ((Ordering.ArbitraryOrdering) createInstance("com.google.common.collect.Ordering$ArbitraryOrdering"));
-        ReverseOrdering actual = new ReverseOrdering(arbitraryOrdering);
+        NaturalOrdering naturalOrdering = ((NaturalOrdering) createInstance("com.google.common.collect.NaturalOrdering"));
+        ReverseOrdering actual = new ReverseOrdering(naturalOrdering);
     }
     ///endregion
     

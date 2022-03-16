@@ -168,7 +168,7 @@ public class ModelConsistencyCheckerTest {
         StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
         RootLogger rootLogger = ((RootLogger) createInstance("org.apache.log4j.spi.RootLogger"));
         Hierarchy hierarchy = ((Hierarchy) createInstance("org.apache.log4j.Hierarchy"));
-        setField(hierarchy, "thresholdInt", 10273);
+        setField(hierarchy, "thresholdInt", 10257);
         setField(rootLogger, "repository", hierarchy);
         setField(standardEnvironment, "logger", rootLogger);
         setField(modelConsistencyChecker, "environment", standardEnvironment);

@@ -170,7 +170,7 @@ public class MessageFutureTest {
         
         boolean actual = messageFuture.isTimeout();
         
-        assertTrue(actual);
+        assertFalse(actual);
     }
     ///endregion
     
@@ -193,7 +193,7 @@ public class MessageFutureTest {
     @Test(timeout = 10000)
     public void testIsTimeout3() throws Throwable  {
         MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
-        setField(messageFuture, "start", 5426543128863269893L);
+        setField(messageFuture, "start", 4611686849714479113L);
         setField(messageFuture, "timeout", 0L);
         
         boolean actual = messageFuture.isTimeout();

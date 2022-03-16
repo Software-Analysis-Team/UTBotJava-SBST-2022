@@ -3,7 +3,7 @@ package com.google.common.util.concurrent;
 import org.junit.Test;
 import java.lang.reflect.Method;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.DuplicateFormatFlagsException;
+import java.util.InputMismatchException;
 import com.google.common.cache.CacheLoader.InvalidCacheLoadException;
 import com.google.common.cache.CacheLoader;
 import com.google.common.base.VerifyException;
@@ -459,14 +459,14 @@ public class SimpleTimeLimiterTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testWrapAndThrowExecutionExceptionOrError4() throws Throwable  {
         SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
-        DuplicateFormatFlagsException duplicateFormatFlagsException = ((DuplicateFormatFlagsException) createInstance("java.util.DuplicateFormatFlagsException"));
+        InputMismatchException inputMismatchException = ((InputMismatchException) createInstance("java.util.InputMismatchException"));
         
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class duplicateFormatFlagsExceptionType = Class.forName("java.lang.Throwable");
-        Method wrapAndThrowExecutionExceptionOrErrorMethod = simpleTimeLimiterClazz.getDeclaredMethod("wrapAndThrowExecutionExceptionOrError", duplicateFormatFlagsExceptionType);
+        Class inputMismatchExceptionType = Class.forName("java.lang.Throwable");
+        Method wrapAndThrowExecutionExceptionOrErrorMethod = simpleTimeLimiterClazz.getDeclaredMethod("wrapAndThrowExecutionExceptionOrError", inputMismatchExceptionType);
         wrapAndThrowExecutionExceptionOrErrorMethod.setAccessible(true);
         java.lang.Object[] wrapAndThrowExecutionExceptionOrErrorMethodArguments = new java.lang.Object[1];
-        wrapAndThrowExecutionExceptionOrErrorMethodArguments[0] = duplicateFormatFlagsException;
+        wrapAndThrowExecutionExceptionOrErrorMethodArguments[0] = inputMismatchException;
         try {
             wrapAndThrowExecutionExceptionOrErrorMethod.invoke(simpleTimeLimiter, wrapAndThrowExecutionExceptionOrErrorMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -761,6 +761,25 @@ public class SimpleTimeLimiterTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDeclaresInterruptedEx1() throws Throwable  {
+        Method method = ((Method) createInstance("java.lang.reflect.Method"));
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class methodType = Class.forName("java.lang.reflect.Method");
+        Method declaresInterruptedExMethod = simpleTimeLimiterClazz.getDeclaredMethod("declaresInterruptedEx", methodType);
+        declaresInterruptedExMethod.setAccessible(true);
+        java.lang.Object[] declaresInterruptedExMethodArguments = new java.lang.Object[1];
+        declaresInterruptedExMethodArguments[0] = method;
+        try {
+            declaresInterruptedExMethod.invoke(null, declaresInterruptedExMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeclaresInterruptedEx2() throws Throwable  {
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
         Class methodType = Class.forName("java.lang.reflect.Method");
         Method declaresInterruptedExMethod = simpleTimeLimiterClazz.getDeclaredMethod("declaresInterruptedEx", methodType);
@@ -777,7 +796,7 @@ public class SimpleTimeLimiterTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testDeclaresInterruptedEx2() throws Throwable  {
+    public void testDeclaresInterruptedEx3() throws Throwable  {
         Method method = ((Method) createInstance("java.lang.reflect.Method"));
         java.lang.Class[] classArray = new java.lang.Class[0];
         setField(method, "exceptionTypes", classArray);
@@ -797,7 +816,7 @@ public class SimpleTimeLimiterTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testDeclaresInterruptedEx3() throws Throwable  {
+    public void testDeclaresInterruptedEx4() throws Throwable  {
         Method method = ((Method) createInstance("java.lang.reflect.Method"));
         java.lang.Class[] classArray = new java.lang.Class[1];
         Class class1 = Object.class;
@@ -934,13 +953,13 @@ public class SimpleTimeLimiterTest {
     
     @Test(timeout = 10000)
     public void testSimpleTimeLimiter3() throws Throwable  {
-        Object finalizableDelegatedExecutorService = createInstance("java.util.concurrent.Executors$FinalizableDelegatedExecutorService");
+        ThreadPoolExecutor threadPoolExecutor = ((ThreadPoolExecutor) createInstance("java.util.concurrent.ThreadPoolExecutor"));
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class finalizableDelegatedExecutorServiceType = Class.forName("java.util.concurrent.ExecutorService");
-        Constructor simpleTimeLimiterConstructor = simpleTimeLimiterClazz.getDeclaredConstructor(finalizableDelegatedExecutorServiceType);
+        Class threadPoolExecutorType = Class.forName("java.util.concurrent.ExecutorService");
+        Constructor simpleTimeLimiterConstructor = simpleTimeLimiterClazz.getDeclaredConstructor(threadPoolExecutorType);
         simpleTimeLimiterConstructor.setAccessible(true);
         java.lang.Object[] simpleTimeLimiterConstructorArguments = new java.lang.Object[1];
-        simpleTimeLimiterConstructorArguments[0] = finalizableDelegatedExecutorService;
+        simpleTimeLimiterConstructorArguments[0] = threadPoolExecutor;
         SimpleTimeLimiter actual = ((SimpleTimeLimiter) simpleTimeLimiterConstructor.newInstance(simpleTimeLimiterConstructorArguments));
     }
     ///endregion

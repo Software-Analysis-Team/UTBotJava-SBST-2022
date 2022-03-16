@@ -3,16 +3,15 @@ package com.alibaba.fastjson.serializer;
 import org.junit.Test;
 import com.alibaba.fastjson.serializer.ASMSerializerFactory.Context;
 import com.alibaba.fastjson.serializer.ASMSerializerFactory;
+import com.alibaba.fastjson.util.FieldInfo;
 import java.lang.reflect.Method;
 import com.alibaba.fastjson.asm.MethodWriter;
 import com.alibaba.fastjson.asm.ByteVector;
-import com.alibaba.fastjson.util.FieldInfo;
 import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 import java.lang.reflect.Type;
 import sun.reflect.generics.reflectiveObjects.WildcardTypeImpl;
-import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
 import com.alibaba.fastjson.asm.Label;
 import com.alibaba.fastjson.asm.ClassWriter;
 import java.lang.reflect.Modifier;
@@ -24,6 +23,31 @@ import static java.lang.reflect.Array.get;
 import static org.junit.Assert.assertNull;
 
 public class ASMSerializerFactoryTest {
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void test_get1() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = new ASMSerializerFactory();
+        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        
+        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
+        Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
+        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
+        Method _getMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_get", methodVisitorType, contextType, fieldInfoType);
+        _getMethod.setAccessible(true);
+        java.lang.Object[] _getMethodArguments = new java.lang.Object[3];
+        _getMethodArguments[0] = null;
+        _getMethodArguments[1] = context;
+        _getMethodArguments[2] = fieldInfo;
+        try {
+            _getMethod.invoke(aSMSerializerFactory, _getMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
@@ -58,10 +82,11 @@ public class ASMSerializerFactoryTest {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 2147483646);
-        byte[] byteArray = new byte[10];
+        setField(byteVector, "length", 17);
+        byte[] byteArray = new byte[17];
         setField(byteVector, "data", byteArray);
         setField(methodWriter, "code", byteVector);
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
         setField(context, "writeDirect", false);
         
@@ -75,7 +100,49 @@ public class ASMSerializerFactoryTest {
         java.lang.Object[] _doubleMethodArguments = new java.lang.Object[4];
         _doubleMethodArguments[0] = null;
         _doubleMethodArguments[1] = methodWriter;
-        _doubleMethodArguments[2] = null;
+        _doubleMethodArguments[2] = fieldInfo;
+        _doubleMethodArguments[3] = context;
+        try {
+            _doubleMethod.invoke(aSMSerializerFactory, _doubleMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object methodWriterCode = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
+        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
+        
+        assertEquals(22, finalMethodWriterCodeLength);
+        
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void test_double3() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        Field field = ((Field) createInstance("java.lang.reflect.Field"));
+        setField(fieldInfo, "field", field);
+        Method method = ((Method) createInstance("java.lang.reflect.Method"));
+        setField(fieldInfo, "method", method);
+        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        setField(context, "variants", linkedHashMap);
+        setField(context, "writeDirect", true);
+        
+        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
+        Class classType = Class.forName("java.lang.Class");
+        Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
+        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
+        Method _doubleMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_double", classType, methodVisitorType, fieldInfoType, contextType);
+        _doubleMethod.setAccessible(true);
+        java.lang.Object[] _doubleMethodArguments = new java.lang.Object[4];
+        _doubleMethodArguments[0] = null;
+        _doubleMethodArguments[1] = null;
+        _doubleMethodArguments[2] = fieldInfo;
         _doubleMethodArguments[3] = context;
         try {
             _doubleMethod.invoke(aSMSerializerFactory, _doubleMethodArguments);
@@ -87,12 +154,12 @@ public class ASMSerializerFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void test_double3() throws Throwable  {
+    public void test_double4() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", -2);
-        byte[] byteArray = new byte[0];
+        setField(byteVector, "length", 8);
+        byte[] byteArray = new byte[4];
         setField(byteVector, "data", byteArray);
         setField(methodWriter, "code", byteVector);
         ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
@@ -177,14 +244,15 @@ public class ASMSerializerFactoryTest {
     public void test_float3() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 17);
-        byte[] byteArray = new byte[17];
-        setField(byteVector, "data", byteArray);
-        setField(methodWriter, "code", byteVector);
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        Field field = ((Field) createInstance("java.lang.reflect.Field"));
+        setField(fieldInfo, "field", field);
+        Method method = ((Method) createInstance("java.lang.reflect.Method"));
+        setField(fieldInfo, "method", method);
         ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        setField(context, "writeDirect", false);
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        setField(context, "variants", linkedHashMap);
+        setField(context, "writeDirect", true);
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
         Class classType = Class.forName("java.lang.Class");
@@ -202,57 +270,13 @@ public class ASMSerializerFactoryTest {
             _floatMethod.invoke(aSMSerializerFactory, _floatMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }
-        Object methodWriterCode = getFieldValue(methodWriter, "code");
-        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
-        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
-        Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
-        
-        assertEquals(22, finalMethodWriterCodeLength);
-        
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void test_float4() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        Class class1 = Object.class;
-        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        Field field = ((Field) createInstance("java.lang.reflect.Field"));
-        setField(fieldInfo, "field", field);
-        Method method = ((Method) createInstance("java.lang.reflect.Method"));
-        setField(fieldInfo, "method", method);
-        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        setField(context, "variants", linkedHashMap);
-        setField(context, "writeDirect", true);
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class class1Type = Class.forName("java.lang.Class");
-        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Method _floatMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_float", class1Type, methodWriterType, fieldInfoType, contextType);
-        _floatMethod.setAccessible(true);
-        java.lang.Object[] _floatMethodArguments = new java.lang.Object[4];
-        _floatMethodArguments[0] = class1;
-        _floatMethodArguments[1] = methodWriter;
-        _floatMethodArguments[2] = fieldInfo;
-        _floatMethodArguments[3] = context;
-        try {
-            _floatMethod.invoke(aSMSerializerFactory, _floatMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
         }}
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void test_float5() throws Throwable  {
+    public void test_float4() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
@@ -280,6 +304,70 @@ public class ASMSerializerFactoryTest {
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void test_float5() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
+        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
+        setField(byteVector, "length", 0);
+        byte[] byteArray = new byte[33];
+        setField(byteVector, "data", byteArray);
+        setField(methodWriter, "code", byteVector);
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
+        setField(context, "writeDirect", false);
+        
+        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
+        Class classType = Class.forName("java.lang.Class");
+        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
+        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
+        Method _floatMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_float", classType, methodWriterType, fieldInfoType, contextType);
+        _floatMethod.setAccessible(true);
+        java.lang.Object[] _floatMethodArguments = new java.lang.Object[4];
+        _floatMethodArguments[0] = null;
+        _floatMethodArguments[1] = methodWriter;
+        _floatMethodArguments[2] = fieldInfo;
+        _floatMethodArguments[3] = context;
+        try {
+            _floatMethod.invoke(aSMSerializerFactory, _floatMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object methodWriterCode = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
+        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
+        Object methodWriterCode1CodeData = getFieldValue(methodWriterCode1, "data");
+        Object finalMethodWriterCodeData0 = get(methodWriterCode1CodeData, 0);
+        Object methodWriterCode2 = getFieldValue(methodWriter, "code");
+        Object methodWriterCode2CodeData = getFieldValue(methodWriterCode2, "data");
+        Object finalMethodWriterCodeData1 = get(methodWriterCode2CodeData, 1);
+        Object methodWriterCode3 = getFieldValue(methodWriter, "code");
+        Object methodWriterCode3CodeData = getFieldValue(methodWriterCode3, "data");
+        Object finalMethodWriterCodeData2 = get(methodWriterCode3CodeData, 2);
+        Object methodWriterCode4 = getFieldValue(methodWriter, "code");
+        Object methodWriterCode4CodeData = getFieldValue(methodWriterCode4, "data");
+        Object finalMethodWriterCodeData3 = get(methodWriterCode4CodeData, 3);
+        Object methodWriterCode5 = getFieldValue(methodWriter, "code");
+        Object methodWriterCode5CodeData = getFieldValue(methodWriterCode5, "data");
+        Object finalMethodWriterCodeData4 = get(methodWriterCode5CodeData, 4);
+        
+        assertEquals(5, finalMethodWriterCodeLength);
+        
+        assertEquals((byte) 42, finalMethodWriterCodeData0);
+        
+        assertEquals((byte) 43, finalMethodWriterCodeData1);
+        
+        assertEquals((byte) 44, finalMethodWriterCodeData2);
+        
+        assertEquals((byte) 25, finalMethodWriterCodeData3);
+        
+        assertEquals((byte) 6, finalMethodWriterCodeData4);
+    }
     ///endregion
     
     ///region
@@ -349,6 +437,7 @@ public class ASMSerializerFactoryTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void test_int3() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         Field field = ((Field) createInstance("java.lang.reflect.Field"));
         setField(fieldInfo, "field", field);
@@ -361,16 +450,16 @@ public class ASMSerializerFactoryTest {
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
         Class classType = Class.forName("java.lang.Class");
-        Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
         Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
         Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
         Class intType = int.class;
         Class charType = char.class;
-        Method _intMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_int", classType, methodVisitorType, fieldInfoType, contextType, intType, charType);
+        Method _intMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_int", classType, methodWriterType, fieldInfoType, contextType, intType, charType);
         _intMethod.setAccessible(true);
         java.lang.Object[] _intMethodArguments = new java.lang.Object[6];
         _intMethodArguments[0] = null;
-        _intMethodArguments[1] = null;
+        _intMethodArguments[1] = methodWriter;
         _intMethodArguments[2] = fieldInfo;
         _intMethodArguments[3] = context;
         _intMethodArguments[4] = 0;
@@ -725,62 +814,33 @@ public class ASMSerializerFactoryTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void test_enum3() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 0);
-        byte[] byteArray = new byte[33];
-        setField(byteVector, "data", byteArray);
-        setField(methodWriter, "code", byteVector);
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        Field field = ((Field) createInstance("java.lang.reflect.Field"));
+        setField(fieldInfo, "field", field);
+        Method method = ((Method) createInstance("java.lang.reflect.Method"));
+        setField(fieldInfo, "method", method);
         ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        setField(context, "writeDirect", false);
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        setField(context, "variants", linkedHashMap);
+        setField(context, "writeDirect", true);
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
         Class classType = Class.forName("java.lang.Class");
-        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
         Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
         Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Method _enumMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_enum", classType, methodWriterType, fieldInfoType, contextType);
+        Method _enumMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_enum", classType, methodVisitorType, fieldInfoType, contextType);
         _enumMethod.setAccessible(true);
         java.lang.Object[] _enumMethodArguments = new java.lang.Object[4];
         _enumMethodArguments[0] = null;
-        _enumMethodArguments[1] = methodWriter;
-        _enumMethodArguments[2] = null;
+        _enumMethodArguments[1] = null;
+        _enumMethodArguments[2] = fieldInfo;
         _enumMethodArguments[3] = context;
         try {
             _enumMethod.invoke(aSMSerializerFactory, _enumMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }
-        Object methodWriterCode = getFieldValue(methodWriter, "code");
-        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
-        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
-        Object methodWriterCode1CodeData = getFieldValue(methodWriterCode1, "data");
-        Object finalMethodWriterCodeData0 = get(methodWriterCode1CodeData, 0);
-        Object methodWriterCode2 = getFieldValue(methodWriter, "code");
-        Object methodWriterCode2CodeData = getFieldValue(methodWriterCode2, "data");
-        Object finalMethodWriterCodeData1 = get(methodWriterCode2CodeData, 1);
-        Object methodWriterCode3 = getFieldValue(methodWriter, "code");
-        Object methodWriterCode3CodeData = getFieldValue(methodWriterCode3, "data");
-        Object finalMethodWriterCodeData2 = get(methodWriterCode3CodeData, 2);
-        Object methodWriterCode4 = getFieldValue(methodWriter, "code");
-        Object methodWriterCode4CodeData = getFieldValue(methodWriterCode4, "data");
-        Object finalMethodWriterCodeData3 = get(methodWriterCode4CodeData, 3);
-        Object methodWriterCode5 = getFieldValue(methodWriter, "code");
-        Object methodWriterCode5CodeData = getFieldValue(methodWriterCode5, "data");
-        Object finalMethodWriterCodeData4 = get(methodWriterCode5CodeData, 4);
-        
-        assertEquals(5, finalMethodWriterCodeLength);
-        
-        assertEquals((byte) 42, finalMethodWriterCodeData0);
-        
-        assertEquals((byte) 43, finalMethodWriterCodeData1);
-        
-        assertEquals((byte) 44, finalMethodWriterCodeData2);
-        
-        assertEquals((byte) 25, finalMethodWriterCodeData3);
-        
-        assertEquals((byte) 6, finalMethodWriterCodeData4);
-    }
+        }}
     ///endregion
     
     ///region
@@ -862,391 +922,6 @@ public class ASMSerializerFactoryTest {
         
         assertEquals(5, finalMethodWriterCodeLength);
         
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateJavaBeanSerializer1() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = new ASMSerializerFactory();
-        SerializeBeanInfo serializeBeanInfo = ((SerializeBeanInfo) createInstance("com.alibaba.fastjson.serializer.SerializeBeanInfo"));
-        
-        aSMSerializerFactory.createJavaBeanSerializer(serializeBeanInfo);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateJavaBeanSerializer2() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        
-        aSMSerializerFactory.createJavaBeanSerializer(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateJavaBeanSerializer3() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        SerializeBeanInfo serializeBeanInfo = ((SerializeBeanInfo) createInstance("com.alibaba.fastjson.serializer.SerializeBeanInfo"));
-        Class class1 = Object.class;
-        setField(serializeBeanInfo, "beanType", class1);
-        
-        aSMSerializerFactory.createJavaBeanSerializer(serializeBeanInfo);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGenerateWriteAsArray1() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[9];
-        
-        FieldInfo initialFieldInfoArray0 = fieldInfoArray[0];
-        FieldInfo initialFieldInfoArray1 = fieldInfoArray[1];
-        FieldInfo initialFieldInfoArray2 = fieldInfoArray[2];
-        FieldInfo initialFieldInfoArray3 = fieldInfoArray[3];
-        FieldInfo initialFieldInfoArray4 = fieldInfoArray[4];
-        FieldInfo initialFieldInfoArray5 = fieldInfoArray[5];
-        FieldInfo initialFieldInfoArray6 = fieldInfoArray[6];
-        FieldInfo initialFieldInfoArray7 = fieldInfoArray[7];
-        FieldInfo initialFieldInfoArray8 = fieldInfoArray[8];
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class classType = Class.forName("java.lang.Class");
-        Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoArrayType = Class.forName("[Lcom.alibaba.fastjson.util.FieldInfo;");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Method generateWriteAsArrayMethod = aSMSerializerFactoryClazz.getDeclaredMethod("generateWriteAsArray", classType, methodVisitorType, fieldInfoArrayType, contextType);
-        generateWriteAsArrayMethod.setAccessible(true);
-        java.lang.Object[] generateWriteAsArrayMethodArguments = new java.lang.Object[4];
-        generateWriteAsArrayMethodArguments[0] = null;
-        generateWriteAsArrayMethodArguments[1] = null;
-        generateWriteAsArrayMethodArguments[2] = ((Object) fieldInfoArray);
-        generateWriteAsArrayMethodArguments[3] = null;
-        try {
-            generateWriteAsArrayMethod.invoke(aSMSerializerFactory, generateWriteAsArrayMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        FieldInfo finalFieldInfoArray0 = fieldInfoArray[0];
-        FieldInfo finalFieldInfoArray1 = fieldInfoArray[1];
-        FieldInfo finalFieldInfoArray2 = fieldInfoArray[2];
-        FieldInfo finalFieldInfoArray3 = fieldInfoArray[3];
-        FieldInfo finalFieldInfoArray4 = fieldInfoArray[4];
-        FieldInfo finalFieldInfoArray5 = fieldInfoArray[5];
-        FieldInfo finalFieldInfoArray6 = fieldInfoArray[6];
-        FieldInfo finalFieldInfoArray7 = fieldInfoArray[7];
-        FieldInfo finalFieldInfoArray8 = fieldInfoArray[8];
-        
-        assertNull(finalFieldInfoArray0);
-        
-        assertNull(finalFieldInfoArray1);
-        
-        assertNull(finalFieldInfoArray2);
-        
-        assertNull(finalFieldInfoArray3);
-        
-        assertNull(finalFieldInfoArray4);
-        
-        assertNull(finalFieldInfoArray5);
-        
-        assertNull(finalFieldInfoArray6);
-        
-        assertNull(finalFieldInfoArray7);
-        
-        assertNull(finalFieldInfoArray8);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGenerateWriteAsArray2() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", -2);
-        byte[] byteArray = new byte[10];
-        setField(byteVector, "data", byteArray);
-        setField(methodWriter, "code", byteVector);
-        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[9];
-        
-        FieldInfo initialFieldInfoArray0 = fieldInfoArray[0];
-        FieldInfo initialFieldInfoArray1 = fieldInfoArray[1];
-        FieldInfo initialFieldInfoArray2 = fieldInfoArray[2];
-        FieldInfo initialFieldInfoArray3 = fieldInfoArray[3];
-        FieldInfo initialFieldInfoArray4 = fieldInfoArray[4];
-        FieldInfo initialFieldInfoArray5 = fieldInfoArray[5];
-        FieldInfo initialFieldInfoArray6 = fieldInfoArray[6];
-        FieldInfo initialFieldInfoArray7 = fieldInfoArray[7];
-        FieldInfo initialFieldInfoArray8 = fieldInfoArray[8];
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class classType = Class.forName("java.lang.Class");
-        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoArrayType = Class.forName("[Lcom.alibaba.fastjson.util.FieldInfo;");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Method generateWriteAsArrayMethod = aSMSerializerFactoryClazz.getDeclaredMethod("generateWriteAsArray", classType, methodWriterType, fieldInfoArrayType, contextType);
-        generateWriteAsArrayMethod.setAccessible(true);
-        java.lang.Object[] generateWriteAsArrayMethodArguments = new java.lang.Object[4];
-        generateWriteAsArrayMethodArguments[0] = null;
-        generateWriteAsArrayMethodArguments[1] = methodWriter;
-        generateWriteAsArrayMethodArguments[2] = ((Object) fieldInfoArray);
-        generateWriteAsArrayMethodArguments[3] = null;
-        try {
-            generateWriteAsArrayMethod.invoke(aSMSerializerFactory, generateWriteAsArrayMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        FieldInfo finalFieldInfoArray0 = fieldInfoArray[0];
-        FieldInfo finalFieldInfoArray1 = fieldInfoArray[1];
-        FieldInfo finalFieldInfoArray2 = fieldInfoArray[2];
-        FieldInfo finalFieldInfoArray3 = fieldInfoArray[3];
-        FieldInfo finalFieldInfoArray4 = fieldInfoArray[4];
-        FieldInfo finalFieldInfoArray5 = fieldInfoArray[5];
-        FieldInfo finalFieldInfoArray6 = fieldInfoArray[6];
-        FieldInfo finalFieldInfoArray7 = fieldInfoArray[7];
-        FieldInfo finalFieldInfoArray8 = fieldInfoArray[8];
-        
-        assertNull(finalFieldInfoArray0);
-        
-        assertNull(finalFieldInfoArray1);
-        
-        assertNull(finalFieldInfoArray2);
-        
-        assertNull(finalFieldInfoArray3);
-        
-        assertNull(finalFieldInfoArray4);
-        
-        assertNull(finalFieldInfoArray5);
-        
-        assertNull(finalFieldInfoArray6);
-        
-        assertNull(finalFieldInfoArray7);
-        
-        assertNull(finalFieldInfoArray8);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGenerateWriteAsArray3() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 9);
-        byte[] byteArray = new byte[0];
-        setField(byteVector, "data", byteArray);
-        setField(methodWriter, "code", byteVector);
-        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[9];
-        
-        FieldInfo initialFieldInfoArray0 = fieldInfoArray[0];
-        FieldInfo initialFieldInfoArray1 = fieldInfoArray[1];
-        FieldInfo initialFieldInfoArray2 = fieldInfoArray[2];
-        FieldInfo initialFieldInfoArray3 = fieldInfoArray[3];
-        FieldInfo initialFieldInfoArray4 = fieldInfoArray[4];
-        FieldInfo initialFieldInfoArray5 = fieldInfoArray[5];
-        FieldInfo initialFieldInfoArray6 = fieldInfoArray[6];
-        FieldInfo initialFieldInfoArray7 = fieldInfoArray[7];
-        FieldInfo initialFieldInfoArray8 = fieldInfoArray[8];
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class classType = Class.forName("java.lang.Class");
-        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoArrayType = Class.forName("[Lcom.alibaba.fastjson.util.FieldInfo;");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Method generateWriteAsArrayMethod = aSMSerializerFactoryClazz.getDeclaredMethod("generateWriteAsArray", classType, methodWriterType, fieldInfoArrayType, contextType);
-        generateWriteAsArrayMethod.setAccessible(true);
-        java.lang.Object[] generateWriteAsArrayMethodArguments = new java.lang.Object[4];
-        generateWriteAsArrayMethodArguments[0] = null;
-        generateWriteAsArrayMethodArguments[1] = methodWriter;
-        generateWriteAsArrayMethodArguments[2] = ((Object) fieldInfoArray);
-        generateWriteAsArrayMethodArguments[3] = null;
-        try {
-            generateWriteAsArrayMethod.invoke(aSMSerializerFactory, generateWriteAsArrayMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        FieldInfo finalFieldInfoArray0 = fieldInfoArray[0];
-        FieldInfo finalFieldInfoArray1 = fieldInfoArray[1];
-        FieldInfo finalFieldInfoArray2 = fieldInfoArray[2];
-        FieldInfo finalFieldInfoArray3 = fieldInfoArray[3];
-        FieldInfo finalFieldInfoArray4 = fieldInfoArray[4];
-        FieldInfo finalFieldInfoArray5 = fieldInfoArray[5];
-        FieldInfo finalFieldInfoArray6 = fieldInfoArray[6];
-        FieldInfo finalFieldInfoArray7 = fieldInfoArray[7];
-        FieldInfo finalFieldInfoArray8 = fieldInfoArray[8];
-        
-        assertNull(finalFieldInfoArray0);
-        
-        assertNull(finalFieldInfoArray1);
-        
-        assertNull(finalFieldInfoArray2);
-        
-        assertNull(finalFieldInfoArray3);
-        
-        assertNull(finalFieldInfoArray4);
-        
-        assertNull(finalFieldInfoArray5);
-        
-        assertNull(finalFieldInfoArray6);
-        
-        assertNull(finalFieldInfoArray7);
-        
-        assertNull(finalFieldInfoArray8);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGenerateWriteAsArray4() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 7);
-        byte[] byteArray = new byte[6];
-        setField(byteVector, "data", byteArray);
-        setField(methodWriter, "code", byteVector);
-        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[9];
-        
-        FieldInfo initialFieldInfoArray0 = fieldInfoArray[0];
-        FieldInfo initialFieldInfoArray1 = fieldInfoArray[1];
-        FieldInfo initialFieldInfoArray2 = fieldInfoArray[2];
-        FieldInfo initialFieldInfoArray3 = fieldInfoArray[3];
-        FieldInfo initialFieldInfoArray4 = fieldInfoArray[4];
-        FieldInfo initialFieldInfoArray5 = fieldInfoArray[5];
-        FieldInfo initialFieldInfoArray6 = fieldInfoArray[6];
-        FieldInfo initialFieldInfoArray7 = fieldInfoArray[7];
-        FieldInfo initialFieldInfoArray8 = fieldInfoArray[8];
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class classType = Class.forName("java.lang.Class");
-        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoArrayType = Class.forName("[Lcom.alibaba.fastjson.util.FieldInfo;");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Method generateWriteAsArrayMethod = aSMSerializerFactoryClazz.getDeclaredMethod("generateWriteAsArray", classType, methodWriterType, fieldInfoArrayType, contextType);
-        generateWriteAsArrayMethod.setAccessible(true);
-        java.lang.Object[] generateWriteAsArrayMethodArguments = new java.lang.Object[4];
-        generateWriteAsArrayMethodArguments[0] = null;
-        generateWriteAsArrayMethodArguments[1] = methodWriter;
-        generateWriteAsArrayMethodArguments[2] = ((Object) fieldInfoArray);
-        generateWriteAsArrayMethodArguments[3] = null;
-        try {
-            generateWriteAsArrayMethod.invoke(aSMSerializerFactory, generateWriteAsArrayMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        FieldInfo finalFieldInfoArray0 = fieldInfoArray[0];
-        FieldInfo finalFieldInfoArray1 = fieldInfoArray[1];
-        FieldInfo finalFieldInfoArray2 = fieldInfoArray[2];
-        FieldInfo finalFieldInfoArray3 = fieldInfoArray[3];
-        FieldInfo finalFieldInfoArray4 = fieldInfoArray[4];
-        FieldInfo finalFieldInfoArray5 = fieldInfoArray[5];
-        FieldInfo finalFieldInfoArray6 = fieldInfoArray[6];
-        FieldInfo finalFieldInfoArray7 = fieldInfoArray[7];
-        FieldInfo finalFieldInfoArray8 = fieldInfoArray[8];
-        
-        assertNull(finalFieldInfoArray0);
-        
-        assertNull(finalFieldInfoArray1);
-        
-        assertNull(finalFieldInfoArray2);
-        
-        assertNull(finalFieldInfoArray3);
-        
-        assertNull(finalFieldInfoArray4);
-        
-        assertNull(finalFieldInfoArray5);
-        
-        assertNull(finalFieldInfoArray6);
-        
-        assertNull(finalFieldInfoArray7);
-        
-        assertNull(finalFieldInfoArray8);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGenerateWriteAsArray5() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 5);
-        byte[] byteArray = new byte[5];
-        setField(byteVector, "data", byteArray);
-        setField(methodWriter, "code", byteVector);
-        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[9];
-        
-        FieldInfo initialFieldInfoArray0 = fieldInfoArray[0];
-        FieldInfo initialFieldInfoArray1 = fieldInfoArray[1];
-        FieldInfo initialFieldInfoArray2 = fieldInfoArray[2];
-        FieldInfo initialFieldInfoArray3 = fieldInfoArray[3];
-        FieldInfo initialFieldInfoArray4 = fieldInfoArray[4];
-        FieldInfo initialFieldInfoArray5 = fieldInfoArray[5];
-        FieldInfo initialFieldInfoArray6 = fieldInfoArray[6];
-        FieldInfo initialFieldInfoArray7 = fieldInfoArray[7];
-        FieldInfo initialFieldInfoArray8 = fieldInfoArray[8];
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class classType = Class.forName("java.lang.Class");
-        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoArrayType = Class.forName("[Lcom.alibaba.fastjson.util.FieldInfo;");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Method generateWriteAsArrayMethod = aSMSerializerFactoryClazz.getDeclaredMethod("generateWriteAsArray", classType, methodWriterType, fieldInfoArrayType, contextType);
-        generateWriteAsArrayMethod.setAccessible(true);
-        java.lang.Object[] generateWriteAsArrayMethodArguments = new java.lang.Object[4];
-        generateWriteAsArrayMethodArguments[0] = null;
-        generateWriteAsArrayMethodArguments[1] = methodWriter;
-        generateWriteAsArrayMethodArguments[2] = ((Object) fieldInfoArray);
-        generateWriteAsArrayMethodArguments[3] = null;
-        try {
-            generateWriteAsArrayMethod.invoke(aSMSerializerFactory, generateWriteAsArrayMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object methodWriterCode = getFieldValue(methodWriter, "code");
-        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
-        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
-        Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
-        
-        FieldInfo finalFieldInfoArray0 = fieldInfoArray[0];
-        FieldInfo finalFieldInfoArray1 = fieldInfoArray[1];
-        FieldInfo finalFieldInfoArray2 = fieldInfoArray[2];
-        FieldInfo finalFieldInfoArray3 = fieldInfoArray[3];
-        FieldInfo finalFieldInfoArray4 = fieldInfoArray[4];
-        FieldInfo finalFieldInfoArray5 = fieldInfoArray[5];
-        FieldInfo finalFieldInfoArray6 = fieldInfoArray[6];
-        FieldInfo finalFieldInfoArray7 = fieldInfoArray[7];
-        FieldInfo finalFieldInfoArray8 = fieldInfoArray[8];
-        
-        assertEquals(7, finalMethodWriterCodeLength);
-        
-        assertNull(finalFieldInfoArray0);
-        
-        assertNull(finalFieldInfoArray1);
-        
-        assertNull(finalFieldInfoArray2);
-        
-        assertNull(finalFieldInfoArray3);
-        
-        assertNull(finalFieldInfoArray4);
-        
-        assertNull(finalFieldInfoArray5);
-        
-        assertNull(finalFieldInfoArray6);
-        
-        assertNull(finalFieldInfoArray7);
-        
-        assertNull(finalFieldInfoArray8);
     }
     ///endregion
     
@@ -1567,7 +1242,7 @@ public class ASMSerializerFactoryTest {
     public void testGenerateWriteMethod6() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[9];
+        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[12];
         ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         setField(context, "variants", linkedHashMap);
@@ -1582,6 +1257,9 @@ public class ASMSerializerFactoryTest {
         FieldInfo initialFieldInfoArray6 = fieldInfoArray[6];
         FieldInfo initialFieldInfoArray7 = fieldInfoArray[7];
         FieldInfo initialFieldInfoArray8 = fieldInfoArray[8];
+        FieldInfo initialFieldInfoArray9 = fieldInfoArray[9];
+        FieldInfo initialFieldInfoArray10 = fieldInfoArray[10];
+        FieldInfo initialFieldInfoArray11 = fieldInfoArray[11];
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
         Class classType = Class.forName("java.lang.Class");
@@ -1609,6 +1287,9 @@ public class ASMSerializerFactoryTest {
         FieldInfo finalFieldInfoArray6 = fieldInfoArray[6];
         FieldInfo finalFieldInfoArray7 = fieldInfoArray[7];
         FieldInfo finalFieldInfoArray8 = fieldInfoArray[8];
+        FieldInfo finalFieldInfoArray9 = fieldInfoArray[9];
+        FieldInfo finalFieldInfoArray10 = fieldInfoArray[10];
+        FieldInfo finalFieldInfoArray11 = fieldInfoArray[11];
         
         assertNull(finalFieldInfoArray0);
         
@@ -1627,6 +1308,12 @@ public class ASMSerializerFactoryTest {
         assertNull(finalFieldInfoArray7);
         
         assertNull(finalFieldInfoArray8);
+        
+        assertNull(finalFieldInfoArray9);
+        
+        assertNull(finalFieldInfoArray10);
+        
+        assertNull(finalFieldInfoArray11);
     }
     ///endregion
     
@@ -1840,39 +1527,6 @@ public class ASMSerializerFactoryTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void test_object3() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 8);
-        byte[] byteArray = new byte[4];
-        setField(byteVector, "data", byteArray);
-        setField(methodWriter, "code", byteVector);
-        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        setField(context, "writeDirect", false);
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class classType = Class.forName("java.lang.Class");
-        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Method _objectMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_object", classType, methodWriterType, fieldInfoType, contextType);
-        _objectMethod.setAccessible(true);
-        java.lang.Object[] _objectMethodArguments = new java.lang.Object[4];
-        _objectMethodArguments[0] = null;
-        _objectMethodArguments[1] = methodWriter;
-        _objectMethodArguments[2] = null;
-        _objectMethodArguments[3] = context;
-        try {
-            _objectMethod.invoke(aSMSerializerFactory, _objectMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void test_object4() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         Field field = ((Field) createInstance("java.lang.reflect.Field"));
         setField(fieldInfo, "field", field);
@@ -1894,6 +1548,39 @@ public class ASMSerializerFactoryTest {
         _objectMethodArguments[0] = null;
         _objectMethodArguments[1] = null;
         _objectMethodArguments[2] = fieldInfo;
+        _objectMethodArguments[3] = context;
+        try {
+            _objectMethod.invoke(aSMSerializerFactory, _objectMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void test_object4() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
+        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
+        setField(byteVector, "length", 8);
+        byte[] byteArray = new byte[4];
+        setField(byteVector, "data", byteArray);
+        setField(methodWriter, "code", byteVector);
+        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
+        setField(context, "writeDirect", false);
+        
+        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
+        Class classType = Class.forName("java.lang.Class");
+        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
+        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
+        Method _objectMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_object", classType, methodWriterType, fieldInfoType, contextType);
+        _objectMethod.setAccessible(true);
+        java.lang.Object[] _objectMethodArguments = new java.lang.Object[4];
+        _objectMethodArguments[0] = null;
+        _objectMethodArguments[1] = methodWriter;
+        _objectMethodArguments[2] = null;
         _objectMethodArguments[3] = context;
         try {
             _objectMethod.invoke(aSMSerializerFactory, _objectMethodArguments);
@@ -1942,70 +1629,6 @@ public class ASMSerializerFactoryTest {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 0);
-        byte[] byteArray = new byte[33];
-        setField(byteVector, "data", byteArray);
-        setField(methodWriter, "code", byteVector);
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        setField(context, "writeDirect", false);
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class classType = Class.forName("java.lang.Class");
-        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Method _objectMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_object", classType, methodWriterType, fieldInfoType, contextType);
-        _objectMethod.setAccessible(true);
-        java.lang.Object[] _objectMethodArguments = new java.lang.Object[4];
-        _objectMethodArguments[0] = null;
-        _objectMethodArguments[1] = methodWriter;
-        _objectMethodArguments[2] = fieldInfo;
-        _objectMethodArguments[3] = context;
-        try {
-            _objectMethod.invoke(aSMSerializerFactory, _objectMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object methodWriterCode = getFieldValue(methodWriter, "code");
-        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
-        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
-        Object methodWriterCode1CodeData = getFieldValue(methodWriterCode1, "data");
-        Object finalMethodWriterCodeData0 = get(methodWriterCode1CodeData, 0);
-        Object methodWriterCode2 = getFieldValue(methodWriter, "code");
-        Object methodWriterCode2CodeData = getFieldValue(methodWriterCode2, "data");
-        Object finalMethodWriterCodeData1 = get(methodWriterCode2CodeData, 1);
-        Object methodWriterCode3 = getFieldValue(methodWriter, "code");
-        Object methodWriterCode3CodeData = getFieldValue(methodWriterCode3, "data");
-        Object finalMethodWriterCodeData2 = get(methodWriterCode3CodeData, 2);
-        Object methodWriterCode4 = getFieldValue(methodWriter, "code");
-        Object methodWriterCode4CodeData = getFieldValue(methodWriterCode4, "data");
-        Object finalMethodWriterCodeData3 = get(methodWriterCode4CodeData, 3);
-        Object methodWriterCode5 = getFieldValue(methodWriter, "code");
-        Object methodWriterCode5CodeData = getFieldValue(methodWriterCode5, "data");
-        Object finalMethodWriterCodeData4 = get(methodWriterCode5CodeData, 4);
-        
-        assertEquals(5, finalMethodWriterCodeLength);
-        
-        assertEquals((byte) 42, finalMethodWriterCodeData0);
-        
-        assertEquals((byte) 43, finalMethodWriterCodeData1);
-        
-        assertEquals((byte) 44, finalMethodWriterCodeData2);
-        
-        assertEquals((byte) 25, finalMethodWriterCodeData3);
-        
-        assertEquals((byte) 6, finalMethodWriterCodeData4);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void test_object7() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
         setField(byteVector, "length", 20);
         byte[] byteArray = new byte[20];
         setField(byteVector, "data", byteArray);
@@ -2037,6 +1660,53 @@ public class ASMSerializerFactoryTest {
         
         assertEquals(25, finalMethodWriterCodeLength);
         
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateJavaBeanSerializer1() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = new ASMSerializerFactory();
+        SerializeBeanInfo serializeBeanInfo = ((SerializeBeanInfo) createInstance("com.alibaba.fastjson.serializer.SerializeBeanInfo"));
+        
+        aSMSerializerFactory.createJavaBeanSerializer(serializeBeanInfo);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateJavaBeanSerializer2() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        
+        aSMSerializerFactory.createJavaBeanSerializer(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateJavaBeanSerializer3() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        SerializeBeanInfo serializeBeanInfo = ((SerializeBeanInfo) createInstance("com.alibaba.fastjson.serializer.SerializeBeanInfo"));
+        Class class1 = Object.class;
+        setField(serializeBeanInfo, "beanType", class1);
+        
+        aSMSerializerFactory.createJavaBeanSerializer(serializeBeanInfo);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCreateJavaBeanSerializer4() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        SerializeBeanInfo serializeBeanInfo = ((SerializeBeanInfo) createInstance("com.alibaba.fastjson.serializer.SerializeBeanInfo"));
+        Class class1 = Object.class;
+        setField(serializeBeanInfo, "beanType", class1);
+        
+        aSMSerializerFactory.createJavaBeanSerializer(serializeBeanInfo);
     }
     ///endregion
     
@@ -2626,36 +2296,35 @@ public class ASMSerializerFactoryTest {
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         com.alibaba.fastjson.util.ParameterizedTypeImpl parameterizedTypeImpl = ((com.alibaba.fastjson.util.ParameterizedTypeImpl) createInstance("com.alibaba.fastjson.util.ParameterizedTypeImpl"));
         java.lang.reflect.Type[] typeArray = new java.lang.reflect.Type[9];
+        Class class1 = Object.class;
+        typeArray[0] = ((Type) class1);
         setField(parameterizedTypeImpl, "actualTypeArguments", typeArray);
         setField(fieldInfo, "fieldType", parameterizedTypeImpl);
         
         Type type = fieldInfo.fieldType;
         Object typeFieldTypeActualTypeArguments = getFieldValue(type, "actualTypeArguments");
-        Object initialFieldInfoFieldTypeActualTypeArguments0 = get(typeFieldTypeActualTypeArguments, 0);
+        Object initialFieldInfoFieldTypeActualTypeArguments1 = get(typeFieldTypeActualTypeArguments, 1);
         Type type1 = fieldInfo.fieldType;
         Object type1FieldTypeActualTypeArguments = getFieldValue(type1, "actualTypeArguments");
-        Object initialFieldInfoFieldTypeActualTypeArguments1 = get(type1FieldTypeActualTypeArguments, 1);
+        Object initialFieldInfoFieldTypeActualTypeArguments2 = get(type1FieldTypeActualTypeArguments, 2);
         Type type2 = fieldInfo.fieldType;
         Object type2FieldTypeActualTypeArguments = getFieldValue(type2, "actualTypeArguments");
-        Object initialFieldInfoFieldTypeActualTypeArguments2 = get(type2FieldTypeActualTypeArguments, 2);
+        Object initialFieldInfoFieldTypeActualTypeArguments3 = get(type2FieldTypeActualTypeArguments, 3);
         Type type3 = fieldInfo.fieldType;
         Object type3FieldTypeActualTypeArguments = getFieldValue(type3, "actualTypeArguments");
-        Object initialFieldInfoFieldTypeActualTypeArguments3 = get(type3FieldTypeActualTypeArguments, 3);
+        Object initialFieldInfoFieldTypeActualTypeArguments4 = get(type3FieldTypeActualTypeArguments, 4);
         Type type4 = fieldInfo.fieldType;
         Object type4FieldTypeActualTypeArguments = getFieldValue(type4, "actualTypeArguments");
-        Object initialFieldInfoFieldTypeActualTypeArguments4 = get(type4FieldTypeActualTypeArguments, 4);
+        Object initialFieldInfoFieldTypeActualTypeArguments5 = get(type4FieldTypeActualTypeArguments, 5);
         Type type5 = fieldInfo.fieldType;
         Object type5FieldTypeActualTypeArguments = getFieldValue(type5, "actualTypeArguments");
-        Object initialFieldInfoFieldTypeActualTypeArguments5 = get(type5FieldTypeActualTypeArguments, 5);
+        Object initialFieldInfoFieldTypeActualTypeArguments6 = get(type5FieldTypeActualTypeArguments, 6);
         Type type6 = fieldInfo.fieldType;
         Object type6FieldTypeActualTypeArguments = getFieldValue(type6, "actualTypeArguments");
-        Object initialFieldInfoFieldTypeActualTypeArguments6 = get(type6FieldTypeActualTypeArguments, 6);
+        Object initialFieldInfoFieldTypeActualTypeArguments7 = get(type6FieldTypeActualTypeArguments, 7);
         Type type7 = fieldInfo.fieldType;
         Object type7FieldTypeActualTypeArguments = getFieldValue(type7, "actualTypeArguments");
-        Object initialFieldInfoFieldTypeActualTypeArguments7 = get(type7FieldTypeActualTypeArguments, 7);
-        Type type8 = fieldInfo.fieldType;
-        Object type8FieldTypeActualTypeArguments = getFieldValue(type8, "actualTypeArguments");
-        Object initialFieldInfoFieldTypeActualTypeArguments8 = get(type8FieldTypeActualTypeArguments, 8);
+        Object initialFieldInfoFieldTypeActualTypeArguments8 = get(type7FieldTypeActualTypeArguments, 8);
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
         Class classType = Class.forName("java.lang.Class");
@@ -2674,35 +2343,30 @@ public class ASMSerializerFactoryTest {
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }
+        Type type8 = fieldInfo.fieldType;
+        Object type8FieldTypeActualTypeArguments = getFieldValue(type8, "actualTypeArguments");
+        Object finalFieldInfoFieldTypeActualTypeArguments1 = get(type8FieldTypeActualTypeArguments, 1);
         Type type9 = fieldInfo.fieldType;
         Object type9FieldTypeActualTypeArguments = getFieldValue(type9, "actualTypeArguments");
-        Object finalFieldInfoFieldTypeActualTypeArguments0 = get(type9FieldTypeActualTypeArguments, 0);
+        Object finalFieldInfoFieldTypeActualTypeArguments2 = get(type9FieldTypeActualTypeArguments, 2);
         Type type10 = fieldInfo.fieldType;
         Object type10FieldTypeActualTypeArguments = getFieldValue(type10, "actualTypeArguments");
-        Object finalFieldInfoFieldTypeActualTypeArguments1 = get(type10FieldTypeActualTypeArguments, 1);
+        Object finalFieldInfoFieldTypeActualTypeArguments3 = get(type10FieldTypeActualTypeArguments, 3);
         Type type11 = fieldInfo.fieldType;
         Object type11FieldTypeActualTypeArguments = getFieldValue(type11, "actualTypeArguments");
-        Object finalFieldInfoFieldTypeActualTypeArguments2 = get(type11FieldTypeActualTypeArguments, 2);
+        Object finalFieldInfoFieldTypeActualTypeArguments4 = get(type11FieldTypeActualTypeArguments, 4);
         Type type12 = fieldInfo.fieldType;
         Object type12FieldTypeActualTypeArguments = getFieldValue(type12, "actualTypeArguments");
-        Object finalFieldInfoFieldTypeActualTypeArguments3 = get(type12FieldTypeActualTypeArguments, 3);
+        Object finalFieldInfoFieldTypeActualTypeArguments5 = get(type12FieldTypeActualTypeArguments, 5);
         Type type13 = fieldInfo.fieldType;
         Object type13FieldTypeActualTypeArguments = getFieldValue(type13, "actualTypeArguments");
-        Object finalFieldInfoFieldTypeActualTypeArguments4 = get(type13FieldTypeActualTypeArguments, 4);
+        Object finalFieldInfoFieldTypeActualTypeArguments6 = get(type13FieldTypeActualTypeArguments, 6);
         Type type14 = fieldInfo.fieldType;
         Object type14FieldTypeActualTypeArguments = getFieldValue(type14, "actualTypeArguments");
-        Object finalFieldInfoFieldTypeActualTypeArguments5 = get(type14FieldTypeActualTypeArguments, 5);
+        Object finalFieldInfoFieldTypeActualTypeArguments7 = get(type14FieldTypeActualTypeArguments, 7);
         Type type15 = fieldInfo.fieldType;
         Object type15FieldTypeActualTypeArguments = getFieldValue(type15, "actualTypeArguments");
-        Object finalFieldInfoFieldTypeActualTypeArguments6 = get(type15FieldTypeActualTypeArguments, 6);
-        Type type16 = fieldInfo.fieldType;
-        Object type16FieldTypeActualTypeArguments = getFieldValue(type16, "actualTypeArguments");
-        Object finalFieldInfoFieldTypeActualTypeArguments7 = get(type16FieldTypeActualTypeArguments, 7);
-        Type type17 = fieldInfo.fieldType;
-        Object type17FieldTypeActualTypeArguments = getFieldValue(type17, "actualTypeArguments");
-        Object finalFieldInfoFieldTypeActualTypeArguments8 = get(type17FieldTypeActualTypeArguments, 8);
-        
-        assertNull(finalFieldInfoFieldTypeActualTypeArguments0);
+        Object finalFieldInfoFieldTypeActualTypeArguments8 = get(type15FieldTypeActualTypeArguments, 8);
         
         assertNull(finalFieldInfoFieldTypeActualTypeArguments1);
         
@@ -2727,45 +2391,9 @@ public class ASMSerializerFactoryTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void test_list4() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         Class class1 = Object.class;
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
-        java.lang.reflect.Type[] typeArray = new java.lang.reflect.Type[1];
-        WildcardTypeImpl wildcardTypeImpl = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
-        java.lang.reflect.Type[] typeArray1 = new java.lang.reflect.Type[1];
-        typeArray1[0] = ((Type) class1);
-        setField(wildcardTypeImpl, "upperBounds", typeArray1);
-        typeArray[0] = ((Type) wildcardTypeImpl);
-        setField(parameterizedTypeImpl, "actualTypeArguments", typeArray);
-        setField(fieldInfo, "fieldType", parameterizedTypeImpl);
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class class1Type = Class.forName("java.lang.Class");
-        Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Method _listMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_list", class1Type, methodVisitorType, fieldInfoType, contextType);
-        _listMethod.setAccessible(true);
-        java.lang.Object[] _listMethodArguments = new java.lang.Object[4];
-        _listMethodArguments[0] = class1;
-        _listMethodArguments[1] = null;
-        _listMethodArguments[2] = fieldInfo;
-        _listMethodArguments[3] = null;
-        try {
-            _listMethod.invoke(aSMSerializerFactory, _listMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void test_list5() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        setField(fieldInfo, "fieldType", typeVariableImpl);
+        setField(fieldInfo, "fieldType", class1);
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
         Class classType = Class.forName("java.lang.Class");
@@ -2789,46 +2417,19 @@ public class ASMSerializerFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void test_list6() throws Throwable  {
+    public void test_list5() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
         java.lang.reflect.Type[] typeArray = new java.lang.reflect.Type[1];
         WildcardTypeImpl wildcardTypeImpl = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
-        java.lang.reflect.Type[] typeArray1 = new java.lang.reflect.Type[0];
+        java.lang.reflect.Type[] typeArray1 = new java.lang.reflect.Type[1];
+        Object genericArrayTypeImpl = createInstance("retrofit2.Utils$GenericArrayTypeImpl");
+        typeArray1[0] = ((Type) genericArrayTypeImpl);
         setField(wildcardTypeImpl, "upperBounds", typeArray1);
         typeArray[0] = ((Type) wildcardTypeImpl);
         setField(parameterizedTypeImpl, "actualTypeArguments", typeArray);
         setField(fieldInfo, "fieldType", parameterizedTypeImpl);
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class classType = Class.forName("java.lang.Class");
-        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Method _listMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_list", classType, methodWriterType, fieldInfoType, contextType);
-        _listMethod.setAccessible(true);
-        java.lang.Object[] _listMethodArguments = new java.lang.Object[4];
-        _listMethodArguments[0] = null;
-        _listMethodArguments[1] = methodWriter;
-        _listMethodArguments[2] = fieldInfo;
-        _listMethodArguments[3] = null;
-        try {
-            _listMethod.invoke(aSMSerializerFactory, _listMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void test_list7() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        Class class1 = Object.class;
-        setField(fieldInfo, "fieldType", class1);
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
         Class classType = Class.forName("java.lang.Class");
@@ -2937,35 +2538,6 @@ public class ASMSerializerFactoryTest {
     public void test_filters4() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        setField(fieldInfo, "fieldTransient", false);
-        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        setField(context, "writeDirect", false);
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Class labelType = Class.forName("com.alibaba.fastjson.asm.Label");
-        Method _filtersMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_filters", methodVisitorType, fieldInfoType, contextType, labelType);
-        _filtersMethod.setAccessible(true);
-        java.lang.Object[] _filtersMethodArguments = new java.lang.Object[4];
-        _filtersMethodArguments[0] = null;
-        _filtersMethodArguments[1] = fieldInfo;
-        _filtersMethodArguments[2] = context;
-        _filtersMethodArguments[3] = null;
-        try {
-            _filtersMethod.invoke(aSMSerializerFactory, _filtersMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void test_filters5() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         setField(fieldInfo, "fieldTransient", true);
         ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
         LinkedHashMap linkedHashMap = new LinkedHashMap();
@@ -3052,6 +2624,7 @@ public class ASMSerializerFactoryTest {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
         setField(context, "writeDirect", true);
+        Label label = ((Label) createInstance("com.alibaba.fastjson.asm.Label"));
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
         Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
@@ -3064,7 +2637,7 @@ public class ASMSerializerFactoryTest {
         _nameApplyMethodArguments[0] = null;
         _nameApplyMethodArguments[1] = null;
         _nameApplyMethodArguments[2] = context;
-        _nameApplyMethodArguments[3] = null;
+        _nameApplyMethodArguments[3] = label;
         try {
             _nameApplyMethod.invoke(aSMSerializerFactory, _nameApplyMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -3205,11 +2778,10 @@ public class ASMSerializerFactoryTest {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 37);
-        byte[] byteArray = new byte[39];
+        setField(byteVector, "length", 2);
+        byte[] byteArray = new byte[2];
         setField(byteVector, "data", byteArray);
         setField(methodWriter, "code", byteVector);
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
         setField(context, "writeDirect", false);
         
@@ -3222,7 +2794,7 @@ public class ASMSerializerFactoryTest {
         _nameApplyMethod.setAccessible(true);
         java.lang.Object[] _nameApplyMethodArguments = new java.lang.Object[4];
         _nameApplyMethodArguments[0] = methodWriter;
-        _nameApplyMethodArguments[1] = fieldInfo;
+        _nameApplyMethodArguments[1] = null;
         _nameApplyMethodArguments[2] = context;
         _nameApplyMethodArguments[3] = null;
         try {
@@ -3235,7 +2807,7 @@ public class ASMSerializerFactoryTest {
         Object methodWriterCode1 = getFieldValue(methodWriter, "code");
         Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
         
-        assertEquals(42, finalMethodWriterCodeLength);
+        assertEquals(7, finalMethodWriterCodeLength);
         
     }
     ///endregion
@@ -3544,70 +3116,6 @@ public class ASMSerializerFactoryTest {
         setField(methodWriter, "code", byteVector);
         ClassWriter classWriter = ((ClassWriter) createInstance("com.alibaba.fastjson.asm.ClassWriter"));
         Object item = createInstance("com.alibaba.fastjson.asm.Item");
-        setField(item, "next", null);
-        setField(item, "hashCode", 0);
-        String string = new String("");
-        setField(item, "strVal3", string);
-        setField(item, "strVal2", string);
-        setField(item, "strVal1", string);
-        setField(item, "type", 0);
-        setField(classWriter, "key2", item);
-        java.lang.Object[] itemArray = createArray("com.alibaba.fastjson.asm.Item", 1);
-        Object item1 = createInstance("com.alibaba.fastjson.asm.Item");
-        setField(item1, "next", item);
-        setField(item1, "hashCode", 0);
-        setField(item1, "strVal3", null);
-        setField(item1, "strVal2", null);
-        setField(item1, "strVal1", null);
-        setField(item1, "type", 0);
-        itemArray[0] = item1;
-        setField(classWriter, "items", itemArray);
-        setField(methodWriter, "cw", classWriter);
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        String string1 = new String("");
-        setField(fieldInfo, "label", string1);
-        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Class labelType = Class.forName("com.alibaba.fastjson.asm.Label");
-        Method _labelApplyMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_labelApply", methodWriterType, fieldInfoType, contextType, labelType);
-        _labelApplyMethod.setAccessible(true);
-        java.lang.Object[] _labelApplyMethodArguments = new java.lang.Object[4];
-        _labelApplyMethodArguments[0] = methodWriter;
-        _labelApplyMethodArguments[1] = fieldInfo;
-        _labelApplyMethodArguments[2] = context;
-        _labelApplyMethodArguments[3] = null;
-        try {
-            _labelApplyMethod.invoke(aSMSerializerFactory, _labelApplyMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object methodWriterCode = getFieldValue(methodWriter, "code");
-        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
-        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
-        Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
-        
-        assertEquals(20, finalMethodWriterCodeLength);
-        
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void test_labelApply9() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 16);
-        byte[] byteArray = new byte[16];
-        setField(byteVector, "data", byteArray);
-        setField(methodWriter, "code", byteVector);
-        ClassWriter classWriter = ((ClassWriter) createInstance("com.alibaba.fastjson.asm.ClassWriter"));
-        Object item = createInstance("com.alibaba.fastjson.asm.Item");
         setField(item, "hashCode", 0);
         setField(item, "strVal3", null);
         setField(item, "strVal2", null);
@@ -3675,6 +3183,77 @@ public class ASMSerializerFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void test_labelApply9() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
+        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
+        setField(byteVector, "length", 16);
+        byte[] byteArray = new byte[16];
+        setField(byteVector, "data", byteArray);
+        setField(methodWriter, "code", byteVector);
+        ClassWriter classWriter = ((ClassWriter) createInstance("com.alibaba.fastjson.asm.ClassWriter"));
+        Object item = createInstance("com.alibaba.fastjson.asm.Item");
+        setField(item, "next", null);
+        setField(item, "hashCode", 0);
+        setField(item, "strVal3", null);
+        setField(item, "strVal2", null);
+        setField(item, "strVal1", null);
+        setField(item, "type", 0);
+        setField(classWriter, "key2", item);
+        java.lang.Object[] itemArray = createArray("com.alibaba.fastjson.asm.Item", 1);
+        Object item1 = createInstance("com.alibaba.fastjson.asm.Item");
+        setField(item1, "next", item1);
+        setField(item1, "hashCode", 0);
+        setField(item1, "strVal3", null);
+        setField(item1, "strVal2", null);
+        setField(item1, "strVal1", null);
+        setField(item1, "type", 0);
+        itemArray[0] = item1;
+        setField(classWriter, "items", itemArray);
+        setField(methodWriter, "cw", classWriter);
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        String string = new String("");
+        setField(fieldInfo, "label", string);
+        
+        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
+        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
+        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
+        Class labelType = Class.forName("com.alibaba.fastjson.asm.Label");
+        Method _labelApplyMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_labelApply", methodWriterType, fieldInfoType, contextType, labelType);
+        _labelApplyMethod.setAccessible(true);
+        java.lang.Object[] _labelApplyMethodArguments = new java.lang.Object[4];
+        _labelApplyMethodArguments[0] = methodWriter;
+        _labelApplyMethodArguments[1] = fieldInfo;
+        _labelApplyMethodArguments[2] = null;
+        _labelApplyMethodArguments[3] = null;
+        try {
+            _labelApplyMethod.invoke(aSMSerializerFactory, _labelApplyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object methodWriterCode = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
+        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
+        Object methodWriterCw = getFieldValue(methodWriter, "cw");
+        Object methodWriterCwCwKey2 = getFieldValue(methodWriterCw, "key2");
+        Object finalMethodWriterCwKey2HashCode = getFieldValue(methodWriterCwCwKey2, "hashCode");
+        Object methodWriterCw1 = getFieldValue(methodWriter, "cw");
+        Object methodWriterCw1CwKey2 = getFieldValue(methodWriterCw1, "key2");
+        Object finalMethodWriterCwKey2Type = getFieldValue(methodWriterCw1CwKey2, "type");
+        
+        assertEquals(18, finalMethodWriterCodeLength);
+        
+        assertEquals(8, finalMethodWriterCwKey2HashCode);
+        
+        assertEquals(8, finalMethodWriterCwKey2Type);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void test_writeObject1() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = new ASMSerializerFactory();
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
@@ -3729,42 +3308,6 @@ public class ASMSerializerFactoryTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void test_writeObject3() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        String string = new String("");
-        setField(fieldInfo, "format", string);
-        Class class1 = Object.class;
-        setField(fieldInfo, "fieldClass", class1);
-        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        setField(context, "variants", linkedHashMap);
-        setField(context, "writeDirect", true);
-        Label label = ((Label) createInstance("com.alibaba.fastjson.asm.Label"));
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Class labelType = Class.forName("com.alibaba.fastjson.asm.Label");
-        Method _writeObjectMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_writeObject", methodWriterType, fieldInfoType, contextType, labelType);
-        _writeObjectMethod.setAccessible(true);
-        java.lang.Object[] _writeObjectMethodArguments = new java.lang.Object[4];
-        _writeObjectMethodArguments[0] = methodWriter;
-        _writeObjectMethodArguments[1] = fieldInfo;
-        _writeObjectMethodArguments[2] = context;
-        _writeObjectMethodArguments[3] = label;
-        try {
-            _writeObjectMethod.invoke(aSMSerializerFactory, _writeObjectMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void test_writeObject4() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         String string = new String("");
@@ -3924,8 +3467,55 @@ public class ASMSerializerFactoryTest {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 1);
-        byte[] byteArray = new byte[1];
+        setField(byteVector, "length", 6);
+        byte[] byteArray = new byte[9];
+        setField(byteVector, "data", byteArray);
+        setField(methodWriter, "code", byteVector);
+        
+        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
+        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
+        Method _beforeMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_before", methodWriterType, contextType);
+        _beforeMethod.setAccessible(true);
+        java.lang.Object[] _beforeMethodArguments = new java.lang.Object[2];
+        _beforeMethodArguments[0] = methodWriter;
+        _beforeMethodArguments[1] = null;
+        try {
+            _beforeMethod.invoke(aSMSerializerFactory, _beforeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object methodWriterCode = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
+        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
+        Object methodWriterCode1CodeData = getFieldValue(methodWriterCode1, "data");
+        Object finalMethodWriterCodeData6 = get(methodWriterCode1CodeData, 6);
+        Object methodWriterCode2 = getFieldValue(methodWriter, "code");
+        Object methodWriterCode2CodeData = getFieldValue(methodWriterCode2, "data");
+        Object finalMethodWriterCodeData7 = get(methodWriterCode2CodeData, 7);
+        Object methodWriterCode3 = getFieldValue(methodWriter, "code");
+        Object methodWriterCode3CodeData = getFieldValue(methodWriterCode3, "data");
+        Object finalMethodWriterCodeData8 = get(methodWriterCode3CodeData, 8);
+        
+        assertEquals(9, finalMethodWriterCodeLength);
+        
+        assertEquals((byte) 42, finalMethodWriterCodeData6);
+        
+        assertEquals((byte) 43, finalMethodWriterCodeData7);
+        
+        assertEquals((byte) 44, finalMethodWriterCodeData8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void test_before7() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
+        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
+        setField(byteVector, "length", 6);
+        byte[] byteArray = new byte[7];
         setField(byteVector, "data", byteArray);
         setField(methodWriter, "code", byteVector);
         
@@ -3947,7 +3537,7 @@ public class ASMSerializerFactoryTest {
         Object methodWriterCode1 = getFieldValue(methodWriter, "code");
         Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
         
-        assertEquals(4, finalMethodWriterCodeLength);
+        assertEquals(9, finalMethodWriterCodeLength);
         
     }
     ///endregion
@@ -4084,7 +3674,7 @@ public class ASMSerializerFactoryTest {
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
         setField(byteVector, "length", 6);
-        byte[] byteArray = new byte[10];
+        byte[] byteArray = new byte[9];
         setField(byteVector, "data", byteArray);
         setField(methodWriter, "code", byteVector);
         
@@ -4166,7 +3756,7 @@ public class ASMSerializerFactoryTest {
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
         setField(byteVector, "length", 6);
-        byte[] byteArray = new byte[10];
+        byte[] byteArray = new byte[12];
         setField(byteVector, "data", byteArray);
         setField(methodWriter, "code", byteVector);
         ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
@@ -4270,38 +3860,7 @@ public class ASMSerializerFactoryTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void test_notWriteDefault3() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        setField(context, "variants", linkedHashMap);
-        setField(context, "writeDirect", false);
-        Label label = ((Label) createInstance("com.alibaba.fastjson.asm.Label"));
-        
-        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Class labelType = Class.forName("com.alibaba.fastjson.asm.Label");
-        Method _notWriteDefaultMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_notWriteDefault", methodVisitorType, fieldInfoType, contextType, labelType);
-        _notWriteDefaultMethod.setAccessible(true);
-        java.lang.Object[] _notWriteDefaultMethodArguments = new java.lang.Object[4];
-        _notWriteDefaultMethodArguments[0] = null;
-        _notWriteDefaultMethodArguments[1] = null;
-        _notWriteDefaultMethodArguments[2] = context;
-        _notWriteDefaultMethodArguments[3] = label;
-        try {
-            _notWriteDefaultMethod.invoke(aSMSerializerFactory, _notWriteDefaultMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void test_notWriteDefault4() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         setField(context, "variants", linkedHashMap);
@@ -4317,7 +3876,7 @@ public class ASMSerializerFactoryTest {
         _notWriteDefaultMethod.setAccessible(true);
         java.lang.Object[] _notWriteDefaultMethodArguments = new java.lang.Object[4];
         _notWriteDefaultMethodArguments[0] = methodWriter;
-        _notWriteDefaultMethodArguments[1] = fieldInfo;
+        _notWriteDefaultMethodArguments[1] = null;
         _notWriteDefaultMethodArguments[2] = context;
         _notWriteDefaultMethodArguments[3] = label;
         try {
@@ -4501,57 +4060,11 @@ public class ASMSerializerFactoryTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void test_apply7() throws Throwable  {
-        int prevFieldName = ASMSerializerFactory.Context.fieldName;
-        try {
-            ASMSerializerFactory.Context.fieldName = 4;
-            ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-            MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
-            ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-            setField(byteVector, "length", 5);
-            byte[] byteArray = new byte[5];
-            setField(byteVector, "data", byteArray);
-            setField(methodWriter, "code", byteVector);
-            FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-            Class class1 = Object.class;
-            setField(fieldInfo, "fieldClass", class1);
-            
-            Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-            Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
-            Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-            Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-            Method _applyMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_apply", methodWriterType, fieldInfoType, contextType);
-            _applyMethod.setAccessible(true);
-            java.lang.Object[] _applyMethodArguments = new java.lang.Object[3];
-            _applyMethodArguments[0] = methodWriter;
-            _applyMethodArguments[1] = fieldInfo;
-            _applyMethodArguments[2] = null;
-            try {
-                _applyMethod.invoke(aSMSerializerFactory, _applyMethodArguments);
-            } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-                throw invocationTargetException.getTargetException();
-            }
-            Object methodWriterCode = getFieldValue(methodWriter, "code");
-            Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
-            Object methodWriterCode1 = getFieldValue(methodWriter, "code");
-            Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
-            
-            assertEquals(10, finalMethodWriterCodeLength);
-            
-        } finally {
-            ASMSerializerFactory.Context.fieldName = prevFieldName;
-        }
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void test_apply8() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 0);
-        byte[] byteArray = new byte[1];
+        setField(byteVector, "length", 6);
+        byte[] byteArray = new byte[7];
         setField(byteVector, "data", byteArray);
         setField(methodWriter, "code", byteVector);
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
@@ -4578,7 +4091,48 @@ public class ASMSerializerFactoryTest {
         Object methodWriterCode1 = getFieldValue(methodWriter, "code");
         Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
         
-        assertEquals(5, finalMethodWriterCodeLength);
+        assertEquals(11, finalMethodWriterCodeLength);
+        
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void test_apply8() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
+        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
+        setField(byteVector, "length", 1);
+        byte[] byteArray = new byte[1];
+        setField(byteVector, "data", byteArray);
+        setField(methodWriter, "code", byteVector);
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        Class class1 = Object.class;
+        setField(fieldInfo, "fieldClass", class1);
+        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
+        
+        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
+        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
+        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
+        Method _applyMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_apply", methodWriterType, fieldInfoType, contextType);
+        _applyMethod.setAccessible(true);
+        java.lang.Object[] _applyMethodArguments = new java.lang.Object[3];
+        _applyMethodArguments[0] = methodWriter;
+        _applyMethodArguments[1] = fieldInfo;
+        _applyMethodArguments[2] = context;
+        try {
+            _applyMethod.invoke(aSMSerializerFactory, _applyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object methodWriterCode = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
+        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
+        
+        assertEquals(6, finalMethodWriterCodeLength);
         
     }
     ///endregion
@@ -4690,8 +4244,6 @@ public class ASMSerializerFactoryTest {
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         Class class1 = Object.class;
         setField(fieldInfo, "fieldClass", class1);
-        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        Label label = ((Label) createInstance("com.alibaba.fastjson.asm.Label"));
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
         Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
@@ -4703,8 +4255,8 @@ public class ASMSerializerFactoryTest {
         java.lang.Object[] _processValueMethodArguments = new java.lang.Object[4];
         _processValueMethodArguments[0] = null;
         _processValueMethodArguments[1] = fieldInfo;
-        _processValueMethodArguments[2] = context;
-        _processValueMethodArguments[3] = label;
+        _processValueMethodArguments[2] = null;
+        _processValueMethodArguments[3] = null;
         try {
             _processValueMethod.invoke(aSMSerializerFactory, _processValueMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -5093,13 +4645,60 @@ public class ASMSerializerFactoryTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void test_seperator5() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", -1);
-        byte[] byteArray = new byte[0];
+        setField(byteVector, "length", 16);
+        byte[] byteArray = new byte[33];
+        setField(byteVector, "data", byteArray);
+        setField(methodWriter, "code", byteVector);
+        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        setField(context, "variants", linkedHashMap);
+        
+        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
+        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
+        Method _seperatorMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_seperator", methodWriterType, contextType);
+        _seperatorMethod.setAccessible(true);
+        java.lang.Object[] _seperatorMethodArguments = new java.lang.Object[2];
+        _seperatorMethodArguments[0] = methodWriter;
+        _seperatorMethodArguments[1] = context;
+        _seperatorMethod.invoke(aSMSerializerFactory, _seperatorMethodArguments);
+        
+        Object methodWriterCode = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
+        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
+        Object methodWriterCode1CodeData = getFieldValue(methodWriterCode1, "data");
+        Object finalMethodWriterCodeData16 = get(methodWriterCode1CodeData, 16);
+        Object methodWriterCode2 = getFieldValue(methodWriter, "code");
+        Object methodWriterCode2CodeData = getFieldValue(methodWriterCode2, "data");
+        Object finalMethodWriterCodeData17 = get(methodWriterCode2CodeData, 17);
+        Object methodWriterCode3 = getFieldValue(methodWriter, "code");
+        Object methodWriterCode3CodeData = getFieldValue(methodWriterCode3, "data");
+        Object finalMethodWriterCodeData18 = get(methodWriterCode3CodeData, 18);
+        
+        assertEquals(19, finalMethodWriterCodeLength);
+        
+        assertEquals((byte) 16, finalMethodWriterCodeData16);
+        
+        assertEquals((byte) 44, finalMethodWriterCodeData17);
+        
+        assertEquals((byte) 59, finalMethodWriterCodeData18);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void test_seperator6() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
+        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
+        setField(byteVector, "length", 1);
+        byte[] byteArray = new byte[1];
         setField(byteVector, "data", byteArray);
         setField(methodWriter, "code", byteVector);
         
@@ -5115,7 +4714,15 @@ public class ASMSerializerFactoryTest {
             _seperatorMethod.invoke(aSMSerializerFactory, _seperatorMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }}
+        }
+        Object methodWriterCode = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
+        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
+        
+        assertEquals(3, finalMethodWriterCodeLength);
+        
+    }
     ///endregion
     
     ///region
@@ -5573,8 +5180,8 @@ public class ASMSerializerFactoryTest {
         setField(context, "className", string);
         MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
         ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
-        setField(byteVector, "length", 0);
-        byte[] byteArray = new byte[33];
+        setField(byteVector, "length", 2);
+        byte[] byteArray = new byte[2];
         setField(byteVector, "data", byteArray);
         setField(methodWriter, "code", byteVector);
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
@@ -5598,116 +5205,362 @@ public class ASMSerializerFactoryTest {
         Object methodWriterCode = getFieldValue(methodWriter, "code");
         Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
         Object methodWriterCode1 = getFieldValue(methodWriter, "code");
-        Object methodWriterCode1CodeData = getFieldValue(methodWriterCode1, "data");
-        Object finalMethodWriterCodeData0 = get(methodWriterCode1CodeData, 0);
+        Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
         
-        assertEquals(1, finalMethodWriterCodeLength);
+        assertEquals(3, finalMethodWriterCodeLength);
         
-        assertEquals((byte) 42, finalMethodWriterCodeData0);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void test_get1() throws Throwable  {
-        ASMSerializerFactory aSMSerializerFactory = new ASMSerializerFactory();
-        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+    public void testGenerateWriteAsArray1() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[9];
+        
+        FieldInfo initialFieldInfoArray0 = fieldInfoArray[0];
+        FieldInfo initialFieldInfoArray1 = fieldInfoArray[1];
+        FieldInfo initialFieldInfoArray2 = fieldInfoArray[2];
+        FieldInfo initialFieldInfoArray3 = fieldInfoArray[3];
+        FieldInfo initialFieldInfoArray4 = fieldInfoArray[4];
+        FieldInfo initialFieldInfoArray5 = fieldInfoArray[5];
+        FieldInfo initialFieldInfoArray6 = fieldInfoArray[6];
+        FieldInfo initialFieldInfoArray7 = fieldInfoArray[7];
+        FieldInfo initialFieldInfoArray8 = fieldInfoArray[8];
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
+        Class classType = Class.forName("java.lang.Class");
         Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class fieldInfoArrayType = Class.forName("[Lcom.alibaba.fastjson.util.FieldInfo;");
         Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Method _getMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_get", methodVisitorType, contextType, fieldInfoType);
-        _getMethod.setAccessible(true);
-        java.lang.Object[] _getMethodArguments = new java.lang.Object[3];
-        _getMethodArguments[0] = null;
-        _getMethodArguments[1] = context;
-        _getMethodArguments[2] = fieldInfo;
+        Method generateWriteAsArrayMethod = aSMSerializerFactoryClazz.getDeclaredMethod("generateWriteAsArray", classType, methodVisitorType, fieldInfoArrayType, contextType);
+        generateWriteAsArrayMethod.setAccessible(true);
+        java.lang.Object[] generateWriteAsArrayMethodArguments = new java.lang.Object[4];
+        generateWriteAsArrayMethodArguments[0] = null;
+        generateWriteAsArrayMethodArguments[1] = null;
+        generateWriteAsArrayMethodArguments[2] = ((Object) fieldInfoArray);
+        generateWriteAsArrayMethodArguments[3] = null;
         try {
-            _getMethod.invoke(aSMSerializerFactory, _getMethodArguments);
+            generateWriteAsArrayMethod.invoke(aSMSerializerFactory, generateWriteAsArrayMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }}
+        }
+        FieldInfo finalFieldInfoArray0 = fieldInfoArray[0];
+        FieldInfo finalFieldInfoArray1 = fieldInfoArray[1];
+        FieldInfo finalFieldInfoArray2 = fieldInfoArray[2];
+        FieldInfo finalFieldInfoArray3 = fieldInfoArray[3];
+        FieldInfo finalFieldInfoArray4 = fieldInfoArray[4];
+        FieldInfo finalFieldInfoArray5 = fieldInfoArray[5];
+        FieldInfo finalFieldInfoArray6 = fieldInfoArray[6];
+        FieldInfo finalFieldInfoArray7 = fieldInfoArray[7];
+        FieldInfo finalFieldInfoArray8 = fieldInfoArray[8];
+        
+        assertNull(finalFieldInfoArray0);
+        
+        assertNull(finalFieldInfoArray1);
+        
+        assertNull(finalFieldInfoArray2);
+        
+        assertNull(finalFieldInfoArray3);
+        
+        assertNull(finalFieldInfoArray4);
+        
+        assertNull(finalFieldInfoArray5);
+        
+        assertNull(finalFieldInfoArray6);
+        
+        assertNull(finalFieldInfoArray7);
+        
+        assertNull(finalFieldInfoArray8);
+    }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void test_get2() throws Throwable  {
+    public void testGenerateWriteAsArray2() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
+        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
+        setField(byteVector, "length", -2);
+        byte[] byteArray = new byte[10];
+        setField(byteVector, "data", byteArray);
+        setField(methodWriter, "code", byteVector);
+        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[9];
+        
+        FieldInfo initialFieldInfoArray0 = fieldInfoArray[0];
+        FieldInfo initialFieldInfoArray1 = fieldInfoArray[1];
+        FieldInfo initialFieldInfoArray2 = fieldInfoArray[2];
+        FieldInfo initialFieldInfoArray3 = fieldInfoArray[3];
+        FieldInfo initialFieldInfoArray4 = fieldInfoArray[4];
+        FieldInfo initialFieldInfoArray5 = fieldInfoArray[5];
+        FieldInfo initialFieldInfoArray6 = fieldInfoArray[6];
+        FieldInfo initialFieldInfoArray7 = fieldInfoArray[7];
+        FieldInfo initialFieldInfoArray8 = fieldInfoArray[8];
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class classType = Class.forName("java.lang.Class");
+        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class fieldInfoArrayType = Class.forName("[Lcom.alibaba.fastjson.util.FieldInfo;");
         Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Method _getMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_get", methodVisitorType, contextType, fieldInfoType);
-        _getMethod.setAccessible(true);
-        java.lang.Object[] _getMethodArguments = new java.lang.Object[3];
-        _getMethodArguments[0] = null;
-        _getMethodArguments[1] = null;
-        _getMethodArguments[2] = null;
+        Method generateWriteAsArrayMethod = aSMSerializerFactoryClazz.getDeclaredMethod("generateWriteAsArray", classType, methodWriterType, fieldInfoArrayType, contextType);
+        generateWriteAsArrayMethod.setAccessible(true);
+        java.lang.Object[] generateWriteAsArrayMethodArguments = new java.lang.Object[4];
+        generateWriteAsArrayMethodArguments[0] = null;
+        generateWriteAsArrayMethodArguments[1] = methodWriter;
+        generateWriteAsArrayMethodArguments[2] = ((Object) fieldInfoArray);
+        generateWriteAsArrayMethodArguments[3] = null;
         try {
-            _getMethod.invoke(aSMSerializerFactory, _getMethodArguments);
+            generateWriteAsArrayMethod.invoke(aSMSerializerFactory, generateWriteAsArrayMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }}
+        }
+        FieldInfo finalFieldInfoArray0 = fieldInfoArray[0];
+        FieldInfo finalFieldInfoArray1 = fieldInfoArray[1];
+        FieldInfo finalFieldInfoArray2 = fieldInfoArray[2];
+        FieldInfo finalFieldInfoArray3 = fieldInfoArray[3];
+        FieldInfo finalFieldInfoArray4 = fieldInfoArray[4];
+        FieldInfo finalFieldInfoArray5 = fieldInfoArray[5];
+        FieldInfo finalFieldInfoArray6 = fieldInfoArray[6];
+        FieldInfo finalFieldInfoArray7 = fieldInfoArray[7];
+        FieldInfo finalFieldInfoArray8 = fieldInfoArray[8];
+        
+        assertNull(finalFieldInfoArray0);
+        
+        assertNull(finalFieldInfoArray1);
+        
+        assertNull(finalFieldInfoArray2);
+        
+        assertNull(finalFieldInfoArray3);
+        
+        assertNull(finalFieldInfoArray4);
+        
+        assertNull(finalFieldInfoArray5);
+        
+        assertNull(finalFieldInfoArray6);
+        
+        assertNull(finalFieldInfoArray7);
+        
+        assertNull(finalFieldInfoArray8);
+    }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void test_get3() throws Throwable  {
+    public void testGenerateWriteAsArray3() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        Method method = ((Method) createInstance("java.lang.reflect.Method"));
-        setField(fieldInfo, "method", method);
+        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
+        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
+        setField(byteVector, "length", 9);
+        byte[] byteArray = new byte[0];
+        setField(byteVector, "data", byteArray);
+        setField(methodWriter, "code", byteVector);
+        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[9];
+        
+        FieldInfo initialFieldInfoArray0 = fieldInfoArray[0];
+        FieldInfo initialFieldInfoArray1 = fieldInfoArray[1];
+        FieldInfo initialFieldInfoArray2 = fieldInfoArray[2];
+        FieldInfo initialFieldInfoArray3 = fieldInfoArray[3];
+        FieldInfo initialFieldInfoArray4 = fieldInfoArray[4];
+        FieldInfo initialFieldInfoArray5 = fieldInfoArray[5];
+        FieldInfo initialFieldInfoArray6 = fieldInfoArray[6];
+        FieldInfo initialFieldInfoArray7 = fieldInfoArray[7];
+        FieldInfo initialFieldInfoArray8 = fieldInfoArray[8];
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class classType = Class.forName("java.lang.Class");
+        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class fieldInfoArrayType = Class.forName("[Lcom.alibaba.fastjson.util.FieldInfo;");
         Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Method _getMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_get", methodVisitorType, contextType, fieldInfoType);
-        _getMethod.setAccessible(true);
-        java.lang.Object[] _getMethodArguments = new java.lang.Object[3];
-        _getMethodArguments[0] = null;
-        _getMethodArguments[1] = null;
-        _getMethodArguments[2] = fieldInfo;
+        Method generateWriteAsArrayMethod = aSMSerializerFactoryClazz.getDeclaredMethod("generateWriteAsArray", classType, methodWriterType, fieldInfoArrayType, contextType);
+        generateWriteAsArrayMethod.setAccessible(true);
+        java.lang.Object[] generateWriteAsArrayMethodArguments = new java.lang.Object[4];
+        generateWriteAsArrayMethodArguments[0] = null;
+        generateWriteAsArrayMethodArguments[1] = methodWriter;
+        generateWriteAsArrayMethodArguments[2] = ((Object) fieldInfoArray);
+        generateWriteAsArrayMethodArguments[3] = null;
         try {
-            _getMethod.invoke(aSMSerializerFactory, _getMethodArguments);
+            generateWriteAsArrayMethod.invoke(aSMSerializerFactory, generateWriteAsArrayMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }}
+        }
+        FieldInfo finalFieldInfoArray0 = fieldInfoArray[0];
+        FieldInfo finalFieldInfoArray1 = fieldInfoArray[1];
+        FieldInfo finalFieldInfoArray2 = fieldInfoArray[2];
+        FieldInfo finalFieldInfoArray3 = fieldInfoArray[3];
+        FieldInfo finalFieldInfoArray4 = fieldInfoArray[4];
+        FieldInfo finalFieldInfoArray5 = fieldInfoArray[5];
+        FieldInfo finalFieldInfoArray6 = fieldInfoArray[6];
+        FieldInfo finalFieldInfoArray7 = fieldInfoArray[7];
+        FieldInfo finalFieldInfoArray8 = fieldInfoArray[8];
+        
+        assertNull(finalFieldInfoArray0);
+        
+        assertNull(finalFieldInfoArray1);
+        
+        assertNull(finalFieldInfoArray2);
+        
+        assertNull(finalFieldInfoArray3);
+        
+        assertNull(finalFieldInfoArray4);
+        
+        assertNull(finalFieldInfoArray5);
+        
+        assertNull(finalFieldInfoArray6);
+        
+        assertNull(finalFieldInfoArray7);
+        
+        assertNull(finalFieldInfoArray8);
+    }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void test_get4() throws Throwable  {
+    public void testGenerateWriteAsArray4() throws Throwable  {
         ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
-        ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        setField(context, "variants", linkedHashMap);
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        Method method = ((Method) createInstance("java.lang.reflect.Method"));
-        setField(fieldInfo, "method", method);
+        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
+        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
+        setField(byteVector, "length", 7);
+        byte[] byteArray = new byte[6];
+        setField(byteVector, "data", byteArray);
+        setField(methodWriter, "code", byteVector);
+        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[9];
+        
+        FieldInfo initialFieldInfoArray0 = fieldInfoArray[0];
+        FieldInfo initialFieldInfoArray1 = fieldInfoArray[1];
+        FieldInfo initialFieldInfoArray2 = fieldInfoArray[2];
+        FieldInfo initialFieldInfoArray3 = fieldInfoArray[3];
+        FieldInfo initialFieldInfoArray4 = fieldInfoArray[4];
+        FieldInfo initialFieldInfoArray5 = fieldInfoArray[5];
+        FieldInfo initialFieldInfoArray6 = fieldInfoArray[6];
+        FieldInfo initialFieldInfoArray7 = fieldInfoArray[7];
+        FieldInfo initialFieldInfoArray8 = fieldInfoArray[8];
         
         Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
-        Class methodVisitorType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class classType = Class.forName("java.lang.Class");
+        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class fieldInfoArrayType = Class.forName("[Lcom.alibaba.fastjson.util.FieldInfo;");
         Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
-        Class fieldInfoType = Class.forName("com.alibaba.fastjson.util.FieldInfo");
-        Method _getMethod = aSMSerializerFactoryClazz.getDeclaredMethod("_get", methodVisitorType, contextType, fieldInfoType);
-        _getMethod.setAccessible(true);
-        java.lang.Object[] _getMethodArguments = new java.lang.Object[3];
-        _getMethodArguments[0] = null;
-        _getMethodArguments[1] = context;
-        _getMethodArguments[2] = fieldInfo;
+        Method generateWriteAsArrayMethod = aSMSerializerFactoryClazz.getDeclaredMethod("generateWriteAsArray", classType, methodWriterType, fieldInfoArrayType, contextType);
+        generateWriteAsArrayMethod.setAccessible(true);
+        java.lang.Object[] generateWriteAsArrayMethodArguments = new java.lang.Object[4];
+        generateWriteAsArrayMethodArguments[0] = null;
+        generateWriteAsArrayMethodArguments[1] = methodWriter;
+        generateWriteAsArrayMethodArguments[2] = ((Object) fieldInfoArray);
+        generateWriteAsArrayMethodArguments[3] = null;
         try {
-            _getMethod.invoke(aSMSerializerFactory, _getMethodArguments);
+            generateWriteAsArrayMethod.invoke(aSMSerializerFactory, generateWriteAsArrayMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }}
+        }
+        FieldInfo finalFieldInfoArray0 = fieldInfoArray[0];
+        FieldInfo finalFieldInfoArray1 = fieldInfoArray[1];
+        FieldInfo finalFieldInfoArray2 = fieldInfoArray[2];
+        FieldInfo finalFieldInfoArray3 = fieldInfoArray[3];
+        FieldInfo finalFieldInfoArray4 = fieldInfoArray[4];
+        FieldInfo finalFieldInfoArray5 = fieldInfoArray[5];
+        FieldInfo finalFieldInfoArray6 = fieldInfoArray[6];
+        FieldInfo finalFieldInfoArray7 = fieldInfoArray[7];
+        FieldInfo finalFieldInfoArray8 = fieldInfoArray[8];
+        
+        assertNull(finalFieldInfoArray0);
+        
+        assertNull(finalFieldInfoArray1);
+        
+        assertNull(finalFieldInfoArray2);
+        
+        assertNull(finalFieldInfoArray3);
+        
+        assertNull(finalFieldInfoArray4);
+        
+        assertNull(finalFieldInfoArray5);
+        
+        assertNull(finalFieldInfoArray6);
+        
+        assertNull(finalFieldInfoArray7);
+        
+        assertNull(finalFieldInfoArray8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGenerateWriteAsArray5() throws Throwable  {
+        ASMSerializerFactory aSMSerializerFactory = ((ASMSerializerFactory) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory"));
+        MethodWriter methodWriter = ((MethodWriter) createInstance("com.alibaba.fastjson.asm.MethodWriter"));
+        ByteVector byteVector = ((ByteVector) createInstance("com.alibaba.fastjson.asm.ByteVector"));
+        setField(byteVector, "length", 5);
+        byte[] byteArray = new byte[5];
+        setField(byteVector, "data", byteArray);
+        setField(methodWriter, "code", byteVector);
+        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[9];
+        
+        FieldInfo initialFieldInfoArray0 = fieldInfoArray[0];
+        FieldInfo initialFieldInfoArray1 = fieldInfoArray[1];
+        FieldInfo initialFieldInfoArray2 = fieldInfoArray[2];
+        FieldInfo initialFieldInfoArray3 = fieldInfoArray[3];
+        FieldInfo initialFieldInfoArray4 = fieldInfoArray[4];
+        FieldInfo initialFieldInfoArray5 = fieldInfoArray[5];
+        FieldInfo initialFieldInfoArray6 = fieldInfoArray[6];
+        FieldInfo initialFieldInfoArray7 = fieldInfoArray[7];
+        FieldInfo initialFieldInfoArray8 = fieldInfoArray[8];
+        
+        Class aSMSerializerFactoryClazz = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory");
+        Class classType = Class.forName("java.lang.Class");
+        Class methodWriterType = Class.forName("com.alibaba.fastjson.asm.MethodVisitor");
+        Class fieldInfoArrayType = Class.forName("[Lcom.alibaba.fastjson.util.FieldInfo;");
+        Class contextType = Class.forName("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context");
+        Method generateWriteAsArrayMethod = aSMSerializerFactoryClazz.getDeclaredMethod("generateWriteAsArray", classType, methodWriterType, fieldInfoArrayType, contextType);
+        generateWriteAsArrayMethod.setAccessible(true);
+        java.lang.Object[] generateWriteAsArrayMethodArguments = new java.lang.Object[4];
+        generateWriteAsArrayMethodArguments[0] = null;
+        generateWriteAsArrayMethodArguments[1] = methodWriter;
+        generateWriteAsArrayMethodArguments[2] = ((Object) fieldInfoArray);
+        generateWriteAsArrayMethodArguments[3] = null;
+        try {
+            generateWriteAsArrayMethod.invoke(aSMSerializerFactory, generateWriteAsArrayMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object methodWriterCode = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeLength = getFieldValue(methodWriterCode, "length");
+        Object methodWriterCode1 = getFieldValue(methodWriter, "code");
+        Object finalMethodWriterCodeData = getFieldValue(methodWriterCode1, "data");
+        
+        FieldInfo finalFieldInfoArray0 = fieldInfoArray[0];
+        FieldInfo finalFieldInfoArray1 = fieldInfoArray[1];
+        FieldInfo finalFieldInfoArray2 = fieldInfoArray[2];
+        FieldInfo finalFieldInfoArray3 = fieldInfoArray[3];
+        FieldInfo finalFieldInfoArray4 = fieldInfoArray[4];
+        FieldInfo finalFieldInfoArray5 = fieldInfoArray[5];
+        FieldInfo finalFieldInfoArray6 = fieldInfoArray[6];
+        FieldInfo finalFieldInfoArray7 = fieldInfoArray[7];
+        FieldInfo finalFieldInfoArray8 = fieldInfoArray[8];
+        
+        assertEquals(7, finalMethodWriterCodeLength);
+        
+        assertNull(finalFieldInfoArray0);
+        
+        assertNull(finalFieldInfoArray1);
+        
+        assertNull(finalFieldInfoArray2);
+        
+        assertNull(finalFieldInfoArray3);
+        
+        assertNull(finalFieldInfoArray4);
+        
+        assertNull(finalFieldInfoArray5);
+        
+        assertNull(finalFieldInfoArray6);
+        
+        assertNull(finalFieldInfoArray7);
+        
+        assertNull(finalFieldInfoArray8);
+    }
     ///endregion
     
     ///region
@@ -5765,6 +5618,7 @@ public class ASMSerializerFactoryTest {
     public void testVar3() throws Throwable  {
         ASMSerializerFactory.Context context = ((ASMSerializerFactory.Context) createInstance("com.alibaba.fastjson.serializer.ASMSerializerFactory$Context"));
         LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.put(null, null);
         setField(context, "variants", linkedHashMap);
         String string = new String("");
         
@@ -5996,10 +5850,16 @@ public class ASMSerializerFactoryTest {
     
     @Test(timeout = 10000)
     public void testContext2() throws Throwable  {
-        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[0];
+        com.alibaba.fastjson.util.FieldInfo[] fieldInfoArray = new com.alibaba.fastjson.util.FieldInfo[1];
         SerializeBeanInfo serializeBeanInfo = ((SerializeBeanInfo) createInstance("com.alibaba.fastjson.serializer.SerializeBeanInfo"));
         String string = new String("");
+        
+        FieldInfo initialFieldInfoArray0 = fieldInfoArray[0];
         ASMSerializerFactory.Context actual = new ASMSerializerFactory.Context(fieldInfoArray, serializeBeanInfo, string, false, true);
+        
+        FieldInfo finalFieldInfoArray0 = fieldInfoArray[0];
+        
+        assertNull(finalFieldInfoArray0);
     }
     ///endregion
     

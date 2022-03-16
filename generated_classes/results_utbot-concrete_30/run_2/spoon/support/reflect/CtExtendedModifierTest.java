@@ -1,10 +1,11 @@
 package spoon.support.reflect;
 
 import org.junit.Test;
+import sun.awt.image.PixelConverter.Ushort555Rgbx;
+import sun.awt.image.PixelConverter;
 import spoon.reflect.declaration.ModifierKind;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.cu.position.NoSourcePosition;
-import spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -54,8 +55,9 @@ public class CtExtendedModifierTest {
     @Test(timeout = 10000)
     public void testEquals3() throws Throwable  {
         CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        sun.awt.image.PixelConverter.Ushort555Rgbx[] ushort555RgbxArray = new sun.awt.image.PixelConverter.Ushort555Rgbx[0];
         
-        boolean actual = ctExtendedModifier.equals(null);
+        boolean actual = ctExtendedModifier.equals(ushort555RgbxArray);
         
         assertFalse(actual);
     }
@@ -119,6 +121,31 @@ public class CtExtendedModifierTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testIsImplicit1() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        
+        boolean actual = ctExtendedModifier.isImplicit();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsImplicit2() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        setField(ctExtendedModifier, "implicit", false);
+        
+        boolean actual = ctExtendedModifier.isImplicit();
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testGetPosition1() throws Throwable  {
         CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
         
@@ -166,17 +193,6 @@ public class CtExtendedModifierTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetKind1() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        setField(ctExtendedModifier, "kind", null);
-        
-        ctExtendedModifier.setKind(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testGetKind1() throws Throwable  {
         CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
         
@@ -202,6 +218,17 @@ public class CtExtendedModifierTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testSetKind1() throws Throwable  {
+        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
+        setField(ctExtendedModifier, "kind", null);
+        
+        ctExtendedModifier.setKind(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testSetPosition1() throws Throwable  {
         CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
         
@@ -215,15 +242,8 @@ public class CtExtendedModifierTest {
     public void testSetPosition2() throws Throwable  {
         CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
         setField(ctExtendedModifier, "position", null);
-        BodyHolderSourcePositionImpl bodyHolderSourcePositionImpl = ((BodyHolderSourcePositionImpl) createInstance("spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl"));
         
-        Object initialCtExtendedModifierPosition = getFieldValue(ctExtendedModifier, "position");
-        
-        ctExtendedModifier.setPosition(bodyHolderSourcePositionImpl);
-        
-        Object finalCtExtendedModifierPosition = getFieldValue(ctExtendedModifier, "position");
-        
-        assertFalse(initialCtExtendedModifierPosition == finalCtExtendedModifierPosition);
+        ctExtendedModifier.setPosition(null);
     }
     ///endregion
     
@@ -245,31 +265,6 @@ public class CtExtendedModifierTest {
         setField(ctExtendedModifier, "implicit", false);
         
         ctExtendedModifier.setImplicit(false);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsImplicit1() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        
-        boolean actual = ctExtendedModifier.isImplicit();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsImplicit2() throws Throwable  {
-        CtExtendedModifier ctExtendedModifier = ((CtExtendedModifier) createInstance("spoon.support.reflect.CtExtendedModifier"));
-        setField(ctExtendedModifier, "implicit", false);
-        
-        boolean actual = ctExtendedModifier.isImplicit();
-        
-        assertFalse(actual);
     }
     ///endregion
     
@@ -480,25 +475,6 @@ public class CtExtendedModifierTest {
         }
     
         return false;
-    }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

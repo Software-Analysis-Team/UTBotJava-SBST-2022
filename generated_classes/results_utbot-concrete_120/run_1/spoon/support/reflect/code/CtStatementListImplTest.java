@@ -4,9 +4,8 @@ import org.junit.Test;
 import spoon.reflect.visitor.CtBiScannerDefault;
 import sun.awt.image.PixelConverter;
 import java.lang.reflect.Method;
-import spoon.reflect.visitor.DefaultJavaPrettyPrinter;
 import spoon.support.visitor.equals.EqualsVisitor;
-import spoon.support.util.SortedList;
+import java.util.LinkedList;
 import spoon.reflect.code.CtStatementList;
 import spoon.support.util.EmptyClearableList;
 import spoon.reflect.factory.FactoryImpl;
@@ -37,11 +36,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import spoon.support.util.EmptyIterator;
 import spoon.reflect.visitor.Filter;
-import spoon.reflect.code.CtStatement;
 import spoon.reflect.factory.QueryFactory;
+import spoon.reflect.code.CtStatement;
 import spoon.support.reflect.declaration.CtEnumImpl;
 import java.util.List;
-import spoon.support.reflect.declaration.CtClassImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Array;
@@ -107,23 +105,10 @@ public class CtStatementListImplTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testAccept4() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        DefaultJavaPrettyPrinter defaultJavaPrettyPrinter = ((DefaultJavaPrettyPrinter) createInstance("spoon.reflect.visitor.DefaultJavaPrettyPrinter"));
-        
-        ctStatementListImpl.accept(defaultJavaPrettyPrinter);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAccept5() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
         EqualsVisitor equalsVisitor = ((EqualsVisitor) createInstance("spoon.support.visitor.equals.EqualsVisitor"));
-        SortedList sortedList = ((SortedList) createInstance("spoon.support.util.SortedList"));
-        Object node = createInstance("java.util.LinkedList$Node");
-        setField(node, "item", null);
-        setField(sortedList, "first", node);
-        setField(equalsVisitor, "stack", sortedList);
+        LinkedList linkedList = ((LinkedList) createInstance("java.util.LinkedList"));
+        setField(linkedList, "first", null);
+        setField(equalsVisitor, "stack", linkedList);
         
         Class ctStatementListImplClazz = Class.forName("spoon.support.reflect.code.CtStatementListImpl");
         Class equalsVisitorType = Class.forName("spoon.reflect.visitor.CtVisitor");
@@ -276,18 +261,11 @@ public class CtStatementListImplTest {
     public void testInsertBefore2() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "query", null);
+        QueryFactory queryFactory = ((QueryFactory) createInstance("spoon.reflect.factory.QueryFactory"));
+        setField(factoryImpl, "query", queryFactory);
         setField(ctStatementListImpl, "factory", factoryImpl);
         
-        Object ctStatementListImplFactory = getFieldValue(ctStatementListImpl, "factory");
-        Object initialCtStatementListImplFactoryQuery = getFieldValue(ctStatementListImplFactory, "query");
-        
         ctStatementListImpl.insertBefore(((Filter) null), ((CtStatementList) null));
-        
-        Object ctStatementListImplFactory1 = getFieldValue(ctStatementListImpl, "factory");
-        Object finalCtStatementListImplFactoryQuery = getFieldValue(ctStatementListImplFactory1, "query");
-        
-        assertFalse(initialCtStatementListImplFactoryQuery == finalCtStatementListImplFactoryQuery);
     }
     ///endregion
     
@@ -366,67 +344,69 @@ public class CtStatementListImplTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testInsertEnd1() throws Throwable  {
+    public void testGetStatement1() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
         
-        ctStatementListImpl.insertEnd(((CtStatementList) null));
+        ctStatementListImpl.getStatement(0);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testInsertEnd2() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        
-        ctStatementListImpl.insertEnd(((CtStatementList) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testInsertEnd3() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        CtCaseImpl ctCaseImpl = ((CtCaseImpl) createInstance("spoon.support.reflect.code.CtCaseImpl"));
-        ArrayList arrayList = new ArrayList();
-        setField(ctCaseImpl, "statements", arrayList);
-        
-        CtStatementList actual = ctStatementListImpl.insertEnd(ctCaseImpl);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctStatementListImpl, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testInsertEnd4() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
-        
-        CtStatementList actual = ctStatementListImpl.insertEnd(((CtStatement) null));
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctStatementListImpl, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testInsertEnd5() throws Throwable  {
+    public void testGetStatement2() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
         ArrayList arrayList = new ArrayList();
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
         setField(ctStatementListImpl, "statements", arrayList);
         
-        CtStatementList actual = ctStatementListImpl.insertEnd(((CtStatement) null));
+        ctStatementListImpl.getStatement(10);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetStatement3() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        java.lang.Object[] internalListArray = createArray("spoon.support.util.ModelList$InternalList", 0);
+        arrayList.add(internalListArray);
+        arrayList.add(null);
+        arrayList.add(null);
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        ctStatementListImpl.getStatement(0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetStatement4() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        CtAssertImpl ctAssertImpl = ((CtAssertImpl) createInstance("spoon.support.reflect.code.CtAssertImpl"));
+        arrayList.add(ctAssertImpl);
+        Object object = createInstance("java.lang.Object");
+        arrayList.add(object);
+        arrayList.add(object);
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        CtStatement actual = ctStatementListImpl.getStatement(0);
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctStatementListImpl, actual));
+        assertTrue(deepEquals(ctAssertImpl, actual));
     }
     ///endregion
     
@@ -513,27 +493,29 @@ public class CtStatementListImplTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testAddStatement6() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
         setField(ctStatementListImpl, "parent", null);
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
-        setField(factoryImpl, "environment", standardEnvironment);
         setField(ctStatementListImpl, "factory", factoryImpl);
         ArrayList arrayList = new ArrayList();
         setField(ctStatementListImpl, "statements", arrayList);
-        CtIfImpl ctIfImpl = ((CtIfImpl) createInstance("spoon.support.reflect.code.CtIfImpl"));
-        setField(ctIfImpl, "parent", null);
-        setField(ctIfImpl, "factory", null);
+        CtForEachImpl ctForEachImpl = ((CtForEachImpl) createInstance("spoon.support.reflect.code.CtForEachImpl"));
+        setField(ctForEachImpl, "parent", null);
+        setField(ctForEachImpl, "factory", null);
         
-        Object initialCtIfImplParent = getFieldValue(ctIfImpl, "parent");
+        Object initialCtForEachImplParent = getFieldValue(ctForEachImpl, "parent");
         
-        ctStatementListImpl.addStatement(0, ctIfImpl);
+        CtStatementList actual = ctStatementListImpl.addStatement(0, ctForEachImpl);
         
-        Object finalCtIfImplParent = getFieldValue(ctIfImpl, "parent");
         
-        assertFalse(initialCtIfImplParent == finalCtIfImplParent);
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+        
+        Object finalCtForEachImplParent = getFieldValue(ctForEachImpl, "parent");
+        
+        assertFalse(initialCtForEachImplParent == finalCtForEachImplParent);
     }
     ///endregion
     
@@ -542,105 +524,136 @@ public class CtStatementListImplTest {
     @Test(timeout = 10000)
     public void testAddStatement7() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        setField(ctStatementListImpl, "parent", null);
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "environment", null);
-        setField(ctStatementListImpl, "factory", factoryImpl);
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        CtForEachImpl ctForEachImpl = ((CtForEachImpl) createInstance("spoon.support.reflect.code.CtForEachImpl"));
+        
+        CtStatementList actual = ctStatementListImpl.addStatement(0, ctForEachImpl);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertBegin1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        ctStatementListImpl.insertBegin(((CtStatementList) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertBegin2() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        ctStatementListImpl.insertBegin(((CtStatementList) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testInsertBegin3() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
         ArrayList arrayList = new ArrayList();
         setField(ctStatementListImpl, "statements", arrayList);
         CtCaseImpl ctCaseImpl = ((CtCaseImpl) createInstance("spoon.support.reflect.code.CtCaseImpl"));
-        setField(ctCaseImpl, "parent", null);
-        setField(ctCaseImpl, "factory", null);
+        ArrayList arrayList1 = new ArrayList();
+        setField(ctCaseImpl, "statements", arrayList1);
         
-        Object ctStatementListImplFactory = getFieldValue(ctStatementListImpl, "factory");
-        Object initialCtStatementListImplFactoryEnvironment = getFieldValue(ctStatementListImplFactory, "environment");
-        
-        Object initialCtCaseImplParent = getFieldValue(ctCaseImpl, "parent");
-        
-        CtStatementList actual = ctStatementListImpl.addStatement(0, ctCaseImpl);
+        CtStatementList actual = ctStatementListImpl.insertBegin(ctCaseImpl);
         
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertBegin4() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
         
-        Object ctStatementListImplFactory1 = getFieldValue(ctStatementListImpl, "factory");
-        Object finalCtStatementListImplFactoryEnvironment = getFieldValue(ctStatementListImplFactory1, "environment");
+        ctStatementListImpl.insertBegin(((CtStatement) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertBegin5() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
         
-        Object finalCtCaseImplParent = getFieldValue(ctCaseImpl, "parent");
-        
-        assertFalse(initialCtStatementListImplFactoryEnvironment == finalCtStatementListImplFactoryEnvironment);
-        
-        assertFalse(initialCtCaseImplParent == finalCtCaseImplParent);
+        ctStatementListImpl.insertBegin(((CtStatement) null));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testAddStatement8() throws Throwable  {
+    public void testInsertBegin6() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
         setField(ctStatementListImpl, "parent", null);
-        setField(ctStatementListImpl, "factory", null);
         ArrayList arrayList = new ArrayList();
         setField(ctStatementListImpl, "statements", arrayList);
-        CtThrowImpl ctThrowImpl = ((CtThrowImpl) createInstance("spoon.support.reflect.code.CtThrowImpl"));
-        setField(ctThrowImpl, "parent", null);
-        setField(ctThrowImpl, "factory", null);
+        CtTryImpl ctTryImpl = ((CtTryImpl) createInstance("spoon.support.reflect.code.CtTryImpl"));
+        setField(ctTryImpl, "parent", null);
         
-        Object initialCtThrowImplParent = getFieldValue(ctThrowImpl, "parent");
+        Object initialCtTryImplParent = getFieldValue(ctTryImpl, "parent");
         
-        CtStatementList actual = ctStatementListImpl.addStatement(0, ctThrowImpl);
+        CtStatementList actual = ctStatementListImpl.insertBegin(ctTryImpl);
         
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(ctStatementListImpl, actual));
         
-        Object finalCtThrowImplParent = getFieldValue(ctThrowImpl, "parent");
+        Object finalCtTryImplParent = getFieldValue(ctTryImpl, "parent");
         
-        assertFalse(initialCtThrowImplParent == finalCtThrowImplParent);
+        assertFalse(initialCtTryImplParent == finalCtTryImplParent);
     }
     ///endregion
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testGetStatements1() throws Throwable  {
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertEnd1() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
         
-        List actual = ctStatementListImpl.getStatements();
-        
-        EmptyClearableList expected = ((EmptyClearableList) createInstance("spoon.support.util.EmptyClearableList"));
-        setField(expected, "modCount", 0);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        ctStatementListImpl.insertEnd(((CtStatementList) null));
     }
     ///endregion
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testGetStatements2() throws Throwable  {
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInsertEnd2() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        ArrayList arrayList = new ArrayList();
-        setField(ctStatementListImpl, "statements", arrayList);
         
-        List actual = ctStatementListImpl.getStatements();
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(arrayList, actual));
+        ctStatementListImpl.insertEnd(((CtStatementList) null));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testSetStatements1() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+    public void testInsertEnd3() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        CtCaseImpl ctCaseImpl = ((CtCaseImpl) createInstance("spoon.support.reflect.code.CtCaseImpl"));
         ArrayList arrayList = new ArrayList();
+        setField(ctCaseImpl, "statements", arrayList);
         
-        CtStatementList actual = ctStatementListImpl.setStatements(arrayList);
+        CtStatementList actual = ctStatementListImpl.insertEnd(ctCaseImpl);
         
         
         // Current deep equals depth exceeds max depth 0
@@ -648,86 +661,46 @@ public class CtStatementListImplTest {
     }
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSetStatements2() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(null);
-        arrayList.add(null);
-        arrayList.add(null);
-        
-        ctStatementListImpl.setStatements(arrayList);
-    }
-    ///endregion
+    ///region Errors report for insertEnd
     
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetStatement1() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
-        
-        ctStatementListImpl.getStatement(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetStatement2() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(null);
-        arrayList.add(null);
-        arrayList.add(null);
-        arrayList.add(null);
-        arrayList.add(null);
-        arrayList.add(null);
-        arrayList.add(null);
-        arrayList.add(null);
-        arrayList.add(null);
-        arrayList.add(null);
-        setField(ctStatementListImpl, "statements", arrayList);
-        
-        ctStatementListImpl.getStatement(10);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetStatement3() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        ArrayList arrayList = new ArrayList();
-        java.lang.Object[] internalListArray = createArray("spoon.support.util.ModelList$InternalList", 0);
-        arrayList.add(internalListArray);
-        arrayList.add(null);
-        arrayList.add(null);
-        setField(ctStatementListImpl, "statements", arrayList);
-        
-        ctStatementListImpl.getStatement(0);
+    public void testInsertEnd_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId spoon.support.reflect.code.CtJavaDocImpl$1 does not have canonical name
+        // 
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetStatement4() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        ArrayList arrayList = new ArrayList();
-        CtAssertImpl ctAssertImpl = ((CtAssertImpl) createInstance("spoon.support.reflect.code.CtAssertImpl"));
-        arrayList.add(ctAssertImpl);
-        Object object = createInstance("java.lang.Object");
-        arrayList.add(object);
-        arrayList.add(object);
-        setField(ctStatementListImpl, "statements", arrayList);
+    public void testInsertEnd5() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
         
-        CtStatement actual = ctStatementListImpl.getStatement(0);
+        CtStatementList actual = ctStatementListImpl.insertEnd(((CtStatement) null));
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctAssertImpl, actual));
+        assertTrue(deepEquals(ctStatementListImpl, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testInsertEnd6() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+        ArrayList arrayList = new ArrayList();
+        setField(ctStatementListImpl, "statements", arrayList);
+        
+        CtStatementList actual = ctStatementListImpl.insertEnd(((CtStatement) null));
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(ctStatementListImpl, actual));
     }
     ///endregion
     
@@ -797,80 +770,26 @@ public class CtStatementListImplTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testRemoveStatement3() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
         FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
-        setField(standardEnvironment, "modelChangeListener", null);
-        setField(factoryImpl, "environment", standardEnvironment);
         setField(ctStatementListImpl, "factory", factoryImpl);
         ArrayList arrayList = new ArrayList();
         setField(ctStatementListImpl, "statements", arrayList);
-        CtClassImpl ctClassImpl = ((CtClassImpl) createInstance("spoon.support.reflect.declaration.CtClassImpl"));
-        setField(ctClassImpl, "factory", null);
-        
-        ctStatementListImpl.removeStatement(ctClassImpl);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testRemoveStatement4() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "environment", null);
-        setField(ctStatementListImpl, "factory", factoryImpl);
-        ArrayList arrayList = new ArrayList();
-        setField(ctStatementListImpl, "statements", arrayList);
-        
-        Object ctStatementListImplFactory = getFieldValue(ctStatementListImpl, "factory");
-        Object initialCtStatementListImplFactoryEnvironment = getFieldValue(ctStatementListImplFactory, "environment");
         
         ctStatementListImpl.removeStatement(null);
-        
-        Object ctStatementListImplFactory1 = getFieldValue(ctStatementListImpl, "factory");
-        Object finalCtStatementListImplFactoryEnvironment = getFieldValue(ctStatementListImplFactory1, "environment");
-        
-        assertFalse(initialCtStatementListImplFactoryEnvironment == finalCtStatementListImplFactoryEnvironment);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testInsertBegin1() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
-        
-        ctStatementListImpl.insertBegin(((CtStatementList) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testInsertBegin2() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        ArrayList arrayList = new ArrayList();
-        setField(ctStatementListImpl, "statements", arrayList);
-        
-        ctStatementListImpl.insertBegin(((CtStatementList) null));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testInsertBegin3() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
+    public void testSetStatements1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
         ArrayList arrayList = new ArrayList();
-        setField(ctStatementListImpl, "statements", arrayList);
-        CtCaseImpl ctCaseImpl = ((CtCaseImpl) createInstance("spoon.support.reflect.code.CtCaseImpl"));
-        ArrayList arrayList1 = new ArrayList();
-        setField(ctCaseImpl, "statements", arrayList1);
         
-        CtStatementList actual = ctStatementListImpl.insertBegin(ctCaseImpl);
+        CtStatementList actual = ctStatementListImpl.setStatements(arrayList);
         
         
         // Current deep equals depth exceeds max depth 0
@@ -881,111 +800,46 @@ public class CtStatementListImplTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testInsertBegin4() throws Throwable  {
+    public void testSetStatements2() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
         ArrayList arrayList = new ArrayList();
-        setField(ctStatementListImpl, "statements", arrayList);
-        CtCaseImpl ctCaseImpl = ((CtCaseImpl) createInstance("spoon.support.reflect.code.CtCaseImpl"));
-        ArrayList arrayList1 = new ArrayList();
-        arrayList1.add(null);
-        arrayList1.add(null);
-        arrayList1.add(null);
-        arrayList1.add(null);
-        arrayList1.add(null);
-        arrayList1.add(null);
-        arrayList1.add(null);
-        arrayList1.add(null);
-        arrayList1.add(null);
-        arrayList1.add(null);
-        arrayList1.add(null);
-        setField(ctCaseImpl, "statements", arrayList1);
+        arrayList.add(null);
+        arrayList.add(null);
+        arrayList.add(null);
         
-        ctStatementListImpl.insertBegin(ctCaseImpl);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testInsertBegin5() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
-        
-        ctStatementListImpl.insertBegin(((CtStatement) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testInsertBegin6() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        ArrayList arrayList = new ArrayList();
-        setField(ctStatementListImpl, "statements", arrayList);
-        
-        ctStatementListImpl.insertBegin(((CtStatement) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testInsertBegin7() throws Throwable  {
-        CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        setField(ctStatementListImpl, "parent", null);
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
-        setField(factoryImpl, "environment", standardEnvironment);
-        setField(ctStatementListImpl, "factory", factoryImpl);
-        ArrayList arrayList = new ArrayList();
-        setField(ctStatementListImpl, "statements", arrayList);
-        CtDoImpl ctDoImpl = ((CtDoImpl) createInstance("spoon.support.reflect.code.CtDoImpl"));
-        setField(ctDoImpl, "parent", null);
-        setField(ctDoImpl, "factory", null);
-        
-        Object initialCtDoImplParent = getFieldValue(ctDoImpl, "parent");
-        
-        ctStatementListImpl.insertBegin(ctDoImpl);
-        
-        Object finalCtDoImplParent = getFieldValue(ctDoImpl, "parent");
-        
-        assertFalse(initialCtDoImplParent == finalCtDoImplParent);
+        ctStatementListImpl.setStatements(arrayList);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testInsertBegin8() throws Throwable  {
+    public void testGetStatements1() throws Throwable  {
+        CtStatementListImpl ctStatementListImpl = new CtStatementListImpl();
+        
+        List actual = ctStatementListImpl.getStatements();
+        
+        EmptyClearableList expected = ((EmptyClearableList) createInstance("spoon.support.util.EmptyClearableList"));
+        setField(expected, "modCount", 0);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetStatements2() throws Throwable  {
         CtStatementListImpl ctStatementListImpl = ((CtStatementListImpl) createInstance("spoon.support.reflect.code.CtStatementListImpl"));
-        setField(ctStatementListImpl, "parent", null);
-        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
-        setField(factoryImpl, "environment", null);
-        setField(ctStatementListImpl, "factory", factoryImpl);
         ArrayList arrayList = new ArrayList();
         setField(ctStatementListImpl, "statements", arrayList);
-        CtTryImpl ctTryImpl = ((CtTryImpl) createInstance("spoon.support.reflect.code.CtTryImpl"));
-        setField(ctTryImpl, "parent", null);
-        setField(ctTryImpl, "factory", null);
         
-        Object ctStatementListImplFactory = getFieldValue(ctStatementListImpl, "factory");
-        Object initialCtStatementListImplFactoryEnvironment = getFieldValue(ctStatementListImplFactory, "environment");
-        
-        Object initialCtTryImplParent = getFieldValue(ctTryImpl, "parent");
-        
-        CtStatementList actual = ctStatementListImpl.insertBegin(ctTryImpl);
+        List actual = ctStatementListImpl.getStatements();
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(ctStatementListImpl, actual));
-        
-        Object ctStatementListImplFactory1 = getFieldValue(ctStatementListImpl, "factory");
-        Object finalCtStatementListImplFactoryEnvironment = getFieldValue(ctStatementListImplFactory1, "environment");
-        
-        Object finalCtTryImplParent = getFieldValue(ctTryImpl, "parent");
-        
-        assertFalse(initialCtStatementListImplFactoryEnvironment == finalCtStatementListImplFactoryEnvironment);
-        
-        assertFalse(initialCtTryImplParent == finalCtTryImplParent);
+        assertTrue(deepEquals(arrayList, actual));
     }
     ///endregion
     

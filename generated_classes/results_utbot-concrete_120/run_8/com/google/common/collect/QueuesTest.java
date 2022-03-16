@@ -67,7 +67,7 @@ public class QueuesTest {
         Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
         setField(priorityQueue, "comparator", lexicographicalComparator);
         setField(priorityQueue, "size", Integer.MIN_VALUE);
-        java.lang.Object[] objectArray = new java.lang.Object[0];
+        java.lang.Object[] objectArray = new java.lang.Object[9];
         setField(priorityQueue, "queue", objectArray);
         
         Class queuesClazz = Class.forName("com.google.common.collect.Queues");

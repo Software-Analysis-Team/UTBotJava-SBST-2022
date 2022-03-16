@@ -1,247 +1,229 @@
-package spoon.support.compiler.jdt;
+package spoon.pattern.internal.node;
 
 import org.junit.Test;
-import org.eclipse.jdt.internal.compiler.batch.CompilationUnit;
-import org.eclipse.jdt.internal.eval.CodeSnippetEnvironment;
-import java.util.Map;
-import java.util.Set;
-import java.util.LinkedHashSet;
+import java.util.function.BiConsumer;
+import spoon.pattern.internal.DefaultGenerator;
+import spoon.pattern.internal.PatternPrinter;
+import spoon.pattern.internal.ResultHolder.Single;
+import spoon.pattern.internal.ResultHolder;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import spoon.pattern.Quantifier;
+import spoon.pattern.internal.parameter.MapParameterInfo;
+import sun.awt.image.PixelConverter.Ushort555Rgbx;
+import sun.awt.image.PixelConverter;
+import spoon.reflect.declaration.CtElement;
+import java.lang.reflect.Constructor;
+import spoon.pattern.internal.node.MapEntryNode;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
+import java.util.Map;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
 import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.mock;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 
-public class JDTBatchCompilerTest {
+public class MapEntryNodeTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCompilationUnits1() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
+    public void testForEachParameterInfo1() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
         
-        jDTBatchCompiler.getCompilationUnits();
+        mapEntryNode.forEachParameterInfo(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCompilationUnits2() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        setField(jDTBatchCompiler, "compilationUnits", null);
+    public void testForEachParameterInfo2() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "key", null);
+        BiConsumer biConsumerMock = mock(BiConsumer.class);
         
-        jDTBatchCompiler.getCompilationUnits();
+        mapEntryNode.forEachParameterInfo(biConsumerMock);
+        
+        BiConsumer finalBiConsumerMock = biConsumerMock;
+        
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCompilationUnits3() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[9];
-        jDTBatchCompiler.compilationUnits = compilationUnitArray;
+    public void testForEachParameterInfo3() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        SwitchNode switchNode = ((SwitchNode) createInstance("spoon.pattern.internal.node.SwitchNode"));
+        setField(mapEntryNode, "key", switchNode);
         
-        CompilationUnit initialJDTBatchCompilerCompilationUnits0 = jDTBatchCompiler.compilationUnits[0];
-        CompilationUnit initialJDTBatchCompilerCompilationUnits1 = jDTBatchCompiler.compilationUnits[1];
-        CompilationUnit initialJDTBatchCompilerCompilationUnits2 = jDTBatchCompiler.compilationUnits[2];
-        CompilationUnit initialJDTBatchCompilerCompilationUnits3 = jDTBatchCompiler.compilationUnits[3];
-        CompilationUnit initialJDTBatchCompilerCompilationUnits4 = jDTBatchCompiler.compilationUnits[4];
-        CompilationUnit initialJDTBatchCompilerCompilationUnits5 = jDTBatchCompiler.compilationUnits[5];
-        CompilationUnit initialJDTBatchCompilerCompilationUnits6 = jDTBatchCompiler.compilationUnits[6];
-        CompilationUnit initialJDTBatchCompilerCompilationUnits7 = jDTBatchCompiler.compilationUnits[7];
-        CompilationUnit initialJDTBatchCompilerCompilationUnits8 = jDTBatchCompiler.compilationUnits[8];
+        mapEntryNode.forEachParameterInfo(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGenerateTargets1() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        DefaultGenerator defaultGenerator = ((DefaultGenerator) createInstance("spoon.pattern.internal.DefaultGenerator"));
         
-        jDTBatchCompiler.getCompilationUnits();
+        mapEntryNode.generateTargets(defaultGenerator, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGenerateTargets2() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "key", null);
         
-        CompilationUnit finalJDTBatchCompilerCompilationUnits0 = jDTBatchCompiler.compilationUnits[0];
-        CompilationUnit finalJDTBatchCompilerCompilationUnits1 = jDTBatchCompiler.compilationUnits[1];
-        CompilationUnit finalJDTBatchCompilerCompilationUnits2 = jDTBatchCompiler.compilationUnits[2];
-        CompilationUnit finalJDTBatchCompilerCompilationUnits3 = jDTBatchCompiler.compilationUnits[3];
-        CompilationUnit finalJDTBatchCompilerCompilationUnits4 = jDTBatchCompiler.compilationUnits[4];
-        CompilationUnit finalJDTBatchCompilerCompilationUnits5 = jDTBatchCompiler.compilationUnits[5];
-        CompilationUnit finalJDTBatchCompilerCompilationUnits6 = jDTBatchCompiler.compilationUnits[6];
-        CompilationUnit finalJDTBatchCompilerCompilationUnits7 = jDTBatchCompiler.compilationUnits[7];
-        CompilationUnit finalJDTBatchCompilerCompilationUnits8 = jDTBatchCompiler.compilationUnits[8];
+        mapEntryNode.generateTargets(null, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGenerateTargets3() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "key", null);
+        PatternPrinter patternPrinter = ((PatternPrinter) createInstance("spoon.pattern.internal.PatternPrinter"));
+        ResultHolder.Single single = ((ResultHolder.Single) createInstance("spoon.pattern.internal.ResultHolder$Single"));
+        setField(single, "requiredClass", null);
+        setField(single, "result", mapEntryNode);
         
-        assertNull(finalJDTBatchCompilerCompilationUnits0);
-        
-        assertNull(finalJDTBatchCompilerCompilationUnits1);
-        
-        assertNull(finalJDTBatchCompilerCompilationUnits2);
-        
-        assertNull(finalJDTBatchCompilerCompilationUnits3);
-        
-        assertNull(finalJDTBatchCompilerCompilationUnits4);
-        
-        assertNull(finalJDTBatchCompilerCompilationUnits5);
-        
-        assertNull(finalJDTBatchCompilerCompilationUnits6);
-        
-        assertNull(finalJDTBatchCompilerCompilationUnits7);
-        
-        assertNull(finalJDTBatchCompilerCompilationUnits8);
+        mapEntryNode.generateTargets(patternPrinter, single, null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetCompilationUnits4() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[0];
-        jDTBatchCompiler.compilationUnits = compilationUnitArray;
+    public void testReplaceNode1() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
         
-        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] actual = jDTBatchCompiler.getCompilationUnits();
+        boolean actual = mapEntryNode.replaceNode(null, null);
         
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReplaceNode2() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "key", null);
+        
+        boolean actual = mapEntryNode.replaceNode(null, null);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReplaceNode3() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "value", null);
+        ConstantNode constantNode = ((ConstantNode) createInstance("spoon.pattern.internal.node.ConstantNode"));
+        setField(mapEntryNode, "key", constantNode);
+        
+        boolean actual = mapEntryNode.replaceNode(null, null);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReplaceNode4() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        SwitchNode switchNode = ((SwitchNode) createInstance("spoon.pattern.internal.node.SwitchNode"));
+        setField(mapEntryNode, "value", switchNode);
+        setField(mapEntryNode, "key", null);
+        ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
+        
+        Class mapEntryNodeClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode");
+        Class parameterNodeType = Class.forName("spoon.pattern.internal.node.RootNode");
+        Method replaceNodeMethod = mapEntryNodeClazz.getDeclaredMethod("replaceNode", parameterNodeType, parameterNodeType);
+        replaceNodeMethod.setAccessible(true);
+        java.lang.Object[] replaceNodeMethodArguments = new java.lang.Object[2];
+        replaceNodeMethodArguments[0] = parameterNode;
+        replaceNodeMethodArguments[1] = null;
+        try {
+            replaceNodeMethod.invoke(mapEntryNode, replaceNodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReplaceNode5() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
+        setField(mapEntryNode, "value", parameterNode);
+        SwitchNode switchNode = ((SwitchNode) createInstance("spoon.pattern.internal.node.SwitchNode"));
+        ArrayList arrayList = new ArrayList();
+        setField(switchNode, "cases", arrayList);
+        setField(mapEntryNode, "key", switchNode);
+        ParameterNode parameterNode1 = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
+        
+        Class mapEntryNodeClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode");
+        Class rootNodeType = Class.forName("spoon.pattern.internal.node.RootNode");
+        Method replaceNodeMethod = mapEntryNodeClazz.getDeclaredMethod("replaceNode", rootNodeType, rootNodeType);
+        replaceNodeMethod.setAccessible(true);
+        java.lang.Object[] replaceNodeMethodArguments = new java.lang.Object[2];
+        replaceNodeMethodArguments[0] = null;
+        replaceNodeMethodArguments[1] = parameterNode1;
+        boolean actual = ((boolean) replaceNodeMethod.invoke(mapEntryNode, replaceNodeMethodArguments));
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetMatchingStrategy1() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        
+        Quantifier actual = mapEntryNode.getMatchingStrategy();
+        
+        Quantifier expected = Quantifier.POSSESSIVE;
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(compilationUnitArray, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetUnits1() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        
-        jDTBatchCompiler.getUnits();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetUnits2() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        jDTBatchCompiler.startTime = 0L;
-        setField(jDTBatchCompiler, "options", null);
-        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
-        CodeSnippetEnvironment codeSnippetEnvironment = ((CodeSnippetEnvironment) createInstance("org.eclipse.jdt.internal.eval.CodeSnippetEnvironment"));
-        setField(jDTBasedSpoonCompiler, "environment", codeSnippetEnvironment);
-        setField(jDTBatchCompiler, "jdtCompiler", jDTBasedSpoonCompiler);
-        
-        Map initialJDTBatchCompilerOptions = jDTBatchCompiler.options;
-        
-        jDTBatchCompiler.getUnits();
-        
-        long finalJDTBatchCompilerStartTime = jDTBatchCompiler.startTime;
-        Map finalJDTBatchCompilerOptions = jDTBatchCompiler.options;
-        
-        assertNull(finalJDTBatchCompilerOptions);
-        
-        assertEquals(1645790917108L, finalJDTBatchCompilerStartTime);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetUnits3() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        jDTBatchCompiler.startTime = 0L;
-        setField(jDTBatchCompiler, "filenames", null);
-        setField(jDTBatchCompiler, "limitedModules", null);
-        setField(jDTBatchCompiler, "annotationsFromClasspath", false);
-        setField(jDTBatchCompiler, "checkedClasspaths", null);
-        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
-        setField(jDTBasedSpoonCompiler, "environment", null);
-        setField(jDTBatchCompiler, "jdtCompiler", jDTBasedSpoonCompiler);
-        
-        Set initialJDTBatchCompilerLimitedModules = jDTBatchCompiler.limitedModules;
-        
-        jDTBatchCompiler.getUnits();
-        
-        long finalJDTBatchCompilerStartTime = jDTBatchCompiler.startTime;
-        Set finalJDTBatchCompilerLimitedModules = jDTBatchCompiler.limitedModules;
-        
-        assertNull(finalJDTBatchCompilerLimitedModules);
-        
-        assertEquals(1645790917136L, finalJDTBatchCompilerStartTime);
+        assertTrue(deepEquals(expected, actual));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testSetCompilationUnits1() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        org.eclipse.jdt.internal.compiler.batch.CompilationUnit[] compilationUnitArray = new org.eclipse.jdt.internal.compiler.batch.CompilationUnit[0];
+    public void testGetMatchingStrategy2() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
+        MapParameterInfo mapParameterInfo = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
+        setField(mapParameterInfo, "matchingStrategy", null);
+        setField(parameterNode, "parameterInfo", mapParameterInfo);
+        setField(mapEntryNode, "key", parameterNode);
         
-        jDTBatchCompiler.setCompilationUnits(compilationUnitArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetCompilationUnits2() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        setField(jDTBatchCompiler, "compilationUnits", null);
-        
-        jDTBatchCompiler.setCompilationUnits(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testIgnoreFile1() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        String string = new String();
-        
-        jDTBatchCompiler.ignoreFile(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testIgnoreFile2() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        setField(jDTBatchCompiler, "filesToBeIgnored", null);
-        
-        Set initialJDTBatchCompilerFilesToBeIgnored = jDTBatchCompiler.filesToBeIgnored;
-        
-        jDTBatchCompiler.ignoreFile(null);
-        
-        Set finalJDTBatchCompilerFilesToBeIgnored = jDTBatchCompiler.filesToBeIgnored;
-        
-        assertNull(finalJDTBatchCompilerFilesToBeIgnored);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIgnoreFile3() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        Integer integer = 0;
-        linkedHashSet.add(integer);
-        setField(jDTBatchCompiler, "filesToBeIgnored", linkedHashSet);
-        
-        jDTBatchCompiler.ignoreFile(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetJdtCompiler1() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        
-        JDTBasedSpoonCompiler actual = jDTBatchCompiler.getJdtCompiler();
+        Quantifier actual = mapEntryNode.getMatchingStrategy();
         
         assertNull(actual);
     }
@@ -250,33 +232,296 @@ public class JDTBatchCompilerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetJdtCompiler2() throws Throwable  {
-        JDTBatchCompiler jDTBatchCompiler = ((JDTBatchCompiler) createInstance("spoon.support.compiler.jdt.JDTBatchCompiler"));
-        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
-        setField(jDTBatchCompiler, "jdtCompiler", jDTBasedSpoonCompiler);
+    public void testGetMatchingStrategy3() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "key", null);
         
-        JDTBasedSpoonCompiler actual = jDTBatchCompiler.getJdtCompiler();
+        Quantifier actual = mapEntryNode.getMatchingStrategy();
+        
+        Quantifier expected = Quantifier.POSSESSIVE;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsTryNextMatch1() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        
+        boolean actual = mapEntryNode.isTryNextMatch(null);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsTryNextMatch2() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "key", null);
+        
+        boolean actual = mapEntryNode.isTryNextMatch(null);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testIsTryNextMatch3() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        ParameterNode parameterNode = ((ParameterNode) createInstance("spoon.pattern.internal.node.ParameterNode"));
+        MapParameterInfo mapParameterInfo = ((MapParameterInfo) createInstance("spoon.pattern.internal.parameter.MapParameterInfo"));
+        setField(mapParameterInfo, "containerKind", null);
+        setField(parameterNode, "parameterInfo", mapParameterInfo);
+        setField(mapEntryNode, "key", parameterNode);
+        
+        mapEntryNode.isTryNextMatch(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMatchTarget1() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        Object object = new Object();
+        
+        mapEntryNode.matchTarget(object, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMatchTarget2() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        sun.awt.image.PixelConverter.Ushort555Rgbx[] ushort555RgbxArray = new sun.awt.image.PixelConverter.Ushort555Rgbx[0];
+        
+        mapEntryNode.matchTarget(ushort555RgbxArray, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMatchTarget3() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "key", null);
+        Object treeNode = createInstance("java.util.HashMap$TreeNode");
+        
+        mapEntryNode.matchTarget(treeNode, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetValue1() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        
+        RootNode actual = mapEntryNode.getValue();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetValue2() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "value", null);
+        
+        RootNode actual = mapEntryNode.getValue();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetKey1() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        
+        RootNode actual = mapEntryNode.getKey();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetKey2() throws Throwable  {
+        MapEntryNode mapEntryNode = ((MapEntryNode) createInstance("spoon.pattern.internal.node.MapEntryNode"));
+        setField(mapEntryNode, "key", null);
+        
+        RootNode actual = mapEntryNode.getKey();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testMapEntryNode1() {
+        MapEntryNode actual = new MapEntryNode(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testMapEntryNode2() {
+        MapEntryNode actual = new MapEntryNode(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetValue1() throws Throwable  {
+        Object entry = createInstance("spoon.pattern.internal.node.MapEntryNode$Entry");
+        
+        Class entryClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode$Entry");
+        Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method setValueMethod = entryClazz.getDeclaredMethod("setValue", ctElementType);
+        setValueMethod.setAccessible(true);
+        java.lang.Object[] setValueMethodArguments = new java.lang.Object[1];
+        setValueMethodArguments[0] = null;
+        CtElement actual = ((CtElement) setValueMethod.invoke(entry, setValueMethodArguments));
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetValue2() throws Throwable  {
+        Object entry = createInstance("spoon.pattern.internal.node.MapEntryNode$Entry");
+        setField(entry, "value", null);
+        
+        Class entryClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode$Entry");
+        Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
+        Method setValueMethod = entryClazz.getDeclaredMethod("setValue", ctElementType);
+        setValueMethod.setAccessible(true);
+        java.lang.Object[] setValueMethodArguments = new java.lang.Object[1];
+        setValueMethodArguments[0] = null;
+        CtElement actual = ((CtElement) setValueMethod.invoke(entry, setValueMethodArguments));
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetKey3() throws Throwable  {
+        Object entry = createInstance("spoon.pattern.internal.node.MapEntryNode$Entry");
+        
+        Class entryClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode$Entry");
+        Method getKeyMethod = entryClazz.getDeclaredMethod("getKey");
+        getKeyMethod.setAccessible(true);
+        java.lang.Object[] getKeyMethodArguments = new java.lang.Object[0];
+        String actual = ((String) getKeyMethod.invoke(entry, getKeyMethodArguments));
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetKey4() throws Throwable  {
+        Object entry = createInstance("spoon.pattern.internal.node.MapEntryNode$Entry");
+        String string = new String("");
+        setField(entry, "key", string);
+        
+        Class entryClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode$Entry");
+        Method getKeyMethod = entryClazz.getDeclaredMethod("getKey");
+        getKeyMethod.setAccessible(true);
+        java.lang.Object[] getKeyMethodArguments = new java.lang.Object[0];
+        String actual = ((String) getKeyMethod.invoke(entry, getKeyMethodArguments));
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(jDTBasedSpoonCompiler, actual));
+        assertTrue(deepEquals(string, actual));
     }
     ///endregion
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testJDTBatchCompiler1() throws Throwable  {
-        JDTBasedSpoonCompiler jDTBasedSpoonCompiler = ((JDTBasedSpoonCompiler) createInstance("spoon.support.compiler.jdt.JDTBasedSpoonCompiler"));
-        new JDTBatchCompiler(jDTBasedSpoonCompiler, null, null);
+    @Test(timeout = 10000)
+    public void testGetValue3() throws Throwable  {
+        Object entry = createInstance("spoon.pattern.internal.node.MapEntryNode$Entry");
+        
+        Class entryClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode$Entry");
+        Method getValueMethod = entryClazz.getDeclaredMethod("getValue");
+        getValueMethod.setAccessible(true);
+        java.lang.Object[] getValueMethodArguments = new java.lang.Object[0];
+        CtElement actual = ((CtElement) getValueMethod.invoke(entry, getValueMethodArguments));
+        
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testJDTBatchCompiler2() {
-        new JDTBatchCompiler(null, null, null);
+    @Test(timeout = 10000)
+    public void testGetValue4() throws Throwable  {
+        Object entry = createInstance("spoon.pattern.internal.node.MapEntryNode$Entry");
+        setField(entry, "value", null);
+        
+        Class entryClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode$Entry");
+        Method getValueMethod = entryClazz.getDeclaredMethod("getValue");
+        getValueMethod.setAccessible(true);
+        java.lang.Object[] getValueMethodArguments = new java.lang.Object[0];
+        CtElement actual = ((CtElement) getValueMethod.invoke(entry, getValueMethodArguments));
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEntry1() throws Throwable  {
+        String string = new String();
+        Class entryClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode$Entry");
+        Class stringType = Class.forName("java.lang.String");
+        Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
+        Constructor entryConstructor = entryClazz.getDeclaredConstructor(stringType, ctElementType);
+        entryConstructor.setAccessible(true);
+        java.lang.Object[] entryConstructorArguments = new java.lang.Object[2];
+        entryConstructorArguments[0] = string;
+        entryConstructorArguments[1] = null;
+        Object actual = entryConstructor.newInstance(entryConstructorArguments);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEntry2() throws Throwable  {
+        String string = new String("");
+        Class entryClazz = Class.forName("spoon.pattern.internal.node.MapEntryNode$Entry");
+        Class stringType = Class.forName("java.lang.String");
+        Class ctElementType = Class.forName("spoon.reflect.declaration.CtElement");
+        Constructor entryConstructor = entryClazz.getDeclaredConstructor(stringType, ctElementType);
+        entryConstructor.setAccessible(true);
+        java.lang.Object[] entryConstructorArguments = new java.lang.Object[2];
+        entryConstructorArguments[0] = string;
+        entryConstructorArguments[1] = null;
+        Object actual = entryConstructor.newInstance(entryConstructorArguments);
     }
     ///endregion
     

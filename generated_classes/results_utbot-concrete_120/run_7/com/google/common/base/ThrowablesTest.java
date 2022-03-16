@@ -453,6 +453,19 @@ public class ThrowablesTest {
     }
     ///endregion
     
+    
+    ///region Errors report for lazyStackTrace
+    
+    public void testLazyStackTrace_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000)
@@ -484,18 +497,18 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testInvokeAccessibleNonThrowingMethod1() throws Throwable  {
-        java.lang.Object[] objectArray = new java.lang.Object[9];
+        java.lang.Object[] operatorArray = createArray("[Lsun.security.util.DisabledAlgorithmConstraints$Constraint$Operator;", 0);
         
         Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
         Class methodType = Class.forName("java.lang.reflect.Method");
-        Class objectType = Class.forName("java.lang.Object");
+        Class operatorArrayType = Class.forName("java.lang.Object");
         Class objectArrayType = Class.forName("[Ljava.lang.Object;");
-        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, objectType, objectArrayType);
+        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, operatorArrayType, objectArrayType);
         invokeAccessibleNonThrowingMethodMethod.setAccessible(true);
         java.lang.Object[] invokeAccessibleNonThrowingMethodMethodArguments = new java.lang.Object[3];
         invokeAccessibleNonThrowingMethodMethodArguments[0] = null;
-        invokeAccessibleNonThrowingMethodMethodArguments[1] = null;
-        invokeAccessibleNonThrowingMethodMethodArguments[2] = ((Object) objectArray);
+        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) operatorArray);
+        invokeAccessibleNonThrowingMethodMethodArguments[2] = null;
         try {
             invokeAccessibleNonThrowingMethodMethod.invoke(null, invokeAccessibleNonThrowingMethodMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {

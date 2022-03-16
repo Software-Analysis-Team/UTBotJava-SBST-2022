@@ -1,232 +1,41 @@
-package com.google.common.math;
+package com.google.common.collect;
 
 import org.junit.Test;
-import java.math.RoundingMode;
-import java.lang.reflect.Method;
-import java.lang.reflect.Constructor;
+import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.security.spec.ECFieldF2m;
+import jdk.internal.org.xml.sax.SAXParseException;
+import java.util.HashMap;
+import com.google.common.collect.Ordering.ArbitraryOrdering;
+import com.google.common.collect.Ordering;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Objects;
+import java.util.Map;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
+import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-public class IntMathTest {
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testLog21() throws Throwable  {
-        RoundingMode roundingMode = ((RoundingMode) createInstance("java.math.RoundingMode"));
-        
-        IntMath.log2(0, roundingMode);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testLog22() throws Throwable  {
-        RoundingMode roundingMode = RoundingMode.UP;
-        
-        IntMath.log2(0, roundingMode);
-    }
-    ///endregion
-    
+public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGcd1() throws Throwable  {
-        int actual = IntMath.gcd(0, 0);
+    public void testEquals1() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        Object object = new Object();
         
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGcd2() throws Throwable  {
-        IntMath.gcd(Integer.MIN_VALUE, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGcd3() throws Throwable  {
-        int actual = IntMath.gcd(1, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGcd4() throws Throwable  {
-        int actual = IntMath.gcd(0, 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGcd5() throws Throwable  {
-        int actual = IntMath.gcd(16777216, 1);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMod1() throws Throwable  {
-        IntMath.mod(0, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMod2() throws Throwable  {
-        IntMath.mod(0, -2147483647);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testMod3() throws Throwable  {
-        int actual = IntMath.mod(2147450860, 1);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testMod4() throws Throwable  {
-        int actual = IntMath.mod(-208766597, 371);
-        
-        assertEquals(297, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedAdd1() throws Throwable  {
-        int actual = IntMath.saturatedAdd(0, 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedAdd2() throws Throwable  {
-        int actual = IntMath.saturatedAdd(-17007614, -2147483647);
-        
-        assertEquals(Integer.MIN_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedAdd3() throws Throwable  {
-        int actual = IntMath.saturatedAdd(0, Integer.MIN_VALUE);
-        
-        assertEquals(Integer.MIN_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedAdd4() throws Throwable  {
-        int actual = IntMath.saturatedAdd(2141284462, 67108864);
-        
-        assertEquals(Integer.MAX_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedSubtract1() throws Throwable  {
-        int actual = IntMath.saturatedSubtract(0, 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedSubtract2() throws Throwable  {
-        int actual = IntMath.saturatedSubtract(-1886912516, 1345323009);
-        
-        assertEquals(Integer.MIN_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedSubtract3() throws Throwable  {
-        int actual = IntMath.saturatedSubtract(-2002780156, 144703492);
-        
-        assertEquals(Integer.MIN_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedSubtract4() throws Throwable  {
-        int actual = IntMath.saturatedSubtract(558388866, -2080374784);
-        
-        assertEquals(Integer.MAX_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testFloorPowerOfTwo1() throws Throwable  {
-        IntMath.floorPowerOfTwo(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testFloorPowerOfTwo2() throws Throwable  {
-        IntMath.floorPowerOfTwo(-2147483647);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testFloorPowerOfTwo3() throws Throwable  {
-        int actual = IntMath.floorPowerOfTwo(1);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPowerOfTwo1() throws Throwable  {
-        boolean actual = IntMath.isPowerOfTwo(0);
+        boolean actual = reverseOrdering.equals(object);
         
         assertFalse(actual);
     }
@@ -235,738 +44,10 @@ public class IntMathTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testIsPowerOfTwo2() throws Throwable  {
-        boolean actual = IntMath.isPowerOfTwo(Integer.MAX_VALUE);
+    public void testEquals2() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPowerOfTwo3() throws Throwable  {
-        boolean actual = IntMath.isPowerOfTwo(-1);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPowerOfTwo4() throws Throwable  {
-        boolean actual = IntMath.isPowerOfTwo(536870912);
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCeilingPowerOfTwo1() throws Throwable  {
-        IntMath.ceilingPowerOfTwo(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCeilingPowerOfTwo2() throws Throwable  {
-        IntMath.ceilingPowerOfTwo(1073741825);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCeilingPowerOfTwo3() throws Throwable  {
-        int actual = IntMath.ceilingPowerOfTwo(16384);
-        
-        assertEquals(16384, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLessThanBranchFree1() throws Throwable  {
-        int actual = IntMath.lessThanBranchFree(0, 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLessThanBranchFree2() throws Throwable  {
-        int actual = IntMath.lessThanBranchFree(0, 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLog10Floor1() throws Throwable  {
-        Class intMathClazz = Class.forName("com.google.common.math.IntMath");
-        Class intType = int.class;
-        Method log10FloorMethod = intMathClazz.getDeclaredMethod("log10Floor", intType);
-        log10FloorMethod.setAccessible(true);
-        java.lang.Object[] log10FloorMethodArguments = new java.lang.Object[1];
-        log10FloorMethodArguments[0] = 0;
-        int actual = ((int) log10FloorMethod.invoke(null, log10FloorMethodArguments));
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLog10Floor2() throws Throwable  {
-        Class intMathClazz = Class.forName("com.google.common.math.IntMath");
-        Class intType = int.class;
-        Method log10FloorMethod = intMathClazz.getDeclaredMethod("log10Floor", intType);
-        log10FloorMethod.setAccessible(true);
-        java.lang.Object[] log10FloorMethodArguments = new java.lang.Object[1];
-        log10FloorMethodArguments[0] = 4096;
-        int actual = ((int) log10FloorMethod.invoke(null, log10FloorMethodArguments));
-        
-        assertEquals(3, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSqrtFloor1() throws Throwable  {
-        Class intMathClazz = Class.forName("com.google.common.math.IntMath");
-        Class intType = int.class;
-        Method sqrtFloorMethod = intMathClazz.getDeclaredMethod("sqrtFloor", intType);
-        sqrtFloorMethod.setAccessible(true);
-        java.lang.Object[] sqrtFloorMethodArguments = new java.lang.Object[1];
-        sqrtFloorMethodArguments[0] = 0;
-        int actual = ((int) sqrtFloorMethod.invoke(null, sqrtFloorMethodArguments));
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSqrtFloor2() throws Throwable  {
-        Class intMathClazz = Class.forName("com.google.common.math.IntMath");
-        Class intType = int.class;
-        Method sqrtFloorMethod = intMathClazz.getDeclaredMethod("sqrtFloor", intType);
-        sqrtFloorMethod.setAccessible(true);
-        java.lang.Object[] sqrtFloorMethodArguments = new java.lang.Object[1];
-        sqrtFloorMethodArguments[0] = 0;
-        int actual = ((int) sqrtFloorMethod.invoke(null, sqrtFloorMethodArguments));
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedAdd1() throws Throwable  {
-        int actual = IntMath.checkedAdd(0, 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedAdd2() throws Throwable  {
-        int actual = IntMath.checkedAdd(638593792, 1060549504);
-        
-        assertEquals(1699143296, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCheckedAdd3() throws Throwable  {
-        IntMath.checkedAdd(-1004272622, -1926037428);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedSubtract1() throws Throwable  {
-        int actual = IntMath.checkedSubtract(0, 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedSubtract2() throws Throwable  {
-        int actual = IntMath.checkedSubtract(93585408, -58482688);
-        
-        assertEquals(152068096, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCheckedSubtract3() throws Throwable  {
-        IntMath.checkedSubtract(-1877982720, 670990336);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedMultiply1() throws Throwable  {
-        int actual = IntMath.checkedMultiply(0, 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCheckedMultiply2() throws Throwable  {
-        IntMath.checkedMultiply(1946412416, -1069659937);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow1() throws Throwable  {
-        int actual = IntMath.checkedPow(0, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow2() throws Throwable  {
-        int actual = IntMath.checkedPow(1, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow3() throws Throwable  {
-        int actual = IntMath.checkedPow(0, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow4() throws Throwable  {
-        int actual = IntMath.checkedPow(0, 1);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow5() throws Throwable  {
-        int actual = IntMath.checkedPow(-1, 1);
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow6() throws Throwable  {
-        int actual = IntMath.checkedPow(-1, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow7() throws Throwable  {
-        int actual = IntMath.checkedPow(3, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow8() throws Throwable  {
-        int actual = IntMath.checkedPow(2, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow9() throws Throwable  {
-        int actual = IntMath.checkedPow(-2, 1);
-        
-        assertEquals(-2, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow10() throws Throwable  {
-        int actual = IntMath.checkedPow(-2, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCheckedPow11() throws Throwable  {
-        IntMath.checkedPow(0, Integer.MIN_VALUE);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCheckedPow12() throws Throwable  {
-        IntMath.checkedPow(46341, 2);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCheckedPow13() throws Throwable  {
-        IntMath.checkedPow(2, 32);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCheckedPow14() throws Throwable  {
-        IntMath.checkedPow(-2, 32);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow15() throws Throwable  {
-        int actual = IntMath.checkedPow(3, 1);
-        
-        assertEquals(3, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCheckedPow16() throws Throwable  {
-        IntMath.checkedPow(Integer.MIN_VALUE, 2);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCheckedPow17() throws Throwable  {
-        int actual = IntMath.checkedPow(-19193, 2);
-        
-        assertEquals(368371249, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testCheckedPow18() throws Throwable  {
-        IntMath.checkedPow(46343, 3);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedMultiply1() throws Throwable  {
-        int actual = IntMath.saturatedMultiply(0, 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedMultiply2() throws Throwable  {
-        int actual = IntMath.saturatedMultiply(293189390, -1669169102);
-        
-        assertEquals(Integer.MIN_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedMultiply3() throws Throwable  {
-        int actual = IntMath.saturatedMultiply(-1073741824, 2);
-        
-        assertEquals(Integer.MIN_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedMultiply4() throws Throwable  {
-        int actual = IntMath.saturatedMultiply(305207476, 319355896);
-        
-        assertEquals(Integer.MAX_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow1() throws Throwable  {
-        int actual = IntMath.saturatedPow(0, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow2() throws Throwable  {
-        int actual = IntMath.saturatedPow(1, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow3() throws Throwable  {
-        int actual = IntMath.saturatedPow(2, 32);
-        
-        assertEquals(Integer.MAX_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow4() throws Throwable  {
-        int actual = IntMath.saturatedPow(2, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow5() throws Throwable  {
-        int actual = IntMath.saturatedPow(0, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow6() throws Throwable  {
-        int actual = IntMath.saturatedPow(-1, 1);
-        
-        assertEquals(-1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow7() throws Throwable  {
-        int actual = IntMath.saturatedPow(-2, 32);
-        
-        assertEquals(Integer.MAX_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow8() throws Throwable  {
-        int actual = IntMath.saturatedPow(-2, 1);
-        
-        assertEquals(-2, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow9() throws Throwable  {
-        int actual = IntMath.saturatedPow(0, 1);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow10() throws Throwable  {
-        int actual = IntMath.saturatedPow(-2, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow11() throws Throwable  {
-        int actual = IntMath.saturatedPow(-1, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow12() throws Throwable  {
-        int actual = IntMath.saturatedPow(3, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSaturatedPow13() throws Throwable  {
-        IntMath.saturatedPow(0, Integer.MIN_VALUE);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow14() throws Throwable  {
-        int actual = IntMath.saturatedPow(Integer.MIN_VALUE, 2);
-        
-        assertEquals(Integer.MAX_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow15() throws Throwable  {
-        int actual = IntMath.saturatedPow(46341, 2);
-        
-        assertEquals(Integer.MAX_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow16() throws Throwable  {
-        int actual = IntMath.saturatedPow(Integer.MIN_VALUE, 1);
-        
-        assertEquals(Integer.MIN_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow17() throws Throwable  {
-        int actual = IntMath.saturatedPow(46341, 3);
-        
-        assertEquals(Integer.MAX_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow18() throws Throwable  {
-        int actual = IntMath.saturatedPow(-18167, 2);
-        
-        assertEquals(330039889, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSaturatedPow19() throws Throwable  {
-        int actual = IntMath.saturatedPow(-19193, 3);
-        
-        assertEquals(Integer.MIN_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testFactorial1() throws Throwable  {
-        int actual = IntMath.factorial(0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testFactorial2() throws Throwable  {
-        IntMath.factorial(Integer.MIN_VALUE);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testFactorial3() throws Throwable  {
-        int actual = IntMath.factorial(16);
-        
-        assertEquals(Integer.MAX_VALUE, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testFactorial4() throws Throwable  {
-        int actual = IntMath.factorial(0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testBinomial1() throws Throwable  {
-        int actual = IntMath.binomial(0, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testBinomial2() throws Throwable  {
-        IntMath.binomial(Integer.MIN_VALUE, 0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testBinomial3() throws Throwable  {
-        IntMath.binomial(0, Integer.MIN_VALUE);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testBinomial4() throws Throwable  {
-        IntMath.binomial(0, 1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testBinomial5() throws Throwable  {
-        int[] prevBiggestBinomials = IntMath.biggestBinomials;
-        try {
-            int[] biggestBinomials = new int[1];
-            IntMath.biggestBinomials = biggestBinomials;
-            
-            int actual = IntMath.binomial(1610612738, 1610612736);
-            
-            assertEquals(Integer.MAX_VALUE, actual);
-        } finally {
-            IntMath.biggestBinomials = prevBiggestBinomials;
-        }
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testMean1() throws Throwable  {
-        int actual = IntMath.mean(0, 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testMean2() throws Throwable  {
-        int actual = IntMath.mean(0, 0);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPrime1() throws Throwable  {
-        boolean actual = IntMath.isPrime(0);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPrime2() throws Throwable  {
-        boolean actual = IntMath.isPrime(2);
+        boolean actual = reverseOrdering.equals(reverseOrdering);
         
         assertTrue(actual);
     }
@@ -975,38 +56,10 @@ public class IntMathTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testIsPrime3() throws Throwable  {
-        boolean actual = IntMath.isPrime(5);
+    public void testEquals3() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPrime4() throws Throwable  {
-        boolean actual = IntMath.isPrime(7);
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPrime5() throws Throwable  {
-        boolean actual = IntMath.isPrime(2013265921);
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsPrime6() throws Throwable  {
-        boolean actual = IntMath.isPrime(2081423377);
+        boolean actual = reverseOrdering.equals(null);
         
         assertFalse(actual);
     }
@@ -1014,103 +67,36 @@ public class IntMathTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testIsPrime7() throws Throwable  {
-        boolean actual = IntMath.isPrime(1073741824);
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEquals4() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSqrt1() throws Throwable  {
-        RoundingMode roundingMode = ((RoundingMode) createInstance("java.math.RoundingMode"));
-        
-        int actual = IntMath.sqrt(0, roundingMode);
-        
-        assertEquals(0, actual);
+        reverseOrdering.equals(reverseOrdering1);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testSqrt2() throws Throwable  {
-        IntMath.sqrt(Integer.MIN_VALUE, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testSqrt3() throws Throwable  {
-        IntMath.sqrt(0, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testLog101() throws Throwable  {
-        RoundingMode roundingMode = ((RoundingMode) createInstance("java.math.RoundingMode"));
+    public void testHashCode1() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         
-        IntMath.log10(0, roundingMode);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testLog102() throws Throwable  {
-        IntMath.log10(-2147483647, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testLog103() throws Throwable  {
-        IntMath.log10(4352, null);
+        reverseOrdering.hashCode();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testPow1() throws Throwable  {
-        int actual = IntMath.pow(0, 0);
+    public void testHashCode2() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        CompoundOrdering compoundOrdering = ((CompoundOrdering) createInstance("com.google.common.collect.CompoundOrdering"));
+        java.util.Comparator[] comparatorArray = new java.util.Comparator[0];
+        setField(compoundOrdering, "comparators", comparatorArray);
+        setField(reverseOrdering, "forwardOrder", compoundOrdering);
         
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPow2() throws Throwable  {
-        int actual = IntMath.pow(1, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPow3() throws Throwable  {
-        int actual = IntMath.pow(-2, 32);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPow4() throws Throwable  {
-        int actual = IntMath.pow(-1, 1);
+        int actual = reverseOrdering.hashCode();
         
         assertEquals(-1, actual);
     }
@@ -1118,29 +104,70 @@ public class IntMathTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testPow5() throws Throwable  {
-        int actual = IntMath.pow(-1, 0);
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHashCode3() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        NullsFirstOrdering nullsFirstOrdering = ((NullsFirstOrdering) createInstance("com.google.common.collect.NullsFirstOrdering"));
+        setField(nullsFirstOrdering, "ordering", nullsFirstOrdering);
+        setField(reverseOrdering, "forwardOrder", nullsFirstOrdering);
         
-        assertEquals(1, actual);
+        reverseOrdering.hashCode();
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testPow6() throws Throwable  {
-        int actual = IntMath.pow(0, 0);
+    public void testToString1() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         
-        assertEquals(1, actual);
+        String actual = reverseOrdering.toString();
+        
+        String expected = new String("null.reverse()");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testPow7() throws Throwable  {
-        int actual = IntMath.pow(2, 32);
+    public void testToString2() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        Object rangeLexOrdering = createInstance("com.google.common.collect.Range$RangeLexOrdering");
+        setField(reverseOrdering, "forwardOrder", rangeLexOrdering);
+        
+        String actual = reverseOrdering.toString();
+        
+        String expected = new String("com.google.common.collect.Range$RangeLexOrdering@35603ba6.reverse()");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCompare1() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        Object object = new Object();
+        Object object1 = new Object();
+        
+        reverseOrdering.compare(object, object1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCompare2() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        AllEqualOrdering allEqualOrdering = ((AllEqualOrdering) createInstance("com.google.common.collect.AllEqualOrdering"));
+        setField(reverseOrdering, "forwardOrder", allEqualOrdering);
+        
+        int actual = reverseOrdering.compare(null, null);
         
         assertEquals(0, actual);
     }
@@ -1149,18 +176,13 @@ public class IntMathTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testPow8() throws Throwable  {
-        int actual = IntMath.pow(0, 1);
+    public void testCompare3() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        NullsFirstOrdering nullsFirstOrdering = ((NullsFirstOrdering) createInstance("com.google.common.collect.NullsFirstOrdering"));
+        setField(reverseOrdering, "forwardOrder", nullsFirstOrdering);
+        java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
         
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPow9() throws Throwable  {
-        int actual = IntMath.pow(-2, 0);
+        int actual = reverseOrdering.compare(null, fifoWaitQueueArray);
         
         assertEquals(1, actual);
     }
@@ -1169,130 +191,13 @@ public class IntMathTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testPow10() throws Throwable  {
-        int actual = IntMath.pow(-2, 1);
+    public void testCompare4() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        NullsFirstOrdering nullsFirstOrdering = ((NullsFirstOrdering) createInstance("com.google.common.collect.NullsFirstOrdering"));
+        setField(reverseOrdering, "forwardOrder", nullsFirstOrdering);
+        java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
         
-        assertEquals(-2, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPow11() throws Throwable  {
-        int actual = IntMath.pow(2, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPow12() throws Throwable  {
-        int actual = IntMath.pow(3, 1);
-        
-        assertEquals(3, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPow13() throws Throwable  {
-        int actual = IntMath.pow(3, 0);
-        
-        assertEquals(1, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPow14() throws Throwable  {
-        int actual = IntMath.pow(3, 3);
-        
-        assertEquals(27, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPow15() throws Throwable  {
-        IntMath.pow(0, Integer.MIN_VALUE);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPow16() throws Throwable  {
-        int actual = IntMath.pow(3, 2);
-        
-        assertEquals(9, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDivide1() throws Throwable  {
-        RoundingMode roundingMode = ((RoundingMode) createInstance("java.math.RoundingMode"));
-        
-        IntMath.divide(0, 0, roundingMode);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDivide2() throws Throwable  {
-        RoundingMode roundingMode = RoundingMode.UP;
-        
-        int actual = IntMath.divide(0, 1, roundingMode);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDivide3() throws Throwable  {
-        RoundingMode roundingMode = RoundingMode.UP;
-        
-        IntMath.divide(0, 0, roundingMode);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDivide4() throws Throwable  {
-        IntMath.divide(0, 0, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDivide5() throws Throwable  {
-        RoundingMode roundingMode = RoundingMode.CEILING;
-        
-        int actual = IntMath.divide(32768, -2130685952, roundingMode);
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDivide6() throws Throwable  {
-        RoundingMode roundingMode = RoundingMode.UP;
-        
-        int actual = IntMath.divide(48234496, -2129657712, roundingMode);
+        int actual = reverseOrdering.compare(fifoWaitQueueArray, null);
         
         assertEquals(-1, actual);
     }
@@ -1300,43 +205,967 @@ public class IntMathTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testDivide7() throws Throwable  {
-        RoundingMode roundingMode = RoundingMode.CEILING;
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCompare5() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        NullsFirstOrdering nullsFirstOrdering = ((NullsFirstOrdering) createInstance("com.google.common.collect.NullsFirstOrdering"));
+        setField(reverseOrdering, "forwardOrder", nullsFirstOrdering);
+        java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
+        java.lang.Object[] fifoWaitQueueArray1 = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
         
-        int actual = IntMath.divide(335544324, 5, roundingMode);
+        reverseOrdering.compare(fifoWaitQueueArray, fifoWaitQueueArray1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin1() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ArrayList arrayList = new ArrayList();
         
-        assertEquals(67108865, actual);
+        reverseOrdering.min(arrayList);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin2() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        LinkedHashSet linkedHashSet = ((LinkedHashSet) createInstance("java.util.LinkedHashSet"));
+        
+        reverseOrdering.min(linkedHashSet);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin3() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering2, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering1, "forwardOrder", reverseOrdering2);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        
+        reverseOrdering.min(((Iterable) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin4() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        
+        reverseOrdering.min(((Iterator) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin5() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        Scanner scanner = ((Scanner) createInstance("java.util.Scanner"));
+        
+        reverseOrdering.min(scanner);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin6() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        Object object = new Object();
+        Object object1 = new Object();
+        
+        reverseOrdering.min(object, object1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin7() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        java.lang.Object[] charArrayAsListArray = createArray("com.google.common.primitives.Chars$CharArrayAsList", 0);
+        
+        reverseOrdering.min(charArrayAsListArray, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin8() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        java.lang.Object[] descendingImmutableSortedSetArray = createArray("com.google.common.collect.DescendingImmutableSortedSet", 0);
+        
+        reverseOrdering.min(null, descendingImmutableSortedSetArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin9() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        
+        reverseOrdering.min(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin10() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        
+        reverseOrdering.min(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin11() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        Object object = new Object();
+        Object object1 = new Object();
+        Object object2 = new Object();
+        java.lang.Object[] objectArray = new java.lang.Object[0];
+        
+        reverseOrdering.min(object, object1, object2, objectArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin12() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        java.lang.Object[] findOpArray = createArray("java.util.stream.FindOps$FindOp", 9);
+        java.lang.Object[] handlerArray = createArray("jdk.internal.org.objectweb.asm.Handler", 9);
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        
+        Object initialFindOpArray0 = findOpArray[0];
+        Object initialFindOpArray1 = findOpArray[1];
+        Object initialFindOpArray2 = findOpArray[2];
+        Object initialFindOpArray3 = findOpArray[3];
+        Object initialFindOpArray4 = findOpArray[4];
+        Object initialFindOpArray5 = findOpArray[5];
+        Object initialFindOpArray6 = findOpArray[6];
+        Object initialFindOpArray7 = findOpArray[7];
+        Object initialFindOpArray8 = findOpArray[8];
+        
+        Object initialHandlerArray0 = handlerArray[0];
+        Object initialHandlerArray1 = handlerArray[1];
+        Object initialHandlerArray2 = handlerArray[2];
+        Object initialHandlerArray3 = handlerArray[3];
+        Object initialHandlerArray4 = handlerArray[4];
+        Object initialHandlerArray5 = handlerArray[5];
+        Object initialHandlerArray6 = handlerArray[6];
+        Object initialHandlerArray7 = handlerArray[7];
+        Object initialHandlerArray8 = handlerArray[8];
+        
+        reverseOrdering.min(findOpArray, handlerArray, null, objectArray);
+        
+        Object finalFindOpArray0 = findOpArray[0];
+        Object finalFindOpArray1 = findOpArray[1];
+        Object finalFindOpArray2 = findOpArray[2];
+        Object finalFindOpArray3 = findOpArray[3];
+        Object finalFindOpArray4 = findOpArray[4];
+        Object finalFindOpArray5 = findOpArray[5];
+        Object finalFindOpArray6 = findOpArray[6];
+        Object finalFindOpArray7 = findOpArray[7];
+        Object finalFindOpArray8 = findOpArray[8];
+        
+        Object finalHandlerArray0 = handlerArray[0];
+        Object finalHandlerArray1 = handlerArray[1];
+        Object finalHandlerArray2 = handlerArray[2];
+        Object finalHandlerArray3 = handlerArray[3];
+        Object finalHandlerArray4 = handlerArray[4];
+        Object finalHandlerArray5 = handlerArray[5];
+        Object finalHandlerArray6 = handlerArray[6];
+        Object finalHandlerArray7 = handlerArray[7];
+        Object finalHandlerArray8 = handlerArray[8];
+        
+        assertNull(finalFindOpArray0);
+        
+        assertNull(finalFindOpArray1);
+        
+        assertNull(finalFindOpArray2);
+        
+        assertNull(finalFindOpArray3);
+        
+        assertNull(finalFindOpArray4);
+        
+        assertNull(finalFindOpArray5);
+        
+        assertNull(finalFindOpArray6);
+        
+        assertNull(finalFindOpArray7);
+        
+        assertNull(finalFindOpArray8);
+        
+        assertNull(finalHandlerArray0);
+        
+        assertNull(finalHandlerArray1);
+        
+        assertNull(finalHandlerArray2);
+        
+        assertNull(finalHandlerArray3);
+        
+        assertNull(finalHandlerArray4);
+        
+        assertNull(finalHandlerArray5);
+        
+        assertNull(finalHandlerArray6);
+        
+        assertNull(finalHandlerArray7);
+        
+        assertNull(finalHandlerArray8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin13() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        java.security.spec.ECFieldF2m[] eCFieldF2mArray = new java.security.spec.ECFieldF2m[9];
+        jdk.internal.org.xml.sax.SAXParseException[] sAXParseExceptionArray = new jdk.internal.org.xml.sax.SAXParseException[9];
+        java.lang.Object[] operatorArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraint$Operator", 9);
+        
+        ECFieldF2m initialECFieldF2mArray0 = eCFieldF2mArray[0];
+        ECFieldF2m initialECFieldF2mArray1 = eCFieldF2mArray[1];
+        ECFieldF2m initialECFieldF2mArray2 = eCFieldF2mArray[2];
+        ECFieldF2m initialECFieldF2mArray3 = eCFieldF2mArray[3];
+        ECFieldF2m initialECFieldF2mArray4 = eCFieldF2mArray[4];
+        ECFieldF2m initialECFieldF2mArray5 = eCFieldF2mArray[5];
+        ECFieldF2m initialECFieldF2mArray6 = eCFieldF2mArray[6];
+        ECFieldF2m initialECFieldF2mArray7 = eCFieldF2mArray[7];
+        ECFieldF2m initialECFieldF2mArray8 = eCFieldF2mArray[8];
+        
+        SAXParseException initialSAXParseExceptionArray0 = sAXParseExceptionArray[0];
+        SAXParseException initialSAXParseExceptionArray1 = sAXParseExceptionArray[1];
+        SAXParseException initialSAXParseExceptionArray2 = sAXParseExceptionArray[2];
+        SAXParseException initialSAXParseExceptionArray3 = sAXParseExceptionArray[3];
+        SAXParseException initialSAXParseExceptionArray4 = sAXParseExceptionArray[4];
+        SAXParseException initialSAXParseExceptionArray5 = sAXParseExceptionArray[5];
+        SAXParseException initialSAXParseExceptionArray6 = sAXParseExceptionArray[6];
+        SAXParseException initialSAXParseExceptionArray7 = sAXParseExceptionArray[7];
+        SAXParseException initialSAXParseExceptionArray8 = sAXParseExceptionArray[8];
+        
+        Object initialOperatorArray0 = operatorArray[0];
+        Object initialOperatorArray1 = operatorArray[1];
+        Object initialOperatorArray2 = operatorArray[2];
+        Object initialOperatorArray3 = operatorArray[3];
+        Object initialOperatorArray4 = operatorArray[4];
+        Object initialOperatorArray5 = operatorArray[5];
+        Object initialOperatorArray6 = operatorArray[6];
+        Object initialOperatorArray7 = operatorArray[7];
+        Object initialOperatorArray8 = operatorArray[8];
+        
+        reverseOrdering.min(eCFieldF2mArray, sAXParseExceptionArray, operatorArray, ((java.lang.Object[]) null));
+        
+        ECFieldF2m finalECFieldF2mArray0 = eCFieldF2mArray[0];
+        ECFieldF2m finalECFieldF2mArray1 = eCFieldF2mArray[1];
+        ECFieldF2m finalECFieldF2mArray2 = eCFieldF2mArray[2];
+        ECFieldF2m finalECFieldF2mArray3 = eCFieldF2mArray[3];
+        ECFieldF2m finalECFieldF2mArray4 = eCFieldF2mArray[4];
+        ECFieldF2m finalECFieldF2mArray5 = eCFieldF2mArray[5];
+        ECFieldF2m finalECFieldF2mArray6 = eCFieldF2mArray[6];
+        ECFieldF2m finalECFieldF2mArray7 = eCFieldF2mArray[7];
+        ECFieldF2m finalECFieldF2mArray8 = eCFieldF2mArray[8];
+        
+        SAXParseException finalSAXParseExceptionArray0 = sAXParseExceptionArray[0];
+        SAXParseException finalSAXParseExceptionArray1 = sAXParseExceptionArray[1];
+        SAXParseException finalSAXParseExceptionArray2 = sAXParseExceptionArray[2];
+        SAXParseException finalSAXParseExceptionArray3 = sAXParseExceptionArray[3];
+        SAXParseException finalSAXParseExceptionArray4 = sAXParseExceptionArray[4];
+        SAXParseException finalSAXParseExceptionArray5 = sAXParseExceptionArray[5];
+        SAXParseException finalSAXParseExceptionArray6 = sAXParseExceptionArray[6];
+        SAXParseException finalSAXParseExceptionArray7 = sAXParseExceptionArray[7];
+        SAXParseException finalSAXParseExceptionArray8 = sAXParseExceptionArray[8];
+        
+        Object finalOperatorArray0 = operatorArray[0];
+        Object finalOperatorArray1 = operatorArray[1];
+        Object finalOperatorArray2 = operatorArray[2];
+        Object finalOperatorArray3 = operatorArray[3];
+        Object finalOperatorArray4 = operatorArray[4];
+        Object finalOperatorArray5 = operatorArray[5];
+        Object finalOperatorArray6 = operatorArray[6];
+        Object finalOperatorArray7 = operatorArray[7];
+        Object finalOperatorArray8 = operatorArray[8];
+        
+        assertNull(finalECFieldF2mArray0);
+        
+        assertNull(finalECFieldF2mArray1);
+        
+        assertNull(finalECFieldF2mArray2);
+        
+        assertNull(finalECFieldF2mArray3);
+        
+        assertNull(finalECFieldF2mArray4);
+        
+        assertNull(finalECFieldF2mArray5);
+        
+        assertNull(finalECFieldF2mArray6);
+        
+        assertNull(finalECFieldF2mArray7);
+        
+        assertNull(finalECFieldF2mArray8);
+        
+        assertNull(finalSAXParseExceptionArray0);
+        
+        assertNull(finalSAXParseExceptionArray1);
+        
+        assertNull(finalSAXParseExceptionArray2);
+        
+        assertNull(finalSAXParseExceptionArray3);
+        
+        assertNull(finalSAXParseExceptionArray4);
+        
+        assertNull(finalSAXParseExceptionArray5);
+        
+        assertNull(finalSAXParseExceptionArray6);
+        
+        assertNull(finalSAXParseExceptionArray7);
+        
+        assertNull(finalSAXParseExceptionArray8);
+        
+        assertNull(finalOperatorArray0);
+        
+        assertNull(finalOperatorArray1);
+        
+        assertNull(finalOperatorArray2);
+        
+        assertNull(finalOperatorArray3);
+        
+        assertNull(finalOperatorArray4);
+        
+        assertNull(finalOperatorArray5);
+        
+        assertNull(finalOperatorArray6);
+        
+        assertNull(finalOperatorArray7);
+        
+        assertNull(finalOperatorArray8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax1() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        Object object = new Object();
+        Object object1 = new Object();
+        
+        reverseOrdering.max(object, object1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax2() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        java.lang.Object[] charArrayAsListArray = createArray("com.google.common.primitives.Chars$CharArrayAsList", 0);
+        
+        reverseOrdering.max(charArrayAsListArray, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax3() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        java.lang.Object[] descendingImmutableSortedSetArray = createArray("com.google.common.collect.DescendingImmutableSortedSet", 0);
+        
+        reverseOrdering.max(null, descendingImmutableSortedSetArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax4() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        java.lang.Object[] ofDoubleArray = createArray("java.util.stream.Nodes$InternalNodeSpliterator$OfDouble", 0);
+        
+        reverseOrdering.max(ofDoubleArray, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax5() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        
+        reverseOrdering.max(null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax6() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ArrayList arrayList = new ArrayList();
+        
+        reverseOrdering.max(arrayList);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax7() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        LinkedHashSet linkedHashSet = ((LinkedHashSet) createInstance("java.util.LinkedHashSet"));
+        HashMap hashMap = new HashMap();
+        setField(linkedHashSet, "map", hashMap);
+        
+        reverseOrdering.max(linkedHashSet);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax8() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering2, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering1, "forwardOrder", reverseOrdering2);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        
+        reverseOrdering.max(((Iterable) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax9() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        
+        reverseOrdering.max(((Iterator) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax10() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        Scanner scanner = ((Scanner) createInstance("java.util.Scanner"));
+        
+        reverseOrdering.max(scanner);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax11() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        Object object = new Object();
+        Object object1 = new Object();
+        Object object2 = new Object();
+        java.lang.Object[] objectArray = new java.lang.Object[0];
+        
+        reverseOrdering.max(object, object1, object2, objectArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax12() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        Byte byte1 = (byte) 0;
+        Integer integer = 0;
+        java.lang.Comparable[] comparableArray = new java.lang.Comparable[9];
+        
+        Comparable initialComparableArray0 = comparableArray[0];
+        Comparable initialComparableArray1 = comparableArray[1];
+        Comparable initialComparableArray2 = comparableArray[2];
+        Comparable initialComparableArray3 = comparableArray[3];
+        Comparable initialComparableArray4 = comparableArray[4];
+        Comparable initialComparableArray5 = comparableArray[5];
+        Comparable initialComparableArray6 = comparableArray[6];
+        Comparable initialComparableArray7 = comparableArray[7];
+        Comparable initialComparableArray8 = comparableArray[8];
+        
+        reverseOrdering.max(byte1, null, integer, comparableArray);
+        
+        Comparable finalComparableArray0 = comparableArray[0];
+        Comparable finalComparableArray1 = comparableArray[1];
+        Comparable finalComparableArray2 = comparableArray[2];
+        Comparable finalComparableArray3 = comparableArray[3];
+        Comparable finalComparableArray4 = comparableArray[4];
+        Comparable finalComparableArray5 = comparableArray[5];
+        Comparable finalComparableArray6 = comparableArray[6];
+        Comparable finalComparableArray7 = comparableArray[7];
+        Comparable finalComparableArray8 = comparableArray[8];
+        
+        assertNull(finalComparableArray0);
+        
+        assertNull(finalComparableArray1);
+        
+        assertNull(finalComparableArray2);
+        
+        assertNull(finalComparableArray3);
+        
+        assertNull(finalComparableArray4);
+        
+        assertNull(finalComparableArray5);
+        
+        assertNull(finalComparableArray6);
+        
+        assertNull(finalComparableArray7);
+        
+        assertNull(finalComparableArray8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMax13() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        java.security.spec.ECFieldF2m[] eCFieldF2mArray = new java.security.spec.ECFieldF2m[9];
+        jdk.internal.org.xml.sax.SAXParseException[] sAXParseExceptionArray = new jdk.internal.org.xml.sax.SAXParseException[9];
+        java.lang.Object[] operatorArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraint$Operator", 9);
+        
+        ECFieldF2m initialECFieldF2mArray0 = eCFieldF2mArray[0];
+        ECFieldF2m initialECFieldF2mArray1 = eCFieldF2mArray[1];
+        ECFieldF2m initialECFieldF2mArray2 = eCFieldF2mArray[2];
+        ECFieldF2m initialECFieldF2mArray3 = eCFieldF2mArray[3];
+        ECFieldF2m initialECFieldF2mArray4 = eCFieldF2mArray[4];
+        ECFieldF2m initialECFieldF2mArray5 = eCFieldF2mArray[5];
+        ECFieldF2m initialECFieldF2mArray6 = eCFieldF2mArray[6];
+        ECFieldF2m initialECFieldF2mArray7 = eCFieldF2mArray[7];
+        ECFieldF2m initialECFieldF2mArray8 = eCFieldF2mArray[8];
+        
+        SAXParseException initialSAXParseExceptionArray0 = sAXParseExceptionArray[0];
+        SAXParseException initialSAXParseExceptionArray1 = sAXParseExceptionArray[1];
+        SAXParseException initialSAXParseExceptionArray2 = sAXParseExceptionArray[2];
+        SAXParseException initialSAXParseExceptionArray3 = sAXParseExceptionArray[3];
+        SAXParseException initialSAXParseExceptionArray4 = sAXParseExceptionArray[4];
+        SAXParseException initialSAXParseExceptionArray5 = sAXParseExceptionArray[5];
+        SAXParseException initialSAXParseExceptionArray6 = sAXParseExceptionArray[6];
+        SAXParseException initialSAXParseExceptionArray7 = sAXParseExceptionArray[7];
+        SAXParseException initialSAXParseExceptionArray8 = sAXParseExceptionArray[8];
+        
+        Object initialOperatorArray0 = operatorArray[0];
+        Object initialOperatorArray1 = operatorArray[1];
+        Object initialOperatorArray2 = operatorArray[2];
+        Object initialOperatorArray3 = operatorArray[3];
+        Object initialOperatorArray4 = operatorArray[4];
+        Object initialOperatorArray5 = operatorArray[5];
+        Object initialOperatorArray6 = operatorArray[6];
+        Object initialOperatorArray7 = operatorArray[7];
+        Object initialOperatorArray8 = operatorArray[8];
+        
+        reverseOrdering.max(eCFieldF2mArray, sAXParseExceptionArray, operatorArray, ((java.lang.Object[]) null));
+        
+        ECFieldF2m finalECFieldF2mArray0 = eCFieldF2mArray[0];
+        ECFieldF2m finalECFieldF2mArray1 = eCFieldF2mArray[1];
+        ECFieldF2m finalECFieldF2mArray2 = eCFieldF2mArray[2];
+        ECFieldF2m finalECFieldF2mArray3 = eCFieldF2mArray[3];
+        ECFieldF2m finalECFieldF2mArray4 = eCFieldF2mArray[4];
+        ECFieldF2m finalECFieldF2mArray5 = eCFieldF2mArray[5];
+        ECFieldF2m finalECFieldF2mArray6 = eCFieldF2mArray[6];
+        ECFieldF2m finalECFieldF2mArray7 = eCFieldF2mArray[7];
+        ECFieldF2m finalECFieldF2mArray8 = eCFieldF2mArray[8];
+        
+        SAXParseException finalSAXParseExceptionArray0 = sAXParseExceptionArray[0];
+        SAXParseException finalSAXParseExceptionArray1 = sAXParseExceptionArray[1];
+        SAXParseException finalSAXParseExceptionArray2 = sAXParseExceptionArray[2];
+        SAXParseException finalSAXParseExceptionArray3 = sAXParseExceptionArray[3];
+        SAXParseException finalSAXParseExceptionArray4 = sAXParseExceptionArray[4];
+        SAXParseException finalSAXParseExceptionArray5 = sAXParseExceptionArray[5];
+        SAXParseException finalSAXParseExceptionArray6 = sAXParseExceptionArray[6];
+        SAXParseException finalSAXParseExceptionArray7 = sAXParseExceptionArray[7];
+        SAXParseException finalSAXParseExceptionArray8 = sAXParseExceptionArray[8];
+        
+        Object finalOperatorArray0 = operatorArray[0];
+        Object finalOperatorArray1 = operatorArray[1];
+        Object finalOperatorArray2 = operatorArray[2];
+        Object finalOperatorArray3 = operatorArray[3];
+        Object finalOperatorArray4 = operatorArray[4];
+        Object finalOperatorArray5 = operatorArray[5];
+        Object finalOperatorArray6 = operatorArray[6];
+        Object finalOperatorArray7 = operatorArray[7];
+        Object finalOperatorArray8 = operatorArray[8];
+        
+        assertNull(finalECFieldF2mArray0);
+        
+        assertNull(finalECFieldF2mArray1);
+        
+        assertNull(finalECFieldF2mArray2);
+        
+        assertNull(finalECFieldF2mArray3);
+        
+        assertNull(finalECFieldF2mArray4);
+        
+        assertNull(finalECFieldF2mArray5);
+        
+        assertNull(finalECFieldF2mArray6);
+        
+        assertNull(finalECFieldF2mArray7);
+        
+        assertNull(finalECFieldF2mArray8);
+        
+        assertNull(finalSAXParseExceptionArray0);
+        
+        assertNull(finalSAXParseExceptionArray1);
+        
+        assertNull(finalSAXParseExceptionArray2);
+        
+        assertNull(finalSAXParseExceptionArray3);
+        
+        assertNull(finalSAXParseExceptionArray4);
+        
+        assertNull(finalSAXParseExceptionArray5);
+        
+        assertNull(finalSAXParseExceptionArray6);
+        
+        assertNull(finalSAXParseExceptionArray7);
+        
+        assertNull(finalSAXParseExceptionArray8);
+        
+        assertNull(finalOperatorArray0);
+        
+        assertNull(finalOperatorArray1);
+        
+        assertNull(finalOperatorArray2);
+        
+        assertNull(finalOperatorArray3);
+        
+        assertNull(finalOperatorArray4);
+        
+        assertNull(finalOperatorArray5);
+        
+        assertNull(finalOperatorArray6);
+        
+        assertNull(finalOperatorArray7);
+        
+        assertNull(finalOperatorArray8);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testIntMath1() throws Throwable  {
-        Class intMathClazz = Class.forName("com.google.common.math.IntMath");
-        Constructor intMathConstructor = intMathClazz.getDeclaredConstructor();
-        intMathConstructor.setAccessible(true);
-        java.lang.Object[] intMathConstructorArguments = new java.lang.Object[0];
-        IntMath actual = ((IntMath) intMathConstructor.newInstance(intMathConstructorArguments));
+    public void testReverse1() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        
+        Ordering actual = reverseOrdering.reverse();
+        
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testIntMath2() throws Throwable  {
-        Class intMathClazz = Class.forName("com.google.common.math.IntMath");
-        Constructor intMathConstructor = intMathClazz.getDeclaredConstructor();
-        intMathConstructor.setAccessible(true);
-        java.lang.Object[] intMathConstructorArguments = new java.lang.Object[0];
-        IntMath actual = ((IntMath) intMathConstructor.newInstance(intMathConstructorArguments));
+    public void testReverse2() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        Ordering.ArbitraryOrdering arbitraryOrdering = ((Ordering.ArbitraryOrdering) createInstance("com.google.common.collect.Ordering$ArbitraryOrdering"));
+        setField(reverseOrdering, "forwardOrder", arbitraryOrdering);
+        
+        Ordering actual = reverseOrdering.reverse();
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(arbitraryOrdering, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReverseOrdering1() {
+        new ReverseOrdering(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testReverseOrdering2() throws Throwable  {
+        NaturalOrdering naturalOrdering = ((NaturalOrdering) createInstance("com.google.common.collect.NaturalOrdering"));
+        ReverseOrdering actual = new ReverseOrdering(naturalOrdering);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReverseOrdering3() {
+        new ReverseOrdering(null);
     }
     ///endregion
     
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
+        Class<?> clazz = object.getClass();
+        java.lang.reflect.Field field;
+    
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+            } catch (Exception e) {
+                clazz = clazz.getSuperclass();
+                field = null;
+            }
+        } while (field == null);
+        
+        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(object, fieldValue);
+    }
+    static class FieldsPair {
+        final Object o1;
+        final Object o2;
+    
+        public FieldsPair(Object o1, Object o2) {
+            this.o1 = o1;
+            this.o2 = o2;
+        }
+    
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            FieldsPair that = (FieldsPair) o;
+            return Objects.equals(o1, that.o1) && Objects.equals(o2, that.o2);
+        }
+    
+        @Override
+        public int hashCode() {
+            return Objects.hash(o1, o2);
+        }
+    }
+    
+    private boolean deepEquals(Object o1, Object o2) {
+        try {
+            return deepEquals(o1, o2, new HashSet<>());
+        } catch (Throwable t) {
+            return true;
+        }
+    }
+    
+    private boolean deepEquals(Object o1, Object o2, Set<FieldsPair> visited) {
+        visited.add(new FieldsPair(o1, o2));
+    
+        if (o1 == o2) {
+            return true;
+        }
+    
+        if (o1 == null || o2 == null) {
+            return false;
+        }
+    
+        if (o1 instanceof Iterable) {
+            if (!(o2 instanceof Iterable)) {
+                return false;
+            }
+    
+            return iterablesDeepEquals((Iterable<?>) o1, (Iterable<?>) o2, visited);
+        }
+        
+        if (o2 instanceof Iterable) {
+            return false;
+        }
+    
+        if (o1 instanceof Map) {
+            if (!(o2 instanceof Map)) {
+                return false;
+            }
+    
+            return mapsDeepEquals((Map<?, ?>) o1, (Map<?, ?>) o2, visited);
+        }
+        
+        if (o2 instanceof Map) {
+            return false;
+        }
+    
+        Class<?> firstClass = o1.getClass();
+        if (firstClass.isArray()) {
+            if (!o2.getClass().isArray()) {
+                return false;
+            }
+    
+            // Primitive arrays should not appear here
+            return arraysDeepEquals(o1, o2, visited);
+        }
+    
+        // common classes
+    
+        // common classes without custom equals, use comparison by fields
+        final List<java.lang.reflect.Field> fields = new ArrayList<>();
+        while (firstClass != Object.class) {
+            fields.addAll(Arrays.asList(firstClass.getDeclaredFields()));
+            // Interface should not appear here
+            firstClass = firstClass.getSuperclass();
+        }
+    
+        for (java.lang.reflect.Field field : fields) {
+            field.setAccessible(true);
+            try {
+                final Object field1 = field.get(o1);
+                final Object field2 = field.get(o2);
+                if (!visited.contains(new FieldsPair(field1, field2)) && !deepEquals(field1, field2, visited)) {
+                    return false;
+                }
+            } catch (IllegalArgumentException e) {
+                return false;
+            } catch (IllegalAccessException e) {
+                // should never occur because field was set accessible
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    private boolean arraysDeepEquals(Object arr1, Object arr2, Set<FieldsPair> visited) {
+        final int length = Array.getLength(arr1);
+        if (length != Array.getLength(arr2)) {
+            return false;
+        }
+    
+        for (int i = 0; i < length; i++) {
+            if (!deepEquals(Array.get(arr1, i), Array.get(arr2, i), visited)) {
+                return false;
+            }
+        }
+    
+        return true;
+    }
+    private boolean iterablesDeepEquals(Iterable<?> i1, Iterable<?> i2, Set<FieldsPair> visited) {
+        final Iterator<?> firstIterator = i1.iterator();
+        final Iterator<?> secondIterator = i2.iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    private boolean mapsDeepEquals(Map<?, ?> m1, Map<?, ?> m2, Set<FieldsPair> visited) {
+        final Iterator<? extends Map.Entry<?, ?>> firstIterator = m1.entrySet().iterator();
+        final Iterator<? extends Map.Entry<?, ?>> secondIterator = m2.entrySet().iterator();
+        while (firstIterator.hasNext() && secondIterator.hasNext()) {
+            final Map.Entry<?, ?> firstEntry = firstIterator.next();
+            final Map.Entry<?, ?> secondEntry = secondIterator.next();
+    
+            if (!deepEquals(firstEntry.getKey(), secondEntry.getKey(), visited)) {
+                return false;
+            }
+    
+            if (!deepEquals(firstEntry.getValue(), secondEntry.getValue(), visited)) {
+                return false;
+            }
+        }
+    
+        if (firstIterator.hasNext()) {
+            return false;
+        }
+    
+        return !secondIterator.hasNext();
+    }
+    private boolean hasCustomEquals(Class<?> clazz) {
+        while (!Object.class.equals(clazz)) {
+            try {
+                clazz.getDeclaredMethod("equals", Object.class);
+                return true;
+            } catch (Exception e) { 
+                // Interface should not appear here
+                clazz = clazz.getSuperclass();
+            }
+        }
+    
+        return false;
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

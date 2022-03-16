@@ -83,9 +83,9 @@ import sun.security.x509.NetscapeCertTypeExtension;
 import sun.security.x509.SubjectAlternativeNameExtension;
 import sun.security.x509.SubjectKeyIdentifierExtension;
 import java.security.Timestamp;
-import java.util.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.lang.reflect.Method;
 import com.alibaba.fastjson.util.IdentityHashMap;
 import com.alibaba.fastjson.util.FieldInfo;
@@ -102,10 +102,10 @@ import java.util.Arrays;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static java.lang.reflect.Array.get;
 
 public class JSONSerializerTest {
@@ -118,7 +118,7 @@ public class JSONSerializerTest {
         Object object = new Object();
         Object object1 = new Object();
         
-        jSONSerializer.setContext(serialContext, object, object1, 0);
+        jSONSerializer.setContext(serialContext, object, object1, 0, 0);
     }
     ///endregion
     
@@ -138,39 +138,16 @@ public class JSONSerializerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testPopContext1() throws Throwable  {
-        JSONSerializer jSONSerializer = new JSONSerializer();
-        
-        jSONSerializer.popContext();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPopContext2() throws Throwable  {
+    public void testGetMapping2() throws Throwable  {
         JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        setField(jSONSerializer, "context", null);
+        SerializeConfig serializeConfig = ((SerializeConfig) createInstance("com.alibaba.fastjson.serializer.SerializeConfig"));
+        setField(jSONSerializer, "config", serializeConfig);
         
-        jSONSerializer.popContext();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPopContext3() throws Throwable  {
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        SerialContext serialContext = ((SerialContext) createInstance("com.alibaba.fastjson.serializer.SerialContext"));
-        jSONSerializer.context = serialContext;
+        SerializeConfig actual = jSONSerializer.getMapping();
         
-        SerialContext initialJSONSerializerContext = jSONSerializer.context;
         
-        jSONSerializer.popContext();
-        
-        SerialContext finalJSONSerializerContext = jSONSerializer.context;
-        
-        assertNull(finalJSONSerializerContext);
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(serializeConfig, actual));
     }
     ///endregion
     
@@ -209,142 +186,36 @@ public class JSONSerializerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testConfig1() throws Throwable  {
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
-        serializeWriter.features = 0;
-        setField(jSONSerializer, "out", serializeWriter);
-        SerializerFeature serializerFeature = SerializerFeature.QuoteFieldNames;
+    public void testGetIndentCount1() throws Throwable  {
+        JSONSerializer jSONSerializer = new JSONSerializer();
         
-        jSONSerializer.config(serializerFeature, false);
+        int actual = jSONSerializer.getIndentCount();
+        
+        assertEquals(0, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetDateFormatPattern1() throws Throwable  {
-        JSONSerializer jSONSerializer = new JSONSerializer();
-        
-        String actual = jSONSerializer.getDateFormatPattern();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testWriteReference1() throws Throwable  {
+    public void testWriteWithFieldName1() throws Throwable  {
         JSONSerializer jSONSerializer = new JSONSerializer();
         Object object = new Object();
+        Object object1 = new Object();
         
-        jSONSerializer.writeReference(object);
+        jSONSerializer.writeWithFieldName(object, object1);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testIsWriteClassName1() throws Throwable  {
+    public void testWriteWithFieldName2() throws Throwable  {
         JSONSerializer jSONSerializer = new JSONSerializer();
         Object object = new Object();
+        Object object1 = new Object();
         
-        boolean actual = jSONSerializer.isWriteClassName(null, object);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testContainsReference1() throws Throwable  {
-        JSONSerializer jSONSerializer = new JSONSerializer();
-        Object object = new Object();
-        
-        boolean actual = jSONSerializer.containsReference(object);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testContainsReference2() throws Throwable  {
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        setField(jSONSerializer, "references", null);
-        
-        boolean actual = jSONSerializer.containsReference(null);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasPropertyFilters1() throws Throwable  {
-        JSONSerializer jSONSerializer = new JSONSerializer();
-        
-        jSONSerializer.hasPropertyFilters(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasPropertyFilters2() throws Throwable  {
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        setField(jSONSerializer, "propertyFilters", null);
-        
-        List initialJSONSerializerPropertyFilters = jSONSerializer.propertyFilters;
-        
-        jSONSerializer.hasPropertyFilters(null);
-        
-        List finalJSONSerializerPropertyFilters = jSONSerializer.propertyFilters;
-        
-        assertNull(finalJSONSerializerPropertyFilters);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testHasPropertyFilters3() throws Throwable  {
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        ArrayList arrayList = new ArrayList();
-        setField(jSONSerializer, "propertyFilters", arrayList);
-        
-        jSONSerializer.hasPropertyFilters(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHasPropertyFilters4() throws Throwable  {
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        setField(jSONSerializer, "propertyFilters", null);
-        JSONSerializer jSONSerializer1 = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        setField(jSONSerializer1, "propertyFilters", null);
-        
-        List initialJSONSerializerPropertyFilters = jSONSerializer.propertyFilters;
-        
-        List initialJSONSerializer1PropertyFilters = jSONSerializer1.propertyFilters;
-        
-        boolean actual = jSONSerializer.hasPropertyFilters(jSONSerializer1);
-        
-        assertFalse(actual);
-        
-        List finalJSONSerializerPropertyFilters = jSONSerializer.propertyFilters;
-        
-        List finalJSONSerializer1PropertyFilters = jSONSerializer1.propertyFilters;
-        
-        assertNull(finalJSONSerializerPropertyFilters);
-        
-        assertNull(finalJSONSerializer1PropertyFilters);
+        jSONSerializer.writeWithFieldName(object, object1, null, 0);
     }
     ///endregion
     
@@ -362,47 +233,10 @@ public class JSONSerializerTest {
     
     @Test(timeout = 10000)
     public void testSetDateFormat2() throws Throwable  {
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        setField(jSONSerializer, "dateFormat", null);
-        setField(jSONSerializer, "dateFormatPattern", null);
-        
-        jSONSerializer.setDateFormat(((DateFormat) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetDateFormat3() throws Throwable  {
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        setField(jSONSerializer, "dateFormat", null);
-        String string = new String("");
-        setField(jSONSerializer, "dateFormatPattern", string);
-        
-        jSONSerializer.setDateFormat(((DateFormat) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetDateFormat4() throws Throwable  {
         JSONSerializer jSONSerializer = new JSONSerializer();
         String string = new String();
         
         jSONSerializer.setDateFormat(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetDateFormat5() throws Throwable  {
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        setField(jSONSerializer, "dateFormat", null);
-        setField(jSONSerializer, "dateFormatPattern", null);
-        
-        jSONSerializer.setDateFormat(((String) null));
     }
     ///endregion
     
@@ -445,6 +279,30 @@ public class JSONSerializerTest {
         DateFormat actual = jSONSerializer.getDateFormat();
         
         assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWriteReference1() throws Throwable  {
+        JSONSerializer jSONSerializer = new JSONSerializer();
+        Object object = new Object();
+        
+        jSONSerializer.writeReference(object);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsWriteClassName1() throws Throwable  {
+        JSONSerializer jSONSerializer = new JSONSerializer();
+        Object object = new Object();
+        
+        boolean actual = jSONSerializer.isWriteClassName(null, object);
+        
+        assertFalse(actual);
     }
     ///endregion
     
@@ -526,26 +384,13 @@ public class JSONSerializerTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testGetIndentCount1() throws Throwable  {
-        JSONSerializer jSONSerializer = new JSONSerializer();
-        
-        int actual = jSONSerializer.getIndentCount();
-        
-        assertEquals(0, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetIndentCount2() throws Throwable  {
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHasNameFilters5() throws Throwable  {
         JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        setField(jSONSerializer, "indentCount", 0);
+        ArrayList arrayList = new ArrayList();
+        setField(jSONSerializer, "nameFilters", arrayList);
         
-        int actual = jSONSerializer.getIndentCount();
-        
-        assertEquals(0, actual);
+        jSONSerializer.hasNameFilters(null);
     }
     ///endregion
     
@@ -665,26 +510,6 @@ public class JSONSerializerTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testWriteNull2() throws Throwable  {
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
-        SerializeWriter serializeWriter1 = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
-        setField(serializeWriter1, "writer", serializeWriter);
-        serializeWriter1.count = 2;
-        setField(serializeWriter1, "buf", serializeWriter);
-        setField(serializeWriter, "writer", serializeWriter1);
-        serializeWriter.count = 2147483141;
-        char[] charArray = new char[0];
-        serializeWriter.buf = charArray;
-        setField(jSONSerializer, "out", serializeWriter);
-        
-        jSONSerializer.writeNull();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testWriteNull3() throws Throwable  {
         JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
         SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
         serializeWriter.count = -507;
@@ -846,35 +671,92 @@ public class JSONSerializerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testWriteWithFieldName1() throws Throwable  {
+    public void testContainsReference1() throws Throwable  {
         JSONSerializer jSONSerializer = new JSONSerializer();
         Object object = new Object();
-        Object object1 = new Object();
         
-        jSONSerializer.writeWithFieldName(object, object1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testWriteWithFieldName2() throws Throwable  {
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        java.lang.Object[] sunEntriesArray = createArray("sun.security.provider.SunEntries", 0);
+        boolean actual = jSONSerializer.containsReference(object);
         
-        jSONSerializer.writeWithFieldName(null, sunEntriesArray);
+        assertFalse(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testWriteWithFieldName3() throws Throwable  {
-        JSONSerializer jSONSerializer = new JSONSerializer();
-        Object object = new Object();
-        Object object1 = new Object();
+    public void testContainsReference2() throws Throwable  {
+        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+        setField(jSONSerializer, "references", null);
         
-        jSONSerializer.writeWithFieldName(object, object1, null, 0);
+        boolean actual = jSONSerializer.containsReference(null);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHasPropertyFilters1() throws Throwable  {
+        JSONSerializer jSONSerializer = new JSONSerializer();
+        
+        jSONSerializer.hasPropertyFilters(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHasPropertyFilters2() throws Throwable  {
+        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+        setField(jSONSerializer, "propertyFilters", null);
+        
+        List initialJSONSerializerPropertyFilters = jSONSerializer.propertyFilters;
+        
+        jSONSerializer.hasPropertyFilters(null);
+        
+        List finalJSONSerializerPropertyFilters = jSONSerializer.propertyFilters;
+        
+        assertNull(finalJSONSerializerPropertyFilters);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testHasPropertyFilters3() throws Throwable  {
+        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+        setField(jSONSerializer, "propertyFilters", null);
+        JSONSerializer jSONSerializer1 = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+        setField(jSONSerializer1, "propertyFilters", null);
+        
+        List initialJSONSerializerPropertyFilters = jSONSerializer.propertyFilters;
+        
+        List initialJSONSerializer1PropertyFilters = jSONSerializer1.propertyFilters;
+        
+        boolean actual = jSONSerializer.hasPropertyFilters(jSONSerializer1);
+        
+        assertFalse(actual);
+        
+        List finalJSONSerializerPropertyFilters = jSONSerializer.propertyFilters;
+        
+        List finalJSONSerializer1PropertyFilters = jSONSerializer1.propertyFilters;
+        
+        assertNull(finalJSONSerializerPropertyFilters);
+        
+        assertNull(finalJSONSerializer1PropertyFilters);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetDateFormatPattern1() throws Throwable  {
+        JSONSerializer jSONSerializer = new JSONSerializer();
+        
+        String actual = jSONSerializer.getDateFormatPattern();
+        
+        assertNull(actual);
     }
     ///endregion
     
@@ -939,8 +821,69 @@ public class JSONSerializerTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testWrite3() throws Throwable  {
+        StringCodec prevInstance = StringCodec.instance;
+        try {
+            StringCodec instance = ((StringCodec) createInstance("com.alibaba.fastjson.serializer.StringCodec"));
+            StringCodec.instance = instance;
+            JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+            SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
+            serializeWriter.useSingleQuotes = true;
+            setField(jSONSerializer, "out", serializeWriter);
+            String string = new String("");
+            
+            jSONSerializer.write(string);
+        } finally {
+            StringCodec.instance = prevInstance;
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite4() throws Throwable  {
+        StringCodec prevInstance = StringCodec.instance;
+        try {
+            StringCodec instance = ((StringCodec) createInstance("com.alibaba.fastjson.serializer.StringCodec"));
+            StringCodec.instance = instance;
+            JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+            SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
+            serializeWriter.useSingleQuotes = false;
+            setField(jSONSerializer, "out", serializeWriter);
+            String string = new String("");
+            
+            jSONSerializer.write(string);
+        } finally {
+            StringCodec.instance = prevInstance;
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite5() throws Throwable  {
+        StringCodec prevInstance = StringCodec.instance;
+        try {
+            StringCodec instance = ((StringCodec) createInstance("com.alibaba.fastjson.serializer.StringCodec"));
+            StringCodec.instance = instance;
+            JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+            SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
+            setField(jSONSerializer, "out", serializeWriter);
+            
+            jSONSerializer.write(((String) null));
+        } finally {
+            StringCodec.instance = prevInstance;
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testWrite6() throws Throwable  {
         JSONSerializer jSONSerializer = new JSONSerializer();
         Object object = new Object();
         
@@ -992,7 +935,7 @@ public class JSONSerializerTest {
         PrintWriter printWriter = ((PrintWriter) createInstance("java.io.PrintWriter"));
         setField(serializeWriter, "writer", printWriter);
         serializeWriter.count = -2143289344;
-        char[] charArray = new char[9];
+        char[] charArray = new char[10];
         serializeWriter.buf = charArray;
         setField(jSONSerializer, "out", serializeWriter);
         
@@ -1023,7 +966,7 @@ public class JSONSerializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testWrite4() throws Throwable  {
+    public void testWrite7() throws Throwable  {
         Object object = new Object();
         
         JSONSerializer.write(((Writer) null), object);
@@ -1033,7 +976,7 @@ public class JSONSerializerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testWrite5() throws Throwable  {
+    public void testWrite8() throws Throwable  {
         SerializeWriter serializeWriter = new SerializeWriter();
         Object object = new Object();
         

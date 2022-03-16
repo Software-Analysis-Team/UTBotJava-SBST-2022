@@ -1,15 +1,15 @@
 package com.alibaba.fastjson.serializer;
 
 import org.junit.Test;
+import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
 import java.lang.reflect.Method;
 import com.alibaba.fastjson.parser.DefaultJSONParser;
 import com.alibaba.fastjson.parser.JSONScanner;
 import com.alibaba.fastjson.parser.JSONLexer;
 import java.awt.Font;
-import com.alibaba.fastjson.parser.JSONReaderScanner;
 import java.awt.Color;
 import java.awt.Rectangle;
-import java.time.chrono.ThaiBuddhistChronology;
+import com.alibaba.fastjson.parser.JSONReaderScanner;
 import java.awt.Point;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -33,8 +33,9 @@ public class AwtCodecTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDeserialze1() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
         
-        awtCodec.deserialze(null, null, null);
+        awtCodec.deserialze(null, typeVariableImpl, null);
     }
     ///endregion
     
@@ -78,7 +79,7 @@ public class AwtCodecTest {
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", 't');
+        setField(jSONScanner, "ch", ']');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
         setField(jSONScanner, "len", 1);
@@ -117,9 +118,10 @@ public class AwtCodecTest {
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\r');
+        setField(jSONScanner, "ch", ' ');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -155,9 +157,55 @@ public class AwtCodecTest {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "hasSpecial", false);
+        setField(jSONScanner, "np", 0);
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", 'u');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseFontMethod = awtCodecClazz.getDeclaredMethod("parseFont", defaultJSONParserType);
+        parseFontMethod.setAccessible(true);
+        java.lang.Object[] parseFontMethodArguments = new java.lang.Object[1];
+        parseFontMethodArguments[0] = defaultJSONParser;
+        try {
+            parseFontMethod.invoke(awtCodec, parseFontMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerNp = getFieldValue(jSONLexer, "np");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer1, "sp");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer2, "bp");
+        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer3, "ch");
+        
+        assertEquals(-1, finalDefaultJSONParserLexerNp);
+        
+        assertEquals(1, finalDefaultJSONParserLexerSp);
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseFont5() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", ']');
+        setField(jSONScanner, "ch", ',');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
         setField(jSONScanner, "len", 1);
@@ -189,43 +237,17 @@ public class AwtCodecTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseFont5() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\'');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseFontMethod = awtCodecClazz.getDeclaredMethod("parseFont", defaultJSONParserType);
-        parseFontMethod.setAccessible(true);
-        java.lang.Object[] parseFontMethodArguments = new java.lang.Object[1];
-        parseFontMethodArguments[0] = defaultJSONParser;
-        try {
-            parseFontMethod.invoke(awtCodec, parseFontMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
+    @Test(timeout = 10000)
     public void testParseFont6() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 'n');
+        setField(jSONScanner, "ch", '}');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -234,11 +256,29 @@ public class AwtCodecTest {
         parseFontMethod.setAccessible(true);
         java.lang.Object[] parseFontMethodArguments = new java.lang.Object[1];
         parseFontMethodArguments[0] = defaultJSONParser;
-        try {
-            parseFontMethod.invoke(awtCodec, parseFontMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
+        Font actual = ((Font) parseFontMethod.invoke(awtCodec, parseFontMethodArguments));
+        
+        Font expected = ((Font) createInstance("java.awt.Font"));
+        setField(expected, "fRequestedAttributes", null);
+        String string = new String("Default");
+        setField(expected, "name", string);
+        setField(expected, "style", 0);
+        setField(expected, "size", 0);
+        setField(expected, "pointSize", 0.0f);
+        setField(expected, "peer", null);
+        setField(expected, "pData", 0L);
+        setField(expected, "font2DHandle", null);
+        setField(expected, "values", null);
+        setField(expected, "hasLayoutAttributes", false);
+        setField(expected, "createdFont", false);
+        setField(expected, "nonIdentityTx", false);
+        setField(expected, "hash", 0);
+        setField(expected, "fontSerializedDataVersion", 1);
+        setField(expected, "flmref", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
         JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
@@ -259,10 +299,9 @@ public class AwtCodecTest {
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '[');
+        setField(jSONScanner, "ch", ')');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -305,7 +344,7 @@ public class AwtCodecTest {
         
         assertEquals('\u001A', finalDefaultJSONParserLexerCh);
         
-        assertEquals(14, finalDefaultJSONParserLexerToken);
+        assertEquals(11, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
@@ -317,13 +356,11 @@ public class AwtCodecTest {
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", 'f');
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", 't');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
+        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -340,24 +377,63 @@ public class AwtCodecTest {
         JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
         
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        assertEquals(1, finalDefaultJSONParserLexerBp);
         
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseFont9() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "hasSpecial", false);
+        setField(jSONScanner, "np", 0);
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '\"');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseFontMethod = awtCodecClazz.getDeclaredMethod("parseFont", defaultJSONParserType);
+        parseFontMethod.setAccessible(true);
+        java.lang.Object[] parseFontMethodArguments = new java.lang.Object[1];
+        parseFontMethodArguments[0] = defaultJSONParser;
+        try {
+            parseFontMethod.invoke(awtCodec, parseFontMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testParseFont9() throws Throwable  {
+    public void testParseFont10() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ']');
+        setField(jSONScanner, "ch", ';');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
         setField(jSONScanner, "len", 0);
@@ -403,211 +479,20 @@ public class AwtCodecTest {
         
         assertEquals('\u001A', finalDefaultJSONParserLexerCh);
         
-        assertEquals(15, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testParseFont10() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '2');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseFontMethod = awtCodecClazz.getDeclaredMethod("parseFont", defaultJSONParserType);
-        parseFontMethod.setAccessible(true);
-        java.lang.Object[] parseFontMethodArguments = new java.lang.Object[1];
-        parseFontMethodArguments[0] = defaultJSONParser;
-        Font actual = ((Font) parseFontMethod.invoke(awtCodec, parseFontMethodArguments));
-        
-        Font expected = ((Font) createInstance("java.awt.Font"));
-        setField(expected, "fRequestedAttributes", null);
-        String string = new String("Default");
-        setField(expected, "name", string);
-        setField(expected, "style", 0);
-        setField(expected, "size", 0);
-        setField(expected, "pointSize", 0.0f);
-        setField(expected, "peer", null);
-        setField(expected, "pData", 0L);
-        setField(expected, "font2DHandle", null);
-        setField(expected, "values", null);
-        setField(expected, "hasLayoutAttributes", false);
-        setField(expected, "createdFont", false);
-        setField(expected, "nonIdentityTx", false);
-        setField(expected, "hash", 0);
-        setField(expected, "fontSerializedDataVersion", 1);
-        setField(expected, "flmref", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(2, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testParseFont11() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '-');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseFontMethod = awtCodecClazz.getDeclaredMethod("parseFont", defaultJSONParserType);
-        parseFontMethod.setAccessible(true);
-        java.lang.Object[] parseFontMethodArguments = new java.lang.Object[1];
-        parseFontMethodArguments[0] = defaultJSONParser;
-        Font actual = ((Font) parseFontMethod.invoke(awtCodec, parseFontMethodArguments));
-        
-        Font expected = ((Font) createInstance("java.awt.Font"));
-        setField(expected, "fRequestedAttributes", null);
-        String string = new String("Default");
-        setField(expected, "name", string);
-        setField(expected, "style", 0);
-        setField(expected, "size", 0);
-        setField(expected, "pointSize", 0.0f);
-        setField(expected, "peer", null);
-        setField(expected, "pData", 0L);
-        setField(expected, "font2DHandle", null);
-        setField(expected, "values", null);
-        setField(expected, "hasLayoutAttributes", false);
-        setField(expected, "createdFont", false);
-        setField(expected, "nonIdentityTx", false);
-        setField(expected, "hash", 0);
-        setField(expected, "fontSerializedDataVersion", 1);
-        setField(expected, "flmref", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(2, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testParseFont12() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 1);
-        setField(jSONScanner, "ch", '<');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseFontMethod = awtCodecClazz.getDeclaredMethod("parseFont", defaultJSONParserType);
-        parseFontMethod.setAccessible(true);
-        java.lang.Object[] parseFontMethodArguments = new java.lang.Object[1];
-        parseFontMethodArguments[0] = defaultJSONParser;
-        Font actual = ((Font) parseFontMethod.invoke(awtCodec, parseFontMethodArguments));
-        
-        Font expected = ((Font) createInstance("java.awt.Font"));
-        setField(expected, "fRequestedAttributes", null);
-        String string = new String("Default");
-        setField(expected, "name", string);
-        setField(expected, "style", 0);
-        setField(expected, "size", 0);
-        setField(expected, "pointSize", 0.0f);
-        setField(expected, "peer", null);
-        setField(expected, "pData", 0L);
-        setField(expected, "font2DHandle", null);
-        setField(expected, "values", null);
-        setField(expected, "hasLayoutAttributes", false);
-        setField(expected, "createdFont", false);
-        setField(expected, "nonIdentityTx", false);
-        setField(expected, "hash", 0);
-        setField(expected, "fontSerializedDataVersion", 1);
-        setField(expected, "flmref", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer2, "pos");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
-        
-        assertEquals(2, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(1, finalDefaultJSONParserLexerPos);
-        
-        assertEquals(1, finalDefaultJSONParserLexerToken);
+        assertEquals(24, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseFont13() throws Throwable  {
+    public void testParseFont11() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '}');
+        setField(jSONScanner, "ch", '/');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
         setField(jSONScanner, "len", 1);
@@ -634,6 +519,196 @@ public class AwtCodecTest {
         assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
         
         assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParseFont12() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "np", 0);
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '2');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseFontMethod = awtCodecClazz.getDeclaredMethod("parseFont", defaultJSONParserType);
+        parseFontMethod.setAccessible(true);
+        java.lang.Object[] parseFontMethodArguments = new java.lang.Object[1];
+        parseFontMethodArguments[0] = defaultJSONParser;
+        Font actual = ((Font) parseFontMethod.invoke(awtCodec, parseFontMethodArguments));
+        
+        Font expected = ((Font) createInstance("java.awt.Font"));
+        setField(expected, "fRequestedAttributes", null);
+        String string = new String("Default");
+        setField(expected, "name", string);
+        setField(expected, "style", 0);
+        setField(expected, "size", 0);
+        setField(expected, "pointSize", 0.0f);
+        setField(expected, "peer", null);
+        setField(expected, "pData", 0L);
+        setField(expected, "font2DHandle", null);
+        setField(expected, "values", null);
+        setField(expected, "hasLayoutAttributes", false);
+        setField(expected, "createdFont", false);
+        setField(expected, "nonIdentityTx", false);
+        setField(expected, "hash", 0);
+        setField(expected, "fontSerializedDataVersion", 1);
+        setField(expected, "flmref", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
+        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerSp);
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(2, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParseFont13() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '\u0000');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseFontMethod = awtCodecClazz.getDeclaredMethod("parseFont", defaultJSONParserType);
+        parseFontMethod.setAccessible(true);
+        java.lang.Object[] parseFontMethodArguments = new java.lang.Object[1];
+        parseFontMethodArguments[0] = defaultJSONParser;
+        Font actual = ((Font) parseFontMethod.invoke(awtCodec, parseFontMethodArguments));
+        
+        Font expected = ((Font) createInstance("java.awt.Font"));
+        setField(expected, "fRequestedAttributes", null);
+        String string = new String("Default");
+        setField(expected, "name", string);
+        setField(expected, "style", 0);
+        setField(expected, "size", 0);
+        setField(expected, "pointSize", 0.0f);
+        setField(expected, "peer", null);
+        setField(expected, "pData", 0L);
+        setField(expected, "font2DHandle", null);
+        setField(expected, "values", null);
+        setField(expected, "hasLayoutAttributes", false);
+        setField(expected, "createdFont", false);
+        setField(expected, "nonIdentityTx", false);
+        setField(expected, "hash", 0);
+        setField(expected, "fontSerializedDataVersion", 1);
+        setField(expected, "flmref", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
+        
+        assertEquals(20, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseFont14() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", '+');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseFontMethod = awtCodecClazz.getDeclaredMethod("parseFont", defaultJSONParserType);
+        parseFontMethod.setAccessible(true);
+        java.lang.Object[] parseFontMethodArguments = new java.lang.Object[1];
+        parseFontMethodArguments[0] = defaultJSONParser;
+        try {
+            parseFontMethod.invoke(awtCodec, parseFontMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
+        
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseFont15() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '/');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseFontMethod = awtCodecClazz.getDeclaredMethod("parseFont", defaultJSONParserType);
+        parseFontMethod.setAccessible(true);
+        java.lang.Object[] parseFontMethodArguments = new java.lang.Object[1];
+        parseFontMethodArguments[0] = defaultJSONParser;
+        try {
+            parseFontMethod.invoke(awtCodec, parseFontMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
     }
     ///endregion
     
@@ -662,13 +737,18 @@ public class AwtCodecTest {
     public void testParseColor2() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "sp", 0);
-        setField(jSONReaderScanner, "bp", 0);
-        setField(jSONReaderScanner, "ch", '{');
-        setField(jSONReaderScanner, "pos", 0);
-        setField(jSONReaderScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "hasSpecial", false);
+        setField(jSONScanner, "np", 0);
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", 'S');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
         Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
@@ -680,7 +760,24 @@ public class AwtCodecTest {
             parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }}
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerNp = getFieldValue(jSONLexer, "np");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer1, "sp");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer2, "bp");
+        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer3, "pos");
+        
+        assertEquals(2147483646, finalDefaultJSONParserLexerNp);
+        
+        assertEquals(1, finalDefaultJSONParserLexerSp);
+        
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+    }
     ///endregion
     
     ///region
@@ -694,10 +791,9 @@ public class AwtCodecTest {
         setField(jSONScanner, "np", 0);
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 'T');
+        setField(jSONScanner, "ch", 'N');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -732,17 +828,19 @@ public class AwtCodecTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testParseColor4() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ',');
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", ' ');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -751,30 +849,19 @@ public class AwtCodecTest {
         parseColorMethod.setAccessible(true);
         java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
         parseColorMethodArguments[0] = defaultJSONParser;
-        Color actual = ((Color) parseColorMethod.invoke(awtCodec, parseColorMethodArguments));
-        
-        Color expected = ((Color) createInstance("java.awt.Color"));
-        setField(expected, "value", 0);
-        setField(expected, "frgbvalue", null);
-        setField(expected, "fvalue", null);
-        setField(expected, "falpha", 0.0f);
-        setField(expected, "cs", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
+        try {
+            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
         JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
         
-        assertEquals(1, finalDefaultJSONParserLexerBp);
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
         
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(16, finalDefaultJSONParserLexerToken);
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
     }
     ///endregion
     
@@ -787,7 +874,7 @@ public class AwtCodecTest {
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '.');
+        setField(jSONScanner, "ch", ':');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
         setField(jSONScanner, "len", 1);
@@ -826,10 +913,46 @@ public class AwtCodecTest {
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\r');
+        setField(jSONScanner, "ch", '/');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
         setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
+        parseColorMethod.setAccessible(true);
+        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
+        parseColorMethodArguments[0] = defaultJSONParser;
+        try {
+            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseColor7() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '\t');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -861,15 +984,53 @@ public class AwtCodecTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseColor7() throws Throwable  {
+    public void testParseColor8() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 't');
+        setField(jSONScanner, "ch", 'f');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
+        parseColorMethod.setAccessible(true);
+        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
+        parseColorMethodArguments[0] = defaultJSONParser;
+        try {
+            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseColor9() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", 'n');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -897,55 +1058,7 @@ public class AwtCodecTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testParseColor8() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ':');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        Color actual = ((Color) parseColorMethod.invoke(awtCodec, parseColorMethodArguments));
-        
-        Color expected = ((Color) createInstance("java.awt.Color"));
-        setField(expected, "value", 0);
-        setField(expected, "frgbvalue", null);
-        setField(expected, "fvalue", null);
-        setField(expected, "falpha", 0.0f);
-        setField(expected, "cs", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(17, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testParseColor9() throws Throwable  {
+    public void testParseColor10() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -993,15 +1106,16 @@ public class AwtCodecTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testParseColor10() throws Throwable  {
+    public void testParseColor11() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '@');
+        setField(jSONScanner, "ch", '}');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -1023,78 +1137,6 @@ public class AwtCodecTest {
         assertTrue(deepEquals(expected, actual));
         
         JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseColor11() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", 'f');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        try {
-            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseColor12() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 'f');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        try {
-            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
@@ -1108,13 +1150,13 @@ public class AwtCodecTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testParseColor13() throws Throwable  {
+    public void testParseColor12() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '{');
+        setField(jSONScanner, "ch", ':');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
         setField(jSONScanner, "len", 0);
@@ -1149,7 +1191,46 @@ public class AwtCodecTest {
         
         assertEquals('\u001A', finalDefaultJSONParserLexerCh);
         
-        assertEquals(12, finalDefaultJSONParserLexerToken);
+        assertEquals(17, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseColor13() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", ',');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
+        parseColorMethod.setAccessible(true);
+        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
+        parseColorMethodArguments[0] = defaultJSONParser;
+        try {
+            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
+        
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
     }
     ///endregion
     
@@ -1160,433 +1241,6 @@ public class AwtCodecTest {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '-');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        Color actual = ((Color) parseColorMethod.invoke(awtCodec, parseColorMethodArguments));
-        
-        Color expected = ((Color) createInstance("java.awt.Color"));
-        setField(expected, "value", 0);
-        setField(expected, "frgbvalue", null);
-        setField(expected, "fvalue", null);
-        setField(expected, "falpha", 0.0f);
-        setField(expected, "cs", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(2, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseColor15() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '(');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        try {
-            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseColor16() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", ')');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        try {
-            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseColor17() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '+');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        try {
-            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseColor18() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", 'x');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        try {
-            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseColor19() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '}');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        try {
-            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testParseColor20() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '}');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        Color actual = ((Color) parseColorMethod.invoke(awtCodec, parseColorMethodArguments));
-        
-        Color expected = ((Color) createInstance("java.awt.Color"));
-        setField(expected, "value", 0);
-        setField(expected, "frgbvalue", null);
-        setField(expected, "fvalue", null);
-        setField(expected, "falpha", 0.0f);
-        setField(expected, "cs", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseColor21() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", ']');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        try {
-            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testParseColor22() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '2');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        Color actual = ((Color) parseColorMethod.invoke(awtCodec, parseColorMethodArguments));
-        
-        Color expected = ((Color) createInstance("java.awt.Color"));
-        setField(expected, "value", 0);
-        setField(expected, "frgbvalue", null);
-        setField(expected, "fvalue", null);
-        setField(expected, "falpha", 0.0f);
-        setField(expected, "cs", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(2, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseColor23() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "hasSpecial", false);
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '\"');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
-        parseColorMethod.setAccessible(true);
-        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
-        parseColorMethodArguments[0] = defaultJSONParser;
-        try {
-            parseColorMethod.invoke(awtCodec, parseColorMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerNp = getFieldValue(jSONLexer, "np");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer2, "pos");
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerNp);
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testParseColor24() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
         setField(jSONScanner, "ch", '+');
@@ -1625,6 +1279,54 @@ public class AwtCodecTest {
         assertEquals('\u001A', finalDefaultJSONParserLexerCh);
         
         assertEquals(2, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParseColor15() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", ')');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseColorMethod = awtCodecClazz.getDeclaredMethod("parseColor", defaultJSONParserType);
+        parseColorMethod.setAccessible(true);
+        java.lang.Object[] parseColorMethodArguments = new java.lang.Object[1];
+        parseColorMethodArguments[0] = defaultJSONParser;
+        Color actual = ((Color) parseColorMethod.invoke(awtCodec, parseColorMethodArguments));
+        
+        Color expected = ((Color) createInstance("java.awt.Color"));
+        setField(expected, "value", 0);
+        setField(expected, "frgbvalue", null);
+        setField(expected, "fvalue", null);
+        setField(expected, "falpha", 0.0f);
+        setField(expected, "cs", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(11, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
@@ -1654,11 +1356,447 @@ public class AwtCodecTest {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", ',');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        try {
+            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
+        
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParseRectangle3() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "np", 0);
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '2');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        Rectangle actual = ((Rectangle) parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments));
+        
+        Rectangle expected = ((Rectangle) createInstance("java.awt.Rectangle"));
+        expected.x = 0;
+        expected.y = 0;
+        expected.width = 0;
+        expected.height = 0;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
+        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerSp);
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(2, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseRectangle4() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", 'x');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        try {
+            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
+        
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseRectangle5() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "hasSpecial", false);
+        setField(jSONScanner, "np", 0);
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", 'S');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        try {
+            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerNp = getFieldValue(jSONLexer, "np");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer1, "sp");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer2, "bp");
+        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer3, "pos");
+        
+        assertEquals(2147483646, finalDefaultJSONParserLexerNp);
+        
+        assertEquals(1, finalDefaultJSONParserLexerSp);
+        
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParseRectangle6() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", ',');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        Rectangle actual = ((Rectangle) parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments));
+        
+        Rectangle expected = ((Rectangle) createInstance("java.awt.Rectangle"));
+        expected.x = 0;
+        expected.y = 0;
+        expected.width = 0;
+        expected.height = 0;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(16, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseRectangle7() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '\t');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        try {
+            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer2, "pos");
+        
+        assertEquals(14170, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(14170, finalDefaultJSONParserLexerPos);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseRectangle8() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", 'n');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        try {
+            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParseRectangle9() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "np", 0);
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '-');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        Rectangle actual = ((Rectangle) parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments));
+        
+        Rectangle expected = ((Rectangle) createInstance("java.awt.Rectangle"));
+        expected.x = 0;
+        expected.y = 0;
+        expected.width = 0;
+        expected.height = 0;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
+        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerSp);
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(2, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParseRectangle10() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '}');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        Rectangle actual = ((Rectangle) parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments));
+        
+        Rectangle expected = ((Rectangle) createInstance("java.awt.Rectangle"));
+        expected.x = 0;
+        expected.y = 0;
+        expected.width = 0;
+        expected.height = 0;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseRectangle11() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", '+');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        try {
+            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
+        
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseRectangle12() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "hasSpecial", false);
         setField(jSONScanner, "np", 0);
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 'u');
+        setField(jSONScanner, "ch", 'T');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
         setField(jSONScanner, "len", 0);
@@ -1697,13 +1835,58 @@ public class AwtCodecTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseRectangle3() throws Throwable  {
+    public void testParseRectangle13() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "hasSpecial", false);
+        setField(jSONScanner, "np", 0);
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", '\"');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        try {
+            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerNp = getFieldValue(jSONLexer, "np");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer2, "pos");
+        
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerNp);
+        
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseRectangle14() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", 'x');
+        setField(jSONScanner, "ch", '(');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
         setField(jSONScanner, "len", 1);
@@ -1736,7 +1919,123 @@ public class AwtCodecTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseRectangle4() throws Throwable  {
+    public void testParseRectangle15() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", 'f');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        try {
+            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseRectangle16() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", 'x');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        try {
+            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParseRectangle17() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", '\u001A');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", Integer.MIN_VALUE);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        Rectangle actual = ((Rectangle) parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments));
+        
+        Rectangle expected = ((Rectangle) createInstance("java.awt.Rectangle"));
+        expected.x = 0;
+        expected.y = 0;
+        expected.width = 0;
+        expected.height = 0;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer1, "token");
+        
+        assertEquals(0, finalDefaultJSONParserLexerBp);
+        
+        assertEquals(20, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseRectangle18() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -1775,16 +2074,18 @@ public class AwtCodecTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseRectangle5() throws Throwable  {
+    public void testParseRectangle19() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 'f');
+        setField(jSONScanner, "bp", Integer.MAX_VALUE);
+        setField(jSONScanner, "ch", ']');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
+        setField(jSONScanner, "len", 1);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -1801,18 +2102,193 @@ public class AwtCodecTest {
         JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
         
-        assertEquals(1, finalDefaultJSONParserLexerBp);
+        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
         
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseRectangle20() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
+        setField(jSONReaderScanner, "np", 0);
+        setField(jSONReaderScanner, "sp", 0);
+        setField(jSONReaderScanner, "bp", 0);
+        setField(jSONReaderScanner, "ch", '+');
+        setField(jSONReaderScanner, "pos", 0);
+        setField(jSONReaderScanner, "token", 13);
+        setField(jSONReaderScanner, "bufLength", 0);
+        setField(defaultJSONParser, "lexer", jSONReaderScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        try {
+            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerNp = getFieldValue(jSONLexer, "np");
+        
+        assertEquals(-1, finalDefaultJSONParserLexerNp);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testParseRectangle6() throws Throwable  {
+    public void testParseRectangle21() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '{');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        Rectangle actual = ((Rectangle) parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments));
+        
+        Rectangle expected = ((Rectangle) createInstance("java.awt.Rectangle"));
+        expected.x = 0;
+        expected.y = 0;
+        expected.width = 0;
+        expected.height = 0;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(12, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParseRectangle22() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", ')');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        Rectangle actual = ((Rectangle) parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments));
+        
+        Rectangle expected = ((Rectangle) createInstance("java.awt.Rectangle"));
+        expected.x = 0;
+        expected.y = 0;
+        expected.width = 0;
+        expected.height = 0;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(11, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParseRectangle23() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '+');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 13);
+        setField(jSONScanner, "len", 0);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
+        parseRectangleMethod.setAccessible(true);
+        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
+        parseRectangleMethodArguments[0] = defaultJSONParser;
+        Rectangle actual = ((Rectangle) parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments));
+        
+        Rectangle expected = ((Rectangle) createInstance("java.awt.Rectangle"));
+        expected.x = 0;
+        expected.y = 0;
+        expected.width = 0;
+        expected.height = 0;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+        
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(2, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testParseRectangle24() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
@@ -1858,167 +2334,13 @@ public class AwtCodecTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testParseRectangle7() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '-');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
-        parseRectangleMethod.setAccessible(true);
-        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
-        parseRectangleMethodArguments[0] = defaultJSONParser;
-        Rectangle actual = ((Rectangle) parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments));
-        
-        Rectangle expected = ((Rectangle) createInstance("java.awt.Rectangle"));
-        expected.x = 0;
-        expected.y = 0;
-        expected.width = 0;
-        expected.height = 0;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerSp = getFieldValue(jSONLexer, "sp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer1, "bp");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer2, "ch");
-        JSONLexer jSONLexer3 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer3, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerSp);
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(2, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseRectangle8() throws Throwable  {
+    public void testParseRectangle25() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 't');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
-        parseRectangleMethod.setAccessible(true);
-        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
-        parseRectangleMethodArguments[0] = defaultJSONParser;
-        try {
-            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseRectangle9() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", ',');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
-        parseRectangleMethod.setAccessible(true);
-        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
-        parseRectangleMethodArguments[0] = defaultJSONParser;
-        try {
-            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseRectangle10() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "sp", 0);
-        setField(jSONReaderScanner, "bp", 0);
-        setField(jSONReaderScanner, "ch", '{');
-        setField(jSONReaderScanner, "pos", 0);
-        setField(jSONReaderScanner, "token", 13);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
-        parseRectangleMethod.setAccessible(true);
-        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
-        parseRectangleMethodArguments[0] = defaultJSONParser;
-        try {
-            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testParseRectangle11() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '(');
+        setField(jSONScanner, "ch", '.');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
         setField(jSONScanner, "len", 0);
@@ -2052,140 +2374,22 @@ public class AwtCodecTest {
         
         assertEquals('\u001A', finalDefaultJSONParserLexerCh);
         
-        assertEquals(10, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseRectangle12() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '}');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
-        parseRectangleMethod.setAccessible(true);
-        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
-        parseRectangleMethodArguments[0] = defaultJSONParser;
-        try {
-            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-        
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseRectangle13() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", 'n');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
-        parseRectangleMethod.setAccessible(true);
-        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
-        parseRectangleMethodArguments[0] = defaultJSONParser;
-        try {
-            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseRectangle14() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\t');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Method parseRectangleMethod = awtCodecClazz.getDeclaredMethod("parseRectangle", defaultJSONParserType);
-        parseRectangleMethod.setAccessible(true);
-        java.lang.Object[] parseRectangleMethodArguments = new java.lang.Object[1];
-        parseRectangleMethodArguments[0] = defaultJSONParser;
-        try {
-            parseRectangleMethod.invoke(awtCodec, parseRectangleMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer2, "pos");
-        
-        assertEquals(14170, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(14170, finalDefaultJSONParserLexerPos);
+        assertEquals(25, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testParseRectangle15() throws Throwable  {
+    public void testParseRectangle26() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '}');
+        setField(jSONScanner, "ch", ';');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -2209,28 +2413,30 @@ public class AwtCodecTest {
         Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
         
         assertEquals(1, finalDefaultJSONParserLexerBp);
         
         assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        
+        assertEquals(24, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseRectangle16() throws Throwable  {
+    public void testParseRectangle27() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '.');
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '/');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 13);
-        setField(jSONScanner, "len", 1);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
+        setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
@@ -2247,11 +2453,11 @@ public class AwtCodecTest {
         JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
         JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerPos = getFieldValue(jSONLexer1, "pos");
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
         
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
+        assertEquals(1, finalDefaultJSONParserLexerBp);
         
-        assertEquals(Integer.MAX_VALUE, finalDefaultJSONParserLexerPos);
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
     }
     ///endregion
     
@@ -2260,16 +2466,15 @@ public class AwtCodecTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testParsePoint1() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        java.time.chrono.ThaiBuddhistChronology[] thaiBuddhistChronologyArray = new java.time.chrono.ThaiBuddhistChronology[0];
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
         Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class thaiBuddhistChronologyArrayType = Class.forName("java.lang.Object");
-        Method parsePointMethod = awtCodecClazz.getDeclaredMethod("parsePoint", defaultJSONParserType, thaiBuddhistChronologyArrayType);
+        Class objectType = Class.forName("java.lang.Object");
+        Method parsePointMethod = awtCodecClazz.getDeclaredMethod("parsePoint", defaultJSONParserType, objectType);
         parsePointMethod.setAccessible(true);
         java.lang.Object[] parsePointMethodArguments = new java.lang.Object[2];
         parsePointMethodArguments[0] = null;
-        parsePointMethodArguments[1] = ((Object) thaiBuddhistChronologyArray);
+        parsePointMethodArguments[1] = null;
         try {
             parsePointMethod.invoke(awtCodec, parsePointMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -2660,16 +2865,15 @@ public class AwtCodecTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testParseRef2() throws Throwable  {
         AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        java.time.chrono.ThaiBuddhistChronology[] thaiBuddhistChronologyArray = new java.time.chrono.ThaiBuddhistChronology[0];
         
         Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
         Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class thaiBuddhistChronologyArrayType = Class.forName("java.lang.Object");
-        Method parseRefMethod = awtCodecClazz.getDeclaredMethod("parseRef", defaultJSONParserType, thaiBuddhistChronologyArrayType);
+        Class objectType = Class.forName("java.lang.Object");
+        Method parseRefMethod = awtCodecClazz.getDeclaredMethod("parseRef", defaultJSONParserType, objectType);
         parseRefMethod.setAccessible(true);
         java.lang.Object[] parseRefMethodArguments = new java.lang.Object[2];
         parseRefMethodArguments[0] = null;
-        parseRefMethodArguments[1] = ((Object) thaiBuddhistChronologyArray);
+        parseRefMethodArguments[1] = null;
         try {
             parseRefMethod.invoke(awtCodec, parseRefMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -2686,7 +2890,42 @@ public class AwtCodecTest {
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\t');
+        setField(jSONScanner, "ch", '\n');
+        setField(jSONScanner, "len", 2);
+        String string = new String("");
+        setField(jSONScanner, "text", string);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        
+        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Class objectType = Class.forName("java.lang.Object");
+        Method parseRefMethod = awtCodecClazz.getDeclaredMethod("parseRef", defaultJSONParserType, objectType);
+        parseRefMethod.setAccessible(true);
+        java.lang.Object[] parseRefMethodArguments = new java.lang.Object[2];
+        parseRefMethodArguments[0] = defaultJSONParser;
+        parseRefMethodArguments[1] = null;
+        try {
+            parseRefMethod.invoke(awtCodec, parseRefMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        
+        assertEquals(1, finalDefaultJSONParserLexerBp);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseRef4() throws Throwable  {
+        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '\b');
         setField(jSONScanner, "len", 0);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
@@ -2711,41 +2950,6 @@ public class AwtCodecTest {
         assertEquals(1, finalDefaultJSONParserLexerBp);
         
         assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseRef4() throws Throwable  {
-        AwtCodec awtCodec = ((AwtCodec) createInstance("com.alibaba.fastjson.serializer.AwtCodec"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\r');
-        setField(jSONScanner, "len", 2);
-        String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class awtCodecClazz = Class.forName("com.alibaba.fastjson.serializer.AwtCodec");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class objectType = Class.forName("java.lang.Object");
-        Method parseRefMethod = awtCodecClazz.getDeclaredMethod("parseRef", defaultJSONParserType, objectType);
-        parseRefMethod.setAccessible(true);
-        java.lang.Object[] parseRefMethodArguments = new java.lang.Object[2];
-        parseRefMethodArguments[0] = defaultJSONParser;
-        parseRefMethodArguments[1] = null;
-        try {
-            parseRefMethod.invoke(awtCodec, parseRefMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
     }
     ///endregion
     

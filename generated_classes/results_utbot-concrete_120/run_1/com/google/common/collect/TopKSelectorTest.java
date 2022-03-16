@@ -5,6 +5,7 @@ import sun.misc.ASCIICaseInsensitiveComparator;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.ArrayList;
+import sun.net.InetAddressCachePolicy;
 import java.util.LinkedHashSet;
 import java.util.HashMap;
 import java.lang.reflect.Constructor;
@@ -143,276 +144,6 @@ public class TopKSelectorTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testPartition1() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        
-        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
-        Class intType = int.class;
-        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
-        partitionMethod.setAccessible(true);
-        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
-        partitionMethodArguments[0] = 0;
-        partitionMethodArguments[1] = 0;
-        partitionMethodArguments[2] = 0;
-        try {
-            partitionMethod.invoke(topKSelector, partitionMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPartition2() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        java.lang.Object[] objectArray = new java.lang.Object[40];
-        setField(topKSelector, "buffer", objectArray);
-        
-        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
-        Class intType = int.class;
-        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
-        partitionMethod.setAccessible(true);
-        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
-        partitionMethodArguments[0] = 0;
-        partitionMethodArguments[1] = 0;
-        partitionMethodArguments[2] = 40;
-        try {
-            partitionMethod.invoke(topKSelector, partitionMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPartition3() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        Object object = createInstance("java.lang.Object");
-        objectArray[1] = object;
-        objectArray[2] = object;
-        objectArray[3] = object;
-        objectArray[4] = object;
-        objectArray[5] = object;
-        objectArray[6] = object;
-        objectArray[7] = object;
-        objectArray[8] = object;
-        setField(topKSelector, "buffer", objectArray);
-        
-        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
-        Class intType = int.class;
-        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
-        partitionMethod.setAccessible(true);
-        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
-        partitionMethodArguments[0] = 0;
-        partitionMethodArguments[1] = Integer.MIN_VALUE;
-        partitionMethodArguments[2] = 0;
-        try {
-            partitionMethod.invoke(topKSelector, partitionMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPartition4() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        java.lang.Object[] objectArray = new java.lang.Object[11];
-        objectArray[2] = objectArray;
-        objectArray[3] = objectArray;
-        objectArray[4] = objectArray;
-        objectArray[5] = objectArray;
-        objectArray[6] = objectArray;
-        objectArray[7] = objectArray;
-        objectArray[8] = objectArray;
-        objectArray[9] = objectArray;
-        objectArray[10] = objectArray;
-        setField(topKSelector, "buffer", objectArray);
-        Object reverseComparator2 = createInstance("java.util.Collections$ReverseComparator2");
-        setField(topKSelector, "comparator", reverseComparator2);
-        
-        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
-        Class intType = int.class;
-        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
-        partitionMethod.setAccessible(true);
-        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
-        partitionMethodArguments[0] = Integer.MIN_VALUE;
-        partitionMethodArguments[1] = 1;
-        partitionMethodArguments[2] = 0;
-        try {
-            partitionMethod.invoke(topKSelector, partitionMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPartition5() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        java.lang.Object[] objectArray = new java.lang.Object[39];
-        objectArray[1] = objectArray;
-        objectArray[2] = objectArray;
-        objectArray[3] = objectArray;
-        objectArray[4] = objectArray;
-        objectArray[5] = objectArray;
-        objectArray[6] = objectArray;
-        objectArray[7] = objectArray;
-        objectArray[8] = objectArray;
-        objectArray[9] = objectArray;
-        objectArray[10] = objectArray;
-        objectArray[11] = objectArray;
-        objectArray[12] = objectArray;
-        objectArray[13] = objectArray;
-        objectArray[14] = objectArray;
-        objectArray[15] = objectArray;
-        objectArray[16] = objectArray;
-        objectArray[17] = objectArray;
-        objectArray[18] = objectArray;
-        objectArray[19] = objectArray;
-        objectArray[20] = objectArray;
-        objectArray[21] = objectArray;
-        objectArray[22] = objectArray;
-        objectArray[23] = objectArray;
-        objectArray[24] = objectArray;
-        objectArray[25] = objectArray;
-        objectArray[26] = objectArray;
-        objectArray[27] = objectArray;
-        objectArray[28] = objectArray;
-        objectArray[29] = objectArray;
-        objectArray[30] = objectArray;
-        objectArray[31] = objectArray;
-        objectArray[32] = objectArray;
-        objectArray[33] = objectArray;
-        objectArray[34] = objectArray;
-        objectArray[35] = objectArray;
-        objectArray[36] = objectArray;
-        objectArray[37] = objectArray;
-        setField(topKSelector, "buffer", objectArray);
-        
-        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
-        Class intType = int.class;
-        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
-        partitionMethod.setAccessible(true);
-        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
-        partitionMethodArguments[0] = 38;
-        partitionMethodArguments[1] = 38;
-        partitionMethodArguments[2] = 0;
-        int actual = ((int) partitionMethod.invoke(topKSelector, partitionMethodArguments));
-        
-        assertEquals(38, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testOfferAll1() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        
-        topKSelector.offerAll(((Iterator) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testOfferAll2() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        
-        topKSelector.offerAll(((Iterator) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testOfferAll3() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        Object valueIterator = createInstance("java.util.concurrent.ConcurrentHashMap$ValueIterator");
-        setField(valueIterator, "next", null);
-        
-        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
-        Class valueIteratorType = Class.forName("java.util.Iterator");
-        Method offerAllMethod = topKSelectorClazz.getDeclaredMethod("offerAll", valueIteratorType);
-        offerAllMethod.setAccessible(true);
-        java.lang.Object[] offerAllMethodArguments = new java.lang.Object[1];
-        offerAllMethodArguments[0] = valueIterator;
-        offerAllMethod.invoke(topKSelector, offerAllMethodArguments);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testOfferAll4() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        ArrayList arrayList = new ArrayList();
-        
-        topKSelector.offerAll(arrayList);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testOfferAll5() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        
-        topKSelector.offerAll(((Iterable) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testOfferAll6() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        LinkedHashSet linkedHashSet = ((LinkedHashSet) createInstance("java.util.LinkedHashSet"));
-        HashMap hashMap = new HashMap();
-        Integer integer = 0;
-        hashMap.put(integer, null);
-        hashMap.put(null, null);
-        setField(linkedHashSet, "map", hashMap);
-        
-        topKSelector.offerAll(linkedHashSet);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testTopK1() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        
-        topKSelector.topK();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testTopK2() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        setField(topKSelector, "bufferSize", Integer.MIN_VALUE);
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        setField(topKSelector, "buffer", objectArray);
-        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.SignedBytes$LexicographicalComparator");
-        Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
-        setField(topKSelector, "comparator", lexicographicalComparator);
-        
-        topKSelector.topK();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
     public void testTrim1() throws Throwable  {
         TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
         
@@ -453,90 +184,6 @@ public class TopKSelectorTest {
         java.lang.Object[] objectArray = new java.lang.Object[0];
         setField(topKSelector, "buffer", objectArray);
         setField(topKSelector, "k", 196608);
-        
-        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
-        Method trimMethod = topKSelectorClazz.getDeclaredMethod("trim");
-        trimMethod.setAccessible(true);
-        java.lang.Object[] trimMethodArguments = new java.lang.Object[0];
-        try {
-            trimMethod.invoke(topKSelector, trimMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testTrim4() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        java.lang.Object[] objectArray = new java.lang.Object[34];
-        Object mathPreconditions = createInstance("com.google.common.math.MathPreconditions");
-        objectArray[0] = mathPreconditions;
-        objectArray[1] = mathPreconditions;
-        objectArray[2] = mathPreconditions;
-        objectArray[3] = mathPreconditions;
-        objectArray[4] = mathPreconditions;
-        objectArray[5] = mathPreconditions;
-        objectArray[6] = mathPreconditions;
-        objectArray[7] = mathPreconditions;
-        objectArray[8] = mathPreconditions;
-        objectArray[9] = mathPreconditions;
-        objectArray[10] = mathPreconditions;
-        objectArray[11] = mathPreconditions;
-        objectArray[12] = mathPreconditions;
-        objectArray[13] = mathPreconditions;
-        objectArray[14] = mathPreconditions;
-        objectArray[15] = mathPreconditions;
-        objectArray[16] = mathPreconditions;
-        objectArray[17] = mathPreconditions;
-        objectArray[18] = mathPreconditions;
-        objectArray[19] = mathPreconditions;
-        objectArray[20] = mathPreconditions;
-        objectArray[21] = mathPreconditions;
-        objectArray[22] = mathPreconditions;
-        objectArray[23] = mathPreconditions;
-        objectArray[24] = mathPreconditions;
-        objectArray[25] = mathPreconditions;
-        objectArray[26] = mathPreconditions;
-        objectArray[27] = mathPreconditions;
-        objectArray[28] = mathPreconditions;
-        objectArray[29] = mathPreconditions;
-        objectArray[30] = mathPreconditions;
-        objectArray[31] = mathPreconditions;
-        objectArray[32] = mathPreconditions;
-        setField(topKSelector, "buffer", objectArray);
-        setField(topKSelector, "k", 33);
-        
-        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
-        Method trimMethod = topKSelectorClazz.getDeclaredMethod("trim");
-        trimMethod.setAccessible(true);
-        java.lang.Object[] trimMethodArguments = new java.lang.Object[0];
-        try {
-            trimMethod.invoke(topKSelector, trimMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testTrim5() throws Throwable  {
-        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        java.lang.Object[] objectArray = new java.lang.Object[9];
-        Object mathPreconditions = createInstance("com.google.common.math.MathPreconditions");
-        objectArray[2] = mathPreconditions;
-        objectArray[3] = mathPreconditions;
-        objectArray[4] = mathPreconditions;
-        objectArray[5] = mathPreconditions;
-        objectArray[6] = mathPreconditions;
-        objectArray[7] = mathPreconditions;
-        objectArray[8] = mathPreconditions;
-        setField(topKSelector, "buffer", objectArray);
-        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
-        setField(topKSelector, "comparator", aSCIICaseInsensitiveComparator);
-        setField(topKSelector, "k", 1);
         
         Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
         Method trimMethod = topKSelectorClazz.getDeclaredMethod("trim");
@@ -784,30 +431,359 @@ public class TopKSelectorTest {
     
     ///region
     
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPartition1() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        
+        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
+        Class intType = int.class;
+        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
+        partitionMethod.setAccessible(true);
+        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
+        partitionMethodArguments[0] = 0;
+        partitionMethodArguments[1] = 0;
+        partitionMethodArguments[2] = 0;
+        try {
+            partitionMethod.invoke(topKSelector, partitionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPartition2() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        java.lang.Object[] objectArray = new java.lang.Object[40];
+        setField(topKSelector, "buffer", objectArray);
+        
+        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
+        Class intType = int.class;
+        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
+        partitionMethod.setAccessible(true);
+        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
+        partitionMethodArguments[0] = 0;
+        partitionMethodArguments[1] = 0;
+        partitionMethodArguments[2] = 40;
+        try {
+            partitionMethod.invoke(topKSelector, partitionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPartition3() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        Object object = createInstance("java.lang.Object");
+        objectArray[1] = object;
+        objectArray[2] = object;
+        objectArray[3] = object;
+        objectArray[4] = object;
+        objectArray[5] = object;
+        objectArray[6] = object;
+        objectArray[7] = object;
+        objectArray[8] = object;
+        setField(topKSelector, "buffer", objectArray);
+        
+        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
+        Class intType = int.class;
+        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
+        partitionMethod.setAccessible(true);
+        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
+        partitionMethodArguments[0] = 0;
+        partitionMethodArguments[1] = Integer.MIN_VALUE;
+        partitionMethodArguments[2] = 0;
+        try {
+            partitionMethod.invoke(topKSelector, partitionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPartition4() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        java.lang.Object[] objectArray = new java.lang.Object[11];
+        objectArray[2] = objectArray;
+        objectArray[3] = objectArray;
+        objectArray[4] = objectArray;
+        objectArray[5] = objectArray;
+        objectArray[6] = objectArray;
+        objectArray[7] = objectArray;
+        objectArray[8] = objectArray;
+        objectArray[9] = objectArray;
+        objectArray[10] = objectArray;
+        setField(topKSelector, "buffer", objectArray);
+        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.Shorts$LexicographicalComparator");
+        Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
+        setField(topKSelector, "comparator", lexicographicalComparator);
+        
+        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
+        Class intType = int.class;
+        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
+        partitionMethod.setAccessible(true);
+        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
+        partitionMethodArguments[0] = Integer.MIN_VALUE;
+        partitionMethodArguments[1] = 1;
+        partitionMethodArguments[2] = 0;
+        try {
+            partitionMethod.invoke(topKSelector, partitionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000)
-    public void testLeast1() throws Throwable  {
-        TopKSelector actual = TopKSelector.least(0);
+    public void testPartition5() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        java.lang.Object[] objectArray = new java.lang.Object[39];
+        objectArray[1] = objectArray;
+        objectArray[2] = objectArray;
+        objectArray[3] = objectArray;
+        objectArray[4] = objectArray;
+        objectArray[5] = objectArray;
+        objectArray[6] = objectArray;
+        objectArray[7] = objectArray;
+        objectArray[8] = objectArray;
+        objectArray[9] = objectArray;
+        objectArray[10] = objectArray;
+        objectArray[11] = objectArray;
+        objectArray[12] = objectArray;
+        objectArray[13] = objectArray;
+        objectArray[14] = objectArray;
+        objectArray[15] = objectArray;
+        objectArray[16] = objectArray;
+        objectArray[17] = objectArray;
+        objectArray[18] = objectArray;
+        objectArray[19] = objectArray;
+        objectArray[20] = objectArray;
+        objectArray[21] = objectArray;
+        objectArray[22] = objectArray;
+        objectArray[23] = objectArray;
+        objectArray[24] = objectArray;
+        objectArray[25] = objectArray;
+        objectArray[26] = objectArray;
+        objectArray[27] = objectArray;
+        objectArray[28] = objectArray;
+        objectArray[29] = objectArray;
+        objectArray[30] = objectArray;
+        objectArray[31] = objectArray;
+        objectArray[32] = objectArray;
+        objectArray[33] = objectArray;
+        objectArray[34] = objectArray;
+        objectArray[35] = objectArray;
+        objectArray[36] = objectArray;
+        objectArray[37] = objectArray;
+        setField(topKSelector, "buffer", objectArray);
         
-        TopKSelector expected = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        setField(expected, "k", 0);
-        NaturalOrdering naturalOrdering = ((NaturalOrdering) createInstance("com.google.common.collect.NaturalOrdering"));
-        setField(naturalOrdering, "nullsFirst", null);
-        setField(naturalOrdering, "nullsLast", null);
-        setField(expected, "comparator", naturalOrdering);
-        java.lang.Object[] objectArray = new java.lang.Object[0];
-        setField(expected, "buffer", objectArray);
-        setField(expected, "bufferSize", 0);
-        setField(expected, "threshold", null);
+        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
+        Class intType = int.class;
+        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
+        partitionMethod.setAccessible(true);
+        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
+        partitionMethodArguments[0] = 38;
+        partitionMethodArguments[1] = 38;
+        partitionMethodArguments[2] = 0;
+        int actual = ((int) partitionMethod.invoke(topKSelector, partitionMethodArguments));
         
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        assertEquals(38, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testLeast2() throws Throwable  {
+    public void testPartition6() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        java.lang.Object[] objectArray = new java.lang.Object[3];
+        java.lang.Object[] byteBufferAsFloatBufferBArray = createArray("java.nio.ByteBufferAsFloatBufferB", 0);
+        objectArray[0] = byteBufferAsFloatBufferBArray;
+        setField(topKSelector, "buffer", objectArray);
+        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
+        setField(topKSelector, "comparator", aSCIICaseInsensitiveComparator);
+        
+        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
+        Class intType = int.class;
+        Method partitionMethod = topKSelectorClazz.getDeclaredMethod("partition", intType, intType, intType);
+        partitionMethod.setAccessible(true);
+        java.lang.Object[] partitionMethodArguments = new java.lang.Object[3];
+        partitionMethodArguments[0] = 0;
+        partitionMethodArguments[1] = 1;
+        partitionMethodArguments[2] = 2;
+        try {
+            partitionMethod.invoke(topKSelector, partitionMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOfferAll1() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        
+        topKSelector.offerAll(((Iterator) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOfferAll2() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        
+        topKSelector.offerAll(((Iterator) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testOfferAll3() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        Object valueIterator = createInstance("java.util.concurrent.ConcurrentHashMap$ValueIterator");
+        setField(valueIterator, "next", null);
+        
+        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
+        Class valueIteratorType = Class.forName("java.util.Iterator");
+        Method offerAllMethod = topKSelectorClazz.getDeclaredMethod("offerAll", valueIteratorType);
+        offerAllMethod.setAccessible(true);
+        java.lang.Object[] offerAllMethodArguments = new java.lang.Object[1];
+        offerAllMethodArguments[0] = valueIterator;
+        offerAllMethod.invoke(topKSelector, offerAllMethodArguments);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOfferAll4() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        setField(topKSelector, "threshold", null);
+        setField(topKSelector, "bufferSize", 268435456);
+        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
+        setField(topKSelector, "comparator", aSCIICaseInsensitiveComparator);
+        setField(topKSelector, "k", -1879048191);
+        Object itr = createInstance("java.util.AbstractList$Itr");
+        ArrayList arrayList = new ArrayList();
+        sun.net.InetAddressCachePolicy[] inetAddressCachePolicyArray = new sun.net.InetAddressCachePolicy[0];
+        arrayList.add(inetAddressCachePolicyArray);
+        arrayList.add(null);
+        arrayList.add(null);
+        setField(itr, "this$0", arrayList);
+        setField(itr, "expectedModCount", 0);
+        setField(itr, "lastRet", 0);
+        setField(itr, "cursor", 0);
+        
+        Object initialTopKSelectorThreshold = getFieldValue(topKSelector, "threshold");
+        
+        Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
+        Class itrType = Class.forName("java.util.Iterator");
+        Method offerAllMethod = topKSelectorClazz.getDeclaredMethod("offerAll", itrType);
+        offerAllMethod.setAccessible(true);
+        java.lang.Object[] offerAllMethodArguments = new java.lang.Object[1];
+        offerAllMethodArguments[0] = itr;
+        try {
+            offerAllMethod.invoke(topKSelector, offerAllMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object finalTopKSelectorThreshold = getFieldValue(topKSelector, "threshold");
+        
+        assertNull(finalTopKSelectorThreshold);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testOfferAll5() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        ArrayList arrayList = new ArrayList();
+        
+        topKSelector.offerAll(arrayList);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOfferAll6() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        
+        topKSelector.offerAll(((Iterable) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testOfferAll7() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        LinkedHashSet linkedHashSet = ((LinkedHashSet) createInstance("java.util.LinkedHashSet"));
+        HashMap hashMap = new HashMap();
+        setField(linkedHashSet, "map", hashMap);
+        
+        topKSelector.offerAll(linkedHashSet);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testOfferAll8() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        LinkedHashSet linkedHashSet = ((LinkedHashSet) createInstance("java.util.LinkedHashSet"));
+        HashMap hashMap = new HashMap();
+        Integer integer = 0;
+        hashMap.put(integer, null);
+        hashMap.put(null, topKSelector);
+        setField(linkedHashSet, "map", hashMap);
+        
+        topKSelector.offerAll(linkedHashSet);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testTopK1() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        
+        topKSelector.topK();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testTopK2() throws Throwable  {
+        TopKSelector topKSelector = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        setField(topKSelector, "bufferSize", Integer.MIN_VALUE);
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        setField(topKSelector, "buffer", objectArray);
+        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.SignedBytes$LexicographicalComparator");
+        Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
+        setField(topKSelector, "comparator", lexicographicalComparator);
+        
+        topKSelector.topK();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testLeast1() throws Throwable  {
         TopKSelector.least(Integer.MIN_VALUE);
     }
     ///endregion
@@ -815,7 +791,7 @@ public class TopKSelectorTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testLeast3() throws Throwable  {
+    public void testLeast2() throws Throwable  {
         TopKSelector actual = TopKSelector.least(5);
         
         TopKSelector expected = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
@@ -837,6 +813,14 @@ public class TopKSelectorTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
+    public void testLeast3() throws Throwable  {
+        TopKSelector.least(0, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testLeast4() throws Throwable  {
         TopKSelector.least(0, null);
     }
@@ -846,14 +830,6 @@ public class TopKSelectorTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testLeast5() throws Throwable  {
-        TopKSelector.least(0, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testLeast6() throws Throwable  {
         Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.SignedBytes$LexicographicalComparator");
         Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
         
@@ -875,7 +851,7 @@ public class TopKSelectorTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testLeast7() throws Throwable  {
+    public void testLeast6() throws Throwable  {
         Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.SignedBytes$LexicographicalComparator");
         Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
         
@@ -906,7 +882,7 @@ public class TopKSelectorTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testLeast8() throws Throwable  {
+    public void testLeast7() throws Throwable  {
         Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.SignedBytes$LexicographicalComparator");
         Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
         
@@ -927,64 +903,8 @@ public class TopKSelectorTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testGreatest1() throws Throwable  {
-        TopKSelector actual = TopKSelector.greatest(0);
-        
-        TopKSelector expected = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        setField(expected, "k", 0);
-        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(expected, "comparator", reverseNaturalOrdering);
-        java.lang.Object[] objectArray = new java.lang.Object[0];
-        setField(expected, "buffer", objectArray);
-        setField(expected, "bufferSize", 0);
-        setField(expected, "threshold", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGreatest2() throws Throwable  {
-        TopKSelector.greatest(1073741824);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGreatest3() throws Throwable  {
-        TopKSelector actual = TopKSelector.greatest(5);
-        
-        TopKSelector expected = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
-        setField(expected, "k", 5);
-        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(expected, "comparator", reverseNaturalOrdering);
-        java.lang.Object[] objectArray = new java.lang.Object[10];
-        setField(expected, "buffer", objectArray);
-        setField(expected, "bufferSize", 0);
-        setField(expected, "threshold", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGreatest4() throws Throwable  {
-        TopKSelector.greatest(Integer.MIN_VALUE);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGreatest5() throws Throwable  {
         TopKSelector.greatest(0, null);
     }
     ///endregion
@@ -992,7 +912,7 @@ public class TopKSelectorTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGreatest6() throws Throwable  {
+    public void testGreatest2() throws Throwable  {
         AllEqualOrdering allEqualOrdering = ((AllEqualOrdering) createInstance("com.google.common.collect.AllEqualOrdering"));
         
         Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
@@ -1021,7 +941,7 @@ public class TopKSelectorTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGreatest7() throws Throwable  {
+    public void testGreatest3() throws Throwable  {
         AllEqualOrdering allEqualOrdering = ((AllEqualOrdering) createInstance("com.google.common.collect.AllEqualOrdering"));
         
         Class topKSelectorClazz = Class.forName("com.google.common.collect.TopKSelector");
@@ -1042,7 +962,7 @@ public class TopKSelectorTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGreatest8() throws Throwable  {
+    public void testGreatest4() throws Throwable  {
         TopKSelector.greatest(0, null);
     }
     ///endregion
@@ -1050,7 +970,7 @@ public class TopKSelectorTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGreatest9() throws Throwable  {
+    public void testGreatest5() throws Throwable  {
         NullsFirstOrdering nullsFirstOrdering = ((NullsFirstOrdering) createInstance("com.google.common.collect.NullsFirstOrdering"));
         AllEqualOrdering allEqualOrdering = ((AllEqualOrdering) createInstance("com.google.common.collect.AllEqualOrdering"));
         setField(nullsFirstOrdering, "ordering", allEqualOrdering);
@@ -1068,6 +988,62 @@ public class TopKSelectorTest {
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGreatest6() throws Throwable  {
+        TopKSelector actual = TopKSelector.greatest(0);
+        
+        TopKSelector expected = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        setField(expected, "k", 0);
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(expected, "comparator", reverseNaturalOrdering);
+        java.lang.Object[] objectArray = new java.lang.Object[0];
+        setField(expected, "buffer", objectArray);
+        setField(expected, "bufferSize", 0);
+        setField(expected, "threshold", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGreatest7() throws Throwable  {
+        TopKSelector.greatest(1073741824);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGreatest8() throws Throwable  {
+        TopKSelector actual = TopKSelector.greatest(5);
+        
+        TopKSelector expected = ((TopKSelector) createInstance("com.google.common.collect.TopKSelector"));
+        setField(expected, "k", 5);
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(expected, "comparator", reverseNaturalOrdering);
+        java.lang.Object[] objectArray = new java.lang.Object[10];
+        setField(expected, "buffer", objectArray);
+        setField(expected, "bufferSize", 0);
+        setField(expected, "threshold", null);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGreatest9() throws Throwable  {
+        TopKSelector.greatest(Integer.MIN_VALUE);
+    }
     ///endregion
     
     ///region
@@ -1207,19 +1183,6 @@ public class TopKSelectorTest {
         }
         
         return (Object[]) array;
-    }
-    private static Object getEnumConstantByName(Class<?> enumClass, String name) throws IllegalAccessException {
-        java.lang.reflect.Field[] fields = enumClass.getDeclaredFields();
-        for (java.lang.reflect.Field field : fields) {
-            String fieldName = field.getName();
-            if (field.isEnumConstant() && fieldName.equals(name)) {
-                field.setAccessible(true);
-                
-                return field.get(null);
-            }
-        }
-        
-        return null;
     }
     static class FieldsPair {
         final Object o1;
@@ -1388,6 +1351,19 @@ public class TopKSelectorTest {
         }
     
         return false;
+    }
+    private static Object getEnumConstantByName(Class<?> enumClass, String name) throws IllegalAccessException {
+        java.lang.reflect.Field[] fields = enumClass.getDeclaredFields();
+        for (java.lang.reflect.Field field : fields) {
+            String fieldName = field.getName();
+            if (field.isEnumConstant() && fieldName.equals(name)) {
+                field.setAccessible(true);
+                
+                return field.get(null);
+            }
+        }
+        
+        return null;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

@@ -2,13 +2,15 @@ package io.seata.core.rpc.netty;
 
 import org.junit.Test;
 import io.netty.channel.ChannelHandlerContext;
+import sun.security.util.RegisteredDomain.Type;
+import sun.security.util.RegisteredDomain;
 import io.netty.handler.timeout.IdleStateEvent;
 import java.lang.reflect.Method;
 import java.util.concurrent.ConcurrentHashMap;
 import io.netty.channel.Channel;
 import org.apache.commons.pool.impl.GenericKeyedObjectPool;
 import org.slf4j.Logger;
-import io.seata.core.protocol.transaction.GlobalBeginResponse;
+import io.seata.core.protocol.transaction.GlobalStatusRequest;
 import io.seata.core.protocol.RegisterRMResponse;
 import org.apache.commons.pool.impl.GenericKeyedObjectPool.Config;
 import io.seata.core.rpc.netty.NettyPoolKey.TransactionRole;
@@ -65,8 +67,9 @@ public class RmRpcClientTest {
     @Test(timeout = 10000)
     public void testUserEventTriggered2() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        sun.security.util.RegisteredDomain.Type[] typeArray = new sun.security.util.RegisteredDomain.Type[0];
         
-        rmRpcClient.userEventTriggered(((ChannelHandlerContext) null), null);
+        rmRpcClient.userEventTriggered(((ChannelHandlerContext) null), typeArray);
     }
     ///endregion
     
@@ -530,9 +533,9 @@ public class RmRpcClientTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testOnRegisterMsgFail2() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        GlobalStatusRequest globalStatusRequest = ((GlobalStatusRequest) createInstance("io.seata.core.protocol.transaction.GlobalStatusRequest"));
         
-        rmRpcClient.onRegisterMsgFail(null, null, null, globalBeginResponse);
+        rmRpcClient.onRegisterMsgFail(null, null, null, globalStatusRequest);
     }
     ///endregion
     
@@ -762,44 +765,6 @@ public class RmRpcClientTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetTransactionRole1() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        
-        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
-        Method getTransactionRoleMethod = rmRpcClientClazz.getDeclaredMethod("getTransactionRole");
-        getTransactionRoleMethod.setAccessible(true);
-        java.lang.Object[] getTransactionRoleMethodArguments = new java.lang.Object[0];
-        NettyPoolKey.TransactionRole actual = ((NettyPoolKey.TransactionRole) getTransactionRoleMethod.invoke(rmRpcClient, getTransactionRoleMethodArguments));
-        
-        NettyPoolKey.TransactionRole expected = NettyPoolKey.TransactionRole.RMROLE;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetTransactionRole2() throws Throwable  {
-        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        
-        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
-        Method getTransactionRoleMethod = rmRpcClientClazz.getDeclaredMethod("getTransactionRole");
-        getTransactionRoleMethod.setAccessible(true);
-        java.lang.Object[] getTransactionRoleMethodArguments = new java.lang.Object[0];
-        NettyPoolKey.TransactionRole actual = ((NettyPoolKey.TransactionRole) getTransactionRoleMethod.invoke(rmRpcClient, getTransactionRoleMethodArguments));
-        
-        NettyPoolKey.TransactionRole expected = NettyPoolKey.TransactionRole.RMROLE;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testReleaseChannel1() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         String string = new String();
@@ -936,22 +901,38 @@ public class RmRpcClientTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetTransactionServiceGroup1() throws Throwable  {
+    public void testGetTransactionRole1() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        String string = new String();
         
-        rmRpcClient.setTransactionServiceGroup(string);
+        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
+        Method getTransactionRoleMethod = rmRpcClientClazz.getDeclaredMethod("getTransactionRole");
+        getTransactionRoleMethod.setAccessible(true);
+        java.lang.Object[] getTransactionRoleMethodArguments = new java.lang.Object[0];
+        NettyPoolKey.TransactionRole actual = ((NettyPoolKey.TransactionRole) getTransactionRoleMethod.invoke(rmRpcClient, getTransactionRoleMethodArguments));
+        
+        NettyPoolKey.TransactionRole expected = NettyPoolKey.TransactionRole.RMROLE;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testSetTransactionServiceGroup2() throws Throwable  {
+    public void testGetTransactionRole2() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
-        setField(rmRpcClient, "transactionServiceGroup", null);
         
-        rmRpcClient.setTransactionServiceGroup(null);
+        Class rmRpcClientClazz = Class.forName("io.seata.core.rpc.netty.RmRpcClient");
+        Method getTransactionRoleMethod = rmRpcClientClazz.getDeclaredMethod("getTransactionRole");
+        getTransactionRoleMethod.setAccessible(true);
+        java.lang.Object[] getTransactionRoleMethodArguments = new java.lang.Object[0];
+        NettyPoolKey.TransactionRole actual = ((NettyPoolKey.TransactionRole) getTransactionRoleMethod.invoke(rmRpcClient, getTransactionRoleMethodArguments));
+        
+        NettyPoolKey.TransactionRole expected = NettyPoolKey.TransactionRole.RMROLE;
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
     }
     ///endregion
     
@@ -1211,6 +1192,28 @@ public class RmRpcClientTest {
     
     ///region
     
+    @Test(timeout = 10000)
+    public void testSetTransactionServiceGroup1() throws Throwable  {
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        String string = new String();
+        
+        rmRpcClient.setTransactionServiceGroup(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetTransactionServiceGroup2() throws Throwable  {
+        RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
+        setField(rmRpcClient, "transactionServiceGroup", null);
+        
+        rmRpcClient.setTransactionServiceGroup(null);
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testRegisterResource1() throws Throwable  {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
@@ -1241,8 +1244,9 @@ public class RmRpcClientTest {
             java.lang.Object[] nodeArray = createArray("java.util.concurrent.ConcurrentHashMap$Node", 0);
             setField(concurrentHashMap, "table", nodeArray);
             setField(rmRpcClient, "channels", concurrentHashMap);
+            String string = new String("");
             
-            rmRpcClient.registerResource(null, null);
+            rmRpcClient.registerResource(null, string);
         } finally {
             mockedStatic.close();
         }
@@ -1267,12 +1271,11 @@ public class RmRpcClientTest {
             java.lang.Object[] nodeArray = createArray("java.util.concurrent.ConcurrentHashMap$Node", 0);
             setField(concurrentHashMap, "table", nodeArray);
             setField(rmRpcClient, "channels", concurrentHashMap);
-            String string = new String("");
             
             Object rmRpcClientChannels = getFieldValue(rmRpcClient, "channels");
             Object initialRmRpcClientChannelsEntrySet = getFieldValue(rmRpcClientChannels, "entrySet");
             
-            rmRpcClient.registerResource(null, string);
+            rmRpcClient.registerResource(null, null);
             
             Object rmRpcClientChannels1 = getFieldValue(rmRpcClient, "channels");
             Object finalRmRpcClientChannelsEntrySet = getFieldValue(rmRpcClientChannels1, "entrySet");
@@ -1391,9 +1394,10 @@ public class RmRpcClientTest {
         RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
         ResourceManager resourceManagerMock = mock(ResourceManager.class);
         LinkedHashMap linkedHashMap = new LinkedHashMap();
-        Character character = '\u0000';
-        java.lang.Character[] characterArray = new java.lang.Character[9];
-        linkedHashMap.put(character, characterArray);
+        Integer integer = 0;
+        java.lang.Integer[] integerArray = new java.lang.Integer[0];
+        linkedHashMap.put(integer, integerArray);
+        linkedHashMap.put(integerArray, null);
         when(resourceManagerMock.getManagedResources()).thenReturn(((Map) linkedHashMap));
         
         rmRpcClient.getMergedResourceKeys(resourceManagerMock);

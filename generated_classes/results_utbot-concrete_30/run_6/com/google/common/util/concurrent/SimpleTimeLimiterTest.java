@@ -5,11 +5,12 @@ import java.lang.reflect.Method;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ForkJoinPool;
 import java.util.InputMismatchException;
-import java.util.concurrent.ThreadPoolExecutor;
 import com.google.common.cache.CacheLoader.InvalidCacheLoadException;
 import com.google.common.cache.CacheLoader;
 import com.google.common.base.VerifyException;
 import java.nio.channels.UnresolvedAddressException;
+import java.lang.reflect.InvocationTargetException;
+import java.io.IOError;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -36,6 +37,30 @@ public class SimpleTimeLimiterTest {
         
         simpleTimeLimiter.runWithTimeout(null, 0L, null);
     }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testRunWithTimeout2() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        Object perListenerQueue = createInstance("com.google.common.util.concurrent.ListenerCallQueue$PerListenerQueue");
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class perListenerQueueType = Class.forName("java.lang.Runnable");
+        Class longType = long.class;
+        Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
+        Method runWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("runWithTimeout", perListenerQueueType, longType, timeUnitType);
+        runWithTimeoutMethod.setAccessible(true);
+        java.lang.Object[] runWithTimeoutMethodArguments = new java.lang.Object[3];
+        runWithTimeoutMethodArguments[0] = perListenerQueue;
+        runWithTimeoutMethodArguments[1] = 0L;
+        runWithTimeoutMethodArguments[2] = null;
+        try {
+            runWithTimeoutMethod.invoke(simpleTimeLimiter, runWithTimeoutMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     
@@ -273,16 +298,16 @@ public class SimpleTimeLimiterTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testRunUninterruptiblyWithTimeout2() throws Throwable  {
         SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
-        Object fire = createInstance("com.google.common.util.concurrent.TimeoutFuture$Fire");
+        Object perListenerQueue = createInstance("com.google.common.util.concurrent.ListenerCallQueue$PerListenerQueue");
         
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class fireType = Class.forName("java.lang.Runnable");
+        Class perListenerQueueType = Class.forName("java.lang.Runnable");
         Class longType = long.class;
         Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
-        Method runUninterruptiblyWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("runUninterruptiblyWithTimeout", fireType, longType, timeUnitType);
+        Method runUninterruptiblyWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("runUninterruptiblyWithTimeout", perListenerQueueType, longType, timeUnitType);
         runUninterruptiblyWithTimeoutMethod.setAccessible(true);
         java.lang.Object[] runUninterruptiblyWithTimeoutMethodArguments = new java.lang.Object[3];
-        runUninterruptiblyWithTimeoutMethodArguments[0] = fire;
+        runUninterruptiblyWithTimeoutMethodArguments[0] = perListenerQueue;
         runUninterruptiblyWithTimeoutMethodArguments[1] = 0L;
         runUninterruptiblyWithTimeoutMethodArguments[2] = null;
         try {
@@ -468,18 +493,18 @@ public class SimpleTimeLimiterTest {
     
     @Test(timeout = 10000)
     public void testCreate2() throws Throwable  {
-        ThreadPoolExecutor threadPoolExecutor = ((ThreadPoolExecutor) createInstance("java.util.concurrent.ThreadPoolExecutor"));
+        Object finalizableDelegatedExecutorService = createInstance("java.util.concurrent.Executors$FinalizableDelegatedExecutorService");
         
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class threadPoolExecutorType = Class.forName("java.util.concurrent.ExecutorService");
-        Method createMethod = simpleTimeLimiterClazz.getDeclaredMethod("create", threadPoolExecutorType);
+        Class finalizableDelegatedExecutorServiceType = Class.forName("java.util.concurrent.ExecutorService");
+        Method createMethod = simpleTimeLimiterClazz.getDeclaredMethod("create", finalizableDelegatedExecutorServiceType);
         createMethod.setAccessible(true);
         java.lang.Object[] createMethodArguments = new java.lang.Object[1];
-        createMethodArguments[0] = threadPoolExecutor;
+        createMethodArguments[0] = finalizableDelegatedExecutorService;
         SimpleTimeLimiter actual = ((SimpleTimeLimiter) createMethod.invoke(null, createMethodArguments));
         
         SimpleTimeLimiter expected = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
-        setField(expected, "executor", threadPoolExecutor);
+        setField(expected, "executor", finalizableDelegatedExecutorService);
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -498,16 +523,14 @@ public class SimpleTimeLimiterTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testNewProxy3() throws Throwable  {
-        Object typeVariableInvocationHandler = createInstance("com.google.common.reflect.Types$TypeVariableInvocationHandler");
-        
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
         Class classType = Class.forName("java.lang.Class");
-        Class typeVariableInvocationHandlerType = Class.forName("java.lang.reflect.InvocationHandler");
-        Method newProxyMethod = simpleTimeLimiterClazz.getDeclaredMethod("newProxy", classType, typeVariableInvocationHandlerType);
+        Class invocationHandlerType = Class.forName("java.lang.reflect.InvocationHandler");
+        Method newProxyMethod = simpleTimeLimiterClazz.getDeclaredMethod("newProxy", classType, invocationHandlerType);
         newProxyMethod.setAccessible(true);
         java.lang.Object[] newProxyMethodArguments = new java.lang.Object[2];
         newProxyMethodArguments[0] = null;
-        newProxyMethodArguments[1] = typeVariableInvocationHandler;
+        newProxyMethodArguments[1] = null;
         try {
             newProxyMethod.invoke(null, newProxyMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -659,6 +682,29 @@ public class SimpleTimeLimiterTest {
             throwCauseMethod.invoke(null, throwCauseMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testThrowCause7() throws Throwable  {
+        InvocationTargetException invocationTargetException = ((InvocationTargetException) createInstance("java.lang.reflect.InvocationTargetException"));
+        IOError iOError = ((IOError) createInstance("java.io.IOError"));
+        setField(invocationTargetException, "target", iOError);
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class invocationTargetExceptionType = Class.forName("java.lang.Exception");
+        Class booleanType = boolean.class;
+        Method throwCauseMethod = simpleTimeLimiterClazz.getDeclaredMethod("throwCause", invocationTargetExceptionType, booleanType);
+        throwCauseMethod.setAccessible(true);
+        java.lang.Object[] throwCauseMethodArguments = new java.lang.Object[2];
+        throwCauseMethodArguments[0] = invocationTargetException;
+        throwCauseMethodArguments[1] = true;
+        try {
+            throwCauseMethod.invoke(null, throwCauseMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException1) {
+            throw invocationTargetException1.getTargetException();
         }}
     ///endregion
     
@@ -831,13 +877,13 @@ public class SimpleTimeLimiterTest {
     
     @Test(timeout = 10000)
     public void testSimpleTimeLimiter3() throws Throwable  {
-        ThreadPoolExecutor threadPoolExecutor = ((ThreadPoolExecutor) createInstance("java.util.concurrent.ThreadPoolExecutor"));
+        Object finalizableDelegatedExecutorService = createInstance("java.util.concurrent.Executors$FinalizableDelegatedExecutorService");
         Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-        Class threadPoolExecutorType = Class.forName("java.util.concurrent.ExecutorService");
-        Constructor simpleTimeLimiterConstructor = simpleTimeLimiterClazz.getDeclaredConstructor(threadPoolExecutorType);
+        Class finalizableDelegatedExecutorServiceType = Class.forName("java.util.concurrent.ExecutorService");
+        Constructor simpleTimeLimiterConstructor = simpleTimeLimiterClazz.getDeclaredConstructor(finalizableDelegatedExecutorServiceType);
         simpleTimeLimiterConstructor.setAccessible(true);
         java.lang.Object[] simpleTimeLimiterConstructorArguments = new java.lang.Object[1];
-        simpleTimeLimiterConstructorArguments[0] = threadPoolExecutor;
+        simpleTimeLimiterConstructorArguments[0] = finalizableDelegatedExecutorService;
         SimpleTimeLimiter actual = ((SimpleTimeLimiter) simpleTimeLimiterConstructor.newInstance(simpleTimeLimiterConstructorArguments));
     }
     ///endregion

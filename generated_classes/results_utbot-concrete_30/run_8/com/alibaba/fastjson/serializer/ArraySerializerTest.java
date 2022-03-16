@@ -1,12 +1,11 @@
 package com.alibaba.fastjson.serializer;
 
 import org.junit.Test;
-import sun.font.FontDesignMetrics;
 import java.util.IdentityHashMap;
 import javax.management.openmbean.KeyAlreadyExistsException;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
 import static java.lang.reflect.Array.get;
@@ -19,9 +18,11 @@ public class ArraySerializerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testWrite1() throws Throwable  {
         ArraySerializer arraySerializer = ((ArraySerializer) createInstance("com.alibaba.fastjson.serializer.ArraySerializer"));
-        sun.font.FontDesignMetrics[] fontDesignMetricsArray = new sun.font.FontDesignMetrics[0];
+        java.lang.Object[] forEachTaskArray = createArray("java.util.stream.ForEachOps$ForEachTask", 0);
+        java.lang.Object[] forEachTaskArray1 = createArray("java.util.stream.ForEachOps$ForEachTask", 0);
+        Class class1 = Object.class;
         
-        arraySerializer.write(null, null, fontDesignMetricsArray, null, 0);
+        arraySerializer.write(null, forEachTaskArray, forEachTaskArray1, class1, 0);
     }
     ///endregion
     
@@ -116,10 +117,10 @@ public class ArraySerializerTest {
         Object initialJSONSerializerContextObject = jSONSerializer.context.object;
         IdentityHashMap identityHashMap1 = jSONSerializer.references;
         Object identityHashMap1ReferencesTable = getFieldValue(identityHashMap1, "table");
-        Object initialJSONSerializerReferencesTable12 = get(identityHashMap1ReferencesTable, 12);
+        Object initialJSONSerializerReferencesTable24 = get(identityHashMap1ReferencesTable, 24);
         IdentityHashMap identityHashMap2 = jSONSerializer.references;
         Object identityHashMap2ReferencesTable = getFieldValue(identityHashMap2, "table");
-        Object initialJSONSerializerReferencesTable13 = get(identityHashMap2ReferencesTable, 13);
+        Object initialJSONSerializerReferencesTable25 = get(identityHashMap2ReferencesTable, 25);
         
         arraySerializer.write(jSONSerializer, keyAlreadyExistsExceptionArray, forEachTaskArray, null, 0);
         
@@ -127,24 +128,33 @@ public class ArraySerializerTest {
         Object finalJSONSerializerContextObject = jSONSerializer.context.object;
         IdentityHashMap identityHashMap3 = jSONSerializer.references;
         Object identityHashMap3ReferencesTable = getFieldValue(identityHashMap3, "table");
-        Object finalJSONSerializerReferencesTable12 = get(identityHashMap3ReferencesTable, 12);
+        Object finalJSONSerializerReferencesTable24 = get(identityHashMap3ReferencesTable, 24);
         IdentityHashMap identityHashMap4 = jSONSerializer.references;
         Object identityHashMap4ReferencesTable = getFieldValue(identityHashMap4, "table");
-        Object finalJSONSerializerReferencesTable13 = get(identityHashMap4ReferencesTable, 13);
+        Object finalJSONSerializerReferencesTable25 = get(identityHashMap4ReferencesTable, 25);
         
         assertNull(finalJSONSerializerContextFieldName);
         
         assertNull(finalJSONSerializerContextObject);
         
-        assertFalse(initialJSONSerializerReferencesTable12 == finalJSONSerializerReferencesTable12);
+        assertFalse(initialJSONSerializerReferencesTable24 == finalJSONSerializerReferencesTable24);
         
-        assertFalse(initialJSONSerializerReferencesTable13 == finalJSONSerializerReferencesTable13);
+        assertFalse(initialJSONSerializerReferencesTable25 == finalJSONSerializerReferencesTable25);
     }
     ///endregion
     
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();
@@ -165,15 +175,6 @@ public class ArraySerializerTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();

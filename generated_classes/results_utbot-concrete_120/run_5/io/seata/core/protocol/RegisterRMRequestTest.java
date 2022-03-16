@@ -95,23 +95,17 @@ public class RegisterRMRequestTest {
     @Test(timeout = 10000)
     public void testDecode5() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
-        Object unsafeHeapSwappedByteBuf = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
         SwappedByteBuf swappedByteBuf = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
-        Object unsafeHeapSwappedByteBuf1 = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
+        SwappedByteBuf swappedByteBuf1 = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
+        Object unsafeHeapSwappedByteBuf = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
         Object simpleLeakAwareByteBuf = createInstance("io.netty.buffer.SimpleLeakAwareByteBuf");
         EmptyByteBuf emptyByteBuf = ((EmptyByteBuf) createInstance("io.netty.buffer.EmptyByteBuf"));
         setField(simpleLeakAwareByteBuf, "buf", emptyByteBuf);
-        setField(unsafeHeapSwappedByteBuf1, "buf", simpleLeakAwareByteBuf);
-        setField(swappedByteBuf, "buf", unsafeHeapSwappedByteBuf1);
-        setField(unsafeHeapSwappedByteBuf, "buf", swappedByteBuf);
+        setField(unsafeHeapSwappedByteBuf, "buf", simpleLeakAwareByteBuf);
+        setField(swappedByteBuf1, "buf", unsafeHeapSwappedByteBuf);
+        setField(swappedByteBuf, "buf", swappedByteBuf1);
         
-        Class registerRMRequestClazz = Class.forName("io.seata.core.protocol.RegisterRMRequest");
-        Class unsafeHeapSwappedByteBufType = Class.forName("io.netty.buffer.ByteBuf");
-        Method decodeMethod = registerRMRequestClazz.getDeclaredMethod("decode", unsafeHeapSwappedByteBufType);
-        decodeMethod.setAccessible(true);
-        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
-        decodeMethodArguments[0] = unsafeHeapSwappedByteBuf;
-        boolean actual = ((boolean) decodeMethod.invoke(registerRMRequest, decodeMethodArguments));
+        boolean actual = registerRMRequest.decode(swappedByteBuf);
         
         assertFalse(actual);
     }
@@ -444,9 +438,8 @@ public class RegisterRMRequestTest {
     public void testSetResourceIds1() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
         setField(registerRMRequest, "resourceIds", null);
-        String string = new String("");
         
-        registerRMRequest.setResourceIds(string);
+        registerRMRequest.setResourceIds(null);
     }
     ///endregion
     
@@ -479,7 +472,9 @@ public class RegisterRMRequestTest {
     
     @Test(timeout = 10000)
     public void testRegisterRMRequest1() {
-        RegisterRMRequest actual = new RegisterRMRequest();
+        String string = new String();
+        String string1 = new String();
+        RegisterRMRequest actual = new RegisterRMRequest(string, string1);
     }
     ///endregion
     
@@ -487,9 +482,7 @@ public class RegisterRMRequestTest {
     
     @Test(timeout = 10000)
     public void testRegisterRMRequest2() {
-        String string = new String();
-        String string1 = new String();
-        RegisterRMRequest actual = new RegisterRMRequest(string, string1);
+        RegisterRMRequest actual = new RegisterRMRequest();
     }
     ///endregion
     

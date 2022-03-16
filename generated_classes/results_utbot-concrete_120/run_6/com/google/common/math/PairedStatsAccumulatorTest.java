@@ -15,535 +15,10 @@ import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class PairedStatsAccumulatorTest {
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAdd1() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
-        
-        pairedStatsAccumulator.add(0.0, 0.0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAdd2() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "min", java.lang.Double.NaN);
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
-        setField(statsAccumulator, "mean", java.lang.Double.POSITIVE_INFINITY);
-        setField(statsAccumulator, "count", 4194304L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        pairedStatsAccumulator.add(java.lang.Double.NEGATIVE_INFINITY, java.lang.Double.NaN);
-        
-        Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMean = getFieldValue(pairedStatsAccumulatorXStats, "mean");
-        Object pairedStatsAccumulatorXStats1 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats1, "count");
-        
-        assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsMean), 1.0E-6);
-        
-        org.junit.Assert.assertEquals(4194305L, finalPairedStatsAccumulatorXStatsCount);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAdd3() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        pairedStatsAccumulator.add(java.lang.Double.NEGATIVE_INFINITY, java.lang.Double.NaN);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAdd4() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "max", 5.824402443633994E-116);
-        setField(statsAccumulator, "min", -1.5873920653331075E231);
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator, "mean", 2.652494739E-315);
-        setField(statsAccumulator, "count", -9223372036854767616L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        pairedStatsAccumulator.add(java.lang.Double.NaN, java.lang.Double.NaN);
-        
-        Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMax = getFieldValue(pairedStatsAccumulatorXStats, "max");
-        Object pairedStatsAccumulatorXStats1 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMin = getFieldValue(pairedStatsAccumulatorXStats1, "min");
-        Object pairedStatsAccumulatorXStats2 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsSumOfSquaresOfDeltas = getFieldValue(pairedStatsAccumulatorXStats2, "sumOfSquaresOfDeltas");
-        Object pairedStatsAccumulatorXStats3 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMean = getFieldValue(pairedStatsAccumulatorXStats3, "mean");
-        Object pairedStatsAccumulatorXStats4 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats4, "count");
-        
-        assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsMax), 1.0E-6);
-        
-        assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsMin), 1.0E-6);
-        
-        assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsSumOfSquaresOfDeltas), 1.0E-6);
-        
-        assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsMean), 1.0E-6);
-        
-        org.junit.Assert.assertEquals(-9223372036854767615L, finalPairedStatsAccumulatorXStatsCount);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAdd5() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "max", -0.0);
-        setField(statsAccumulator, "min", -0.0);
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator, "mean", 8.289046E-317);
-        setField(statsAccumulator, "count", -9223372036854775800L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        pairedStatsAccumulator.add(-2.225073858507202E-308, java.lang.Double.NaN);
-        
-        Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMin = getFieldValue(pairedStatsAccumulatorXStats, "min");
-        Object pairedStatsAccumulatorXStats1 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats1, "count");
-        
-        assertEquals(-2.225073858507202E-308, ((double) finalPairedStatsAccumulatorXStatsMin), 1.0E-6);
-        
-        org.junit.Assert.assertEquals(-9223372036854775799L, finalPairedStatsAccumulatorXStatsCount);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAdd6() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "mean", java.lang.Double.NEGATIVE_INFINITY);
-        setField(statsAccumulator, "count", -9223372036854775807L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        pairedStatsAccumulator.add(1.390671161567E-309, java.lang.Double.NaN);
-        
-        Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats, "count");
-        
-        org.junit.Assert.assertEquals(-9223372036854775806L, finalPairedStatsAccumulatorXStatsCount);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAdd7() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "max", 0.0);
-        setField(statsAccumulator, "min", 0.0);
-        setField(statsAccumulator, "mean", 0.0);
-        setField(statsAccumulator, "count", 0L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        pairedStatsAccumulator.add(5.06E-321, 4.9E-324);
-        
-        Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMax = getFieldValue(pairedStatsAccumulatorXStats, "max");
-        Object pairedStatsAccumulatorXStats1 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMin = getFieldValue(pairedStatsAccumulatorXStats1, "min");
-        Object pairedStatsAccumulatorXStats2 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMean = getFieldValue(pairedStatsAccumulatorXStats2, "mean");
-        Object pairedStatsAccumulatorXStats3 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats3, "count");
-        
-        assertEquals(5.06E-321, ((double) finalPairedStatsAccumulatorXStatsMax), 1.0E-6);
-        
-        assertEquals(5.06E-321, ((double) finalPairedStatsAccumulatorXStatsMin), 1.0E-6);
-        
-        assertEquals(5.06E-321, ((double) finalPairedStatsAccumulatorXStatsMean), 1.0E-6);
-        
-        org.junit.Assert.assertEquals(1L, finalPairedStatsAccumulatorXStatsCount);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCount1() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
-        
-        long actual = pairedStatsAccumulator.count();
-        
-        org.junit.Assert.assertEquals(0L, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testCount2() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "count", 0L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        long actual = pairedStatsAccumulator.count();
-        
-        org.junit.Assert.assertEquals(0L, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddAll1() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
-        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
-        
-        pairedStatsAccumulator.addAll(pairedStats);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddAll2() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        
-        pairedStatsAccumulator.addAll(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAddAll3() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
-        Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
-        setField(stats, "count", 0L);
-        setField(pairedStats, "xStats", stats);
-        
-        pairedStatsAccumulator.addAll(pairedStats);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddAll4() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "max", java.lang.Double.NaN);
-        setField(statsAccumulator, "min", -0.0);
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator, "mean", java.lang.Double.NEGATIVE_INFINITY);
-        setField(statsAccumulator, "count", 288230376151711744L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
-        Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
-        setField(stats, "min", java.lang.Double.NaN);
-        setField(stats, "mean", java.lang.Double.NEGATIVE_INFINITY);
-        setField(stats, "count", -9223372036854771712L);
-        setField(pairedStats, "xStats", stats);
-        
-        pairedStatsAccumulator.addAll(pairedStats);
-        
-        Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMin = getFieldValue(pairedStatsAccumulatorXStats, "min");
-        Object pairedStatsAccumulatorXStats1 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsSumOfSquaresOfDeltas = getFieldValue(pairedStatsAccumulatorXStats1, "sumOfSquaresOfDeltas");
-        Object pairedStatsAccumulatorXStats2 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats2, "count");
-        
-        assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsMin), 1.0E-6);
-        
-        assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsSumOfSquaresOfDeltas), 1.0E-6);
-        
-        org.junit.Assert.assertEquals(-8935141660703059968L, finalPairedStatsAccumulatorXStatsCount);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddAll5() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "max", -0.0);
-        setField(statsAccumulator, "min", -6.465232806956185E88);
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator, "mean", java.lang.Double.NaN);
-        setField(statsAccumulator, "count", -8646911284551352320L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
-        Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
-        setField(stats, "max", -2.225073858507202E-308);
-        setField(stats, "min", 3.382322980513986E-131);
-        setField(stats, "mean", java.lang.Double.POSITIVE_INFINITY);
-        setField(stats, "count", -9187343239835811840L);
-        setField(pairedStats, "xStats", stats);
-        
-        pairedStatsAccumulator.addAll(pairedStats);
-        
-        Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsSumOfSquaresOfDeltas = getFieldValue(pairedStatsAccumulatorXStats, "sumOfSquaresOfDeltas");
-        Object pairedStatsAccumulatorXStats1 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats1, "count");
-        
-        assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsSumOfSquaresOfDeltas), 1.0E-6);
-        
-        org.junit.Assert.assertEquals(612489549322387456L, finalPairedStatsAccumulatorXStatsCount);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddAll6() throws Throwable  {
-        Class mathClazz = Class.forName("java.lang.Math");
-        long prevNegativeZeroDoubleBits = ((long) getStaticFieldValue(mathClazz, "negativeZeroDoubleBits"));
-        try {
-            setStaticField(mathClazz, "negativeZeroDoubleBits", java.lang.Long.MIN_VALUE);
-            PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-            StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-            setField(statsAccumulator, "max", java.lang.Double.NaN);
-            setField(statsAccumulator, "min", -0.0);
-            setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
-            setField(statsAccumulator, "mean", java.lang.Double.NaN);
-            setField(statsAccumulator, "count", -9223372036720558080L);
-            setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-            PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
-            Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
-            setField(stats, "max", java.lang.Double.NaN);
-            setField(stats, "min", -0.0);
-            setField(stats, "mean", -4.9E-324);
-            setField(stats, "count", 128L);
-            setField(pairedStats, "xStats", stats);
-            
-            pairedStatsAccumulator.addAll(pairedStats);
-            
-            Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-            Object finalPairedStatsAccumulatorXStatsSumOfSquaresOfDeltas = getFieldValue(pairedStatsAccumulatorXStats, "sumOfSquaresOfDeltas");
-            Object pairedStatsAccumulatorXStats1 = getFieldValue(pairedStatsAccumulator, "xStats");
-            Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats1, "count");
-            
-            assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsSumOfSquaresOfDeltas), 1.0E-6);
-            
-            org.junit.Assert.assertEquals(-9223372036720557952L, finalPairedStatsAccumulatorXStatsCount);
-        } finally {
-            setStaticField(Math.class, "negativeZeroDoubleBits", prevNegativeZeroDoubleBits);
-        }
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddAll7() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "mean", 4.9E-324);
-        setField(statsAccumulator, "count", -9223372036854775807L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
-        Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
-        setField(stats, "mean", java.lang.Double.NEGATIVE_INFINITY);
-        setField(stats, "count", 1L);
-        setField(pairedStats, "xStats", stats);
-        
-        pairedStatsAccumulator.addAll(pairedStats);
-        
-        Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMean = getFieldValue(pairedStatsAccumulatorXStats, "mean");
-        Object pairedStatsAccumulatorXStats1 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats1, "count");
-        
-        assertEquals(java.lang.Double.NEGATIVE_INFINITY, ((double) finalPairedStatsAccumulatorXStatsMean), 1.0E-6);
-        
-        org.junit.Assert.assertEquals(-9223372036854775806L, finalPairedStatsAccumulatorXStatsCount);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddAll8() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "max", -0.0);
-        setField(statsAccumulator, "min", java.lang.Double.POSITIVE_INFINITY);
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator, "mean", java.lang.Double.NEGATIVE_INFINITY);
-        setField(statsAccumulator, "count", -9223372036854775806L);
-        setField(pairedStatsAccumulator, "yStats", statsAccumulator);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
-        Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
-        setField(stats, "max", -2.225073858507202E-308);
-        setField(stats, "min", java.lang.Double.NaN);
-        setField(stats, "mean", java.lang.Double.POSITIVE_INFINITY);
-        setField(stats, "count", -9223372036854775744L);
-        setField(pairedStats, "xStats", stats);
-        
-        pairedStatsAccumulator.addAll(pairedStats);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddAll9() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
-        Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
-        setField(stats, "count", -9223369837831520256L);
-        setField(pairedStats, "xStats", stats);
-        
-        pairedStatsAccumulator.addAll(pairedStats);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddAll10() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "max", 0.0);
-        setField(statsAccumulator, "min", 0.0);
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator, "mean", 0.0);
-        setField(statsAccumulator, "count", 0L);
-        setField(pairedStatsAccumulator, "yStats", statsAccumulator);
-        StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator1, "max", java.lang.Double.NaN);
-        setField(statsAccumulator1, "min", java.lang.Double.POSITIVE_INFINITY);
-        setField(statsAccumulator1, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator1, "mean", java.lang.Double.NEGATIVE_INFINITY);
-        setField(statsAccumulator1, "count", -9223372036854775804L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
-        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
-        Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
-        setField(stats, "max", 0.0);
-        setField(stats, "min", java.lang.Double.NaN);
-        setField(stats, "mean", java.lang.Double.POSITIVE_INFINITY);
-        setField(stats, "count", -9223372036317904896L);
-        setField(pairedStats, "xStats", stats);
-        
-        pairedStatsAccumulator.addAll(pairedStats);
-        
-        Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMin = getFieldValue(pairedStatsAccumulatorXStats, "min");
-        Object pairedStatsAccumulatorXStats1 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsSumOfSquaresOfDeltas = getFieldValue(pairedStatsAccumulatorXStats1, "sumOfSquaresOfDeltas");
-        Object pairedStatsAccumulatorXStats2 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMean = getFieldValue(pairedStatsAccumulatorXStats2, "mean");
-        Object pairedStatsAccumulatorXStats3 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats3, "count");
-        
-        assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsMin), 1.0E-6);
-        
-        assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsSumOfSquaresOfDeltas), 1.0E-6);
-        
-        assertEquals(java.lang.Double.NaN, ((double) finalPairedStatsAccumulatorXStatsMean), 1.0E-6);
-        
-        org.junit.Assert.assertEquals(536870916L, finalPairedStatsAccumulatorXStatsCount);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testAddAll11() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", 0.0);
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "max", 0.0);
-        setField(statsAccumulator, "min", 0.0);
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator, "mean", 0.0);
-        setField(statsAccumulator, "count", 0L);
-        setField(pairedStatsAccumulator, "yStats", statsAccumulator);
-        StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator1, "max", 0.0);
-        setField(statsAccumulator1, "min", 0.0);
-        setField(statsAccumulator1, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator1, "mean", 0.0);
-        setField(statsAccumulator1, "count", 0L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
-        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
-        setField(pairedStats, "sumOfProductsOfDeltas", 0.0);
-        Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
-        setField(stats, "max", 0.0);
-        setField(stats, "min", 0.0);
-        setField(stats, "sumOfSquaresOfDeltas", 0.0);
-        setField(stats, "mean", 0.0);
-        setField(stats, "count", 0L);
-        setField(pairedStats, "yStats", stats);
-        Stats stats1 = ((Stats) createInstance("com.google.common.math.Stats"));
-        setField(stats1, "max", 0.0);
-        setField(stats1, "min", 0.0);
-        setField(stats1, "sumOfSquaresOfDeltas", 0.0);
-        setField(stats1, "mean", 0.0);
-        setField(stats1, "count", 4611686018427387904L);
-        setField(pairedStats, "xStats", stats1);
-        
-        pairedStatsAccumulator.addAll(pairedStats);
-        
-        Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats, "count");
-        
-        org.junit.Assert.assertEquals(4611686018427387904L, finalPairedStatsAccumulatorXStatsCount);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testAddAll12() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "mean", 0.0);
-        setField(statsAccumulator, "count", 2048L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
-        Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
-        setField(stats, "mean", 4.9E-324);
-        setField(stats, "count", 2305843009213693952L);
-        setField(pairedStats, "xStats", stats);
-        
-        pairedStatsAccumulator.addAll(pairedStats);
-        
-        Object pairedStatsAccumulatorXStats = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsMean = getFieldValue(pairedStatsAccumulatorXStats, "mean");
-        Object pairedStatsAccumulatorXStats1 = getFieldValue(pairedStatsAccumulator, "xStats");
-        Object finalPairedStatsAccumulatorXStatsCount = getFieldValue(pairedStatsAccumulatorXStats1, "count");
-        
-        assertEquals(4.9E-324, ((double) finalPairedStatsAccumulatorXStatsMean), 1.0E-6);
-        
-        org.junit.Assert.assertEquals(2305843009213696000L, finalPairedStatsAccumulatorXStatsCount);
-    }
-    ///endregion
-    
     ///region
     
     @Test(timeout = 10000)
@@ -581,17 +56,17 @@ public class PairedStatsAccumulatorTest {
         PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
         setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", java.lang.Double.NaN);
         StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "max", 4.9E-324);
-        setField(statsAccumulator, "min", java.lang.Double.NaN);
+        setField(statsAccumulator, "max", java.lang.Double.NaN);
+        setField(statsAccumulator, "min", java.lang.Double.POSITIVE_INFINITY);
         setField(statsAccumulator, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
         setField(statsAccumulator, "mean", java.lang.Double.NaN);
         setField(statsAccumulator, "count", 0L);
         setField(pairedStatsAccumulator, "yStats", statsAccumulator);
         StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator1, "max", 2.225073858508213E-308);
+        setField(statsAccumulator1, "max", 2.315841784746324E77);
         setField(statsAccumulator1, "min", java.lang.Double.NaN);
-        setField(statsAccumulator1, "sumOfSquaresOfDeltas", 4.7783097267364807E-299);
-        setField(statsAccumulator1, "mean", 0.0);
+        setField(statsAccumulator1, "sumOfSquaresOfDeltas", 0.0);
+        setField(statsAccumulator1, "mean", 3.2379E-319);
         setField(statsAccumulator1, "count", 0L);
         setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
         
@@ -600,138 +75,22 @@ public class PairedStatsAccumulatorTest {
         PairedStats expected = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
         Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
         setField(stats, "count", 0L);
-        setField(stats, "mean", 0.0);
-        setField(stats, "sumOfSquaresOfDeltas", 4.7783097267364807E-299);
+        setField(stats, "mean", 3.2379E-319);
+        setField(stats, "sumOfSquaresOfDeltas", 0.0);
         setField(stats, "min", java.lang.Double.NaN);
-        setField(stats, "max", 2.225073858508213E-308);
+        setField(stats, "max", 2.315841784746324E77);
         setField(expected, "xStats", stats);
         Stats stats1 = ((Stats) createInstance("com.google.common.math.Stats"));
         setField(stats1, "count", 0L);
         setField(stats1, "mean", java.lang.Double.NaN);
         setField(stats1, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
-        setField(stats1, "min", java.lang.Double.NaN);
-        setField(stats1, "max", 4.9E-324);
+        setField(stats1, "min", java.lang.Double.POSITIVE_INFINITY);
+        setField(stats1, "max", java.lang.Double.NaN);
         setField(expected, "yStats", stats1);
         setField(expected, "sumOfProductsOfDeltas", java.lang.Double.NaN);
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPopulationCovariance1() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
-        
-        pairedStatsAccumulator.populationCovariance();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPopulationCovariance2() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "count", 0L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        pairedStatsAccumulator.populationCovariance();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPopulationCovariance3() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", java.lang.Double.NaN);
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "count", -9223372036854775807L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        double actual = pairedStatsAccumulator.populationCovariance();
-        
-        assertEquals(java.lang.Double.NaN, actual, 1.0E-6);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPearsonsCorrelationCoefficient1() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
-        
-        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPearsonsCorrelationCoefficient2() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "count", -9223372036854775806L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPearsonsCorrelationCoefficient3() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", java.lang.Double.NaN);
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "count", 2L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
-        
-        double actual = pairedStatsAccumulator.pearsonsCorrelationCoefficient();
-        
-        assertEquals(java.lang.Double.NaN, actual, 1.0E-6);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPearsonsCorrelationCoefficient4() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", -2.0);
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
-        setField(statsAccumulator, "count", 0L);
-        setField(pairedStatsAccumulator, "yStats", statsAccumulator);
-        StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator1, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
-        setField(statsAccumulator1, "count", 262144L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
-        
-        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPearsonsCorrelationCoefficient5() throws Throwable  {
-        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
-        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", -2.2250738585072014E-308);
-        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
-        setField(statsAccumulator, "count", 0L);
-        setField(pairedStatsAccumulator, "yStats", statsAccumulator);
-        StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
-        setField(statsAccumulator1, "sumOfSquaresOfDeltas", 3.337610787760802E-308);
-        setField(statsAccumulator1, "count", 2L);
-        setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
-        
-        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
     }
     ///endregion
     
@@ -1111,6 +470,194 @@ public class PairedStatsAccumulatorTest {
     
     ///region
     
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPopulationCovariance1() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
+        
+        pairedStatsAccumulator.populationCovariance();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPopulationCovariance2() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "count", 0L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
+        
+        pairedStatsAccumulator.populationCovariance();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPopulationCovariance3() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", java.lang.Double.NaN);
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "count", -9223372036854775807L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
+        
+        double actual = pairedStatsAccumulator.populationCovariance();
+        
+        assertEquals(java.lang.Double.NaN, actual, 1.0E-6);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPearsonsCorrelationCoefficient1() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
+        
+        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPearsonsCorrelationCoefficient2() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "count", -9223372036854775806L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
+        
+        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testPearsonsCorrelationCoefficient3() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", java.lang.Double.NaN);
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "count", 2L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
+        
+        double actual = pairedStatsAccumulator.pearsonsCorrelationCoefficient();
+        
+        assertEquals(java.lang.Double.NaN, actual, 1.0E-6);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPearsonsCorrelationCoefficient4() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", -2.0);
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "sumOfSquaresOfDeltas", 0.0);
+        setField(statsAccumulator, "count", 0L);
+        setField(pairedStatsAccumulator, "yStats", statsAccumulator);
+        StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator1, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
+        setField(statsAccumulator1, "count", 262144L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
+        
+        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testPearsonsCorrelationCoefficient5() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        setField(pairedStatsAccumulator, "sumOfProductsOfDeltas", -2.2250738585072014E-308);
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "sumOfSquaresOfDeltas", java.lang.Double.NaN);
+        setField(statsAccumulator, "count", 0L);
+        setField(pairedStatsAccumulator, "yStats", statsAccumulator);
+        StatsAccumulator statsAccumulator1 = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator1, "sumOfSquaresOfDeltas", 3.337610787760802E-308);
+        setField(statsAccumulator1, "count", 2L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator1);
+        
+        pairedStatsAccumulator.pearsonsCorrelationCoefficient();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAdd1() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
+        
+        pairedStatsAccumulator.add(0.0, 0.0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCount1() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
+        
+        long actual = pairedStatsAccumulator.count();
+        
+        org.junit.Assert.assertEquals(0L, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCount2() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        StatsAccumulator statsAccumulator = ((StatsAccumulator) createInstance("com.google.common.math.StatsAccumulator"));
+        setField(statsAccumulator, "count", 0L);
+        setField(pairedStatsAccumulator, "xStats", statsAccumulator);
+        
+        long actual = pairedStatsAccumulator.count();
+        
+        org.junit.Assert.assertEquals(0L, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testAddAll1() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = new PairedStatsAccumulator();
+        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
+        
+        pairedStatsAccumulator.addAll(pairedStats);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testAddAll2() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        
+        pairedStatsAccumulator.addAll(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testAddAll3() throws Throwable  {
+        PairedStatsAccumulator pairedStatsAccumulator = ((PairedStatsAccumulator) createInstance("com.google.common.math.PairedStatsAccumulator"));
+        PairedStats pairedStats = ((PairedStats) createInstance("com.google.common.math.PairedStats"));
+        Stats stats = ((Stats) createInstance("com.google.common.math.Stats"));
+        setField(stats, "count", 0L);
+        setField(pairedStats, "xStats", stats);
+        
+        pairedStatsAccumulator.addAll(pairedStats);
+    }
+    ///endregion
+    
+    ///region
+    
     @Test(timeout = 10000)
     public void testEnsureInUnitRange1() throws Throwable  {
         Class pairedStatsAccumulatorClazz = Class.forName("com.google.common.math.PairedStatsAccumulator");
@@ -1212,62 +759,6 @@ public class PairedStatsAccumulatorTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
-    }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
-    }
-    private static Object getStaticFieldValue(Class<?> clazz, String fieldName) throws Exception {
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-                
-                return field.get(null);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + clazz);
-    }
-    private static void setStaticField(Class<?> clazz, String fieldName, Object fieldValue) throws Exception {
-        java.lang.reflect.Field field;
-    
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-            } catch (Exception e) {
-                clazz = clazz.getSuperclass();
-                field = null;
-            }
-        } while (field == null);
-        
-        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-    
-        field.setAccessible(true);
-        field.set(null, fieldValue);
     }
     static class FieldsPair {
         final Object o1;

@@ -1,66 +1,200 @@
-package com.alibaba.fastjson.parser.deserializer;
+package com.alibaba.fastjson.util;
 
 import org.junit.Test;
-import com.alibaba.fastjson.parser.DefaultJSONParser;
 import java.lang.reflect.Method;
-import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
-import com.alibaba.fastjson.parser.JSONScanner;
-import com.alibaba.fastjson.parser.JSONLexer;
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
-import javax.imageio.stream.FileImageInputStream;
-import org.springframework.cglib.core.CollectionUtils;
+import java.util.jar.JarInputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Array;
-import java.util.Objects;
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Arrays;
-import java.util.Iterator;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertNull;
 
-public class MapDeserializerTest {
+public class IOUtilsTest {
     ///region
     
-    @Test(timeout = 10000)
-    public void testGetFastMatchToken1() throws Throwable  {
-        MapDeserializer mapDeserializer = new MapDeserializer();
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars1() throws Throwable  {
+        char[] charArray = new char[0];
         
-        int actual = mapDeserializer.getFastMatchToken();
-        
-        assertEquals(12, actual);
+        IOUtils.getChars(0, 0, charArray);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze1() throws Throwable  {
-        MapDeserializer mapDeserializer = new MapDeserializer();
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        Object object = new Object();
+    public void testGetChars2() throws Throwable  {
+        IOUtils.getChars(0, 0, ((char[]) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars3() throws Throwable  {
+        char[] charArray = new char[17];
         
-        Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class typeType = Class.forName("java.lang.reflect.Type");
-        Class objectType = Class.forName("java.lang.Object");
-        Class mapType = Class.forName("java.util.Map");
-        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, typeType, objectType, mapType);
-        deserialzeMethod.setAccessible(true);
-        java.lang.Object[] deserialzeMethodArguments = new java.lang.Object[4];
-        deserialzeMethodArguments[0] = defaultJSONParser;
-        deserialzeMethodArguments[1] = null;
-        deserialzeMethodArguments[2] = object;
-        deserialzeMethodArguments[3] = null;
+        IOUtils.getChars(Integer.MIN_VALUE, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars4() throws Throwable  {
+        IOUtils.getChars(-65537, 0, ((char[]) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars5() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        IOUtils.getChars(0L, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars6() throws Throwable  {
+        IOUtils.getChars(4611686018427387904L, 0, ((char[]) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars7() throws Throwable  {
+        IOUtils.getChars(32768L, 0, ((char[]) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars8() throws Throwable  {
+        char[] charArray = new char[10];
+        
+        IOUtils.getChars(65536L, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars9() throws Throwable  {
+        IOUtils.getChars(-1073741824L, 0, ((char[]) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars10() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        IOUtils.getChars((byte) 0, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetChars11() throws Throwable  {
+        char[] charArray = new char[17];
+        
+        IOUtils.getChars(java.lang.Byte.MIN_VALUE, 0, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode1() throws Throwable  {
+        IOUtils.decode(null, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode2() throws Throwable  {
+        IOUtils.decode(null, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode3() throws Throwable  {
+        UTF8Decoder uTF8Decoder = ((UTF8Decoder) createInstance("com.alibaba.fastjson.util.UTF8Decoder"));
+        setField(uTF8Decoder, "state", 2);
+        
+        IOUtils.decode(uTF8Decoder, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecode4() throws Throwable  {
+        Object decoder = createInstance("sun.nio.cs.US_ASCII$Decoder");
+        setField(decoder, "state", 1);
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "isReadOnly", false);
+        byte[] byteArray = new byte[9];
+        setField(heapByteBuffer, "hb", byteArray);
+        Object heapCharBufferR = createInstance("java.nio.HeapCharBufferR");
+        
+        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
+        Class decoderType = Class.forName("java.nio.charset.CharsetDecoder");
+        Class heapByteBufferType = Class.forName("java.nio.ByteBuffer");
+        Class heapCharBufferRType = Class.forName("java.nio.CharBuffer");
+        Method decodeMethod = iOUtilsClazz.getDeclaredMethod("decode", decoderType, heapByteBufferType, heapCharBufferRType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[3];
+        decodeMethodArguments[0] = decoder;
+        decodeMethodArguments[1] = heapByteBuffer;
+        decodeMethodArguments[2] = heapCharBufferR;
+        decodeMethod.invoke(null, decodeMethodArguments);
+        
+        Object finalDecoderState = getFieldValue(decoder, "state");
+        
+        assertEquals(3, finalDecoderState);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode5() throws Throwable  {
+        UTF8Decoder uTF8Decoder = ((UTF8Decoder) createInstance("com.alibaba.fastjson.util.UTF8Decoder"));
+        setField(uTF8Decoder, "state", 2);
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "isReadOnly", false);
+        setField(heapByteBuffer, "offset", 0);
+        byte[] byteArray = new byte[0];
+        setField(heapByteBuffer, "hb", byteArray);
+        
+        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
+        Class uTF8DecoderType = Class.forName("java.nio.charset.CharsetDecoder");
+        Class heapByteBufferType = Class.forName("java.nio.ByteBuffer");
+        Class charBufferType = Class.forName("java.nio.CharBuffer");
+        Method decodeMethod = iOUtilsClazz.getDeclaredMethod("decode", uTF8DecoderType, heapByteBufferType, charBufferType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[3];
+        decodeMethodArguments[0] = uTF8Decoder;
+        decodeMethodArguments[1] = heapByteBuffer;
+        decodeMethodArguments[2] = null;
         try {
-            deserialzeMethod.invoke(mapDeserializer, deserialzeMethodArguments);
+            decodeMethod.invoke(null, decodeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
@@ -68,381 +202,1148 @@ public class MapDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze2() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        Object styleChangeHandler = createInstance("javax.swing.text.DefaultStyledDocument$StyleChangeHandler");
-        
-        Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class typeVariableImplType = Class.forName("java.lang.reflect.Type");
-        Class styleChangeHandlerType = Class.forName("java.lang.Object");
-        Class mapType = Class.forName("java.util.Map");
-        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, typeVariableImplType, styleChangeHandlerType, mapType);
-        deserialzeMethod.setAccessible(true);
-        java.lang.Object[] deserialzeMethodArguments = new java.lang.Object[4];
-        deserialzeMethodArguments[0] = null;
-        deserialzeMethodArguments[1] = typeVariableImpl;
-        deserialzeMethodArguments[2] = styleChangeHandler;
-        deserialzeMethodArguments[3] = null;
-        try {
-            deserialzeMethod.invoke(mapDeserializer, deserialzeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze3() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class typeType = Class.forName("java.lang.reflect.Type");
-        Class objectType = Class.forName("java.lang.Object");
-        Class mapType = Class.forName("java.util.Map");
-        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, typeType, objectType, mapType);
-        deserialzeMethod.setAccessible(true);
-        java.lang.Object[] deserialzeMethodArguments = new java.lang.Object[4];
-        deserialzeMethodArguments[0] = defaultJSONParser;
-        deserialzeMethodArguments[1] = null;
-        deserialzeMethodArguments[2] = null;
-        deserialzeMethodArguments[3] = null;
-        try {
-            deserialzeMethod.invoke(mapDeserializer, deserialzeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze4() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        Object syntheticParameterizedType = createInstance("org.springframework.core.ResolvableType$SyntheticParameterizedType");
-        
-        Class mapDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.MapDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class syntheticParameterizedTypeType = Class.forName("java.lang.reflect.Type");
-        Class objectType = Class.forName("java.lang.Object");
-        Class mapType = Class.forName("java.util.Map");
-        Method deserialzeMethod = mapDeserializerClazz.getDeclaredMethod("deserialze", defaultJSONParserType, syntheticParameterizedTypeType, objectType, mapType);
-        deserialzeMethod.setAccessible(true);
-        java.lang.Object[] deserialzeMethodArguments = new java.lang.Object[4];
-        deserialzeMethodArguments[0] = null;
-        deserialzeMethodArguments[1] = syntheticParameterizedType;
-        deserialzeMethodArguments[2] = null;
-        deserialzeMethodArguments[3] = null;
-        try {
-            deserialzeMethod.invoke(mapDeserializer, deserialzeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze5() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
-        java.lang.Object[] ofLongArray = createArray("java.util.stream.Nodes$EmptyNode$OfLong", 0);
-        
-        mapDeserializer.deserialze(null, typeVariableImpl, ofLongArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze6() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        Class class1 = Object.class;
-        java.lang.Object[] ofLongArray = createArray("java.util.stream.Nodes$EmptyNode$OfLong", 0);
-        
-        mapDeserializer.deserialze(null, class1, ofLongArray);
-        
-        Class finalClass1 = class1;
-        
-        Class expectedFinalClass1 = com.alibaba.fastjson.JSONObject.class;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expectedFinalClass1, finalClass1));
+    @Test(timeout = 10000)
+    public void testClose1() throws Throwable  {
+        IOUtils.close(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze7() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ',');
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
-        
-        assertEquals(16, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze8() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        Class class1 = Object.class;
-        
-        mapDeserializer.deserialze(defaultJSONParser, class1, null);
+    public void testClose2() throws Throwable  {
+        IOUtils.close(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze9() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
+    public void testClose3() throws Throwable  {
+        JarInputStream jarInputStream = ((JarInputStream) createInstance("java.util.jar.JarInputStream"));
+        setField(jarInputStream, "closed", true);
         
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
+        Class iOUtilsClazz = Class.forName("com.alibaba.fastjson.util.IOUtils");
+        Class jarInputStreamType = Class.forName("java.io.Closeable");
+        Method closeMethod = iOUtilsClazz.getDeclaredMethod("close", jarInputStreamType);
+        closeMethod.setAccessible(true);
+        java.lang.Object[] closeMethodArguments = new java.lang.Object[1];
+        closeMethodArguments[0] = jarInputStream;
+        closeMethod.invoke(null, closeMethodArguments);
         
-        assertNull(actual);
+        Object finalJarInputStreamClosed = getFieldValue(jarInputStream, "closed");
         
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
+        Class assertClazz = Class.forName("org.junit.Assert");
+        Class finalJarInputStreamClosedType = boolean.class;
+        Method assertFalseMethod = assertClazz.getDeclaredMethod("assertFalse", finalJarInputStreamClosedType);
+        assertFalseMethod.setAccessible(true);
+        java.lang.Object[] assertFalseMethodArguments = new java.lang.Object[1];
+        assertFalseMethodArguments[0] = finalJarInputStreamClosed;
+        assertFalseMethod.invoke(null, assertFalseMethodArguments);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze10() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "sp", 0);
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '}');
-        setField(jSONScanner, "token", 8);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
+    public void testStringSize1() throws Throwable  {
+        int actual = IOUtils.stringSize(0);
         
-        Object actual = mapDeserializer.deserialze(defaultJSONParser, null, null);
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testStringSize2() throws Throwable  {
+        int actual = IOUtils.stringSize(0);
         
-        assertNull(actual);
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testStringSize3() throws Throwable  {
+        int actual = IOUtils.stringSize(0L);
         
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        JSONLexer jSONLexer2 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer2, "token");
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testStringSize4() throws Throwable  {
+        int actual = IOUtils.stringSize(-9223372036854775797L);
         
-        assertEquals(1, finalDefaultJSONParserLexerBp);
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testStringSize5() throws Throwable  {
+        int actual = IOUtils.stringSize(11L);
         
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        assertEquals(2, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testStringSize6() throws Throwable  {
+        int actual = IOUtils.stringSize(1000000000000000000L);
         
-        assertEquals(13, finalDefaultJSONParserLexerToken);
+        assertEquals(19, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateMap1() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
+    public void testGetStringProperty1() throws Throwable  {
+        String string = new String();
         
-        mapDeserializer.createMap(typeVariableImpl);
+        IOUtils.getStringProperty(string);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateMap2() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
+    public void testGetStringProperty2() throws Throwable  {
+        IOUtils.getStringProperty(null);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for getStringProperty
+    
+    public void testGetStringProperty_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEncodeUTF81() throws Throwable  {
+        char[] charArray = new char[0];
+        byte[] byteArray = new byte[0];
         
-        mapDeserializer.createMap(null);
+        int actual = IOUtils.encodeUTF8(charArray, 0, 0, byteArray);
+        
+        assertEquals(0, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testCreateMap3() throws Throwable  {
-        MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
-        Class class1 = Object.class;
-        
-        mapDeserializer.createMap(class1);
+    public void testEncodeUTF82() throws Throwable  {
+        IOUtils.encodeUTF8(null, 0, 0, null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap1() throws Throwable  {
-        ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
-        javax.imageio.stream.FileImageInputStream[] fileImageInputStreamArray = new javax.imageio.stream.FileImageInputStream[0];
+    public void testEncodeUTF83() throws Throwable  {
+        char[] charArray = new char[9];
+        byte[] byteArray = new byte[32];
         
-        MapDeserializer.parseMap(null, null, parameterizedTypeImpl, fileImageInputStreamArray);
+        IOUtils.encodeUTF8(charArray, 1073741824, 1, byteArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEncodeUTF84() throws Throwable  {
+        byte[] byteArray = new byte[0];
+        
+        int actual = IOUtils.encodeUTF8(null, 510, -2147467263, byteArray);
+        
+        assertEquals(0, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap2() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        setField(defaultJSONParser, "context", null);
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", ' ');
-        setField(jSONScanner, "token", 12);
-        setField(jSONScanner, "len", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
+    public void testEncodeUTF85() throws Throwable  {
+        char[] charArray = new char[9];
+        byte[] byteArray = new byte[16];
         
-        MapDeserializer.parseMap(defaultJSONParser, null, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
-        
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        IOUtils.encodeUTF8(charArray, -536809308, -2147448295, byteArray);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap3() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        setField(defaultJSONParser, "context", null);
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '/');
-        setField(jSONScanner, "token", 12);
-        setField(defaultJSONParser, "lexer", jSONScanner);
+    public void testEncodeUTF86() throws Throwable  {
+        char[] charArray = new char[9];
+        charArray[0] = '\uE000';
+        byte[] byteArray = new byte[1];
         
-        MapDeserializer.parseMap(defaultJSONParser, null, null, null);
+        IOUtils.encodeUTF8(charArray, 0, 1, byteArray);
         
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        byte finalByteArray0 = byteArray[0];
         
-        assertEquals(1, finalDefaultJSONParserLexerBp);
-        
-        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
+        assertEquals((byte) -18, finalByteArray0);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap4() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        setField(defaultJSONParser, "context", null);
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "bp", Integer.MAX_VALUE);
-        setField(jSONScanner, "ch", '\n');
-        setField(jSONScanner, "token", 12);
-        setField(jSONScanner, "len", 1);
+    public void testEncodeUTF87() throws Throwable  {
+        char[] charArray = new char[9];
+        charArray[8] = '\uD800';
+        byte[] byteArray = new byte[15];
+        
+        IOUtils.encodeUTF8(charArray, 8, 15, byteArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEncodeUTF88() throws Throwable  {
+        char[] charArray = new char[15];
+        charArray[14] = '\uE000';
+        byte[] byteArray = new byte[2];
+        
+        IOUtils.encodeUTF8(charArray, 14, 2, byteArray);
+        
+        byte finalByteArray0 = byteArray[0];
+        byte finalByteArray1 = byteArray[1];
+        
+        assertEquals((byte) -18, finalByteArray0);
+        
+        assertEquals(java.lang.Byte.MIN_VALUE, finalByteArray1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEncodeUTF89() throws Throwable  {
+        char[] charArray = new char[9];
+        byte[] byteArray = new byte[9];
+        
+        int actual = IOUtils.encodeUTF8(charArray, 0, 1, byteArray);
+        
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEncodeUTF810() throws Throwable  {
+        char[] charArray = new char[9];
+        charArray[0] = '\u0080';
+        byte[] byteArray = new byte[1];
+        
+        IOUtils.encodeUTF8(charArray, 0, 1, byteArray);
+        
+        byte finalByteArray0 = byteArray[0];
+        
+        assertEquals((byte) -62, finalByteArray0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEncodeUTF811() throws Throwable  {
+        char[] charArray = new char[15];
+        charArray[9] = '\uD800';
+        byte[] byteArray = new byte[14];
+        
+        IOUtils.encodeUTF8(charArray, 9, 9, byteArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEncodeUTF812() throws Throwable  {
+        char[] charArray = new char[9];
+        charArray[0] = '\uDC00';
+        byte[] byteArray = new byte[32];
+        
+        int actual = IOUtils.encodeUTF8(charArray, 0, 1, byteArray);
+        
+        assertEquals(1, actual);
+        
+        byte finalByteArray0 = byteArray[0];
+        
+        assertEquals((byte) 63, finalByteArray0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEncodeUTF813() throws Throwable  {
+        char[] charArray = new char[15];
+        charArray[9] = '\uD800';
+        charArray[10] = '\uE000';
+        byte[] byteArray = new byte[14];
+        
+        IOUtils.encodeUTF8(charArray, 9, 9, byteArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEncodeUTF814() throws Throwable  {
+        char[] charArray = new char[9];
+        charArray[0] = '\uD800';
+        byte[] byteArray = new byte[32];
+        
+        int actual = IOUtils.encodeUTF8(charArray, 0, 1, byteArray);
+        
+        assertEquals(1, actual);
+        
+        byte finalByteArray0 = byteArray[0];
+        
+        assertEquals((byte) 63, finalByteArray0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEncodeUTF815() throws Throwable  {
+        char[] charArray = new char[9];
+        charArray[0] = '\u0080';
+        byte[] byteArray = new byte[32];
+        
+        int actual = IOUtils.encodeUTF8(charArray, 0, 1, byteArray);
+        
+        assertEquals(2, actual);
+        
+        byte finalByteArray0 = byteArray[0];
+        byte finalByteArray1 = byteArray[1];
+        
+        assertEquals((byte) -62, finalByteArray0);
+        
+        assertEquals(java.lang.Byte.MIN_VALUE, finalByteArray1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testEncodeUTF816() throws Throwable  {
+        char[] charArray = new char[15];
+        charArray[9] = '\uD800';
+        charArray[10] = '\uDC00';
+        byte[] byteArray = new byte[14];
+        
+        IOUtils.encodeUTF8(charArray, 9, 9, byteArray);
+        
+        byte finalByteArray0 = byteArray[0];
+        byte finalByteArray1 = byteArray[1];
+        byte finalByteArray2 = byteArray[2];
+        byte finalByteArray3 = byteArray[3];
+        
+        assertEquals((byte) -16, finalByteArray0);
+        
+        assertEquals((byte) -112, finalByteArray1);
+        
+        assertEquals(java.lang.Byte.MIN_VALUE, finalByteArray2);
+        
+        assertEquals(java.lang.Byte.MIN_VALUE, finalByteArray3);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLoadPropertiesFromFile1() throws Throwable  {
+        IOUtils.loadPropertiesFromFile();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testLoadPropertiesFromFile2() throws Throwable  {
+        IOUtils.loadPropertiesFromFile();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testFirstIdentifier1() throws Throwable  {
+        boolean actual = IOUtils.firstIdentifier('\u0000');
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsIdent1() throws Throwable  {
+        boolean actual = IOUtils.isIdent('\u0000');
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase641() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase642() throws Throwable  {
+        char[] charArray = new char[17];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase643() throws Throwable  {
+        char[] charArray = new char[0];
+        
+        IOUtils.decodeBase64(charArray, 0, 1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase644() throws Throwable  {
+        char[] charArray = new char[15];
+        charArray[0] = '=';
+        
+        IOUtils.decodeBase64(charArray, 0, 1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase645() throws Throwable  {
+        char[] charArray = new char[9];
+        
+        IOUtils.decodeBase64(charArray, 1744830388, -1744830387);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase646() throws Throwable  {
+        char[] charArray = new char[4];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, 0, 1);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase647() throws Throwable  {
+        char[] charArray = new char[9];
+        
+        byte[] actual = IOUtils.decodeBase64(charArray, Integer.MAX_VALUE, -2147483646);
+        
+        byte[] expected = new byte[1];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase648() throws Throwable  {
+        char[] charArray = new char[9];
+        
+        IOUtils.decodeBase64(charArray, 715827870, -715827869);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase649() throws Throwable  {
+        IOUtils.decodeBase64(((char[]) null), 628934271, -536885631);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6410() throws Throwable  {
+        IOUtils.decodeBase64(((char[]) null), -1929379840, -1962934272);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6411() throws Throwable  {
+        String string = new String();
+        
+        byte[] actual = IOUtils.decodeBase64(string);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6412() throws Throwable  {
+        IOUtils.decodeBase64(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6413() throws Throwable  {
         String string = new String("");
-        setField(jSONScanner, "text", string);
-        setField(defaultJSONParser, "lexer", jSONScanner);
         
-        MapDeserializer.parseMap(defaultJSONParser, null, null, null);
+        byte[] actual = IOUtils.decodeBase64(string);
         
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        
-        assertEquals(Integer.MIN_VALUE, finalDefaultJSONParserLexerBp);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap5() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 0);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        MapDeserializer.parseMap(defaultJSONParser, null, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap6() throws Throwable  {
-        com.alibaba.fastjson.util.ParameterizedTypeImpl parameterizedTypeImpl = ((com.alibaba.fastjson.util.ParameterizedTypeImpl) createInstance("com.alibaba.fastjson.util.ParameterizedTypeImpl"));
-        Class class1 = Object.class;
-        org.springframework.cglib.core.CollectionUtils[][] collectionUtilsArray = new org.springframework.cglib.core.CollectionUtils[0][];
-        
-        MapDeserializer.parseMap(null, null, parameterizedTypeImpl, class1, collectionUtilsArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseMap7() throws Throwable  {
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 12);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        setField(defaultJSONParser, "config", null);
-        
-        MapDeserializer.parseMap(defaultJSONParser, null, null, null, null);
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testMapDeserializer1() {
-        MapDeserializer actual = new MapDeserializer();
+    public void testDecodeBase6414() throws Throwable  {
+        String string = new String("\u0000");
+        
+        byte[] actual = IOUtils.decodeBase64(string);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6415() throws Throwable  {
+        String string = new String("=");
+        
+        IOUtils.decodeBase64(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6416() throws Throwable  {
+        String string = new String();
+        
+        byte[] actual = IOUtils.decodeBase64(string, 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6417() throws Throwable  {
+        byte[] actual = IOUtils.decodeBase64(((String) null), 0, 0);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6418() throws Throwable  {
+        IOUtils.decodeBase64(((String) null), 8781840, -2146434744);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6419() throws Throwable  {
+        String string = new String("\u0000");
+        
+        IOUtils.decodeBase64(string, 1583338752, -1583338751);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6420() throws Throwable  {
+        String string = new String("\u0000");
+        
+        byte[] actual = IOUtils.decodeBase64(string, 0, 1);
+        
+        byte[] expected = new byte[0];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeBase6421() throws Throwable  {
+        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
+        
+        byte[] actual = IOUtils.decodeBase64(string, 715827882, -715827881);
+        
+        byte[] expected = new byte[1];
+        assertArrayEquals(expected, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeBase6422() throws Throwable  {
+        String string = new String("=");
+        
+        IOUtils.decodeBase64(string, 0, 1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF81() throws Throwable  {
+        byte[] byteArray = new byte[0];
+        char[] charArray = new char[0];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 0, 0, charArray);
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF82() throws Throwable  {
+        IOUtils.decodeUTF8(null, 0, 0, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF83() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        char[] charArray = new char[32];
+        
+        IOUtils.decodeUTF8(byteArray, 1073741824, 1, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF84() throws Throwable  {
+        char[] charArray = new char[10];
+        
+        int actual = IOUtils.decodeUTF8(null, 12288, -2147482613, charArray);
+        
+        assertEquals(0, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF85() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        char[] charArray = new char[4];
+        
+        IOUtils.decodeUTF8(byteArray, -1610579952, -1073537785, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF86() throws Throwable  {
+        byte[] byteArray = new byte[14];
+        byteArray[3] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[32];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 3, 3, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF87() throws Throwable  {
+        byte[] byteArray = new byte[14];
+        byteArray[3] = (byte) -16;
+        char[] charArray = new char[32];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 3, 3, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF88() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        byteArray[8] = (byte) -32;
+        char[] charArray = new char[34];
+        
+        IOUtils.decodeUTF8(byteArray, 8, 23, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF89() throws Throwable  {
+        byte[] byteArray = new byte[39];
+        byteArray[34] = (byte) -32;
+        char[] charArray = new char[32];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 34, 1, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF810() throws Throwable  {
+        byte[] byteArray = new byte[14];
+        byteArray[3] = (byte) -64;
+        char[] charArray = new char[32];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 3, 3, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF811() throws Throwable  {
+        byte[] byteArray = new byte[38];
+        byteArray[33] = (byte) -62;
+        char[] charArray = new char[32];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 33, 1, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF812() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        byteArray[8] = (byte) -16;
+        char[] charArray = new char[34];
+        
+        IOUtils.decodeUTF8(byteArray, 8, 23, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF813() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        byteArray[8] = (byte) -62;
+        char[] charArray = new char[34];
+        
+        IOUtils.decodeUTF8(byteArray, 8, 23, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF814() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[3] = (byte) -31;
+        byteArray[4] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[32];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 3, 3, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF815() throws Throwable  {
+        byte[] byteArray = new byte[10];
+        byteArray[8] = (byte) -16;
+        char[] charArray = new char[34];
+        
+        IOUtils.decodeUTF8(byteArray, 8, 23, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF816() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[3] = (byte) -32;
+        byteArray[4] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[32];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 3, 3, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF817() throws Throwable  {
+        byte[] byteArray = new byte[11];
+        byteArray[1] = (byte) -62;
+        char[] charArray = new char[33];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 1, 30, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecodeUTF818() throws Throwable  {
+        byte[] byteArray = new byte[11];
+        byteArray[8] = (byte) -16;
+        char[] charArray = new char[36];
+        
+        IOUtils.decodeUTF8(byteArray, 8, 21, charArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF819() throws Throwable  {
+        byte[] byteArray = new byte[9];
+        char[] charArray = new char[9];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 0, 1, charArray);
+        
+        assertEquals(1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF820() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[3] = (byte) -19;
+        byteArray[4] = (byte) -96;
+        byteArray[5] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[32];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 3, 3, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF821() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[2] = (byte) -16;
+        char[] charArray = new char[36];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 2, 29, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF822() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[2] = (byte) -16;
+        byteArray[3] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[36];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 2, 29, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF823() throws Throwable  {
+        byte[] byteArray = new byte[11];
+        byteArray[0] = (byte) -24;
+        byteArray[1] = java.lang.Byte.MIN_VALUE;
+        byteArray[2] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[4];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 0, 3, charArray);
+        
+        assertEquals(1, actual);
+        
+        char finalCharArray0 = charArray[0];
+        
+        assertEquals('\u8000', finalCharArray0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF824() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[2] = (byte) -16;
+        byteArray[3] = java.lang.Byte.MIN_VALUE;
+        byteArray[4] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[36];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 2, 29, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF825() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[2] = (byte) -16;
+        byteArray[3] = java.lang.Byte.MIN_VALUE;
+        byteArray[4] = java.lang.Byte.MIN_VALUE;
+        byteArray[5] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[36];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 2, 29, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF826() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[2] = (byte) -10;
+        byteArray[3] = java.lang.Byte.MIN_VALUE;
+        byteArray[4] = java.lang.Byte.MIN_VALUE;
+        byteArray[5] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[36];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 2, 29, charArray);
+        
+        assertEquals(-1, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF827() throws Throwable  {
+        byte[] byteArray = new byte[11];
+        byteArray[0] = (byte) -62;
+        byteArray[1] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[33];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 0, 2, charArray);
+        
+        assertEquals(1, actual);
+        
+        char finalCharArray0 = charArray[0];
+        
+        assertEquals('\u0080', finalCharArray0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF828() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[1] = (byte) -12;
+        byteArray[2] = java.lang.Byte.MIN_VALUE;
+        byteArray[3] = java.lang.Byte.MIN_VALUE;
+        byteArray[4] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[33];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 1, 4, charArray);
+        
+        assertEquals(2, actual);
+        
+        char finalCharArray0 = charArray[0];
+        char finalCharArray1 = charArray[1];
+        
+        assertEquals('\uDBC0', finalCharArray0);
+        
+        assertEquals('\uDC00', finalCharArray1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDecodeUTF829() throws Throwable  {
+        byte[] byteArray = new byte[15];
+        byteArray[0] = (byte) -12;
+        byteArray[1] = java.lang.Byte.MIN_VALUE;
+        byteArray[2] = java.lang.Byte.MIN_VALUE;
+        byteArray[3] = java.lang.Byte.MIN_VALUE;
+        char[] charArray = new char[35];
+        
+        int actual = IOUtils.decodeUTF8(byteArray, 0, 5, charArray);
+        
+        assertEquals(3, actual);
+        
+        char finalCharArray0 = charArray[0];
+        char finalCharArray1 = charArray[1];
+        
+        assertEquals('\uDBC0', finalCharArray0);
+        
+        assertEquals('\uDC00', finalCharArray1);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testReadAll1() throws Throwable  {
+        IOUtils.readAll(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam1() throws Throwable  {
+        String string = new String();
+        
+        boolean actual = IOUtils.isValidJsonpQueryParam(string);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam2() throws Throwable  {
+        boolean actual = IOUtils.isValidJsonpQueryParam(null);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam3() throws Throwable  {
+        String string = new String("");
+        
+        boolean actual = IOUtils.isValidJsonpQueryParam(string);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIsValidJsonpQueryParam4() throws Throwable  {
+        String string = new String(".");
+        
+        boolean actual = IOUtils.isValidJsonpQueryParam(string);
+        
+        assertTrue(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIOUtils1() {
+        IOUtils actual = new IOUtils();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testIOUtils2() {
+        IOUtils actual = new IOUtils();
     }
     ///endregion
     
@@ -469,183 +1370,6 @@ public class MapDeserializerTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
-    }
-    static class FieldsPair {
-        final Object o1;
-        final Object o2;
-    
-        public FieldsPair(Object o1, Object o2) {
-            this.o1 = o1;
-            this.o2 = o2;
-        }
-    
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            FieldsPair that = (FieldsPair) o;
-            return Objects.equals(o1, that.o1) && Objects.equals(o2, that.o2);
-        }
-    
-        @Override
-        public int hashCode() {
-            return Objects.hash(o1, o2);
-        }
-    }
-    
-    private boolean deepEquals(Object o1, Object o2) {
-        try {
-            return deepEquals(o1, o2, new HashSet<>());
-        } catch (Throwable t) {
-            return true;
-        }
-    }
-    
-    private boolean deepEquals(Object o1, Object o2, Set<FieldsPair> visited) {
-        visited.add(new FieldsPair(o1, o2));
-    
-        if (o1 == o2) {
-            return true;
-        }
-    
-        if (o1 == null || o2 == null) {
-            return false;
-        }
-    
-        if (o1 instanceof Iterable) {
-            if (!(o2 instanceof Iterable)) {
-                return false;
-            }
-    
-            return iterablesDeepEquals((Iterable<?>) o1, (Iterable<?>) o2, visited);
-        }
-        
-        if (o2 instanceof Iterable) {
-            return false;
-        }
-    
-        if (o1 instanceof Map) {
-            if (!(o2 instanceof Map)) {
-                return false;
-            }
-    
-            return mapsDeepEquals((Map<?, ?>) o1, (Map<?, ?>) o2, visited);
-        }
-        
-        if (o2 instanceof Map) {
-            return false;
-        }
-    
-        Class<?> firstClass = o1.getClass();
-        if (firstClass.isArray()) {
-            if (!o2.getClass().isArray()) {
-                return false;
-            }
-    
-            // Primitive arrays should not appear here
-            return arraysDeepEquals(o1, o2, visited);
-        }
-    
-        // common classes
-    
-        // common classes without custom equals, use comparison by fields
-        final List<java.lang.reflect.Field> fields = new ArrayList<>();
-        while (firstClass != Object.class) {
-            fields.addAll(Arrays.asList(firstClass.getDeclaredFields()));
-            // Interface should not appear here
-            firstClass = firstClass.getSuperclass();
-        }
-    
-        for (java.lang.reflect.Field field : fields) {
-            field.setAccessible(true);
-            try {
-                final Object field1 = field.get(o1);
-                final Object field2 = field.get(o2);
-                if (!visited.contains(new FieldsPair(field1, field2)) && !deepEquals(field1, field2, visited)) {
-                    return false;
-                }
-            } catch (IllegalArgumentException e) {
-                return false;
-            } catch (IllegalAccessException e) {
-                // should never occur because field was set accessible
-                return false;
-            }
-        }
-    
-        return true;
-    }
-    private boolean arraysDeepEquals(Object arr1, Object arr2, Set<FieldsPair> visited) {
-        final int length = Array.getLength(arr1);
-        if (length != Array.getLength(arr2)) {
-            return false;
-        }
-    
-        for (int i = 0; i < length; i++) {
-            if (!deepEquals(Array.get(arr1, i), Array.get(arr2, i), visited)) {
-                return false;
-            }
-        }
-    
-        return true;
-    }
-    private boolean iterablesDeepEquals(Iterable<?> i1, Iterable<?> i2, Set<FieldsPair> visited) {
-        final Iterator<?> firstIterator = i1.iterator();
-        final Iterator<?> secondIterator = i2.iterator();
-        while (firstIterator.hasNext() && secondIterator.hasNext()) {
-            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
-                return false;
-            }
-        }
-    
-        if (firstIterator.hasNext()) {
-            return false;
-        }
-    
-        return !secondIterator.hasNext();
-    }
-    private boolean mapsDeepEquals(Map<?, ?> m1, Map<?, ?> m2, Set<FieldsPair> visited) {
-        final Iterator<? extends Map.Entry<?, ?>> firstIterator = m1.entrySet().iterator();
-        final Iterator<? extends Map.Entry<?, ?>> secondIterator = m2.entrySet().iterator();
-        while (firstIterator.hasNext() && secondIterator.hasNext()) {
-            final Map.Entry<?, ?> firstEntry = firstIterator.next();
-            final Map.Entry<?, ?> secondEntry = secondIterator.next();
-    
-            if (!deepEquals(firstEntry.getKey(), secondEntry.getKey(), visited)) {
-                return false;
-            }
-    
-            if (!deepEquals(firstEntry.getValue(), secondEntry.getValue(), visited)) {
-                return false;
-            }
-        }
-    
-        if (firstIterator.hasNext()) {
-            return false;
-        }
-    
-        return !secondIterator.hasNext();
-    }
-    private boolean hasCustomEquals(Class<?> clazz) {
-        while (!Object.class.equals(clazz)) {
-            try {
-                clazz.getDeclaredMethod("equals", Object.class);
-                return true;
-            } catch (Exception e) { 
-                // Interface should not appear here
-                clazz = clazz.getSuperclass();
-            }
-        }
-    
-        return false;
     }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();

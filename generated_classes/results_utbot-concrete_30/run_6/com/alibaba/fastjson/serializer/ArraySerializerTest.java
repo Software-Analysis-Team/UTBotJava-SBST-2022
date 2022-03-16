@@ -2,8 +2,8 @@ package com.alibaba.fastjson.serializer;
 
 import org.junit.Test;
 import java.util.IdentityHashMap;
-import javax.management.openmbean.KeyAlreadyExistsException;
-import java.io.OutputStreamWriter;
+import sun.management.ThreadInfoCompositeData;
+import java.io.FileWriter;
 import sun.nio.cs.StreamEncoder;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -20,9 +20,9 @@ public class ArraySerializerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testWrite1() throws Throwable  {
         ArraySerializer arraySerializer = ((ArraySerializer) createInstance("com.alibaba.fastjson.serializer.ArraySerializer"));
-        java.lang.Object[] unixFileStoreAttributesArray = createArray("sun.nio.fs.UnixFileStoreAttributes", 0);
+        java.lang.Object[] quesArray = createArray("java.util.regex.Pattern$Ques", 0);
         
-        arraySerializer.write(null, null, unixFileStoreAttributesArray, null, 0);
+        arraySerializer.write(null, null, quesArray, null, 0);
     }
     ///endregion
     
@@ -95,51 +95,43 @@ public class ArraySerializerTest {
         jSONSerializer.context = serialContext;
         IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("java.util.IdentityHashMap"));
         java.lang.Object[] objectArray = new java.lang.Object[29];
-        javax.management.openmbean.KeyAlreadyExistsException[][] keyAlreadyExistsExceptionArray = new javax.management.openmbean.KeyAlreadyExistsException[9][];
-        keyAlreadyExistsExceptionArray[0] = ((javax.management.openmbean.KeyAlreadyExistsException[]) null);
-        keyAlreadyExistsExceptionArray[1] = ((javax.management.openmbean.KeyAlreadyExistsException[]) null);
-        keyAlreadyExistsExceptionArray[2] = ((javax.management.openmbean.KeyAlreadyExistsException[]) null);
-        keyAlreadyExistsExceptionArray[3] = ((javax.management.openmbean.KeyAlreadyExistsException[]) null);
-        keyAlreadyExistsExceptionArray[4] = ((javax.management.openmbean.KeyAlreadyExistsException[]) null);
-        keyAlreadyExistsExceptionArray[5] = ((javax.management.openmbean.KeyAlreadyExistsException[]) null);
-        keyAlreadyExistsExceptionArray[6] = ((javax.management.openmbean.KeyAlreadyExistsException[]) null);
-        keyAlreadyExistsExceptionArray[7] = ((javax.management.openmbean.KeyAlreadyExistsException[]) null);
-        keyAlreadyExistsExceptionArray[8] = ((javax.management.openmbean.KeyAlreadyExistsException[]) null);
-        objectArray[28] = ((Object) keyAlreadyExistsExceptionArray);
+        java.lang.Object[] forEachTaskArray = createArray("java.util.stream.ForEachOps$ForEachTask", 0);
+        objectArray[28] = forEachTaskArray;
         setField(identityHashMap, "table", objectArray);
         jSONSerializer.references = identityHashMap;
         SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
         serializeWriter.disableCircularReferenceDetect = false;
         setField(jSONSerializer, "out", serializeWriter);
-        java.lang.Object[] forEachTaskArray = createArray("java.util.stream.ForEachOps$ForEachTask", 0);
+        java.lang.Object[] objectArray1 = new java.lang.Object[9];
+        sun.management.ThreadInfoCompositeData[] threadInfoCompositeDataArray = new sun.management.ThreadInfoCompositeData[0];
         
         Object initialJSONSerializerContextFieldName = jSONSerializer.context.fieldName;
         Object initialJSONSerializerContextObject = jSONSerializer.context.object;
         IdentityHashMap identityHashMap1 = jSONSerializer.references;
         Object identityHashMap1ReferencesTable = getFieldValue(identityHashMap1, "table");
-        Object initialJSONSerializerReferencesTable12 = get(identityHashMap1ReferencesTable, 12);
+        Object initialJSONSerializerReferencesTable16 = get(identityHashMap1ReferencesTable, 16);
         IdentityHashMap identityHashMap2 = jSONSerializer.references;
         Object identityHashMap2ReferencesTable = getFieldValue(identityHashMap2, "table");
-        Object initialJSONSerializerReferencesTable13 = get(identityHashMap2ReferencesTable, 13);
+        Object initialJSONSerializerReferencesTable17 = get(identityHashMap2ReferencesTable, 17);
         
-        arraySerializer.write(jSONSerializer, keyAlreadyExistsExceptionArray, forEachTaskArray, null, 0);
+        arraySerializer.write(jSONSerializer, objectArray1, threadInfoCompositeDataArray, null, 0);
         
         Object finalJSONSerializerContextFieldName = jSONSerializer.context.fieldName;
         Object finalJSONSerializerContextObject = jSONSerializer.context.object;
         IdentityHashMap identityHashMap3 = jSONSerializer.references;
         Object identityHashMap3ReferencesTable = getFieldValue(identityHashMap3, "table");
-        Object finalJSONSerializerReferencesTable12 = get(identityHashMap3ReferencesTable, 12);
+        Object finalJSONSerializerReferencesTable16 = get(identityHashMap3ReferencesTable, 16);
         IdentityHashMap identityHashMap4 = jSONSerializer.references;
         Object identityHashMap4ReferencesTable = getFieldValue(identityHashMap4, "table");
-        Object finalJSONSerializerReferencesTable13 = get(identityHashMap4ReferencesTable, 13);
+        Object finalJSONSerializerReferencesTable17 = get(identityHashMap4ReferencesTable, 17);
         
         assertNull(finalJSONSerializerContextFieldName);
         
         assertNull(finalJSONSerializerContextObject);
         
-        assertFalse(initialJSONSerializerReferencesTable12 == finalJSONSerializerReferencesTable12);
+        assertFalse(initialJSONSerializerReferencesTable16 == finalJSONSerializerReferencesTable16);
         
-        assertFalse(initialJSONSerializerReferencesTable13 == finalJSONSerializerReferencesTable13);
+        assertFalse(initialJSONSerializerReferencesTable17 == finalJSONSerializerReferencesTable17);
     }
     ///endregion
     
@@ -151,14 +143,33 @@ public class ArraySerializerTest {
         JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
         setField(jSONSerializer, "context", null);
         SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
+        serializeWriter.disableCircularReferenceDetect = true;
+        serializeWriter.count = -2;
+        char[] charArray = new char[10];
+        serializeWriter.buf = charArray;
+        setField(jSONSerializer, "out", serializeWriter);
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        
+        arraySerializer.write(jSONSerializer, objectArray, null, null, 0);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite6() throws Throwable  {
+        ArraySerializer arraySerializer = ((ArraySerializer) createInstance("com.alibaba.fastjson.serializer.ArraySerializer"));
+        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+        setField(jSONSerializer, "context", null);
+        SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
         setField(serializeWriter, "lock", null);
         serializeWriter.disableCircularReferenceDetect = true;
-        OutputStreamWriter outputStreamWriter = ((OutputStreamWriter) createInstance("java.io.OutputStreamWriter"));
-        setField(outputStreamWriter, "lock", null);
+        FileWriter fileWriter = ((FileWriter) createInstance("java.io.FileWriter"));
+        setField(fileWriter, "lock", null);
         StreamEncoder streamEncoder = ((StreamEncoder) createInstance("sun.nio.cs.StreamEncoder"));
         setField(streamEncoder, "lock", null);
-        setField(outputStreamWriter, "se", streamEncoder);
-        setField(serializeWriter, "writer", outputStreamWriter);
+        setField(fileWriter, "se", streamEncoder);
+        setField(serializeWriter, "writer", fileWriter);
         serializeWriter.count = 2147483646;
         char[] charArray = new char[10];
         serializeWriter.buf = charArray;
@@ -192,6 +203,19 @@ public class ArraySerializerTest {
         assertNull(finalJSONSerializerOutWriterLock);
         
         assertNull(finalJSONSerializerOutWriterSeLock);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrite7() throws Throwable  {
+        ArraySerializer arraySerializer = ((ArraySerializer) createInstance("com.alibaba.fastjson.serializer.ArraySerializer"));
+        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
+        SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
+        setField(jSONSerializer, "out", serializeWriter);
+        
+        arraySerializer.write(jSONSerializer, null, null, null, 0);
     }
     ///endregion
     

@@ -6,11 +6,10 @@ import org.slf4j.Logger;
 import java.lang.reflect.Method;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ReflectiveChannelFactory;
-import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.bootstrap.BootstrapConfig;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.DefaultChannelPipeline;
-import io.netty.util.concurrent.GlobalEventExecutor;
+import io.netty.util.concurrent.DefaultEventExecutor;
 import io.seata.core.rpc.netty.NettyPoolKey.TransactionRole;
 import io.seata.core.rpc.netty.NettyPoolKey;
 import io.seata.core.protocol.RegisterTMResponse;
@@ -244,13 +243,13 @@ public class NettyPoolableFactoryTest {
                 org.slf4j.LoggerFactory.getLogger(any(Class.class));
             }).thenReturn(loggerMock);
             NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-            TmRpcClient tmRpcClient = ((TmRpcClient) createInstance("io.seata.core.rpc.netty.TmRpcClient"));
+            RmRpcClient rmRpcClient = ((RmRpcClient) createInstance("io.seata.core.rpc.netty.RmRpcClient"));
             Bootstrap bootstrap = ((Bootstrap) createInstance("io.netty.bootstrap.Bootstrap"));
             setField(bootstrap, "handler", null);
             ReflectiveChannelFactory reflectiveChannelFactory = ((ReflectiveChannelFactory) createInstance("io.netty.channel.ReflectiveChannelFactory"));
             setField(bootstrap, "channelFactory", reflectiveChannelFactory);
-            NioEventLoopGroup nioEventLoopGroup = ((NioEventLoopGroup) createInstance("io.netty.channel.nio.NioEventLoopGroup"));
-            setField(bootstrap, "group", nioEventLoopGroup);
+            Object epollEventLoop = createInstance("io.netty.channel.epoll.EpollEventLoop");
+            setField(bootstrap, "group", epollEventLoop);
             BootstrapConfig bootstrapConfig = ((BootstrapConfig) createInstance("io.netty.bootstrap.BootstrapConfig"));
             ServerBootstrap serverBootstrap = ((ServerBootstrap) createInstance("io.netty.bootstrap.ServerBootstrap"));
             setField(serverBootstrap, "handler", null);
@@ -258,8 +257,8 @@ public class NettyPoolableFactoryTest {
             setField(serverBootstrap, "group", null);
             setField(bootstrapConfig, "bootstrap", serverBootstrap);
             setField(bootstrap, "config", bootstrapConfig);
-            setField(tmRpcClient, "bootstrap", bootstrap);
-            setField(nettyPoolableFactory, "rpcRemotingClient", tmRpcClient);
+            setField(rmRpcClient, "bootstrap", bootstrap);
+            setField(nettyPoolableFactory, "rpcRemotingClient", rmRpcClient);
             NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
             String string = new String("[\u0000");
             setField(nettyPoolKey, "address", string);
@@ -276,17 +275,6 @@ public class NettyPoolableFactoryTest {
     @Test(timeout = 10000)
     public void testDestroyObject1() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.destroyObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDestroyObject2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
         
         nettyPoolableFactory.destroyObject(((NettyPoolKey) null), ((Channel) null));
     }
@@ -295,7 +283,7 @@ public class NettyPoolableFactoryTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDestroyObject3() throws Throwable  {
+    public void testDestroyObject2() throws Throwable  {
         org.mockito.MockedStatic mockedStatic = null;
         try {
             mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
@@ -311,8 +299,8 @@ public class NettyPoolableFactoryTest {
             setField(failedChannel1, "pipeline", null);
             setField(defaultChannelPipeline, "channel", failedChannel1);
             Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
-            GlobalEventExecutor globalEventExecutor = ((GlobalEventExecutor) createInstance("io.netty.util.concurrent.GlobalEventExecutor"));
-            setField(defaultChannelHandlerContext, "executor", globalEventExecutor);
+            DefaultEventExecutor defaultEventExecutor = ((DefaultEventExecutor) createInstance("io.netty.util.concurrent.DefaultEventExecutor"));
+            setField(defaultChannelHandlerContext, "executor", defaultEventExecutor);
             setField(defaultChannelHandlerContext, "pipeline", defaultChannelPipeline);
             setField(defaultChannelHandlerContext, "prev", null);
             setField(defaultChannelPipeline, "tail", defaultChannelHandlerContext);

@@ -1,15 +1,19 @@
-package com.alibaba.fastjson.parser.deserializer;
+package com.google.common.util.concurrent;
 
 import org.junit.Test;
-import com.alibaba.fastjson.parser.DefaultJSONParser;
-import com.alibaba.fastjson.parser.JSONScanner;
-import com.alibaba.fastjson.parser.JSONLexer;
-import com.alibaba.fastjson.parser.JSONReaderScanner;
-import com.alibaba.fastjson.parser.DefaultExtJSONParser;
-import sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl;
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
+import java.lang.reflect.Method;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.ForkJoinPool;
+import java.util.InputMismatchException;
+import com.google.common.cache.CacheLoader.InvalidCacheLoadException;
+import com.google.common.cache.CacheLoader;
+import com.google.common.base.VerifyException;
+import java.nio.channels.UnresolvedAddressException;
+import java.lang.reflect.Constructor;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Array;
 import java.util.Objects;
 import java.util.Map;
 import java.util.List;
@@ -17,387 +21,822 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
-import java.lang.reflect.Array;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertArrayEquals;
 
-public class JavaObjectDeserializerTest {
+public class SimpleTimeLimiterTest {
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testRunWithTimeout1() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        
+        simpleTimeLimiter.runWithTimeout(null, 0L, null);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for runWithTimeout
+    
+    public void testRunWithTimeout_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCallWithTimeout1() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        
+        simpleTimeLimiter.callWithTimeout(null, 0L, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCallWithTimeout2() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        Object runnableAdapter = createInstance("java.util.concurrent.Executors$RunnableAdapter");
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class runnableAdapterType = Class.forName("java.util.concurrent.Callable");
+        Class longType = long.class;
+        Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
+        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", runnableAdapterType, longType, timeUnitType);
+        callWithTimeoutMethod.setAccessible(true);
+        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[3];
+        callWithTimeoutMethodArguments[0] = runnableAdapter;
+        callWithTimeoutMethodArguments[1] = 0L;
+        callWithTimeoutMethodArguments[2] = null;
+        try {
+            callWithTimeoutMethod.invoke(simpleTimeLimiter, callWithTimeoutMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for callWithTimeout
+    
+    public void testCallWithTimeout_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCallWithTimeout4() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class callableType = Class.forName("java.util.concurrent.Callable");
+        Class longType = long.class;
+        Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
+        Class booleanType = boolean.class;
+        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", callableType, longType, timeUnitType, booleanType);
+        callWithTimeoutMethod.setAccessible(true);
+        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[4];
+        callWithTimeoutMethodArguments[0] = null;
+        callWithTimeoutMethodArguments[1] = 0L;
+        callWithTimeoutMethodArguments[2] = null;
+        callWithTimeoutMethodArguments[3] = false;
+        try {
+            callWithTimeoutMethod.invoke(simpleTimeLimiter, callWithTimeoutMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCallWithTimeout5() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        Object runnableAdapter = createInstance("java.util.concurrent.Executors$RunnableAdapter");
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class runnableAdapterType = Class.forName("java.util.concurrent.Callable");
+        Class longType = long.class;
+        Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
+        Class booleanType = boolean.class;
+        Method callWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callWithTimeout", runnableAdapterType, longType, timeUnitType, booleanType);
+        callWithTimeoutMethod.setAccessible(true);
+        java.lang.Object[] callWithTimeoutMethodArguments = new java.lang.Object[4];
+        callWithTimeoutMethodArguments[0] = runnableAdapter;
+        callWithTimeoutMethodArguments[1] = 0L;
+        callWithTimeoutMethodArguments[2] = null;
+        callWithTimeoutMethodArguments[3] = false;
+        try {
+            callWithTimeoutMethod.invoke(simpleTimeLimiter, callWithTimeoutMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for callWithTimeout
+    
+    public void testCallWithTimeout_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for callWithTimeout
+    
+    public void testCallWithTimeout_errors2()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testNewProxy1() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
+        
+        simpleTimeLimiter.newProxy(fifoWaitQueueArray, null, 0L, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testNewProxy2() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
+        Class class1 = Object.class;
+        
+        simpleTimeLimiter.newProxy(fifoWaitQueueArray, class1, 0L, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCallUninterruptiblyWithTimeout1() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        
+        simpleTimeLimiter.callUninterruptiblyWithTimeout(null, 0L, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testCallUninterruptiblyWithTimeout2() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        Object runnableAdapter = createInstance("java.util.concurrent.Executors$RunnableAdapter");
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class runnableAdapterType = Class.forName("java.util.concurrent.Callable");
+        Class longType = long.class;
+        Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
+        Method callUninterruptiblyWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("callUninterruptiblyWithTimeout", runnableAdapterType, longType, timeUnitType);
+        callUninterruptiblyWithTimeoutMethod.setAccessible(true);
+        java.lang.Object[] callUninterruptiblyWithTimeoutMethodArguments = new java.lang.Object[3];
+        callUninterruptiblyWithTimeoutMethodArguments[0] = runnableAdapter;
+        callUninterruptiblyWithTimeoutMethodArguments[1] = 0L;
+        callUninterruptiblyWithTimeoutMethodArguments[2] = null;
+        try {
+            callUninterruptiblyWithTimeoutMethod.invoke(simpleTimeLimiter, callUninterruptiblyWithTimeoutMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for callUninterruptiblyWithTimeout
+    
+    public void testCallUninterruptiblyWithTimeout_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for callUninterruptiblyWithTimeout
+    
+    public void testCallUninterruptiblyWithTimeout_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testRunUninterruptiblyWithTimeout1() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        
+        simpleTimeLimiter.runUninterruptiblyWithTimeout(null, 0L, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testRunUninterruptiblyWithTimeout2() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        Object fire = createInstance("com.google.common.util.concurrent.TimeoutFuture$Fire");
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class fireType = Class.forName("java.lang.Runnable");
+        Class longType = long.class;
+        Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
+        Method runUninterruptiblyWithTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("runUninterruptiblyWithTimeout", fireType, longType, timeUnitType);
+        runUninterruptiblyWithTimeoutMethod.setAccessible(true);
+        java.lang.Object[] runUninterruptiblyWithTimeoutMethodArguments = new java.lang.Object[3];
+        runUninterruptiblyWithTimeoutMethodArguments[0] = fire;
+        runUninterruptiblyWithTimeoutMethodArguments[1] = 0L;
+        runUninterruptiblyWithTimeoutMethodArguments[2] = null;
+        try {
+            runUninterruptiblyWithTimeoutMethod.invoke(simpleTimeLimiter, runUninterruptiblyWithTimeoutMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for runUninterruptiblyWithTimeout
+    
+    public void testRunUninterruptiblyWithTimeout_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for runUninterruptiblyWithTimeout
+    
+    public void testRunUninterruptiblyWithTimeout_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId java.util.concurrent.TimeUnit$1 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrapAndThrowExecutionExceptionOrError1() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        Throwable throwable = new Throwable();
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class throwableType = Class.forName("java.lang.Throwable");
+        Method wrapAndThrowExecutionExceptionOrErrorMethod = simpleTimeLimiterClazz.getDeclaredMethod("wrapAndThrowExecutionExceptionOrError", throwableType);
+        wrapAndThrowExecutionExceptionOrErrorMethod.setAccessible(true);
+        java.lang.Object[] wrapAndThrowExecutionExceptionOrErrorMethodArguments = new java.lang.Object[1];
+        wrapAndThrowExecutionExceptionOrErrorMethodArguments[0] = throwable;
+        try {
+            wrapAndThrowExecutionExceptionOrErrorMethod.invoke(simpleTimeLimiter, wrapAndThrowExecutionExceptionOrErrorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrapAndThrowExecutionExceptionOrError2() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        AssertionError assertionError = ((AssertionError) createInstance("java.lang.AssertionError"));
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class assertionErrorType = Class.forName("java.lang.Throwable");
+        Method wrapAndThrowExecutionExceptionOrErrorMethod = simpleTimeLimiterClazz.getDeclaredMethod("wrapAndThrowExecutionExceptionOrError", assertionErrorType);
+        wrapAndThrowExecutionExceptionOrErrorMethod.setAccessible(true);
+        java.lang.Object[] wrapAndThrowExecutionExceptionOrErrorMethodArguments = new java.lang.Object[1];
+        wrapAndThrowExecutionExceptionOrErrorMethodArguments[0] = assertionError;
+        try {
+            wrapAndThrowExecutionExceptionOrErrorMethod.invoke(simpleTimeLimiter, wrapAndThrowExecutionExceptionOrErrorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrapAndThrowExecutionExceptionOrError3() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class throwableType = Class.forName("java.lang.Throwable");
+        Method wrapAndThrowExecutionExceptionOrErrorMethod = simpleTimeLimiterClazz.getDeclaredMethod("wrapAndThrowExecutionExceptionOrError", throwableType);
+        wrapAndThrowExecutionExceptionOrErrorMethod.setAccessible(true);
+        java.lang.Object[] wrapAndThrowExecutionExceptionOrErrorMethodArguments = new java.lang.Object[1];
+        wrapAndThrowExecutionExceptionOrErrorMethodArguments[0] = null;
+        try {
+            wrapAndThrowExecutionExceptionOrErrorMethod.invoke(simpleTimeLimiter, wrapAndThrowExecutionExceptionOrErrorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrapAndThrowExecutionExceptionOrError4() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        InputMismatchException inputMismatchException = ((InputMismatchException) createInstance("java.util.InputMismatchException"));
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class inputMismatchExceptionType = Class.forName("java.lang.Throwable");
+        Method wrapAndThrowExecutionExceptionOrErrorMethod = simpleTimeLimiterClazz.getDeclaredMethod("wrapAndThrowExecutionExceptionOrError", inputMismatchExceptionType);
+        wrapAndThrowExecutionExceptionOrErrorMethod.setAccessible(true);
+        java.lang.Object[] wrapAndThrowExecutionExceptionOrErrorMethodArguments = new java.lang.Object[1];
+        wrapAndThrowExecutionExceptionOrErrorMethodArguments[0] = inputMismatchException;
+        try {
+            wrapAndThrowExecutionExceptionOrErrorMethod.invoke(simpleTimeLimiter, wrapAndThrowExecutionExceptionOrErrorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrapAndThrowRuntimeExecutionExceptionOrError1() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        Throwable throwable = new Throwable();
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class throwableType = Class.forName("java.lang.Throwable");
+        Method wrapAndThrowRuntimeExecutionExceptionOrErrorMethod = simpleTimeLimiterClazz.getDeclaredMethod("wrapAndThrowRuntimeExecutionExceptionOrError", throwableType);
+        wrapAndThrowRuntimeExecutionExceptionOrErrorMethod.setAccessible(true);
+        java.lang.Object[] wrapAndThrowRuntimeExecutionExceptionOrErrorMethodArguments = new java.lang.Object[1];
+        wrapAndThrowRuntimeExecutionExceptionOrErrorMethodArguments[0] = throwable;
+        try {
+            wrapAndThrowRuntimeExecutionExceptionOrErrorMethod.invoke(simpleTimeLimiter, wrapAndThrowRuntimeExecutionExceptionOrErrorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrapAndThrowRuntimeExecutionExceptionOrError2() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        AssertionError assertionError = ((AssertionError) createInstance("java.lang.AssertionError"));
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class assertionErrorType = Class.forName("java.lang.Throwable");
+        Method wrapAndThrowRuntimeExecutionExceptionOrErrorMethod = simpleTimeLimiterClazz.getDeclaredMethod("wrapAndThrowRuntimeExecutionExceptionOrError", assertionErrorType);
+        wrapAndThrowRuntimeExecutionExceptionOrErrorMethod.setAccessible(true);
+        java.lang.Object[] wrapAndThrowRuntimeExecutionExceptionOrErrorMethodArguments = new java.lang.Object[1];
+        wrapAndThrowRuntimeExecutionExceptionOrErrorMethodArguments[0] = assertionError;
+        try {
+            wrapAndThrowRuntimeExecutionExceptionOrErrorMethod.invoke(simpleTimeLimiter, wrapAndThrowRuntimeExecutionExceptionOrErrorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testWrapAndThrowRuntimeExecutionExceptionOrError3() throws Throwable  {
+        SimpleTimeLimiter simpleTimeLimiter = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class throwableType = Class.forName("java.lang.Throwable");
+        Method wrapAndThrowRuntimeExecutionExceptionOrErrorMethod = simpleTimeLimiterClazz.getDeclaredMethod("wrapAndThrowRuntimeExecutionExceptionOrError", throwableType);
+        wrapAndThrowRuntimeExecutionExceptionOrErrorMethod.setAccessible(true);
+        java.lang.Object[] wrapAndThrowRuntimeExecutionExceptionOrErrorMethodArguments = new java.lang.Object[1];
+        wrapAndThrowRuntimeExecutionExceptionOrErrorMethodArguments[0] = null;
+        try {
+            wrapAndThrowRuntimeExecutionExceptionOrErrorMethod.invoke(simpleTimeLimiter, wrapAndThrowRuntimeExecutionExceptionOrErrorMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testNewProxy3() throws Throwable  {
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class classType = Class.forName("java.lang.Class");
+        Class invocationHandlerType = Class.forName("java.lang.reflect.InvocationHandler");
+        Method newProxyMethod = simpleTimeLimiterClazz.getDeclaredMethod("newProxy", classType, invocationHandlerType);
+        newProxyMethod.setAccessible(true);
+        java.lang.Object[] newProxyMethodArguments = new java.lang.Object[2];
+        newProxyMethodArguments[0] = null;
+        newProxyMethodArguments[1] = null;
+        try {
+            newProxyMethod.invoke(null, newProxyMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for newProxy
+    
+    public void testNewProxy_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testThrowCause1() throws Throwable  {
+        Exception exception = new Exception();
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class exceptionType = Class.forName("java.lang.Exception");
+        Class booleanType = boolean.class;
+        Method throwCauseMethod = simpleTimeLimiterClazz.getDeclaredMethod("throwCause", exceptionType, booleanType);
+        throwCauseMethod.setAccessible(true);
+        java.lang.Object[] throwCauseMethodArguments = new java.lang.Object[2];
+        throwCauseMethodArguments[0] = exception;
+        throwCauseMethodArguments[1] = false;
+        try {
+            throwCauseMethod.invoke(null, throwCauseMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testThrowCause2() throws Throwable  {
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class exceptionType = Class.forName("java.lang.Exception");
+        Class booleanType = boolean.class;
+        Method throwCauseMethod = simpleTimeLimiterClazz.getDeclaredMethod("throwCause", exceptionType, booleanType);
+        throwCauseMethod.setAccessible(true);
+        java.lang.Object[] throwCauseMethodArguments = new java.lang.Object[2];
+        throwCauseMethodArguments[0] = null;
+        throwCauseMethodArguments[1] = false;
+        try {
+            throwCauseMethod.invoke(null, throwCauseMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testThrowCause3() throws Throwable  {
+        CacheLoader.InvalidCacheLoadException invalidCacheLoadException = ((CacheLoader.InvalidCacheLoadException) createInstance("com.google.common.cache.CacheLoader$InvalidCacheLoadException"));
+        setField(invalidCacheLoadException, "cause", invalidCacheLoadException);
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class invalidCacheLoadExceptionType = Class.forName("java.lang.Exception");
+        Class booleanType = boolean.class;
+        Method throwCauseMethod = simpleTimeLimiterClazz.getDeclaredMethod("throwCause", invalidCacheLoadExceptionType, booleanType);
+        throwCauseMethod.setAccessible(true);
+        java.lang.Object[] throwCauseMethodArguments = new java.lang.Object[2];
+        throwCauseMethodArguments[0] = invalidCacheLoadException;
+        throwCauseMethodArguments[1] = false;
+        try {
+            throwCauseMethod.invoke(null, throwCauseMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testThrowCause4() throws Throwable  {
+        VerifyException verifyException = ((VerifyException) createInstance("com.google.common.base.VerifyException"));
+        UnresolvedAddressException unresolvedAddressException = ((UnresolvedAddressException) createInstance("java.nio.channels.UnresolvedAddressException"));
+        setField(unresolvedAddressException, "cause", null);
+        setField(verifyException, "cause", unresolvedAddressException);
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class verifyExceptionType = Class.forName("java.lang.Exception");
+        Class booleanType = boolean.class;
+        Method throwCauseMethod = simpleTimeLimiterClazz.getDeclaredMethod("throwCause", verifyExceptionType, booleanType);
+        throwCauseMethod.setAccessible(true);
+        java.lang.Object[] throwCauseMethodArguments = new java.lang.Object[2];
+        throwCauseMethodArguments[0] = verifyException;
+        throwCauseMethodArguments[1] = false;
+        try {
+            throwCauseMethod.invoke(null, throwCauseMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testThrowCause5() throws Throwable  {
+        UncheckedTimeoutException uncheckedTimeoutException = ((UncheckedTimeoutException) createInstance("com.google.common.util.concurrent.UncheckedTimeoutException"));
+        Object emptyServiceManagerWarning = createInstance("com.google.common.util.concurrent.ServiceManager$EmptyServiceManagerWarning");
+        setField(emptyServiceManagerWarning, "cause", null);
+        setField(uncheckedTimeoutException, "cause", emptyServiceManagerWarning);
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class uncheckedTimeoutExceptionType = Class.forName("java.lang.Exception");
+        Class booleanType = boolean.class;
+        Method throwCauseMethod = simpleTimeLimiterClazz.getDeclaredMethod("throwCause", uncheckedTimeoutExceptionType, booleanType);
+        throwCauseMethod.setAccessible(true);
+        java.lang.Object[] throwCauseMethodArguments = new java.lang.Object[2];
+        throwCauseMethodArguments[0] = uncheckedTimeoutException;
+        throwCauseMethodArguments[1] = false;
+        try {
+            throwCauseMethod.invoke(null, throwCauseMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testThrowCause6() throws Throwable  {
+        NoSuchFieldException noSuchFieldException = ((NoSuchFieldException) createInstance("java.lang.NoSuchFieldException"));
+        AssertionError assertionError = ((AssertionError) createInstance("java.lang.AssertionError"));
+        setField(assertionError, "cause", null);
+        setField(noSuchFieldException, "cause", assertionError);
+        
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class noSuchFieldExceptionType = Class.forName("java.lang.Exception");
+        Class booleanType = boolean.class;
+        Method throwCauseMethod = simpleTimeLimiterClazz.getDeclaredMethod("throwCause", noSuchFieldExceptionType, booleanType);
+        throwCauseMethod.setAccessible(true);
+        java.lang.Object[] throwCauseMethodArguments = new java.lang.Object[2];
+        throwCauseMethodArguments[0] = noSuchFieldException;
+        throwCauseMethodArguments[1] = false;
+        try {
+            throwCauseMethod.invoke(null, throwCauseMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testFindInterruptibleMethods1() throws Throwable  {
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class classType = Class.forName("java.lang.Class");
+        Method findInterruptibleMethodsMethod = simpleTimeLimiterClazz.getDeclaredMethod("findInterruptibleMethods", classType);
+        findInterruptibleMethodsMethod.setAccessible(true);
+        java.lang.Object[] findInterruptibleMethodsMethodArguments = new java.lang.Object[1];
+        findInterruptibleMethodsMethodArguments[0] = null;
+        try {
+            findInterruptibleMethodsMethod.invoke(null, findInterruptibleMethodsMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for findInterruptibleMethods
+    
+    public void testFindInterruptibleMethods_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDeclaresInterruptedEx1() throws Throwable  {
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class methodType = Class.forName("java.lang.reflect.Method");
+        Method declaresInterruptedExMethod = simpleTimeLimiterClazz.getDeclaredMethod("declaresInterruptedEx", methodType);
+        declaresInterruptedExMethod.setAccessible(true);
+        java.lang.Object[] declaresInterruptedExMethodArguments = new java.lang.Object[1];
+        declaresInterruptedExMethodArguments[0] = null;
+        try {
+            declaresInterruptedExMethod.invoke(null, declaresInterruptedExMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
     ///region
     
     @Test(timeout = 10000)
-    public void testGetFastMatchToken1() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = new JavaObjectDeserializer();
+    public void testDeclaresInterruptedEx2() throws Throwable  {
+        Method method = ((Method) createInstance("java.lang.reflect.Method"));
+        java.lang.Class[] classArray = new java.lang.Class[0];
+        setField(method, "exceptionTypes", classArray);
         
-        int actual = javaObjectDeserializer.getFastMatchToken();
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class methodType = Class.forName("java.lang.reflect.Method");
+        Method declaresInterruptedExMethod = simpleTimeLimiterClazz.getDeclaredMethod("declaresInterruptedEx", methodType);
+        declaresInterruptedExMethod.setAccessible(true);
+        java.lang.Object[] declaresInterruptedExMethodArguments = new java.lang.Object[1];
+        declaresInterruptedExMethodArguments[0] = method;
+        boolean actual = ((boolean) declaresInterruptedExMethod.invoke(null, declaresInterruptedExMethodArguments));
         
-        assertEquals(12, actual);
+        assertFalse(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testGetFastMatchToken2() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        
-        int actual = javaObjectDeserializer.getFastMatchToken();
-        
-        assertEquals(12, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze1() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = new JavaObjectDeserializer();
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        Object object = new Object();
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, null, object);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze2() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
+    public void testDeclaresInterruptedEx3() throws Throwable  {
+        Method method = ((Method) createInstance("java.lang.reflect.Method"));
+        java.lang.Class[] classArray = new java.lang.Class[1];
         Class class1 = Object.class;
+        classArray[0] = class1;
+        setField(method, "exceptionTypes", classArray);
         
-        javaObjectDeserializer.deserialze(null, class1, null);
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class methodType = Class.forName("java.lang.reflect.Method");
+        Method declaresInterruptedExMethod = simpleTimeLimiterClazz.getDeclaredMethod("declaresInterruptedEx", methodType);
+        declaresInterruptedExMethod.setAccessible(true);
+        java.lang.Object[] declaresInterruptedExMethodArguments = new java.lang.Object[1];
+        declaresInterruptedExMethodArguments[0] = method;
+        boolean actual = ((boolean) declaresInterruptedExMethod.invoke(null, declaresInterruptedExMethodArguments));
+        
+        assertFalse(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze3() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 22);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        Class class1 = Object.class;
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
+    public void testCheckPositiveTimeout1() throws Throwable  {
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class longType = long.class;
+        Method checkPositiveTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("checkPositiveTimeout", longType);
+        checkPositiveTimeoutMethod.setAccessible(true);
+        java.lang.Object[] checkPositiveTimeoutMethodArguments = new java.lang.Object[1];
+        checkPositiveTimeoutMethodArguments[0] = 0L;
+        try {
+            checkPositiveTimeoutMethod.invoke(null, checkPositiveTimeoutMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testCheckPositiveTimeout2() throws Throwable  {
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class longType = long.class;
+        Method checkPositiveTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("checkPositiveTimeout", longType);
+        checkPositiveTimeoutMethod.setAccessible(true);
+        java.lang.Object[] checkPositiveTimeoutMethodArguments = new java.lang.Object[1];
+        checkPositiveTimeoutMethodArguments[0] = 1L;
+        checkPositiveTimeoutMethod.invoke(null, checkPositiveTimeoutMethodArguments);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze4() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 14);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
+    public void testCheckPositiveTimeout3() throws Throwable  {
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class longType = long.class;
+        Method checkPositiveTimeoutMethod = simpleTimeLimiterClazz.getDeclaredMethod("checkPositiveTimeout", longType);
+        checkPositiveTimeoutMethod.setAccessible(true);
+        java.lang.Object[] checkPositiveTimeoutMethodArguments = new java.lang.Object[1];
+        checkPositiveTimeoutMethodArguments[0] = -9223372036854775806L;
+        try {
+            checkPositiveTimeoutMethod.invoke(null, checkPositiveTimeoutMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze5() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
-        Class class1 = Object.class;
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);
+    public void testCreate1() throws Throwable  {
+        SimpleTimeLimiter.create(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze6() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 23);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        Class class1 = Object.class;
+    public void testCreate2() throws Throwable  {
+        Object finalizableDelegatedExecutorService = createInstance("java.util.concurrent.Executors$FinalizableDelegatedExecutorService");
         
-        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class finalizableDelegatedExecutorServiceType = Class.forName("java.util.concurrent.ExecutorService");
+        Method createMethod = simpleTimeLimiterClazz.getDeclaredMethod("create", finalizableDelegatedExecutorServiceType);
+        createMethod.setAccessible(true);
+        java.lang.Object[] createMethodArguments = new java.lang.Object[1];
+        createMethodArguments[0] = finalizableDelegatedExecutorService;
+        SimpleTimeLimiter actual = ((SimpleTimeLimiter) createMethod.invoke(null, createMethodArguments));
         
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze7() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 3);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze8() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "np", 0);
-        setField(jSONScanner, "token", 2);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze9() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
-        setField(jSONReaderScanner, "token", 20);
-        setField(jSONReaderScanner, "buf", null);
-        setField(defaultJSONParser, "lexer", jSONReaderScanner);
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze10() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 21);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        Class class1 = Object.class;
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze11() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 7);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        Class class1 = Object.class;
-        
-        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);
-        
-        Boolean expected = false;
+        SimpleTimeLimiter expected = ((SimpleTimeLimiter) createInstance("com.google.common.util.concurrent.SimpleTimeLimiter"));
+        setField(expected, "executor", finalizableDelegatedExecutorService);
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze12() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 18);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        Class class1 = Object.class;
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze13() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 6);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        Class class1 = Object.class;
-        
-        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);
-        
-        Boolean expected = true;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze14() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 8);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        Class class1 = Object.class;
-        
-        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, class1, null);
-        
-        assertNull(actual);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDeserialze15() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 26);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        byte[] expected = new byte[0];
-        assertArrayEquals(expected, ((byte[]) actual));
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
+    public void testCreate3() throws Throwable  {
+        SimpleTimeLimiter.create(null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze16() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 9);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        JSONLexer jSONLexer = defaultJSONParser.lexer;
-        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
-        
-        assertEquals(20, finalDefaultJSONParserLexerToken);
+    public void testSimpleTimeLimiter1() throws Throwable  {
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class executorServiceType = Class.forName("java.util.concurrent.ExecutorService");
+        Constructor simpleTimeLimiterConstructor = simpleTimeLimiterClazz.getDeclaredConstructor(executorServiceType);
+        simpleTimeLimiterConstructor.setAccessible(true);
+        java.lang.Object[] simpleTimeLimiterConstructorArguments = new java.lang.Object[1];
+        simpleTimeLimiterConstructorArguments[0] = null;
+        simpleTimeLimiterConstructor.newInstance(simpleTimeLimiterConstructorArguments);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze17() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 4);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDeserialze18() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
-        GenericArrayTypeImpl genericArrayTypeImpl = ((GenericArrayTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.GenericArrayTypeImpl"));
-        ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
-        setField(genericArrayTypeImpl, "genericComponentType", parameterizedTypeImpl);
-        
-        javaObjectDeserializer.deserialze(defaultExtJSONParser, genericArrayTypeImpl, null);
+    public void testSimpleTimeLimiter2() throws Throwable  {
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class executorServiceType = Class.forName("java.util.concurrent.ExecutorService");
+        Constructor simpleTimeLimiterConstructor = simpleTimeLimiterClazz.getDeclaredConstructor(executorServiceType);
+        simpleTimeLimiterConstructor.setAccessible(true);
+        java.lang.Object[] simpleTimeLimiterConstructorArguments = new java.lang.Object[1];
+        simpleTimeLimiterConstructorArguments[0] = null;
+        simpleTimeLimiterConstructor.newInstance(simpleTimeLimiterConstructorArguments);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testDeserialze19() throws Throwable  {
-        JavaObjectDeserializer javaObjectDeserializer = ((JavaObjectDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaObjectDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 20);
-        setField(defaultJSONParser, "lexer", jSONScanner);
-        
-        Object actual = javaObjectDeserializer.deserialze(defaultJSONParser, null, null);
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testJavaObjectDeserializer1() {
-        JavaObjectDeserializer actual = new JavaObjectDeserializer();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testJavaObjectDeserializer2() {
-        JavaObjectDeserializer actual = new JavaObjectDeserializer();
+    public void testSimpleTimeLimiter3() throws Throwable  {
+        ThreadPoolExecutor threadPoolExecutor = ((ThreadPoolExecutor) createInstance("java.util.concurrent.ThreadPoolExecutor"));
+        Class simpleTimeLimiterClazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+        Class threadPoolExecutorType = Class.forName("java.util.concurrent.ExecutorService");
+        Constructor simpleTimeLimiterConstructor = simpleTimeLimiterClazz.getDeclaredConstructor(threadPoolExecutorType);
+        simpleTimeLimiterConstructor.setAccessible(true);
+        java.lang.Object[] simpleTimeLimiterConstructorArguments = new java.lang.Object[1];
+        simpleTimeLimiterConstructorArguments[0] = threadPoolExecutor;
+        SimpleTimeLimiter actual = ((SimpleTimeLimiter) simpleTimeLimiterConstructor.newInstance(simpleTimeLimiterConstructorArguments));
     }
     ///endregion
     
@@ -425,8 +864,16 @@ public class JavaObjectDeserializerTest {
         field.setAccessible(true);
         field.set(object, fieldValue);
     }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
+    }
+    private static Object getStaticFieldValue(Class<?> clazz, String fieldName) throws Exception {
         java.lang.reflect.Field field;
         do {
             try {
@@ -434,15 +881,15 @@ public class JavaObjectDeserializerTest {
                 field.setAccessible(true);
                 java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
                 modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
                 
-                return field.get(obj);
+                return field.get(null);
             } catch (NoSuchFieldException e) {
                 clazz = clazz.getSuperclass();
             }
         } while (clazz != null);
     
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + clazz);
     }
     static class FieldsPair {
         final Object o1;

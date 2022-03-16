@@ -1,581 +1,98 @@
 package com.google.common.base;
 
 import org.junit.Test;
-import javax.security.auth.DestroyFailedException;
-import java.util.List;
-import java.util.ArrayList;
-import javax.security.auth.callback.UnsupportedCallbackException;
-import java.net.UnknownHostException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Constructor;
 import java.util.Objects;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.lang.reflect.Array;
 import java.util.Iterator;
-import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
 
-public class ThrowablesTest {
-    ///region
+public class CaseFormatTest {
     
-    @Test(timeout = 10000)
-    public void testGetRootCause1() throws Throwable  {
-        Throwable throwable = new Throwable();
-        
-        Throwable actual = Throwables.getRootCause(throwable);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(throwable, actual));
-    }
-    ///endregion
+    ///region Errors report for to
     
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetRootCause2() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        setField(throwable, "cause", null);
-        
-        Throwable actual = Throwables.getRootCause(throwable);
-        
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(throwable, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagate1() throws Throwable  {
-        Throwable throwable = new Throwable();
-        
-        Throwables.propagate(throwable);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagate2() throws Throwable  {
-        DestroyFailedException destroyFailedException = ((DestroyFailedException) createInstance("javax.security.auth.DestroyFailedException"));
-        
-        Throwables.propagate(destroyFailedException);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagate3() throws Throwable  {
-        Throwables.propagate(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagate4() throws Throwable  {
-        AssertionError assertionError = ((AssertionError) createInstance("java.lang.AssertionError"));
-        
-        Throwables.propagate(assertionError);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testThrowIfUnchecked1() throws Throwable  {
-        Throwable throwable = new Throwable();
-        
-        Throwables.throwIfUnchecked(throwable);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testThrowIfUnchecked2() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        
-        Throwables.throwIfUnchecked(throwable);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testThrowIfUnchecked3() throws Throwable  {
-        AssertionError assertionError = ((AssertionError) createInstance("java.lang.AssertionError"));
-        
-        Throwables.throwIfUnchecked(assertionError);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testThrowIfUnchecked4() throws Throwable  {
-        Throwables.throwIfUnchecked(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetCausalChain1() throws Throwable  {
-        Throwable throwable = new Throwable();
-        
-        List actual = Throwables.getCausalChain(throwable);
-        
-        Object expected = createInstance("java.util.Collections$UnmodifiableRandomAccessList");
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(throwable);
-        setField(expected, "list", arrayList);
-        setField(expected, "c", arrayList);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetCausalChain2() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        
-        List actual = Throwables.getCausalChain(throwable);
-        
-        Object expected = createInstance("java.util.Collections$UnmodifiableRandomAccessList");
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(throwable);
-        setField(expected, "list", arrayList);
-        setField(expected, "c", arrayList);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testThrowIfInstanceOf1() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        
-        Throwables.throwIfInstanceOf(throwable, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testThrowIfInstanceOf2() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        Class class1 = Object.class;
-        
-        Throwables.throwIfInstanceOf(throwable, class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfInstanceOf1() throws Throwable  {
-        Throwables.propagateIfInstanceOf(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagateIfInstanceOf2() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        Class class1 = Object.class;
-        
-        Throwables.propagateIfInstanceOf(throwable, class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagateIfPossible1() throws Throwable  {
-        Throwables.propagateIfPossible(null, null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfPossible2() throws Throwable  {
-        Class class1 = Object.class;
-        
-        Throwables.propagateIfPossible(null, null, class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfPossible3() throws Throwable  {
-        Throwables.propagateIfPossible(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagateIfPossible4() throws Throwable  {
-        Throwable throwable = ((Throwable) createInstance("java.lang.Throwable"));
-        Class class1 = Object.class;
-        
-        Throwables.propagateIfPossible(throwable, class1);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfPossible5() throws Throwable  {
-        Throwable throwable = new Throwable();
-        
-        Throwables.propagateIfPossible(throwable);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfPossible6() throws Throwable  {
-        Throwables.propagateIfPossible(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testPropagateIfPossible7() throws Throwable  {
-        UnsupportedCallbackException unsupportedCallbackException = ((UnsupportedCallbackException) createInstance("javax.security.auth.callback.UnsupportedCallbackException"));
-        
-        Throwables.propagateIfPossible(unsupportedCallbackException);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testPropagateIfPossible8() throws Throwable  {
-        AssertionError assertionError = ((AssertionError) createInstance("java.lang.AssertionError"));
-        
-        Throwables.propagateIfPossible(assertionError);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCauseAs1() throws Throwable  {
-        Throwables.getCauseAs(null, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCauseAs2() throws Throwable  {
-        CloneNotSupportedException cloneNotSupportedException = ((CloneNotSupportedException) createInstance("java.lang.CloneNotSupportedException"));
-        setField(cloneNotSupportedException, "cause", cloneNotSupportedException);
-        
-        Throwables.getCauseAs(cloneNotSupportedException, null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetCauseAs3() throws Throwable  {
-        UnknownHostException unknownHostException = ((UnknownHostException) createInstance("java.net.UnknownHostException"));
-        setField(unknownHostException, "cause", unknownHostException);
-        Class class1 = Object.class;
-        
-        Throwable actual = Throwables.getCauseAs(unknownHostException, class1);
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetStackTraceAsString1() throws Throwable  {
-        Throwable throwable = new Throwable();
-        
-        String actual = Throwables.getStackTraceAsString(throwable);
-        
-        String expected = new String("java.lang.Throwable\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\n\tat com.huawei.utbot.framework.concrete.MockValueConstructor.call(MockValueConstructor.kt:414)\n\tat com.huawei.utbot.framework.concrete.MockValueConstructor.updateWithExecutableCallModel(MockValueConstructor.kt:353)\n\tat com.huawei.utbot.framework.concrete.MockValueConstructor.constructFromAssembleModel(MockValueConstructor.kt:332)\n\tat com.huawei.utbot.framework.concrete.MockValueConstructor.construct(MockValueConstructor.kt:126)\n\tat com.huawei.utbot.framework.concrete.MockValueConstructor.constructMethodParameters(MockValueConstructor.kt:101)\n\tat com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:126)\n\tat com.huawei.utbot.framework.concrete.UtExecutionInstrumentation.invoke(UtExecutionInstrumentation.kt:96)\n\tat com.huawei.utbot.instrumentation.process.ChildProcessKt.loop(ChildProcess.kt:114)\n\tat com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt:76)\n\tat com.huawei.utbot.instrumentation.process.ChildProcessKt.main(ChildProcess.kt)\n");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetStackTraceAsString2() throws Throwable  {
-        Throwables.getStackTraceAsString(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testLazyStackTraceIsLazy1() throws Throwable  {
-        boolean actual = Throwables.lazyStackTraceIsLazy();
-        
-        assertTrue(actual);
-    }
-    ///endregion
-    
-    
-    ///region Errors report for lazyStackTraceIsLazy
-    
-    public void testLazyStackTraceIsLazy_errors()
+    public void testTo_errors()
      {
         // Couldn't generate some tests. List of errors:
         // 
         // 1 occurrences of:
-        // Field security is not found in class java.lang.System
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
         // 
     }
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testJlaStackTrace1() throws Throwable  {
-        Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
-        Class throwableType = Class.forName("java.lang.Throwable");
-        Method jlaStackTraceMethod = throwablesClazz.getDeclaredMethod("jlaStackTrace", throwableType);
-        jlaStackTraceMethod.setAccessible(true);
-        java.lang.Object[] jlaStackTraceMethodArguments = new java.lang.Object[1];
-        jlaStackTraceMethodArguments[0] = null;
-        try {
-            jlaStackTraceMethod.invoke(null, jlaStackTraceMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
+    ///region Errors report for to
     
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testInvokeAccessibleNonThrowingMethod1() throws Throwable  {
-        java.lang.Object[] ofIntArray = createArray("java.util.stream.Nodes$SizedCollectorTask$OfInt", 0);
-        
-        Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
-        Class methodType = Class.forName("java.lang.reflect.Method");
-        Class ofIntArrayType = Class.forName("java.lang.Object");
-        Class objectArrayType = Class.forName("[Ljava.lang.Object;");
-        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, ofIntArrayType, objectArrayType);
-        invokeAccessibleNonThrowingMethodMethod.setAccessible(true);
-        java.lang.Object[] invokeAccessibleNonThrowingMethodMethodArguments = new java.lang.Object[3];
-        invokeAccessibleNonThrowingMethodMethodArguments[0] = null;
-        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) ofIntArray);
-        invokeAccessibleNonThrowingMethodMethodArguments[2] = null;
-        try {
-            invokeAccessibleNonThrowingMethodMethod.invoke(null, invokeAccessibleNonThrowingMethodMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetGetMethod1() throws Throwable  {
-        Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
-        Method getGetMethodMethod = throwablesClazz.getDeclaredMethod("getGetMethod");
-        getGetMethodMethod.setAccessible(true);
-        java.lang.Object[] getGetMethodMethodArguments = new java.lang.Object[0];
-        Method actual = ((Method) getGetMethodMethod.invoke(null, getGetMethodMethodArguments));
-        
-        Method expected = ((Method) createInstance("java.lang.reflect.Method"));
-        Class class1 = sun.misc.JavaLangAccess.class;
-        setField(expected, "clazz", class1);
-        setField(expected, "slot", 6);
-        String string = new String("getStackTraceElement");
-        setField(expected, "name", string);
-        Class class2 = StackTraceElement.class;
-        setField(expected, "returnType", class2);
-        java.lang.Class[] classArray = new java.lang.Class[2];
-        Class class3 = Throwable.class;
-        classArray[0] = class3;
-        Class class4 = int.class;
-        classArray[1] = class4;
-        setField(expected, "parameterTypes", classArray);
-        java.lang.Class[] classArray1 = new java.lang.Class[0];
-        setField(expected, "exceptionTypes", classArray1);
-        setField(expected, "modifiers", 1025);
-        setField(expected, "signature", null);
-        setField(expected, "genericInfo", null);
-        setField(expected, "annotations", null);
-        setField(expected, "parameterAnnotations", null);
-        setField(expected, "annotationDefault", null);
-        setField(expected, "methodAccessor", null);
-        Method method = ((Method) createInstance("java.lang.reflect.Method"));
-        setField(method, "clazz", class1);
-        setField(method, "slot", 6);
-        setField(method, "name", string);
-        setField(method, "returnType", class2);
-        setField(method, "parameterTypes", classArray);
-        setField(method, "exceptionTypes", classArray1);
-        setField(method, "modifiers", 1025);
-        setField(method, "signature", null);
-        setField(method, "genericInfo", null);
-        setField(method, "annotations", null);
-        setField(method, "parameterAnnotations", null);
-        setField(method, "annotationDefault", null);
-        setField(method, "methodAccessor", null);
-        setField(method, "root", null);
-        setField(method, "hasRealParameterData", false);
-        setField(method, "parameters", null);
-        setField(method, "declaredAnnotations", null);
-        setField(method, "override", false);
-        setField(method, "securityCheckCache", null);
-        setField(expected, "root", method);
-        setField(expected, "hasRealParameterData", false);
-        setField(expected, "parameters", null);
-        setField(expected, "declaredAnnotations", null);
-        setField(expected, "override", false);
-        setField(expected, "securityCheckCache", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    
-    ///region Errors report for getGetMethod
-    
-    public void testGetGetMethod_errors()
+    public void testTo_errors1()
      {
         // Couldn't generate some tests. List of errors:
         // 
         // 1 occurrences of:
-        // Field security is not found in class java.lang.System
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
         // 
     }
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000)
-    public void testGetSizeMethod1() throws Throwable  {
-        Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
-        Method getSizeMethodMethod = throwablesClazz.getDeclaredMethod("getSizeMethod");
-        getSizeMethodMethod.setAccessible(true);
-        java.lang.Object[] getSizeMethodMethodArguments = new java.lang.Object[0];
-        Method actual = ((Method) getSizeMethodMethod.invoke(null, getSizeMethodMethodArguments));
-        
-        Method expected = ((Method) createInstance("java.lang.reflect.Method"));
-        Class class1 = sun.misc.JavaLangAccess.class;
-        setField(expected, "clazz", class1);
-        setField(expected, "slot", 5);
-        String string = new String("getStackTraceDepth");
-        setField(expected, "name", string);
-        Class class2 = int.class;
-        setField(expected, "returnType", class2);
-        java.lang.Class[] classArray = new java.lang.Class[1];
-        Class class3 = Throwable.class;
-        classArray[0] = class3;
-        setField(expected, "parameterTypes", classArray);
-        java.lang.Class[] classArray1 = new java.lang.Class[0];
-        setField(expected, "exceptionTypes", classArray1);
-        setField(expected, "modifiers", 1025);
-        setField(expected, "signature", null);
-        setField(expected, "genericInfo", null);
-        setField(expected, "annotations", null);
-        setField(expected, "parameterAnnotations", null);
-        setField(expected, "annotationDefault", null);
-        Object delegatingMethodAccessorImpl = createInstance("sun.reflect.DelegatingMethodAccessorImpl");
-        Object nativeMethodAccessorImpl = createInstance("sun.reflect.NativeMethodAccessorImpl");
-        Method method = ((Method) createInstance("java.lang.reflect.Method"));
-        setField(method, "clazz", class1);
-        setField(method, "slot", 5);
-        setField(method, "name", string);
-        setField(method, "returnType", class2);
-        setField(method, "parameterTypes", classArray);
-        setField(method, "exceptionTypes", classArray1);
-        setField(method, "modifiers", 1025);
-        setField(method, "signature", null);
-        setField(method, "genericInfo", null);
-        setField(method, "annotations", null);
-        setField(method, "parameterAnnotations", null);
-        setField(method, "annotationDefault", null);
-        setField(method, "methodAccessor", delegatingMethodAccessorImpl);
-        Method method1 = ((Method) createInstance("java.lang.reflect.Method"));
-        setField(method1, "clazz", class1);
-        setField(method1, "slot", 5);
-        setField(method1, "name", string);
-        setField(method1, "returnType", class2);
-        setField(method1, "parameterTypes", classArray);
-        setField(method1, "exceptionTypes", classArray1);
-        setField(method1, "modifiers", 1025);
-        setField(method1, "signature", null);
-        setField(method1, "genericInfo", null);
-        setField(method1, "annotations", null);
-        setField(method1, "parameterAnnotations", null);
-        setField(method1, "annotationDefault", null);
-        setField(method1, "methodAccessor", delegatingMethodAccessorImpl);
-        setField(method1, "root", null);
-        setField(method1, "hasRealParameterData", false);
-        setField(method1, "parameters", null);
-        setField(method1, "declaredAnnotations", null);
-        setField(method1, "override", false);
-        setField(method1, "securityCheckCache", null);
-        setField(method, "root", method1);
-        setField(method, "hasRealParameterData", false);
-        setField(method, "parameters", null);
-        setField(method, "declaredAnnotations", null);
-        setField(method, "override", false);
-        setField(method, "securityCheckCache", null);
-        setField(nativeMethodAccessorImpl, "method", method);
-        setField(nativeMethodAccessorImpl, "parent", delegatingMethodAccessorImpl);
-        setField(nativeMethodAccessorImpl, "numInvocations", 2);
-        setField(delegatingMethodAccessorImpl, "delegate", nativeMethodAccessorImpl);
-        setField(expected, "methodAccessor", delegatingMethodAccessorImpl);
-        setField(expected, "root", method1);
-        setField(expected, "hasRealParameterData", false);
-        setField(expected, "parameters", null);
-        setField(expected, "declaredAnnotations", null);
-        setField(expected, "override", false);
-        setField(expected, "securityCheckCache", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
+    ///region Errors report for convert
     
-    
-    ///region Errors report for getSizeMethod
-    
-    public void testGetSizeMethod_errors()
+    public void testConvert_errors()
      {
         // Couldn't generate some tests. List of errors:
         // 
         // 1 occurrences of:
-        // Field security is not found in class java.lang.System
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for convert
+    
+    public void testConvert_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for convert
+    
+    public void testConvert_errors2()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for converterTo
+    
+    public void testConverterTo_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
         // 
     }
     ///endregion
@@ -583,33 +100,150 @@ public class ThrowablesTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetJlaMethod1() throws Throwable  {
+    public void testFirstCharOnlyToUpper1() throws Throwable  {
         String string = new String();
-        java.lang.Class[] classArray = new java.lang.Class[0];
         
-        Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
+        Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
         Class stringType = Class.forName("java.lang.String");
-        Class classArrayType = Class.forName("[Ljava.lang.Class;");
-        Method getJlaMethodMethod = throwablesClazz.getDeclaredMethod("getJlaMethod", stringType, classArrayType);
-        getJlaMethodMethod.setAccessible(true);
-        java.lang.Object[] getJlaMethodMethodArguments = new java.lang.Object[2];
-        getJlaMethodMethodArguments[0] = string;
-        getJlaMethodMethodArguments[1] = ((Object) classArray);
-        Method actual = ((Method) getJlaMethodMethod.invoke(null, getJlaMethodMethodArguments));
+        Method firstCharOnlyToUpperMethod = caseFormatClazz.getDeclaredMethod("firstCharOnlyToUpper", stringType);
+        firstCharOnlyToUpperMethod.setAccessible(true);
+        java.lang.Object[] firstCharOnlyToUpperMethodArguments = new java.lang.Object[1];
+        firstCharOnlyToUpperMethodArguments[0] = string;
+        String actual = ((String) firstCharOnlyToUpperMethod.invoke(null, firstCharOnlyToUpperMethodArguments));
         
-        assertNull(actual);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(string, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testFirstCharOnlyToUpper2() throws Throwable  {
+        Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
+        Class stringType = Class.forName("java.lang.String");
+        Method firstCharOnlyToUpperMethod = caseFormatClazz.getDeclaredMethod("firstCharOnlyToUpper", stringType);
+        firstCharOnlyToUpperMethod.setAccessible(true);
+        java.lang.Object[] firstCharOnlyToUpperMethodArguments = new java.lang.Object[1];
+        firstCharOnlyToUpperMethodArguments[0] = null;
+        try {
+            firstCharOnlyToUpperMethod.invoke(null, firstCharOnlyToUpperMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testFirstCharOnlyToUpper3() throws Throwable  {
+        String string = new String("");
+        
+        Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
+        Class stringType = Class.forName("java.lang.String");
+        Method firstCharOnlyToUpperMethod = caseFormatClazz.getDeclaredMethod("firstCharOnlyToUpper", stringType);
+        firstCharOnlyToUpperMethod.setAccessible(true);
+        java.lang.Object[] firstCharOnlyToUpperMethodArguments = new java.lang.Object[1];
+        firstCharOnlyToUpperMethodArguments[0] = string;
+        String actual = ((String) firstCharOnlyToUpperMethod.invoke(null, firstCharOnlyToUpperMethodArguments));
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(string, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testFirstCharOnlyToUpper4() throws Throwable  {
+        String string = new String("c");
+        
+        Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
+        Class stringType = Class.forName("java.lang.String");
+        Method firstCharOnlyToUpperMethod = caseFormatClazz.getDeclaredMethod("firstCharOnlyToUpper", stringType);
+        firstCharOnlyToUpperMethod.setAccessible(true);
+        java.lang.Object[] firstCharOnlyToUpperMethodArguments = new java.lang.Object[1];
+        firstCharOnlyToUpperMethodArguments[0] = string;
+        String actual = ((String) firstCharOnlyToUpperMethod.invoke(null, firstCharOnlyToUpperMethodArguments));
+        
+        String expected = new String("C");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testFirstCharOnlyToUpper5() throws Throwable  {
+        String string = new String("c\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
+        
+        Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
+        Class stringType = Class.forName("java.lang.String");
+        Method firstCharOnlyToUpperMethod = caseFormatClazz.getDeclaredMethod("firstCharOnlyToUpper", stringType);
+        firstCharOnlyToUpperMethod.setAccessible(true);
+        java.lang.Object[] firstCharOnlyToUpperMethodArguments = new java.lang.Object[1];
+        firstCharOnlyToUpperMethodArguments[0] = string;
+        String actual = ((String) firstCharOnlyToUpperMethod.invoke(null, firstCharOnlyToUpperMethodArguments));
+        
+        String expected = new String("C\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testFirstCharOnlyToUpper6() throws Throwable  {
+        String string = new String("{");
+        
+        Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
+        Class stringType = Class.forName("java.lang.String");
+        Method firstCharOnlyToUpperMethod = caseFormatClazz.getDeclaredMethod("firstCharOnlyToUpper", stringType);
+        firstCharOnlyToUpperMethod.setAccessible(true);
+        java.lang.Object[] firstCharOnlyToUpperMethodArguments = new java.lang.Object[1];
+        firstCharOnlyToUpperMethodArguments[0] = string;
+        String actual = ((String) firstCharOnlyToUpperMethod.invoke(null, firstCharOnlyToUpperMethodArguments));
+        
+        String expected = new String("{");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testValueOf1() throws Throwable  {
+        String string = new String();
+        
+        CaseFormat.valueOf(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testValueOf2() throws Throwable  {
+        CaseFormat.valueOf(null);
     }
     ///endregion
     
     
-    ///region Errors report for getJlaMethod
+    ///region Errors report for values
     
-    public void testGetJlaMethod_errors()
+    public void testValues_errors()
      {
         // Couldn't generate some tests. List of errors:
         // 
         // 1 occurrences of:
-        // Field security is not found in class java.lang.System
+        // ClassId com.google.common.base.CaseFormat$1 does not have canonical name
         // 
     }
     ///endregion
@@ -617,24 +251,291 @@ public class ThrowablesTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testThrowables1() throws Throwable  {
-        Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
-        Constructor throwablesConstructor = throwablesClazz.getDeclaredConstructor();
-        throwablesConstructor.setAccessible(true);
-        java.lang.Object[] throwablesConstructorArguments = new java.lang.Object[0];
-        Throwables actual = ((Throwables) throwablesConstructor.newInstance(throwablesConstructorArguments));
+    public void testCaseFormat1() throws Throwable  {
+        String string = new String("");
+        Object forPredicate = createInstance("com.google.common.base.CharMatcher$ForPredicate");
+        String string1 = new String("");
+        Class caseFormatClazz = Class.forName("com.google.common.base.CaseFormat");
+        Class stringType = Class.forName("java.lang.String");
+        Class intType = int.class;
+        Class forPredicateType = Class.forName("com.google.common.base.CharMatcher");
+        Constructor caseFormatConstructor = caseFormatClazz.getDeclaredConstructor(stringType, intType, forPredicateType, stringType);
+        caseFormatConstructor.setAccessible(true);
+        java.lang.Object[] caseFormatConstructorArguments = new java.lang.Object[4];
+        caseFormatConstructorArguments[0] = string;
+        caseFormatConstructorArguments[1] = 0;
+        caseFormatConstructorArguments[2] = forPredicate;
+        caseFormatConstructorArguments[3] = string1;
+        CaseFormat actual = ((CaseFormat) caseFormatConstructor.newInstance(caseFormatConstructorArguments));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testThrowables2() throws Throwable  {
-        Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
-        Constructor throwablesConstructor = throwablesClazz.getDeclaredConstructor();
-        throwablesConstructor.setAccessible(true);
-        java.lang.Object[] throwablesConstructorArguments = new java.lang.Object[0];
-        Throwables actual = ((Throwables) throwablesConstructor.newInstance(throwablesConstructorArguments));
+    public void testEquals1() throws Throwable  {
+        Object stringConverter = createInstance("com.google.common.base.CaseFormat$StringConverter");
+        Object object = new Object();
+        
+        Class stringConverterClazz = Class.forName("com.google.common.base.CaseFormat$StringConverter");
+        Class objectType = Class.forName("java.lang.Object");
+        Method equalsMethod = stringConverterClazz.getDeclaredMethod("equals", objectType);
+        equalsMethod.setAccessible(true);
+        java.lang.Object[] equalsMethodArguments = new java.lang.Object[1];
+        equalsMethodArguments[0] = object;
+        boolean actual = ((boolean) equalsMethod.invoke(stringConverter, equalsMethodArguments));
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testEquals2() throws Throwable  {
+        Object stringConverter = createInstance("com.google.common.base.CaseFormat$StringConverter");
+        
+        Class stringConverterClazz = Class.forName("com.google.common.base.CaseFormat$StringConverter");
+        Class objectType = Class.forName("java.lang.Object");
+        Method equalsMethod = stringConverterClazz.getDeclaredMethod("equals", objectType);
+        equalsMethod.setAccessible(true);
+        java.lang.Object[] equalsMethodArguments = new java.lang.Object[1];
+        equalsMethodArguments[0] = null;
+        boolean actual = ((boolean) equalsMethod.invoke(stringConverter, equalsMethodArguments));
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for equals
+    
+    public void testEquals_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for equals
+    
+    public void testEquals_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for equals
+    
+    public void testEquals_errors2()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testHashCode1() throws Throwable  {
+        Object stringConverter = createInstance("com.google.common.base.CaseFormat$StringConverter");
+        
+        Class stringConverterClazz = Class.forName("com.google.common.base.CaseFormat$StringConverter");
+        Method hashCodeMethod = stringConverterClazz.getDeclaredMethod("hashCode");
+        hashCodeMethod.setAccessible(true);
+        java.lang.Object[] hashCodeMethodArguments = new java.lang.Object[0];
+        try {
+            hashCodeMethod.invoke(stringConverter, hashCodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for hashCode
+    
+    public void testHashCode_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testToString1() throws Throwable  {
+        Object stringConverter = createInstance("com.google.common.base.CaseFormat$StringConverter");
+        
+        Class stringConverterClazz = Class.forName("com.google.common.base.CaseFormat$StringConverter");
+        Method toStringMethod = stringConverterClazz.getDeclaredMethod("toString");
+        toStringMethod.setAccessible(true);
+        java.lang.Object[] toStringMethodArguments = new java.lang.Object[0];
+        String actual = ((String) toStringMethod.invoke(stringConverter, toStringMethodArguments));
+        
+        String expected = new String("null.converterTo(null)");
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    
+    ///region Errors report for toString
+    
+    public void testToString_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$4 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoBackward1() throws Throwable  {
+        Object stringConverter = createInstance("com.google.common.base.CaseFormat$StringConverter");
+        String string = new String();
+        
+        Class stringConverterClazz = Class.forName("com.google.common.base.CaseFormat$StringConverter");
+        Class stringType = Class.forName("java.lang.String");
+        Method doBackwardMethod = stringConverterClazz.getDeclaredMethod("doBackward", stringType);
+        doBackwardMethod.setAccessible(true);
+        java.lang.Object[] doBackwardMethodArguments = new java.lang.Object[1];
+        doBackwardMethodArguments[0] = string;
+        try {
+            doBackwardMethod.invoke(stringConverter, doBackwardMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for doBackward
+    
+    public void testDoBackward_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for doBackward
+    
+    public void testDoBackward_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$4 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for doBackward
+    
+    public void testDoBackward_errors2()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$5 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoForward1() throws Throwable  {
+        Object stringConverter = createInstance("com.google.common.base.CaseFormat$StringConverter");
+        String string = new String();
+        
+        Class stringConverterClazz = Class.forName("com.google.common.base.CaseFormat$StringConverter");
+        Class stringType = Class.forName("java.lang.String");
+        Method doForwardMethod = stringConverterClazz.getDeclaredMethod("doForward", stringType);
+        doForwardMethod.setAccessible(true);
+        java.lang.Object[] doForwardMethodArguments = new java.lang.Object[1];
+        doForwardMethodArguments[0] = string;
+        try {
+            doForwardMethod.invoke(stringConverter, doForwardMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    
+    ///region Errors report for doForward
+    
+    public void testDoForward_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$4 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for doForward
+    
+    public void testDoForward_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$5 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for doForward
+    
+    public void testDoForward_errors2()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$5 does not have canonical name
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for <init>
+    
+    public void testStringConverter_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // ClassId com.google.common.base.CaseFormat$3 does not have canonical name
+        // 
     }
     ///endregion
     
@@ -809,35 +710,6 @@ public class ThrowablesTest {
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
-    }
-    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
-        Class<?> clazz = object.getClass();
-        java.lang.reflect.Field field;
-    
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-            } catch (Exception e) {
-                clazz = clazz.getSuperclass();
-                field = null;
-            }
-        } while (field == null);
-        
-        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-    
-        field.setAccessible(true);
-        field.set(object, fieldValue);
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

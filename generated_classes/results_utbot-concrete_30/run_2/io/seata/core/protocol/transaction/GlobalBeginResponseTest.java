@@ -56,7 +56,6 @@ public class GlobalBeginResponseTest {
         setField(heapByteBuffer, "position", 0);
         setField(heapByteBuffer, "offset", 0);
         byte[] byteArray = new byte[9];
-        byteArray[0] = java.lang.Byte.MIN_VALUE;
         setField(heapByteBuffer, "hb", byteArray);
         
         Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
@@ -186,7 +185,6 @@ public class GlobalBeginResponseTest {
         setField(globalBeginResponse, "byteBuffer", heapByteBuffer);
         ResultCode resultCode = ResultCode.Failed;
         setField(globalBeginResponse, "resultCode", resultCode);
-        setField(globalBeginResponse, "transactionExceptionCode", null);
         
         Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
         Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
@@ -201,6 +199,39 @@ public class GlobalBeginResponseTest {
         Object finalGlobalBeginResponseByteBufferPosition = getFieldValue(byteBuffer, "position");
         
         assertEquals(3, finalGlobalBeginResponseByteBufferPosition);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoEncode5() throws Throwable  {
+        GlobalBeginResponse globalBeginResponse = ((GlobalBeginResponse) createInstance("io.seata.core.protocol.transaction.GlobalBeginResponse"));
+        String string = new String("");
+        setField(globalBeginResponse, "msg", string);
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "limit", 1);
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "offset", 0);
+        byte[] byteArray = new byte[9];
+        setField(heapByteBuffer, "hb", byteArray);
+        setField(globalBeginResponse, "byteBuffer", heapByteBuffer);
+        ResultCode resultCode = ResultCode.Failed;
+        setField(globalBeginResponse, "resultCode", resultCode);
+        
+        Class globalBeginResponseClazz = Class.forName("io.seata.core.protocol.transaction.GlobalBeginResponse");
+        Method doEncodeMethod = globalBeginResponseClazz.getDeclaredMethod("doEncode");
+        doEncodeMethod.setAccessible(true);
+        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
+        try {
+            doEncodeMethod.invoke(globalBeginResponse, doEncodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        ByteBuffer byteBuffer = globalBeginResponse.byteBuffer;
+        Object finalGlobalBeginResponseByteBufferPosition = getFieldValue(byteBuffer, "position");
+        
+        assertEquals(1, finalGlobalBeginResponseByteBufferPosition);
     }
     ///endregion
     

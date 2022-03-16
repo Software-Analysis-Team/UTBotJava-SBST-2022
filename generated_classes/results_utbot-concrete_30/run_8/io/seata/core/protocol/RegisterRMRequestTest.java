@@ -42,23 +42,6 @@ public class RegisterRMRequestTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testToString2() throws Throwable  {
-        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
-        String string = new String("\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000");
-        setField(registerRMRequest, "resourceIds", string);
-        
-        String actual = registerRMRequest.toString();
-        
-        String expected = new String("RegisterRMRequest{resourceIds='\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000', applicationId='null', transactionServiceGroup='null'}");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testDecode1() throws Throwable  {
         RegisterRMRequest registerRMRequest = new RegisterRMRequest();
@@ -112,17 +95,23 @@ public class RegisterRMRequestTest {
     @Test(timeout = 10000)
     public void testDecode5() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
-        SwappedByteBuf swappedByteBuf = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
-        SwappedByteBuf swappedByteBuf1 = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
         Object unsafeHeapSwappedByteBuf = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
+        SwappedByteBuf swappedByteBuf = ((SwappedByteBuf) createInstance("io.netty.buffer.SwappedByteBuf"));
+        Object unsafeHeapSwappedByteBuf1 = createInstance("io.netty.buffer.UnsafeHeapSwappedByteBuf");
         Object simpleLeakAwareByteBuf = createInstance("io.netty.buffer.SimpleLeakAwareByteBuf");
         EmptyByteBuf emptyByteBuf = ((EmptyByteBuf) createInstance("io.netty.buffer.EmptyByteBuf"));
         setField(simpleLeakAwareByteBuf, "buf", emptyByteBuf);
-        setField(unsafeHeapSwappedByteBuf, "buf", simpleLeakAwareByteBuf);
-        setField(swappedByteBuf1, "buf", unsafeHeapSwappedByteBuf);
-        setField(swappedByteBuf, "buf", swappedByteBuf1);
+        setField(unsafeHeapSwappedByteBuf1, "buf", simpleLeakAwareByteBuf);
+        setField(swappedByteBuf, "buf", unsafeHeapSwappedByteBuf1);
+        setField(unsafeHeapSwappedByteBuf, "buf", swappedByteBuf);
         
-        boolean actual = registerRMRequest.decode(swappedByteBuf);
+        Class registerRMRequestClazz = Class.forName("io.seata.core.protocol.RegisterRMRequest");
+        Class unsafeHeapSwappedByteBufType = Class.forName("io.netty.buffer.ByteBuf");
+        Method decodeMethod = registerRMRequestClazz.getDeclaredMethod("decode", unsafeHeapSwappedByteBufType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
+        decodeMethodArguments[0] = unsafeHeapSwappedByteBuf;
+        boolean actual = ((boolean) decodeMethod.invoke(registerRMRequest, decodeMethodArguments));
         
         assertFalse(actual);
     }
@@ -243,6 +232,93 @@ public class RegisterRMRequestTest {
     public void testDoEncode4() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
         Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "capacity", 4);
+        setField(heapByteBuffer, "limit", 0);
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "mark", 0);
+        setField(heapByteBuffer, "bigEndian", true);
+        setField(heapByteBuffer, "offset", 1);
+        byte[] byteArray = new byte[7];
+        setField(heapByteBuffer, "hb", byteArray);
+        setField(registerRMRequest, "byteBuffer", heapByteBuffer);
+        setField(registerRMRequest, "transactionServiceGroup", null);
+        setField(registerRMRequest, "applicationId", null);
+        setField(registerRMRequest, "version", null);
+        
+        Class registerRMRequestClazz = Class.forName("io.seata.core.protocol.RegisterRMRequest");
+        Method doEncodeMethod = registerRMRequestClazz.getDeclaredMethod("doEncode");
+        doEncodeMethod.setAccessible(true);
+        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
+        try {
+            doEncodeMethod.invoke(registerRMRequest, doEncodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        ByteBuffer byteBuffer = registerRMRequest.byteBuffer;
+        Object finalRegisterRMRequestByteBufferLimit = getFieldValue(byteBuffer, "limit");
+        ByteBuffer byteBuffer1 = registerRMRequest.byteBuffer;
+        Object finalRegisterRMRequestByteBufferPosition = getFieldValue(byteBuffer1, "position");
+        ByteBuffer byteBuffer2 = registerRMRequest.byteBuffer;
+        Object finalRegisterRMRequestByteBufferMark = getFieldValue(byteBuffer2, "mark");
+        
+        assertEquals(4, finalRegisterRMRequestByteBufferLimit);
+        
+        assertEquals(4, finalRegisterRMRequestByteBufferPosition);
+        
+        assertEquals(-1, finalRegisterRMRequestByteBufferMark);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoEncode5() throws Throwable  {
+        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
+        setField(heapByteBuffer, "capacity", 6);
+        setField(heapByteBuffer, "limit", 0);
+        setField(heapByteBuffer, "position", 0);
+        setField(heapByteBuffer, "mark", 0);
+        setField(heapByteBuffer, "bigEndian", true);
+        setField(heapByteBuffer, "offset", 1);
+        byte[] byteArray = new byte[7];
+        setField(heapByteBuffer, "hb", byteArray);
+        setField(registerRMRequest, "byteBuffer", heapByteBuffer);
+        setField(registerRMRequest, "extraData", null);
+        setField(registerRMRequest, "transactionServiceGroup", null);
+        setField(registerRMRequest, "applicationId", null);
+        setField(registerRMRequest, "version", null);
+        
+        Class registerRMRequestClazz = Class.forName("io.seata.core.protocol.RegisterRMRequest");
+        Method doEncodeMethod = registerRMRequestClazz.getDeclaredMethod("doEncode");
+        doEncodeMethod.setAccessible(true);
+        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
+        try {
+            doEncodeMethod.invoke(registerRMRequest, doEncodeMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        ByteBuffer byteBuffer = registerRMRequest.byteBuffer;
+        Object finalRegisterRMRequestByteBufferLimit = getFieldValue(byteBuffer, "limit");
+        ByteBuffer byteBuffer1 = registerRMRequest.byteBuffer;
+        Object finalRegisterRMRequestByteBufferPosition = getFieldValue(byteBuffer1, "position");
+        ByteBuffer byteBuffer2 = registerRMRequest.byteBuffer;
+        Object finalRegisterRMRequestByteBufferMark = getFieldValue(byteBuffer2, "mark");
+        
+        assertEquals(6, finalRegisterRMRequestByteBufferLimit);
+        
+        assertEquals(6, finalRegisterRMRequestByteBufferPosition);
+        
+        assertEquals(-1, finalRegisterRMRequestByteBufferMark);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDoEncode6() throws Throwable  {
+        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
+        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
         setField(heapByteBuffer, "capacity", 1073741824);
         setField(heapByteBuffer, "limit", 0);
         setField(heapByteBuffer, "position", 0);
@@ -252,6 +328,8 @@ public class RegisterRMRequestTest {
         byte[] byteArray = new byte[7];
         setField(heapByteBuffer, "hb", byteArray);
         setField(registerRMRequest, "byteBuffer", heapByteBuffer);
+        String string = new String("");
+        registerRMRequest.extraData = string;
         setField(registerRMRequest, "transactionServiceGroup", null);
         setField(registerRMRequest, "applicationId", null);
         setField(registerRMRequest, "version", null);
@@ -297,8 +375,9 @@ public class RegisterRMRequestTest {
     public void testSetResourceIds2() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
         setField(registerRMRequest, "resourceIds", null);
+        String string = new String("");
         
-        registerRMRequest.setResourceIds(null);
+        registerRMRequest.setResourceIds(string);
     }
     ///endregion
     

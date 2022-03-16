@@ -8,14 +8,11 @@ import java.time.DateTimeException;
 import java.io.FileNotFoundException;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
 import javax.security.auth.callback.UnsupportedCallbackException;
 import java.net.UnknownHostException;
 import java.lang.reflect.Method;
-import java.util.List;
-import java.util.ArrayList;
-import java.io.UnsupportedEncodingException;
-import java.io.StreamCorruptedException;
-import java.net.PortUnreachableException;
 import java.lang.reflect.Constructor;
 import java.util.Objects;
 import java.util.Map;
@@ -192,6 +189,75 @@ public class ThrowablesTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testThrowIfUnchecked4() throws Throwable  {
         Throwables.throwIfUnchecked(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetCausalChain1() throws Throwable  {
+        Throwable throwable = new Throwable();
+        
+        List actual = Throwables.getCausalChain(throwable);
+        
+        Object expected = createInstance("java.util.Collections$UnmodifiableRandomAccessList");
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(throwable);
+        setField(expected, "list", arrayList);
+        setField(expected, "c", arrayList);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetCausalChain2() throws Throwable  {
+        Throwables.getCausalChain(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetCausalChain3() throws Throwable  {
+        UndeclaredThrowableException undeclaredThrowableException = ((UndeclaredThrowableException) createInstance("java.lang.reflect.UndeclaredThrowableException"));
+        setField(undeclaredThrowableException, "undeclaredThrowable", null);
+        
+        List actual = Throwables.getCausalChain(undeclaredThrowableException);
+        
+        Object expected = createInstance("java.util.Collections$UnmodifiableRandomAccessList");
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(undeclaredThrowableException);
+        setField(expected, "list", arrayList);
+        setField(expected, "c", arrayList);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetCausalChain4() throws Throwable  {
+        UndeclaredThrowableException undeclaredThrowableException = ((UndeclaredThrowableException) createInstance("java.lang.reflect.UndeclaredThrowableException"));
+        AbstractMethodError abstractMethodError = ((AbstractMethodError) createInstance("java.lang.AbstractMethodError"));
+        setField(undeclaredThrowableException, "undeclaredThrowable", abstractMethodError);
+        
+        List actual = Throwables.getCausalChain(undeclaredThrowableException);
+        
+        Object expected = createInstance("java.util.Collections$UnmodifiableRandomAccessList");
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(undeclaredThrowableException);
+        arrayList.add(abstractMethodError);
+        setField(expected, "list", arrayList);
+        setField(expected, "c", arrayList);
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(expected, actual));
     }
     ///endregion
     
@@ -418,24 +484,58 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testInvokeAccessibleNonThrowingMethod1() throws Throwable  {
-        java.lang.Object[] ofRefArray = createArray("java.util.stream.Nodes$InternalNodeSpliterator$OfRef", 0);
         java.lang.Object[] objectArray = new java.lang.Object[9];
         
         Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
         Class methodType = Class.forName("java.lang.reflect.Method");
-        Class ofRefArrayType = Class.forName("java.lang.Object");
+        Class objectType = Class.forName("java.lang.Object");
         Class objectArrayType = Class.forName("[Ljava.lang.Object;");
-        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, ofRefArrayType, objectArrayType);
+        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, objectType, objectArrayType);
         invokeAccessibleNonThrowingMethodMethod.setAccessible(true);
         java.lang.Object[] invokeAccessibleNonThrowingMethodMethodArguments = new java.lang.Object[3];
         invokeAccessibleNonThrowingMethodMethodArguments[0] = null;
-        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) ofRefArray);
+        invokeAccessibleNonThrowingMethodMethodArguments[1] = null;
         invokeAccessibleNonThrowingMethodMethodArguments[2] = ((Object) objectArray);
         try {
             invokeAccessibleNonThrowingMethodMethod.invoke(null, invokeAccessibleNonThrowingMethodMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testInvokeAccessibleNonThrowingMethod2() throws Throwable  {
+        Method method = ((Method) createInstance("java.lang.reflect.Method"));
+        setField(method, "securityCheckCache", null);
+        setField(method, "override", false);
+        setField(method, "modifiers", 0);
+        Class class1 = Object.class;
+        setField(method, "clazz", class1);
+        java.lang.Object[] socketAdaptorArray = createArray("sun.nio.ch.SocketAdaptor", 0);
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        
+        Object initialMethodSecurityCheckCache = getFieldValue(method, "securityCheckCache");
+        
+        Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
+        Class methodType = Class.forName("java.lang.reflect.Method");
+        Class objectArrayType = Class.forName("[Ljava.lang.Object;");
+        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, class1, objectArrayType);
+        invokeAccessibleNonThrowingMethodMethod.setAccessible(true);
+        java.lang.Object[] invokeAccessibleNonThrowingMethodMethodArguments = new java.lang.Object[3];
+        invokeAccessibleNonThrowingMethodMethodArguments[0] = method;
+        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) socketAdaptorArray);
+        invokeAccessibleNonThrowingMethodMethodArguments[2] = ((Object) objectArray);
+        try {
+            invokeAccessibleNonThrowingMethodMethod.invoke(null, invokeAccessibleNonThrowingMethodMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }
+        Object finalMethodSecurityCheckCache = getFieldValue(method, "securityCheckCache");
+        
+        assertNull(finalMethodSecurityCheckCache);
+    }
     ///endregion
     
     ///region
@@ -610,113 +710,6 @@ public class ThrowablesTest {
         Method actual = ((Method) getJlaMethodMethod.invoke(null, getJlaMethodMethodArguments));
         
         assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetCausalChain1() throws Throwable  {
-        Throwable throwable = new Throwable();
-        
-        List actual = Throwables.getCausalChain(throwable);
-        
-        Object expected = createInstance("java.util.Collections$UnmodifiableRandomAccessList");
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(throwable);
-        setField(expected, "list", arrayList);
-        setField(expected, "c", arrayList);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCausalChain2() throws Throwable  {
-        Throwables.getCausalChain(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetCausalChain3() throws Throwable  {
-        UnknownHostException unknownHostException = ((UnknownHostException) createInstance("java.net.UnknownHostException"));
-        setField(unknownHostException, "cause", unknownHostException);
-        
-        List actual = Throwables.getCausalChain(unknownHostException);
-        
-        Object expected = createInstance("java.util.Collections$UnmodifiableRandomAccessList");
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(unknownHostException);
-        setField(expected, "list", arrayList);
-        setField(expected, "c", arrayList);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetCausalChain4() throws Throwable  {
-        UndeclaredThrowableException undeclaredThrowableException = ((UndeclaredThrowableException) createInstance("java.lang.reflect.UndeclaredThrowableException"));
-        setField(undeclaredThrowableException, "undeclaredThrowable", undeclaredThrowableException);
-        
-        Throwables.getCausalChain(undeclaredThrowableException);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetCausalChain5() throws Throwable  {
-        UndeclaredThrowableException undeclaredThrowableException = ((UndeclaredThrowableException) createInstance("java.lang.reflect.UndeclaredThrowableException"));
-        UndeclaredThrowableException undeclaredThrowableException1 = ((UndeclaredThrowableException) createInstance("java.lang.reflect.UndeclaredThrowableException"));
-        setField(undeclaredThrowableException1, "undeclaredThrowable", null);
-        setField(undeclaredThrowableException, "undeclaredThrowable", undeclaredThrowableException1);
-        
-        List actual = Throwables.getCausalChain(undeclaredThrowableException);
-        
-        Object expected = createInstance("java.util.Collections$UnmodifiableRandomAccessList");
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(undeclaredThrowableException);
-        arrayList.add(undeclaredThrowableException1);
-        setField(expected, "list", arrayList);
-        setField(expected, "c", arrayList);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetCausalChain6() throws Throwable  {
-        UnsupportedEncodingException unsupportedEncodingException = ((UnsupportedEncodingException) createInstance("java.io.UnsupportedEncodingException"));
-        StreamCorruptedException streamCorruptedException = ((StreamCorruptedException) createInstance("java.io.StreamCorruptedException"));
-        PortUnreachableException portUnreachableException = ((PortUnreachableException) createInstance("java.net.PortUnreachableException"));
-        setField(portUnreachableException, "cause", null);
-        setField(streamCorruptedException, "cause", portUnreachableException);
-        setField(unsupportedEncodingException, "cause", streamCorruptedException);
-        
-        List actual = Throwables.getCausalChain(unsupportedEncodingException);
-        
-        Object expected = createInstance("java.util.Collections$UnmodifiableRandomAccessList");
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(unsupportedEncodingException);
-        arrayList.add(streamCorruptedException);
-        arrayList.add(portUnreachableException);
-        setField(expected, "list", arrayList);
-        setField(expected, "c", arrayList);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
     }
     ///endregion
     
@@ -944,6 +937,25 @@ public class ThrowablesTest {
         }
         
         return (Object[]) array;
+    }
+    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
+        Class<?> clazz = obj.getClass();
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                
+                return field.get(obj);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
+    
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

@@ -315,51 +315,6 @@ public class RegisterRMRequestTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDoEncode6() throws Throwable  {
-        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
-        Object heapByteBuffer = createInstance("java.nio.HeapByteBuffer");
-        setField(heapByteBuffer, "capacity", 1073741824);
-        setField(heapByteBuffer, "limit", 0);
-        setField(heapByteBuffer, "position", 0);
-        setField(heapByteBuffer, "mark", 0);
-        setField(heapByteBuffer, "bigEndian", false);
-        setField(heapByteBuffer, "offset", 1);
-        byte[] byteArray = new byte[7];
-        setField(heapByteBuffer, "hb", byteArray);
-        setField(registerRMRequest, "byteBuffer", heapByteBuffer);
-        String string = new String("");
-        registerRMRequest.extraData = string;
-        setField(registerRMRequest, "transactionServiceGroup", null);
-        setField(registerRMRequest, "applicationId", null);
-        setField(registerRMRequest, "version", null);
-        
-        Class registerRMRequestClazz = Class.forName("io.seata.core.protocol.RegisterRMRequest");
-        Method doEncodeMethod = registerRMRequestClazz.getDeclaredMethod("doEncode");
-        doEncodeMethod.setAccessible(true);
-        java.lang.Object[] doEncodeMethodArguments = new java.lang.Object[0];
-        try {
-            doEncodeMethod.invoke(registerRMRequest, doEncodeMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        ByteBuffer byteBuffer = registerRMRequest.byteBuffer;
-        Object finalRegisterRMRequestByteBufferLimit = getFieldValue(byteBuffer, "limit");
-        ByteBuffer byteBuffer1 = registerRMRequest.byteBuffer;
-        Object finalRegisterRMRequestByteBufferPosition = getFieldValue(byteBuffer1, "position");
-        ByteBuffer byteBuffer2 = registerRMRequest.byteBuffer;
-        Object finalRegisterRMRequestByteBufferMark = getFieldValue(byteBuffer2, "mark");
-        
-        assertEquals(1073741824, finalRegisterRMRequestByteBufferLimit);
-        
-        assertEquals(8, finalRegisterRMRequestByteBufferPosition);
-        
-        assertEquals(-1, finalRegisterRMRequestByteBufferMark);
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
     public void testSetResourceIds1() throws Throwable  {
         RegisterRMRequest registerRMRequest = new RegisterRMRequest();
@@ -375,9 +330,8 @@ public class RegisterRMRequestTest {
     public void testSetResourceIds2() throws Throwable  {
         RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
         setField(registerRMRequest, "resourceIds", null);
-        String string = new String("");
         
-        registerRMRequest.setResourceIds(string);
+        registerRMRequest.setResourceIds(null);
     }
     ///endregion
     

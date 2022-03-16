@@ -29,9 +29,9 @@ public class ClobSeriliazerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testWrite2() throws Throwable  {
         ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
-        java.lang.Object[] stringCounterSnapshotArray = createArray("sun.management.counter.perf.StringCounterSnapshot", 0);
+        java.lang.Object[] runnableAdapterArray = createArray("java.util.concurrent.Executors$RunnableAdapter", 0);
         
-        clobSeriliazer.write(null, stringCounterSnapshotArray, null, null, 0);
+        clobSeriliazer.write(null, runnableAdapterArray, null, null, 0);
     }
     ///endregion
     

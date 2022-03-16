@@ -4,19 +4,16 @@ import org.junit.Test;
 import io.seata.core.protocol.RegisterRMRequest;
 import io.seata.core.rpc.netty.RpcServer;
 import io.seata.core.rpc.netty.RegisterCheckAuthHandler;
-import io.netty.channel.DefaultChannelPipeline;
-import java.lang.reflect.Method;
 import io.seata.core.protocol.RegisterTMRequest;
+import io.netty.channel.DefaultChannelPipeline;
 import io.netty.channel.unix.DomainSocketAddress;
-import java.net.InetSocketAddress;
-import java.net.Inet6Address;
+import java.lang.reflect.Method;
 import java.nio.InvalidMarkException;
 import java.util.concurrent.BlockingQueue;
 import org.slf4j.Logger;
 import io.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable;
 import io.seata.core.rpc.DefaultServerMessageListenerImpl;
 import java.util.concurrent.LinkedBlockingDeque;
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
@@ -25,7 +22,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.mockStatic;
 import static org.junit.Assert.assertEquals;
 
@@ -46,9 +42,8 @@ public class DefaultServerMessageListenerImplTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testOnTrxMessage2() throws Throwable  {
         DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
-        java.lang.Object[] directLongBufferRUArray = createArray("[Ljava.nio.DirectLongBufferRU;", 0);
         
-        defaultServerMessageListenerImpl.onTrxMessage(0L, null, directLongBufferRUArray, null);
+        defaultServerMessageListenerImpl.onTrxMessage(0L, null, null, null);
     }
     ///endregion
     
@@ -76,49 +71,6 @@ public class DefaultServerMessageListenerImplTest {
         
         RegisterCheckAuthHandler finalRegisterCheckAuthHandlerMock = registerCheckAuthHandlerMock;
         
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testOnRegRmMessage3() throws Throwable  {
-        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
-        Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
-        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        setField(defaultChannelPipeline, "channel", failedChannel);
-        setField(defaultChannelHandlerContext, "pipeline", defaultChannelPipeline);
-        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
-        setField(registerRMRequest, "version", null);
-        String string = new String("");
-        setField(registerRMRequest, "resourceIds", string);
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        
-        Object initialRegisterRMRequestVersion = getFieldValue(registerRMRequest, "version");
-        
-        Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
-        Class longType = long.class;
-        Class defaultChannelHandlerContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Class registerRMRequestType = Class.forName("io.seata.core.protocol.RegisterRMRequest");
-        Class rpcServerType = Class.forName("io.seata.core.rpc.ServerMessageSender");
-        Class registerCheckAuthHandlerType = Class.forName("io.seata.core.rpc.netty.RegisterCheckAuthHandler");
-        Method onRegRmMessageMethod = defaultServerMessageListenerImplClazz.getDeclaredMethod("onRegRmMessage", longType, defaultChannelHandlerContextType, registerRMRequestType, rpcServerType, registerCheckAuthHandlerType);
-        onRegRmMessageMethod.setAccessible(true);
-        java.lang.Object[] onRegRmMessageMethodArguments = new java.lang.Object[5];
-        onRegRmMessageMethodArguments[0] = 0L;
-        onRegRmMessageMethodArguments[1] = defaultChannelHandlerContext;
-        onRegRmMessageMethodArguments[2] = registerRMRequest;
-        onRegRmMessageMethodArguments[3] = rpcServer;
-        onRegRmMessageMethodArguments[4] = null;
-        try {
-            onRegRmMessageMethod.invoke(defaultServerMessageListenerImpl, onRegRmMessageMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object finalRegisterRMRequestVersion = getFieldValue(registerRMRequest, "version");
-        
-        assertNull(finalRegisterRMRequestVersion);
     }
     ///endregion
     
@@ -185,52 +137,6 @@ public class DefaultServerMessageListenerImplTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testOnRegTmMessage4() throws Throwable  {
-        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
-        Object headContext = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
-        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
-        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
-        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
-        Inet6Address inet6Address = ((Inet6Address) createInstance("java.net.Inet6Address"));
-        Object inet6AddressHolder = createInstance("java.net.Inet6Address$Inet6AddressHolder");
-        byte[] byteArray = new byte[17];
-        setField(inet6AddressHolder, "ipaddress", byteArray);
-        setField(inet6Address, "holder6", inet6AddressHolder);
-        setField(inetSocketAddressHolder, "addr", inet6Address);
-        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
-        setField(failedChannel, "remoteAddress", inetSocketAddress);
-        setField(defaultChannelPipeline, "channel", failedChannel);
-        setField(headContext, "pipeline", defaultChannelPipeline);
-        RegisterCheckAuthHandler registerCheckAuthHandlerMock = mock(RegisterCheckAuthHandler.class);
-        
-        Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
-        Class longType = long.class;
-        Class headContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
-        Class registerTMRequestType = Class.forName("io.seata.core.protocol.RegisterTMRequest");
-        Class serverMessageSenderType = Class.forName("io.seata.core.rpc.ServerMessageSender");
-        Class registerCheckAuthHandlerMockType = Class.forName("io.seata.core.rpc.netty.RegisterCheckAuthHandler");
-        Method onRegTmMessageMethod = defaultServerMessageListenerImplClazz.getDeclaredMethod("onRegTmMessage", longType, headContextType, registerTMRequestType, serverMessageSenderType, registerCheckAuthHandlerMockType);
-        onRegTmMessageMethod.setAccessible(true);
-        java.lang.Object[] onRegTmMessageMethodArguments = new java.lang.Object[5];
-        onRegTmMessageMethodArguments[0] = 0L;
-        onRegTmMessageMethodArguments[1] = headContext;
-        onRegTmMessageMethodArguments[2] = null;
-        onRegTmMessageMethodArguments[3] = null;
-        onRegTmMessageMethodArguments[4] = registerCheckAuthHandlerMock;
-        try {
-            onRegTmMessageMethod.invoke(defaultServerMessageListenerImpl, onRegTmMessageMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        RegisterCheckAuthHandler finalRegisterCheckAuthHandlerMock = registerCheckAuthHandlerMock;
-        
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000)
     public void testOnCheckMessage1() throws Throwable  {
         DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
@@ -273,34 +179,6 @@ public class DefaultServerMessageListenerImplTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testSetServerMessageSender1() throws Throwable  {
-        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
-        
-        defaultServerMessageListenerImpl.setServerMessageSender(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetServerMessageSender2() throws Throwable  {
-        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
-        setField(defaultServerMessageListenerImpl, "serverMessageSender", null);
-        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
-        
-        Object initialDefaultServerMessageListenerImplServerMessageSender = getFieldValue(defaultServerMessageListenerImpl, "serverMessageSender");
-        
-        defaultServerMessageListenerImpl.setServerMessageSender(rpcServer);
-        
-        Object finalDefaultServerMessageListenerImplServerMessageSender = getFieldValue(defaultServerMessageListenerImpl, "serverMessageSender");
-        
-        assertFalse(initialDefaultServerMessageListenerImplServerMessageSender == finalDefaultServerMessageListenerImplServerMessageSender);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testGetServerMessageSender1() throws Throwable  {
         DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
         
@@ -320,6 +198,27 @@ public class DefaultServerMessageListenerImplTest {
         ServerMessageSender actual = defaultServerMessageListenerImpl.getServerMessageSender();
         
         assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetServerMessageSender1() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        
+        defaultServerMessageListenerImpl.setServerMessageSender(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetServerMessageSender2() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        setField(defaultServerMessageListenerImpl, "serverMessageSender", null);
+        
+        defaultServerMessageListenerImpl.setServerMessageSender(null);
     }
     ///endregion
     
@@ -494,15 +393,6 @@ public class DefaultServerMessageListenerImplTest {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
     }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
-    }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();
         java.lang.reflect.Field field;
@@ -522,25 +412,6 @@ public class DefaultServerMessageListenerImplTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
-    }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static Object getStaticFieldValue(Class<?> clazz, String fieldName) throws Exception {
         java.lang.reflect.Field field;
@@ -578,6 +449,25 @@ public class DefaultServerMessageListenerImplTest {
     
         field.setAccessible(true);
         field.set(null, fieldValue);
+    }
+    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
+        Class<?> clazz = obj.getClass();
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                
+                return field.get(obj);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
+    
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

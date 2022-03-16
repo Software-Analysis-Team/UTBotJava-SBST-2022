@@ -4,12 +4,12 @@ import org.junit.Test;
 import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import java.lang.reflect.Method;
-import io.netty.channel.DefaultChannelPipeline;
-import io.netty.util.concurrent.GlobalEventExecutor;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ReflectiveChannelFactory;
 import io.netty.bootstrap.BootstrapConfig;
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.DefaultChannelPipeline;
+import io.netty.util.concurrent.DefaultEventExecutor;
 import io.seata.core.rpc.netty.NettyPoolKey.TransactionRole;
 import io.seata.core.rpc.netty.NettyPoolKey;
 import io.seata.core.protocol.RegisterTMResponse;
@@ -156,71 +156,6 @@ public class NettyPoolableFactoryTest {
     
     ///region
     
-    @Test(timeout = 10000)
-    public void testDestroyObject1() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
-        
-        nettyPoolableFactory.destroyObject(nettyPoolKey, ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testDestroyObject2() throws Throwable  {
-        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-        
-        nettyPoolableFactory.destroyObject(((NettyPoolKey) null), ((Channel) null));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testDestroyObject3() throws Throwable  {
-        org.mockito.MockedStatic mockedStatic = null;
-        try {
-            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
-            Logger loggerMock = mock(Logger.class);
-            when(loggerMock.isInfoEnabled()).thenReturn(false);
-            mockedStatic.when(() -> {
-                org.slf4j.LoggerFactory.getLogger(any(Class.class));
-            }).thenReturn(loggerMock);
-            NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
-            Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
-            DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
-            Object failedChannel1 = createInstance("io.netty.bootstrap.FailedChannel");
-            setField(failedChannel1, "pipeline", null);
-            setField(defaultChannelPipeline, "channel", failedChannel1);
-            Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
-            GlobalEventExecutor globalEventExecutor = ((GlobalEventExecutor) createInstance("io.netty.util.concurrent.GlobalEventExecutor"));
-            setField(defaultChannelHandlerContext, "executor", globalEventExecutor);
-            setField(defaultChannelHandlerContext, "pipeline", defaultChannelPipeline);
-            setField(defaultChannelHandlerContext, "prev", null);
-            setField(defaultChannelPipeline, "tail", defaultChannelHandlerContext);
-            setField(failedChannel, "pipeline", defaultChannelPipeline);
-            
-            Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
-            Class nettyPoolKeyType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey");
-            Class failedChannelType = Class.forName("io.netty.channel.Channel");
-            Method destroyObjectMethod = nettyPoolableFactoryClazz.getDeclaredMethod("destroyObject", nettyPoolKeyType, failedChannelType);
-            destroyObjectMethod.setAccessible(true);
-            java.lang.Object[] destroyObjectMethodArguments = new java.lang.Object[2];
-            destroyObjectMethodArguments[0] = null;
-            destroyObjectMethodArguments[1] = failedChannel;
-            try {
-                destroyObjectMethod.invoke(nettyPoolableFactory, destroyObjectMethodArguments);
-            } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-                throw invocationTargetException.getTargetException();
-            }} finally {
-            mockedStatic.close();
-        }
-    }
-    ///endregion
-    
-    ///region
-    
     @Test(timeout = 10000, expected = Throwable.class)
     public void testMakeObject1() throws Throwable  {
         NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
@@ -330,6 +265,71 @@ public class NettyPoolableFactoryTest {
             
             nettyPoolableFactory.makeObject(nettyPoolKey);
         } finally {
+            mockedStatic.close();
+        }
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDestroyObject1() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        NettyPoolKey nettyPoolKey = ((NettyPoolKey) createInstance("io.seata.core.rpc.netty.NettyPoolKey"));
+        
+        nettyPoolableFactory.destroyObject(nettyPoolKey, ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDestroyObject2() throws Throwable  {
+        NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+        
+        nettyPoolableFactory.destroyObject(((NettyPoolKey) null), ((Channel) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDestroyObject3() throws Throwable  {
+        org.mockito.MockedStatic mockedStatic = null;
+        try {
+            mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+            Logger loggerMock = mock(Logger.class);
+            when(loggerMock.isInfoEnabled()).thenReturn(false);
+            mockedStatic.when(() -> {
+                org.slf4j.LoggerFactory.getLogger(any(Class.class));
+            }).thenReturn(loggerMock);
+            NettyPoolableFactory nettyPoolableFactory = ((NettyPoolableFactory) createInstance("io.seata.core.rpc.netty.NettyPoolableFactory"));
+            Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+            DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
+            Object failedChannel1 = createInstance("io.netty.bootstrap.FailedChannel");
+            setField(failedChannel1, "pipeline", null);
+            setField(defaultChannelPipeline, "channel", failedChannel1);
+            Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
+            DefaultEventExecutor defaultEventExecutor = ((DefaultEventExecutor) createInstance("io.netty.util.concurrent.DefaultEventExecutor"));
+            setField(defaultChannelHandlerContext, "executor", defaultEventExecutor);
+            setField(defaultChannelHandlerContext, "pipeline", defaultChannelPipeline);
+            setField(defaultChannelHandlerContext, "prev", null);
+            setField(defaultChannelPipeline, "tail", defaultChannelHandlerContext);
+            setField(failedChannel, "pipeline", defaultChannelPipeline);
+            
+            Class nettyPoolableFactoryClazz = Class.forName("io.seata.core.rpc.netty.NettyPoolableFactory");
+            Class nettyPoolKeyType = Class.forName("io.seata.core.rpc.netty.NettyPoolKey");
+            Class failedChannelType = Class.forName("io.netty.channel.Channel");
+            Method destroyObjectMethod = nettyPoolableFactoryClazz.getDeclaredMethod("destroyObject", nettyPoolKeyType, failedChannelType);
+            destroyObjectMethod.setAccessible(true);
+            java.lang.Object[] destroyObjectMethodArguments = new java.lang.Object[2];
+            destroyObjectMethodArguments[0] = null;
+            destroyObjectMethodArguments[1] = failedChannel;
+            try {
+                destroyObjectMethod.invoke(nettyPoolableFactory, destroyObjectMethodArguments);
+            } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+                throw invocationTargetException.getTargetException();
+            }} finally {
             mockedStatic.close();
         }
     }

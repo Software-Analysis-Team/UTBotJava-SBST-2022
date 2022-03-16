@@ -5,14 +5,14 @@ import java.net.SocketTimeoutException;
 import java.io.NotActiveException;
 import java.nio.charset.CharacterCodingException;
 import java.time.DateTimeException;
+import java.io.FileNotFoundException;
 import java.lang.reflect.UndeclaredThrowableException;
-import java.io.IOException;
+import javax.security.auth.DestroyFailedException;
 import java.util.List;
 import java.util.ArrayList;
 import javax.security.auth.callback.UnsupportedCallbackException;
 import java.net.UnknownHostException;
 import java.lang.reflect.Method;
-import java.time.chrono.ThaiBuddhistDate;
 import java.lang.reflect.Constructor;
 import java.util.Objects;
 import java.util.Map;
@@ -100,19 +100,19 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000)
     public void testGetRootCause6() throws Throwable  {
+        FileNotFoundException fileNotFoundException = ((FileNotFoundException) createInstance("java.io.FileNotFoundException"));
         UndeclaredThrowableException undeclaredThrowableException = ((UndeclaredThrowableException) createInstance("java.lang.reflect.UndeclaredThrowableException"));
         setField(undeclaredThrowableException, "cause", null);
-        NoSuchFieldException noSuchFieldException = ((NoSuchFieldException) createInstance("java.lang.NoSuchFieldException"));
-        InstantiationError instantiationError = ((InstantiationError) createInstance("java.lang.InstantiationError"));
-        setField(instantiationError, "cause", null);
-        setField(noSuchFieldException, "cause", instantiationError);
-        setField(undeclaredThrowableException, "undeclaredThrowable", noSuchFieldException);
+        CharacterCodingException characterCodingException = ((CharacterCodingException) createInstance("java.nio.charset.CharacterCodingException"));
+        setField(characterCodingException, "cause", null);
+        setField(undeclaredThrowableException, "undeclaredThrowable", characterCodingException);
+        setField(fileNotFoundException, "cause", undeclaredThrowableException);
         
-        Throwable actual = Throwables.getRootCause(undeclaredThrowableException);
+        Throwable actual = Throwables.getRootCause(fileNotFoundException);
         
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(instantiationError, actual));
+        assertTrue(deepEquals(characterCodingException, actual));
     }
     ///endregion
     
@@ -130,9 +130,9 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testPropagate2() throws Throwable  {
-        IOException iOException = ((IOException) createInstance("java.io.IOException"));
+        DestroyFailedException destroyFailedException = ((DestroyFailedException) createInstance("javax.security.auth.DestroyFailedException"));
         
-        Throwables.propagate(iOException);
+        Throwables.propagate(destroyFailedException);
     }
     ///endregion
     
@@ -451,19 +451,6 @@ public class ThrowablesTest {
     }
     ///endregion
     
-    
-    ///region Errors report for lazyStackTrace
-    
-    public void testLazyStackTrace_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
-    }
-    ///endregion
-    
     ///region
     
     @Test(timeout = 10000)
@@ -471,6 +458,19 @@ public class ThrowablesTest {
         boolean actual = Throwables.lazyStackTraceIsLazy();
         
         assertTrue(actual);
+    }
+    ///endregion
+    
+    
+    ///region Errors report for lazyStackTraceIsLazy
+    
+    public void testLazyStackTraceIsLazy_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
@@ -495,17 +495,17 @@ public class ThrowablesTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testInvokeAccessibleNonThrowingMethod1() throws Throwable  {
-        java.time.chrono.ThaiBuddhistDate[] thaiBuddhistDateArray = new java.time.chrono.ThaiBuddhistDate[0];
+        java.lang.Object[] operatorArray = createArray("sun.security.util.DisabledAlgorithmConstraints$Constraint$Operator", 0);
         
         Class throwablesClazz = Class.forName("com.google.common.base.Throwables");
         Class methodType = Class.forName("java.lang.reflect.Method");
-        Class thaiBuddhistDateArrayType = Class.forName("java.lang.Object");
+        Class operatorArrayType = Class.forName("java.lang.Object");
         Class objectArrayType = Class.forName("[Ljava.lang.Object;");
-        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, thaiBuddhistDateArrayType, objectArrayType);
+        Method invokeAccessibleNonThrowingMethodMethod = throwablesClazz.getDeclaredMethod("invokeAccessibleNonThrowingMethod", methodType, operatorArrayType, objectArrayType);
         invokeAccessibleNonThrowingMethodMethod.setAccessible(true);
         java.lang.Object[] invokeAccessibleNonThrowingMethodMethodArguments = new java.lang.Object[3];
         invokeAccessibleNonThrowingMethodMethodArguments[0] = null;
-        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) thaiBuddhistDateArray);
+        invokeAccessibleNonThrowingMethodMethodArguments[1] = ((Object) operatorArray);
         invokeAccessibleNonThrowingMethodMethodArguments[2] = null;
         try {
             invokeAccessibleNonThrowingMethodMethod.invoke(null, invokeAccessibleNonThrowingMethodMethodArguments);
@@ -904,6 +904,15 @@ public class ThrowablesTest {
     
         field.setAccessible(true);
         field.set(object, fieldValue);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

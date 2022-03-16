@@ -2,6 +2,8 @@ package com.google.common.collect;
 
 import org.junit.Test;
 import java.util.TreeMap;
+import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
+import sun.reflect.ReflectionFactory;
 import sun.misc.ASCIICaseInsensitiveComparator;
 import java.lang.reflect.Method;
 import java.lang.reflect.Field;
@@ -22,17 +24,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
 
 public class TreeRangeMapTest {
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testEquals1() throws Throwable  {
-        TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        ImmutableRangeMap immutableRangeMap = ((ImmutableRangeMap) createInstance("com.google.common.collect.ImmutableRangeMap"));
-        
-        treeRangeMap.equals(immutableRangeMap);
-    }
-    ///endregion
-    
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
@@ -71,9 +62,7 @@ public class TreeRangeMapTest {
         setField(treeMap, "values", null);
         setField(treeMap, "modCount", 0);
         Object entry = createInstance("java.util.TreeMap$Entry");
-        Object entry1 = createInstance("java.util.TreeMap$Entry");
-        setField(entry1, "left", null);
-        setField(entry, "left", entry1);
+        setField(entry, "left", null);
         setField(treeMap, "root", entry);
         setField(treeRangeMap, "entriesByLowerBound", treeMap);
         
@@ -115,8 +104,14 @@ public class TreeRangeMapTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testRemove3() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
-        ImmutableSortedMap immutableSortedMap = ((ImmutableSortedMap) createInstance("com.google.common.collect.ImmutableSortedMap"));
-        setField(treeRangeMap, "entriesByLowerBound", immutableSortedMap);
+        TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
+        Object entry = createInstance("java.util.TreeMap$Entry");
+        ReflectionFactory.GetReflectionFactoryAction getReflectionFactoryAction = ((ReflectionFactory.GetReflectionFactoryAction) createInstance("sun.reflect.ReflectionFactory$GetReflectionFactoryAction"));
+        setField(entry, "key", getReflectionFactoryAction);
+        setField(treeMap, "root", entry);
+        ASCIICaseInsensitiveComparator aSCIICaseInsensitiveComparator = ((ASCIICaseInsensitiveComparator) createInstance("sun.misc.ASCIICaseInsensitiveComparator"));
+        setField(treeMap, "comparator", aSCIICaseInsensitiveComparator);
+        setField(treeRangeMap, "entriesByLowerBound", treeMap);
         Range range = ((Range) createInstance("com.google.common.collect.Range"));
         Object belowAll = createInstance("com.google.common.collect.Cut$BelowAll");
         setField(range, "upperBound", belowAll);
@@ -133,6 +128,7 @@ public class TreeRangeMapTest {
     public void testRemove4() throws Throwable  {
         TreeRangeMap treeRangeMap = ((TreeRangeMap) createInstance("com.google.common.collect.TreeRangeMap"));
         TreeMap treeMap = ((TreeMap) createInstance("java.util.TreeMap"));
+        setField(treeMap, "root", null);
         setField(treeRangeMap, "entriesByLowerBound", treeMap);
         Range range = ((Range) createInstance("com.google.common.collect.Range"));
         Object belowAll = createInstance("com.google.common.collect.Cut$BelowAll");

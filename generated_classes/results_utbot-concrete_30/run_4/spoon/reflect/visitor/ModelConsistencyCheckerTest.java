@@ -15,8 +15,6 @@ import java.util.Deque;
 import spoon.support.StandardEnvironment;
 import org.apache.log4j.spi.RootLogger;
 import org.apache.log4j.Hierarchy;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.locks.ReentrantLock;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
@@ -269,30 +267,16 @@ public class ModelConsistencyCheckerTest {
         }}
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000)
-    public void testDumpStack4() throws Throwable  {
-        ModelConsistencyChecker modelConsistencyChecker = ((ModelConsistencyChecker) createInstance("spoon.reflect.visitor.ModelConsistencyChecker"));
-        LinkedBlockingDeque linkedBlockingDeque = ((LinkedBlockingDeque) createInstance("java.util.concurrent.LinkedBlockingDeque"));
-        ReentrantLock reentrantLock = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(reentrantLock, "sync", nonfairSync);
-        setField(linkedBlockingDeque, "lock", reentrantLock);
-        setField(modelConsistencyChecker, "stack", linkedBlockingDeque);
-        StandardEnvironment standardEnvironment = ((StandardEnvironment) createInstance("spoon.support.StandardEnvironment"));
-        RootLogger rootLogger = ((RootLogger) createInstance("org.apache.log4j.spi.RootLogger"));
-        Hierarchy hierarchy = ((Hierarchy) createInstance("org.apache.log4j.Hierarchy"));
-        setField(hierarchy, "thresholdInt", 10001);
-        setField(rootLogger, "repository", hierarchy);
-        setField(standardEnvironment, "logger", rootLogger);
-        setField(modelConsistencyChecker, "environment", standardEnvironment);
-        
-        Class modelConsistencyCheckerClazz = Class.forName("spoon.reflect.visitor.ModelConsistencyChecker");
-        Method dumpStackMethod = modelConsistencyCheckerClazz.getDeclaredMethod("dumpStack");
-        dumpStackMethod.setAccessible(true);
-        java.lang.Object[] dumpStackMethodArguments = new java.lang.Object[0];
-        dumpStackMethod.invoke(modelConsistencyChecker, dumpStackMethodArguments);
+    ///region Errors report for dumpStack
+    
+    public void testDumpStack_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     

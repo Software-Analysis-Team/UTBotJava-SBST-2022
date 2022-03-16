@@ -3,8 +3,8 @@ package com.google.common.base.internal;
 import org.junit.Test;
 import java.lang.ref.ReferenceQueue;
 import java.lang.reflect.Method;
-import java.lang.ref.WeakReference;
 import java.nio.file.attribute.PosixFilePermission;
+import sun.misc.Cleaner;
 import java.lang.reflect.Field;
 import java.lang.reflect.Constructor;
 import java.lang.ref.PhantomReference;
@@ -133,15 +133,15 @@ public class FinalizerTest {
         java.lang.Object[] eSSCertIdArray = createArray("sun.security.pkcs.ESSCertId", 0);
         setField(entry, "referent", eSSCertIdArray);
         setField(finalizer, "finalizableReferenceClassReference", entry);
-        Object loaderReference = createInstance("java.util.ResourceBundle$LoaderReference");
-        setField(loaderReference, "referent", null);
+        Object resourceReference = createInstance("sun.util.locale.provider.LocaleResources$ResourceReference");
+        setField(resourceReference, "referent", null);
         
         Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
-        Class loaderReferenceType = Class.forName("java.lang.ref.Reference");
-        Method cleanUpMethod = finalizerClazz.getDeclaredMethod("cleanUp", loaderReferenceType);
+        Class resourceReferenceType = Class.forName("java.lang.ref.Reference");
+        Method cleanUpMethod = finalizerClazz.getDeclaredMethod("cleanUp", resourceReferenceType);
         cleanUpMethod.setAccessible(true);
         java.lang.Object[] cleanUpMethodArguments = new java.lang.Object[1];
-        cleanUpMethodArguments[0] = loaderReference;
+        cleanUpMethodArguments[0] = resourceReference;
         try {
             cleanUpMethod.invoke(finalizer, cleanUpMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -157,15 +157,15 @@ public class FinalizerTest {
         Object weakClassKey = createInstance("java.io.ObjectStreamClass$WeakClassKey");
         setField(weakClassKey, "referent", null);
         setField(finalizer, "finalizableReferenceClassReference", weakClassKey);
-        WeakReference weakReference = ((WeakReference) createInstance("java.lang.ref.WeakReference"));
-        setField(weakReference, "referent", null);
+        Object arrayReference = createInstance("com.google.common.util.concurrent.Striped$SmallLazyStriped$ArrayReference");
+        setField(arrayReference, "referent", null);
         
         Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
-        Class weakReferenceType = Class.forName("java.lang.ref.Reference");
-        Method cleanUpMethod = finalizerClazz.getDeclaredMethod("cleanUp", weakReferenceType);
+        Class arrayReferenceType = Class.forName("java.lang.ref.Reference");
+        Method cleanUpMethod = finalizerClazz.getDeclaredMethod("cleanUp", arrayReferenceType);
         cleanUpMethod.setAccessible(true);
         java.lang.Object[] cleanUpMethodArguments = new java.lang.Object[1];
-        cleanUpMethodArguments[0] = weakReference;
+        cleanUpMethodArguments[0] = arrayReference;
         boolean actual = ((boolean) cleanUpMethod.invoke(finalizer, cleanUpMethodArguments));
         
         assertFalse(actual);
@@ -259,7 +259,10 @@ public class FinalizerTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testStartFinalizer1() throws Throwable  {
-        Finalizer.startFinalizer(null, null, null);
+        ReferenceQueue referenceQueue = ((ReferenceQueue) createInstance("java.lang.ref.ReferenceQueue"));
+        Cleaner cleaner = ((Cleaner) createInstance("sun.misc.Cleaner"));
+        
+        Finalizer.startFinalizer(null, referenceQueue, cleaner);
     }
     ///endregion
     

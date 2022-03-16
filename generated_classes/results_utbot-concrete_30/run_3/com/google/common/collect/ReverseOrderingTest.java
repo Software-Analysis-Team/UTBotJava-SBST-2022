@@ -3,15 +3,14 @@ package com.google.common.collect;
 import org.junit.Test;
 import java.util.Comparator;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 import java.time.chrono.ThaiBuddhistDate;
-import sun.net.ConnectionResetException;
-import java.time.temporal.WeekFields;
-import java.util.LinkedHashSet;
 import java.util.HashMap;
+import com.google.common.collect.Ordering.ArbitraryOrdering;
+import com.google.common.collect.Ordering;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -20,7 +19,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Arrays;
-import java.lang.reflect.Array;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertFalse;
@@ -59,8 +57,9 @@ public class ReverseOrderingTest {
     @Test(timeout = 10000)
     public void testEquals3() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        java.lang.Object[] intSortingSinkArray = createArray("java.util.stream.SortedOps$IntSortingSink", 0);
         
-        boolean actual = reverseOrdering.equals(null);
+        boolean actual = reverseOrdering.equals(intSortingSinkArray);
         
         assertFalse(actual);
     }
@@ -235,13 +234,24 @@ public class ReverseOrderingTest {
     public void testMin2() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering3 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering4 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
-        setField(reverseOrdering4, "forwardOrder", reverseNaturalOrdering);
-        setField(reverseOrdering3, "forwardOrder", reverseOrdering4);
-        setField(reverseOrdering2, "forwardOrder", reverseOrdering3);
+        setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        LinkedHashSet linkedHashSet = ((LinkedHashSet) createInstance("java.util.LinkedHashSet"));
+        
+        reverseOrdering.min(linkedHashSet);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin3() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering2 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering2, "forwardOrder", reverseNaturalOrdering);
         setField(reverseOrdering1, "forwardOrder", reverseOrdering2);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
         
@@ -252,7 +262,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin3() throws Throwable  {
+    public void testMin4() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         
         reverseOrdering.min(((Iterator) null));
@@ -262,44 +272,22 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin4() throws Throwable  {
+    public void testMin5() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering1, "forwardOrder", reverseNaturalOrdering);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
         Scanner scanner = ((Scanner) createInstance("java.util.Scanner"));
-        setField(scanner, "closed", false);
-        setField(scanner, "matchValid", false);
-        setField(scanner, "typeCache", null);
-        setField(scanner, "hasNextPattern", null);
-        Pattern pattern = ((Pattern) createInstance("java.util.regex.Pattern"));
-        setField(pattern, "capturingGroupCount", 16);
-        setField(scanner, "delimPattern", pattern);
-        Matcher matcher = ((Matcher) createInstance("java.util.regex.Matcher"));
-        setField(matcher, "parentPattern", null);
-        setField(scanner, "matcher", matcher);
-        
-        Object initialScannerTypeCache = getFieldValue(scanner, "typeCache");
-        Object scannerMatcher = getFieldValue(scanner, "matcher");
-        Object initialScannerMatcherParentPattern = getFieldValue(scannerMatcher, "parentPattern");
         
         reverseOrdering.min(scanner);
-        
-        Object finalScannerTypeCache = getFieldValue(scanner, "typeCache");
-        Object scannerMatcher1 = getFieldValue(scanner, "matcher");
-        Object finalScannerMatcherParentPattern = getFieldValue(scannerMatcher1, "parentPattern");
-        
-        assertNull(finalScannerTypeCache);
-        
-        assertFalse(initialScannerMatcherParentPattern == finalScannerMatcherParentPattern);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin5() throws Throwable  {
+    public void testMin6() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         Object object = new Object();
         Object object1 = new Object();
@@ -311,7 +299,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin6() throws Throwable  {
+    public void testMin7() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
@@ -324,7 +312,34 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin7() throws Throwable  {
+    public void testMin8() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        java.lang.Object[] descendingImmutableSortedSetArray = createArray("com.google.common.collect.DescendingImmutableSortedSet", 0);
+        
+        reverseOrdering.min(null, descendingImmutableSortedSetArray);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin9() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
+        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
+        java.time.chrono.ThaiBuddhistDate[] thaiBuddhistDateArray = new java.time.chrono.ThaiBuddhistDate[0];
+        
+        reverseOrdering.min(thaiBuddhistDateArray, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin10() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
@@ -336,22 +351,7 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin8() throws Throwable  {
-        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
-        setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
-        setField(reverseOrdering, "forwardOrder", reverseOrdering1);
-        java.time.chrono.ThaiBuddhistDate[] thaiBuddhistDateArray = new java.time.chrono.ThaiBuddhistDate[0];
-        java.lang.Object[] fifoWaitQueueArray = createArray("java.util.concurrent.SynchronousQueue$FifoWaitQueue", 0);
-        
-        reverseOrdering.min(thaiBuddhistDateArray, fifoWaitQueueArray);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin9() throws Throwable  {
+    public void testMin11() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         Object object = new Object();
         Object object1 = new Object();
@@ -365,129 +365,104 @@ public class ReverseOrderingTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testMin10() throws Throwable  {
+    public void testMin12() throws Throwable  {
+        ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
+        ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
+        setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
+        java.lang.Object[] findOpArray = createArray("java.util.stream.FindOps$FindOp", 9);
+        java.lang.StackTraceElement[] stackTraceElementArray = new java.lang.StackTraceElement[9];
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        
+        Object initialFindOpArray0 = findOpArray[0];
+        Object initialFindOpArray1 = findOpArray[1];
+        Object initialFindOpArray2 = findOpArray[2];
+        Object initialFindOpArray3 = findOpArray[3];
+        Object initialFindOpArray4 = findOpArray[4];
+        Object initialFindOpArray5 = findOpArray[5];
+        Object initialFindOpArray6 = findOpArray[6];
+        Object initialFindOpArray7 = findOpArray[7];
+        Object initialFindOpArray8 = findOpArray[8];
+        
+        StackTraceElement initialStackTraceElementArray0 = stackTraceElementArray[0];
+        StackTraceElement initialStackTraceElementArray1 = stackTraceElementArray[1];
+        StackTraceElement initialStackTraceElementArray2 = stackTraceElementArray[2];
+        StackTraceElement initialStackTraceElementArray3 = stackTraceElementArray[3];
+        StackTraceElement initialStackTraceElementArray4 = stackTraceElementArray[4];
+        StackTraceElement initialStackTraceElementArray5 = stackTraceElementArray[5];
+        StackTraceElement initialStackTraceElementArray6 = stackTraceElementArray[6];
+        StackTraceElement initialStackTraceElementArray7 = stackTraceElementArray[7];
+        StackTraceElement initialStackTraceElementArray8 = stackTraceElementArray[8];
+        
+        reverseOrdering.min(findOpArray, stackTraceElementArray, null, objectArray);
+        
+        Object finalFindOpArray0 = findOpArray[0];
+        Object finalFindOpArray1 = findOpArray[1];
+        Object finalFindOpArray2 = findOpArray[2];
+        Object finalFindOpArray3 = findOpArray[3];
+        Object finalFindOpArray4 = findOpArray[4];
+        Object finalFindOpArray5 = findOpArray[5];
+        Object finalFindOpArray6 = findOpArray[6];
+        Object finalFindOpArray7 = findOpArray[7];
+        Object finalFindOpArray8 = findOpArray[8];
+        
+        StackTraceElement finalStackTraceElementArray0 = stackTraceElementArray[0];
+        StackTraceElement finalStackTraceElementArray1 = stackTraceElementArray[1];
+        StackTraceElement finalStackTraceElementArray2 = stackTraceElementArray[2];
+        StackTraceElement finalStackTraceElementArray3 = stackTraceElementArray[3];
+        StackTraceElement finalStackTraceElementArray4 = stackTraceElementArray[4];
+        StackTraceElement finalStackTraceElementArray5 = stackTraceElementArray[5];
+        StackTraceElement finalStackTraceElementArray6 = stackTraceElementArray[6];
+        StackTraceElement finalStackTraceElementArray7 = stackTraceElementArray[7];
+        StackTraceElement finalStackTraceElementArray8 = stackTraceElementArray[8];
+        
+        assertNull(finalFindOpArray0);
+        
+        assertNull(finalFindOpArray1);
+        
+        assertNull(finalFindOpArray2);
+        
+        assertNull(finalFindOpArray3);
+        
+        assertNull(finalFindOpArray4);
+        
+        assertNull(finalFindOpArray5);
+        
+        assertNull(finalFindOpArray6);
+        
+        assertNull(finalFindOpArray7);
+        
+        assertNull(finalFindOpArray8);
+        
+        assertNull(finalStackTraceElementArray0);
+        
+        assertNull(finalStackTraceElementArray1);
+        
+        assertNull(finalStackTraceElementArray2);
+        
+        assertNull(finalStackTraceElementArray3);
+        
+        assertNull(finalStackTraceElementArray4);
+        
+        assertNull(finalStackTraceElementArray5);
+        
+        assertNull(finalStackTraceElementArray6);
+        
+        assertNull(finalStackTraceElementArray7);
+        
+        assertNull(finalStackTraceElementArray8);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testMin13() throws Throwable  {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
-        sun.net.ConnectionResetException[] connectionResetExceptionArray = new sun.net.ConnectionResetException[9];
-        java.time.temporal.WeekFields[] weekFieldsArray = new java.time.temporal.WeekFields[9];
-        java.lang.Object[] handlerArray = createArray("[Ljdk.internal.org.objectweb.asm.Handler;", 9);
-        handlerArray[0] = null;
-        handlerArray[1] = null;
-        handlerArray[2] = null;
-        handlerArray[3] = null;
-        handlerArray[4] = null;
-        handlerArray[5] = null;
-        handlerArray[6] = null;
-        handlerArray[7] = null;
-        handlerArray[8] = null;
         
-        ConnectionResetException initialConnectionResetExceptionArray0 = connectionResetExceptionArray[0];
-        ConnectionResetException initialConnectionResetExceptionArray1 = connectionResetExceptionArray[1];
-        ConnectionResetException initialConnectionResetExceptionArray2 = connectionResetExceptionArray[2];
-        ConnectionResetException initialConnectionResetExceptionArray3 = connectionResetExceptionArray[3];
-        ConnectionResetException initialConnectionResetExceptionArray4 = connectionResetExceptionArray[4];
-        ConnectionResetException initialConnectionResetExceptionArray5 = connectionResetExceptionArray[5];
-        ConnectionResetException initialConnectionResetExceptionArray6 = connectionResetExceptionArray[6];
-        ConnectionResetException initialConnectionResetExceptionArray7 = connectionResetExceptionArray[7];
-        ConnectionResetException initialConnectionResetExceptionArray8 = connectionResetExceptionArray[8];
-        
-        WeekFields initialWeekFieldsArray0 = weekFieldsArray[0];
-        WeekFields initialWeekFieldsArray1 = weekFieldsArray[1];
-        WeekFields initialWeekFieldsArray2 = weekFieldsArray[2];
-        WeekFields initialWeekFieldsArray3 = weekFieldsArray[3];
-        WeekFields initialWeekFieldsArray4 = weekFieldsArray[4];
-        WeekFields initialWeekFieldsArray5 = weekFieldsArray[5];
-        WeekFields initialWeekFieldsArray6 = weekFieldsArray[6];
-        WeekFields initialWeekFieldsArray7 = weekFieldsArray[7];
-        WeekFields initialWeekFieldsArray8 = weekFieldsArray[8];
-        
-        reverseOrdering.min(connectionResetExceptionArray, weekFieldsArray, handlerArray, ((java.lang.Object[]) null));
-        
-        ConnectionResetException finalConnectionResetExceptionArray0 = connectionResetExceptionArray[0];
-        ConnectionResetException finalConnectionResetExceptionArray1 = connectionResetExceptionArray[1];
-        ConnectionResetException finalConnectionResetExceptionArray2 = connectionResetExceptionArray[2];
-        ConnectionResetException finalConnectionResetExceptionArray3 = connectionResetExceptionArray[3];
-        ConnectionResetException finalConnectionResetExceptionArray4 = connectionResetExceptionArray[4];
-        ConnectionResetException finalConnectionResetExceptionArray5 = connectionResetExceptionArray[5];
-        ConnectionResetException finalConnectionResetExceptionArray6 = connectionResetExceptionArray[6];
-        ConnectionResetException finalConnectionResetExceptionArray7 = connectionResetExceptionArray[7];
-        ConnectionResetException finalConnectionResetExceptionArray8 = connectionResetExceptionArray[8];
-        
-        WeekFields finalWeekFieldsArray0 = weekFieldsArray[0];
-        WeekFields finalWeekFieldsArray1 = weekFieldsArray[1];
-        WeekFields finalWeekFieldsArray2 = weekFieldsArray[2];
-        WeekFields finalWeekFieldsArray3 = weekFieldsArray[3];
-        WeekFields finalWeekFieldsArray4 = weekFieldsArray[4];
-        WeekFields finalWeekFieldsArray5 = weekFieldsArray[5];
-        WeekFields finalWeekFieldsArray6 = weekFieldsArray[6];
-        WeekFields finalWeekFieldsArray7 = weekFieldsArray[7];
-        WeekFields finalWeekFieldsArray8 = weekFieldsArray[8];
-        
-        Object finalHandlerArray0 = handlerArray[0];
-        Object finalHandlerArray1 = handlerArray[1];
-        Object finalHandlerArray2 = handlerArray[2];
-        Object finalHandlerArray3 = handlerArray[3];
-        Object finalHandlerArray4 = handlerArray[4];
-        Object finalHandlerArray5 = handlerArray[5];
-        Object finalHandlerArray6 = handlerArray[6];
-        Object finalHandlerArray7 = handlerArray[7];
-        Object finalHandlerArray8 = handlerArray[8];
-        
-        assertNull(finalConnectionResetExceptionArray0);
-        
-        assertNull(finalConnectionResetExceptionArray1);
-        
-        assertNull(finalConnectionResetExceptionArray2);
-        
-        assertNull(finalConnectionResetExceptionArray3);
-        
-        assertNull(finalConnectionResetExceptionArray4);
-        
-        assertNull(finalConnectionResetExceptionArray5);
-        
-        assertNull(finalConnectionResetExceptionArray6);
-        
-        assertNull(finalConnectionResetExceptionArray7);
-        
-        assertNull(finalConnectionResetExceptionArray8);
-        
-        assertNull(finalWeekFieldsArray0);
-        
-        assertNull(finalWeekFieldsArray1);
-        
-        assertNull(finalWeekFieldsArray2);
-        
-        assertNull(finalWeekFieldsArray3);
-        
-        assertNull(finalWeekFieldsArray4);
-        
-        assertNull(finalWeekFieldsArray5);
-        
-        assertNull(finalWeekFieldsArray6);
-        
-        assertNull(finalWeekFieldsArray7);
-        
-        assertNull(finalWeekFieldsArray8);
-        
-        assertNull(finalHandlerArray0);
-        
-        assertNull(finalHandlerArray1);
-        
-        assertNull(finalHandlerArray2);
-        
-        assertNull(finalHandlerArray3);
-        
-        assertNull(finalHandlerArray4);
-        
-        assertNull(finalHandlerArray5);
-        
-        assertNull(finalHandlerArray6);
-        
-        assertNull(finalHandlerArray7);
-        
-        assertNull(finalHandlerArray8);
+        reverseOrdering.min(null, null, null, ((java.lang.Object[]) null));
     }
     ///endregion
     
@@ -646,9 +621,8 @@ public class ReverseOrderingTest {
         ReverseOrdering reverseOrdering = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         ReverseNaturalOrdering reverseNaturalOrdering = ((ReverseNaturalOrdering) createInstance("com.google.common.collect.ReverseNaturalOrdering"));
         setField(reverseOrdering, "forwardOrder", reverseNaturalOrdering);
-        Class actionClazz = Class.forName("sun.net.sdp.SdpProvider$Action");
-        Object action = getEnumConstantByName(actionClazz, "BIND");
-        ThaiBuddhistDate thaiBuddhistDate = ((ThaiBuddhistDate) createInstance("java.time.chrono.ThaiBuddhistDate"));
+        Class stateClazz = Class.forName("com.google.common.base.AbstractIterator$State");
+        Object state = getEnumConstantByName(stateClazz, "READY");
         java.lang.Comparable[] comparableArray = new java.lang.Comparable[9];
         
         Comparable initialComparableArray0 = comparableArray[0];
@@ -661,7 +635,7 @@ public class ReverseOrderingTest {
         Comparable initialComparableArray7 = comparableArray[7];
         Comparable initialComparableArray8 = comparableArray[8];
         
-        reverseOrdering.max(null, action, thaiBuddhistDate, comparableArray);
+        reverseOrdering.max(state, null, null, comparableArray);
         
         Comparable finalComparableArray0 = comparableArray[0];
         Comparable finalComparableArray1 = comparableArray[1];
@@ -701,124 +675,8 @@ public class ReverseOrderingTest {
         ReverseOrdering reverseOrdering1 = ((ReverseOrdering) createInstance("com.google.common.collect.ReverseOrdering"));
         setField(reverseOrdering1, "forwardOrder", reverseOrdering1);
         setField(reverseOrdering, "forwardOrder", reverseOrdering1);
-        sun.net.ConnectionResetException[] connectionResetExceptionArray = new sun.net.ConnectionResetException[9];
-        java.time.temporal.WeekFields[] weekFieldsArray = new java.time.temporal.WeekFields[9];
-        java.lang.Object[] handlerArray = createArray("[Ljdk.internal.org.objectweb.asm.Handler;", 9);
-        handlerArray[0] = null;
-        handlerArray[1] = null;
-        handlerArray[2] = null;
-        handlerArray[3] = null;
-        handlerArray[4] = null;
-        handlerArray[5] = null;
-        handlerArray[6] = null;
-        handlerArray[7] = null;
-        handlerArray[8] = null;
         
-        ConnectionResetException initialConnectionResetExceptionArray0 = connectionResetExceptionArray[0];
-        ConnectionResetException initialConnectionResetExceptionArray1 = connectionResetExceptionArray[1];
-        ConnectionResetException initialConnectionResetExceptionArray2 = connectionResetExceptionArray[2];
-        ConnectionResetException initialConnectionResetExceptionArray3 = connectionResetExceptionArray[3];
-        ConnectionResetException initialConnectionResetExceptionArray4 = connectionResetExceptionArray[4];
-        ConnectionResetException initialConnectionResetExceptionArray5 = connectionResetExceptionArray[5];
-        ConnectionResetException initialConnectionResetExceptionArray6 = connectionResetExceptionArray[6];
-        ConnectionResetException initialConnectionResetExceptionArray7 = connectionResetExceptionArray[7];
-        ConnectionResetException initialConnectionResetExceptionArray8 = connectionResetExceptionArray[8];
-        
-        WeekFields initialWeekFieldsArray0 = weekFieldsArray[0];
-        WeekFields initialWeekFieldsArray1 = weekFieldsArray[1];
-        WeekFields initialWeekFieldsArray2 = weekFieldsArray[2];
-        WeekFields initialWeekFieldsArray3 = weekFieldsArray[3];
-        WeekFields initialWeekFieldsArray4 = weekFieldsArray[4];
-        WeekFields initialWeekFieldsArray5 = weekFieldsArray[5];
-        WeekFields initialWeekFieldsArray6 = weekFieldsArray[6];
-        WeekFields initialWeekFieldsArray7 = weekFieldsArray[7];
-        WeekFields initialWeekFieldsArray8 = weekFieldsArray[8];
-        
-        reverseOrdering.max(connectionResetExceptionArray, weekFieldsArray, handlerArray, ((java.lang.Object[]) null));
-        
-        ConnectionResetException finalConnectionResetExceptionArray0 = connectionResetExceptionArray[0];
-        ConnectionResetException finalConnectionResetExceptionArray1 = connectionResetExceptionArray[1];
-        ConnectionResetException finalConnectionResetExceptionArray2 = connectionResetExceptionArray[2];
-        ConnectionResetException finalConnectionResetExceptionArray3 = connectionResetExceptionArray[3];
-        ConnectionResetException finalConnectionResetExceptionArray4 = connectionResetExceptionArray[4];
-        ConnectionResetException finalConnectionResetExceptionArray5 = connectionResetExceptionArray[5];
-        ConnectionResetException finalConnectionResetExceptionArray6 = connectionResetExceptionArray[6];
-        ConnectionResetException finalConnectionResetExceptionArray7 = connectionResetExceptionArray[7];
-        ConnectionResetException finalConnectionResetExceptionArray8 = connectionResetExceptionArray[8];
-        
-        WeekFields finalWeekFieldsArray0 = weekFieldsArray[0];
-        WeekFields finalWeekFieldsArray1 = weekFieldsArray[1];
-        WeekFields finalWeekFieldsArray2 = weekFieldsArray[2];
-        WeekFields finalWeekFieldsArray3 = weekFieldsArray[3];
-        WeekFields finalWeekFieldsArray4 = weekFieldsArray[4];
-        WeekFields finalWeekFieldsArray5 = weekFieldsArray[5];
-        WeekFields finalWeekFieldsArray6 = weekFieldsArray[6];
-        WeekFields finalWeekFieldsArray7 = weekFieldsArray[7];
-        WeekFields finalWeekFieldsArray8 = weekFieldsArray[8];
-        
-        Object finalHandlerArray0 = handlerArray[0];
-        Object finalHandlerArray1 = handlerArray[1];
-        Object finalHandlerArray2 = handlerArray[2];
-        Object finalHandlerArray3 = handlerArray[3];
-        Object finalHandlerArray4 = handlerArray[4];
-        Object finalHandlerArray5 = handlerArray[5];
-        Object finalHandlerArray6 = handlerArray[6];
-        Object finalHandlerArray7 = handlerArray[7];
-        Object finalHandlerArray8 = handlerArray[8];
-        
-        assertNull(finalConnectionResetExceptionArray0);
-        
-        assertNull(finalConnectionResetExceptionArray1);
-        
-        assertNull(finalConnectionResetExceptionArray2);
-        
-        assertNull(finalConnectionResetExceptionArray3);
-        
-        assertNull(finalConnectionResetExceptionArray4);
-        
-        assertNull(finalConnectionResetExceptionArray5);
-        
-        assertNull(finalConnectionResetExceptionArray6);
-        
-        assertNull(finalConnectionResetExceptionArray7);
-        
-        assertNull(finalConnectionResetExceptionArray8);
-        
-        assertNull(finalWeekFieldsArray0);
-        
-        assertNull(finalWeekFieldsArray1);
-        
-        assertNull(finalWeekFieldsArray2);
-        
-        assertNull(finalWeekFieldsArray3);
-        
-        assertNull(finalWeekFieldsArray4);
-        
-        assertNull(finalWeekFieldsArray5);
-        
-        assertNull(finalWeekFieldsArray6);
-        
-        assertNull(finalWeekFieldsArray7);
-        
-        assertNull(finalWeekFieldsArray8);
-        
-        assertNull(finalHandlerArray0);
-        
-        assertNull(finalHandlerArray1);
-        
-        assertNull(finalHandlerArray2);
-        
-        assertNull(finalHandlerArray3);
-        
-        assertNull(finalHandlerArray4);
-        
-        assertNull(finalHandlerArray5);
-        
-        assertNull(finalHandlerArray6);
-        
-        assertNull(finalHandlerArray7);
-        
-        assertNull(finalHandlerArray8);
+        reverseOrdering.max(null, null, null, ((java.lang.Object[]) null));
     }
     ///endregion
     
@@ -862,8 +720,8 @@ public class ReverseOrderingTest {
     
     @Test(timeout = 10000)
     public void testReverseOrdering2() throws Throwable  {
-        NaturalOrdering naturalOrdering = ((NaturalOrdering) createInstance("com.google.common.collect.NaturalOrdering"));
-        ReverseOrdering actual = new ReverseOrdering(naturalOrdering);
+        Ordering.ArbitraryOrdering arbitraryOrdering = ((Ordering.ArbitraryOrdering) createInstance("com.google.common.collect.Ordering$ArbitraryOrdering"));
+        ReverseOrdering actual = new ReverseOrdering(arbitraryOrdering);
     }
     ///endregion
     
@@ -878,6 +736,15 @@ public class ReverseOrderingTest {
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();
@@ -1066,34 +933,6 @@ public class ReverseOrderingTest {
         }
     
         return false;
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
-    }
-    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
-        Class<?> clazz = obj.getClass();
-        java.lang.reflect.Field field;
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-                field.setAccessible(true);
-                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-                
-                return field.get(obj);
-            } catch (NoSuchFieldException e) {
-                clazz = clazz.getSuperclass();
-            }
-        } while (clazz != null);
-    
-        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static Object getEnumConstantByName(Class<?> enumClass, String name) throws IllegalAccessException {
         java.lang.reflect.Field[] fields = enumClass.getDeclaredFields();

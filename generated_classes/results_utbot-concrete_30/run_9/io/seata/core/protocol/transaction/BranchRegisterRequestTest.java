@@ -1,46 +1,42 @@
-package com.google.common.collect;
+package io.seata.core.protocol.transaction;
 
 import org.junit.Test;
-import java.util.PriorityQueue;
-import java.util.ArrayList;
-import com.google.common.collect.FilteredKeyMultimap.Entries;
-import com.google.common.collect.FilteredKeyMultimap;
+import java.nio.ByteBuffer;
 import java.lang.reflect.Method;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject;
-import java.util.concurrent.locks.AbstractQueuedSynchronizer;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.PriorityBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import io.seata.core.rpc.RpcContext;
+import io.seata.core.model.BranchType;
 import java.util.Objects;
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.lang.reflect.Array;
 import java.util.Iterator;
+import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
 
-public class QueuesTest {
+public class BranchRegisterRequestTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testNewPriorityQueue1() throws Throwable  {
-        PriorityQueue actual = Queues.newPriorityQueue();
+    public void testToString1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
         
-        PriorityQueue expected = ((PriorityQueue) createInstance("java.util.PriorityQueue"));
-        java.lang.Object[] objectArray = new java.lang.Object[11];
-        setField(expected, "queue", objectArray);
-        setField(expected, "size", 0);
-        setField(expected, "comparator", null);
-        setField(expected, "modCount", 0);
+        String actual = branchRegisterRequest.toString();
+        
+        String expected = new String("xid=null,branchType=AT,resourceId=null,lockKey=null");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -50,17 +46,12 @@ public class QueuesTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testNewPriorityQueue2() throws Throwable  {
-        ArrayList arrayList = new ArrayList();
+    public void testToString2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
         
-        PriorityQueue actual = Queues.newPriorityQueue(arrayList);
+        String actual = branchRegisterRequest.toString();
         
-        PriorityQueue expected = ((PriorityQueue) createInstance("java.util.PriorityQueue"));
-        java.lang.Object[] objectArray = new java.lang.Object[0];
-        setField(expected, "queue", objectArray);
-        setField(expected, "size", 0);
-        setField(expected, "comparator", null);
-        setField(expected, "modCount", 0);
+        String expected = new String("xid=null,branchType=null,resourceId=null,lockKey=null");
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -70,194 +61,298 @@ public class QueuesTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewPriorityQueue3() throws Throwable  {
-        FilteredKeyMultimap.Entries entries = ((FilteredKeyMultimap.Entries) createInstance("com.google.common.collect.FilteredKeyMultimap$Entries"));
+    public void testDecode1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
         
-        Class queuesClazz = Class.forName("com.google.common.collect.Queues");
-        Class entriesType = Class.forName("java.lang.Iterable");
-        Method newPriorityQueueMethod = queuesClazz.getDeclaredMethod("newPriorityQueue", entriesType);
-        newPriorityQueueMethod.setAccessible(true);
-        java.lang.Object[] newPriorityQueueMethodArguments = new java.lang.Object[1];
-        newPriorityQueueMethodArguments[0] = entries;
+        branchRegisterRequest.decode(((ByteBuffer) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        
+        branchRegisterRequest.decode(((ByteBuffer) null));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDecode3() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
+        setField(heapByteBufferR, "limit", 64);
+        setField(heapByteBufferR, "position", 0);
+        setField(heapByteBufferR, "bigEndian", true);
+        setField(heapByteBufferR, "offset", 1);
+        byte[] byteArray = new byte[11];
+        setField(heapByteBufferR, "hb", byteArray);
+        
+        Class branchRegisterRequestClazz = Class.forName("io.seata.core.protocol.transaction.BranchRegisterRequest");
+        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
+        Method decodeMethod = branchRegisterRequestClazz.getDeclaredMethod("decode", heapByteBufferRType);
+        decodeMethod.setAccessible(true);
+        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
+        decodeMethodArguments[0] = heapByteBufferR;
         try {
-            newPriorityQueueMethod.invoke(null, newPriorityQueueMethodArguments);
+            decodeMethod.invoke(branchRegisterRequest, decodeMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewArrayBlockingQueue1() throws Throwable  {
-        Queues.newArrayBlockingQueue(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewArrayBlockingQueue2() throws Throwable  {
-        Queues.newArrayBlockingQueue(-2147483647);
+        }
+        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
+        
+        assertEquals(13, finalHeapByteBufferRPosition);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testNewArrayBlockingQueue3() throws Throwable  {
-        ArrayBlockingQueue actual = Queues.newArrayBlockingQueue(1);
+    public void testEncode1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
         
-        ArrayBlockingQueue expected = ((ArrayBlockingQueue) createInstance("java.util.concurrent.ArrayBlockingQueue"));
-        java.lang.Object[] objectArray = new java.lang.Object[1];
-        setField(expected, "items", objectArray);
-        setField(expected, "takeIndex", 0);
-        setField(expected, "putIndex", 0);
-        setField(expected, "count", 0);
-        ReentrantLock reentrantLock = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync, "head", null);
-        setField(nonfairSync, "tail", null);
-        setField(nonfairSync, "state", 0);
-        setField(nonfairSync, "exclusiveOwnerThread", null);
-        setField(reentrantLock, "sync", nonfairSync);
-        setField(expected, "lock", reentrantLock);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject, "firstWaiter", null);
-        setField(conditionObject, "lastWaiter", null);
-        setField(conditionObject, "this$0", nonfairSync);
-        setField(expected, "notEmpty", conditionObject);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject1 = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject1, "firstWaiter", null);
-        setField(conditionObject1, "lastWaiter", null);
-        setField(conditionObject1, "this$0", nonfairSync);
-        setField(expected, "notFull", conditionObject1);
-        setField(expected, "itrs", null);
+        byte[] actual = branchRegisterRequest.encode();
         
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        byte[] expected = new byte[13];
+        assertArrayEquals(expected, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testNewLinkedBlockingQueue1() throws Throwable  {
-        ArrayList arrayList = new ArrayList();
+    public void testGetTypeCode1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
         
-        LinkedBlockingQueue actual = Queues.newLinkedBlockingQueue(arrayList);
+        short actual = branchRegisterRequest.getTypeCode();
         
-        LinkedBlockingQueue expected = ((LinkedBlockingQueue) createInstance("java.util.concurrent.LinkedBlockingQueue"));
-        setField(expected, "capacity", Integer.MAX_VALUE);
-        AtomicInteger atomicInteger = ((AtomicInteger) createInstance("java.util.concurrent.atomic.AtomicInteger"));
-        setField(atomicInteger, "value", 0);
-        setField(expected, "count", atomicInteger);
-        Object node = createInstance("java.util.concurrent.LinkedBlockingQueue$Node");
-        setField(node, "item", null);
-        setField(node, "next", null);
-        setField(expected, "head", node);
-        setField(expected, "last", node);
-        ReentrantLock reentrantLock = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync, "head", null);
-        setField(nonfairSync, "tail", null);
-        setField(nonfairSync, "state", 0);
-        setField(nonfairSync, "exclusiveOwnerThread", null);
-        setField(reentrantLock, "sync", nonfairSync);
-        setField(expected, "takeLock", reentrantLock);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject, "firstWaiter", null);
-        setField(conditionObject, "lastWaiter", null);
-        setField(conditionObject, "this$0", nonfairSync);
-        setField(expected, "notEmpty", conditionObject);
-        ReentrantLock reentrantLock1 = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync1 = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync1, "head", null);
-        setField(nonfairSync1, "tail", null);
-        setField(nonfairSync1, "state", 0);
-        setField(nonfairSync1, "exclusiveOwnerThread", null);
-        setField(reentrantLock1, "sync", nonfairSync1);
-        setField(expected, "putLock", reentrantLock1);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject1 = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject1, "firstWaiter", null);
-        setField(conditionObject1, "lastWaiter", null);
-        setField(conditionObject1, "this$0", nonfairSync1);
-        setField(expected, "notFull", conditionObject1);
+        assertEquals((short) 11, actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetTypeCode2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
         
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        short actual = branchRegisterRequest.getTypeCode();
+        
+        assertEquals((short) 11, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewLinkedBlockingQueue2() throws Throwable  {
-        FilteredKeyMultimap.Entries entries = ((FilteredKeyMultimap.Entries) createInstance("com.google.common.collect.FilteredKeyMultimap$Entries"));
+    public void testHandle1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        RpcContext rpcContext = new RpcContext();
         
-        Class queuesClazz = Class.forName("com.google.common.collect.Queues");
-        Class entriesType = Class.forName("java.lang.Iterable");
-        Method newLinkedBlockingQueueMethod = queuesClazz.getDeclaredMethod("newLinkedBlockingQueue", entriesType);
-        newLinkedBlockingQueueMethod.setAccessible(true);
-        java.lang.Object[] newLinkedBlockingQueueMethodArguments = new java.lang.Object[1];
-        newLinkedBlockingQueueMethodArguments[0] = entries;
-        try {
-            newLinkedBlockingQueueMethod.invoke(null, newLinkedBlockingQueueMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewLinkedBlockingQueue3() throws Throwable  {
-        Queues.newLinkedBlockingQueue(((Iterable) null));
+        branchRegisterRequest.handle(rpcContext);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testNewLinkedBlockingQueue4() throws Throwable  {
-        LinkedBlockingQueue actual = Queues.newLinkedBlockingQueue();
+    public void testHandle2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        TCInboundHandler tCInboundHandlerMock = mock(TCInboundHandler.class);
+        when(tCInboundHandlerMock.handle(any(BranchRegisterRequest.class), any(RpcContext.class))).thenReturn(((BranchRegisterResponse) null));
+        branchRegisterRequest.handler = tCInboundHandlerMock;
         
-        LinkedBlockingQueue expected = ((LinkedBlockingQueue) createInstance("java.util.concurrent.LinkedBlockingQueue"));
-        setField(expected, "capacity", Integer.MAX_VALUE);
-        AtomicInteger atomicInteger = ((AtomicInteger) createInstance("java.util.concurrent.atomic.AtomicInteger"));
-        setField(atomicInteger, "value", 0);
-        setField(expected, "count", atomicInteger);
-        Object node = createInstance("java.util.concurrent.LinkedBlockingQueue$Node");
-        setField(node, "item", null);
-        setField(node, "next", null);
-        setField(expected, "head", node);
-        setField(expected, "last", node);
-        ReentrantLock reentrantLock = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync, "head", null);
-        setField(nonfairSync, "tail", null);
-        setField(nonfairSync, "state", 0);
-        setField(nonfairSync, "exclusiveOwnerThread", null);
-        setField(reentrantLock, "sync", nonfairSync);
-        setField(expected, "takeLock", reentrantLock);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject, "firstWaiter", null);
-        setField(conditionObject, "lastWaiter", null);
-        setField(conditionObject, "this$0", nonfairSync);
-        setField(expected, "notEmpty", conditionObject);
-        ReentrantLock reentrantLock1 = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync1 = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync1, "head", null);
-        setField(nonfairSync1, "tail", null);
-        setField(nonfairSync1, "state", 0);
-        setField(nonfairSync1, "exclusiveOwnerThread", null);
-        setField(reentrantLock1, "sync", nonfairSync1);
-        setField(expected, "putLock", reentrantLock1);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject1 = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject1, "firstWaiter", null);
-        setField(conditionObject1, "lastWaiter", null);
-        setField(conditionObject1, "this$0", nonfairSync1);
-        setField(expected, "notFull", conditionObject1);
+        TCInboundHandler initialBranchRegisterRequestHandler = branchRegisterRequest.handler;
+        
+        AbstractTransactionResponse actual = branchRegisterRequest.handle(((RpcContext) null));
+        
+        assertNull(actual);
+        
+        TCInboundHandler finalBranchRegisterRequestHandler = branchRegisterRequest.handler;
+        
+        assertFalse(initialBranchRegisterRequestHandler == finalBranchRegisterRequestHandler);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetLockKey1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        String string = new String();
+        
+        branchRegisterRequest.setLockKey(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetLockKey2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "lockKey", null);
+        String string = new String("");
+        
+        branchRegisterRequest.setLockKey(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetApplicationData1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        String string = new String();
+        
+        branchRegisterRequest.setApplicationData(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetApplicationData2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "applicationData", null);
+        String string = new String("");
+        
+        branchRegisterRequest.setApplicationData(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetResourceId1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        String string = new String();
+        
+        branchRegisterRequest.setResourceId(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetResourceId2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "resourceId", null);
+        String string = new String("");
+        
+        branchRegisterRequest.setResourceId(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetLockKey1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        
+        String actual = branchRegisterRequest.getLockKey();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetLockKey2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "lockKey", null);
+        
+        String actual = branchRegisterRequest.getLockKey();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetXid1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        String string = new String();
+        
+        branchRegisterRequest.setXid(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetXid2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "xid", null);
+        String string = new String("");
+        
+        branchRegisterRequest.setXid(string);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetXid1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        
+        String actual = branchRegisterRequest.getXid();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetXid2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "xid", null);
+        
+        String actual = branchRegisterRequest.getXid();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetApplicationData1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        
+        String actual = branchRegisterRequest.getApplicationData();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetApplicationData2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "applicationData", null);
+        
+        String actual = branchRegisterRequest.getApplicationData();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetBranchType1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
+        
+        BranchType actual = branchRegisterRequest.getBranchType();
+        
+        BranchType expected = BranchType.AT;
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
@@ -267,283 +362,70 @@ public class QueuesTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testNewLinkedBlockingQueue5() throws Throwable  {
-        LinkedBlockingQueue actual = Queues.newLinkedBlockingQueue();
+    public void testGetBranchType2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "branchType", null);
         
-        LinkedBlockingQueue expected = ((LinkedBlockingQueue) createInstance("java.util.concurrent.LinkedBlockingQueue"));
-        setField(expected, "capacity", Integer.MAX_VALUE);
-        AtomicInteger atomicInteger = ((AtomicInteger) createInstance("java.util.concurrent.atomic.AtomicInteger"));
-        setField(atomicInteger, "value", 0);
-        setField(expected, "count", atomicInteger);
-        Object node = createInstance("java.util.concurrent.LinkedBlockingQueue$Node");
-        setField(node, "item", null);
-        setField(node, "next", null);
-        setField(expected, "head", node);
-        setField(expected, "last", node);
-        ReentrantLock reentrantLock = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync, "head", null);
-        setField(nonfairSync, "tail", null);
-        setField(nonfairSync, "state", 0);
-        setField(nonfairSync, "exclusiveOwnerThread", null);
-        setField(reentrantLock, "sync", nonfairSync);
-        setField(expected, "takeLock", reentrantLock);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject, "firstWaiter", null);
-        setField(conditionObject, "lastWaiter", null);
-        setField(conditionObject, "this$0", nonfairSync);
-        setField(expected, "notEmpty", conditionObject);
-        ReentrantLock reentrantLock1 = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync1 = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync1, "head", null);
-        setField(nonfairSync1, "tail", null);
-        setField(nonfairSync1, "state", 0);
-        setField(nonfairSync1, "exclusiveOwnerThread", null);
-        setField(reentrantLock1, "sync", nonfairSync1);
-        setField(expected, "putLock", reentrantLock1);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject1 = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject1, "firstWaiter", null);
-        setField(conditionObject1, "lastWaiter", null);
-        setField(conditionObject1, "this$0", nonfairSync1);
-        setField(expected, "notFull", conditionObject1);
+        BranchType actual = branchRegisterRequest.getBranchType();
         
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewLinkedBlockingQueue6() throws Throwable  {
-        Queues.newLinkedBlockingQueue(0);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewLinkedBlockingQueue7() throws Throwable  {
-        Queues.newLinkedBlockingQueue(-2147483647);
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testNewLinkedBlockingQueue8() throws Throwable  {
-        LinkedBlockingQueue actual = Queues.newLinkedBlockingQueue(1);
+    public void testSetBranchType1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "branchType", null);
+        BranchType branchType = BranchType.AT;
         
-        LinkedBlockingQueue expected = ((LinkedBlockingQueue) createInstance("java.util.concurrent.LinkedBlockingQueue"));
-        setField(expected, "capacity", 1);
-        AtomicInteger atomicInteger = ((AtomicInteger) createInstance("java.util.concurrent.atomic.AtomicInteger"));
-        setField(atomicInteger, "value", 0);
-        setField(expected, "count", atomicInteger);
-        Object node = createInstance("java.util.concurrent.LinkedBlockingQueue$Node");
-        setField(node, "item", null);
-        setField(node, "next", null);
-        setField(expected, "head", node);
-        setField(expected, "last", node);
-        ReentrantLock reentrantLock = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync, "head", null);
-        setField(nonfairSync, "tail", null);
-        setField(nonfairSync, "state", 0);
-        setField(nonfairSync, "exclusiveOwnerThread", null);
-        setField(reentrantLock, "sync", nonfairSync);
-        setField(expected, "takeLock", reentrantLock);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject, "firstWaiter", null);
-        setField(conditionObject, "lastWaiter", null);
-        setField(conditionObject, "this$0", nonfairSync);
-        setField(expected, "notEmpty", conditionObject);
-        ReentrantLock reentrantLock1 = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync1 = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync1, "head", null);
-        setField(nonfairSync1, "tail", null);
-        setField(nonfairSync1, "state", 0);
-        setField(nonfairSync1, "exclusiveOwnerThread", null);
-        setField(reentrantLock1, "sync", nonfairSync1);
-        setField(expected, "putLock", reentrantLock1);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject1 = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject1, "firstWaiter", null);
-        setField(conditionObject1, "lastWaiter", null);
-        setField(conditionObject1, "this$0", nonfairSync1);
-        setField(expected, "notFull", conditionObject1);
+        Object initialBranchRegisterRequestBranchType = getFieldValue(branchRegisterRequest, "branchType");
+        
+        branchRegisterRequest.setBranchType(branchType);
+        
+        Object finalBranchRegisterRequestBranchType = getFieldValue(branchRegisterRequest, "branchType");
+        
+        BranchType expectedFinalBranchRegisterRequestBranchType = BranchType.AT;
         
         // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        assertTrue(deepEquals(expectedFinalBranchRegisterRequestBranchType, finalBranchRegisterRequestBranchType));
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testNewPriorityBlockingQueue1() throws Throwable  {
-        PriorityBlockingQueue actual = Queues.newPriorityBlockingQueue();
+    public void testGetResourceId1() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = new BranchRegisterRequest();
         
-        PriorityBlockingQueue expected = ((PriorityBlockingQueue) createInstance("java.util.concurrent.PriorityBlockingQueue"));
-        java.lang.Object[] objectArray = new java.lang.Object[11];
-        setField(expected, "queue", objectArray);
-        setField(expected, "size", 0);
-        setField(expected, "comparator", null);
-        ReentrantLock reentrantLock = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync, "head", null);
-        setField(nonfairSync, "tail", null);
-        setField(nonfairSync, "state", 0);
-        setField(nonfairSync, "exclusiveOwnerThread", null);
-        setField(reentrantLock, "sync", nonfairSync);
-        setField(expected, "lock", reentrantLock);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject, "firstWaiter", null);
-        setField(conditionObject, "lastWaiter", null);
-        setField(conditionObject, "this$0", nonfairSync);
-        setField(expected, "notEmpty", conditionObject);
-        setField(expected, "allocationSpinLock", 0);
-        setField(expected, "q", null);
+        String actual = branchRegisterRequest.getResourceId();
         
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testNewPriorityBlockingQueue2() throws Throwable  {
-        PriorityBlockingQueue actual = Queues.newPriorityBlockingQueue();
+    public void testGetResourceId2() throws Throwable  {
+        BranchRegisterRequest branchRegisterRequest = ((BranchRegisterRequest) createInstance("io.seata.core.protocol.transaction.BranchRegisterRequest"));
+        setField(branchRegisterRequest, "resourceId", null);
         
-        PriorityBlockingQueue expected = ((PriorityBlockingQueue) createInstance("java.util.concurrent.PriorityBlockingQueue"));
-        java.lang.Object[] objectArray = new java.lang.Object[11];
-        setField(expected, "queue", objectArray);
-        setField(expected, "size", 0);
-        setField(expected, "comparator", null);
-        ReentrantLock reentrantLock = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync, "head", null);
-        setField(nonfairSync, "tail", null);
-        setField(nonfairSync, "state", 0);
-        setField(nonfairSync, "exclusiveOwnerThread", null);
-        setField(reentrantLock, "sync", nonfairSync);
-        setField(expected, "lock", reentrantLock);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject, "firstWaiter", null);
-        setField(conditionObject, "lastWaiter", null);
-        setField(conditionObject, "this$0", nonfairSync);
-        setField(expected, "notEmpty", conditionObject);
-        setField(expected, "allocationSpinLock", 0);
-        setField(expected, "q", null);
+        String actual = branchRegisterRequest.getResourceId();
         
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        assertNull(actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000)
-    public void testNewPriorityBlockingQueue3() throws Throwable  {
-        ArrayList arrayList = new ArrayList();
-        
-        PriorityBlockingQueue actual = Queues.newPriorityBlockingQueue(arrayList);
-        
-        PriorityBlockingQueue expected = ((PriorityBlockingQueue) createInstance("java.util.concurrent.PriorityBlockingQueue"));
-        java.lang.Object[] objectArray = new java.lang.Object[0];
-        setField(expected, "queue", objectArray);
-        setField(expected, "size", 0);
-        setField(expected, "comparator", null);
-        ReentrantLock reentrantLock = ((ReentrantLock) createInstance("java.util.concurrent.locks.ReentrantLock"));
-        Object nonfairSync = createInstance("java.util.concurrent.locks.ReentrantLock$NonfairSync");
-        setField(nonfairSync, "head", null);
-        setField(nonfairSync, "tail", null);
-        setField(nonfairSync, "state", 0);
-        setField(nonfairSync, "exclusiveOwnerThread", null);
-        setField(reentrantLock, "sync", nonfairSync);
-        setField(expected, "lock", reentrantLock);
-        AbstractQueuedSynchronizer.ConditionObject conditionObject = ((AbstractQueuedSynchronizer.ConditionObject) createInstance("java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject"));
-        setField(conditionObject, "firstWaiter", null);
-        setField(conditionObject, "lastWaiter", null);
-        setField(conditionObject, "this$0", nonfairSync);
-        setField(expected, "notEmpty", conditionObject);
-        setField(expected, "allocationSpinLock", 0);
-        setField(expected, "q", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+    public void testBranchRegisterRequest1() {
+        BranchRegisterRequest actual = new BranchRegisterRequest();
     }
     ///endregion
     
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testNewPriorityBlockingQueue4() throws Throwable  {
-        Queues.newPriorityBlockingQueue(null);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testNewSynchronousQueue1() throws Throwable  {
-        SynchronousQueue actual = Queues.newSynchronousQueue();
-        
-        SynchronousQueue expected = ((SynchronousQueue) createInstance("java.util.concurrent.SynchronousQueue"));
-        Object transferStack = createInstance("java.util.concurrent.SynchronousQueue$TransferStack");
-        setField(transferStack, "head", null);
-        setField(expected, "transferer", transferStack);
-        setField(expected, "qlock", null);
-        setField(expected, "waitingProducers", null);
-        setField(expected, "waitingConsumers", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testNewSynchronousQueue2() throws Throwable  {
-        SynchronousQueue actual = Queues.newSynchronousQueue();
-        
-        SynchronousQueue expected = ((SynchronousQueue) createInstance("java.util.concurrent.SynchronousQueue"));
-        Object transferStack = createInstance("java.util.concurrent.SynchronousQueue$TransferStack");
-        setField(transferStack, "head", null);
-        setField(expected, "transferer", transferStack);
-        setField(expected, "qlock", null);
-        setField(expected, "waitingProducers", null);
-        setField(expected, "waitingConsumers", null);
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    private static Object createInstance(String className) throws Exception {
-        Class<?> clazz = Class.forName(className);
-        return getUnsafeInstance().allocateInstance(clazz);
-    }
-    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
-        Class<?> clazz = object.getClass();
-        java.lang.reflect.Field field;
-    
-        do {
-            try {
-                field = clazz.getDeclaredField(fieldName);
-            } catch (Exception e) {
-                clazz = clazz.getSuperclass();
-                field = null;
-            }
-        } while (field == null);
-        
-        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-    
-        field.setAccessible(true);
-        field.set(object, fieldValue);
-    }
     static class FieldsPair {
         final Object o1;
         final Object o2;
@@ -711,6 +593,49 @@ public class QueuesTest {
         }
     
         return false;
+    }
+    private static Object createInstance(String className) throws Exception {
+        Class<?> clazz = Class.forName(className);
+        return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
+        Class<?> clazz = object.getClass();
+        java.lang.reflect.Field field;
+    
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+            } catch (Exception e) {
+                clazz = clazz.getSuperclass();
+                field = null;
+            }
+        } while (field == null);
+        
+        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(object, fieldValue);
+    }
+    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
+        Class<?> clazz = obj.getClass();
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                
+                return field.get(obj);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
+    
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

@@ -89,8 +89,9 @@ public class QueuesTest {
     public void testNewPriorityQueue4() throws Throwable  {
         PriorityQueue priorityQueue = ((PriorityQueue) createInstance("java.util.PriorityQueue"));
         setField(priorityQueue, "modCount", 0);
-        Object reverseComparator2 = createInstance("java.util.Collections$ReverseComparator2");
-        setField(priorityQueue, "comparator", reverseComparator2);
+        Class naturalOrderComparatorClazz = Class.forName("java.util.Comparators$NaturalOrderComparator");
+        Object naturalOrderComparator = getEnumConstantByName(naturalOrderComparatorClazz, "INSTANCE");
+        setField(priorityQueue, "comparator", naturalOrderComparator);
         setField(priorityQueue, "size", 10);
         java.lang.Object[] objectArray = new java.lang.Object[11];
         setField(priorityQueue, "queue", objectArray);
@@ -107,11 +108,47 @@ public class QueuesTest {
         java.lang.Object[] objectArray1 = new java.lang.Object[10];
         setField(expected, "queue", objectArray1);
         setField(expected, "size", 10);
-        setField(expected, "comparator", reverseComparator2);
+        Object naturalOrderComparator1 = getEnumConstantByName(naturalOrderComparatorClazz, "INSTANCE");
+        setField(expected, "comparator", naturalOrderComparator1);
         setField(expected, "modCount", 0);
         
         // Current deep equals depth exceeds max depth 0
         assertTrue(deepEquals(expected, actual));
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDrain1() throws Throwable  {
+        Object accessQueue = createInstance("com.google.common.cache.LocalCache$AccessQueue");
+        
+        Class queuesClazz = Class.forName("com.google.common.collect.Queues");
+        Class blockingQueueType = Class.forName("java.util.concurrent.BlockingQueue");
+        Class accessQueueType = Class.forName("java.util.Collection");
+        Class intType = int.class;
+        Class longType = long.class;
+        Class timeUnitType = Class.forName("java.util.concurrent.TimeUnit");
+        Method drainMethod = queuesClazz.getDeclaredMethod("drain", blockingQueueType, accessQueueType, intType, longType, timeUnitType);
+        drainMethod.setAccessible(true);
+        java.lang.Object[] drainMethodArguments = new java.lang.Object[5];
+        drainMethodArguments[0] = null;
+        drainMethodArguments[1] = accessQueue;
+        drainMethodArguments[2] = 0;
+        drainMethodArguments[3] = 0L;
+        drainMethodArguments[4] = null;
+        try {
+            drainMethod.invoke(null, drainMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testDrain2() throws Throwable  {
+        Queues.drain(null, null, 0, 0L, null);
     }
     ///endregion
     

@@ -5,7 +5,6 @@ import java.lang.ref.ReferenceQueue;
 import java.lang.reflect.Method;
 import java.lang.ref.WeakReference;
 import java.nio.file.attribute.PosixFilePermission;
-import sun.misc.Cleaner;
 import java.lang.reflect.Field;
 import java.lang.reflect.Constructor;
 import java.lang.ref.PhantomReference;
@@ -21,9 +20,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 public class FinalizerTest {
@@ -52,19 +51,19 @@ public class FinalizerTest {
             Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
             Object null = createInstance("java.lang.ref.ReferenceQueue$Null");
             setField(null, "queueLength", 0L);
+            Object weakValueReference = createInstance("com.google.common.cache.LocalCache$WeakValueReference");
             Object weakKeyDummyValueEntry = createInstance("com.google.common.collect.MapMakerInternalMap$WeakKeyDummyValueEntry");
-            Object weakKeyDummyValueEntry1 = createInstance("com.google.common.collect.MapMakerInternalMap$WeakKeyDummyValueEntry");
-            setField(weakKeyDummyValueEntry1, "next", null);
-            setField(weakKeyDummyValueEntry1, "queue", null);
-            setField(weakKeyDummyValueEntry1, "referent", null);
-            setField(weakKeyDummyValueEntry, "next", weakKeyDummyValueEntry1);
+            setField(weakKeyDummyValueEntry, "next", null);
+            setField(weakKeyDummyValueEntry, "queue", null);
+            setField(weakKeyDummyValueEntry, "referent", null);
+            setField(weakValueReference, "next", weakKeyDummyValueEntry);
             ReferenceQueue referenceQueue = ((ReferenceQueue) createInstance("java.lang.ref.ReferenceQueue"));
             setField(referenceQueue, "queueLength", 0L);
             setField(referenceQueue, "head", null);
             setField(referenceQueue, "lock", null);
-            setField(weakKeyDummyValueEntry, "queue", referenceQueue);
-            setField(weakKeyDummyValueEntry, "referent", null);
-            setField(null, "head", weakKeyDummyValueEntry);
+            setField(weakValueReference, "queue", referenceQueue);
+            setField(weakValueReference, "referent", null);
+            setField(null, "head", weakValueReference);
             Object lock = createInstance("java.lang.ref.ReferenceQueue$Lock");
             setField(null, "lock", lock);
             setField(finalizer, "queue", null);
@@ -84,7 +83,7 @@ public class FinalizerTest {
             Object finalizerQueue2 = getFieldValue(finalizer, "queue");
             Object finalFinalizerQueueHead = getFieldValue(finalizerQueue2, "head");
             
-            assertNull(finalFinalizerQueueHead);
+            assertFalse(initialFinalizerQueueHead == finalFinalizerQueueHead);
             
             assertEquals(-1L, finalFinalizerQueueQueueLength);
         } finally {
@@ -178,23 +177,6 @@ public class FinalizerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testGetFinalizeReferentMethod1() throws Throwable  {
         Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
-        
-        Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
-        Method getFinalizeReferentMethodMethod = finalizerClazz.getDeclaredMethod("getFinalizeReferentMethod");
-        getFinalizeReferentMethodMethod.setAccessible(true);
-        java.lang.Object[] getFinalizeReferentMethodMethodArguments = new java.lang.Object[0];
-        try {
-            getFinalizeReferentMethodMethod.invoke(finalizer, getFinalizeReferentMethodMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }}
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFinalizeReferentMethod2() throws Throwable  {
-        Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
         Object weakClassKey = createInstance("java.io.ObjectStreamClass$WeakClassKey");
         java.nio.file.attribute.PosixFilePermission[] posixFilePermissionArray = new java.nio.file.attribute.PosixFilePermission[0];
         setField(weakClassKey, "referent", posixFilePermissionArray);
@@ -214,7 +196,7 @@ public class FinalizerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetFinalizeReferentMethod3() throws Throwable  {
+    public void testGetFinalizeReferentMethod2() throws Throwable  {
         Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
         Object weakClassKey = createInstance("java.io.ObjectStreamClass$WeakClassKey");
         setField(weakClassKey, "referent", null);
@@ -247,10 +229,7 @@ public class FinalizerTest {
     
     @Test(timeout = 10000, expected = Throwable.class)
     public void testStartFinalizer1() throws Throwable  {
-        ReferenceQueue referenceQueue = ((ReferenceQueue) createInstance("java.lang.ref.ReferenceQueue"));
-        Cleaner cleaner = ((Cleaner) createInstance("sun.misc.Cleaner"));
-        
-        Finalizer.startFinalizer(null, referenceQueue, cleaner);
+        Finalizer.startFinalizer(null, null, null);
     }
     ///endregion
     

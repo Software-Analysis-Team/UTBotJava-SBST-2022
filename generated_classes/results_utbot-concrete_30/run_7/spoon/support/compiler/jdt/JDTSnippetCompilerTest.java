@@ -3,6 +3,8 @@ package spoon.support.compiler.jdt;
 import org.junit.Test;
 import spoon.compiler.builder.JDTBuilder;
 import spoon.reflect.factory.FactoryImpl;
+import spoon.support.compiler.VirtualFolder;
+import java.util.LinkedHashSet;
 import java.lang.reflect.Method;
 import org.eclipse.jdt.internal.compiler.problem.DefaultProblem;
 import spoon.compiler.builder.JDTBuilderImpl;
@@ -50,27 +52,6 @@ public class JDTSnippetCompilerTest {
     }
     ///endregion
     
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testBuild4() throws Throwable  {
-        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
-        
-        jDTSnippetCompiler.build();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testBuild5() throws Throwable  {
-        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
-        setField(jDTSnippetCompiler, "factory", null);
-        
-        jDTSnippetCompiler.build();
-    }
-    ///endregion
-    
     
     ///region Errors report for build
     
@@ -81,6 +62,56 @@ public class JDTSnippetCompilerTest {
         // 1 occurrences of:
         // Field security is not found in class java.lang.System
         // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testBuild5() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        
+        jDTSnippetCompiler.build();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testBuild6() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        setField(jDTSnippetCompiler, "factory", null);
+        
+        jDTSnippetCompiler.build();
+    }
+    ///endregion
+    
+    
+    ///region Errors report for build
+    
+    public void testBuild_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testBuild8() throws Throwable  {
+        JDTSnippetCompiler jDTSnippetCompiler = ((JDTSnippetCompiler) createInstance("spoon.support.compiler.jdt.JDTSnippetCompiler"));
+        VirtualFolder virtualFolder = ((VirtualFolder) createInstance("spoon.support.compiler.VirtualFolder"));
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        setField(virtualFolder, "files", linkedHashSet);
+        setField(jDTSnippetCompiler, "sources", virtualFolder);
+        FactoryImpl factoryImpl = ((FactoryImpl) createInstance("spoon.reflect.factory.FactoryImpl"));
+        setField(jDTSnippetCompiler, "factory", factoryImpl);
+        
+        jDTSnippetCompiler.build();
     }
     ///endregion
     

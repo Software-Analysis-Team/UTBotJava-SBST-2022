@@ -9,13 +9,17 @@ import sun.reflect.generics.reflectiveObjects.WildcardTypeImpl;
 import java.lang.reflect.Method;
 import com.alibaba.fastjson.parser.JSONScanner;
 import com.alibaba.fastjson.parser.JSONLexer;
-import com.alibaba.fastjson.parser.DefaultExtJSONParser;
+import java.util.LinkedHashMap;
 import sun.reflect.generics.reflectiveObjects.TypeVariableImpl;
+import com.alibaba.fastjson.parser.DefaultExtJSONParser;
 import com.alibaba.fastjson.parser.ParseContext;
-import com.alibaba.fastjson.util.ParameterizedTypeImpl;
+import javax.management.openmbean.InvalidKeyException;
+import com.alibaba.fastjson.parser.JSONReaderScanner;
+import com.huawei.utbot.engine.MemoryKt;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.util.IdentityHashMap;
+import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Array;
@@ -69,18 +73,19 @@ public class DefaultFieldDeserializerTest {
         setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
         JavaBeanDeserializer javaBeanDeserializer = ((JavaBeanDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer"));
         setField(defaultFieldDeserializer, "fieldValueDeserilizer", javaBeanDeserializer);
+        java.lang.Object[] ofIntArray = createArray("java.util.stream.ForEachOps$ForEachOp$OfInt", 0);
         Object parameterizedTypeImpl = createInstance("retrofit2.Utils$ParameterizedTypeImpl");
         
         Class defaultFieldDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer");
         Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class objectType = Class.forName("java.lang.Object");
+        Class ofIntArrayType = Class.forName("java.lang.Object");
         Class parameterizedTypeImplType = Class.forName("java.lang.reflect.Type");
         Class mapType = Class.forName("java.util.Map");
-        Method parseFieldMethod = defaultFieldDeserializerClazz.getDeclaredMethod("parseField", defaultJSONParserType, objectType, parameterizedTypeImplType, mapType);
+        Method parseFieldMethod = defaultFieldDeserializerClazz.getDeclaredMethod("parseField", defaultJSONParserType, ofIntArrayType, parameterizedTypeImplType, mapType);
         parseFieldMethod.setAccessible(true);
         java.lang.Object[] parseFieldMethodArguments = new java.lang.Object[4];
         parseFieldMethodArguments[0] = null;
-        parseFieldMethodArguments[1] = null;
+        parseFieldMethodArguments[1] = ((Object) ofIntArray);
         parseFieldMethodArguments[2] = parameterizedTypeImpl;
         parseFieldMethodArguments[3] = null;
         try {
@@ -96,6 +101,40 @@ public class DefaultFieldDeserializerTest {
     public void testParseField4() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        String string = new String("");
+        setField(fieldInfo, "format", string);
+        setField(fieldInfo, "parserFeatures", 0);
+        WildcardTypeImpl wildcardTypeImpl = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
+        setField(fieldInfo, "fieldType", wildcardTypeImpl);
+        setField(fieldInfo, "name", string);
+        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
+        ThrowableDeserializer throwableDeserializer = ((ThrowableDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer"));
+        setField(defaultFieldDeserializer, "fieldValueDeserilizer", throwableDeserializer);
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
+        setField(jSONScanner, "sp", 0);
+        setField(jSONScanner, "bp", 0);
+        setField(jSONScanner, "ch", '\u0000');
+        setField(jSONScanner, "pos", 0);
+        setField(jSONScanner, "token", 8);
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        WildcardTypeImpl wildcardTypeImpl1 = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
+        
+        defaultFieldDeserializer.parseField(defaultJSONParser, null, wildcardTypeImpl1, ((Map) null));
+        
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
+        
+        assertEquals(20, finalDefaultJSONParserLexerToken);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseField5() throws Throwable  {
+        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         setField(fieldInfo, "parserFeatures", 1);
         Class class1 = Object.class;
         setField(fieldInfo, "fieldType", class1);
@@ -106,7 +145,8 @@ public class DefaultFieldDeserializerTest {
         setField(defaultFieldDeserializer, "fieldValueDeserilizer", javaBeanDeserializer);
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
-        setField(jSONScanner, "token", 4);
+        setField(jSONScanner, "hasSpecial", false);
+        setField(jSONScanner, "token", 18);
         setField(defaultJSONParser, "lexer", jSONScanner);
         
         defaultFieldDeserializer.parseField(defaultJSONParser, null, class1, ((Map) null));
@@ -121,7 +161,45 @@ public class DefaultFieldDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField5() throws Throwable  {
+    public void testParseField6() throws Throwable  {
+        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        String string = new String("");
+        setField(fieldInfo, "format", string);
+        setField(fieldInfo, "parserFeatures", 0);
+        Object syntheticParameterizedType = createInstance("org.springframework.core.ResolvableType$SyntheticParameterizedType");
+        setField(fieldInfo, "fieldType", syntheticParameterizedType);
+        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
+        JavaBeanDeserializer javaBeanDeserializer = ((JavaBeanDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer"));
+        setField(defaultFieldDeserializer, "fieldValueDeserilizer", javaBeanDeserializer);
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        setField(defaultJSONParser, "context", null);
+        Object ofInt = createInstance("java.util.stream.ForEachOps$ForEachOp$OfInt");
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        
+        Class defaultFieldDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer");
+        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Class ofIntType = Class.forName("java.lang.Object");
+        Class syntheticParameterizedTypeType = Class.forName("java.lang.reflect.Type");
+        Class linkedHashMapType = Class.forName("java.util.Map");
+        Method parseFieldMethod = defaultFieldDeserializerClazz.getDeclaredMethod("parseField", defaultJSONParserType, ofIntType, syntheticParameterizedTypeType, linkedHashMapType);
+        parseFieldMethod.setAccessible(true);
+        java.lang.Object[] parseFieldMethodArguments = new java.lang.Object[4];
+        parseFieldMethodArguments[0] = defaultJSONParser;
+        parseFieldMethodArguments[1] = ofInt;
+        parseFieldMethodArguments[2] = syntheticParameterizedType;
+        parseFieldMethodArguments[3] = linkedHashMap;
+        try {
+            parseFieldMethod.invoke(defaultFieldDeserializer, parseFieldMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseField7() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         String string = new String("");
@@ -171,29 +249,26 @@ public class DefaultFieldDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField6() throws Throwable  {
+    public void testParseField8() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        setField(fieldInfo, "parserFeatures", 1);
+        Class class1 = Object.class;
+        setField(fieldInfo, "fieldType", class1);
         String string = new String("");
-        setField(fieldInfo, "format", string);
-        setField(fieldInfo, "parserFeatures", 0);
-        WildcardTypeImpl wildcardTypeImpl = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
-        setField(fieldInfo, "fieldType", wildcardTypeImpl);
         setField(fieldInfo, "name", string);
         setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
-        ThrowableDeserializer throwableDeserializer = ((ThrowableDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer"));
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", throwableDeserializer);
+        JavaBeanDeserializer javaBeanDeserializer = ((JavaBeanDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer"));
+        setField(defaultFieldDeserializer, "fieldValueDeserilizer", javaBeanDeserializer);
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
-        setField(jSONScanner, "ch", '\u0000');
-        setField(jSONScanner, "pos", 0);
-        setField(jSONScanner, "token", 8);
+        setField(jSONScanner, "token", 23);
         setField(defaultJSONParser, "lexer", jSONScanner);
-        WildcardTypeImpl wildcardTypeImpl1 = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
+        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
         
-        defaultFieldDeserializer.parseField(defaultJSONParser, null, wildcardTypeImpl1, ((Map) null));
+        defaultFieldDeserializer.parseField(defaultJSONParser, null, typeVariableImpl, ((Map) null));
         
         JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
@@ -205,7 +280,7 @@ public class DefaultFieldDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField7() throws Throwable  {
+    public void testParseField9() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         String string = new String("");
@@ -215,84 +290,35 @@ public class DefaultFieldDeserializerTest {
         setField(fieldInfo, "fieldType", wildcardTypeImpl);
         setField(fieldInfo, "name", string);
         setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
-        ThrowableDeserializer throwableDeserializer = ((ThrowableDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer"));
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", throwableDeserializer);
-        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
+        Jdk8DateCodec jdk8DateCodec = ((Jdk8DateCodec) createInstance("com.alibaba.fastjson.parser.deserializer.Jdk8DateCodec"));
+        setField(defaultFieldDeserializer, "fieldValueDeserilizer", jdk8DateCodec);
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "sp", 0);
         setField(jSONScanner, "bp", 0);
         setField(jSONScanner, "ch", '/');
         setField(jSONScanner, "pos", 0);
         setField(jSONScanner, "token", 8);
-        setField(jSONScanner, "len", 0);
-        setField(defaultExtJSONParser, "lexer", jSONScanner);
-        java.lang.Object[] attributesBuilderArray = createArray("[Lsun.nio.fs.AbstractBasicFileAttributeView$AttributesBuilder;", 0);
-        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
+        setField(defaultJSONParser, "lexer", jSONScanner);
+        WildcardTypeImpl wildcardTypeImpl1 = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
         
-        defaultFieldDeserializer.parseField(defaultExtJSONParser, attributesBuilderArray, typeVariableImpl, ((Map) null));
+        defaultFieldDeserializer.parseField(defaultJSONParser, null, wildcardTypeImpl1, ((Map) null));
         
-        JSONLexer jSONLexer = defaultExtJSONParser.lexer;
-        Object finalDefaultExtJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
-        JSONLexer jSONLexer1 = defaultExtJSONParser.lexer;
-        Object finalDefaultExtJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
+        JSONLexer jSONLexer = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerBp = getFieldValue(jSONLexer, "bp");
+        JSONLexer jSONLexer1 = defaultJSONParser.lexer;
+        Object finalDefaultJSONParserLexerCh = getFieldValue(jSONLexer1, "ch");
         
-        assertEquals(1, finalDefaultExtJSONParserLexerBp);
+        assertEquals(1, finalDefaultJSONParserLexerBp);
         
-        assertEquals('\u001A', finalDefaultExtJSONParserLexerCh);
+        assertEquals('\u001A', finalDefaultJSONParserLexerCh);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField8() throws Throwable  {
-        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        String string = new String("");
-        setField(fieldInfo, "format", string);
-        setField(fieldInfo, "parserFeatures", 0);
-        Object syntheticParameterizedType = createInstance("org.springframework.core.ResolvableType$SyntheticParameterizedType");
-        setField(fieldInfo, "fieldType", syntheticParameterizedType);
-        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
-        JavaBeanDeserializer javaBeanDeserializer = ((JavaBeanDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer"));
-        setField(defaultFieldDeserializer, "fieldValueDeserilizer", javaBeanDeserializer);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        ParseContext parseContext = ((ParseContext) createInstance("com.alibaba.fastjson.parser.ParseContext"));
-        setField(parseContext, "type", null);
-        setField(defaultJSONParser, "context", parseContext);
-        java.lang.Object[] ofIntArray = createArray("java.util.stream.ForEachOps$ForEachOp$OfInt", 0);
-        
-        Object defaultJSONParserContext = getFieldValue(defaultJSONParser, "context");
-        Object initialDefaultJSONParserContextType = getFieldValue(defaultJSONParserContext, "type");
-        
-        Class defaultFieldDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class ofIntArrayType = Class.forName("java.lang.Object");
-        Class syntheticParameterizedTypeType = Class.forName("java.lang.reflect.Type");
-        Class mapType = Class.forName("java.util.Map");
-        Method parseFieldMethod = defaultFieldDeserializerClazz.getDeclaredMethod("parseField", defaultJSONParserType, ofIntArrayType, syntheticParameterizedTypeType, mapType);
-        parseFieldMethod.setAccessible(true);
-        java.lang.Object[] parseFieldMethodArguments = new java.lang.Object[4];
-        parseFieldMethodArguments[0] = defaultJSONParser;
-        parseFieldMethodArguments[1] = ((Object) ofIntArray);
-        parseFieldMethodArguments[2] = syntheticParameterizedType;
-        parseFieldMethodArguments[3] = null;
-        try {
-            parseFieldMethod.invoke(defaultFieldDeserializer, parseFieldMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object defaultJSONParserContext1 = getFieldValue(defaultJSONParser, "context");
-        Object finalDefaultJSONParserContextType = getFieldValue(defaultJSONParserContext1, "type");
-        
-        assertFalse(initialDefaultJSONParserContextType == finalDefaultJSONParserContextType);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField9() throws Throwable  {
+    public void testParseField10() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         setField(fieldInfo, "parserFeatures", 1);
@@ -307,8 +333,9 @@ public class DefaultFieldDeserializerTest {
         JSONScanner jSONScanner = ((JSONScanner) createInstance("com.alibaba.fastjson.parser.JSONScanner"));
         setField(jSONScanner, "token", 8);
         setField(defaultJSONParser, "lexer", jSONScanner);
+        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
         
-        defaultFieldDeserializer.parseField(defaultJSONParser, null, class1, ((Map) null));
+        defaultFieldDeserializer.parseField(defaultJSONParser, null, typeVariableImpl, ((Map) null));
         
         JSONLexer jSONLexer = defaultJSONParser.lexer;
         Object finalDefaultJSONParserLexerToken = getFieldValue(jSONLexer, "token");
@@ -320,7 +347,7 @@ public class DefaultFieldDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField10() throws Throwable  {
+    public void testParseField11() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         Class class1 = Object.class;
         setField(defaultFieldDeserializer, "clazz", class1);
@@ -330,26 +357,26 @@ public class DefaultFieldDeserializerTest {
         setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
         MapDeserializer mapDeserializer = ((MapDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.MapDeserializer"));
         setField(defaultFieldDeserializer, "fieldValueDeserilizer", mapDeserializer);
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        DefaultExtJSONParser defaultExtJSONParser = ((DefaultExtJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultExtJSONParser"));
         ParseContext parseContext = ((ParseContext) createInstance("com.alibaba.fastjson.parser.ParseContext"));
         Object parameterizedTypeImpl = createInstance("retrofit2.Utils$ParameterizedTypeImpl");
         setField(parseContext, "type", parameterizedTypeImpl);
-        setField(defaultJSONParser, "context", parseContext);
-        java.lang.Object[] ofIntArray = createArray("java.util.stream.ForEachOps$ForEachOp$OfInt", 0);
+        setField(defaultExtJSONParser, "context", parseContext);
+        javax.management.openmbean.InvalidKeyException[] invalidKeyExceptionArray = new javax.management.openmbean.InvalidKeyException[0];
         Object syntheticParameterizedType = createInstance("org.springframework.core.ResolvableType$SyntheticParameterizedType");
         
-        Object defaultJSONParserContext = getFieldValue(defaultJSONParser, "context");
-        Object initialDefaultJSONParserContextType = getFieldValue(defaultJSONParserContext, "type");
+        Object defaultExtJSONParserContext = getFieldValue(defaultExtJSONParser, "context");
+        Object initialDefaultExtJSONParserContextType = getFieldValue(defaultExtJSONParserContext, "type");
         
         Class defaultFieldDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
+        Class defaultExtJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
         Class syntheticParameterizedTypeType = Class.forName("java.lang.reflect.Type");
         Class mapType = Class.forName("java.util.Map");
-        Method parseFieldMethod = defaultFieldDeserializerClazz.getDeclaredMethod("parseField", defaultJSONParserType, class1, syntheticParameterizedTypeType, mapType);
+        Method parseFieldMethod = defaultFieldDeserializerClazz.getDeclaredMethod("parseField", defaultExtJSONParserType, class1, syntheticParameterizedTypeType, mapType);
         parseFieldMethod.setAccessible(true);
         java.lang.Object[] parseFieldMethodArguments = new java.lang.Object[4];
-        parseFieldMethodArguments[0] = defaultJSONParser;
-        parseFieldMethodArguments[1] = ((Object) ofIntArray);
+        parseFieldMethodArguments[0] = defaultExtJSONParser;
+        parseFieldMethodArguments[1] = ((Object) invalidKeyExceptionArray);
         parseFieldMethodArguments[2] = syntheticParameterizedType;
         parseFieldMethodArguments[3] = null;
         try {
@@ -357,57 +384,32 @@ public class DefaultFieldDeserializerTest {
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }
-        Object defaultJSONParserContext1 = getFieldValue(defaultJSONParser, "context");
-        Object finalDefaultJSONParserContextType = getFieldValue(defaultJSONParserContext1, "type");
+        Object defaultExtJSONParserContext1 = getFieldValue(defaultExtJSONParser, "context");
+        Object finalDefaultExtJSONParserContextType = getFieldValue(defaultExtJSONParserContext1, "type");
         
-        assertFalse(initialDefaultJSONParserContextType == finalDefaultJSONParserContextType);
+        assertFalse(initialDefaultExtJSONParserContextType == finalDefaultExtJSONParserContextType);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseField11() throws Throwable  {
+    public void testParseField12() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        Class class1 = Object.class;
-        setField(defaultFieldDeserializer, "clazz", class1);
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
-        Object genericArrayTypeImpl = createInstance("retrofit2.Utils$GenericArrayTypeImpl");
-        setField(fieldInfo, "fieldType", genericArrayTypeImpl);
+        setField(fieldInfo, "parserFeatures", 1);
+        Class class1 = Object.class;
+        setField(fieldInfo, "fieldType", class1);
+        String string = new String("");
+        setField(fieldInfo, "name", string);
         setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
         JavaBeanDeserializer javaBeanDeserializer = ((JavaBeanDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer"));
         setField(defaultFieldDeserializer, "fieldValueDeserilizer", javaBeanDeserializer);
         DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        ParseContext parseContext = ((ParseContext) createInstance("com.alibaba.fastjson.parser.ParseContext"));
-        ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("com.alibaba.fastjson.util.ParameterizedTypeImpl"));
-        setField(parseContext, "type", parameterizedTypeImpl);
-        setField(defaultJSONParser, "context", parseContext);
-        java.lang.Object[] forEachTaskArray = createArray("java.util.stream.ForEachOps$ForEachTask", 0);
-        Object parameterizedTypeImpl1 = createInstance("retrofit2.Utils$ParameterizedTypeImpl");
+        JSONReaderScanner jSONReaderScanner = ((JSONReaderScanner) createInstance("com.alibaba.fastjson.parser.JSONReaderScanner"));
+        setField(defaultJSONParser, "lexer", jSONReaderScanner);
         
-        Object defaultJSONParserContext = getFieldValue(defaultJSONParser, "context");
-        Object initialDefaultJSONParserContextType = getFieldValue(defaultJSONParserContext, "type");
-        
-        Class defaultFieldDeserializerClazz = Class.forName("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer");
-        Class defaultJSONParserType = Class.forName("com.alibaba.fastjson.parser.DefaultJSONParser");
-        Class parameterizedTypeImpl1Type = Class.forName("java.lang.reflect.Type");
-        Class mapType = Class.forName("java.util.Map");
-        Method parseFieldMethod = defaultFieldDeserializerClazz.getDeclaredMethod("parseField", defaultJSONParserType, class1, parameterizedTypeImpl1Type, mapType);
-        parseFieldMethod.setAccessible(true);
-        java.lang.Object[] parseFieldMethodArguments = new java.lang.Object[4];
-        parseFieldMethodArguments[0] = defaultJSONParser;
-        parseFieldMethodArguments[1] = ((Object) forEachTaskArray);
-        parseFieldMethodArguments[2] = parameterizedTypeImpl1;
-        parseFieldMethodArguments[3] = null;
-        try {
-            parseFieldMethod.invoke(defaultFieldDeserializer, parseFieldMethodArguments);
-        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
-            throw invocationTargetException.getTargetException();
-        }
-        Object defaultJSONParserContext1 = getFieldValue(defaultJSONParser, "context");
-        Object finalDefaultJSONParserContextType = getFieldValue(defaultJSONParserContext1, "type");
-        
-        assertFalse(initialDefaultJSONParserContextType == finalDefaultJSONParserContextType);
+        defaultFieldDeserializer.parseField(defaultJSONParser, null, ((Type) null), ((Map) null));
     }
     ///endregion
     
@@ -452,8 +454,44 @@ public class DefaultFieldDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseFieldUnwrapped1() throws Throwable  {
+        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        Object object = new Object();
+        
+        defaultFieldDeserializer.parseFieldUnwrapped(defaultJSONParser, object, null, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testParseFieldUnwrapped2() throws Throwable  {
+        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
+        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
+        com.huawei.utbot.engine.MemoryKt[][] memoryKtArray = new com.huawei.utbot.engine.MemoryKt[0][];
+        TypeVariableImpl typeVariableImpl = ((TypeVariableImpl) createInstance("sun.reflect.generics.reflectiveObjects.TypeVariableImpl"));
+        
+        defaultFieldDeserializer.parseFieldUnwrapped(defaultJSONParser, memoryKtArray, typeVariableImpl, null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testGetFieldValueDeserilizer1() throws Throwable  {
+        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
+        ParserConfig parserConfig = new ParserConfig();
+        
+        defaultFieldDeserializer.getFieldValueDeserilizer(parserConfig);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetFieldValueDeserilizer2() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         ThrowableDeserializer throwableDeserializer = ((ThrowableDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer"));
         setField(defaultFieldDeserializer, "fieldValueDeserilizer", throwableDeserializer);
@@ -470,15 +508,15 @@ public class DefaultFieldDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFieldValueDeserilizer2() throws Throwable  {
+    public void testGetFieldValueDeserilizer3() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         JSONField jSONFieldMock = mock(JSONField.class);
         Class class1 = Object.class;
         when(jSONFieldMock.deserializeUsing()).thenReturn(class1);
         setField(fieldInfo, "fieldAnnotation", jSONFieldMock);
-        sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl parameterizedTypeImpl = ((sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
-        setField(fieldInfo, "fieldType", parameterizedTypeImpl);
+        WildcardTypeImpl wildcardTypeImpl = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
+        setField(fieldInfo, "fieldType", wildcardTypeImpl);
         setField(fieldInfo, "fieldClass", class1);
         setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
         setField(defaultFieldDeserializer, "fieldValueDeserilizer", null);
@@ -498,7 +536,7 @@ public class DefaultFieldDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFieldValueDeserilizer3() throws Throwable  {
+    public void testGetFieldValueDeserilizer4() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         JSONField jSONFieldMock = mock(JSONField.class);
@@ -522,7 +560,7 @@ public class DefaultFieldDeserializerTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testGetFieldValueDeserilizer4() throws Throwable  {
+    public void testGetFieldValueDeserilizer5() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         JSONField jSONFieldMock = mock(JSONField.class);
@@ -563,7 +601,7 @@ public class DefaultFieldDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFieldValueDeserilizer5() throws Throwable  {
+    public void testGetFieldValueDeserilizer6() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         JSONField jSONFieldMock = mock(JSONField.class);
@@ -638,7 +676,7 @@ public class DefaultFieldDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFieldValueDeserilizer6() throws Throwable  {
+    public void testGetFieldValueDeserilizer7() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         JSONField jSONFieldMock = mock(JSONField.class);
@@ -664,7 +702,7 @@ public class DefaultFieldDeserializerTest {
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testGetFieldValueDeserilizer7() throws Throwable  {
+    public void testGetFieldValueDeserilizer8() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
         FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
         JSONField jSONFieldMock = mock(JSONField.class);
@@ -689,14 +727,98 @@ public class DefaultFieldDeserializerTest {
     
     ///region
     
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testParseFieldUnwrapped1() throws Throwable  {
+    @Test(timeout = 10000)
+    public void testGetFieldValueDeserilizer9() throws Throwable  {
         DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
-        DefaultJSONParser defaultJSONParser = ((DefaultJSONParser) createInstance("com.alibaba.fastjson.parser.DefaultJSONParser"));
-        java.lang.Object[] ofIntArray = createArray("java.util.stream.ForEachOps$ForEachOp$OfInt", 0);
-        WildcardTypeImpl wildcardTypeImpl = ((WildcardTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.WildcardTypeImpl"));
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        JSONField jSONFieldMock = mock(JSONField.class);
+        Class class1 = Object.class;
+        when(jSONFieldMock.deserializeUsing()).thenReturn(class1);
+        setField(fieldInfo, "fieldAnnotation", jSONFieldMock);
+        setField(fieldInfo, "fieldType", class1);
+        setField(fieldInfo, "fieldClass", class1);
+        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
+        setField(defaultFieldDeserializer, "fieldValueDeserilizer", null);
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
+        setField(identityHashMap, "indexMask", 38);
+        java.lang.Object[] entryArray = createArray("com.alibaba.fastjson.util.IdentityHashMap$Entry", 39);
+        Object entry = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
+        ThrowableDeserializer throwableDeserializer = ((ThrowableDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer"));
+        setField(entry, "value", throwableDeserializer);
+        setField(entry, "key", class1);
+        entryArray[38] = entry;
+        setField(identityHashMap, "buckets", entryArray);
+        setField(parserConfig, "deserializers", identityHashMap);
         
-        defaultFieldDeserializer.parseFieldUnwrapped(defaultJSONParser, ofIntArray, wildcardTypeImpl, null);
+        ObjectDeserializer initialDefaultFieldDeserializerFieldValueDeserilizer = defaultFieldDeserializer.fieldValueDeserilizer;
+        
+        ObjectDeserializer actual = defaultFieldDeserializer.getFieldValueDeserilizer(parserConfig);
+        
+        
+        // Current deep equals depth exceeds max depth 0
+        assertTrue(deepEquals(throwableDeserializer, actual));
+        
+        ObjectDeserializer finalDefaultFieldDeserializerFieldValueDeserilizer = defaultFieldDeserializer.fieldValueDeserilizer;
+        
+        assertFalse(initialDefaultFieldDeserializerFieldValueDeserilizer == finalDefaultFieldDeserializerFieldValueDeserilizer);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetFieldValueDeserilizer10() throws Throwable  {
+        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        JSONField jSONFieldMock = mock(JSONField.class);
+        Class class1 = Object.class;
+        when(jSONFieldMock.deserializeUsing()).thenReturn(class1);
+        setField(fieldInfo, "fieldAnnotation", jSONFieldMock);
+        ParameterizedTypeImpl parameterizedTypeImpl = ((ParameterizedTypeImpl) createInstance("sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl"));
+        setField(fieldInfo, "fieldType", parameterizedTypeImpl);
+        setField(fieldInfo, "fieldClass", class1);
+        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
+        setField(defaultFieldDeserializer, "fieldValueDeserilizer", null);
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
+        setField(identityHashMap, "indexMask", 32);
+        java.lang.Object[] entryArray = createArray("com.alibaba.fastjson.util.IdentityHashMap$Entry", 33);
+        Object entry = createInstance("com.alibaba.fastjson.util.IdentityHashMap$Entry");
+        java.lang.Object[] sizedLongSortingSinkArray = createArray("java.util.stream.SortedOps$SizedLongSortingSink", 0);
+        setField(entry, "value", sizedLongSortingSinkArray);
+        setField(entry, "key", parameterizedTypeImpl);
+        entryArray[32] = entry;
+        setField(identityHashMap, "buckets", entryArray);
+        setField(parserConfig, "deserializers", identityHashMap);
+        
+        defaultFieldDeserializer.getFieldValueDeserilizer(parserConfig);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testGetFieldValueDeserilizer11() throws Throwable  {
+        DefaultFieldDeserializer defaultFieldDeserializer = ((DefaultFieldDeserializer) createInstance("com.alibaba.fastjson.parser.deserializer.DefaultFieldDeserializer"));
+        FieldInfo fieldInfo = ((FieldInfo) createInstance("com.alibaba.fastjson.util.FieldInfo"));
+        JSONField jSONFieldMock = mock(JSONField.class);
+        Class class1 = Object.class;
+        when(jSONFieldMock.deserializeUsing()).thenReturn(class1);
+        setField(fieldInfo, "fieldAnnotation", jSONFieldMock);
+        Object parameterizedTypeImpl = createInstance("retrofit2.Utils$ParameterizedTypeImpl");
+        setField(fieldInfo, "fieldType", parameterizedTypeImpl);
+        setField(fieldInfo, "fieldClass", class1);
+        setField(defaultFieldDeserializer, "fieldInfo", fieldInfo);
+        setField(defaultFieldDeserializer, "fieldValueDeserilizer", null);
+        ParserConfig parserConfig = ((ParserConfig) createInstance("com.alibaba.fastjson.parser.ParserConfig"));
+        IdentityHashMap identityHashMap = ((IdentityHashMap) createInstance("com.alibaba.fastjson.util.IdentityHashMap"));
+        setField(identityHashMap, "indexMask", -1);
+        java.lang.Object[] entryArray = createArray("com.alibaba.fastjson.util.IdentityHashMap$Entry", 39);
+        setField(identityHashMap, "buckets", entryArray);
+        setField(parserConfig, "deserializers", identityHashMap);
+        
+        defaultFieldDeserializer.getFieldValueDeserilizer(parserConfig);
     }
     ///endregion
     
@@ -762,6 +884,15 @@ public class DefaultFieldDeserializerTest {
         field.setAccessible(true);
         field.set(object, fieldValue);
     }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
+    }
     private static Object getFieldValue(Object obj, String fieldName) throws Exception {
         Class<?> clazz = obj.getClass();
         java.lang.reflect.Field field;
@@ -780,15 +911,6 @@ public class DefaultFieldDeserializerTest {
         } while (clazz != null);
     
         throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
-    }
-    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
-        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
-    
-        for (int i = 0; i < values.length; i++) {
-            java.lang.reflect.Array.set(array, i, values[i]);
-        }
-        
-        return (Object[]) array;
     }
     static class FieldsPair {
         final Object o1;

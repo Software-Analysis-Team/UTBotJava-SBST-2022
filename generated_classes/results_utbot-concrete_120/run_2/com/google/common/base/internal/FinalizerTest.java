@@ -132,15 +132,15 @@ public class FinalizerTest {
         java.lang.Object[] eSSCertIdArray = createArray("sun.security.pkcs.ESSCertId", 0);
         setField(entry, "referent", eSSCertIdArray);
         setField(finalizer, "finalizableReferenceClassReference", entry);
-        Object loaderReference = createInstance("java.util.ResourceBundle$LoaderReference");
-        setField(loaderReference, "referent", null);
+        Object resourceReference = createInstance("sun.util.locale.provider.LocaleResources$ResourceReference");
+        setField(resourceReference, "referent", null);
         
         Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
-        Class loaderReferenceType = Class.forName("java.lang.ref.Reference");
-        Method cleanUpMethod = finalizerClazz.getDeclaredMethod("cleanUp", loaderReferenceType);
+        Class resourceReferenceType = Class.forName("java.lang.ref.Reference");
+        Method cleanUpMethod = finalizerClazz.getDeclaredMethod("cleanUp", resourceReferenceType);
         cleanUpMethod.setAccessible(true);
         java.lang.Object[] cleanUpMethodArguments = new java.lang.Object[1];
-        cleanUpMethodArguments[0] = loaderReference;
+        cleanUpMethodArguments[0] = resourceReference;
         try {
             cleanUpMethod.invoke(finalizer, cleanUpMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
@@ -227,9 +227,9 @@ public class FinalizerTest {
     @Test(timeout = 10000)
     public void testGetFinalizeReferentMethod3() throws Throwable  {
         Finalizer finalizer = ((Finalizer) createInstance("com.google.common.base.internal.Finalizer"));
-        Object arrayReference = createInstance("com.google.common.util.concurrent.Striped$SmallLazyStriped$ArrayReference");
-        setField(arrayReference, "referent", null);
-        setField(finalizer, "finalizableReferenceClassReference", arrayReference);
+        Object weakClassKey = createInstance("java.io.ObjectStreamClass$WeakClassKey");
+        setField(weakClassKey, "referent", null);
+        setField(finalizer, "finalizableReferenceClassReference", weakClassKey);
         
         Class finalizerClazz = Class.forName("com.google.common.base.internal.Finalizer");
         Method getFinalizeReferentMethodMethod = finalizerClazz.getDeclaredMethod("getFinalizeReferentMethod");
@@ -251,6 +251,14 @@ public class FinalizerTest {
         // 1 occurrences of:
         // Field security is not found in class java.lang.System
         // 
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testStartFinalizer1() throws Throwable  {
+        Finalizer.startFinalizer(null, null, null);
     }
     ///endregion
     
@@ -340,14 +348,6 @@ public class FinalizerTest {
         // 1 occurrences of:
         // Field security is not found in class java.lang.System
         // 
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000, expected = Throwable.class)
-    public void testStartFinalizer1() throws Throwable  {
-        Finalizer.startFinalizer(null, null, null);
     }
     ///endregion
     

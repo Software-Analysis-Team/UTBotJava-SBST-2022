@@ -18,6 +18,7 @@ import sun.misc.Unsafe;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static java.lang.reflect.Array.get;
 
 public class AtomicDoubleArrayTest {
     ///region
@@ -83,19 +84,16 @@ public class AtomicDoubleArrayTest {
     }
     ///endregion
     
-    ///region
     
-    @Test(timeout = 10000)
-    public void testGet3() throws Throwable  {
-        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
-        AtomicLongArray atomicLongArray = ((AtomicLongArray) createInstance("java.util.concurrent.atomic.AtomicLongArray"));
-        long[] longArray = new long[9];
-        setField(atomicLongArray, "array", longArray);
-        setField(atomicDoubleArray, "longs", atomicLongArray);
-        
-        double actual = atomicDoubleArray.get(0);
-        
-        assertEquals(0.0, actual, 1.0E-6);
+    ///region Errors report for get
+    
+    public void testGet_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Field security is not found in class java.lang.System
+        // 
     }
     ///endregion
     
@@ -132,7 +130,7 @@ public class AtomicDoubleArrayTest {
         
         int actual = atomicDoubleArray.length();
         
-        org.junit.Assert.assertEquals(9, actual);
+        assertEquals(9, actual);
     }
     ///endregion
     
@@ -237,16 +235,25 @@ public class AtomicDoubleArrayTest {
     }
     ///endregion
     
+    ///region
     
-    ///region Errors report for getAndAdd
-    
-    public void testGetAndAdd_errors()
-     {
-        // Couldn't generate some tests. List of errors:
-        // 
-        // 1 occurrences of:
-        // Field security is not found in class java.lang.System
-        // 
+    @Test(timeout = 10000)
+    public void testGetAndAdd3() throws Throwable  {
+        AtomicDoubleArray atomicDoubleArray = ((AtomicDoubleArray) createInstance("com.google.common.util.concurrent.AtomicDoubleArray"));
+        AtomicLongArray atomicLongArray = ((AtomicLongArray) createInstance("java.util.concurrent.atomic.AtomicLongArray"));
+        long[] longArray = new long[9];
+        setField(atomicLongArray, "array", longArray);
+        setField(atomicDoubleArray, "longs", atomicLongArray);
+        
+        double actual = atomicDoubleArray.getAndAdd(0, java.lang.Double.NaN);
+        
+        org.junit.Assert.assertEquals(0.0, actual, 1.0E-6);
+        
+        Object atomicDoubleArrayLongs = getFieldValue(atomicDoubleArray, "longs");
+        Object atomicDoubleArrayLongsLongsArray = getFieldValue(atomicDoubleArrayLongs, "array");
+        Object finalAtomicDoubleArrayLongsArray0 = get(atomicDoubleArrayLongsLongsArray, 0);
+        
+        assertEquals(9221120237041090560L, finalAtomicDoubleArrayLongsArray0);
     }
     ///endregion
     
@@ -623,6 +630,25 @@ public class AtomicDoubleArrayTest {
         }
     
         return false;
+    }
+    private static Object getFieldValue(Object obj, String fieldName) throws Exception {
+        Class<?> clazz = obj.getClass();
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+                
+                return field.get(obj);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
+    
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

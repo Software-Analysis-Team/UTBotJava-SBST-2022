@@ -1,652 +1,507 @@
-package io.seata.core.protocol.transaction;
+package io.seata.core.rpc;
 
 import org.junit.Test;
-import java.nio.ByteBuffer;
+import io.seata.core.protocol.RegisterRMRequest;
+import io.seata.core.rpc.netty.RpcServer;
+import io.seata.core.rpc.netty.RegisterCheckAuthHandler;
+import io.netty.channel.DefaultChannelPipeline;
 import java.lang.reflect.Method;
-import io.seata.core.rpc.RpcContext;
-import io.seata.core.model.BranchStatus;
-import io.seata.core.model.BranchType;
-import java.util.Objects;
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
-import java.lang.reflect.Field;
-import java.util.Arrays;
+import io.seata.core.protocol.RegisterTMRequest;
+import io.netty.channel.unix.DomainSocketAddress;
+import java.net.InetSocketAddress;
+import java.net.Inet6Address;
+import java.nio.InvalidMarkException;
+import java.util.concurrent.BlockingQueue;
+import org.slf4j.Logger;
+import io.seata.core.rpc.DefaultServerMessageListenerImpl.BatchLogRunnable;
+import io.seata.core.rpc.DefaultServerMessageListenerImpl;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.lang.reflect.Array;
-import java.util.Iterator;
+import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertFalse;
+import static org.mockito.Mockito.mockStatic;
+import static org.junit.Assert.assertEquals;
 
-public class BranchReportRequestTest {
+public class DefaultServerMessageListenerImplTest {
     ///region
     
-    @Test(timeout = 10000)
-    public void testToString1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOnTrxMessage1() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        Object object = new Object();
         
-        String actual = branchReportRequest.toString();
-        
-        String expected = new String("xid=null,branchId=0,resourceId=null,status=null,applicationData=null");
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
+        defaultServerMessageListenerImpl.onTrxMessage(0L, null, object, null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecode1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
+    public void testOnTrxMessage2() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        java.lang.Object[] directLongBufferRUArray = createArray("[Ljava.nio.DirectLongBufferRU;", 0);
         
-        branchReportRequest.decode(((ByteBuffer) null));
+        defaultServerMessageListenerImpl.onTrxMessage(0L, null, directLongBufferRUArray, null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecode2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
+    public void testOnRegRmMessage1() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        RegisterRMRequest registerRMRequest = new RegisterRMRequest();
         
-        branchReportRequest.decode(((ByteBuffer) null));
+        defaultServerMessageListenerImpl.onRegRmMessage(0L, null, registerRMRequest, null, null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testDecode3() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        Object heapByteBufferR = createInstance("java.nio.HeapByteBufferR");
-        setField(heapByteBufferR, "limit", 2);
-        setField(heapByteBufferR, "position", 0);
-        setField(heapByteBufferR, "bigEndian", true);
-        setField(heapByteBufferR, "offset", 0);
-        byte[] byteArray = new byte[9];
-        setField(heapByteBufferR, "hb", byteArray);
+    public void testOnRegRmMessage2() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        RegisterCheckAuthHandler registerCheckAuthHandlerMock = mock(RegisterCheckAuthHandler.class);
+        when(registerCheckAuthHandlerMock.regResourceManagerCheckAuth(any())).thenReturn(false);
         
-        Class branchReportRequestClazz = Class.forName("io.seata.core.protocol.transaction.BranchReportRequest");
-        Class heapByteBufferRType = Class.forName("java.nio.ByteBuffer");
-        Method decodeMethod = branchReportRequestClazz.getDeclaredMethod("decode", heapByteBufferRType);
-        decodeMethod.setAccessible(true);
-        java.lang.Object[] decodeMethodArguments = new java.lang.Object[1];
-        decodeMethodArguments[0] = heapByteBufferR;
+        defaultServerMessageListenerImpl.onRegRmMessage(0L, null, null, rpcServer, registerCheckAuthHandlerMock);
+        
+        RegisterCheckAuthHandler finalRegisterCheckAuthHandlerMock = registerCheckAuthHandlerMock;
+        
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOnRegRmMessage3() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        Object defaultChannelHandlerContext = createInstance("io.netty.channel.DefaultChannelHandlerContext");
+        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        setField(defaultChannelPipeline, "channel", failedChannel);
+        setField(defaultChannelHandlerContext, "pipeline", defaultChannelPipeline);
+        RegisterRMRequest registerRMRequest = ((RegisterRMRequest) createInstance("io.seata.core.protocol.RegisterRMRequest"));
+        setField(registerRMRequest, "version", null);
+        String string = new String("");
+        setField(registerRMRequest, "resourceIds", string);
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        
+        Object initialRegisterRMRequestVersion = getFieldValue(registerRMRequest, "version");
+        
+        Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
+        Class longType = long.class;
+        Class defaultChannelHandlerContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Class registerRMRequestType = Class.forName("io.seata.core.protocol.RegisterRMRequest");
+        Class rpcServerType = Class.forName("io.seata.core.rpc.ServerMessageSender");
+        Class registerCheckAuthHandlerType = Class.forName("io.seata.core.rpc.netty.RegisterCheckAuthHandler");
+        Method onRegRmMessageMethod = defaultServerMessageListenerImplClazz.getDeclaredMethod("onRegRmMessage", longType, defaultChannelHandlerContextType, registerRMRequestType, rpcServerType, registerCheckAuthHandlerType);
+        onRegRmMessageMethod.setAccessible(true);
+        java.lang.Object[] onRegRmMessageMethodArguments = new java.lang.Object[5];
+        onRegRmMessageMethodArguments[0] = 0L;
+        onRegRmMessageMethodArguments[1] = defaultChannelHandlerContext;
+        onRegRmMessageMethodArguments[2] = registerRMRequest;
+        onRegRmMessageMethodArguments[3] = rpcServer;
+        onRegRmMessageMethodArguments[4] = null;
         try {
-            decodeMethod.invoke(branchReportRequest, decodeMethodArguments);
+            onRegRmMessageMethod.invoke(defaultServerMessageListenerImpl, onRegRmMessageMethodArguments);
         } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
             throw invocationTargetException.getTargetException();
         }
-        Object finalHeapByteBufferRPosition = getFieldValue(heapByteBufferR, "position");
+        Object finalRegisterRMRequestVersion = getFieldValue(registerRMRequest, "version");
         
-        assertEquals(2, finalHeapByteBufferRPosition);
+        assertNull(finalRegisterRMRequestVersion);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncode1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
+    public void testOnRegTmMessage1() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        RegisterTMRequest registerTMRequest = new RegisterTMRequest();
         
-        branchReportRequest.encode();
+        defaultServerMessageListenerImpl.onRegTmMessage(0L, null, registerTMRequest, null, null);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testEncode2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "byteBuffer", null);
-        setField(branchReportRequest, "applicationData", null);
-        setField(branchReportRequest, "xid", null);
+    public void testOnRegTmMessage2() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        RegisterCheckAuthHandler registerCheckAuthHandlerMock = mock(RegisterCheckAuthHandler.class);
         
-        branchReportRequest.encode();
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetTypeCode1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
+        defaultServerMessageListenerImpl.onRegTmMessage(0L, null, null, null, registerCheckAuthHandlerMock);
         
-        short actual = branchReportRequest.getTypeCode();
+        RegisterCheckAuthHandler finalRegisterCheckAuthHandlerMock = registerCheckAuthHandlerMock;
         
-        assertEquals((short) 13, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetTypeCode2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        
-        short actual = branchReportRequest.getTypeCode();
-        
-        assertEquals((short) 13, actual);
     }
     ///endregion
     
     ///region
     
     @Test(timeout = 10000, expected = Throwable.class)
-    public void testHandle1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        RpcContext rpcContext = new RpcContext();
+    public void testOnRegTmMessage3() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
+        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        DomainSocketAddress domainSocketAddress = ((DomainSocketAddress) createInstance("io.netty.channel.unix.DomainSocketAddress"));
+        setField(failedChannel, "remoteAddress", domainSocketAddress);
+        setField(defaultChannelPipeline, "channel", failedChannel);
+        setField(tailContext, "pipeline", defaultChannelPipeline);
+        RegisterTMRequest registerTMRequest = ((RegisterTMRequest) createInstance("io.seata.core.protocol.RegisterTMRequest"));
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
         
-        branchReportRequest.handle(rpcContext);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testHandle2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        TCInboundHandler tCInboundHandlerMock = mock(TCInboundHandler.class);
-        when(tCInboundHandlerMock.handle(any(BranchReportRequest.class), any(RpcContext.class))).thenReturn(((BranchReportResponse) null));
-        branchReportRequest.handler = tCInboundHandlerMock;
-        
-        TCInboundHandler initialBranchReportRequestHandler = branchReportRequest.handler;
-        
-        AbstractTransactionResponse actual = branchReportRequest.handle(((RpcContext) null));
-        
-        assertNull(actual);
-        
-        TCInboundHandler finalBranchReportRequestHandler = branchReportRequest.handler;
-        
-        assertFalse(initialBranchReportRequestHandler == finalBranchReportRequestHandler);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetStatus1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        
-        BranchStatus actual = branchReportRequest.getStatus();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetStatus2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "status", null);
-        
-        BranchStatus actual = branchReportRequest.getStatus();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetXid1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        String string = new String();
-        
-        branchReportRequest.setXid(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetXid2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "xid", null);
-        String string = new String("");
-        
-        branchReportRequest.setXid(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetApplicationData1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        
-        String actual = branchReportRequest.getApplicationData();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetApplicationData2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "applicationData", null);
-        
-        String actual = branchReportRequest.getApplicationData();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetResourceId1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        
-        String actual = branchReportRequest.getResourceId();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetResourceId2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "resourceId", null);
-        
-        String actual = branchReportRequest.getResourceId();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetResourceId1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        String string = new String();
-        
-        branchReportRequest.setResourceId(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetResourceId2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "resourceId", null);
-        String string = new String("");
-        
-        branchReportRequest.setResourceId(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetBranchType1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        
-        BranchType actual = branchReportRequest.getBranchType();
-        
-        BranchType expected = BranchType.AT;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expected, actual));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetBranchType2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "branchType", null);
-        
-        BranchType actual = branchReportRequest.getBranchType();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetApplicationData1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        String string = new String();
-        
-        branchReportRequest.setApplicationData(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetApplicationData2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "applicationData", null);
-        String string = new String("");
-        
-        branchReportRequest.setApplicationData(string);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetBranchType1() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "branchType", null);
-        BranchType branchType = BranchType.AT;
-        
-        Object initialBranchReportRequestBranchType = getFieldValue(branchReportRequest, "branchType");
-        
-        branchReportRequest.setBranchType(branchType);
-        
-        Object finalBranchReportRequestBranchType = getFieldValue(branchReportRequest, "branchType");
-        
-        BranchType expectedFinalBranchReportRequestBranchType = BranchType.AT;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expectedFinalBranchReportRequestBranchType, finalBranchReportRequestBranchType));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetBranchId1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        
-        branchReportRequest.setBranchId(0L);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetBranchId2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "branchId", 0L);
-        
-        branchReportRequest.setBranchId(0L);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetXid1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        
-        String actual = branchReportRequest.getXid();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetXid2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "xid", null);
-        
-        String actual = branchReportRequest.getXid();
-        
-        assertNull(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetBranchId1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        
-        long actual = branchReportRequest.getBranchId();
-        
-        assertEquals(0L, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testGetBranchId2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "branchId", 0L);
-        
-        long actual = branchReportRequest.getBranchId();
-        
-        assertEquals(0L, actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetStatus1() throws Throwable  {
-        BranchReportRequest branchReportRequest = new BranchReportRequest();
-        BranchStatus branchStatus = ((BranchStatus) createInstance("io.seata.core.model.BranchStatus"));
-        
-        branchReportRequest.setStatus(branchStatus);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetStatus2() throws Throwable  {
-        BranchReportRequest branchReportRequest = ((BranchReportRequest) createInstance("io.seata.core.protocol.transaction.BranchReportRequest"));
-        setField(branchReportRequest, "status", null);
-        BranchStatus branchStatus = BranchStatus.Unknown;
-        
-        Object initialBranchReportRequestStatus = getFieldValue(branchReportRequest, "status");
-        
-        branchReportRequest.setStatus(branchStatus);
-        
-        Object finalBranchReportRequestStatus = getFieldValue(branchReportRequest, "status");
-        
-        BranchStatus expectedFinalBranchReportRequestStatus = BranchStatus.Unknown;
-        
-        // Current deep equals depth exceeds max depth 0
-        assertTrue(deepEquals(expectedFinalBranchReportRequestStatus, finalBranchReportRequestStatus));
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testBranchReportRequest1() {
-        BranchReportRequest actual = new BranchReportRequest();
-    }
-    ///endregion
-    
-    static class FieldsPair {
-        final Object o1;
-        final Object o2;
-    
-        public FieldsPair(Object o1, Object o2) {
-            this.o1 = o1;
-            this.o2 = o2;
-        }
-    
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            FieldsPair that = (FieldsPair) o;
-            return Objects.equals(o1, that.o1) && Objects.equals(o2, that.o2);
-        }
-    
-        @Override
-        public int hashCode() {
-            return Objects.hash(o1, o2);
-        }
-    }
-    
-    private boolean deepEquals(Object o1, Object o2) {
+        Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
+        Class longType = long.class;
+        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Class registerTMRequestType = Class.forName("io.seata.core.protocol.RegisterTMRequest");
+        Class rpcServerType = Class.forName("io.seata.core.rpc.ServerMessageSender");
+        Class registerCheckAuthHandlerType = Class.forName("io.seata.core.rpc.netty.RegisterCheckAuthHandler");
+        Method onRegTmMessageMethod = defaultServerMessageListenerImplClazz.getDeclaredMethod("onRegTmMessage", longType, tailContextType, registerTMRequestType, rpcServerType, registerCheckAuthHandlerType);
+        onRegTmMessageMethod.setAccessible(true);
+        java.lang.Object[] onRegTmMessageMethodArguments = new java.lang.Object[5];
+        onRegTmMessageMethodArguments[0] = 0L;
+        onRegTmMessageMethodArguments[1] = tailContext;
+        onRegTmMessageMethodArguments[2] = registerTMRequest;
+        onRegTmMessageMethodArguments[3] = rpcServer;
+        onRegTmMessageMethodArguments[4] = null;
         try {
-            return deepEquals(o1, o2, new HashSet<>());
-        } catch (Throwable t) {
-            return true;
-        }
-    }
+            onRegTmMessageMethod.invoke(defaultServerMessageListenerImpl, onRegTmMessageMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
     
-    private boolean deepEquals(Object o1, Object o2, Set<FieldsPair> visited) {
-        visited.add(new FieldsPair(o1, o2));
+    ///region
     
-        if (o1 == o2) {
-            return true;
-        }
-    
-        if (o1 == null || o2 == null) {
-            return false;
-        }
-    
-        if (o1 instanceof Iterable) {
-            if (!(o2 instanceof Iterable)) {
-                return false;
-            }
-    
-            return iterablesDeepEquals((Iterable<?>) o1, (Iterable<?>) o2, visited);
-        }
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testOnRegTmMessage4() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        Object headContext = createInstance("io.netty.channel.DefaultChannelPipeline$HeadContext");
+        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        InetSocketAddress inetSocketAddress = ((InetSocketAddress) createInstance("java.net.InetSocketAddress"));
+        Object inetSocketAddressHolder = createInstance("java.net.InetSocketAddress$InetSocketAddressHolder");
+        Inet6Address inet6Address = ((Inet6Address) createInstance("java.net.Inet6Address"));
+        Object inet6AddressHolder = createInstance("java.net.Inet6Address$Inet6AddressHolder");
+        byte[] byteArray = new byte[17];
+        setField(inet6AddressHolder, "ipaddress", byteArray);
+        setField(inet6Address, "holder6", inet6AddressHolder);
+        setField(inetSocketAddressHolder, "addr", inet6Address);
+        setField(inetSocketAddress, "holder", inetSocketAddressHolder);
+        setField(failedChannel, "remoteAddress", inetSocketAddress);
+        setField(defaultChannelPipeline, "channel", failedChannel);
+        setField(headContext, "pipeline", defaultChannelPipeline);
+        RegisterCheckAuthHandler registerCheckAuthHandlerMock = mock(RegisterCheckAuthHandler.class);
         
-        if (o2 instanceof Iterable) {
-            return false;
+        Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
+        Class longType = long.class;
+        Class headContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Class registerTMRequestType = Class.forName("io.seata.core.protocol.RegisterTMRequest");
+        Class serverMessageSenderType = Class.forName("io.seata.core.rpc.ServerMessageSender");
+        Class registerCheckAuthHandlerMockType = Class.forName("io.seata.core.rpc.netty.RegisterCheckAuthHandler");
+        Method onRegTmMessageMethod = defaultServerMessageListenerImplClazz.getDeclaredMethod("onRegTmMessage", longType, headContextType, registerTMRequestType, serverMessageSenderType, registerCheckAuthHandlerMockType);
+        onRegTmMessageMethod.setAccessible(true);
+        java.lang.Object[] onRegTmMessageMethodArguments = new java.lang.Object[5];
+        onRegTmMessageMethodArguments[0] = 0L;
+        onRegTmMessageMethodArguments[1] = headContext;
+        onRegTmMessageMethodArguments[2] = null;
+        onRegTmMessageMethodArguments[3] = null;
+        onRegTmMessageMethodArguments[4] = registerCheckAuthHandlerMock;
+        try {
+            onRegTmMessageMethod.invoke(defaultServerMessageListenerImpl, onRegTmMessageMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
         }
-    
-        if (o1 instanceof Map) {
-            if (!(o2 instanceof Map)) {
-                return false;
-            }
-    
-            return mapsDeepEquals((Map<?, ?>) o1, (Map<?, ?>) o2, visited);
-        }
+        RegisterCheckAuthHandler finalRegisterCheckAuthHandlerMock = registerCheckAuthHandlerMock;
         
-        if (o2 instanceof Map) {
-            return false;
-        }
+    }
+    ///endregion
     
-        Class<?> firstClass = o1.getClass();
-        if (firstClass.isArray()) {
-            if (!o2.getClass().isArray()) {
-                return false;
-            }
+    ///region
     
-            // Primitive arrays should not appear here
-            return arraysDeepEquals(o1, o2, visited);
-        }
+    @Test(timeout = 10000)
+    public void testOnCheckMessage1() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        
+        defaultServerMessageListenerImpl.onCheckMessage(0L, null, null);
+    }
+    ///endregion
     
-        // common classes
+    ///region
     
-        // common classes without custom equals, use comparison by fields
-        final List<java.lang.reflect.Field> fields = new ArrayList<>();
-        while (firstClass != Object.class) {
-            fields.addAll(Arrays.asList(firstClass.getDeclaredFields()));
-            // Interface should not appear here
-            firstClass = firstClass.getSuperclass();
-        }
+    @Test(timeout = 10000)
+    public void testOnCheckMessage2() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        Object tailContext = createInstance("io.netty.channel.DefaultChannelPipeline$TailContext");
+        DefaultChannelPipeline defaultChannelPipeline = ((DefaultChannelPipeline) createInstance("io.netty.channel.DefaultChannelPipeline"));
+        Object failedChannel = createInstance("io.netty.bootstrap.FailedChannel");
+        Object failedChannelUnsafe = createInstance("io.netty.bootstrap.FailedChannel$FailedChannelUnsafe");
+        setField(failedChannelUnsafe, "outboundBuffer", null);
+        setField(failedChannel, "unsafe", failedChannelUnsafe);
+        setField(defaultChannelPipeline, "channel", failedChannel);
+        setField(tailContext, "pipeline", defaultChannelPipeline);
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        java.nio.InvalidMarkException[] invalidMarkExceptionArray = new java.nio.InvalidMarkException[0];
+        setField(rpcServer, "lock", invalidMarkExceptionArray);
+        
+        Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
+        Class longType = long.class;
+        Class tailContextType = Class.forName("io.netty.channel.ChannelHandlerContext");
+        Class rpcServerType = Class.forName("io.seata.core.rpc.ServerMessageSender");
+        Method onCheckMessageMethod = defaultServerMessageListenerImplClazz.getDeclaredMethod("onCheckMessage", longType, tailContextType, rpcServerType);
+        onCheckMessageMethod.setAccessible(true);
+        java.lang.Object[] onCheckMessageMethodArguments = new java.lang.Object[3];
+        onCheckMessageMethodArguments[0] = 0L;
+        onCheckMessageMethodArguments[1] = tailContext;
+        onCheckMessageMethodArguments[2] = rpcServer;
+        onCheckMessageMethod.invoke(defaultServerMessageListenerImpl, onCheckMessageMethodArguments);
+    }
+    ///endregion
     
-        for (java.lang.reflect.Field field : fields) {
-            field.setAccessible(true);
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetServerMessageSender1() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        
+        defaultServerMessageListenerImpl.setServerMessageSender(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetServerMessageSender2() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        setField(defaultServerMessageListenerImpl, "serverMessageSender", null);
+        RpcServer rpcServer = ((RpcServer) createInstance("io.seata.core.rpc.netty.RpcServer"));
+        
+        Object initialDefaultServerMessageListenerImplServerMessageSender = getFieldValue(defaultServerMessageListenerImpl, "serverMessageSender");
+        
+        defaultServerMessageListenerImpl.setServerMessageSender(rpcServer);
+        
+        Object finalDefaultServerMessageListenerImplServerMessageSender = getFieldValue(defaultServerMessageListenerImpl, "serverMessageSender");
+        
+        assertFalse(initialDefaultServerMessageListenerImplServerMessageSender == finalDefaultServerMessageListenerImplServerMessageSender);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetServerMessageSender1() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        
+        ServerMessageSender actual = defaultServerMessageListenerImpl.getServerMessageSender();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testGetServerMessageSender2() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        setField(defaultServerMessageListenerImpl, "serverMessageSender", null);
+        
+        ServerMessageSender actual = defaultServerMessageListenerImpl.getServerMessageSender();
+        
+        assertNull(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testInit1() throws Throwable  {
+        DefaultServerMessageListenerImpl defaultServerMessageListenerImpl = ((DefaultServerMessageListenerImpl) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl"));
+        
+        defaultServerMessageListenerImpl.init();
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDefaultServerMessageListenerImpl1() {
+        DefaultServerMessageListenerImpl actual = new DefaultServerMessageListenerImpl(null);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testDefaultServerMessageListenerImpl2() throws Throwable  {
+        TransactionMessageHandler transactionMessageHandlerMock = mock(TransactionMessageHandler.class);
+        
+        DefaultServerMessageListenerImpl actual = new DefaultServerMessageListenerImpl(transactionMessageHandlerMock);
+        
+        TransactionMessageHandler finalTransactionMessageHandlerMock = transactionMessageHandlerMock;
+        
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testRun1() throws Throwable  {
+        org.mockito.MockedStatic mockedStatic = null;
+        try {
+            Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
+            BlockingQueue prevMessageStrings = ((BlockingQueue) getStaticFieldValue(defaultServerMessageListenerImplClazz, "messageStrings"));
             try {
-                final Object field1 = field.get(o1);
-                final Object field2 = field.get(o2);
-                if (!visited.contains(new FieldsPair(field1, field2)) && !deepEquals(field1, field2, visited)) {
-                    return false;
-                }
-            } catch (IllegalArgumentException e) {
-                return false;
-            } catch (IllegalAccessException e) {
-                // should never occur because field was set accessible
-                return false;
+                setStaticField(defaultServerMessageListenerImplClazz, "messageStrings", null);
+                mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                Logger loggerMock = mock(Logger.class);
+                mockedStatic.when(() -> {
+                    org.slf4j.LoggerFactory.getLogger(org.mockito.ArgumentMatchers.any(Class.class));
+                }).thenReturn(loggerMock);
+                DefaultServerMessageListenerImpl.BatchLogRunnable batchLogRunnable = ((DefaultServerMessageListenerImpl.BatchLogRunnable) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl$BatchLogRunnable"));
+                
+                batchLogRunnable.run();
+            } finally {
+                setStaticField(DefaultServerMessageListenerImpl.class, "messageStrings", prevMessageStrings);
             }
+        } finally {
+            mockedStatic.close();
         }
-    
-        return true;
     }
-    private boolean arraysDeepEquals(Object arr1, Object arr2, Set<FieldsPair> visited) {
-        final int length = Array.getLength(arr1);
-        if (length != Array.getLength(arr2)) {
-            return false;
-        }
+    ///endregion
     
-        for (int i = 0; i < length; i++) {
-            if (!deepEquals(Array.get(arr1, i), Array.get(arr2, i), visited)) {
-                return false;
-            }
-        }
+    ///region
     
-        return true;
-    }
-    private boolean iterablesDeepEquals(Iterable<?> i1, Iterable<?> i2, Set<FieldsPair> visited) {
-        final Iterator<?> firstIterator = i1.iterator();
-        final Iterator<?> secondIterator = i2.iterator();
-        while (firstIterator.hasNext() && secondIterator.hasNext()) {
-            if (!deepEquals(firstIterator.next(), secondIterator.next(), visited)) {
-                return false;
-            }
-        }
-    
-        if (firstIterator.hasNext()) {
-            return false;
-        }
-    
-        return !secondIterator.hasNext();
-    }
-    private boolean mapsDeepEquals(Map<?, ?> m1, Map<?, ?> m2, Set<FieldsPair> visited) {
-        final Iterator<? extends Map.Entry<?, ?>> firstIterator = m1.entrySet().iterator();
-        final Iterator<? extends Map.Entry<?, ?>> secondIterator = m2.entrySet().iterator();
-        while (firstIterator.hasNext() && secondIterator.hasNext()) {
-            final Map.Entry<?, ?> firstEntry = firstIterator.next();
-            final Map.Entry<?, ?> secondEntry = secondIterator.next();
-    
-            if (!deepEquals(firstEntry.getKey(), secondEntry.getKey(), visited)) {
-                return false;
-            }
-    
-            if (!deepEquals(firstEntry.getValue(), secondEntry.getValue(), visited)) {
-                return false;
-            }
-        }
-    
-        if (firstIterator.hasNext()) {
-            return false;
-        }
-    
-        return !secondIterator.hasNext();
-    }
-    private boolean hasCustomEquals(Class<?> clazz) {
-        while (!Object.class.equals(clazz)) {
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testRun2() throws Throwable  {
+        org.mockito.MockedStatic mockedStatic = null;
+        try {
+            Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
+            BlockingQueue prevMessageStrings = ((BlockingQueue) getStaticFieldValue(defaultServerMessageListenerImplClazz, "messageStrings"));
             try {
-                clazz.getDeclaredMethod("equals", Object.class);
-                return true;
-            } catch (Exception e) { 
-                // Interface should not appear here
-                clazz = clazz.getSuperclass();
+                LinkedBlockingDeque messageStrings = ((LinkedBlockingDeque) createInstance("java.util.concurrent.LinkedBlockingDeque"));
+                Object segment = createInstance("java.util.concurrent.ConcurrentHashMap$Segment");
+                Object fairSync = createInstance("java.util.concurrent.locks.ReentrantLock$FairSync");
+                Thread thread = ((Thread) createInstance("java.lang.Thread"));
+                setField(fairSync, "exclusiveOwnerThread", thread);
+                setField(fairSync, "state", Integer.MAX_VALUE);
+                setField(segment, "sync", fairSync);
+                setField(messageStrings, "lock", segment);
+                setStaticField(defaultServerMessageListenerImplClazz, "messageStrings", messageStrings);
+                mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                Logger loggerMock = mock(Logger.class);
+                mockedStatic.when(() -> {
+                    org.slf4j.LoggerFactory.getLogger(org.mockito.ArgumentMatchers.any(Class.class));
+                }).thenReturn(loggerMock);
+                DefaultServerMessageListenerImpl.BatchLogRunnable batchLogRunnable = ((DefaultServerMessageListenerImpl.BatchLogRunnable) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl$BatchLogRunnable"));
+                
+                batchLogRunnable.run();
+            } finally {
+                setStaticField(DefaultServerMessageListenerImpl.class, "messageStrings", prevMessageStrings);
             }
+        } finally {
+            mockedStatic.close();
         }
-    
-        return false;
     }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000, expected = Throwable.class)
+    public void testRun3() throws Throwable  {
+        org.mockito.MockedStatic mockedStatic = null;
+        try {
+            Class defaultServerMessageListenerImplClazz = Class.forName("io.seata.core.rpc.DefaultServerMessageListenerImpl");
+            BlockingQueue prevMessageStrings = ((BlockingQueue) getStaticFieldValue(defaultServerMessageListenerImplClazz, "messageStrings"));
+            try {
+                LinkedBlockingDeque messageStrings = ((LinkedBlockingDeque) createInstance("java.util.concurrent.LinkedBlockingDeque"));
+                Object segment = createInstance("java.util.concurrent.ConcurrentHashMap$Segment");
+                Object fairSync = createInstance("java.util.concurrent.locks.ReentrantLock$FairSync");
+                Thread thread = ((Thread) createInstance("java.lang.Thread"));
+                setField(fairSync, "exclusiveOwnerThread", thread);
+                setField(fairSync, "state", 2);
+                setField(segment, "sync", fairSync);
+                setField(messageStrings, "lock", segment);
+                setField(messageStrings, "count", 0);
+                setStaticField(defaultServerMessageListenerImplClazz, "messageStrings", messageStrings);
+                mockedStatic = mockStatic(org.slf4j.LoggerFactory.class);
+                Logger loggerMock = mock(Logger.class);
+                mockedStatic.when(() -> {
+                    org.slf4j.LoggerFactory.getLogger(org.mockito.ArgumentMatchers.any(Class.class));
+                }).thenReturn(loggerMock);
+                DefaultServerMessageListenerImpl.BatchLogRunnable batchLogRunnable = ((DefaultServerMessageListenerImpl.BatchLogRunnable) createInstance("io.seata.core.rpc.DefaultServerMessageListenerImpl$BatchLogRunnable"));
+                
+                Object object = getStaticFieldValue(DefaultServerMessageListenerImpl.class, "messageStrings");
+                Object objectLock = getFieldValue(object, "lock");
+                Object objectLockLockSync = getFieldValue(objectLock, "sync");
+                Object initialDefaultServerMessageListenerImplMessageStringsLockSyncState = getFieldValue(objectLockLockSync, "state");
+                
+                batchLogRunnable.run();
+                
+                Object object1 = getStaticFieldValue(DefaultServerMessageListenerImpl.class, "messageStrings");
+                Object object1Lock = getFieldValue(object1, "lock");
+                Object object1LockLockSync = getFieldValue(object1Lock, "sync");
+                Object finalDefaultServerMessageListenerImplMessageStringsLockSyncState = getFieldValue(object1LockLockSync, "state");
+                
+                assertEquals(3, finalDefaultServerMessageListenerImplMessageStringsLockSyncState);
+            } finally {
+                setStaticField(DefaultServerMessageListenerImpl.class, "messageStrings", prevMessageStrings);
+            }
+        } finally {
+            mockedStatic.close();
+        }
+    }
+    ///endregion
+    
+    
+    ///region Errors report for <init>
+    
+    public void testBatchLogRunnable_errors()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Inner class io.seata.core.rpc.DefaultServerMessageListenerImpl$BatchLogRunnable constructor testing is not supported yet
+        // 
+    }
+    ///endregion
+    
+    
+    ///region Errors report for <init>
+    
+    public void testBatchLogRunnable_errors1()
+     {
+        // Couldn't generate some tests. List of errors:
+        // 
+        // 1 occurrences of:
+        // Inner class io.seata.core.rpc.DefaultServerMessageListenerImpl$BatchLogRunnable constructor testing is not supported yet
+        // 
+    }
+    ///endregion
+    
     private static Object createInstance(String className) throws Exception {
         Class<?> clazz = Class.forName(className);
         return getUnsafeInstance().allocateInstance(clazz);
+    }
+    private static Object[] createArray(String className, int length, Object... values) throws ClassNotFoundException {
+        Object array = java.lang.reflect.Array.newInstance(Class.forName(className), length);
+    
+        for (int i = 0; i < values.length; i++) {
+            java.lang.reflect.Array.set(array, i, values[i]);
+        }
+        
+        return (Object[]) array;
     }
     private static void setField(Object object, String fieldName, Object fieldValue) throws Exception {
         Class<?> clazz = object.getClass();
@@ -686,6 +541,43 @@ public class BranchReportRequestTest {
         } while (clazz != null);
     
         throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + obj.getClass());
+    }
+    private static Object getStaticFieldValue(Class<?> clazz, String fieldName) throws Exception {
+        java.lang.reflect.Field field;
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+                field.setAccessible(true);
+                java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+                modifiersField.setAccessible(true);
+                modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+                
+                return field.get(null);
+            } catch (NoSuchFieldException e) {
+                clazz = clazz.getSuperclass();
+            }
+        } while (clazz != null);
+    
+        throw new NoSuchFieldException("Field '" + fieldName + "' not found on class " + clazz);
+    }
+    private static void setStaticField(Class<?> clazz, String fieldName, Object fieldValue) throws Exception {
+        java.lang.reflect.Field field;
+    
+        do {
+            try {
+                field = clazz.getDeclaredField(fieldName);
+            } catch (Exception e) {
+                clazz = clazz.getSuperclass();
+                field = null;
+            }
+        } while (field == null);
+        
+        java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+    
+        field.setAccessible(true);
+        field.set(null, fieldValue);
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

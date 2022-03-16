@@ -2,9 +2,11 @@ package com.alibaba.fastjson.serializer;
 
 import org.junit.Test;
 import java.io.StringWriter;
-import java.io.FileWriter;
+import java.io.OutputStreamWriter;
 import sun.nio.cs.StreamEncoder;
+import java.util.zip.GZIPOutputStream;
 import java.util.zip.DeflaterOutputStream;
+import java.util.zip.Deflater;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -28,12 +30,9 @@ public class ClobSeriliazerTest {
     @Test(timeout = 10000, expected = Throwable.class)
     public void testWrite2() throws Throwable  {
         ClobSeriliazer clobSeriliazer = ((ClobSeriliazer) createInstance("com.alibaba.fastjson.serializer.ClobSeriliazer"));
-        JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
-        java.lang.Object[] forEachTaskArray = createArray("java.util.stream.ForEachOps$ForEachTask", 0);
-        java.lang.Object[] forEachTaskArray1 = createArray("java.util.stream.ForEachOps$ForEachTask", 0);
-        Class class1 = Object.class;
+        java.lang.Object[] compositeBuilderViaFromArray = createArray("com.sun.jmx.mbeanserver.DefaultMXBeanMappingFactory$CompositeBuilderViaFrom", 0);
         
-        clobSeriliazer.write(jSONSerializer, forEachTaskArray, forEachTaskArray1, class1, 0);
+        clobSeriliazer.write(null, compositeBuilderViaFromArray, null, null, 0);
     }
     ///endregion
     
@@ -79,27 +78,33 @@ public class ClobSeriliazerTest {
         JSONSerializer jSONSerializer = ((JSONSerializer) createInstance("com.alibaba.fastjson.serializer.JSONSerializer"));
         SerializeWriter serializeWriter = ((SerializeWriter) createInstance("com.alibaba.fastjson.serializer.SerializeWriter"));
         setField(serializeWriter, "lock", null);
-        FileWriter fileWriter = ((FileWriter) createInstance("java.io.FileWriter"));
-        setField(fileWriter, "lock", null);
+        OutputStreamWriter outputStreamWriter = ((OutputStreamWriter) createInstance("java.io.OutputStreamWriter"));
+        setField(outputStreamWriter, "lock", null);
         StreamEncoder streamEncoder = ((StreamEncoder) createInstance("sun.nio.cs.StreamEncoder"));
         setField(streamEncoder, "lock", null);
-        DeflaterOutputStream deflaterOutputStream = ((DeflaterOutputStream) createInstance("java.util.zip.DeflaterOutputStream"));
         Object encOutputStream = createInstance("java.util.Base64$EncOutputStream");
-        Object streamingOutputStream = createInstance("sun.net.www.protocol.http.HttpURLConnection$StreamingOutputStream");
-        DeflaterOutputStream deflaterOutputStream1 = ((DeflaterOutputStream) createInstance("java.util.zip.DeflaterOutputStream"));
-        setField(deflaterOutputStream1, "out", null);
-        setField(deflaterOutputStream1, "syncFlush", false);
-        setField(streamingOutputStream, "out", deflaterOutputStream1);
-        setField(encOutputStream, "out", streamingOutputStream);
-        setField(deflaterOutputStream, "out", encOutputStream);
+        Object encOutputStream1 = createInstance("java.util.Base64$EncOutputStream");
+        GZIPOutputStream gZIPOutputStream = ((GZIPOutputStream) createInstance("java.util.zip.GZIPOutputStream"));
+        DeflaterOutputStream deflaterOutputStream = ((DeflaterOutputStream) createInstance("java.util.zip.DeflaterOutputStream"));
+        setField(deflaterOutputStream, "out", null);
         setField(deflaterOutputStream, "syncFlush", false);
-        setField(streamEncoder, "out", deflaterOutputStream);
+        setField(deflaterOutputStream, "def", null);
+        setField(gZIPOutputStream, "out", deflaterOutputStream);
+        setField(gZIPOutputStream, "syncFlush", true);
+        Deflater deflater = ((Deflater) createInstance("java.util.zip.Deflater"));
+        setField(deflater, "finished", true);
+        Object zStreamRef = createInstance("java.util.zip.ZStreamRef");
+        setField(deflater, "zsRef", zStreamRef);
+        setField(gZIPOutputStream, "def", deflater);
+        setField(encOutputStream1, "out", gZIPOutputStream);
+        setField(encOutputStream, "out", encOutputStream1);
+        setField(streamEncoder, "out", encOutputStream);
         Object directByteBuffer = createInstance("java.nio.DirectByteBuffer");
         setField(directByteBuffer, "position", -2147483647);
         setField(streamEncoder, "bb", directByteBuffer);
         setField(streamEncoder, "isOpen", true);
-        setField(fileWriter, "se", streamEncoder);
-        setField(serializeWriter, "writer", fileWriter);
+        setField(outputStreamWriter, "se", streamEncoder);
+        setField(serializeWriter, "writer", outputStreamWriter);
         serializeWriter.count = 0;
         char[] charArray = new char[0];
         serializeWriter.buf = charArray;

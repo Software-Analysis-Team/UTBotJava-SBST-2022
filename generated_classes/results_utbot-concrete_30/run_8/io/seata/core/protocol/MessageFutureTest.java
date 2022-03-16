@@ -95,6 +95,27 @@ public class MessageFutureTest {
     ///region
     
     @Test(timeout = 10000)
+    public void testSetTimeout1() throws Throwable  {
+        MessageFuture messageFuture = new MessageFuture();
+        
+        messageFuture.setTimeout(0L);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testSetTimeout2() throws Throwable  {
+        MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
+        setField(messageFuture, "timeout", 0L);
+        
+        messageFuture.setTimeout(0L);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
     public void testSetResultMessage1() throws Throwable  {
         MessageFuture messageFuture = new MessageFuture();
         Object object = new Object();
@@ -171,41 +192,6 @@ public class MessageFutureTest {
         boolean actual = messageFuture.isTimeout();
         
         assertTrue(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testIsTimeout3() throws Throwable  {
-        MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
-        setField(messageFuture, "start", 4622765364658672145L);
-        setField(messageFuture, "timeout", 0L);
-        
-        boolean actual = messageFuture.isTimeout();
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetTimeout1() throws Throwable  {
-        MessageFuture messageFuture = new MessageFuture();
-        
-        messageFuture.setTimeout(0L);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
-    public void testSetTimeout2() throws Throwable  {
-        MessageFuture messageFuture = ((MessageFuture) createInstance("io.seata.core.protocol.MessageFuture"));
-        setField(messageFuture, "timeout", 0L);
-        
-        messageFuture.setTimeout(0L);
     }
     ///endregion
     

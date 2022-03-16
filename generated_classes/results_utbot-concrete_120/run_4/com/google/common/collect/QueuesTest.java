@@ -59,8 +59,34 @@ public class QueuesTest {
     
     ///region
     
-    @Test(timeout = 10000)
+    @Test(timeout = 10000, expected = Throwable.class)
     public void testNewPriorityQueue3() throws Throwable  {
+        PriorityQueue priorityQueue = ((PriorityQueue) createInstance("java.util.PriorityQueue"));
+        setField(priorityQueue, "modCount", 0);
+        Class lexicographicalComparatorClazz = Class.forName("com.google.common.primitives.UnsignedInts$LexicographicalComparator");
+        Object lexicographicalComparator = getEnumConstantByName(lexicographicalComparatorClazz, "INSTANCE");
+        setField(priorityQueue, "comparator", lexicographicalComparator);
+        setField(priorityQueue, "size", Integer.MIN_VALUE);
+        java.lang.Object[] objectArray = new java.lang.Object[9];
+        setField(priorityQueue, "queue", objectArray);
+        
+        Class queuesClazz = Class.forName("com.google.common.collect.Queues");
+        Class priorityQueueType = Class.forName("java.lang.Iterable");
+        Method newPriorityQueueMethod = queuesClazz.getDeclaredMethod("newPriorityQueue", priorityQueueType);
+        newPriorityQueueMethod.setAccessible(true);
+        java.lang.Object[] newPriorityQueueMethodArguments = new java.lang.Object[1];
+        newPriorityQueueMethodArguments[0] = priorityQueue;
+        try {
+            newPriorityQueueMethod.invoke(null, newPriorityQueueMethodArguments);
+        } catch (java.lang.reflect.InvocationTargetException invocationTargetException) {
+            throw invocationTargetException.getTargetException();
+        }}
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testNewPriorityQueue4() throws Throwable  {
         PriorityQueue priorityQueue = ((PriorityQueue) createInstance("java.util.PriorityQueue"));
         setField(priorityQueue, "modCount", 0);
         Object reverseComparator2 = createInstance("java.util.Collections$ReverseComparator2");
@@ -280,6 +306,19 @@ public class QueuesTest {
         }
     
         return false;
+    }
+    private static Object getEnumConstantByName(Class<?> enumClass, String name) throws IllegalAccessException {
+        java.lang.reflect.Field[] fields = enumClass.getDeclaredFields();
+        for (java.lang.reflect.Field field : fields) {
+            String fieldName = field.getName();
+            if (field.isEnumConstant() && fieldName.equals(name)) {
+                field.setAccessible(true);
+                
+                return field.get(null);
+            }
+        }
+        
+        return null;
     }
     private static sun.misc.Unsafe getUnsafeInstance() throws Exception {
         java.lang.reflect.Field f = sun.misc.Unsafe.class.getDeclaredField("theUnsafe");

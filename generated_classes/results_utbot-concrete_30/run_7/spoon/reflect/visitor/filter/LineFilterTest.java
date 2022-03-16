@@ -2,18 +2,18 @@ package spoon.reflect.visitor.filter;
 
 import org.junit.Test;
 import spoon.reflect.code.CtStatement;
-import spoon.support.reflect.code.CtThrowImpl;
+import spoon.support.reflect.declaration.CtClassImpl;
 import spoon.support.reflect.code.CtBlockImpl;
 import spoon.support.reflect.declaration.CtEnumImpl;
-import spoon.support.reflect.code.CtTryImpl;
 import spoon.support.reflect.code.CtCommentImpl;
 import spoon.support.reflect.code.CtIfImpl;
 import spoon.support.reflect.code.CtDoImpl;
-import spoon.support.reflect.code.CtJavaDocImpl;
-import spoon.support.reflect.code.CtBreakImpl;
+import spoon.support.reflect.code.CtLocalVariableImpl;
+import spoon.support.reflect.code.CtThrowImpl;
+import spoon.support.reflect.code.CtForImpl;
 import spoon.support.reflect.code.CtOperatorAssignmentImpl;
 import spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl;
-import spoon.support.reflect.code.CtLocalVariableImpl;
+import spoon.support.reflect.code.CtInvocationImpl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import sun.misc.Unsafe;
@@ -39,9 +39,9 @@ public class LineFilterTest {
         LineFilter lineFilter = ((LineFilter) createInstance("spoon.reflect.visitor.filter.LineFilter"));
         Class class1 = Object.class;
         setField(lineFilter, "type", class1);
-        CtThrowImpl ctThrowImpl = ((CtThrowImpl) createInstance("spoon.support.reflect.code.CtThrowImpl"));
+        CtClassImpl ctClassImpl = ((CtClassImpl) createInstance("spoon.support.reflect.declaration.CtClassImpl"));
         
-        boolean actual = lineFilter.matches(ctThrowImpl);
+        boolean actual = lineFilter.matches(ctClassImpl);
         
         assertFalse(actual);
     }
@@ -69,12 +69,12 @@ public class LineFilterTest {
         LineFilter lineFilter = ((LineFilter) createInstance("spoon.reflect.visitor.filter.LineFilter"));
         Class class1 = Object.class;
         setField(lineFilter, "type", class1);
-        CtThrowImpl ctThrowImpl = ((CtThrowImpl) createInstance("spoon.support.reflect.code.CtThrowImpl"));
+        CtClassImpl ctClassImpl = ((CtClassImpl) createInstance("spoon.support.reflect.declaration.CtClassImpl"));
         CtBlockImpl ctBlockImpl = ((CtBlockImpl) createInstance("spoon.support.reflect.code.CtBlockImpl"));
         setField(ctBlockImpl, "parent", null);
-        setField(ctThrowImpl, "parent", ctBlockImpl);
+        setField(ctClassImpl, "parent", ctBlockImpl);
         
-        boolean actual = lineFilter.matches(ctThrowImpl);
+        boolean actual = lineFilter.matches(ctClassImpl);
         
         assertTrue(actual);
     }
@@ -88,9 +88,9 @@ public class LineFilterTest {
         Class class1 = Object.class;
         setField(lineFilter, "type", class1);
         CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
-        CtTryImpl ctTryImpl = ((CtTryImpl) createInstance("spoon.support.reflect.code.CtTryImpl"));
-        setField(ctTryImpl, "parent", null);
-        setField(ctEnumImpl, "parent", ctTryImpl);
+        CtEnumImpl ctEnumImpl1 = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
+        setField(ctEnumImpl1, "parent", null);
+        setField(ctEnumImpl, "parent", ctEnumImpl1);
         
         boolean actual = lineFilter.matches(ctEnumImpl);
         
@@ -143,15 +143,15 @@ public class LineFilterTest {
         LineFilter lineFilter = ((LineFilter) createInstance("spoon.reflect.visitor.filter.LineFilter"));
         Class class1 = Object.class;
         setField(lineFilter, "type", class1);
-        CtEnumImpl ctEnumImpl = ((CtEnumImpl) createInstance("spoon.support.reflect.declaration.CtEnumImpl"));
+        CtLocalVariableImpl ctLocalVariableImpl = ((CtLocalVariableImpl) createInstance("spoon.support.reflect.code.CtLocalVariableImpl"));
         CtDoImpl ctDoImpl = ((CtDoImpl) createInstance("spoon.support.reflect.code.CtDoImpl"));
         setField(ctDoImpl, "parent", null);
-        CtJavaDocImpl ctJavaDocImpl = ((CtJavaDocImpl) createInstance("spoon.support.reflect.code.CtJavaDocImpl"));
-        setField(ctJavaDocImpl, "parent", null);
-        setField(ctDoImpl, "body", ctJavaDocImpl);
-        setField(ctEnumImpl, "parent", ctDoImpl);
+        CtCommentImpl ctCommentImpl = ((CtCommentImpl) createInstance("spoon.support.reflect.code.CtCommentImpl"));
+        setField(ctCommentImpl, "parent", null);
+        setField(ctDoImpl, "body", ctCommentImpl);
+        setField(ctLocalVariableImpl, "parent", ctDoImpl);
         
-        boolean actual = lineFilter.matches(ctEnumImpl);
+        boolean actual = lineFilter.matches(ctLocalVariableImpl);
         
         assertFalse(actual);
     }
@@ -167,9 +167,9 @@ public class LineFilterTest {
         CtCommentImpl ctCommentImpl = ((CtCommentImpl) createInstance("spoon.support.reflect.code.CtCommentImpl"));
         CtIfImpl ctIfImpl = ((CtIfImpl) createInstance("spoon.support.reflect.code.CtIfImpl"));
         setField(ctIfImpl, "parent", null);
-        CtBreakImpl ctBreakImpl = ((CtBreakImpl) createInstance("spoon.support.reflect.code.CtBreakImpl"));
-        setField(ctBreakImpl, "parent", null);
-        setField(ctIfImpl, "thenStatement", ctBreakImpl);
+        CtThrowImpl ctThrowImpl = ((CtThrowImpl) createInstance("spoon.support.reflect.code.CtThrowImpl"));
+        setField(ctThrowImpl, "parent", null);
+        setField(ctIfImpl, "thenStatement", ctThrowImpl);
         setField(ctIfImpl, "elseStatement", ctCommentImpl);
         setField(ctCommentImpl, "parent", ctIfImpl);
         
@@ -183,6 +183,27 @@ public class LineFilterTest {
     
     @Test(timeout = 10000)
     public void testMatches10() throws Throwable  {
+        LineFilter lineFilter = ((LineFilter) createInstance("spoon.reflect.visitor.filter.LineFilter"));
+        Class class1 = Object.class;
+        setField(lineFilter, "type", class1);
+        CtDoImpl ctDoImpl = ((CtDoImpl) createInstance("spoon.support.reflect.code.CtDoImpl"));
+        CtIfImpl ctIfImpl = ((CtIfImpl) createInstance("spoon.support.reflect.code.CtIfImpl"));
+        setField(ctIfImpl, "parent", null);
+        CtForImpl ctForImpl = ((CtForImpl) createInstance("spoon.support.reflect.code.CtForImpl"));
+        setField(ctForImpl, "parent", null);
+        setField(ctIfImpl, "thenStatement", ctForImpl);
+        setField(ctDoImpl, "parent", ctIfImpl);
+        
+        boolean actual = lineFilter.matches(ctDoImpl);
+        
+        assertFalse(actual);
+    }
+    ///endregion
+    
+    ///region
+    
+    @Test(timeout = 10000)
+    public void testMatches11() throws Throwable  {
         LineFilter lineFilter = ((LineFilter) createInstance("spoon.reflect.visitor.filter.LineFilter"));
         Class class1 = Object.class;
         setField(lineFilter, "type", class1);
@@ -200,37 +221,19 @@ public class LineFilterTest {
     ///region
     
     @Test(timeout = 10000)
-    public void testMatches11() throws Throwable  {
-        LineFilter lineFilter = ((LineFilter) createInstance("spoon.reflect.visitor.filter.LineFilter"));
-        Class class1 = Object.class;
-        setField(lineFilter, "type", class1);
-        CtTryImpl ctTryImpl = ((CtTryImpl) createInstance("spoon.support.reflect.code.CtTryImpl"));
-        CtDoImpl ctDoImpl = ((CtDoImpl) createInstance("spoon.support.reflect.code.CtDoImpl"));
-        setField(ctDoImpl, "parent", null);
-        CtBreakImpl ctBreakImpl = ((CtBreakImpl) createInstance("spoon.support.reflect.code.CtBreakImpl"));
-        setField(ctBreakImpl, "parent", null);
-        setField(ctDoImpl, "body", ctBreakImpl);
-        setField(ctTryImpl, "parent", ctDoImpl);
-        
-        boolean actual = lineFilter.matches(ctTryImpl);
-        
-        assertFalse(actual);
-    }
-    ///endregion
-    
-    ///region
-    
-    @Test(timeout = 10000)
     public void testMatches12() throws Throwable  {
         LineFilter lineFilter = ((LineFilter) createInstance("spoon.reflect.visitor.filter.LineFilter"));
         Class class1 = Object.class;
         setField(lineFilter, "type", class1);
-        CtLocalVariableImpl ctLocalVariableImpl = ((CtLocalVariableImpl) createInstance("spoon.support.reflect.code.CtLocalVariableImpl"));
-        BodyHolderSourcePositionImpl bodyHolderSourcePositionImpl = ((BodyHolderSourcePositionImpl) createInstance("spoon.support.reflect.cu.position.BodyHolderSourcePositionImpl"));
-        setField(ctLocalVariableImpl, "position", bodyHolderSourcePositionImpl);
-        setField(ctLocalVariableImpl, "parent", null);
+        CtInvocationImpl ctInvocationImpl = ((CtInvocationImpl) createInstance("spoon.support.reflect.code.CtInvocationImpl"));
+        CtDoImpl ctDoImpl = ((CtDoImpl) createInstance("spoon.support.reflect.code.CtDoImpl"));
+        setField(ctDoImpl, "parent", null);
+        CtClassImpl ctClassImpl = ((CtClassImpl) createInstance("spoon.support.reflect.declaration.CtClassImpl"));
+        setField(ctClassImpl, "parent", null);
+        setField(ctDoImpl, "body", ctClassImpl);
+        setField(ctInvocationImpl, "parent", ctDoImpl);
         
-        boolean actual = lineFilter.matches(ctLocalVariableImpl);
+        boolean actual = lineFilter.matches(ctInvocationImpl);
         
         assertFalse(actual);
     }
